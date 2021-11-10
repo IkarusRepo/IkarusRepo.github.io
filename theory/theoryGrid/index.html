@@ -16,7 +16,7 @@
         <link rel="canonical" href="https://IkarusRepo.github.io/theory/theoryGrid/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.3">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.6">
     
     
       
@@ -24,7 +24,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.5143246d.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a57b2b03.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.3f5d1f46.min.css">
@@ -437,6 +437,8 @@
       </a>
       
         
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -459,15 +461,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grid-interface" class="md-nav__link">
-    Grid interface
+  <a href="#interface-of-the-grid" class="md-nav__link">
+    Interface of the grid
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#grid-implementation" class="md-nav__link">
-    Grid implementation
+  <a href="#available-grid-implementations" class="md-nav__link">
+    Available grid implementations
   </a>
   
 </li>
@@ -599,6 +601,8 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
@@ -621,15 +625,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#grid-interface" class="md-nav__link">
-    Grid interface
+  <a href="#interface-of-the-grid" class="md-nav__link">
+    Interface of the grid
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#grid-implementation" class="md-nav__link">
-    Grid implementation
+  <a href="#available-grid-implementations" class="md-nav__link">
+    Available grid implementations
   </a>
   
 </li>
@@ -738,62 +742,90 @@
                 
                 
                 <h1 id="description-of-the-grid">Description of the grid<a class="headerlink" href="#description-of-the-grid" title="Permanent link">&para;</a></h1>
-<p><img alt="umlDiagram" src="diagrams/UMLGrid.drawio-0.svg" /></p>
 <p>In finite element simulations, we often talk about elements and meshes. What we commonly refer to as "element"
-consists of various aspects with different tasks, e.g.
-- provide a unique identifier (element number)
-- provide a description of the reference geometry (element shape in physical space, shape functions, etc.)
-- provide quantities with physical meaning (mass matrix, stiffness matrix, internal force vector, etc.)
-- ...</p>
+consists of various aspects with different tasks, e.g.  </p>
+<ul>
+<li>provide a unique identifier (element number)</li>
+<li>provide a description of the reference geometry (element shape in physical space, shape functions, etc.)</li>
+<li>provide quantities with physical meaning (mass matrix, stiffness matrix, internal force vector, etc.)</li>
+<li>...</li>
+</ul>
 <p>In the code, there is not one single class which performs all these tasks. Different tasks are performed by 
 different classes, which are described in the following. Especially, the description of the geometry is
 decoupled from the task to provide physical meaning. The following content is only about the 
 <strong>description of the element geometry</strong>. Details on 
 <a href="../theoryFiniteElement/">the implementation of physical quantities can be found here</a>.</p>
-<p>The grid description will be explained using the following example
+<p>This page explains the relationship and the ideas behind everything that has to do with the grid. 
+The relationship is visualized in the following diagram:</p>
+<p><img alt="umlDiagram" src="../../diagrams/UMLGrid.drawio-0.svg" /></p>
+<p>On this page, we will go through it using the following example:
 <img alt="img.png" src="../images/sampleProblemGrid.png" /></p>
 <h2 id="grid">Grid<a class="headerlink" href="#grid" title="Permanent link">&para;</a></h2>
-<p>The grid is a collection of grid entities. In the example above, the grid consists of four surfaces, 
-ten edges and eight vertices, i.e. it consists of 22 grid entities. Since it is some work to construct all
+<p>The grid is a collection of grid entities. In the example above, the grid consists of three surfaces, 
+ten edges and eight vertices, i.e. it consists of 21 grid entities. Since it is some work to construct all
 these quantities and their relations, there is the <a href="./#grid-factory">grid factory</a> 
 which does this job.</p>
-<h3 id="grid-interface">Grid interface<a class="headerlink" href="#grid-interface" title="Permanent link">&para;</a></h3>
-<p>The grid only has to implement one function: <code>leafGridView()</code> which returns a <a href="./#grid-view">grid view</a>, 
-i.e. an object which can iterate over the grid. </p>
-<h3 id="grid-implementation">Grid implementation<a class="headerlink" href="#grid-implementation" title="Permanent link">&para;</a></h3>
-<p>There is currently one implementation which is <code>SimpleGrid</code>. ToDo: describe implementation details</p>
+<h3 id="interface-of-the-grid">Interface of the grid<a class="headerlink" href="#interface-of-the-grid" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>leafGridView()</code>: returns a <a href="./#grid-view">grid view</a>, 
+i.e. an object which can iterate over the grid. </li>
+</ul>
+<h3 id="available-grid-implementations">Available grid implementations<a class="headerlink" href="#available-grid-implementations" title="Permanent link">&para;</a></h3>
+<p><code>SimpleGrid</code>: Currently the only available grid implementation. To construct it, use <code>SimpleGridFactory</code>,
+ as a grid view use <code>SimpleGridView</code>.
+It has the following <strong>capabilities</strong>:</p>
+<ul>
+<li>It is a template: <code>SimpleGrid&lt;dim,wdim&gt;</code> where <code>dim</code> is the dimension of the grid entities and 
+   <code>wdim</code> is the dimension of the world. Dimension of grid entity in this case means:<ul>
+<li>dim=1: e.g. truss elements, beams (one element-internal coordinate xi exists)</li>
+<li>dim=2: e.g. plate elements (two element-internal coordinates xi and eta exist)</li>
+<li>dim=3: 3d elements</li>
+</ul>
+</li>
+<li>All meaningful combinations up to three dimensions can be instantiated, e.g. 
+  truss elements (dim=1) in 2d (wdim=2)</li>
+<li>Different types of grid entities are supported in the same grid as long as they have the 
+  dimension specified by <code>dim</code> (for details on these types see TODO):<ul>
+<li>dim=1: linearLine</li>
+<li>dim=2: linearTriangle, linearQuadrilateral</li>
+<li>dim=3: linearTetrahedron, pyramid, prism, linearHexahedron</li>
+</ul>
+</li>
+</ul>
+<p>Some <strong>restrictions</strong> apply:</p>
+<ul>
+<li>You can't insert grid entities of different dimensions into the same <code>SimpleGrid</code></li>
+<li>Other types than the ones mentioned above are not supported</li>
+<li>The world dimension is limited to 3.</li>
+</ul>
 <h2 id="grid-entity">Grid entity<a class="headerlink" href="#grid-entity" title="Permanent link">&para;</a></h2>
 <p>A grid entity provides all information related to the element geometry. </p>
 <h3 id="interface-of-grid-entity">Interface of grid entity<a class="headerlink" href="#interface-of-grid-entity" title="Permanent link">&para;</a></h3>
-<p>A grid entity has the following properties:
-- It has a certain
-  <a href="./#geometry-type">geometrical type (see below)</a>, e.g. it can be a vertex, a linear line defined by
-  two point or a quadrilateral with linear edges. The type can be obtained by calling <code>type()</code>
-- It has sub-entities of lower dimension. In the example above, surface S1 has the following sub-entities:
-  - four edges (1,2,4,6)
-  - four vertices (1,2,4,5)</p>
-<p>The number of each of these sub-entities can be obtained from <code>subEntities(codim)</code> where codim means ???
-- The subEntities itself can be accessed by ???<br />
-- It can provide a geometry description. By calling the <code>geometry()</code>function, an object is return which
-  the geometry interface. Further details about this interface and what the returned object is able to do
-  can be found on the <a href="../theoryGeometry/">geometry theory page</a>.
-- It has an unique identifier, which can be obtained by calling the member funciton <code>getID()</code>
-- It knows its dimension (e.g. a line is 1D, a quadrilateral is 2D) which can be obtained from <code>mydimension</code>
-- It knows the dimension of the world it lives in, which can be
-  obtained from <code>dimensionworld</code>. If it is a 1d truss element, it can tell whether it lives in a 1d, 2d or 3d space.
-- It knows its <code>codimension</code>, which is ???
-- ToDo after refactoring this interface, complete the documentation. ToDo unify with UML diagram.</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="k">concept</span> <span class="nc">GridEntity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">requires</span><span class="p">(</span><span class="n">GridEntityType</span><span class="w"> </span><span class="n">gEntity</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">codim</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">gEntity</span><span class="p">.</span><span class="n">level</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">gEntity</span><span class="p">.</span><span class="n">geometry</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">gEntity</span><span class="p">.</span><span class="n">type</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">GeometryType</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="n">gEntity</span><span class="p">.</span><span class="n">subEntities</span><span class="p">(</span><span class="n">codim</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">same_as</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">GridEntityType</span><span class="o">::</span><span class="n">codimension</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">GridEntityType</span><span class="o">::</span><span class="n">dimensionworld</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">GridEntityType</span><span class="o">::</span><span class="n">mydimension</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">typename</span> <span class="nc">GridEntityType</span><span class="o">::</span><span class="n">Geometry</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">};</span><span class="w"></span>
-</code></pre></div>
+<p>A grid entity has the following properties: </p>
+<ul>
+<li><code>geometry()</code>: returns the geometrical realization, i.e. an object that satisfies the
+   geometry interface. Further details about this interface and what the returned object is able to do
+  can be found on the <a href="../theoryGeometry/">geometry theory page</a>.</li>
+<li><code>type()</code>: returns the geometrical type, e.g. it can be a vertex, a linear line 
+   defined by two point or a quadrilateral with linear edges. 
+   The difference between <code>type()</code> and <code>geometry()</code> is that <code>type()</code> only returns a name whereas
+   <code>geometry()</code> returns an object with functionality.</li>
+<li><code>vertices(gridEntity)</code>, <code>edges(gridEntity)</code>, <code>surfaces(gridEntity)</code> and <code>volumes(gridEntity)</code>:
+   Each entity has sub-entities of lower dimension. In the example above, surface S1 has the following
+   sub-entities: four edges (number 1,2,4,6) and four vertices (number 1,2,4,5). <code>vertices(S1)</code>
+   returns a span of vertices. The other functions work similarly.</li>
+<li><code>entities(gridEntity, dimension)</code> does the same as the functions above, i.e.<ul>
+<li><code>entities(gridEntity, 0)</code> does the same as <code>vertices(gridEntity)</code>.</li>
+<li><code>entities(gridEntity, 1)</code> does the same as <code>edges(gridEntity)</code>.</li>
+<li>...</li>
+</ul>
+</li>
+<li><code>subEntities(codimension)</code> returns the number of subentities. Codimension in this case is the dimension
+   of the grid entity minus the dimension of the requested subentity. Example: The grid entity 
+   is a 3d volume. subEntities(1) returns the number of surfaces of this volume because codimension=1
+   means your query is about the subentities one dimension lower than the object itself.</li>
+<li><code>getID()</code>: returns a unique identifier</li>
+</ul>
 <h3 id="implementation-of-grid-entity">Implementation of grid entity<a class="headerlink" href="#implementation-of-grid-entity" title="Permanent link">&para;</a></h3>
 <p>There is currently one implementation of the GridEntity interface available, which is <code>DefaultGridEntity</code>. It is
 supposed to be used together with the grid implementation <code>SimpleGrid</code>.
@@ -804,20 +836,30 @@ supposed to be used together with the grid implementation <code>SimpleGrid</code
 </code></pre></div>
 It is based on three template parameters <code>griddim</code>(dimension of the grid), <code>cogriddim</code>(???) and 
 <code>wdim</code>(dimension of the world).</p>
-<p>ToDo: How are the private quantities (e.g. entitiesFathers) constructed?</p>
 <h2 id="grid-factory">Grid factory<a class="headerlink" href="#grid-factory" title="Permanent link">&para;</a></h2>
-<p>To construct a grid, a grid factory can be used. </p>
+<p>To construct a grid, a grid factory can be used. To construct a grid, vertices and element
+definitions are inserted into the factory. The grid is then constructed by the <code>createGrid()</code> function.</p>
 <h3 id="interface-of-the-grid-factory">Interface of the grid factory<a class="headerlink" href="#interface-of-the-grid-factory" title="Permanent link">&para;</a></h3>
-<p>ToDo: Discussion: grid factory is very specific for the grid which is constructed. Is an interface required?</p>
+<ul>
+<li><code>insertVertex(Eigen::Vector&lt;double, dimensionworld&gt;)</code>: Vertices are inserted as a Eigen::Vector
+  of double. Its size is equal to the dimensions of the world (e.g. 2 if it is a 2d simulation etc.)</li>
+<li><code>insertElement(Ikarus::GeometryType type, std::span&lt;size_t&gt; vertices)</code>: An element is defined
+ by its geometrical type and the vertex numbers. For the ordering of the node numbers, see ToDo</li>
+</ul>
 <h3 id="implementation-of-grid-factory">Implementation of grid factory<a class="headerlink" href="#implementation-of-grid-factory" title="Permanent link">&para;</a></h3>
-<p>There is currently one implementation of a grid factory which is <code>SimpleGridFactory</code>. 
-It constructs a <code>SimpleGrid</code>. </p>
+<p><code>SimpleGridFactory</code>: Constructs a <code>SimpleGrid</code>. The same restrictions apply as stated above for <code>SimpleGrid</code>. </p>
 <h2 id="grid-view">Grid view<a class="headerlink" href="#grid-view" title="Permanent link">&para;</a></h2>
-<p>TODO</p>
 <h3 id="interface-of-grid-view">Interface of grid view<a class="headerlink" href="#interface-of-grid-view" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p>The interface of a grid view consists of four free functions. Each of them provides a span of
+certain grid objects:</p>
+<ul>
+<li><code>vertices(GridView)</code>: returns a span of all vertices in this grid</li>
+<li><code>edges(GridView)</code>: returns a span of all edges in this grid</li>
+<li><code>surfaces(GridView)</code>: returns a span of all surfaces in this grid</li>
+<li><code>volumes(GridView)</code>: returns a span of all volumes in this grid</li>
+</ul>
 <h3 id="implementation-of-grid-view">Implementation of grid view<a class="headerlink" href="#implementation-of-grid-view" title="Permanent link">&para;</a></h3>
-<p>TODO</p>
+<p><code>SimpleGridView</code>: Provides iterators for <code>SimpleGrid</code>.</p>
                 
               
               
@@ -894,10 +936,10 @@ It constructs a <code>SimpleGrid</code>. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.fcfe8b6d.min.js", "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.f89c2efe.min.js"></script>
+      <script src="../../assets/javascripts/bundle.b1047164.min.js"></script>
       
         <script src="../../javascripts/config.js"></script>
       
