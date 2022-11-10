@@ -614,6 +614,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#path-following-techniques" class="md-nav__link">
+    Path following techniques
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -861,6 +868,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#path-following-techniques" class="md-nav__link">
+    Path following techniques
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -905,6 +919,131 @@ The following messages are available:
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="n">SOLUTION_CHANGED</span><span class="p">,</span><span class="w"></span>
 <a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="n">END</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
 </code></pre></div></p>
+<h2 id="path-following-techniques">Path following techniques<a class="headerlink" href="#path-following-techniques" title="Permanent link">&para;</a></h2>
+<p>A general routine based on the standard Arc-length method is included which uses a scalar subsidiary function to impose 
+a constraint on the non-linear system of equations. The previously mentioned LoadControl method can also be recreated 
+using this technique. For more details on the standard arc-length method, refer the works 
+of Wempner<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>, Crisfield<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, Ramm<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> and 
+Riks<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> among others. A path following object is constructed as follows:<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">alc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">PathFollowing</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span><span class="w"> </span><span class="n">load_steps</span><span class="p">,</span><span class="w"> </span><span class="n">stepSize</span><span class="p">,</span><span class="w"> </span><span class="n">pft</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+where <code class="highlight"><span class="n">nr</span><span class="w"></span></code> is a Newton-Raphson solver which considers a scalar subsidiary function and is defined by
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">nr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">makeNewtonRaphsonWithSubsidiaryFunction</span><span class="p">(</span><span class="n">nonLinOp</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">linSolver</span><span class="p">));</span><span class="w"></span>
+</code></pre></div>
+and <code class="highlight"><span class="n">pft</span><span class="w"></span></code> is the desired path following technique. Three different path following techniques are included, namely</p>
+<ul>
+<li>Standard arc-length method</li>
+<li>Load control method (as a subsidiary function under this generalized implementation)</li>
+<li>Displacement control method (uses a vector of indices which are all controlled by a same <code class="highlight"><span class="n">stepSize</span><span class="w"></span></code>).</li>
+</ul>
+<p>These can be invoked by defining 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">pft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">StandardArcLength</span><span class="p">{};</span><span class="w"></span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">pft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">LoadControlWithSubsidiaryFunction</span><span class="p">{};</span><span class="w"></span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">pft</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">DisplacementControl</span><span class="p">{</span><span class="n">controlledIndices</span><span class="p">};</span><span class="w"></span>
+</code></pre></div>
+The default path following type is the <code class="highlight"><span class="n">Ikarus</span><span class="o">::</span><span class="n">StandardArcLength</span><span class="p">{}</span><span class="w"></span></code>.</p>
+<p>It is to note that in the current implementation, it is assumed that the external forces are given by 
+<span class="arithmatex">\(F_{ext} = F_{ext}^0\lambda\)</span> such that 
+$$
+-\frac{\partial \mathbf{R}}{\partial \lambda} = F_{ext}^0
+$$
+An implementation for a general non-linear <span class="arithmatex">\(F_{ext} = F_{ext}^0\left(\mathbf{D},\lambda\right)\)</span> is an open task.</p>
+<p>In order to create an own implementation for the scalar subsidiary function, the user has to create a <code class="highlight"><span class="k">struct</span><span class="w"></span></code> 
+with the following three member functions:<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">evaluateSubsidiaryFunction</span><span class="p">(</span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">initialPrediction</span><span class="p">(</span><span class="n">NonLinearOperator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">,</span><span class="w"> </span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">intermediatePrediction</span><span class="p">(</span><span class="n">NonLinearOperator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">,</span><span class="w"> </span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
+The function <code class="highlight"><span class="n">evaluateSubsidiaryFunction</span><span class="p">(</span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"></span></code> is used to evaluate the subsidiary function and 
+its derivatives with respect to the displacement <span class="arithmatex">\(\mathbf{D}\)</span> and the load factor <span class="arithmatex">\(\lambda\)</span> for every Newton-Raphson iteration. The other two functions 
+are used to specify a prediction for <span class="arithmatex">\(\mathbf{D}\)</span> and <span class="arithmatex">\(\lambda\)</span> initially for the very first step and for 
+all the other intermediate subsequent <code class="highlight"><span class="n">load_steps</span><span class="w"></span></code>.   </p>
+<p><code class="highlight"><span class="n">SubsidiaryArgs</span><span class="w"></span></code> is a <code class="highlight"><span class="k">struct</span><span class="w"></span></code> which is defined as
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">SubsidiaryArgs</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">stepSize</span><span class="p">;</span><span class="w"> </span><span class="c1">// (1)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorX</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">DD</span><span class="p">;</span><span class="w"> </span><span class="c1">// (2)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">Dlambda</span><span class="p">{};</span><span class="w"> </span><span class="c1">// (3)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">{};</span><span class="w"> </span><span class="c1">// (4)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">VectorX</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dfdDD</span><span class="p">;</span><span class="w"> </span><span class="c1">// (5)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">dfdDlambda</span><span class="p">{};</span><span class="w"> </span><span class="c1">// (6)</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">};</span><span class="w"></span>
+</code></pre></div></p>
+<ol>
+<li>User-desired step size</li>
+<li>Vector of displacement increments</li>
+<li>Increment in the load factor</li>
+<li>Scalar value evaluated from the subsidiary function</li>
+<li>Derivative of the subsidiary function with respect to the displacement increment</li>
+<li>Derivative of the subsidiary function with respect to the load factor increment</li>
+</ol>
+<p>An example for the standard arc-length method is shown below:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">StandardArcLength</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">evaluateSubsidiaryFunction</span><span class="p">(</span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">psi</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="p">.</span><span class="n">squaredNorm</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="n">args</span><span class="p">.</span><span class="n">f</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">stepSize</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">        </span><span class="n">args</span><span class="p">.</span><span class="n">dfdDD</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="n">args</span><span class="p">.</span><span class="n">dfdDlambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">root</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"></span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="n">DUNE_THROW</span><span class="p">(</span><span class="n">Dune</span><span class="o">::</span><span class="n">InvalidStateException</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">                   </span><span class="s">&quot;You have to call initialPrediction first. Otherwise psi is not defined&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">NonLinearOperator</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">initialPrediction</span><span class="p">(</span><span class="n">NonLinearOperator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">,</span><span class="w"> </span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">linearSolver</span><span class="w"></span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">ILinearSolver</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">SolverTypeTag</span><span class="o">::</span><span class="n">d_LDLT</span><span class="p">);</span><span class="w">  </span><span class="c1">// for the linear predictor step</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">lastParameter</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">;</span><span class="w">  </span><span class="c1">// lambda =1.0</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="k">template</span><span class="w"> </span><span class="n">update</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">value</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">derivative</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">      </span><span class="n">linearSolver</span><span class="p">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">K</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">      </span><span class="n">linearSolver</span><span class="p">.</span><span class="n">solve</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">DD2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="p">.</span><span class="n">squaredNorm</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">      </span><span class="n">psi</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">DD2</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqrt</span><span class="p">(</span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">psi</span><span class="p">.</span><span class="n">value</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DD2</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">      </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">stepSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">      </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">stepSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">s</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">firstParameter</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">lastParameter</span><span class="p">()</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">    </span><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">NonLinearOperator</span><span class="o">&gt;</span><span class="w"></span>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">intermediatePrediction</span><span class="p">(</span><span class="n">NonLinearOperator</span><span class="o">&amp;</span><span class="w"> </span><span class="n">nonLinearOperator</span><span class="p">,</span><span class="w"> </span><span class="n">SubsidiaryArgs</span><span class="o">&amp;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">firstParameter</span><span class="p">()</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">DD</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="w">      </span><span class="n">nonLinearOperator</span><span class="p">.</span><span class="n">lastParameter</span><span class="p">()</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">args</span><span class="p">.</span><span class="n">Dlambda</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a>
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Arc length&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a><span class="w">  </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">psi</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a><span class="w">  </span><span class="p">};</span><span class="w"></span>
+</code></pre></div></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Gerald A. Wempner. Discrete approximations related to nonlinear theories of solids. <em>International Journal of Solids and Structures</em>, 7(11):1581&ndash;1599, 1971. <a href="https://doi.org/10.1016/0020-7683(71)90038-2">doi:10.1016/0020-7683(71)90038-2</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>M.A. Crisfield. A fast incremental/iterative solution procedure that handles “snap-through”. <em>Computers &amp; Structures</em>, 13(1):55&ndash;62, 1981. <a href="https://doi.org/10.1016/0045-7949(81)90108-5">doi:10.1016/0045-7949(81)90108-5</a>.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>E. Ramm. Strategies for Tracing the Nonlinear Response Near Limit Points. In W. Wunderlich, E. Stein, and K.-J. Bathe, editors, <em>Nonlinear Finite Element Analysis in Structural Mechanics</em>, pages 63–89. Springer Berlin Heidelberg, Berlin, Heidelberg, 1981. <a href="https://doi.org/10.1007/978-3-642-81589-8_5">doi:10.1007/978-3-642-81589-8_5</a>.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>E. Riks. The Application of Newton’s Method to the Problem of Elastic Stability. <em>Journal of Applied Mechanics</em>, 39(4):1060–1065, 1972. <a href="https://doi.org/10.1115/1.3422829">doi:10.1115/1.3422829</a>.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
