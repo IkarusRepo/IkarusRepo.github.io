@@ -963,7 +963,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 <h1 id="deformation-of-an-incompressible-rubber-block">Deformation of an incompressible rubber block<a class="headerlink" href="#deformation-of-an-incompressible-rubber-block" title="Permanent link">¶</a></h1>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">¶</a></h2>
-<p><code>iks003_incompressible_LinearElasticity.cpp</code> uses a finite element technology with displacement and pressure as
+<p><code>iks003_incompressible_LinearElasticity.cpp</code> uses finite element technology with displacement and pressure as
 independent degrees of freedom to simulate the deformation of an incompressible rubber block. The potential energy 
 for such a system is defined in the <code>Solid struct</code> by the function
 <code>calculateScalarImpl(const FERequirementType &amp;par, const Eigen::VectorX&lt;ScalarType&gt; &amp;dx)</code>. 
@@ -988,15 +988,17 @@ The energy is then calculated as follows:
 <a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">           </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">fext</span><span class="p">))</span>
 <a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">          </span><span class="o">*</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">integrationElement</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">())</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gp</span><span class="p">.</span><span class="n">weight</span><span class="p">();</span><span class="w">  </span><span class="c1">// plane strain for 2D</span>
 </code></pre></div>
-Here: 
-- <code>symgradu</code> is the symmetric part of the gradient of displacements 
-- <code>lambdaMat</code> is the first Lame parameter
-- <code>pressure</code> and <code>x</code> is the nodal pressure and current position, respectively
-- <code>divU</code> is the divergence of the displacement vector
-- <code>fext</code> is the external force vector
-- <code>gp.position()</code> and <code>gp.weight()</code> are the positions and weights from the quadrature rule
-- <code>geo.integrationElement()</code> returns the determinant of Jacobian required from the iso-parametric concept</p>
-<p>A Yasp 2D grid<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is created of the size <span class="arithmatex">\(L\)</span> x <span class="arithmatex">\(h\)</span> with 20 elements in both directions as shown below: 
+Here: </p>
+<ul>
+<li><code>symgradu</code> is the symmetric part of the gradient of displacements </li>
+<li><code>lambdaMat</code> is the first Lame parameter</li>
+<li><code>pressure</code> and <code>x</code> are the nodal pressure and current position, respectively</li>
+<li><code>divU</code> is the divergence of the displacement vector</li>
+<li><code>fext</code> is the external force vector</li>
+<li><code>gp.position()</code> and <code>gp.weight()</code> are the positions and weights from the quadrature rule</li>
+<li><code>geo.integrationElement()</code> returns the determinant of Jacobian required from the iso-parametric concept</li>
+</ul>
+<p>A Yasp 2D grid<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> is created of the size <span class="arithmatex">\(L\)</span> x <span class="arithmatex">\(h\)</span> with 20 elements in both directions, as shown below: 
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">using</span><span class="w"> </span><span class="n">Grid</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">YaspGrid</span><span class="o">&lt;</span><span class="n">gridDim</span><span class="o">&gt;</span><span class="p">;</span>
 <a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">L</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 <a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">h</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -1009,10 +1011,11 @@ Here:
 <a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="k">auto</span><span class="w"> </span><span class="n">gridView</span><span class="w">                           </span><span class="o">=</span><span class="w"> </span><span class="n">grid</span><span class="o">-&gt;</span><span class="n">leafGridView</span><span class="p">();</span>
 </code></pre></div>
 A linear Lagrangian basis is opted for the displacements and a constant basis for the pressure degrees of freedom using the
-<code>composite</code> basis feature from Dune as shown below:
+<code>composite</code> basis feature from Dune, as shown below:
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">basis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">makeConstSharedBasis</span><span class="p">(</span>
 <a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">gridView</span><span class="p">,</span><span class="w"> </span><span class="n">composite</span><span class="p">(</span><span class="n">power</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lagrange</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(),</span><span class="w"> </span><span class="n">FlatInterleaved</span><span class="p">()),</span><span class="w"> </span><span class="n">lagrange</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(),</span><span class="w"> </span><span class="n">FlatLexicographic</span><span class="p">()));</span>
 </code></pre></div>
+Here, <code class="highlight"><span class="n">power</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;</span></code> is used to approximate the displacement field in both <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> directions. 
 The displacement degrees of freedom at position <span class="arithmatex">\(y=0\)</span> are fixed using the following snippet:
 <div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">Ikarus</span><span class="o">::</span><span class="n">DirichletValues</span><span class="w"> </span><span class="nf">dirichletValues</span><span class="p">(</span><span class="n">basis</span><span class="p">);</span>
 <a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">dirichletValues</span><span class="p">.</span><span class="n">fixDOFs</span><span class="p">([](</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basis_</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dirichletFlags</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1058,6 +1061,7 @@ the <code>*.vtu</code> files. The results can then be plotted, for example, usin
 <h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">¶</a></h2>
 <ul>
 <li><code>Ikarus::AutoDiffFE</code> can be used to arrive at the stiffness matrix and external load vector from the energy function.</li>
+<li>Easier implementation of mixed finite elements is possible due to the composite basis feature from Dune.</li>
 <li>Helper functions are included to switch between the Lame parameters.</li>
 <li>Grids from Dune can be directly incorporated within the Ikarus framework.</li>
 <li>Sparse and dense assemblers can be used to construct the global stiffness matrices and load vectors.</li>

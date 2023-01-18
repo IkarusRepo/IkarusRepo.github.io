@@ -511,6 +511,17 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Plate subjected to a surface load
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
@@ -521,6 +532,41 @@
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description">
+<span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#code-highlights">
+<span class="md-ellipsis">
+      
+        Code highlights
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#takeaways">
+<span class="md-ellipsis">
+      
+        Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../newtonRaphsonMethod/">
@@ -870,6 +916,39 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description">
+<span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#code-highlights">
+<span class="md-ellipsis">
+      
+        Code highlights
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#takeaways">
+<span class="md-ellipsis">
+      
+        Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -881,10 +960,141 @@ SPDX-FileCopyrightText: 2022 The Ikarus Developers mueller@ibb.uni-stuttgart.de
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 <h1 id="plate-subjected-to-a-surface-load">Plate subjected to a surface load<a class="headerlink" href="#plate-subjected-to-a-surface-load" title="Permanent link">¶</a></h1>
-<p>Kirchhoff type plate element is implemented in <code>iks004_kirchhoffPlate.cpp</code> using the automatic differentiation
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">¶</a></h2>
+<p>Kirchhoff-type plate element is implemented in <code>iks004_kirchhoffPlate.cpp</code> using the automatic differentiation
 technique as commented before. The basis used for discretization is a NURBS basis from the <code>dune-iga</code> module.
-The problem is solved and convergence plots are created by comparing the solutions to available analytical solutions for
-simply supported and clamped boundaries.</p>
+The problem is solved, and convergence plots are created by comparing the solutions to the available analytical solutions for the
+simply supported case.</p>
+<h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">¶</a></h2>
+<p>Similar to the <code>struct</code> named <code>Solid</code> in <code>iks003_incompressible_LinearElasticity.cpp</code>, here a <code>struct</code> named <code>KirchhoffPlate</code> is created as an object 
+of <code>AutoDiffFE</code>. It is constructed as shown below:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">KirchhoffPlate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Basis</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">LocalView</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_Emodul</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_nu</span><span class="p">,</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">               </span><span class="kt">double</span><span class="w"> </span><span class="n">p_thickness</span><span class="p">)</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">BaseDisp</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">),</span>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">      </span><span class="n">BaseAD</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">),</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">      </span><span class="n">localView_</span><span class="p">{</span><span class="n">basis</span><span class="p">.</span><span class="n">localView</span><span class="p">()},</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">      </span><span class="n">Emodul</span><span class="p">{</span><span class="n">p_Emodul</span><span class="p">},</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">      </span><span class="n">nu</span><span class="p">{</span><span class="n">p_nu</span><span class="p">},</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">      </span><span class="n">thickness</span><span class="p">{</span><span class="n">p_thickness</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span><span class="n">localView_</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">  </span><span class="n">geometry_</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">localView_</span><span class="p">.</span><span class="n">element</span><span class="p">().</span><span class="n">geometry</span><span class="p">());</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="p">}</span>
+</code></pre></div>
+It takes in the <code>p_thickness</code> parameter in addition to the ones in <code>Solid</code>. Here, the energy is calculated as:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">energy</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kappa</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kappa</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">geometry_</span><span class="o">-&gt;</span><span class="n">integrationElement</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">())</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gp</span><span class="p">.</span><span class="n">weight</span><span class="p">();</span>
+</code></pre></div>
+with <code>kappa</code> being the vector of curvature containing <span class="arithmatex">\(\kappa_{xx}, \kappa_{yy}\)</span> and <span class="arithmatex">\(\kappa_{xy}\)</span>. If the boundaries 
+are clamped, the penalty method could be used, for example, to fix the derivatives of the displacements. Here, however, the example for the simply supported case is discussed further.</p>
+<p>A two-dimensional NURBS grid is created from the <a href="https://github.com/rath3t/dune-iga">dune-iga</a> module. </p>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">griddim</span><span class="w">                                    </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// (1)! </span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dimworld</span><span class="w">                                   </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="c1">// (2)! </span>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">griddim</span><span class="o">&gt;</span><span class="w"> </span><span class="n">knotSpans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// (3)! </span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">using</span><span class="w"> </span><span class="n">ControlPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">NURBSPatchData</span><span class="o">&lt;</span><span class="n">griddim</span><span class="p">,</span><span class="w"> </span><span class="n">dimworld</span><span class="o">&gt;::</span><span class="n">ControlPointType</span><span class="p">;</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Lx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// (4)! </span>
+<a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">Ly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// (5)! </span>
+<a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">ControlPoint</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">controlPoints</span>
+<a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{.</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{.</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">Ly</span><span class="p">},</span><span class="w"> </span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w"> </span>
+<a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="p">{.</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Lx</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span><span class="w"> </span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="p">{.</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Lx</span><span class="p">,</span><span class="w"> </span><span class="n">Ly</span><span class="p">},</span><span class="w"> </span><span class="p">.</span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// (6)! </span>
+<a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a>
+<a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">griddim</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dimsize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">};</span><span class="w"> </span><span class="c1">// (7)! </span>
+<a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a>
+<a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="k">auto</span><span class="w"> </span><span class="n">controlNet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">NURBSPatchData</span><span class="o">&lt;</span><span class="n">griddim</span><span class="p">,</span><span class="w"> </span><span class="n">dimworld</span><span class="o">&gt;::</span><span class="n">ControlPointNetType</span><span class="p">(</span><span class="n">dimsize</span><span class="p">,</span><span class="w"> </span><span class="n">controlPoints</span><span class="p">);</span><span class="w"> </span><span class="c1">// (8)!</span>
+<a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="k">using</span><span class="w"> </span><span class="n">Grid</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">NURBSGrid</span><span class="o">&lt;</span><span class="n">griddim</span><span class="p">,</span><span class="w"> </span><span class="n">dimworld</span><span class="o">&gt;</span><span class="p">;</span>
+<a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a>
+<a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">NURBSPatchData</span><span class="o">&lt;</span><span class="n">griddim</span><span class="p">,</span><span class="w"> </span><span class="n">dimworld</span><span class="o">&gt;</span><span class="w"> </span><span class="n">patchData</span><span class="p">;</span>
+<a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="n">patchData</span><span class="p">.</span><span class="n">knotSpans</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">knotSpans</span><span class="p">;</span><span class="w"> </span><span class="c1">// (9)! </span>
+<a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="n">patchData</span><span class="p">.</span><span class="n">degree</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w"> </span><span class="c1">// (10)! </span>
+<a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="n">patchData</span><span class="p">.</span><span class="n">controlPoints</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controlNet</span><span class="p">;</span><span class="w"> </span><span class="c1">// (11)! </span>
+<a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="n">patchData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">degreeElevate</span><span class="p">(</span><span class="n">patchData</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// (12)! </span>
+<a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="n">patchData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">IGA</span><span class="o">::</span><span class="n">degreeElevate</span><span class="p">(</span><span class="n">patchData</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// (13)! </span>
+<a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="n">Grid</span><span class="w"> </span><span class="nf">grid</span><span class="p">(</span><span class="n">patchData</span><span class="p">);</span><span class="w"> </span><span class="c1">// (14)!</span>
+</code></pre></div>
+<ol>
+<li>The dimension of the grid. Here, two-dimensional.</li>
+<li>The dimension of the physical space in which the grid lies (the embedding space of the grid). Here, two-dimensional.</li>
+<li>The knot vector for the NURBS grid.</li>
+<li>Length of the plate</li>
+<li>Width of the plate</li>
+<li>Control points and the weights for the square plate (the control points are ordered such that all the control points for a particular <span class="arithmatex">\(x\)</span>-position are listed first, followed by the subsequent <span class="arithmatex">\(x\)</span>-positions in ascending order).</li>
+<li>Number of control points in either direction.</li>
+<li>Creation of the control net.</li>
+<li>Binding the <code>knotSpans</code> to a particular NURBS <code>patchData</code>.</li>
+<li>The polynomial degree for the basis in either directions. It can also be calculated from the <code>knotSpans</code>.</li>
+<li>Binding the <code>controlNet</code> to a particular NURBS <code>patchData</code>.</li>
+<li>Elevating the polynomial degree for the <code>patchData</code> in <span class="arithmatex">\(x\)</span>-direction (<code>0</code>) by 1.</li>
+<li>Elevating the polynomial degree for the <code>patchData</code> in <span class="arithmatex">\(y\)</span>-direction (<code>1</code>) by 1.</li>
+<li>Creating the grid object from the patch data</li>
+</ol>
+<p>In order to obtain the convergence plots, the system is solved five times, with the refinement level 
+increasing by 1 each time using the command <code class="highlight"><span class="n">grid</span><span class="p">.</span><span class="n">globalRefine</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span></code>. The NURBS basis can be obtained directly from the 
+NURBS grid using the <code>getPreBasis()</code> function, as shown below:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">basis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">makeConstSharedBasis</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span><span class="w"> </span><span class="n">gridView</span><span class="p">.</span><span class="n">impl</span><span class="p">().</span><span class="n">getPreBasis</span><span class="p">());</span>
+</code></pre></div>
+This is followed by specifying the Dirichlet boundary conditions, creating the finite elements and the assembler, 
+solving the system of equations, and post-processing using Paraview as mentioned in the previous examples.
+The analytical solution for the simply supported case is adapted from 
+<a href="https://en.wikipedia.org/wiki/Bending_of_plates#Simply-supported_plate_with_uniformly-distributed_load">Wikipedia</a> and is also mentioned below: 
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">wAna</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">w</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">seriesFactors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">pi</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">numbers</span><span class="o">::</span><span class="n">pi</span><span class="p">;</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">oddFactors</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ranges</span><span class="o">::</span><span class="n">iota_view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">seriesFactors</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">views</span><span class="o">::</span><span class="n">filter</span><span class="p">([](</span><span class="k">auto</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">oddFactors</span><span class="p">)</span>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">oddFactors</span><span class="p">)</span>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="n">w</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Lx</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">Ly</span><span class="p">)</span>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">           </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">power</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">Lx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Lx</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">Ly</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Ly</span><span class="p">),</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">totalLoad</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">Dune</span><span class="o">::</span><span class="n">power</span><span class="p">(</span><span class="n">pi</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">D</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="p">;</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="p">};</span>
+</code></pre></div>
+The <code class="highlight"><span class="n">Dune</span><span class="o">::</span><span class="n">Functions</span><span class="o">::</span><span class="n">makeDiscreteGlobalBasisFunction</span></code> is used to create a function from the nodal finite element 
+solution of the displacements and the NURBS basis whereas the <code class="highlight"><span class="n">Dune</span><span class="o">::</span><span class="n">Functions</span><span class="o">::</span><span class="n">makeAnalyticGridViewFunction</span></code> is 
+used to create a function by using the function to evaluate the analytical solutions and the <code>gridView</code> to get the position <code>x</code>.
+Local functions are then created that are used later to calculate the <span class="arithmatex">\(L^2\)</span>-error.<br/>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">wGlobalFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">Functions</span><span class="o">::</span><span class="n">makeDiscreteGlobalBasisFunction</span><span class="o">&lt;</span><span class="n">Dune</span><span class="o">::</span><span class="n">FieldVector</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">);</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">wGlobalAnalyticFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">Functions</span><span class="o">::</span><span class="n">makeAnalyticGridViewFunction</span><span class="p">(</span><span class="n">wAna</span><span class="p">,</span><span class="w"> </span><span class="n">gridView</span><span class="p">);</span>
+<a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">auto</span><span class="w"> </span><span class="n">localw</span><span class="w">                  </span><span class="o">=</span><span class="w"> </span><span class="n">localFunction</span><span class="p">(</span><span class="n">wGlobalFunction</span><span class="p">);</span>
+<a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="k">auto</span><span class="w"> </span><span class="n">localwAna</span><span class="w">               </span><span class="o">=</span><span class="w"> </span><span class="n">localFunction</span><span class="p">(</span><span class="n">wGlobalAnalyticFunction</span><span class="p">);</span>
+</code></pre></div>
+The <span class="arithmatex">\(L^2\)</span>-error is calculated by using 
+$$
+L^2\textrm{-error} = \sqrt{\sum_{ele} \int_{\Omega_{ele}} \left( w_{analytical}-w_{FE} \right)^2}
+$$ 
+as shown below: 
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">l2_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ele</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">elements</span><span class="p">(</span><span class="n">gridView</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">  </span><span class="n">localView</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ele</span><span class="p">);</span>
+<a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">  </span><span class="n">localw</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ele</span><span class="p">);</span>
+<a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">  </span><span class="n">localwAna</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ele</span><span class="p">);</span>
+<a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">geo</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">localView</span><span class="p">.</span><span class="n">element</span><span class="p">().</span><span class="n">geometry</span><span class="p">();</span>
+<a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rule</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">QuadratureRules</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;::</span><span class="n">rule</span><span class="p">(</span><span class="n">ele</span><span class="p">.</span><span class="n">type</span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">localView</span><span class="p">.</span><span class="n">tree</span><span class="p">().</span><span class="n">finiteElement</span><span class="p">().</span><span class="n">localBasis</span><span class="p">().</span><span class="n">order</span><span class="p">());</span>
+<a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">gp</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">rule</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">gpGlobalPos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">global</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">());</span>
+<a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>
+<a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">w_ex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localwAna</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">());</span>
+<a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">w_fe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localw</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">());</span>
+<a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="w">    </span><span class="n">l2_error</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">power</span><span class="p">(</span><span class="n">w_ex</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w_fe</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ele</span><span class="p">.</span><span class="n">geometry</span><span class="p">().</span><span class="n">integrationElement</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">())</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gp</span><span class="p">.</span><span class="n">weight</span><span class="p">();</span>
+<a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="w">  </span><span class="p">}</span>
+<a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="p">}</span>
+<a href="#__codelineno-6-16" id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="n">l2_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">l2_error</span><span class="p">);</span>
+</code></pre></div>
+The number of degrees of freedom for each refinement level and its corresponding <span class="arithmatex">\(L^2\)</span>-error is pushed to a vector that 
+can be later used to create plots using the features from Matlab.  <br/>
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dofsVec</span><span class="p">;</span>
+<a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">l2Evcector</span><span class="p">;</span>
+<a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="n">dofsVec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">basis</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span>
+<a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="n">l2Evcector</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">l2_error</span><span class="p">);</span>
+</code></pre></div></p>
+<h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">¶</a></h2>
+<ul>
+<li>NURBS grids can be created using the <code>dune-iga</code> module.</li>
+<li>The basis for the corresponding NURBS grid can be obtained using the <code>getPreBasis()</code> function.</li>
+<li>The Kirchhoff plate element can be easily implemented by evaluating the energy and using automatic differentiation methods.</li>
+<li><span class="arithmatex">\(L^2\)</span>-error can be evaluated to perform convergence studies.</li>
+</ul>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

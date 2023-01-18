@@ -535,6 +535,17 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    
+  
+    Non-linear elasticity for 2D solids
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     
@@ -545,6 +556,41 @@
     
   </span>
 </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description">
+<span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#code-highlights">
+<span class="md-ellipsis">
+      
+        Code highlights
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#takeaways">
+<span class="md-ellipsis">
+      
+        Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../vonMisesTruss/">
@@ -870,6 +916,39 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#description">
+<span class="md-ellipsis">
+      
+        Description
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#code-highlights">
+<span class="md-ellipsis">
+      
+        Code highlights
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#takeaways">
+<span class="md-ellipsis">
+      
+        Takeaways
+      
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -881,11 +960,102 @@ SPDX-FileCopyrightText: 2022 The Ikarus Developers mueller@ibb.uni-stuttgart.de
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 <h1 id="non-linear-elasticity-for-2d-solids">Non-linear Elasticity for 2D solids<a class="headerlink" href="#non-linear-elasticity-for-2d-solids" title="Permanent link">¶</a></h1>
-<p>Again, automatic differentiation based implementation is used to perform a non-linear analysis for a 2D block in
-<code>iks006_nonlinear2DSolid.cpp</code>. Various methods to obtain a 2D grid via Dune is also shown in the commented section in
-the beginning. Python is used to provide a Neumann boundary condition providing a demonstration for the usage of a
-Python-based code within the Ikarus framework. Load control method is chosen as the desired control routine and
-Newton-Raphson (or Trust region methods) are used to solve the non-linear problem itself.</p>
+<h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">¶</a></h2>
+<p>In <code>iks006_nonlinear2DSolid.cpp</code>, an automatic differentiation-based implementation is used to perform a non-linear analysis on a 2D block. 
+Various methods to obtain a 2D grid via Dune are also shown in the commented section at
+the beginning. Python is used to provide a Neumann boundary condition, providing a demonstration for the usage of 
+Python-based code within the Ikarus framework. The load control method is chosen as the desired control routine, and
+Newton-Raphson (or trust region methods) are used to solve the non-linear problem itself.</p>
+<h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">¶</a></h2>
+<p>This example uses two macros, <code>gridType</code> and <code>solverType</code>, that are to be set as desired before executing the example.
+The <code>gridType</code> can be set to 0, 1, or 2, denoting an <code>ALUGrid</code>, a <code>YaspGrid</code>, and a <code>NURBSGrid</code> respectively.
+The <code>solverType</code> can be set to either 0 or 1 for <code>Newton-Raphson</code> and <code>Trust region</code> methods respectively.</p>
+<p>When <code>ALUGrid</code> is chosen, the mesh file <code>auxiliaryFiles/unstructuredTrianglesfine.msh</code> is read using <code>Dune::GmshReader</code> 
+and is then globally refined once. The <code>YaspGrid</code> created a square block of length 1 with 10 elements in either direction.
+The <code>NURBSGrid</code> also creates a square block of length 1 with a polynomial degree of 2 in both directions. 
+The block is subjected to a Neumann load on the right edge (<span class="arithmatex">\(x=1\)</span>) that is incorporated using the dune-python interface as shown below:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">Dune</span><span class="o">::</span><span class="n">BitSetVector</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neumannVertices</span><span class="p">(</span><span class="n">gridView</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">lambdaNeumannVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">"lambda x: ( x[0]&gt;0.999 )"</span><span class="p">);</span>
+<a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+<a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">Python</span><span class="o">::</span><span class="n">start</span><span class="p">();</span>
+<a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">Python</span><span class="o">::</span><span class="n">Reference</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Python</span><span class="o">::</span><span class="k">import</span><span class="p">(</span><span class="s">"__main__"</span><span class="p">);</span>
+<a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="n">Python</span><span class="o">::</span><span class="n">run</span><span class="p">(</span><span class="s">"import math"</span><span class="p">);</span>
+<a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">Python</span><span class="o">::</span><span class="n">runStream</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"import sys"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"import os"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="k">auto</span><span class="w"> </span><span class="n">pythonNeumannVertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Python</span><span class="o">::</span><span class="n">make_function</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Python</span><span class="o">::</span><span class="n">evaluate</span><span class="p">(</span><span class="n">lambdaNeumannVertices</span><span class="p">));</span>
+<a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>
+<a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">vertex</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">vertices</span><span class="p">(</span><span class="n">gridView</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isNeumann</span><span class="w">                          </span><span class="o">=</span><span class="w"> </span><span class="n">pythonNeumannVertices</span><span class="p">(</span><span class="n">vertex</span><span class="p">.</span><span class="n">geometry</span><span class="p">().</span><span class="n">corner</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">  </span><span class="n">neumannVertices</span><span class="p">[</span><span class="n">indexSet</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">vertex</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isNeumann</span><span class="p">;</span>
+<a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">}</span>
+<a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="n">BoundaryPatch</span><span class="o">&lt;</span><span class="k">decltype</span><span class="p">(</span><span class="n">gridView</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">neumannBoundary</span><span class="p">(</span><span class="n">gridView</span><span class="p">,</span><span class="w"> </span><span class="n">neumannVertices</span><span class="p">);</span>
+</code></pre></div>
+After the basis is defined, the non-linear elastic finite element is created as shown below:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">NonLinearElasticityFE</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">decltype</span><span class="p">(</span><span class="n">basis</span><span class="p">)</span><span class="o">::</span><span class="n">element_type</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">fes</span><span class="p">;</span>
+<a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">volumeLoad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">globalCoord</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lamb</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector2d</span><span class="w"> </span><span class="n">fext</span><span class="p">;</span>
+<a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">  </span><span class="n">fext</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">fext</span><span class="p">;</span>
+<a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="p">};</span>
+<a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="k">auto</span><span class="w"> </span><span class="n">neumannBoundaryLoad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[](</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">globalCoord</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lamb</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector2d</span><span class="w"> </span><span class="n">fext</span><span class="p">;</span>
+<a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">  </span><span class="n">fext</span><span class="p">.</span><span class="n">setZero</span><span class="p">();</span>
+<a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span><span class="n">fext</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lamb</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">40</span><span class="p">;</span>
+<a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">fext</span><span class="p">;</span>
+<a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="p">};</span>
+<a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>
+<a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">elements</span><span class="p">(</span><span class="n">gridView</span><span class="p">))</span>
+<a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">  </span><span class="n">fes</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="o">*</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">neumannBoundary</span><span class="p">,</span><span class="w"> </span><span class="n">neumannBoundaryLoad</span><span class="p">,</span><span class="w"> </span><span class="n">volumeLoad</span><span class="p">);</span>
+</code></pre></div>
+The functors <code>volumeLoad</code> and <code>neumannBoundaryLoad</code> are used to obtain the external volume and surface loads acting on a particular position.
+The line <span class="arithmatex">\(y=0\)</span> is clamped by applying the Dirichlet boundary condition expressed below:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">Ikarus</span><span class="o">::</span><span class="n">DirichletValues</span><span class="w"> </span><span class="nf">dirichletValues</span><span class="p">(</span><span class="n">basis</span><span class="p">);</span>
+<a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">dirichletValues</span><span class="p">.</span><span class="n">fixBoundaryDOFs</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dirichletFlags</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">localIndex</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">localView</span><span class="p">,</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="n">intersection</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span><span class="n">intersection</span><span class="p">.</span><span class="n">geometry</span><span class="p">().</span><span class="n">center</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1e-8</span><span class="p">)</span><span class="w"> </span><span class="n">dirichletFlags</span><span class="p">[</span><span class="n">localView</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="n">localIndex</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">});</span>
+</code></pre></div>
+The finite element requirements are defined by using the affordance <code class="highlight"><span class="n">Ikarus</span><span class="o">::</span><span class="n">AffordanceCollections</span><span class="o">::</span><span class="n">elastoStatics</span></code>.
+This is then used to create functors to get the stiffness matrix, residual vector, and energy value using a sparse assembler.
+A non-linear operator and the linear solver used by the <code>solverType</code> are defined as:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">nonLinOp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">NonLinearOperator</span><span class="p">(</span><span class="n">linearAlgebraFunctions</span><span class="p">(</span><span class="n">energyFunction</span><span class="p">,</span><span class="w"> </span><span class="n">residualFunction</span><span class="p">,</span><span class="w"> </span><span class="n">KFunction</span><span class="p">),</span><span class="w"> </span><span class="n">parameter</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">));</span>
+<a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">auto</span><span class="w"> </span><span class="n">linSolver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">ILinearSolver</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">SolverTypeTag</span><span class="o">::</span><span class="n">sd_UmfPackLU</span><span class="p">);</span>
+</code></pre></div>
+An object for the Newton-Raphson method or the trust region method can then be defined as
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="cp">#if solverType == 0</span>
+<a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">nr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">makeNewtonRaphson</span><span class="p">(</span><span class="n">nonLinOp</span><span class="p">.</span><span class="n">subOperator</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">&gt;</span><span class="p">(),</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">linSolver</span><span class="p">));</span>
+<a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="cp">#endif</span>
+<a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="cp">#if solverType == 1</span>
+<a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">nr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">makeTrustRegion</span><span class="p">(</span><span class="n">nonLinOp</span><span class="p">);</span>
+<a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">  </span><span class="n">nr</span><span class="o">-&gt;</span><span class="n">setup</span><span class="p">({.</span><span class="n">verbosity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">             </span><span class="p">.</span><span class="n">maxiter</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">             </span><span class="p">.</span><span class="n">grad_tol</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-8</span><span class="p">,</span>
+<a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">             </span><span class="p">.</span><span class="n">corr_tol</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mf">1e-8</span><span class="p">,</span>
+<a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">             </span><span class="p">.</span><span class="n">useRand</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span>
+<a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">             </span><span class="p">.</span><span class="n">rho_reg</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mf">1e6</span><span class="p">,</span>
+<a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">             </span><span class="p">.</span><span class="n">Delta0</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">});</span>
+<a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="cp">#endif</span>
+</code></pre></div>
+All the available output messages are subscribed to be displayed by using the following commands:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">nonLinearSolverObserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">NonLinearSolverLogger</span><span class="o">&gt;</span><span class="p">();</span>
+<a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">nr</span><span class="o">-&gt;</span><span class="n">subscribeAll</span><span class="p">(</span><span class="n">nonLinearSolverObserver</span><span class="p">);</span>
+</code></pre></div>
+The <a href="../../01_framework/controlRoutines/#load-control">load control</a> method is finally used as the path-following technique to solve this non-linear problem.
+It also subscribes to all the available information being written to the <code>vtkWriter</code>.
+Output files are written for the deformed configuration at every load step that can be visualized using Paraview.
+The load control method is executed by the following commands:
+<div class="highlight"><pre><span></span><code><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">auto</span><span class="w"> </span><span class="n">lc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">LoadControl</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2000</span><span class="p">});</span>
+<a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">lc</span><span class="p">.</span><span class="n">subscribeAll</span><span class="p">(</span><span class="n">vtkWriter</span><span class="p">);</span>
+<a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">lc</span><span class="p">.</span><span class="n">run</span><span class="p">();</span>
+</code></pre></div></p>
+<h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">¶</a></h2>
+<ul>
+<li>Grid types, finite element discretizations, and solver types are independent entities that are used to solve the problem at hand and can be switched easily to compare various formulations.</li>
+<li>The dune-python interface can be used to read external codes written in <a href="https://www.python.org/">Python</a>.</li>
+<li>A geometrically non-linear elastic finite element can be used from the Ikarus library.</li>
+<li>The Newton-Raphson and trust regions methods can be used as non-linear solvers.</li>
+<li>The load control method is used here as the path-following technique.</li>
+</ul>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
