@@ -1,0 +1,6 @@
+var a00083 =
+[
+    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "d2/d1f/a00083.html#adda74d8564a01c0a9851a4379308a8b2", null ],
+    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "d2/d1f/a00083.html#a5b30ded46e39b79f1a98f9e3b9fd7902", null ],
+    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "d2/d1f/a00083.html#a31c0a01141d4e67fb01d50ee602a8dab", null ]
+];

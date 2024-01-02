@@ -1,0 +1,75 @@
+\hypertarget{a00083_source}{}\doxysection{flatassembler.\+hh}
+\label{a00083_source}\index{flatassembler.hh@{flatassembler.hh}}
+\mbox{\hyperlink{a00083}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02465}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00227}{Ikarus::Python}} \{}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                                                                \(\backslash\)}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{  template <class Assembler, class... options>                                                                                 \(\backslash\)}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{                                   \(\backslash\)}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
+\DoxyCodeLine{21     using FEContainer         = typename Assembler::FEContainer;                                                               \(\backslash\)}
+\DoxyCodeLine{22     using Basis               = typename Assembler::Basis;                                                                     \(\backslash\)}
+\DoxyCodeLine{23     using DirichletValuesType = typename Assembler::DirichletValuesType;                                                       \(\backslash\)}
+\DoxyCodeLine{24     using FERequirementType   = typename Assembler::FERequirementType;                                                         \(\backslash\)}
+\DoxyCodeLine{25     pybind11::module m        = pybind11::module::import("{}ikarus"{});                                                            \(\backslash\)}
+\DoxyCodeLine{26     cls.def(pybind11::init([](const pybind11::list\& fes, const DirichletValuesType\& dirichletValues) \{                         \(\backslash\)}
+\DoxyCodeLine{27               \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that            \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{comment}{               * the user can pass native python lists here, see                                                               \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{comment}{               * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}\textcolor{preprocessor}{                                           \(\backslash\)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{              FEContainer fesV = fes.template cast<FEContainer>();                                                             \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{              return new Assembler(std::move(fesV), dirichletValues);                                                          \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{            \}),                                                                                                                \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{            pybind11::keep\_alive<1, 3>());                                                                                     \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{                                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{    }\textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}\textcolor{preprocessor}{                \(\backslash\)}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{    }\textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341 \(\backslash\)}}
+\DoxyCodeLine{37 \textcolor{comment}{     */}\textcolor{preprocessor}{                                                                                                                        \(\backslash\)}}
+\DoxyCodeLine{38 \textcolor{preprocessor}{    cls.def(                                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{39 \textcolor{preprocessor}{        "{}getMatrix"{}},                                                                                                           \(\backslash\)}
+\DoxyCodeLine{40         [](Assembler\& self, const FERequirementType\& req) -\/> std::remove\_cvref\_t<decltype(self.getMatrix(req))> \{              \(\backslash\)}
+\DoxyCodeLine{41           return self.getMatrix(req);                                                                                          \(\backslash\)}
+\DoxyCodeLine{42         \},                                                                                                                     \(\backslash\)}
+\DoxyCodeLine{43         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{44     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{45         "{}getReducedMatrix"{},                                                                                                    \(\backslash\)}
+\DoxyCodeLine{46         [](Assembler\& self, const FERequirementType\& req)                                                                      \(\backslash\)}
+\DoxyCodeLine{47             -\/> std::remove\_cvref\_t<decltype(self.getReducedMatrix(req))> \{ return self.getReducedMatrix(req); \},               \(\backslash\)}
+\DoxyCodeLine{48         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{49     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{50         "{}getVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getVector(req); \},                        \(\backslash\)}
+\DoxyCodeLine{51         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
+\DoxyCodeLine{52     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{53         "{}getScalar"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getScalar(req); \},                        \(\backslash\)}
+\DoxyCodeLine{54         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{55     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{56         "{}getReducedVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getReducedVector(req); \},          \(\backslash\)}
+\DoxyCodeLine{57         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
+\DoxyCodeLine{58     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{59         "{}createFullVector"{},                                                                                                    \(\backslash\)}
+\DoxyCodeLine{60         [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ return self.createFullVector(redVec); \},               \(\backslash\)}
+\DoxyCodeLine{61         pybind11::return\_value\_policy::move);                                                                                  \(\backslash\)}
+\DoxyCodeLine{62     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{63         "{}reducedSize"{}, [](Assembler\& self) \{ return self.reducedSize(); \}, pybind11::return\_value\_policy::copy);               \(\backslash\)}
+\DoxyCodeLine{64   \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   \mbox{\hyperlink{a00227_a31c0a01141d4e67fb01d50ee602a8dab}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01069}{SparseFlatAssembler}});}
+\DoxyCodeLine{67   \mbox{\hyperlink{a00227_a31c0a01141d4e67fb01d50ee602a8dab}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01073}{DenseFlatAssembler}});}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \}  \textcolor{comment}{// namespace Ikarus::Python}}
+
+\end{DoxyCode}

@@ -1,0 +1,58 @@
+\hypertarget{a00005_source}{}\doxysection{powerbasisfe.\+hh}
+\label{a00005_source}\index{powerbasisfe.hh@{powerbasisfe.hh}}
+\mbox{\hyperlink{a00005}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00017}{ikarus/finiteelements/fetraits.hh}}>}}
+\DoxyCodeLine{7 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{14   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Basis>}
+\DoxyCodeLine{15   \textcolor{keyword}{class }\mbox{\hyperlink{a01117}{PowerBasisFE}} \{}
+\DoxyCodeLine{16   \textcolor{keyword}{public}:}
+\DoxyCodeLine{17     \textcolor{keyword}{using }\mbox{\hyperlink{a01333}{RootBasis}}   = \mbox{\hyperlink{a01333}{Basis}};}
+\DoxyCodeLine{18     \textcolor{keyword}{using }\mbox{\hyperlink{a01117_a382561903c15241286d1d3bb4b8dba25}{LocalView}}   = \textcolor{keyword}{typename} Basis::LocalView;}
+\DoxyCodeLine{19     \textcolor{keyword}{using }\mbox{\hyperlink{a01117_a6f9f635b6e082d4f56988229a944b4e6}{GlobalIndex}} = \textcolor{keyword}{typename} LocalView::MultiIndex;}
+\DoxyCodeLine{20     \textcolor{keyword}{explicit} \mbox{\hyperlink{a01117_a009345be8aeaf011f22f4c32c7d6f638}{PowerBasisFE}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01333}{Basis}}\& p\_basis, \textcolor{keyword}{const} \textcolor{keyword}{typename} LocalView::Element\& element)}
+\DoxyCodeLine{21         : localView\_\{p\_basis.\mbox{\hyperlink{a01117_a4b49c02de08fb5c115affa646c5f249a}{localView}}()\} \{}
+\DoxyCodeLine{22       \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01565}{Ikarus::Concepts::PowerBasis<RootBasis>}},}
+\DoxyCodeLine{23                     \textcolor{stringliteral}{"{}You didn't pass a localview of a power basis to this method"{}});}
+\DoxyCodeLine{24       \textcolor{keyword}{static\_assert}(RootBasis::PreBasis::Node::degree() != 1,}
+\DoxyCodeLine{25                     \textcolor{stringliteral}{"{}The basis has only one children. Maybe use scalarFE.hh. "{}});}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27       localView\_.bind(element);}
+\DoxyCodeLine{28     \}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{31     \textcolor{keyword}{using }\mbox{\hyperlink{a01117_a442d7dbe5ab5ffc77bcd6fd873a8ec20}{GridElementEntityType}} = \textcolor{keyword}{typename} LocalView::Element;}
+\DoxyCodeLine{32     \textcolor{keyword}{using }\mbox{\hyperlink{a01153}{Traits}}                = \mbox{\hyperlink{a01153}{FETraits<GridElementEntityType>}};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{35     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01117_a08d63c99f722a352ee1ebe29bcb88bcd}{num\_children}} = RootBasis::PreBasis::Node::degree();}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01117_a65fbcfb67bd20fd4a434230b5efa5bd1}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} localView\_.size(); \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01117_ac47a208cf2511bf8676282280360ab38}{globalFlatIndices}}(std::vector<GlobalIndex>\& globalIndices)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{40       globalIndices.clear();}
+\DoxyCodeLine{41       \textcolor{keyword}{static\_assert}(}
+\DoxyCodeLine{42           \textcolor{keyword}{requires} \{ localView\_.tree().child(0); \},}
+\DoxyCodeLine{43           \textcolor{stringliteral}{"{}Your basis does not provide a child accessor. Maybe use scalarFE.hh."{}});}
+\DoxyCodeLine{44       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe = localView\_.tree().child(0).finiteElement();}
+\DoxyCodeLine{45       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < fe.size(); ++i) \{}
+\DoxyCodeLine{46         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < \mbox{\hyperlink{a01117_a08d63c99f722a352ee1ebe29bcb88bcd}{num\_children}}; ++j) \{}
+\DoxyCodeLine{47           globalIndices.push\_back(localView\_.index((localView\_.tree().child(j).localIndex(i))));}
+\DoxyCodeLine{48         \}}
+\DoxyCodeLine{49       \}}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52     \textcolor{keyword}{const} \mbox{\hyperlink{a01117_a442d7dbe5ab5ffc77bcd6fd873a8ec20}{GridElementEntityType}}\& \mbox{\hyperlink{a01117_a2326b4087aab033ec7a70d0dd3f97e60}{gridElement}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} localView\_.element(); \}}
+\DoxyCodeLine{53     \textcolor{keyword}{const} \mbox{\hyperlink{a01117_a382561903c15241286d1d3bb4b8dba25}{LocalView}}\& \mbox{\hyperlink{a01117_a4b49c02de08fb5c115affa646c5f249a}{localView}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} localView\_; \}}
+\DoxyCodeLine{54     \mbox{\hyperlink{a01117_a382561903c15241286d1d3bb4b8dba25}{LocalView}}\& \mbox{\hyperlink{a01117_a00a045439d18c431ef49d7349230272b}{localView}}() \{ \textcolor{keywordflow}{return} localView\_; \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{keyword}{private}:}
+\DoxyCodeLine{57     \mbox{\hyperlink{a01117_a382561903c15241286d1d3bb4b8dba25}{LocalView}} localView\_;}
+\DoxyCodeLine{58   \};}
+\DoxyCodeLine{59 \}  \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}

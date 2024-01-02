@@ -1,0 +1,59 @@
+\hypertarget{a00161_source}{}\doxysection{griddrawer.\+hh}
+\label{a00161_source}\index{griddrawer.hh@{griddrawer.hh}}
+\mbox{\hyperlink{a00161}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <matplot/matplot.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/geometry/dimension.hh>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Gr\textcolor{keywordtype}{id}View>}
+\DoxyCodeLine{14 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00161_a2634a2b365ea0b95c6dcfad0dbefac1f}{draw}}(\textcolor{keyword}{const} GridView\& gridView, \textcolor{keywordtype}{bool} forever = \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{15   \textcolor{keyword}{using namespace }matplot;}
+\DoxyCodeLine{16   \textcolor{keyword}{auto} f  = figure(\textcolor{keyword}{true});}
+\DoxyCodeLine{17   \textcolor{keyword}{auto} ax = gca();}
+\DoxyCodeLine{18   hold(ax, \textcolor{keyword}{true});}
+\DoxyCodeLine{19   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} edgeCodim = GridView::dimension -\/ 1;}
+\DoxyCodeLine{20   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& element : elements(gridView)) \{}
+\DoxyCodeLine{21     std::array<std::array<double, 2>, GridView::dimensionworld> edgeCoords\{\};}
+\DoxyCodeLine{22     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} edgeIndex = 0; edgeIndex < element.subEntities(edgeCodim); ++edgeIndex) \{}
+\DoxyCodeLine{23       \textcolor{keyword}{auto} edge = element.template subEntity<edgeCodim>(edgeIndex);}
+\DoxyCodeLine{24       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 2; ++i) \{}
+\DoxyCodeLine{25         \textcolor{keyword}{const} \textcolor{keyword}{auto} vertCoords = edge.geometry().corner(i);}
+\DoxyCodeLine{26         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < GridView::dimensionworld; ++j)}
+\DoxyCodeLine{27           edgeCoords[j][i] = vertCoords[j];}
+\DoxyCodeLine{28       \}}
+\DoxyCodeLine{29       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (GridView::dimensionworld == 3) \{}
+\DoxyCodeLine{30         \textcolor{keyword}{auto} l = ax-\/>plot3(edgeCoords[0], edgeCoords[1], edgeCoords[2], \textcolor{stringliteral}{"{}-\/o"{}});}
+\DoxyCodeLine{31         l-\/>line\_width(2);}
+\DoxyCodeLine{32         l-\/>color(\textcolor{stringliteral}{"{}black"{}});}
+\DoxyCodeLine{33         l-\/>marker\_size(10);}
+\DoxyCodeLine{34         l-\/>marker\_face\_color(\textcolor{stringliteral}{"{}red"{}});}
+\DoxyCodeLine{35       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{36         \textcolor{keyword}{auto} l = ax-\/>plot(edgeCoords[0], edgeCoords[1], \textcolor{stringliteral}{"{}-\/o"{}});}
+\DoxyCodeLine{37         l-\/>line\_width(2);}
+\DoxyCodeLine{38         l-\/>color(\textcolor{stringliteral}{"{}black"{}});}
+\DoxyCodeLine{39         l-\/>marker\_size(10);}
+\DoxyCodeLine{40         l-\/>marker\_face\_color(\textcolor{stringliteral}{"{}red"{}});}
+\DoxyCodeLine{41       \}}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43   \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45   \textcolor{keywordflow}{if} (forever)}
+\DoxyCodeLine{46     f-\/>show();}
+\DoxyCodeLine{47   \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{48     f-\/>draw();}
+\DoxyCodeLine{49     \textcolor{keyword}{using namespace }std::chrono\_literals;}
+\DoxyCodeLine{50     std::this\_thread::sleep\_for(5s);}
+\DoxyCodeLine{51   \}}
+\DoxyCodeLine{52   f.reset();}
+\DoxyCodeLine{53 \}}
+
+\end{DoxyCode}

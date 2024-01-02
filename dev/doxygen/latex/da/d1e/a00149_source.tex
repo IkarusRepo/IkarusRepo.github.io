@@ -1,0 +1,406 @@
+\hypertarget{a00149_source}{}\doxysection{traits.\+hh}
+\label{a00149_source}\index{traits.hh@{traits.hh}}
+\mbox{\hyperlink{a00149}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <concepts>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <optional>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <type\_traits>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/common/hybridutilities.hh>}}
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00232}{Ikarus::Std}} \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{15   \textcolor{keyword}{concept }\mbox{\hyperlink{a01583}{is\_pointer}} = std::is\_pointer\_v<T> || std::is\_same\_v<T, std::nullptr\_t>;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{18   \textcolor{keyword}{requires} \mbox{\hyperlink{a01583}{is\_pointer<T>}}}
+\DoxyCodeLine{19   \textcolor{keyword}{auto}\& \mbox{\hyperlink{a00232_a9068e91a401551c189fd055d792b2773}{returnReferenceOrNulloptIfObjectIsNullPtr}}(T v) \{}
+\DoxyCodeLine{20     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<T, std::nullptr\_t>)}
+\DoxyCodeLine{21       \textcolor{keywordflow}{return} *v;}
+\DoxyCodeLine{22     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{23       \textcolor{keywordflow}{return} std::nullopt;}
+\DoxyCodeLine{24   \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   \textcolor{comment}{// Forward declare functions}}
+\DoxyCodeLine{27   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{28   \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_aa2fd7f176ba35a00dfa564e2de345dc0}{makeNestedTupleFlat}}(std::tuple<Types...> tup);}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30   \textcolor{keyword}{template} <\textcolor{keyword}{typename}>}
+\DoxyCodeLine{31   \textcolor{keyword}{struct }\mbox{\hyperlink{a01417}{is\_tuple}} : std::false\_type \{\};}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... T>}
+\DoxyCodeLine{34   \textcolor{keyword}{struct }\mbox{\hyperlink{a01417}{is\_tuple}}<std::tuple<T...>> : std::true\_type \{\};}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{class} Tuple, \textcolor{keyword}{class} Type>}
+\DoxyCodeLine{37   \textcolor{keyword}{requires} \mbox{\hyperlink{a01417}{is\_tuple<Tuple>::value}} \textcolor{keyword}{consteval} \textcolor{keywordtype}{int} \mbox{\hyperlink{a00232_af69eaa862f96b1e05cae132002e3bda2}{countType}}() \{}
+\DoxyCodeLine{38     \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{39     Dune::Hybrid::forEach(Dune::Hybrid::integralRange(Dune::index\_constant<std::tuple\_size\_v<Tuple>>()), [\&](\textcolor{keyword}{auto} i) \{}
+\DoxyCodeLine{40       \textcolor{keyword}{using }currentType = std::remove\_cvref\_t<std::tuple\_element\_t<i, Tuple>>;}
+\DoxyCodeLine{41       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<currentType, Type>) ++count;}
+\DoxyCodeLine{42     \});}
+\DoxyCodeLine{43     \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{44   \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Fun, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{47   \textcolor{keyword}{using }\mbox{\hyperlink{a00232_a8a73882aa4613b1db650ae7126112c7d}{ReturnType}} = std::invoke\_result\_t<Fun, Args...>;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{50   \textcolor{keyword}{struct }\mbox{\hyperlink{a01425}{hasType}};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{53   \textcolor{keyword}{struct }\mbox{\hyperlink{a01425}{hasType}}<T, std::tuple<>> : std::false\_type \{\};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{56   \textcolor{keyword}{struct }\mbox{\hyperlink{a01425}{hasType}}<T, T> : std::true\_type \{\};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{59   \textcolor{keyword}{struct }\mbox{\hyperlink{a01425}{hasType}}<T, std::tuple<U, Ts...>> : \mbox{\hyperlink{a01425}{hasType}}<T, std::tuple<Ts...>> \{\};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{62   \textcolor{keyword}{struct }\mbox{\hyperlink{a01425}{hasType}}<T, std::tuple<T, Ts...>> : std::true\_type \{\};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}...> \textcolor{keyword}{class}, \textcolor{keyword}{typename}...>}
+\DoxyCodeLine{65   \textcolor{keyword}{struct }\mbox{\hyperlink{a01445}{isSpecialization}} : \textcolor{keyword}{public} std::false\_type \{\};}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}...> \textcolor{keyword}{class }U, \textcolor{keyword}{typename}... T>}
+\DoxyCodeLine{68   \textcolor{keyword}{struct }\mbox{\hyperlink{a01445}{isSpecialization}}<U, U<T...>> : \textcolor{keyword}{public} std::true\_type \{\};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{71   \textcolor{keyword}{struct }\mbox{\hyperlink{a01453}{isSpecializationTypeAndNonTypes}} : std::false\_type \{\};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} T, \textcolor{keyword}{auto}... N>}
+\DoxyCodeLine{74   \textcolor{keyword}{struct }\mbox{\hyperlink{a01453}{isSpecializationTypeAndNonTypes}}<Type, Type<T, N...>> : std::true\_type \{\};}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}, \textcolor{keyword}{typename}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{77   \textcolor{keyword}{struct }\mbox{\hyperlink{a01461}{isSpecializationNonTypeAndTypes}} : std::false\_type \{\};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}, \textcolor{keyword}{typename}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{auto} T, \textcolor{keyword}{typename}... N>}
+\DoxyCodeLine{80   \textcolor{keyword}{struct }\mbox{\hyperlink{a01461}{isSpecializationNonTypeAndTypes}}<Type, Type<T, N...>> : std::true\_type \{\};}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, auto, \textcolor{keyword}{typename}> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{83   \textcolor{keyword}{struct }\mbox{\hyperlink{a01469}{isSpecializationTypeNonTypeAndType}} : std::false\_type \{\};}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, auto, \textcolor{keyword}{typename}> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} T, \textcolor{keyword}{auto} M, \textcolor{keyword}{typename} N>}
+\DoxyCodeLine{86   \textcolor{keyword}{struct }\mbox{\hyperlink{a01469}{isSpecializationTypeNonTypeAndType}}<Type, Type<T, M, N>> : std::true\_type \{\};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{89   \textcolor{keyword}{struct }\mbox{\hyperlink{a01477}{isSpecializationNonTypes}} : std::false\_type \{\};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{auto}... N>}
+\DoxyCodeLine{92   \textcolor{keyword}{struct }\mbox{\hyperlink{a01477}{isSpecializationNonTypes}}<Type, Type<N...>> : std::true\_type \{\};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94   \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{95     \textcolor{keyword}{template} <\textcolor{keyword}{class }Tuple, std::size\_t... I>}
+\DoxyCodeLine{96     \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} makeTupleSubsetImpl(Tuple\&\& t, std::index\_sequence<I...>) \{}
+\DoxyCodeLine{97       \textcolor{keywordflow}{return} std::make\_tuple(std::get<I>(std::forward<Tuple>(t))...);}
+\DoxyCodeLine{98     \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{keyword}{template} <\textcolor{keyword}{class }Tuple, std::size\_t... I>}
+\DoxyCodeLine{101     \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} makeTupleFromTupleIndicesImpl(Tuple\&\& t, std::index\_sequence<I...>) \{}
+\DoxyCodeLine{102       \textcolor{keywordflow}{return} std::make\_tuple(std::get<I>(std::forward<Tuple>(t))...);}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{106     \textcolor{keyword}{struct }uniqueImpl : std::type\_identity<T> \{\};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Ts, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename}... Us>}
+\DoxyCodeLine{109     \textcolor{keyword}{struct }uniqueImpl<std::tuple<Ts...>, U, Us...>}
+\DoxyCodeLine{110         : std::conditional\_t<(std::is\_same\_v<U, Ts> || ...), uniqueImpl<std::tuple<Ts...>, Us...>,}
+\DoxyCodeLine{111                              uniqueImpl<std::tuple<Ts..., U>, Us...>> \{\};}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113     \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{114     \textcolor{keyword}{using }unique\_tupleImpl = \textcolor{keyword}{typename} uniqueImpl<std::tuple<>, Ts...>::type;}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{117     \textcolor{keyword}{auto} makeNestedTupleFlatImpl() \{}
+\DoxyCodeLine{118       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isTuple = isSpecialization<std::tuple, T>::value;}
+\DoxyCodeLine{119       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{sizeof}...(Types) > 0) \{}
+\DoxyCodeLine{120         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{121           \textcolor{keywordflow}{return} std::tuple\_cat(\mbox{\hyperlink{a00232_aa2fd7f176ba35a00dfa564e2de345dc0}{makeNestedTupleFlat}}(T()), makeNestedTupleFlatImpl<Types...>());}
+\DoxyCodeLine{122         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{123           \textcolor{keywordflow}{return} std::tuple\_cat(std::make\_tuple(T()), makeNestedTupleFlatImpl<Types...>());}
+\DoxyCodeLine{124       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{125         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{126           \textcolor{keywordflow}{return} \mbox{\hyperlink{a00232_aa2fd7f176ba35a00dfa564e2de345dc0}{makeNestedTupleFlat}}(T());}
+\DoxyCodeLine{127         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{128           \textcolor{keywordflow}{return} std::make\_tuple(T());}
+\DoxyCodeLine{129       \}}
+\DoxyCodeLine{130     \}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{133     \textcolor{keyword}{auto} makeNestedTupleFlatAndStoreReferencesImpl(\textcolor{keyword}{const} std::tuple<T, Types...>\& tup) \{}
+\DoxyCodeLine{134       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isTuple = isSpecialization<std::tuple, std::remove\_cvref\_t<T>>::value;}
+\DoxyCodeLine{135       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{sizeof}...(Types) > 0) \{}
+\DoxyCodeLine{136         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{137           \textcolor{keywordflow}{return} std::tuple\_cat(}
+\DoxyCodeLine{138               makeNestedTupleFlatAndStoreReferencesImpl(std::get<0>(tup)),}
+\DoxyCodeLine{139               std::apply(}
+\DoxyCodeLine{140                   [](\textcolor{keyword}{const} T\&, \textcolor{keyword}{const} Types\&... args) \{}
+\DoxyCodeLine{141                     \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesImpl(std::make\_tuple(std::cref(args)...));}
+\DoxyCodeLine{142                   \},}
+\DoxyCodeLine{143                   tup));}
+\DoxyCodeLine{144         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{145           \textcolor{keywordflow}{return} std::tuple\_cat(}
+\DoxyCodeLine{146               std::make\_tuple(std::cref(std::get<0>(tup))),}
+\DoxyCodeLine{147               std::apply(}
+\DoxyCodeLine{148                   [](\textcolor{keyword}{const} T\&, \textcolor{keyword}{const} Types\&... args) \{}
+\DoxyCodeLine{149                     \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesImpl(std::make\_tuple(std::cref(args)...));}
+\DoxyCodeLine{150                   \},}
+\DoxyCodeLine{151                   tup));}
+\DoxyCodeLine{152       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{153         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{154           \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesImpl(std::get<0>(tup));}
+\DoxyCodeLine{155         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{156           \textcolor{keywordflow}{return} std::make\_tuple(std::cref(std::get<0>(tup)));}
+\DoxyCodeLine{157       \}}
+\DoxyCodeLine{158     \}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{161     \textcolor{keyword}{auto} makeNestedTupleFlatAndStoreReferencesNonConstImpl(\textcolor{keyword}{const} std::tuple<T, Types...>\& tupconst) \{}
+\DoxyCodeLine{162       \textcolor{keyword}{auto}\& tup              = \textcolor{keyword}{const\_cast<}std::tuple<T, Types...\textcolor{keyword}{>}\&>(tupconst);}
+\DoxyCodeLine{163       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isTuple = isSpecialization<std::tuple, std::remove\_cvref\_t<T>>::value;}
+\DoxyCodeLine{164       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{sizeof}...(Types) > 0) \{}
+\DoxyCodeLine{165         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{166           \textcolor{keywordflow}{return} std::tuple\_cat(}
+\DoxyCodeLine{167               makeNestedTupleFlatAndStoreReferencesNonConstImpl(std::get<0>(tup)),}
+\DoxyCodeLine{168               std::apply(}
+\DoxyCodeLine{169                   [](T\&, Types\&... args) \{}
+\DoxyCodeLine{170                     \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesNonConstImpl(std::make\_tuple(std::ref(args)...));}
+\DoxyCodeLine{171                   \},}
+\DoxyCodeLine{172                   tup));}
+\DoxyCodeLine{173         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{174           \textcolor{keywordflow}{return} std::tuple\_cat(}
+\DoxyCodeLine{175               std::make\_tuple(std::ref(std::get<0>(tup))),}
+\DoxyCodeLine{176               std::apply(}
+\DoxyCodeLine{177                   [](T\&, Types\&... args) \{}
+\DoxyCodeLine{178                     \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesNonConstImpl(std::make\_tuple(std::ref(args)...));}
+\DoxyCodeLine{179                   \},}
+\DoxyCodeLine{180                   tup));}
+\DoxyCodeLine{181       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{182         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isTuple)}
+\DoxyCodeLine{183           \textcolor{keywordflow}{return} makeNestedTupleFlatAndStoreReferencesNonConstImpl(std::get<0>(tup));}
+\DoxyCodeLine{184         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{185           \textcolor{keywordflow}{return} std::make\_tuple(std::ref(std::get<0>(tup)));}
+\DoxyCodeLine{186       \}}
+\DoxyCodeLine{187     \}}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189   \}  \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple, \textcolor{keyword}{typename} Predicate>}
+\DoxyCodeLine{192   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00232_ad4fc88994776e27c7e59e9d3e6642714}{find\_if}}(Tuple\&\& tuple, Predicate pred) \{}
+\DoxyCodeLine{193     \textcolor{keywordtype}{size\_t} index        = std::tuple\_size<std::remove\_reference\_t<Tuple>>::value;}
+\DoxyCodeLine{194     \textcolor{keywordtype}{size\_t} currentIndex = 0;}
+\DoxyCodeLine{195     \textcolor{keywordtype}{bool} found          = \textcolor{keyword}{false};}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197     Dune::Hybrid::forEach(tuple, [\&](\textcolor{keyword}{auto}\&\& value) \{}
+\DoxyCodeLine{198       \textcolor{keywordflow}{if} (!found \&\& pred(value)) \{}
+\DoxyCodeLine{199         index = currentIndex;}
+\DoxyCodeLine{200         found = \textcolor{keyword}{true};}
+\DoxyCodeLine{201       \}}
+\DoxyCodeLine{202       ++currentIndex;}
+\DoxyCodeLine{203     \});}
+\DoxyCodeLine{204     \textcolor{keywordflow}{return} index;}
+\DoxyCodeLine{205   \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple, \textcolor{keyword}{typename} Predicate>}
+\DoxyCodeLine{208   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_af0dae23b4085d0bf0dadbd4164f963da}{none\_of}}(Tuple\&\& tuple, Predicate pred) \{}
+\DoxyCodeLine{209     \textcolor{keywordflow}{return} \mbox{\hyperlink{a00232_ad4fc88994776e27c7e59e9d3e6642714}{find\_if}}(tuple, pred) == std::tuple\_size<std::decay\_t<Tuple>>::value;}
+\DoxyCodeLine{210   \}}
+\DoxyCodeLine{211 }
+\DoxyCodeLine{212   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple, \textcolor{keyword}{typename} Predicate>}
+\DoxyCodeLine{213   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_adc9017fac80bfcb010f2d128df0035a6}{any\_of}}(Tuple\&\& tuple, Predicate pred) \{}
+\DoxyCodeLine{214     \textcolor{keywordflow}{return} !\mbox{\hyperlink{a00232_af0dae23b4085d0bf0dadbd4164f963da}{none\_of}}(tuple, pred);}
+\DoxyCodeLine{215   \}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple, \textcolor{keyword}{typename} Predicate>}
+\DoxyCodeLine{218   \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_ad53bff1c71d9dd7a6ce1e553bb5a1647}{filter}}(Tuple\&\& tuple, Predicate pred) \{}
+\DoxyCodeLine{219     \textcolor{keywordflow}{return} std::apply(}
+\DoxyCodeLine{220         [\&pred](\textcolor{keyword}{auto}... ts) \{}
+\DoxyCodeLine{221           \textcolor{keywordflow}{return} std::tuple\_cat(std::conditional\_t<pred(ts), std::tuple<\textcolor{keyword}{decltype}(ts)>, std::tuple<>>\{\}...);}
+\DoxyCodeLine{222         \},}
+\DoxyCodeLine{223         tuple);}
+\DoxyCodeLine{224   \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{227   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_a36bc95d9b39957050ffb6ae932d9e0d2}{unique}}(std::tuple<Types...>\&\&) \{}
+\DoxyCodeLine{228     \textcolor{keywordflow}{return} Impl::unique\_tupleImpl<Types...>();}
+\DoxyCodeLine{229   \}}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple, \textcolor{keyword}{typename} Predicate>}
+\DoxyCodeLine{232   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00232_a6bd7fd054314c161f4599efc760dbb4b}{count\_if}}(Tuple\&\& tuple, Predicate pred) \{}
+\DoxyCodeLine{233     \textcolor{keywordtype}{size\_t} counter = 0;}
+\DoxyCodeLine{234     Dune::Hybrid::forEach(tuple, [\&](\textcolor{keyword}{auto}\&\& value) \{}
+\DoxyCodeLine{235       \textcolor{keywordflow}{if} (pred(value)) ++counter;}
+\DoxyCodeLine{236     \});}
+\DoxyCodeLine{237     \textcolor{keywordflow}{return} counter;}
+\DoxyCodeLine{238   \}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{241   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a00232_ae1bdd01661c6fb29b55953eacff6fce6}{findTypeSpecialization}}() \{}
+\DoxyCodeLine{242     \textcolor{keywordflow}{return} \mbox{\hyperlink{a00232_ad4fc88994776e27c7e59e9d3e6642714}{find\_if}}(std::remove\_cvref\_t<Tuple>(),}
+\DoxyCodeLine{243                    []<\textcolor{keyword}{typename} T>(T\&\&) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01477}{isSpecializationNonTypes<Type, std::remove\_cvref\_t<T>}}>::value; \});}
+\DoxyCodeLine{244   \}}
+\DoxyCodeLine{245   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{246   \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_a6c8b15da98e8b2456964a65f2d61b149}{getSpecialization}}(Tuple\&\& tuple) \{}
+\DoxyCodeLine{247     \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} index = findTypeSpecialization<Type, Tuple>();}
+\DoxyCodeLine{248     \textcolor{keywordflow}{return} std::get<index>(tuple);}
+\DoxyCodeLine{249   \}}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{252   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_a78380595cc1115819a4b6fd6e1bead21}{hasTypeSpecialization}}() \{}
+\DoxyCodeLine{253     \textcolor{keywordflow}{return} (\mbox{\hyperlink{a00232_ad4fc88994776e27c7e59e9d3e6642714}{find\_if}}(std::remove\_cvref\_t<Tuple>(),}
+\DoxyCodeLine{254                     []<\textcolor{keyword}{typename} T>(T\&\&) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01477}{isSpecializationNonTypes<Type, std::remove\_cvref\_t<T>}}>::value; \})}
+\DoxyCodeLine{255             < std::tuple\_size\_v<std::remove\_cvref\_t<Tuple>>);}
+\DoxyCodeLine{256   \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{259   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_aa996c89f661b3e898276ad9a2c827eed}{countTypeSpecialization}}() \{}
+\DoxyCodeLine{260     \textcolor{keywordflow}{return} \mbox{\hyperlink{a00232_a6bd7fd054314c161f4599efc760dbb4b}{count\_if}}(Tuple(),}
+\DoxyCodeLine{261                     []<\textcolor{keyword}{typename} T>(T\&\&) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01477}{isSpecializationNonTypes<Type, std::remove\_cvref\_t<T>}}>::value; \});}
+\DoxyCodeLine{262   \}}
+\DoxyCodeLine{263   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{264   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_adf0c15a4be1e5a5efd784a6597c45c9c}{countTypeSpecialization\_v}} = countTypeSpecialization<Type, Tuple>();}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} N, \textcolor{keyword}{class} Tuple>}
+\DoxyCodeLine{267   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_ae9ba6a20096c1432f050411f3f9bd3b8}{makeTupleSubset}}(Tuple\&\& t) \{}
+\DoxyCodeLine{268     \textcolor{keyword}{static\_assert}(N < std::tuple\_size\_v<std::remove\_reference\_t<Tuple>>,}
+\DoxyCodeLine{269                   \textcolor{stringliteral}{"{}The requested size needs to be smaller than the size of the tuple."{}});}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271     \textcolor{keywordflow}{return} Impl::makeTupleSubsetImpl(std::forward<Tuple>(t), std::make\_index\_sequence<N>\{\});}
+\DoxyCodeLine{272   \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274   \textcolor{keyword}{template} <\textcolor{keyword}{class }Tuple, std::size\_t... I>}
+\DoxyCodeLine{275   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_a573bbe47801041c2f5587dca0c29de04}{makeTupleFromTupleIndices}}(Tuple\&\& t) \{}
+\DoxyCodeLine{276     \textcolor{keywordflow}{return} Impl::makeTupleFromTupleIndicesImpl(std::forward<Tuple>(t), std::index\_sequence<I...>\{\});}
+\DoxyCodeLine{277   \}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{typename}, \textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{typename}>}
+\DoxyCodeLine{280   \textcolor{keyword}{struct }\mbox{\hyperlink{a01493}{isTemplateSame}} : std::false\_type \{\};}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{typename} TT>}
+\DoxyCodeLine{283   \textcolor{keyword}{struct }\mbox{\hyperlink{a01493}{isTemplateSame}}<TT, TT> : std::true\_type \{\};}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{typename} TT, \textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{typename} UU>}
+\DoxyCodeLine{286   \textcolor{keyword}{inline} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_a7bc5c0303ee657cc2dce61165e01dc9c}{isTemplateSame\_v}} = \mbox{\hyperlink{a01493}{isTemplateSame<TT, UU>::value}};}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Types>}
+\DoxyCodeLine{289   \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_aa2fd7f176ba35a00dfa564e2de345dc0}{makeNestedTupleFlat}}(std::tuple<Types...>) \{}
+\DoxyCodeLine{290     \textcolor{keywordflow}{return} \textcolor{keyword}{decltype}(Impl::makeNestedTupleFlatImpl<Types...>())();}
+\DoxyCodeLine{291   \}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{294   \textcolor{keyword}{auto} \mbox{\hyperlink{a00232_af855cc9636f69b7d565b07f375753e13}{makeNestedTupleFlatAndStoreReferences}}(Tuple\&\& tup) \{}
+\DoxyCodeLine{295     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::tuple\_size\_v<std::remove\_cvref\_t<Tuple>> == 0)}
+\DoxyCodeLine{296       \textcolor{keywordflow}{return} tup;}
+\DoxyCodeLine{297     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_const\_v<std::remove\_reference\_t<Tuple>>)}
+\DoxyCodeLine{298       \textcolor{keywordflow}{return} Impl::makeNestedTupleFlatAndStoreReferencesNonConstImpl(std::forward<Tuple>(tup));}
+\DoxyCodeLine{299     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{300       \textcolor{keywordflow}{return} Impl::makeNestedTupleFlatAndStoreReferencesImpl(std::forward<Tuple>(tup));}
+\DoxyCodeLine{301   \}}
+\DoxyCodeLine{302 }
+\DoxyCodeLine{303   \textcolor{comment}{/*}}
+\DoxyCodeLine{304 \textcolor{comment}{   * Get index of type in tuple}}
+\DoxyCodeLine{305 \textcolor{comment}{   * Usage:}}
+\DoxyCodeLine{306 \textcolor{comment}{   * using  foo\_t = std::tuple<int,double, float>;}}
+\DoxyCodeLine{307 \textcolor{comment}{   *}}
+\DoxyCodeLine{308 \textcolor{comment}{   * static\_assert(Index<int,foo\_t>::value==0);}}
+\DoxyCodeLine{309 \textcolor{comment}{   * static\_assert(Index<double,foo\_t>::value==1);}}
+\DoxyCodeLine{310 \textcolor{comment}{   * static\_assert(Index<float,foo\_t>::value==2);}}
+\DoxyCodeLine{311 \textcolor{comment}{   * static\_assert(Index<long double,foo\_t>::value==3);}}
+\DoxyCodeLine{312 \textcolor{comment}{   *}}
+\DoxyCodeLine{313 \textcolor{comment}{   * >If the type is not found the returned index is the size of the tuple}}
+\DoxyCodeLine{314 \textcolor{comment}{}}
+\DoxyCodeLine{315 \textcolor{comment}{   */}}
+\DoxyCodeLine{316   \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} Tuple>}
+\DoxyCodeLine{317   \textcolor{keyword}{struct }\mbox{\hyperlink{a01501}{Index}};}
+\DoxyCodeLine{318 }
+\DoxyCodeLine{319   \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{320   \textcolor{keyword}{struct }\mbox{\hyperlink{a01501}{Index}}<T, std::tuple<>> \{}
+\DoxyCodeLine{321     \textcolor{keyword}{static} \textcolor{keyword}{const} std::size\_t value = 0;}
+\DoxyCodeLine{322   \};}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324   \textcolor{keyword}{template} <\textcolor{keyword}{class }T, \textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{325   \textcolor{keyword}{struct }\mbox{\hyperlink{a01501}{Index}}<T, std::tuple<T, Types...>> \{}
+\DoxyCodeLine{326     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} std::size\_t value = 0;}
+\DoxyCodeLine{327   \};}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329   \textcolor{keyword}{template} <\textcolor{keyword}{class }T, \textcolor{keyword}{class }U, \textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{330   \textcolor{keyword}{struct }\mbox{\hyperlink{a01501}{Index}}<T, std::tuple<U, Types...>> \{}
+\DoxyCodeLine{331     \textcolor{keyword}{static} \textcolor{keyword}{const} std::size\_t value = 1 + \mbox{\hyperlink{a01501}{Index}}<T, std::tuple<Types...>>::value;}
+\DoxyCodeLine{332   \};}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334   \textcolor{comment}{/*}}
+\DoxyCodeLine{335 \textcolor{comment}{   * Rebind the underlying type of containers}}
+\DoxyCodeLine{336 \textcolor{comment}{   */}}
+\DoxyCodeLine{337   \textcolor{keyword}{template} <\textcolor{keyword}{class} Container, \textcolor{keyword}{class} NewType>}
+\DoxyCodeLine{338   \textcolor{keyword}{struct }\mbox{\hyperlink{a01517}{Rebind}};}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340   \textcolor{comment}{/*}}
+\DoxyCodeLine{341 \textcolor{comment}{   * Specialization for types like std::vector<...> and nested std::vector<std::vector>}}
+\DoxyCodeLine{342 \textcolor{comment}{   */}}
+\DoxyCodeLine{343   \textcolor{keyword}{template} <\textcolor{keyword}{class }OldType, \textcolor{keyword}{class}... Args, \textcolor{keyword}{template} <\textcolor{keyword}{class}...> \textcolor{keyword}{class }Container, \textcolor{keyword}{class }NewType>}
+\DoxyCodeLine{344   \textcolor{keyword}{struct }\mbox{\hyperlink{a01517}{Rebind}}<Container<OldType, Args...>, NewType> \{}
+\DoxyCodeLine{345     \textcolor{keyword}{using }\mbox{\hyperlink{a01521_ab89a24c3156014fe6e20857a0a0e3ef9}{other}} = Container<NewType, typename Rebind<Args, NewType>::other...>;}
+\DoxyCodeLine{346   \};}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348   \textcolor{comment}{/*}}
+\DoxyCodeLine{349 \textcolor{comment}{   * Specialization for types like std::array<...,N>}}
+\DoxyCodeLine{350 \textcolor{comment}{   */}}
+\DoxyCodeLine{351   \textcolor{keyword}{template} <\textcolor{keyword}{class} OldType, std::\textcolor{keywordtype}{size\_t} N, \textcolor{keyword}{template} <\textcolor{keyword}{class}, std::\textcolor{keywordtype}{size\_t}> \textcolor{keyword}{class }Container, \textcolor{keyword}{class }NewType>}
+\DoxyCodeLine{352   \textcolor{keyword}{struct }\mbox{\hyperlink{a01517}{Rebind}}<Container<OldType, N>, NewType> \{}
+\DoxyCodeLine{353     \textcolor{keyword}{using }\mbox{\hyperlink{a01525_a32416a9133db04161aea8a0751a48467}{other}} = Container<NewType, N>;}
+\DoxyCodeLine{354   \};}
+\DoxyCodeLine{355 }
+\DoxyCodeLine{356   \textcolor{keyword}{template} <\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
+\DoxyCodeLine{357   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_a8d8f476dd24abc5844c02c8e74bc6b55}{areTypesEqual}}(T1\&\&, T2\&\&) \{}
+\DoxyCodeLine{358     \textcolor{keywordflow}{return} std::is\_same\_v<T1, T2>;}
+\DoxyCodeLine{359   \}}
+\DoxyCodeLine{360   \textcolor{keyword}{template} <\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
+\DoxyCodeLine{361   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00232_a8d8f476dd24abc5844c02c8e74bc6b55}{areTypesEqual}}() \{}
+\DoxyCodeLine{362     \textcolor{keywordflow}{return} std::is\_same\_v<T1, T2>;}
+\DoxyCodeLine{363   \}}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{369   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} = \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{370   \textcolor{keyword}{struct }\mbox{\hyperlink{a01529}{FunctionTraits}};}
+\DoxyCodeLine{371 }
+\DoxyCodeLine{375   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{376   \textcolor{keyword}{struct }\mbox{\hyperlink{a01529}{FunctionTraits}}<R (*)(Args...)> \{}
+\DoxyCodeLine{377     \textcolor{keyword}{using }\mbox{\hyperlink{a01533_a8ed9f4e6d2c3f876be8ace10212df28d}{return\_type}} = R;}
+\DoxyCodeLine{378     \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{379     \textcolor{keyword}{using }\mbox{\hyperlink{a01533_a78c5f8823384c5b74d74113506e46489}{args\_type}}                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{380     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{381   \};}
+\DoxyCodeLine{382 }
+\DoxyCodeLine{386   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename} C, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{387   \textcolor{keyword}{struct }\mbox{\hyperlink{a01529}{FunctionTraits}}<R (C::*)(Args...) const> \{}
+\DoxyCodeLine{388     \textcolor{keyword}{using }\mbox{\hyperlink{a01537_a2f1aa4b39b026b2a5d7ed1aa1771ae99}{return\_type}} = R;}
+\DoxyCodeLine{389     \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{390     \textcolor{keyword}{using }\mbox{\hyperlink{a01537_a3caad5483987543aa9a6d85ad12afd3f}{args\_type}}                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{391     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{392   \};}
+\DoxyCodeLine{393 }
+\DoxyCodeLine{397   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename} C, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{398   \textcolor{keyword}{struct }\mbox{\hyperlink{a01529}{FunctionTraits}}<R (C::*)(Args...)> \{}
+\DoxyCodeLine{399     \textcolor{keyword}{using }\mbox{\hyperlink{a01541_a64fbcb1cbb5b56b8b4e251f179371674}{return\_type}} = R;}
+\DoxyCodeLine{400     \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{401     \textcolor{keyword}{using }\mbox{\hyperlink{a01541_a05ab48781d0ca858d5c52e315a553999}{args\_type}}                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{402     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{403   \};}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{409   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{410   \textcolor{keyword}{struct }\mbox{\hyperlink{a01529}{FunctionTraits}}<T, \mbox{\hyperlink{a00223}{Dune}}::void\_t<decltype(\&T::operator())>> : \textcolor{keyword}{public} \mbox{\hyperlink{a01529}{FunctionTraits}}<decltype(\&T::operator())> \{\};}
+\DoxyCodeLine{411 }
+\DoxyCodeLine{412   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T = \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{413   \textcolor{keyword}{struct }\mbox{\hyperlink{a01549}{DummyFalse}} \{}
+\DoxyCodeLine{414     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01549_a5c7d982abd6c0ce258c80961be9fcb3b}{value}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{415   \};}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417 \}  \textcolor{comment}{// namespace Ikarus::Std}}
+
+\end{DoxyCode}

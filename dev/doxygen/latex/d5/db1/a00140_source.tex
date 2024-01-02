@@ -1,0 +1,48 @@
+\hypertarget{a00140_source}{}\doxysection{algorithms.\+hh}
+\label{a00140_source}\index{algorithms.hh@{algorithms.hh}}
+\mbox{\hyperlink{a00140}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{comment}{// This file contains stl-\/like algorithms}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <iosfwd>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00228}{Ikarus::utils}} \{}
+\DoxyCodeLine{10   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00228_a2534707c96d34a4967f09d6a57c4397f}{makeUniqueAndSort}}(std::ranges::random\_access\_range \textcolor{keyword}{auto}\& varVec) \{}
+\DoxyCodeLine{11     sort(varVec.begin(), varVec.end());}
+\DoxyCodeLine{12     varVec.erase(\mbox{\hyperlink{a00232_a36bc95d9b39957050ffb6ae932d9e0d2}{std::unique}}(varVec.begin(), varVec.end()), varVec.end());}
+\DoxyCodeLine{13   \}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{16   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Value>}
+\DoxyCodeLine{17   \textcolor{keyword}{auto} \mbox{\hyperlink{a00228_a2b4b26dfbaf4c2a7a8280fcf7b360647}{appendUnique}}(std::ranges::random\_access\_range \textcolor{keyword}{auto}\& c, Value\&\& v) \{}
+\DoxyCodeLine{18     \textcolor{keyword}{static\_assert}(std::is\_same\_v<\textcolor{keyword}{typename} \textcolor{keyword}{decltype}(begin(c))::value\_type, std::remove\_reference\_t<\textcolor{keyword}{decltype}(v)>>);}
+\DoxyCodeLine{19     \textcolor{keyword}{const} \textcolor{keyword}{auto} it = find(begin(c), end(c), v);}
+\DoxyCodeLine{20     \textcolor{keywordtype}{size\_t} index  = std::distance(begin(c), it);}
+\DoxyCodeLine{21     \textcolor{keywordflow}{if} (it == end(c)) c.push\_back(std::forward<Value>(v));}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{keywordflow}{return} index;}
+\DoxyCodeLine{24   \}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26   \textcolor{keyword}{template} <\textcolor{keyword}{class} Container>  \textcolor{comment}{// TODO: add concept for this}}
+\DoxyCodeLine{27   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00228_a95459c18800f2e1b685f755cb77cfe37}{printContent}}(Container\&\& varVec, std::ostream\& os = std::cout) \{}
+\DoxyCodeLine{28     std::ranges::for\_each(varVec, [\&os](\textcolor{keyword}{auto}\&\& var) \{ os << var << \textcolor{charliteral}{'\(\backslash\)n'}; \});}
+\DoxyCodeLine{29   \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keyword}{template} <\textcolor{keyword}{class} Container>}
+\DoxyCodeLine{32   \textcolor{keyword}{auto} \mbox{\hyperlink{a00228_a5f3a9e195a06ac4419ccb479f8819d62}{transformValueRangeToPointerRange}}(Container\& cont) \{}
+\DoxyCodeLine{33     \textcolor{keyword}{auto} transformValueToPointer = [](\textcolor{keyword}{auto}\&\& obj) \{ \textcolor{keywordflow}{return} \&obj; \};}
+\DoxyCodeLine{34     \textcolor{keywordflow}{return} (std::ranges::subrange(cont.begin(), cont.end()) | std::views::transform(transformValueToPointer));}
+\DoxyCodeLine{35   \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keyword}{template} <\textcolor{keyword}{class} Container>}
+\DoxyCodeLine{38   \textcolor{keyword}{auto} \mbox{\hyperlink{a00228_aabfee41eeb4843cb2fa37b5f381e9fef}{transformPointerRangeToReferenceRange}}(Container\& cont) \{}
+\DoxyCodeLine{39     \textcolor{keyword}{auto} transformValueToPointer = [](\textcolor{keyword}{auto}\&\& obj) -\/> \textcolor{keyword}{auto}\& \{ \textcolor{keywordflow}{return} *obj; \};}
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} (std::ranges::subrange(cont.begin(), cont.end()) | std::views::transform(transformValueToPointer));}
+\DoxyCodeLine{41   \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \}  \textcolor{comment}{// namespace Ikarus::utils}}
+
+\end{DoxyCode}

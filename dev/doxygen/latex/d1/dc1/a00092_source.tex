@@ -1,0 +1,53 @@
+\hypertarget{a00092_source}{}\doxysection{makeenum.\+hh}
+\label{a00092_source}\index{makeenum.hh@{makeenum.hh}}
+\mbox{\hyperlink{a00092}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{4 \textcolor{comment}{// https://www.scs.stanford.edu/\string~dm/blog/va-\/opt.html}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define PARENS ()}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define ENUM\_CASE(name) \(\backslash\)}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{  case name:            \(\backslash\)}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{    return \#name;}}
+\DoxyCodeLine{10 \textcolor{comment}{// Limits to 256 items}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#define EXPAND(arg) EXPAND1(EXPAND1(EXPAND1(EXPAND1(arg))))}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define EXPAND1(arg) EXPAND2(EXPAND2(EXPAND2(EXPAND2(arg))))}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define EXPAND2(arg) EXPAND3(EXPAND3(EXPAND3(EXPAND3(arg))))}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#define EXPAND3(arg) EXPAND4(EXPAND4(EXPAND4(EXPAND4(arg))))}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#define EXPAND4(arg) arg}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define FOR\_EACH(macro, ...) \_\_VA\_OPT\_\_(EXPAND(FOR\_EACH\_HELPER(macro, \_\_VA\_ARGS\_\_)))}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define FOR\_EACH\_HELPER(macro, a1, ...) macro(a1) \_\_VA\_OPT\_\_(FOR\_EACH\_AGAIN PARENS(macro, \_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define FOR\_EACH\_AGAIN() FOR\_EACH\_HELPER}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define ENUM\_CASE(name) \(\backslash\)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{  case name:            \(\backslash\)}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{    return \#name;}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define MAKE\_ENUM(type, ...)                   \(\backslash\)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{  enum class type \{ BEGIN, \_\_VA\_ARGS\_\_, END \}; \(\backslash\)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{  constexpr std::string toString(type \_e) \{    \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{    using enum type;                           \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{    switch (\_e) \{                              \(\backslash\)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{      FOR\_EACH(ENUM\_CASE, \_\_VA\_ARGS\_\_)         \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{      ENUM\_CASE(BEGIN)                         \(\backslash\)}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{      ENUM\_CASE(END)                           \(\backslash\)}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{    \}                                          \(\backslash\)}}
+\DoxyCodeLine{34 \textcolor{preprocessor}{    \_\_builtin\_unreachable();                   \(\backslash\)}}
+\DoxyCodeLine{35 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
+\DoxyCodeLine{38 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{39   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
+\DoxyCodeLine{40   MessageType\& \mbox{\hyperlink{a00219_a5db6e8f04892e85e6b17e276cdbd0e54}{increment}}(MessageType\& e) \{}
+\DoxyCodeLine{41     \textcolor{keywordflow}{if} (e == MessageType::END) \{}
+\DoxyCodeLine{42       DUNE\_THROW(Dune::RangeError, \textcolor{stringliteral}{"{}for MessageType\& operator ++ (MessageType\&)"{}});}
+\DoxyCodeLine{43     \}}
+\DoxyCodeLine{44     e = MessageType(\textcolor{keyword}{static\_cast<}typename std::underlying\_type<MessageType>::type\textcolor{keyword}{>}(e) + 1);}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47 \}  \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}

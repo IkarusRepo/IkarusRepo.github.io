@@ -1,0 +1,78 @@
+\hypertarget{a00182_source}{}\doxysection{loadcontrol.\+hh}
+\label{a00182_source}\index{loadcontrol.hh@{loadcontrol.hh}}
+\mbox{\hyperlink{a00182}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00194}{ikarus/controlroutines/controlinfos.hh}}>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00068}{ikarus/linearalgebra/nonlinearoperator.hh}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00170}{ikarus/solver/nonlinearsolver/newtonraphson.hh}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00119}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{17   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearSolver>}
+\DoxyCodeLine{18   \textcolor{keyword}{class }\mbox{\hyperlink{a01089}{LoadControl}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01413}{IObservable}}<ControlMessages> \{}
+\DoxyCodeLine{19   \textcolor{keyword}{public}:}
+\DoxyCodeLine{20     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} std::string\_view \mbox{\hyperlink{a01089_aebae6cd226ca4863e521d99ecd3a2df7}{name\_}} = \textcolor{stringliteral}{"{}Load Control Method"{}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     \mbox{\hyperlink{a01089_abc3b40e69e24a260a75910d327db9cc1}{LoadControl}}(\textcolor{keyword}{const} std::shared\_ptr<NonLinearSolver>\& p\_nonLinearSolver, \textcolor{keywordtype}{int} loadSteps,}
+\DoxyCodeLine{23                 \textcolor{keyword}{const} std::array<double, 2>\& tbeginEnd)}
+\DoxyCodeLine{24         : nonLinearSolver\{p\_nonLinearSolver\},}
+\DoxyCodeLine{25           loadSteps\_\{loadSteps\},}
+\DoxyCodeLine{26           parameterBegin\_\{tbeginEnd[0]\},}
+\DoxyCodeLine{27           parameterEnd\_\{tbeginEnd[1]\},}
+\DoxyCodeLine{28           stepSize\_\{(parameterEnd\_ -\/ parameterBegin\_) / loadSteps\_\} \{}
+\DoxyCodeLine{29       \textcolor{keyword}{static\_assert}(}
+\DoxyCodeLine{30           \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{31             nonLinearSolver-\/>nonLinearOperator().lastParameter() = 0.0;}
+\DoxyCodeLine{32             nonLinearSolver-\/>nonLinearOperator().lastParameter() += 0.0;}
+\DoxyCodeLine{33           \},}
+\DoxyCodeLine{34           \textcolor{stringliteral}{"{}The last parameter (load factor) must be assignable and incrementable with a double!"{}});}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \mbox{\hyperlink{a01085}{ControlInformation}} \mbox{\hyperlink{a01089_ac4a34370d6533e681070f5a88cb43e0f}{run}}() \{}
+\DoxyCodeLine{38       \mbox{\hyperlink{a01085}{ControlInformation}} info(\{\textcolor{keyword}{false}\});}
+\DoxyCodeLine{39       \textcolor{keyword}{auto}\& nonOp = nonLinearSolver-\/>nonLinearOperator();}
+\DoxyCodeLine{40       this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a3fbccdb8d4ddfe10b3c9ee45ed07aad0}{ControlMessages::CONTROL\_STARTED}}, \textcolor{keyword}{static\_cast<}std::string\textcolor{keyword}{>}(\mbox{\hyperlink{a01089_aebae6cd226ca4863e521d99ecd3a2df7}{name\_}}));}
+\DoxyCodeLine{41       \textcolor{keyword}{auto}\& loadParameter = nonOp.lastParameter();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43       loadParameter = 0.0;}
+\DoxyCodeLine{44       this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a18e0c9ecde68d13f1d2608dd1a180945}{ControlMessages::STEP\_STARTED}}, 0, stepSize\_);}
+\DoxyCodeLine{45       \textcolor{keyword}{auto} solverInfo = nonLinearSolver-\/>solve();}
+\DoxyCodeLine{46       info.solverInfos.push\_back(solverInfo);}
+\DoxyCodeLine{47       info.totalIterations += solverInfo.iterations;}
+\DoxyCodeLine{48       \textcolor{keywordflow}{if} (not solverInfo.success) \textcolor{keywordflow}{return} info;}
+\DoxyCodeLine{49       this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}});}
+\DoxyCodeLine{50       this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893ae2b2386af3d7379bd2ddde735d5867b2}{ControlMessages::STEP\_ENDED}});}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ls = 0; ls < loadSteps\_; ++ls) \{}
+\DoxyCodeLine{53         this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a18e0c9ecde68d13f1d2608dd1a180945}{ControlMessages::STEP\_STARTED}}, ls, stepSize\_);}
+\DoxyCodeLine{54         loadParameter += stepSize\_;}
+\DoxyCodeLine{55         solverInfo = nonLinearSolver-\/>solve();}
+\DoxyCodeLine{56         info.solverInfos.push\_back(solverInfo);}
+\DoxyCodeLine{57         info.totalIterations += solverInfo.iterations;}
+\DoxyCodeLine{58         \textcolor{keywordflow}{if} (not solverInfo.success) \textcolor{keywordflow}{return} info;}
+\DoxyCodeLine{59         this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}});}
+\DoxyCodeLine{60         this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893ae2b2386af3d7379bd2ddde735d5867b2}{ControlMessages::STEP\_ENDED}});}
+\DoxyCodeLine{61       \}}
+\DoxyCodeLine{62       this-\/>\mbox{\hyperlink{a01413_a55986002430ae0b5d9e12803e28f31d7}{notify}}(\mbox{\hyperlink{a00219_a35fa62fd2d4186a9750af3d0692f2893a1c32d268de88f801deb25166d98a3938}{ControlMessages::CONTROL\_ENDED}}, info.totalIterations, \textcolor{keyword}{static\_cast<}std::string\textcolor{keyword}{>}(\mbox{\hyperlink{a01089_aebae6cd226ca4863e521d99ecd3a2df7}{name\_}}));}
+\DoxyCodeLine{63       info.success = \textcolor{keyword}{true};}
+\DoxyCodeLine{64       \textcolor{keywordflow}{return} info;}
+\DoxyCodeLine{65     \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keyword}{private}:}
+\DoxyCodeLine{68     std::shared\_ptr<NonLinearSolver> nonLinearSolver;}
+\DoxyCodeLine{69     \textcolor{keywordtype}{int} loadSteps\_;}
+\DoxyCodeLine{70     \textcolor{keywordtype}{double} parameterBegin\_;}
+\DoxyCodeLine{71     \textcolor{keywordtype}{double} parameterEnd\_;}
+\DoxyCodeLine{72     \textcolor{keywordtype}{double} stepSize\_;}
+\DoxyCodeLine{73   \};}
+\DoxyCodeLine{74 \}  \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}

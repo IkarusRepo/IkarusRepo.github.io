@@ -1,0 +1,292 @@
+\hypertarget{a00014_source}{}\doxysection{physicshelper.\+hh}
+\label{a00014_source}\index{physicshelper.hh@{physicshelper.hh}}
+\mbox{\hyperlink{a00014}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10   [[deprecated(}
+\DoxyCodeLine{11       \textcolor{stringliteral}{"{}These are hard-\/coded function you should use the material library Ikarus::LinearElasticity"{}})]] \textcolor{keyword}{inline} Eigen::}
+\DoxyCodeLine{12       Matrix3d}
+\DoxyCodeLine{13       \mbox{\hyperlink{a00219_a90678a80e6b2b4849072623df02dae58}{planeStressLinearElasticMaterialTangent}}(\textcolor{keywordtype}{double} E, \textcolor{keywordtype}{double} nu) \{}
+\DoxyCodeLine{14     Eigen::Matrix3d C;}
+\DoxyCodeLine{15     C.setZero();}
+\DoxyCodeLine{16     C(0, 0) = C(1, 1) = 1;}
+\DoxyCodeLine{17     C(0, 1) = C(1, 0) = nu;}
+\DoxyCodeLine{18     C(2, 2)           = (1 -\/ nu) / 2;}
+\DoxyCodeLine{19     C *= E / (1 -\/ nu * nu);}
+\DoxyCodeLine{20     \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{21   \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   [[deprecated(}
+\DoxyCodeLine{24       \textcolor{stringliteral}{"{}These are hard-\/coded function you should use the material library: Ikarus::LinearElasticity"{}})]] \textcolor{keyword}{inline} Eigen::}
+\DoxyCodeLine{25       Matrix<double, 6, 6>}
+\DoxyCodeLine{26       \mbox{\hyperlink{a00219_afc9c57d60ca4a8c1075c44d926e497a8}{linearElasticMaterialTangent3D}}(\textcolor{keywordtype}{double} E, \textcolor{keywordtype}{double} nu) \{}
+\DoxyCodeLine{27     Eigen::Matrix<double, 6, 6> C;}
+\DoxyCodeLine{28     C.setZero();}
+\DoxyCodeLine{29     C(0, 0) = C(1, 1) = C(2, 2) = 1 -\/ nu;}
+\DoxyCodeLine{30     C(0, 1) = C(1, 0) = C(2, 0) = C(0, 2) = C(1, 2) = C(2, 1) = nu;}
+\DoxyCodeLine{31     C(3, 3) = C(4, 4) = C(5, 5) = (1 -\/ 2 * nu) / 2;}
+\DoxyCodeLine{32     C *= E / ((1 + nu) * (1 -\/ 2 * nu));}
+\DoxyCodeLine{33     \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{34   \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} LocalView, \textcolor{keywordtype}{bool} useRef = false>}
+\DoxyCodeLine{37   \textcolor{keyword}{struct }\mbox{\hyperlink{a01185}{TraitsFromLocalView}} \{}
+\DoxyCodeLine{38     \textcolor{keyword}{using }\mbox{\hyperlink{a01185_aa0c1ac11ffc970e6afb09d360f2f84cf}{GridEntity}} = \textcolor{keyword}{typename} LocalView::Element;}
+\DoxyCodeLine{40     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01185_a47ccda97cc8e04f87be6d2c3a165ba98}{worlddim}} = GridEntity::Geometry::coorddimension;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{43     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01185_ab29f61e7d71697962fe41642d683f9f5}{mydim}} = GridEntity::mydimension;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{46     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01185_aae28c168c70513855e463fed63b13502}{dimension}} = GridEntity::dimension;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{50     \textcolor{keyword}{using }\mbox{\hyperlink{a01185_a8eb13a47b7fbaca4d8cedc28665dc522}{VectorType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::VectorX<ScalarType>>, Eigen::VectorX<ScalarType>\&>;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{53     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{54     \textcolor{keyword}{using }\mbox{\hyperlink{a01185_a1865d55ba52b06685f13bc81517feb1c}{MatrixType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::MatrixX<ScalarType>>, Eigen::MatrixX<ScalarType>\&>;}
+\DoxyCodeLine{55   \};}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{58   \textcolor{keyword}{struct }\mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}} \{}
+\DoxyCodeLine{59     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01189_a6c00be8aacc18c845b00748b1e56c83c}{emodul}};}
+\DoxyCodeLine{60     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01189_acb99903e7b1b13967a0757d284e014ed}{nu}};}
+\DoxyCodeLine{61   \};}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keyword}{struct }\mbox{\hyperlink{a01193}{YoungsModulusAndShearModulus}} \{}
+\DoxyCodeLine{64     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01193_ab9d965c2a2c0409682aaea9ca45be83b}{emodul}};}
+\DoxyCodeLine{65     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01193_a12468705489862b9e7470f197b499d0f}{mu}};}
+\DoxyCodeLine{66   \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \textcolor{keyword}{struct }\mbox{\hyperlink{a01197}{YoungsModulusAndBulkModulus}} \{}
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01197_a218a7076cb5434dd30811ffe50b39964}{emodul}};}
+\DoxyCodeLine{70     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01197_a996ac473697809e0e44551037cf6d4f0}{K}};}
+\DoxyCodeLine{71   \};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \textcolor{keyword}{struct }\mbox{\hyperlink{a01201}{YoungsModulusAndLamesFirstParameter}} \{}
+\DoxyCodeLine{74     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01201_ac0163a851cf3f135906c79a95cca835f}{emodul}};}
+\DoxyCodeLine{75     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01201_ab38e15b12e0e703652627c73b8639ee8}{lambda}};}
+\DoxyCodeLine{76   \};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   \textcolor{keyword}{struct }\mbox{\hyperlink{a01205}{BulkModulusAndLamesFirstParameter}} \{}
+\DoxyCodeLine{79     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01205_a4f5868738c5673adf557e914123d0c8e}{K}};}
+\DoxyCodeLine{80     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01205_a82f624b8171315c48c0bb5d39ef2f5d8}{lambda}};}
+\DoxyCodeLine{81   \};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83   \textcolor{keyword}{struct }\mbox{\hyperlink{a01209}{LamesFirstParameterAndShearModulus}} \{}
+\DoxyCodeLine{84     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01209_a0157695e9fc8b735e86f828cc35b64fc}{lambda}};}
+\DoxyCodeLine{85     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01209_a3558ad06d2a831f0d412d76956d516f8}{mu}};}
+\DoxyCodeLine{86   \};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MaterialParameter>}
+\DoxyCodeLine{89   \textcolor{keyword}{concept }\mbox{\hyperlink{a01557}{MaterialParameterTuple}} = std::is\_same\_v<MaterialParameter, YoungsModulusAndPoissonsRatio> or std::is\_same\_v<}
+\DoxyCodeLine{90       MaterialParameter, YoungsModulusAndBulkModulus> or std::is\_same\_v<MaterialParameter,}
+\DoxyCodeLine{91                                                                         YoungsModulusAndLamesFirstParameter> or std::}
+\DoxyCodeLine{92       is\_same\_v<MaterialParameter, BulkModulusAndLamesFirstParameter> or std::is\_same\_v<}
+\DoxyCodeLine{93           MaterialParameter, LamesFirstParameterAndShearModulus> or std::is\_same\_v<MaterialParameter,}
+\DoxyCodeLine{94                                                                                    YoungsModulusAndShearModulus>;}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValuePair>}
+\DoxyCodeLine{97   \textcolor{keyword}{struct }\mbox{\hyperlink{a01213}{ConvertLameConstants}} \{}
+\DoxyCodeLine{98     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_ab180d31a46c95ba6f5f9ba596095c7f9}{toLamesFirstParameter}}() \textcolor{keyword}{requires}(}
+\DoxyCodeLine{99         !std::is\_same\_v<}
+\DoxyCodeLine{100             ValuePair,}
+\DoxyCodeLine{101             \mbox{\hyperlink{a01201}{YoungsModulusAndLamesFirstParameter}}> and !std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter> and !std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{102       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{103         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{104         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp.nu;}
+\DoxyCodeLine{105         \textcolor{keywordflow}{return} Dune::FloatCmp::eq(nu, 0.5) ? std::numeric\_limits<double>::infinity()}
+\DoxyCodeLine{106                                            : E * nu / ((1.0 + nu) * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{107       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{108         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{109         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp.mu;}
+\DoxyCodeLine{110         \textcolor{keywordflow}{return} mu * (E -\/ 2.0 * mu) / (3.0 * mu -\/ E);}
+\DoxyCodeLine{111       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{112         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp.emodul;}
+\DoxyCodeLine{113         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp.K;}
+\DoxyCodeLine{114         \textcolor{keywordflow}{return} 3.0 * K * (3.0 * K -\/ E) / (9.0 * K -\/ E);}
+\DoxyCodeLine{115       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{116         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{117     \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_a01f6532092896ff2e3556aace6704af4}{toBulkModulus}}() \textcolor{keyword}{requires}(}
+\DoxyCodeLine{120         !std::is\_same\_v<}
+\DoxyCodeLine{121             ValuePair, \mbox{\hyperlink{a01197}{YoungsModulusAndBulkModulus}}> and !std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{122       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{123         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{124         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp.nu;}
+\DoxyCodeLine{125         \textcolor{keywordflow}{return} E / (3.0 * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{126       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{127         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{128         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp.mu;}
+\DoxyCodeLine{129         \textcolor{keywordflow}{return} E * mu / (3.0 * (3.0 * mu -\/ E));}
+\DoxyCodeLine{130       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{131         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp.emodul;}
+\DoxyCodeLine{132         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{133         \textcolor{keywordflow}{return} (E + 3.0 * lambda + calcR(vp)) / 6.0;}
+\DoxyCodeLine{134       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{135         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{136         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp.mu;}
+\DoxyCodeLine{137         \textcolor{keywordflow}{return} lambda + 2.0 * mu / 3.0;}
+\DoxyCodeLine{138       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{139         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{140     \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_ad29a653238be34f96ae24902aa523657}{toShearModulus}}() \textcolor{keyword}{requires}(}
+\DoxyCodeLine{143         !std::is\_same\_v<}
+\DoxyCodeLine{144             ValuePair,}
+\DoxyCodeLine{145             \mbox{\hyperlink{a01193}{YoungsModulusAndShearModulus}}> and !std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{146       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{147         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{148         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp.nu;}
+\DoxyCodeLine{149         \textcolor{keywordflow}{return} E / (2.0 * (1.0 + nu));}
+\DoxyCodeLine{150       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{151         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp.emodul;}
+\DoxyCodeLine{152         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp.K;}
+\DoxyCodeLine{153         \textcolor{keywordflow}{return} 3.0 * K * E / (9.0 * K -\/ E);}
+\DoxyCodeLine{154       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{155         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp.emodul;}
+\DoxyCodeLine{156         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{157         \textcolor{keywordflow}{return} (E -\/ 3.0 * lambda + calcR(vp)) / 4.0;}
+\DoxyCodeLine{158       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{159         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp.K;}
+\DoxyCodeLine{160         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{161         \textcolor{keywordflow}{return} 3.0 * (K -\/ lambda) / 2.0;}
+\DoxyCodeLine{162       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{163         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{164     \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_abf0e01900bfaeacf08cc9af500f42c05}{toPWaveModulus}}() \{}
+\DoxyCodeLine{167       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{168         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{169         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp.nu;}
+\DoxyCodeLine{170         \textcolor{keywordflow}{return} E * (1.0 -\/ nu) / ((1.0 + nu) * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{171       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{172         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{173         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp.mu;}
+\DoxyCodeLine{174         \textcolor{keywordflow}{return} mu * (4.0 * mu -\/ E) / (3.0 * mu -\/ E);}
+\DoxyCodeLine{175       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{176         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp.emodul;}
+\DoxyCodeLine{177         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp.K;}
+\DoxyCodeLine{178         \textcolor{keywordflow}{return} 3.0 * K * (3.0 * K + E) / (9.0 * K -\/ E);}
+\DoxyCodeLine{179       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{180         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp.emodul;}
+\DoxyCodeLine{181         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{182         \textcolor{keywordflow}{return} (E -\/ lambda + calcR(vp)) / 2.0;}
+\DoxyCodeLine{183       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{184         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp.K;}
+\DoxyCodeLine{185         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{186         \textcolor{keywordflow}{return} 3.0 * K -\/ 2.0 * lambda;}
+\DoxyCodeLine{187       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{188         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{189         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp.mu;}
+\DoxyCodeLine{190         \textcolor{keywordflow}{return} lambda + 2.0 * mu;}
+\DoxyCodeLine{191       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{192         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{193     \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_a7193fdef2358be914614114c45345112}{toPoissonsRatio}}() \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{196       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{197         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp.emodul;}
+\DoxyCodeLine{198         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp.mu;}
+\DoxyCodeLine{199         \textcolor{keywordflow}{return} E / (2.0 * mu) -\/ 1.0;}
+\DoxyCodeLine{200       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{201         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp.emodul;}
+\DoxyCodeLine{202         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp.K;}
+\DoxyCodeLine{203         \textcolor{keywordflow}{return} (3.0 * K -\/ E) / (6.0 * K);}
+\DoxyCodeLine{204       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{205         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp.emodul;}
+\DoxyCodeLine{206         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{207         \textcolor{keywordflow}{return} 2.0 * lambda / (E + lambda + calcR(vp));}
+\DoxyCodeLine{208       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{209         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp.K;}
+\DoxyCodeLine{210         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{211         \textcolor{keywordflow}{return} lambda / (3 * K -\/ lambda);}
+\DoxyCodeLine{212       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{213         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{214         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp.mu;}
+\DoxyCodeLine{215         \textcolor{keywordflow}{return} lambda / (2.0 * (lambda + mu));}
+\DoxyCodeLine{216       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{217         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{218     \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220     \textcolor{keyword}{constexpr} \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01213_a0f0c758dceaa0c252ef5a7fb78911048}{toYoungsModulus}}() \textcolor{keyword}{requires}(}
+\DoxyCodeLine{221         !std::is\_same\_v<}
+\DoxyCodeLine{222             ValuePair,}
+\DoxyCodeLine{223             \mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}}> and !std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus> and !std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus> and !std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{224       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{225         \textcolor{keywordflow}{return} 9.0 * vp.K * (vp.K -\/ vp.lambda) / (3.0 * vp.K -\/ vp.lambda);}
+\DoxyCodeLine{226       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{227         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp.lambda;}
+\DoxyCodeLine{228         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp.mu;}
+\DoxyCodeLine{229         \textcolor{keywordflow}{return} mu * (3.0 * lambda + 2.0 * mu) / (lambda + mu);}
+\DoxyCodeLine{230       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{231         assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234   private : \textcolor{keyword}{friend} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndPoissonsRatio>}} \mbox{\hyperlink{a01213_aafc9afc69d20972e526bd6202a342739}{convertLameConstants}}(}
+\DoxyCodeLine{235                 \textcolor{keyword}{const} \mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}}\& p\_vp);}
+\DoxyCodeLine{236     \textcolor{keyword}{friend} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndShearModulus>}} \mbox{\hyperlink{a01213_aafc9afc69d20972e526bd6202a342739}{convertLameConstants}}(}
+\DoxyCodeLine{237         \textcolor{keyword}{const} \mbox{\hyperlink{a01193}{YoungsModulusAndShearModulus}}\& p\_vp);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239     \textcolor{keyword}{friend} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndBulkModulus>}} \mbox{\hyperlink{a01213_aafc9afc69d20972e526bd6202a342739}{convertLameConstants}}(}
+\DoxyCodeLine{240         \textcolor{keyword}{const} \mbox{\hyperlink{a01197}{YoungsModulusAndBulkModulus}}\& p\_vp);}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{242     \textcolor{keyword}{friend} \mbox{\hyperlink{a01213}{ConvertLameConstants<LamesFirstParameterAndShearModulus>}} \mbox{\hyperlink{a01213_aafc9afc69d20972e526bd6202a342739}{convertLameConstants}}(}
+\DoxyCodeLine{243         \textcolor{keyword}{const} \mbox{\hyperlink{a01209}{LamesFirstParameterAndShearModulus}}\& p\_vp);}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     \textcolor{keyword}{friend} \mbox{\hyperlink{a01213}{ConvertLameConstants<BulkModulusAndLamesFirstParameter>}} \mbox{\hyperlink{a01213_aafc9afc69d20972e526bd6202a342739}{convertLameConstants}}(}
+\DoxyCodeLine{246         \textcolor{keyword}{const} \mbox{\hyperlink{a01205}{BulkModulusAndLamesFirstParameter}}\& p\_vp);}
+\DoxyCodeLine{247     \mbox{\hyperlink{a01213}{ConvertLameConstants}}(ValuePair\&\& p\_vp) : vp(p\_vp) \{\}}
+\DoxyCodeLine{248     ConvertLameConstants(\textcolor{keyword}{const} ValuePair\& p\_vp) : vp(p\_vp) \{\}}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250     \textcolor{keywordtype}{double} calcR(\textcolor{keyword}{const} YoungsModulusAndLamesFirstParameter\& vp\_) \{}
+\DoxyCodeLine{251       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp\_.emodul;}
+\DoxyCodeLine{252       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{253       \textcolor{keywordflow}{return} std::sqrt(E * E + 9 * lambda * lambda + 2 * E * lambda);}
+\DoxyCodeLine{254     \}}
+\DoxyCodeLine{255     ValuePair vp;}
+\DoxyCodeLine{256   \};}
+\DoxyCodeLine{257   \textcolor{keyword}{inline} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndPoissonsRatio>}} \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(}
+\DoxyCodeLine{258       \textcolor{keyword}{const} \mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}}\& p\_vp) \{}
+\DoxyCodeLine{259     \textcolor{keywordflow}{return} \{p\_vp\};}
+\DoxyCodeLine{260   \}}
+\DoxyCodeLine{261   \textcolor{keyword}{inline} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndShearModulus>}} \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(}
+\DoxyCodeLine{262       \textcolor{keyword}{const} \mbox{\hyperlink{a01193}{YoungsModulusAndShearModulus}}\& p\_vp) \{}
+\DoxyCodeLine{263     \textcolor{keywordflow}{return} \{p\_vp\};}
+\DoxyCodeLine{264   \}}
+\DoxyCodeLine{265   \textcolor{keyword}{inline} \mbox{\hyperlink{a01213}{ConvertLameConstants<YoungsModulusAndBulkModulus>}} \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(}
+\DoxyCodeLine{266       \textcolor{keyword}{const} \mbox{\hyperlink{a01197}{YoungsModulusAndBulkModulus}}\& p\_vp) \{}
+\DoxyCodeLine{267     \textcolor{keywordflow}{return} \{p\_vp\};}
+\DoxyCodeLine{268   \}}
+\DoxyCodeLine{269   \textcolor{keyword}{inline} \mbox{\hyperlink{a01213}{ConvertLameConstants<LamesFirstParameterAndShearModulus>}} \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(}
+\DoxyCodeLine{270       \textcolor{keyword}{const} \mbox{\hyperlink{a01209}{LamesFirstParameterAndShearModulus}}\& p\_vp) \{}
+\DoxyCodeLine{271     \textcolor{keywordflow}{return} \{p\_vp\};}
+\DoxyCodeLine{272   \}}
+\DoxyCodeLine{273   \textcolor{keyword}{inline} \mbox{\hyperlink{a01213}{ConvertLameConstants<BulkModulusAndLamesFirstParameter>}} \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(}
+\DoxyCodeLine{274       \textcolor{keyword}{const} \mbox{\hyperlink{a01205}{BulkModulusAndLamesFirstParameter}}\& p\_vp) \{}
+\DoxyCodeLine{275     \textcolor{keywordflow}{return} \{p\_vp\};}
+\DoxyCodeLine{276   \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278   \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a32940ef922d090491ffcaa9bf2a44aef}{toLamesFirstParameterAndShearModulus}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}}\& matParameter) \{}
+\DoxyCodeLine{279     \textcolor{keyword}{auto} lambda = \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(matParameter).toLamesFirstParameter();}
+\DoxyCodeLine{280     \textcolor{keyword}{auto} mu     = \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(matParameter).toShearModulus();}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01209}{LamesFirstParameterAndShearModulus}}\{.\mbox{\hyperlink{a01209_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} = lambda, .mu = mu\};}
+\DoxyCodeLine{283   \}}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285   \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a4161393d679e5ec44806e6e911e26dee}{toYoungsModulusAndPoissonsRatio}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01209}{LamesFirstParameterAndShearModulus}}\& matParameter) \{}
+\DoxyCodeLine{286     \textcolor{keyword}{auto} emod = \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(matParameter).toYoungsModulus();}
+\DoxyCodeLine{287     \textcolor{keyword}{auto} nu   = \mbox{\hyperlink{a00219_aef16f39eb73407dd874bc14426576a4e}{convertLameConstants}}(matParameter).toPoissonsRatio();}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{289     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01189}{YoungsModulusAndPoissonsRatio}}\{.\mbox{\hyperlink{a01189_a6c00be8aacc18c845b00748b1e56c83c}{emodul}} = emod, .nu = nu\};}
+\DoxyCodeLine{290   \}}
+\DoxyCodeLine{291 }
+\DoxyCodeLine{292 \}  \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}

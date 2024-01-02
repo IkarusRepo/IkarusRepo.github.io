@@ -1,0 +1,26 @@
+\hypertarget{a00104_source}{}\doxysection{autodiffhelper.\+hh}
+\label{a00104_source}\index{autodiffhelper.hh@{autodiffhelper.hh}}
+\mbox{\hyperlink{a00104}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <autodiff/forward/dual.hpp>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <autodiff/forward/dual/eigen.hpp>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Fun, \textcolor{keyword}{typename}... Vars, \textcolor{keyword}{typename}... Args, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} G, \textcolor{keyword}{typename} H>}
+\DoxyCodeLine{11   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00219_a6f989f1293d56b1ad9b32557e28a968d}{hessianN}}(\textcolor{keyword}{const} Fun \&f, \textcolor{keyword}{const} autodiff::Wrt<Vars...> \&wrt, \textcolor{keyword}{const} autodiff::At<Args...> \&at, U \&u,}
+\DoxyCodeLine{12                 std::array<G, U::RowsAtCompileTime> \&g, std::array<H, U::RowsAtCompileTime> \&h) \{}
+\DoxyCodeLine{13     \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}...(Vars) >= 1);}
+\DoxyCodeLine{14     \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}...(Args) >= 1);}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16     \textcolor{keyword}{auto} fEntry = [\&](\textcolor{keyword}{auto} \&I) \{ \textcolor{keywordflow}{return} [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto} \&) \{ \textcolor{keywordflow}{return} std::apply(f, at.args)[I]; \}; \};}
+\DoxyCodeLine{17     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < U::RowsAtCompileTime; ++i)}
+\DoxyCodeLine{18       hessian(fEntry(i), wrt, at, u[i], g[i], h[i]);}
+\DoxyCodeLine{19   \}}
+\DoxyCodeLine{20 \}  \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}
