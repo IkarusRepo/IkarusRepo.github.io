@@ -40,7 +40,6 @@ var searchData=
   ['drawresultandreturnslope_37',['drawResultAndReturnSlope',['../dd/df3/a00219.html#aee653a13f3ff11dac556cb9301f33df8',1,'Ikarus']]],
   ['dummyfalse_38',['DummyFalse',['../d3/d1b/a01549.html',1,'Ikarus::Std']]],
   ['dune_39',['Dune',['../dc/d28/a00223.html',1,'']]],
-  ['dune_2diga_20documentation_40',['dune-iga documentation',['../index.html',1,'']]],
-  ['duneutilities_2ehh_41',['duneutilities.hh',['../d9/d77/a00095.html',1,'']]],
-  ['dyadic_42',['dyadic',['../dd/df3/a00219.html#ab2cea9ac847cc3635812467c9d96ceb4',1,'Ikarus']]]
+  ['duneutilities_2ehh_40',['duneutilities.hh',['../d9/d77/a00095.html',1,'']]],
+  ['dyadic_41',['dyadic',['../dd/df3/a00219.html#ab2cea9ac847cc3635812467c9d96ceb4',1,'Ikarus']]]
 ];

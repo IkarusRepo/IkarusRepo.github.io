@@ -10009,7 +10009,7 @@
   </compound>
   <compound kind="page">
     <name>index</name>
-    <title>dune-iga documentation</title>
+    <title>Ikarus documentation</title>
     <filename>index.html</filename>
     <docanchor file="index.html" title="Introduction">intro</docanchor>
     <docanchor file="index.html" title="Modules">mods</docanchor>
