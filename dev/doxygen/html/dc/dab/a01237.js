@@ -11,6 +11,7 @@ var a01237 =
     [ "fixBoundaryDOFs", "dc/dab/a01237.html#a7de80e6ad56431b46750ddbc2580c45e", null ],
     [ "fixDOFs", "dc/dab/a01237.html#ad62158c0ddba6753a04ed26097610bbd", null ],
     [ "fixedDOFsize", "dc/dab/a01237.html#a1076b17755b91d92b46905319abe3114", null ],
+    [ "fixIthDOF", "dc/dab/a01237.html#afbe5f38622ea7524c4d2230f32530a96", null ],
     [ "isConstrained", "dc/dab/a01237.html#ac4547ca3a0f7c62ec907da614b0c720a", null ],
     [ "isConstrained", "dc/dab/a01237.html#ad54d4f91d00e803bca5191c10f6e9ba8", null ],
     [ "size", "dc/dab/a01237.html#ae9bb578246b89ec0b5f0960955a36c04", null ],

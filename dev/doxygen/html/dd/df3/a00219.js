@@ -217,6 +217,7 @@ var a00219 =
     [ "makeVanishingStress", "dd/df3/a00219.html#a317c0a50c0a7d482e2a20d8146e08df8", null ],
     [ "norm", "dd/df3/a00219.html#a0ffc0c74dbd9aeee3e53b199a21b828c", null ],
     [ "norm", "dd/df3/a00219.html#aceb8dc8f6f43516dabf75155b1f22d4c", null ],
+    [ "obtainLagrangeNodePositions", "dd/df3/a00219.html#aa8377ff7b131bcd3baac199f466888f5", null ],
     [ "operator*", "dd/df3/a00219.html#acbc60e06e8e43a9bc14660189eb1baa1", null ],
     [ "operator*", "dd/df3/a00219.html#a28bdf0f90a6cdbca3570552194b40f37", null ],
     [ "operator+", "dd/df3/a00219.html#afe54695fd1436b5f2d75934a6fda8fe8", null ],

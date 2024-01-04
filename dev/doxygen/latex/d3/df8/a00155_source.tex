@@ -13,337 +13,359 @@
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#include <random>}}
 \DoxyCodeLine{10 }
 \DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/common/tuplevector.hh>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/istl/bvector.hh>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/istl/multitypeblockvector.hh>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <autodiff/forward/dual/dual.hpp>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{22   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{23   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_aa33adfa2e95d7040a816bb2da81d275d}{orthonormalizeMatrixColumns}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
-\DoxyCodeLine{24     \textcolor{comment}{// Gram Schmidt Ortho}}
-\DoxyCodeLine{25     \textcolor{keyword}{auto} Q = A.eval();}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     Q.col(0).normalize();}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} colIndex = 1; colIndex < Q.cols(); colIndex++) \{}
-\DoxyCodeLine{30       Q.col(colIndex) -\/= Q.leftCols(colIndex) * (Q.leftCols(colIndex).transpose() * A.col(colIndex));}
-\DoxyCodeLine{31       Q.col(colIndex).normalize();}
-\DoxyCodeLine{32     \}}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34     \textcolor{keywordflow}{return} Q;}
-\DoxyCodeLine{35   \}}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{38   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{39   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a545d74839895f4576a3b8c97d72abefd}{viewAsFlatEigenVector}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{40     Eigen::Map<Eigen::VectorX<typename ValueType::field\_type>> vec(\&blockedVector.begin()-\/>begin().operator*(),}
-\DoxyCodeLine{41                                                                    blockedVector.size() * blockedVector[0].size());}
-\DoxyCodeLine{42 }
-\DoxyCodeLine{43     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{44   \}}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{48   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{49   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_af9d7cf401f9f03ce1aae728c646ce178}{viewAsEigenMatrixAsDynFixed}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{50     Eigen::Map<Eigen::Matrix<typename ValueType::field\_type, Eigen::Dynamic, ValueType::valueSize, Eigen::RowMajor>>}
-\DoxyCodeLine{51         vec(\&blockedVector.begin()-\/>begin().operator*(), blockedVector.size(), blockedVector[0].size());}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{54   \}}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{58   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{59   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_af9d7cf401f9f03ce1aae728c646ce178}{viewAsEigenMatrixAsDynFixed}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{60     Eigen::Map<}
-\DoxyCodeLine{61         \textcolor{keyword}{const} Eigen::Matrix<typename ValueType::field\_type, Eigen::Dynamic, ValueType::valueSize, Eigen::RowMajor>>}
-\DoxyCodeLine{62         vec(\&blockedVector.begin()-\/>begin().operator*(), blockedVector.size(), blockedVector[0].size());}
-\DoxyCodeLine{63 }
-\DoxyCodeLine{64     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{65   \}}
-\DoxyCodeLine{66 }
-\DoxyCodeLine{69   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{70   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac25618d0e7c4aece653662d2541b61ec}{viewAsEigenMatrixFixedDyn}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{71     Eigen::Map<Eigen::Matrix<typename ValueType::field\_type, ValueType::valueSize, Eigen::Dynamic>> vec(}
-\DoxyCodeLine{72         \&blockedVector.begin()-\/>begin().operator*(), blockedVector[0].size(), blockedVector.size());}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{74     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{75   \}}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{79   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{80   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac25618d0e7c4aece653662d2541b61ec}{viewAsEigenMatrixFixedDyn}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{81     Eigen::Map<const Eigen::Matrix<typename ValueType::field\_type, ValueType::valueSize, Eigen::Dynamic>> vec(}
-\DoxyCodeLine{82         \&blockedVector.begin()-\/>begin().operator*(), blockedVector[0].size(), blockedVector.size());}
-\DoxyCodeLine{83 }
-\DoxyCodeLine{84     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{85   \}}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{88   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
-\DoxyCodeLine{89   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a545d74839895f4576a3b8c97d72abefd}{viewAsFlatEigenVector}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
-\DoxyCodeLine{90     Eigen::Map<const Eigen::VectorX<typename ValueType::field\_type>> vec(}
-\DoxyCodeLine{91         \&blockedVector.begin()-\/>begin().operator*(), blockedVector.size() * blockedVector[0].size());}
-\DoxyCodeLine{92 }
-\DoxyCodeLine{93     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{94   \}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{96   \textcolor{comment}{/* Returns the total correction size of a block vector with a Manifold as type */}}
-\DoxyCodeLine{97   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type>}
-\DoxyCodeLine{98   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(\textcolor{keyword}{const} Dune::BlockVector<Type>\& a) \textcolor{keyword}{requires} \textcolor{keyword}{requires} \{}
-\DoxyCodeLine{99     \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
-\DoxyCodeLine{100   \}}
-\DoxyCodeLine{101   \{ \textcolor{keywordflow}{return} a.size() * \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}}; \}}
-\DoxyCodeLine{102 }
-\DoxyCodeLine{103   \textcolor{comment}{/* Returns the total value size of a block vector with a Manifold as type */}}
-\DoxyCodeLine{104   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type>}
-\DoxyCodeLine{105   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{valueSize}}(\textcolor{keyword}{const} Dune::BlockVector<Type>\& a) \textcolor{keyword}{requires} \textcolor{keyword}{requires} \{}
-\DoxyCodeLine{106     \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}};}
-\DoxyCodeLine{107   \}}
-\DoxyCodeLine{108   \{ \textcolor{keywordflow}{return} a.size() * \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}}; \}}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{110   \textcolor{comment}{/* Enables the += operator for Dune::BlockVector += Eigen::Vector */}}
-\DoxyCodeLine{111   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{112   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
-\DoxyCodeLine{113       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::correctionSize>(0))>and \textcolor{keyword}{requires}() \{}
-\DoxyCodeLine{114         \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
-\DoxyCodeLine{115       \}) \{}
-\DoxyCodeLine{116     assert(\mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(a) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(b.size()) \&\& \textcolor{stringliteral}{"{} The passed vector has wrong size"{}});}
-\DoxyCodeLine{117     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < a.size(); ++i)}
-\DoxyCodeLine{118       a[i] += b.template segment<Type::correctionSize>(i * \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}});}
-\DoxyCodeLine{119     \textcolor{keywordflow}{return} a;}
-\DoxyCodeLine{120   \}}
-\DoxyCodeLine{121 }
-\DoxyCodeLine{122   \textcolor{comment}{/* Enables the -\/= operator for Dune::BlockVector += Eigen::Vector */}}
-\DoxyCodeLine{123   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{124   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_a09e1060b2b3a53a77bb0da6345d844b1}{operator-\/=}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
-\DoxyCodeLine{125       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::correctionSize>(0))>and \textcolor{keyword}{requires}() \{}
-\DoxyCodeLine{126         \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
-\DoxyCodeLine{127       \}) \{}
-\DoxyCodeLine{128     \textcolor{keywordflow}{return} a += (-\/b);}
-\DoxyCodeLine{129   \}}
-\DoxyCodeLine{130 }
-\DoxyCodeLine{131   \textcolor{comment}{/* Enables the += operator for Dune::MultiTypeBlockVector += Eigen::Vector */}}
-\DoxyCodeLine{132   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Types, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{133   Dune::TupleVector<Types...>\& \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Dune::TupleVector<Types...>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \{}
-\DoxyCodeLine{134     \textcolor{keyword}{using namespace }Dune::Indices;}
-\DoxyCodeLine{135     \textcolor{keywordtype}{size\_t} posStart = 0;}
-\DoxyCodeLine{136     Dune::Hybrid::forEach(Dune::Hybrid::integralRange(Dune::index\_constant<\textcolor{keyword}{sizeof}...(Types)>()), [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto} i) \{}
-\DoxyCodeLine{137       \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} size = \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(a[i]);}
-\DoxyCodeLine{138       a[i] += b(Eigen::seqN(posStart, size));}
-\DoxyCodeLine{139       posStart += size;}
-\DoxyCodeLine{140     \});}
-\DoxyCodeLine{141 }
-\DoxyCodeLine{142     \textcolor{keywordflow}{return} a;}
-\DoxyCodeLine{143   \}}
-\DoxyCodeLine{144 }
-\DoxyCodeLine{145   \textcolor{comment}{/* Enables the += operator for Dune::BlockVector += Eigen::Vector */}}
-\DoxyCodeLine{146   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{147   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_a9eacac5db913d62533397e86982c2ae2}{addInEmbedding}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
-\DoxyCodeLine{148       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::valueSize>(0))>and \textcolor{keyword}{requires}() \{}
-\DoxyCodeLine{149         \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}};}
-\DoxyCodeLine{150       \}) \{}
-\DoxyCodeLine{151     assert(\mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{valueSize}}(a) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(b.size()) \&\& \textcolor{stringliteral}{"{} The passed vector has wrong size"{}});}
-\DoxyCodeLine{152     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < a.size(); ++i)}
-\DoxyCodeLine{153       a[i].\mbox{\hyperlink{a00219_a9eacac5db913d62533397e86982c2ae2}{addInEmbedding}}(b.template segment<Type::valueSize>(i * \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}}));}
-\DoxyCodeLine{154     \textcolor{keywordflow}{return} a;}
-\DoxyCodeLine{155   \}}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{158   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{159   \textcolor{keyword}{requires}(!std::floating\_point<Derived>) \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& v) \{ \textcolor{keywordflow}{return} v.norm(); \}}
-\DoxyCodeLine{160 }
-\DoxyCodeLine{162   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(\textcolor{keyword}{const} std::floating\_point \textcolor{keyword}{auto}\& v) \{ \textcolor{keywordflow}{return} std::abs(v); \}}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{165   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{166   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_acbc60e06e8e43a9bc14660189eb1baa1}{operator*}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
-\DoxyCodeLine{167     \textcolor{keywordflow}{return} (a.diagonal().cwiseProduct(b.diagonal())).asDiagonal();}
-\DoxyCodeLine{168   \}}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{170   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{171   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
-\DoxyCodeLine{172     a.diagonal() += b.diagonal();}
-\DoxyCodeLine{173     \textcolor{keywordflow}{return} a;}
-\DoxyCodeLine{174   \}}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{177   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{178   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
-\DoxyCodeLine{179     \textcolor{keyword}{auto} c = a.derived().eval();}
-\DoxyCodeLine{180     c.diagonal() += b.diagonal();}
-\DoxyCodeLine{181     \textcolor{keywordflow}{return} c;}
-\DoxyCodeLine{182   \}}
-\DoxyCodeLine{183 }
-\DoxyCodeLine{185   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{186   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \{}
-\DoxyCodeLine{187     \textcolor{keywordflow}{return} b + a;}
-\DoxyCodeLine{188   \}}
-\DoxyCodeLine{189 }
-\DoxyCodeLine{190   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{191   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a9ab6437d6235e378a6171bfffd4bf1cc}{operator-\/}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a) \{}
-\DoxyCodeLine{192     \textcolor{keywordflow}{return} (-\/a.diagonal()).asDiagonal();}
-\DoxyCodeLine{193   \}}
-\DoxyCodeLine{194 }
-\DoxyCodeLine{195   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Derived2>}
-\DoxyCodeLine{196   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& a, \textcolor{keyword}{const} Eigen::DiagonalWrapper<Derived2>\& b) \{}
-\DoxyCodeLine{197     \textcolor{keyword}{auto} c = a.derived().eval();}
-\DoxyCodeLine{198     c.diagonal() += b.diagonal();}
-\DoxyCodeLine{199     \textcolor{keywordflow}{return} c;}
-\DoxyCodeLine{200   \}}
-\DoxyCodeLine{201 }
-\DoxyCodeLine{202   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Derived2>}
-\DoxyCodeLine{203   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::DiagonalWrapper<Derived>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived2>\& b) \{}
-\DoxyCodeLine{204     \textcolor{keywordflow}{return} b + a;}
-\DoxyCodeLine{205   \}}
-\DoxyCodeLine{206 }
-\DoxyCodeLine{207   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{208   std::ostream\& \mbox{\hyperlink{a00219_ac2cdcc3047e59b91a4874a1355503cd5}{operator<<}}(std::ostream\& os, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a) \{}
-\DoxyCodeLine{209     os << Eigen::Matrix<Scalar, size, size>(a);}
-\DoxyCodeLine{210     \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{211   \}}
-\DoxyCodeLine{212 }
-\DoxyCodeLine{214   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{215   Derived \mbox{\hyperlink{a00219_abd35ea7f69bcc71ee90ea421a1c48167}{sym}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
-\DoxyCodeLine{216     \textcolor{keywordflow}{return} 0.5 * (A + A.transpose());}
-\DoxyCodeLine{217   \}}
-\DoxyCodeLine{218 }
-\DoxyCodeLine{220   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{221   Derived \mbox{\hyperlink{a00219_a1496a9776a583f8b09c4244a68453394}{skew}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
-\DoxyCodeLine{222     \textcolor{keywordflow}{return} 0.5 * (A -\/ A.transpose());}
-\DoxyCodeLine{223   \}}
-\DoxyCodeLine{224 }
-\DoxyCodeLine{226   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{227   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
-\DoxyCodeLine{228     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool}\textcolor{keyword}{>}(}
-\DoxyCodeLine{229                       Eigen::internal::is\_diagonal<Derived>::ret))  \textcolor{comment}{// workaround needed since Eigen::DiagonalWrapper}}
-\DoxyCodeLine{230                                                                     \textcolor{comment}{// does not has a eval function}}
-\DoxyCodeLine{231     \{}
-\DoxyCodeLine{232       \textcolor{keyword}{using }Scalar = \textcolor{keyword}{typename} Derived::Scalar;}
-\DoxyCodeLine{233       \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00225}{Eigen}};}
-\DoxyCodeLine{234       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} diag\_size = EIGEN\_SIZE\_MIN\_PREFER\_DYNAMIC(Derived::RowsAtCompileTime, Derived::ColsAtCompileTime);}
-\DoxyCodeLine{235       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} max\_diag\_size}
-\DoxyCodeLine{236           = EIGEN\_SIZE\_MIN\_PREFER\_FIXED(Derived::MaxRowsAtCompileTime, Derived::MaxColsAtCompileTime);}
-\DoxyCodeLine{237 }
-\DoxyCodeLine{238       \textcolor{keywordflow}{return} Eigen::DiagonalMatrix<Scalar, diag\_size, max\_diag\_size>(A.derived().diagonal());}
-\DoxyCodeLine{239     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{240       \textcolor{keywordflow}{return} A.derived().eval();}
-\DoxyCodeLine{241   \}}
-\DoxyCodeLine{242 }
-\DoxyCodeLine{244   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{245   \textcolor{keyword}{requires} autodiff::detail::isDual<T> || autodiff::detail::isExpr<T> || autodiff::detail::isArithmetic<T>}
-\DoxyCodeLine{246   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(T\&\& t) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a00219_a833cd81d209ea9b92ca36f62ce5cac45}{autodiff::detail::eval}}(t); \}}
-\DoxyCodeLine{247 }
-\DoxyCodeLine{249   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{250   \textcolor{keyword}{requires} autodiff::detail::isDual<T> || autodiff::detail::isExpr<T> || autodiff::detail::isArithmetic<T>}
-\DoxyCodeLine{251   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(T\&\& t) \{ \textcolor{keywordflow}{return} t; \}}
-\DoxyCodeLine{252 }
-\DoxyCodeLine{254   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, std::\textcolor{keywordtype}{size\_t} d>}
-\DoxyCodeLine{255   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(std::array<Type, d>\&\& t) \{}
-\DoxyCodeLine{256     \textcolor{keywordflow}{return} t;}
-\DoxyCodeLine{257   \}}
-\DoxyCodeLine{258 }
-\DoxyCodeLine{259   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{260   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
-\DoxyCodeLine{261     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
-\DoxyCodeLine{262                     A.derived().transpose();}
-\DoxyCodeLine{263                   \})  \textcolor{comment}{// workaround needed since Eigen::Diagonalmatrix has no transpose function}}
-\DoxyCodeLine{264       \textcolor{keywordflow}{return} A.derived().transpose();}
-\DoxyCodeLine{265     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::DiagonalMatrix, Derived>::value}}}
-\DoxyCodeLine{266                        or \mbox{\hyperlink{a01445}{Std::isSpecialization<Eigen::DiagonalWrapper, Derived>::value}})}
-\DoxyCodeLine{267       \textcolor{keywordflow}{return} A.derived();}
-\DoxyCodeLine{268     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{269       \textcolor{keyword}{static\_assert}((\textcolor{keyword}{requires} \{ A.derived().transpose(); \})}
-\DoxyCodeLine{270                     or \mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::DiagonalMatrix, Derived>::value}}}
-\DoxyCodeLine{271                     or \mbox{\hyperlink{a01445}{Std::isSpecialization<Eigen::DiagonalWrapper, Derived>::value}});}
-\DoxyCodeLine{272   \}}
-\DoxyCodeLine{273 }
-\DoxyCodeLine{274   \textcolor{keyword}{template} <\textcolor{keyword}{typename} To, \textcolor{keyword}{typename} From>}
-\DoxyCodeLine{275   \textcolor{keyword}{requires} std::convertible\_to<typename From::ctype, To>}
-\DoxyCodeLine{276   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a28c4e8aec7417394b52a4424d93b1db9}{convertUnderlying}}(\textcolor{keyword}{const} Dune::BlockVector<From>\& from) \{}
-\DoxyCodeLine{277     Dune::BlockVector<typename From::template Rebind<To>::other> to;}
-\DoxyCodeLine{278     to.resize(from.size());}
-\DoxyCodeLine{279     \textcolor{keywordflow}{for} (std::size\_t i = 0; i < to.size(); ++i)}
-\DoxyCodeLine{280       to[i] = from[i];}
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282     \textcolor{keywordflow}{return} to;}
-\DoxyCodeLine{283   \}}
-\DoxyCodeLine{284 }
-\DoxyCodeLine{285   \textcolor{comment}{/* Enables the += operator for std::array if the underlying objects are addable  */}}
-\DoxyCodeLine{286   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Type2, std::\textcolor{keywordtype}{size\_t} d>}
-\DoxyCodeLine{287   std::array<Type, d> \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} std::array<Type, d>\& a,}
-\DoxyCodeLine{288                                 \textcolor{keyword}{const} std::array<Type2, d>\& b) \textcolor{keyword}{requires} \mbox{\hyperlink{a01571}{Concepts::AddAble<Type, Type2>}} \{}
-\DoxyCodeLine{289     std::array<Type, d> res;}
-\DoxyCodeLine{290     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
-\DoxyCodeLine{291       res[i] = a[i] + b[i];}
-\DoxyCodeLine{292     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{293   \}}
-\DoxyCodeLine{294 }
-\DoxyCodeLine{295   \textcolor{comment}{/* Enables the -\/ operator for std::array if the underlying objects are negate able  */}}
-\DoxyCodeLine{296   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Type>}
-\DoxyCodeLine{297   std::array<Type, d> \mbox{\hyperlink{a00219_a9ab6437d6235e378a6171bfffd4bf1cc}{operator-\/}}(\textcolor{keyword}{const} std::array<Type, d>\& a)  \textcolor{comment}{// requires Concepts::NegateAble<Type>}}
-\DoxyCodeLine{298   \{}
-\DoxyCodeLine{299     std::array<Type, d> res;}
-\DoxyCodeLine{300     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
-\DoxyCodeLine{301       res[i] = -\/a[i];}
-\DoxyCodeLine{302     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{303   \}}
-\DoxyCodeLine{304 }
-\DoxyCodeLine{305   \textcolor{comment}{/* Enables the transposition for std::array if the underlying objects are transposable able  */}}
-\DoxyCodeLine{306   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Type>}
-\DoxyCodeLine{307   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(\textcolor{keyword}{const} std::array<Type, d>\& a) \textcolor{keyword}{requires} \mbox{\hyperlink{a01579}{Concepts::TransposeAble<Type>}} \{}
-\DoxyCodeLine{308     std::array<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(a[0])), d> res;}
-\DoxyCodeLine{309     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
-\DoxyCodeLine{310       res[i] = \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(a[i]);}
-\DoxyCodeLine{311     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{312   \}}
-\DoxyCodeLine{313 }
-\DoxyCodeLine{314   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Scalar, \textcolor{keyword}{typename} Type>}
-\DoxyCodeLine{315   \textcolor{keyword}{requires} Concepts::MultiplyAble<Scalar, Type>}
-\DoxyCodeLine{316   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_acbc60e06e8e43a9bc14660189eb1baa1}{operator*}}(Scalar b, \textcolor{keyword}{const} std::array<Type, d>\& a) \{}
-\DoxyCodeLine{317     std::array<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(b * a[0])), d> res;}
-\DoxyCodeLine{318     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
-\DoxyCodeLine{319       res[i] = b * a[i];}
-\DoxyCodeLine{320     \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{321   \}}
-\DoxyCodeLine{322 }
-\DoxyCodeLine{323   \textcolor{comment}{/* Method to print to cout the matrix in a format that can directly be copied to maple*/}}
-\DoxyCodeLine{324   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{325   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00219_a40c08050aff1e3e49e58c7823ecbcc77}{printForMaple}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
-\DoxyCodeLine{326     Eigen::IOFormat mapleFmt(Eigen::FullPrecision, 0, \textcolor{stringliteral}{"{}, "{}}, \textcolor{stringliteral}{"{}|\(\backslash\)n"{}}, \textcolor{stringliteral}{"{}<"{}}, \textcolor{stringliteral}{"{}>"{}}, \textcolor{stringliteral}{"{}<"{}}, \textcolor{stringliteral}{"{}>"{}});}
-\DoxyCodeLine{327     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::convertible\_to<Derived, const Eigen::MatrixBase<Derived>\&>) \{}
-\DoxyCodeLine{328       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)n"{}} << A.derived().format(mapleFmt) << std::endl;}
-\DoxyCodeLine{329     \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// branch for Eigen::DiagonalMatrix}}
-\DoxyCodeLine{330       \textcolor{keyword}{using }Scalar = \textcolor{keyword}{typename} Derived::Scalar;}
-\DoxyCodeLine{331       \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00225}{Eigen}};}
-\DoxyCodeLine{332       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} diag\_size = EIGEN\_SIZE\_MIN\_PREFER\_DYNAMIC(Derived::RowsAtCompileTime, Derived::ColsAtCompileTime);}
-\DoxyCodeLine{333       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
-\DoxyCodeLine{334                 << Eigen::Matrix<Scalar, diag\_size, diag\_size>(A.derived().diagonal().asDiagonal()).format(mapleFmt)}
-\DoxyCodeLine{335                 << std::endl;}
-\DoxyCodeLine{336     \}}
-\DoxyCodeLine{337   \}}
-\DoxyCodeLine{338 }
-\DoxyCodeLine{339   \textcolor{keyword}{template} <\textcolor{keyword}{typename} FieldVectorT>}
-\DoxyCodeLine{340   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a821ecf80e4a83241318d825f49cd79e4}{createRandomVector}}(\textcolor{keyword}{typename} FieldVectorT::value\_type lower = -\/1, \textcolor{keyword}{typename} FieldVectorT::value\_type upper = 1) \{}
-\DoxyCodeLine{341     std::random\_device rd;}
-\DoxyCodeLine{342     std::mt19937 mt(rd());}
-\DoxyCodeLine{343     std::uniform\_real\_distribution<typename FieldVectorT::value\_type> dist(lower, upper);}
-\DoxyCodeLine{344     \textcolor{keyword}{auto} rand = [\&dist, \&mt]() \{ \textcolor{keywordflow}{return} dist(mt); \};}
-\DoxyCodeLine{345     FieldVectorT vec;}
-\DoxyCodeLine{346     std::generate(vec.begin(), vec.end(), rand);}
-\DoxyCodeLine{347     \textcolor{keywordflow}{return} vec;}
-\DoxyCodeLine{348   \}}
-\DoxyCodeLine{349 }
-\DoxyCodeLine{350   \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{351     \textcolor{keyword}{constexpr} std::tuple<std::array<std::array<int, 2>, 1>, std::array<std::array<int, 2>, 3>,}
-\DoxyCodeLine{352                          std::array<std::array<int, 2>, 6>>}
-\DoxyCodeLine{353         voigtIndices = \{\{\{\{0, 0\}\}\}, \{\{\{0, 0\}, \{1, 1\}, \{0, 1\}\}\}, \{\{\{0, 0\}, \{1, 1\}, \{2, 2\}, \{1, 2\}, \{0, 2\}, \{0, 1\}\}\}\};}
-\DoxyCodeLine{354   \}}
-\DoxyCodeLine{355 }
-\DoxyCodeLine{356   \textcolor{comment}{/*}}
-\DoxyCodeLine{357 \textcolor{comment}{   * This class returns the indices, if you go through a symmetric matrix with index (Voigt) notation}}
-\DoxyCodeLine{358 \textcolor{comment}{   * 1D: 0,0}}
-\DoxyCodeLine{359 \textcolor{comment}{   * 2D: 0,0 1,1 0,1}}
-\DoxyCodeLine{360 \textcolor{comment}{   * 3D: 0,0 1,1 2,2 1,2 0,2 0,1}}
-\DoxyCodeLine{361 \textcolor{comment}{   */}}
-\DoxyCodeLine{362   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim>}
-\DoxyCodeLine{363   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a8bdeefaffd49685e7dcd89f34af51d76}{voigtNotationContainer}} = std::get<dim -\/ 1>(Impl::voigtIndices);}
-\DoxyCodeLine{364 }
-\DoxyCodeLine{365 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/lagrangebasis.hh>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/istl/bvector.hh>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/istl/multitypeblockvector.hh>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <autodiff/forward/dual/dual.hpp>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{23   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{24   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_aa33adfa2e95d7040a816bb2da81d275d}{orthonormalizeMatrixColumns}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
+\DoxyCodeLine{25     \textcolor{comment}{// Gram Schmidt Ortho}}
+\DoxyCodeLine{26     \textcolor{keyword}{auto} Q = A.eval();}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     Q.col(0).normalize();}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} colIndex = 1; colIndex < Q.cols(); colIndex++) \{}
+\DoxyCodeLine{31       Q.col(colIndex) -\/= Q.leftCols(colIndex) * (Q.leftCols(colIndex).transpose() * A.col(colIndex));}
+\DoxyCodeLine{32       Q.col(colIndex).normalize();}
+\DoxyCodeLine{33     \}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keywordflow}{return} Q;}
+\DoxyCodeLine{36   \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{40   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a545d74839895f4576a3b8c97d72abefd}{viewAsFlatEigenVector}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{41     Eigen::Map<Eigen::VectorX<typename ValueType::field\_type>> vec(\&blockedVector.begin()-\/>begin().operator*(),}
+\DoxyCodeLine{42                                                                    blockedVector.size() * blockedVector[0].size());}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{45   \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{49   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{50   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_af9d7cf401f9f03ce1aae728c646ce178}{viewAsEigenMatrixAsDynFixed}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{51     Eigen::Map<Eigen::Matrix<typename ValueType::field\_type, Eigen::Dynamic, ValueType::valueSize, Eigen::RowMajor>>}
+\DoxyCodeLine{52         vec(\&blockedVector.begin()-\/>begin().operator*(), blockedVector.size(), blockedVector[0].size());}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{55   \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{59   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{60   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_af9d7cf401f9f03ce1aae728c646ce178}{viewAsEigenMatrixAsDynFixed}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{61     Eigen::Map<}
+\DoxyCodeLine{62         \textcolor{keyword}{const} Eigen::Matrix<typename ValueType::field\_type, Eigen::Dynamic, ValueType::valueSize, Eigen::RowMajor>>}
+\DoxyCodeLine{63         vec(\&blockedVector.begin()-\/>begin().operator*(), blockedVector.size(), blockedVector[0].size());}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{66   \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{70   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{71   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac25618d0e7c4aece653662d2541b61ec}{viewAsEigenMatrixFixedDyn}}(Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{72     Eigen::Map<Eigen::Matrix<typename ValueType::field\_type, ValueType::valueSize, Eigen::Dynamic>> vec(}
+\DoxyCodeLine{73         \&blockedVector.begin()-\/>begin().operator*(), blockedVector[0].size(), blockedVector.size());}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{76   \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{80   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{81   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac25618d0e7c4aece653662d2541b61ec}{viewAsEigenMatrixFixedDyn}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{82     Eigen::Map<const Eigen::Matrix<typename ValueType::field\_type, ValueType::valueSize, Eigen::Dynamic>> vec(}
+\DoxyCodeLine{83         \&blockedVector.begin()-\/>begin().operator*(), blockedVector[0].size(), blockedVector.size());}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{86   \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{89   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{90   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a545d74839895f4576a3b8c97d72abefd}{viewAsFlatEigenVector}}(\textcolor{keyword}{const} Dune::BlockVector<ValueType>\& blockedVector) \{}
+\DoxyCodeLine{91     Eigen::Map<const Eigen::VectorX<typename ValueType::field\_type>> vec(}
+\DoxyCodeLine{92         \&blockedVector.begin()-\/>begin().operator*(), blockedVector.size() * blockedVector[0].size());}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{95   \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{comment}{/* Returns the total correction size of a block vector with a Manifold as type */}}
+\DoxyCodeLine{98   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type>}
+\DoxyCodeLine{99   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(\textcolor{keyword}{const} Dune::BlockVector<Type>\& a) \textcolor{keyword}{requires} \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{100     \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
+\DoxyCodeLine{101   \}}
+\DoxyCodeLine{102   \{ \textcolor{keywordflow}{return} a.size() * \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}}; \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104   \textcolor{comment}{/* Returns the total value size of a block vector with a Manifold as type */}}
+\DoxyCodeLine{105   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type>}
+\DoxyCodeLine{106   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{valueSize}}(\textcolor{keyword}{const} Dune::BlockVector<Type>\& a) \textcolor{keyword}{requires} \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{107     \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}};}
+\DoxyCodeLine{108   \}}
+\DoxyCodeLine{109   \{ \textcolor{keywordflow}{return} a.size() * \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}}; \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{comment}{/* Enables the += operator for Dune::BlockVector += Eigen::Vector */}}
+\DoxyCodeLine{112   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{113   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
+\DoxyCodeLine{114       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::correctionSize>(0))>and \textcolor{keyword}{requires}() \{}
+\DoxyCodeLine{115         \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
+\DoxyCodeLine{116       \}) \{}
+\DoxyCodeLine{117     assert(\mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(a) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(b.size()) \&\& \textcolor{stringliteral}{"{} The passed vector has wrong size"{}});}
+\DoxyCodeLine{118     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < a.size(); ++i)}
+\DoxyCodeLine{119       a[i] += b.template segment<Type::correctionSize>(i * \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}});}
+\DoxyCodeLine{120     \textcolor{keywordflow}{return} a;}
+\DoxyCodeLine{121   \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123   \textcolor{comment}{/* Enables the -\/= operator for Dune::BlockVector += Eigen::Vector */}}
+\DoxyCodeLine{124   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{125   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_a09e1060b2b3a53a77bb0da6345d844b1}{operator-\/=}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
+\DoxyCodeLine{126       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::correctionSize>(0))>and \textcolor{keyword}{requires}() \{}
+\DoxyCodeLine{127         \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{Type::correctionSize}};}
+\DoxyCodeLine{128       \}) \{}
+\DoxyCodeLine{129     \textcolor{keywordflow}{return} a += (-\/b);}
+\DoxyCodeLine{130   \}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132   \textcolor{comment}{/* Enables the += operator for Dune::MultiTypeBlockVector += Eigen::Vector */}}
+\DoxyCodeLine{133   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Types, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{134   Dune::TupleVector<Types...>\& \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Dune::TupleVector<Types...>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \{}
+\DoxyCodeLine{135     \textcolor{keyword}{using namespace }Dune::Indices;}
+\DoxyCodeLine{136     \textcolor{keywordtype}{size\_t} posStart = 0;}
+\DoxyCodeLine{137     Dune::Hybrid::forEach(Dune::Hybrid::integralRange(Dune::index\_constant<\textcolor{keyword}{sizeof}...(Types)>()), [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto} i) \{}
+\DoxyCodeLine{138       \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} size = \mbox{\hyperlink{a00219_a609664964681787f2f736f772b82a01e}{correctionSize}}(a[i]);}
+\DoxyCodeLine{139       a[i] += b(Eigen::seqN(posStart, size));}
+\DoxyCodeLine{140       posStart += size;}
+\DoxyCodeLine{141     \});}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{keywordflow}{return} a;}
+\DoxyCodeLine{144   \}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146   \textcolor{comment}{/* Enables the += operator for Dune::BlockVector += Eigen::Vector */}}
+\DoxyCodeLine{147   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{148   Dune::BlockVector<Type>\& \mbox{\hyperlink{a00219_a9eacac5db913d62533397e86982c2ae2}{addInEmbedding}}(Dune::BlockVector<Type>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \textcolor{keyword}{requires}(}
+\DoxyCodeLine{149       \mbox{\hyperlink{a01575}{Ikarus::Concepts::AddAssignAble}}<Type, \textcolor{keyword}{decltype}(b.template segment<Type::valueSize>(0))>and \textcolor{keyword}{requires}() \{}
+\DoxyCodeLine{150         \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}};}
+\DoxyCodeLine{151       \}) \{}
+\DoxyCodeLine{152     assert(\mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{valueSize}}(a) == \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(b.size()) \&\& \textcolor{stringliteral}{"{} The passed vector has wrong size"{}});}
+\DoxyCodeLine{153     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < a.size(); ++i)}
+\DoxyCodeLine{154       a[i].\mbox{\hyperlink{a00219_a9eacac5db913d62533397e86982c2ae2}{addInEmbedding}}(b.template segment<Type::valueSize>(i * \mbox{\hyperlink{a00219_ac1df27a0dfa864327029cdb906a1840c}{Type::valueSize}}));}
+\DoxyCodeLine{155     \textcolor{keywordflow}{return} a;}
+\DoxyCodeLine{156   \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{159   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{160   \textcolor{keyword}{requires}(!std::floating\_point<Derived>) \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& v) \{ \textcolor{keywordflow}{return} v.norm(); \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{163   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(\textcolor{keyword}{const} std::floating\_point \textcolor{keyword}{auto}\& v) \{ \textcolor{keywordflow}{return} std::abs(v); \}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{166   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{167   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_acbc60e06e8e43a9bc14660189eb1baa1}{operator*}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
+\DoxyCodeLine{168     \textcolor{keywordflow}{return} (a.diagonal().cwiseProduct(b.diagonal())).asDiagonal();}
+\DoxyCodeLine{169   \}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{172   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ace6bdf5ec8a965423e5a13c20c91dd89}{operator+=}}(Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
+\DoxyCodeLine{173     a.diagonal() += b.diagonal();}
+\DoxyCodeLine{174     \textcolor{keywordflow}{return} a;}
+\DoxyCodeLine{175   \}}
+\DoxyCodeLine{176 }
+\DoxyCodeLine{178   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{179   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& a, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& b) \{}
+\DoxyCodeLine{180     \textcolor{keyword}{auto} c = a.derived().eval();}
+\DoxyCodeLine{181     c.diagonal() += b.diagonal();}
+\DoxyCodeLine{182     \textcolor{keywordflow}{return} c;}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{186   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{187   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& b) \{}
+\DoxyCodeLine{188     \textcolor{keywordflow}{return} b + a;}
+\DoxyCodeLine{189   \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{192   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a9ab6437d6235e378a6171bfffd4bf1cc}{operator-\/}}(\textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a) \{}
+\DoxyCodeLine{193     \textcolor{keywordflow}{return} (-\/a.diagonal()).asDiagonal();}
+\DoxyCodeLine{194   \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Derived2>}
+\DoxyCodeLine{197   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& a, \textcolor{keyword}{const} Eigen::DiagonalWrapper<Derived2>\& b) \{}
+\DoxyCodeLine{198     \textcolor{keyword}{auto} c = a.derived().eval();}
+\DoxyCodeLine{199     c.diagonal() += b.diagonal();}
+\DoxyCodeLine{200     \textcolor{keywordflow}{return} c;}
+\DoxyCodeLine{201   \}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} Derived2>}
+\DoxyCodeLine{204   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} Eigen::DiagonalWrapper<Derived>\& a, \textcolor{keyword}{const} Eigen::MatrixBase<Derived2>\& b) \{}
+\DoxyCodeLine{205     \textcolor{keywordflow}{return} b + a;}
+\DoxyCodeLine{206   \}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{209   std::ostream\& \mbox{\hyperlink{a00219_ac2cdcc3047e59b91a4874a1355503cd5}{operator<<}}(std::ostream\& os, \textcolor{keyword}{const} Eigen::DiagonalMatrix<Scalar, size>\& a) \{}
+\DoxyCodeLine{210     os << Eigen::Matrix<Scalar, size, size>(a);}
+\DoxyCodeLine{211     \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{212   \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{215   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{216   Derived \mbox{\hyperlink{a00219_abd35ea7f69bcc71ee90ea421a1c48167}{sym}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
+\DoxyCodeLine{217     \textcolor{keywordflow}{return} 0.5 * (A + A.transpose());}
+\DoxyCodeLine{218   \}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{221   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{222   Derived \mbox{\hyperlink{a00219_a1496a9776a583f8b09c4244a68453394}{skew}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& A) \{}
+\DoxyCodeLine{223     \textcolor{keywordflow}{return} 0.5 * (A -\/ A.transpose());}
+\DoxyCodeLine{224   \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{227   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{228   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
+\DoxyCodeLine{229     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool}\textcolor{keyword}{>}(}
+\DoxyCodeLine{230                       Eigen::internal::is\_diagonal<Derived>::ret))  \textcolor{comment}{// workaround needed since Eigen::DiagonalWrapper}}
+\DoxyCodeLine{231                                                                     \textcolor{comment}{// does not has a eval function}}
+\DoxyCodeLine{232     \{}
+\DoxyCodeLine{233       \textcolor{keyword}{using }Scalar = \textcolor{keyword}{typename} Derived::Scalar;}
+\DoxyCodeLine{234       \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00225}{Eigen}};}
+\DoxyCodeLine{235       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} diag\_size = EIGEN\_SIZE\_MIN\_PREFER\_DYNAMIC(Derived::RowsAtCompileTime, Derived::ColsAtCompileTime);}
+\DoxyCodeLine{236       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} max\_diag\_size}
+\DoxyCodeLine{237           = EIGEN\_SIZE\_MIN\_PREFER\_FIXED(Derived::MaxRowsAtCompileTime, Derived::MaxColsAtCompileTime);}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{239       \textcolor{keywordflow}{return} Eigen::DiagonalMatrix<Scalar, diag\_size, max\_diag\_size>(A.derived().diagonal());}
+\DoxyCodeLine{240     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{241       \textcolor{keywordflow}{return} A.derived().eval();}
+\DoxyCodeLine{242   \}}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{245   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{246   \textcolor{keyword}{requires} autodiff::detail::isDual<T> || autodiff::detail::isExpr<T> || autodiff::detail::isArithmetic<T>}
+\DoxyCodeLine{247   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(T\&\& t) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a00219_a833cd81d209ea9b92ca36f62ce5cac45}{autodiff::detail::eval}}(t); \}}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{250   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{251   \textcolor{keyword}{requires} autodiff::detail::isDual<T> || autodiff::detail::isExpr<T> || autodiff::detail::isArithmetic<T>}
+\DoxyCodeLine{252   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(T\&\& t) \{ \textcolor{keywordflow}{return} t; \}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{255   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, std::\textcolor{keywordtype}{size\_t} d>}
+\DoxyCodeLine{256   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(std::array<Type, d>\&\& t) \{}
+\DoxyCodeLine{257     \textcolor{keywordflow}{return} t;}
+\DoxyCodeLine{258   \}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{261   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
+\DoxyCodeLine{262     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
+\DoxyCodeLine{263                     A.derived().transpose();}
+\DoxyCodeLine{264                   \})  \textcolor{comment}{// workaround needed since Eigen::Diagonalmatrix has no transpose function}}
+\DoxyCodeLine{265       \textcolor{keywordflow}{return} A.derived().transpose();}
+\DoxyCodeLine{266     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::DiagonalMatrix, Derived>::value}}}
+\DoxyCodeLine{267                        or \mbox{\hyperlink{a01445}{Std::isSpecialization<Eigen::DiagonalWrapper, Derived>::value}})}
+\DoxyCodeLine{268       \textcolor{keywordflow}{return} A.derived();}
+\DoxyCodeLine{269     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{270       \textcolor{keyword}{static\_assert}((\textcolor{keyword}{requires} \{ A.derived().transpose(); \})}
+\DoxyCodeLine{271                     or \mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::DiagonalMatrix, Derived>::value}}}
+\DoxyCodeLine{272                     or \mbox{\hyperlink{a01445}{Std::isSpecialization<Eigen::DiagonalWrapper, Derived>::value}});}
+\DoxyCodeLine{273   \}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275   \textcolor{keyword}{template} <\textcolor{keyword}{typename} To, \textcolor{keyword}{typename} From>}
+\DoxyCodeLine{276   \textcolor{keyword}{requires} std::convertible\_to<typename From::ctype, To>}
+\DoxyCodeLine{277   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a28c4e8aec7417394b52a4424d93b1db9}{convertUnderlying}}(\textcolor{keyword}{const} Dune::BlockVector<From>\& from) \{}
+\DoxyCodeLine{278     Dune::BlockVector<typename From::template Rebind<To>::other> to;}
+\DoxyCodeLine{279     to.resize(from.size());}
+\DoxyCodeLine{280     \textcolor{keywordflow}{for} (std::size\_t i = 0; i < to.size(); ++i)}
+\DoxyCodeLine{281       to[i] = from[i];}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283     \textcolor{keywordflow}{return} to;}
+\DoxyCodeLine{284   \}}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286   \textcolor{comment}{/* Enables the += operator for std::array if the underlying objects are addable  */}}
+\DoxyCodeLine{287   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Type, \textcolor{keyword}{typename} Type2, std::\textcolor{keywordtype}{size\_t} d>}
+\DoxyCodeLine{288   std::array<Type, d> \mbox{\hyperlink{a00219_a098b554b29619e0cea837f3daa6e0e30}{operator+}}(\textcolor{keyword}{const} std::array<Type, d>\& a,}
+\DoxyCodeLine{289                                 \textcolor{keyword}{const} std::array<Type2, d>\& b) \textcolor{keyword}{requires} \mbox{\hyperlink{a01571}{Concepts::AddAble<Type, Type2>}} \{}
+\DoxyCodeLine{290     std::array<Type, d> res;}
+\DoxyCodeLine{291     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
+\DoxyCodeLine{292       res[i] = a[i] + b[i];}
+\DoxyCodeLine{293     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{294   \}}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296   \textcolor{comment}{/* Enables the -\/ operator for std::array if the underlying objects are negate able  */}}
+\DoxyCodeLine{297   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Type>}
+\DoxyCodeLine{298   std::array<Type, d> \mbox{\hyperlink{a00219_a9ab6437d6235e378a6171bfffd4bf1cc}{operator-\/}}(\textcolor{keyword}{const} std::array<Type, d>\& a)  \textcolor{comment}{// requires Concepts::NegateAble<Type>}}
+\DoxyCodeLine{299   \{}
+\DoxyCodeLine{300     std::array<Type, d> res;}
+\DoxyCodeLine{301     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
+\DoxyCodeLine{302       res[i] = -\/a[i];}
+\DoxyCodeLine{303     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{304   \}}
+\DoxyCodeLine{305 }
+\DoxyCodeLine{306   \textcolor{comment}{/* Enables the transposition for std::array if the underlying objects are transposable able  */}}
+\DoxyCodeLine{307   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Type>}
+\DoxyCodeLine{308   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(\textcolor{keyword}{const} std::array<Type, d>\& a) \textcolor{keyword}{requires} \mbox{\hyperlink{a01579}{Concepts::TransposeAble<Type>}} \{}
+\DoxyCodeLine{309     std::array<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(a[0])), d> res;}
+\DoxyCodeLine{310     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
+\DoxyCodeLine{311       res[i] = \mbox{\hyperlink{a00219_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(a[i]);}
+\DoxyCodeLine{312     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{313   \}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} d, \textcolor{keyword}{typename} Scalar, \textcolor{keyword}{typename} Type>}
+\DoxyCodeLine{316   \textcolor{keyword}{requires} Concepts::MultiplyAble<Scalar, Type>}
+\DoxyCodeLine{317   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_acbc60e06e8e43a9bc14660189eb1baa1}{operator*}}(Scalar b, \textcolor{keyword}{const} std::array<Type, d>\& a) \{}
+\DoxyCodeLine{318     std::array<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00219_a746ffb7ea71ab7ea16727793ff59c3c7}{eval}}(b * a[0])), d> res;}
+\DoxyCodeLine{319     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0U; i < d; ++i)}
+\DoxyCodeLine{320       res[i] = b * a[i];}
+\DoxyCodeLine{321     \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{322   \}}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324   \textcolor{comment}{/* Method to print to cout the matrix in a format that can directly be copied to maple*/}}
+\DoxyCodeLine{325   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{326   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00219_a40c08050aff1e3e49e58c7823ecbcc77}{printForMaple}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01337}{Eigen::EigenBase<Derived>}}\& A) \{}
+\DoxyCodeLine{327     Eigen::IOFormat mapleFmt(Eigen::FullPrecision, 0, \textcolor{stringliteral}{"{}, "{}}, \textcolor{stringliteral}{"{}|\(\backslash\)n"{}}, \textcolor{stringliteral}{"{}<"{}}, \textcolor{stringliteral}{"{}>"{}}, \textcolor{stringliteral}{"{}<"{}}, \textcolor{stringliteral}{"{}>"{}});}
+\DoxyCodeLine{328     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::convertible\_to<Derived, const Eigen::MatrixBase<Derived>\&>) \{}
+\DoxyCodeLine{329       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)n"{}} << A.derived().format(mapleFmt) << std::endl;}
+\DoxyCodeLine{330     \} \textcolor{keywordflow}{else} \{  \textcolor{comment}{// branch for Eigen::DiagonalMatrix}}
+\DoxyCodeLine{331       \textcolor{keyword}{using }Scalar = \textcolor{keyword}{typename} Derived::Scalar;}
+\DoxyCodeLine{332       \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00225}{Eigen}};}
+\DoxyCodeLine{333       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} diag\_size = EIGEN\_SIZE\_MIN\_PREFER\_DYNAMIC(Derived::RowsAtCompileTime, Derived::ColsAtCompileTime);}
+\DoxyCodeLine{334       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)n"{}}}
+\DoxyCodeLine{335                 << Eigen::Matrix<Scalar, diag\_size, diag\_size>(A.derived().diagonal().asDiagonal()).format(mapleFmt)}
+\DoxyCodeLine{336                 << std::endl;}
+\DoxyCodeLine{337     \}}
+\DoxyCodeLine{338   \}}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340   \textcolor{keyword}{template} <\textcolor{keyword}{typename} FieldVectorT>}
+\DoxyCodeLine{341   \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a821ecf80e4a83241318d825f49cd79e4}{createRandomVector}}(\textcolor{keyword}{typename} FieldVectorT::value\_type lower = -\/1, \textcolor{keyword}{typename} FieldVectorT::value\_type upper = 1) \{}
+\DoxyCodeLine{342     std::random\_device rd;}
+\DoxyCodeLine{343     std::mt19937 mt(rd());}
+\DoxyCodeLine{344     std::uniform\_real\_distribution<typename FieldVectorT::value\_type> dist(lower, upper);}
+\DoxyCodeLine{345     \textcolor{keyword}{auto} rand = [\&dist, \&mt]() \{ \textcolor{keywordflow}{return} dist(mt); \};}
+\DoxyCodeLine{346     FieldVectorT vec;}
+\DoxyCodeLine{347     std::generate(vec.begin(), vec.end(), rand);}
+\DoxyCodeLine{348     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{349   \}}
+\DoxyCodeLine{350 }
+\DoxyCodeLine{351   \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{352     \textcolor{keyword}{constexpr} std::tuple<std::array<std::array<int, 2>, 1>, std::array<std::array<int, 2>, 3>,}
+\DoxyCodeLine{353                          std::array<std::array<int, 2>, 6>>}
+\DoxyCodeLine{354         voigtIndices = \{\{\{\{0, 0\}\}\}, \{\{\{0, 0\}, \{1, 1\}, \{0, 1\}\}\}, \{\{\{0, 0\}, \{1, 1\}, \{2, 2\}, \{1, 2\}, \{0, 2\}, \{0, 1\}\}\}\};}
+\DoxyCodeLine{355   \}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357   \textcolor{comment}{/*}}
+\DoxyCodeLine{358 \textcolor{comment}{   * This class returns the indices, if you go through a symmetric matrix with index (Voigt) notation}}
+\DoxyCodeLine{359 \textcolor{comment}{   * 1D: 0,0}}
+\DoxyCodeLine{360 \textcolor{comment}{   * 2D: 0,0 1,1 0,1}}
+\DoxyCodeLine{361 \textcolor{comment}{   * 3D: 0,0 1,1 2,2 1,2 0,2 0,1}}
+\DoxyCodeLine{362 \textcolor{comment}{   */}}
+\DoxyCodeLine{363   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim>}
+\DoxyCodeLine{364   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a00219_a8bdeefaffd49685e7dcd89f34af51d76}{voigtNotationContainer}} = std::get<dim -\/ 1>(Impl::voigtIndices);}
+\DoxyCodeLine{365 }
+\DoxyCodeLine{377   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} order, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LocalView>}
+\DoxyCodeLine{378   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00219_aa8377ff7b131bcd3baac199f466888f5}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LocalView\& localView,}
+\DoxyCodeLine{379                                    std::vector<\mbox{\hyperlink{a01217}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
+\DoxyCodeLine{380     \textcolor{keyword}{static\_assert}(}
+\DoxyCodeLine{381         std::is\_same\_v<\textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>,}
+\DoxyCodeLine{382                        Dune::Functions::LagrangeNode<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.globalBasis().gridView())>,}
+\DoxyCodeLine{383                                                      order, \textcolor{keywordtype}{double}>>,}
+\DoxyCodeLine{384         \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
+\DoxyCodeLine{385     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{386     lagrangeNodeCoords.resize(localFE.size());}
+\DoxyCodeLine{387     std::vector<double> out;}
+\DoxyCodeLine{388     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
+\DoxyCodeLine{389       \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01217}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
+\DoxyCodeLine{390       localFE.localInterpolation().interpolate(ithCoord, out);}
+\DoxyCodeLine{391       \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
+\DoxyCodeLine{392         lagrangeNodeCoords[j][i] = out[j];}
+\DoxyCodeLine{393     \}}
+\DoxyCodeLine{394     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
+\DoxyCodeLine{395       nCoord = localView.element().geometry().global(nCoord);}
+\DoxyCodeLine{396   \}}
+\DoxyCodeLine{397 }
+\DoxyCodeLine{398 \}  \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

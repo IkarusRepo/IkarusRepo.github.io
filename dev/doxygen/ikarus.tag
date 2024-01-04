@@ -1575,6 +1575,13 @@
       <anchor>a821ecf80e4a83241318d825f49cd79e4</anchor>
       <arglist>(typename FieldVectorT::value_type lower=-1, typename FieldVectorT::value_type upper=1)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>obtainLagrangeNodePositions</name>
+      <anchorfile>dd/df3/a00219.html</anchorfile>
+      <anchor>aa8377ff7b131bcd3baac199f466888f5</anchor>
+      <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
+    </member>
     <member kind="variable">
       <type>constexpr auto</type>
       <name>voigtNotationContainer</name>
@@ -3273,6 +3280,13 @@
       <anchorfile>dc/dab/a01237.html</anchorfile>
       <anchor>ad62158c0ddba6753a04ed26097610bbd</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>fixIthDOF</name>
+      <anchorfile>dc/dab/a01237.html</anchorfile>
+      <anchor>afbe5f38622ea7524c4d2230f32530a96</anchor>
+      <arglist>(typename Basis::MultiIndex i)</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
@@ -9293,6 +9307,13 @@
       <anchorfile>dd/df3/a00219.html</anchorfile>
       <anchor>a821ecf80e4a83241318d825f49cd79e4</anchor>
       <arglist>(typename FieldVectorT::value_type lower=-1, typename FieldVectorT::value_type upper=1)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>obtainLagrangeNodePositions</name>
+      <anchorfile>dd/df3/a00219.html</anchorfile>
+      <anchor>aa8377ff7b131bcd3baac199f466888f5</anchor>
+      <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
     <member kind="function">
       <type>MessageType &amp;</type>

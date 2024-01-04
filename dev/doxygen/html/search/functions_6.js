@@ -9,10 +9,11 @@ var searchData=
   ['fixboundarydofs_6',['fixBoundaryDOFs',['../dc/dab/a01237.html#a7de80e6ad56431b46750ddbc2580c45e',1,'Ikarus::DirichletValues']]],
   ['fixdofs_7',['fixDOFs',['../dc/dab/a01237.html#ad62158c0ddba6753a04ed26097610bbd',1,'Ikarus::DirichletValues']]],
   ['fixeddofsize_8',['fixedDOFsize',['../dc/dab/a01237.html#a1076b17755b91d92b46905319abe3114',1,'Ikarus::DirichletValues']]],
-  ['flat_9',['flat',['../dc/d2a/a01333.html#a952b839980686e7dd82c71ac14557faa',1,'Ikarus::Basis::flat() const'],['../dc/d2a/a01333.html#ae41361752339b43462385790a8f52583',1,'Ikarus::Basis::flat()']]],
-  ['flatassemblerbase_10',['FlatAssemblerBase',['../d2/db8/a01057.html#aaa76896f0fdb0e6a116bb7790dbaceb1',1,'Ikarus::FlatAssemblerBase::FlatAssemblerBase()'],['../dd/df3/a00219.html#aae746d345e1205875e56c9ab61d6d9b1',1,'Ikarus::FlatAssemblerBase(T &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_) -&gt; FlatAssemblerBase&lt; T, DirichletValuesType &gt;']]],
-  ['flatprebasis_11',['flatPreBasis',['../dd/df3/a00219.html#a42681f6971dbcfa99e66dc7593f95b38',1,'Ikarus']]],
-  ['fourthorderikjl_12',['fourthOrderIKJL',['../dd/df3/a00219.html#a8fa2b440586483c1ee0f9b90b9081da2',1,'Ikarus']]],
-  ['fromvoigt_13',['fromVoigt',['../dd/df3/a00219.html#a518e0394f7c90dbe798b6cb8d757b822',1,'Ikarus::fromVoigt(size_t i)'],['../dd/df3/a00219.html#a106e11a950fe2545890e811d2e9545fd',1,'Ikarus::fromVoigt(const Eigen::Vector&lt; ST, size &gt; &amp;EVoigt, bool isStrain=true)'],['../dd/df3/a00219.html#a0afe53095f875017b5673a42e13e6f5a',1,'Ikarus::fromVoigt(const Eigen::Matrix&lt; ScalarType, 6, 6 &gt; &amp;CVoigt)']]],
-  ['functions_14',['functions',['../dd/df3/a00219.html#ab787b670f0d338c870988f417cf85f76',1,'Ikarus']]]
+  ['fixithdof_9',['fixIthDOF',['../dc/dab/a01237.html#afbe5f38622ea7524c4d2230f32530a96',1,'Ikarus::DirichletValues']]],
+  ['flat_10',['flat',['../dc/d2a/a01333.html#ae41361752339b43462385790a8f52583',1,'Ikarus::Basis::flat()'],['../dc/d2a/a01333.html#a952b839980686e7dd82c71ac14557faa',1,'Ikarus::Basis::flat() const']]],
+  ['flatassemblerbase_11',['FlatAssemblerBase',['../d2/db8/a01057.html#aaa76896f0fdb0e6a116bb7790dbaceb1',1,'Ikarus::FlatAssemblerBase::FlatAssemblerBase()'],['../dd/df3/a00219.html#aae746d345e1205875e56c9ab61d6d9b1',1,'Ikarus::FlatAssemblerBase(T &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_) -&gt; FlatAssemblerBase&lt; T, DirichletValuesType &gt;']]],
+  ['flatprebasis_12',['flatPreBasis',['../dd/df3/a00219.html#a42681f6971dbcfa99e66dc7593f95b38',1,'Ikarus']]],
+  ['fourthorderikjl_13',['fourthOrderIKJL',['../dd/df3/a00219.html#a8fa2b440586483c1ee0f9b90b9081da2',1,'Ikarus']]],
+  ['fromvoigt_14',['fromVoigt',['../dd/df3/a00219.html#a518e0394f7c90dbe798b6cb8d757b822',1,'Ikarus::fromVoigt(size_t i)'],['../dd/df3/a00219.html#a106e11a950fe2545890e811d2e9545fd',1,'Ikarus::fromVoigt(const Eigen::Vector&lt; ST, size &gt; &amp;EVoigt, bool isStrain=true)'],['../dd/df3/a00219.html#a0afe53095f875017b5673a42e13e6f5a',1,'Ikarus::fromVoigt(const Eigen::Matrix&lt; ScalarType, 6, 6 &gt; &amp;CVoigt)']]],
+  ['functions_15',['functions',['../dd/df3/a00219.html#ab787b670f0d338c870988f417cf85f76',1,'Ikarus']]]
 ];

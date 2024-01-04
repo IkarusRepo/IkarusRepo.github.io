@@ -64,75 +64,77 @@
 \DoxyCodeLine{72       f(basis\_, dirichletFlagsBackend);}
 \DoxyCodeLine{73     \}}
 \DoxyCodeLine{74 }
-\DoxyCodeLine{75     \textcolor{comment}{/* \(\backslash\)brief Returns the local basis object */}}
-\DoxyCodeLine{76     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01237_a9a1bebfa473fd329494f484d943148c7}{basis}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} basis\_; \}}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{78     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the give multiIndex is constrained */}}
-\DoxyCodeLine{79     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MultiIndex>}
-\DoxyCodeLine{80     \textcolor{keyword}{requires}(not std::integral<MultiIndex>) [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01237_ac4547ca3a0f7c62ec907da614b0c720a}{isConstrained}}(\textcolor{keyword}{const} MultiIndex\& multiIndex) \textcolor{keyword}{const} \{}
-\DoxyCodeLine{81       \textcolor{keywordflow}{return} dirichletFlagsBackend[multiIndex];}
-\DoxyCodeLine{82     \}}
-\DoxyCodeLine{83 }
-\DoxyCodeLine{84     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the i-\/th degree of freedom is constrained */}}
-\DoxyCodeLine{85     [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01237_ad54d4f91d00e803bca5191c10f6e9ba8}{isConstrained}}(std::size\_t i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags[i]; \}}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{87     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedoms are fixed */}}
-\DoxyCodeLine{88     \textcolor{keyword}{auto} \mbox{\hyperlink{a01237_a1076b17755b91d92b46905319abe3114}{fixedDOFsize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::ranges::count(dirichletFlags, \textcolor{keyword}{true}); \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{90     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedom there are */}}
-\DoxyCodeLine{91     \textcolor{keyword}{auto} \mbox{\hyperlink{a01237_ae9bb578246b89ec0b5f0960955a36c04}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags.size(); \}}
-\DoxyCodeLine{92 }
-\DoxyCodeLine{93     \textcolor{comment}{/* \(\backslash\)brief Returns the underlying dof flag container */}}
-\DoxyCodeLine{94     \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01237_af96b1166dd15062fdafd3ba40440c1c0}{container}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags; \}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{102     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{103     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ac2d42d17c6813a4a04bc98fe4346a231}{storeInhomogeneousBoundaryCondition}}(F\&\& f) \{}
-\DoxyCodeLine{104       \textcolor{keyword}{auto} derivativeLambda = [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{105         autodiff::real lambdaDual = lambda;}
-\DoxyCodeLine{106         lambdaDual[1]             = 1;  \textcolor{comment}{// Setting the derivative in lambda direction to 1}}
-\DoxyCodeLine{107         \textcolor{keywordflow}{return} derivative(f(globalCoord, lambdaDual));}
-\DoxyCodeLine{108       \};}
-\DoxyCodeLine{109       dirichletFunctions.push\_back(\{f, derivativeLambda\});}
-\DoxyCodeLine{110     \}}
-\DoxyCodeLine{111 }
-\DoxyCodeLine{119     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ad314b92f19e3c809aa6d1ea9c4ef9674}{evaluateInhomogeneousBoundaryCondition}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{120       inhomogeneousBoundaryVectorDummy.setZero();}
-\DoxyCodeLine{121       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
-\DoxyCodeLine{122       xIh.setZero();}
-\DoxyCodeLine{123       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
-\DoxyCodeLine{124         interpolate(}
-\DoxyCodeLine{125             basis\_, inhomogeneousBoundaryVectorDummy,}
-\DoxyCodeLine{126             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.value(globalCoord, lambda); \}, dirichletFlagsBackend);}
-\DoxyCodeLine{127         xIh += inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{128       \}}
-\DoxyCodeLine{129     \}}
-\DoxyCodeLine{130 }
-\DoxyCodeLine{138     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ae309809bc3f63a4b3cd29273e1dda01e}{evaluateInhomogeneousBoundaryConditionDerivative}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{139       inhomogeneousBoundaryVectorDummy.setZero();}
-\DoxyCodeLine{140       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
-\DoxyCodeLine{141       xIh.setZero();}
-\DoxyCodeLine{142       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
-\DoxyCodeLine{143         interpolate(}
-\DoxyCodeLine{144             basis\_, inhomogeneousBoundaryVectorDummy,}
-\DoxyCodeLine{145             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.derivative(globalCoord, lambda); \}, dirichletFlagsBackend);}
-\DoxyCodeLine{146         xIh += inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{147       \}}
-\DoxyCodeLine{148     \}}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150   \textcolor{keyword}{private}:}
-\DoxyCodeLine{151     Eigen::VectorXd inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{152     \mbox{\hyperlink{a01333}{Basis}} basis\_;}
-\DoxyCodeLine{153     \mbox{\hyperlink{a01237_a824bc5693b4b784c8ec9c65aad07da92}{FlagsType}} dirichletFlags;}
-\DoxyCodeLine{154     \mbox{\hyperlink{a01237_a4b708d1ae34c1f28389273f209ea79f7}{BackendType}} dirichletFlagsBackend;}
-\DoxyCodeLine{155     \textcolor{keyword}{struct }DirichletFunctions \{}
-\DoxyCodeLine{156       \textcolor{keyword}{using }Signature = std::function<Eigen::Vector<double, worldDimension>(}
-\DoxyCodeLine{157           \textcolor{keyword}{const} \mbox{\hyperlink{a01217}{Dune::FieldVector<double, worldDimension>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
-\DoxyCodeLine{158       Signature value;}
-\DoxyCodeLine{159       Signature derivative;}
-\DoxyCodeLine{160     \};}
-\DoxyCodeLine{161     std::vector<DirichletFunctions> dirichletFunctions;}
-\DoxyCodeLine{162   \};}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_afbe5f38622ea7524c4d2230f32530a96}{fixIthDOF}}(\textcolor{keyword}{typename} Basis::MultiIndex i) \{ dirichletFlagsBackend[i] = \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{comment}{/* \(\backslash\)brief Returns the local basis object */}}
+\DoxyCodeLine{83     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01237_a9a1bebfa473fd329494f484d943148c7}{basis}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} basis\_; \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the give multiIndex is constrained */}}
+\DoxyCodeLine{86     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MultiIndex>}
+\DoxyCodeLine{87     \textcolor{keyword}{requires}(not std::integral<MultiIndex>) [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01237_ac4547ca3a0f7c62ec907da614b0c720a}{isConstrained}}(\textcolor{keyword}{const} MultiIndex\& multiIndex) \textcolor{keyword}{const} \{}
+\DoxyCodeLine{88       \textcolor{keywordflow}{return} dirichletFlagsBackend[multiIndex];}
+\DoxyCodeLine{89     \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the i-\/th degree of freedom is constrained */}}
+\DoxyCodeLine{92     [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01237_ad54d4f91d00e803bca5191c10f6e9ba8}{isConstrained}}(std::size\_t i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags[i]; \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedoms are fixed */}}
+\DoxyCodeLine{95     \textcolor{keyword}{auto} \mbox{\hyperlink{a01237_a1076b17755b91d92b46905319abe3114}{fixedDOFsize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::ranges::count(dirichletFlags, \textcolor{keyword}{true}); \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedom there are */}}
+\DoxyCodeLine{98     \textcolor{keyword}{auto} \mbox{\hyperlink{a01237_ae9bb578246b89ec0b5f0960955a36c04}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags.size(); \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     \textcolor{comment}{/* \(\backslash\)brief Returns the underlying dof flag container */}}
+\DoxyCodeLine{101     \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01237_af96b1166dd15062fdafd3ba40440c1c0}{container}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags; \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{109     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{110     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ac2d42d17c6813a4a04bc98fe4346a231}{storeInhomogeneousBoundaryCondition}}(F\&\& f) \{}
+\DoxyCodeLine{111       \textcolor{keyword}{auto} derivativeLambda = [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
+\DoxyCodeLine{112         autodiff::real lambdaDual = lambda;}
+\DoxyCodeLine{113         lambdaDual[1]             = 1;  \textcolor{comment}{// Setting the derivative in lambda direction to 1}}
+\DoxyCodeLine{114         \textcolor{keywordflow}{return} derivative(f(globalCoord, lambdaDual));}
+\DoxyCodeLine{115       \};}
+\DoxyCodeLine{116       dirichletFunctions.push\_back(\{f, derivativeLambda\});}
+\DoxyCodeLine{117     \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{126     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ad314b92f19e3c809aa6d1ea9c4ef9674}{evaluateInhomogeneousBoundaryCondition}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
+\DoxyCodeLine{127       inhomogeneousBoundaryVectorDummy.setZero();}
+\DoxyCodeLine{128       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
+\DoxyCodeLine{129       xIh.setZero();}
+\DoxyCodeLine{130       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
+\DoxyCodeLine{131         interpolate(}
+\DoxyCodeLine{132             basis\_, inhomogeneousBoundaryVectorDummy,}
+\DoxyCodeLine{133             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.value(globalCoord, lambda); \}, dirichletFlagsBackend);}
+\DoxyCodeLine{134         xIh += inhomogeneousBoundaryVectorDummy;}
+\DoxyCodeLine{135       \}}
+\DoxyCodeLine{136     \}}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{145     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ae309809bc3f63a4b3cd29273e1dda01e}{evaluateInhomogeneousBoundaryConditionDerivative}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
+\DoxyCodeLine{146       inhomogeneousBoundaryVectorDummy.setZero();}
+\DoxyCodeLine{147       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
+\DoxyCodeLine{148       xIh.setZero();}
+\DoxyCodeLine{149       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
+\DoxyCodeLine{150         interpolate(}
+\DoxyCodeLine{151             basis\_, inhomogeneousBoundaryVectorDummy,}
+\DoxyCodeLine{152             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.derivative(globalCoord, lambda); \}, dirichletFlagsBackend);}
+\DoxyCodeLine{153         xIh += inhomogeneousBoundaryVectorDummy;}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155     \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157   \textcolor{keyword}{private}:}
+\DoxyCodeLine{158     Eigen::VectorXd inhomogeneousBoundaryVectorDummy;}
+\DoxyCodeLine{159     \mbox{\hyperlink{a01333}{Basis}} basis\_;}
+\DoxyCodeLine{160     \mbox{\hyperlink{a01237_a824bc5693b4b784c8ec9c65aad07da92}{FlagsType}} dirichletFlags;}
+\DoxyCodeLine{161     \mbox{\hyperlink{a01237_a4b708d1ae34c1f28389273f209ea79f7}{BackendType}} dirichletFlagsBackend;}
+\DoxyCodeLine{162     \textcolor{keyword}{struct }DirichletFunctions \{}
+\DoxyCodeLine{163       \textcolor{keyword}{using }Signature = std::function<Eigen::Vector<double, worldDimension>(}
+\DoxyCodeLine{164           \textcolor{keyword}{const} \mbox{\hyperlink{a01217}{Dune::FieldVector<double, worldDimension>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{165       Signature value;}
+\DoxyCodeLine{166       Signature derivative;}
+\DoxyCodeLine{167     \};}
+\DoxyCodeLine{168     std::vector<DirichletFunctions> dirichletFunctions;}
+\DoxyCodeLine{169   \};}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \}  \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}
