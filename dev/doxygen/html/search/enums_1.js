@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['matrixtypetag_0',['MatrixTypeTag',['../dd/df3/a00219.html#a4763ca5888a027ed9b8d965d67cbb9ab',1,'Ikarus']]]
+  ['feparameter_0',['FEParameter',['../d2/d82/a00279.html#ga0c1577fd05efee8475b0f7fef795bbbe',1,'Ikarus']]],
+  ['fesolutions_1',['FESolutions',['../d2/d82/a00279.html#gaea763c94a1cecbeefc4f8661debcc5a3',1,'Ikarus']]]
 ];

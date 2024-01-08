@@ -1,5 +1,4 @@
 var a00131 =
 [
-    [ "IObserver< MessageType >", "d9/d6e/a01409.html", "d9/d6e/a01409" ],
-    [ "IObservable< MessageType >", "d7/d68/a01413.html", "d7/d68/a01413" ]
+    [ "StVenantKirchhoff", "d7/d06/a00131.html#ab6b67c66afecf13985c9bf252ac644da", null ]
 ];

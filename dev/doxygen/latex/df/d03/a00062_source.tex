@@ -1,88 +1,169 @@
-\hypertarget{a00062_source}{}\doxysection{resultfunction.\+hh}
-\label{a00062_source}\index{resultfunction.hh@{resultfunction.hh}}
+\hypertarget{a00062_source}{}\doxysection{functionsanitychecks.\+hh}
+\label{a00062_source}\index{functionsanitychecks.hh@{functionsanitychecks.hh}}
 \mbox{\hyperlink{a00062}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00059}{ikarus/io/resultevaluators.hh}}>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00110}{ikarus/utils/eigendunetransformations.hh}}>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
-\DoxyCodeLine{16   \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{17     \textcolor{keyword}{struct }DefaultUserFunction \{\};}
-\DoxyCodeLine{18   \}  \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{31 \textcolor{comment}{}  \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType\_, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
-\DoxyCodeLine{32   \textcolor{keyword}{class }\mbox{\hyperlink{a01233}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename ElementType\_::GridView> \{}
-\DoxyCodeLine{33   \textcolor{keyword}{public}:}
-\DoxyCodeLine{34     \textcolor{keyword}{using }\mbox{\hyperlink{a01233_af9644b833b303bd3cabf3f4fb284effc}{ElementType}}            = ElementType\_;}
-\DoxyCodeLine{35     \textcolor{keyword}{using }\mbox{\hyperlink{a01233_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}     = \textcolor{keyword}{typename} ElementType::ResultRequirementsType;}
-\DoxyCodeLine{36     \textcolor{keyword}{using }\mbox{\hyperlink{a01233_a60f3b0a6336812436e18ac14de25e0fc}{GridView}}               = \textcolor{keyword}{typename} ElementType::GridView;}
-\DoxyCodeLine{37     \textcolor{keyword}{using }\mbox{\hyperlink{a01233_a2b614ca2965a4d07f6388f3070c85c4f}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
-\DoxyCodeLine{38     \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01233_a1b40b371171256b66b51c1c2b12a37a3}{griddim}} = GridView::dimension;}
-\DoxyCodeLine{39     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} GridView::template Codim<0>::Entity \mbox{\hyperlink{a01233_a95b6a8f8be831236e4b2634bc852a342}{Entity}};}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01233_ae07a0f7cfdc977d153022c33b2c4ada9}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01233_a95b6a8f8be831236e4b2634bc852a342}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01217}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{42       \textcolor{keyword}{auto} index = gridView.indexSet().index(e);}
-\DoxyCodeLine{43       \textcolor{keywordflow}{return} evaluateStressComponent(index, local, comp);}
-\DoxyCodeLine{44     \}}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01233_a55ddba55f148fabc822146919f7c2864}{ncomps}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{47       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
-\DoxyCodeLine{48         \mbox{\hyperlink{a01217}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50         fes\_-\/>at(0).calculateAt(resultRequirements\_, val, resultTypeMap);}
-\DoxyCodeLine{51         \textcolor{keywordflow}{if} (resultRequirements\_.getRequestedResult() != resultTypeMap.\mbox{\hyperlink{a01145_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().first)}
-\DoxyCodeLine{52           DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The return result should be the requested one"{}});}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{54         \textcolor{keyword}{auto} sigma = resultTypeMap.\mbox{\hyperlink{a01145_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{56         \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.rows() * sigma.cols());}
-\DoxyCodeLine{57       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{58         \textcolor{keywordflow}{return} userFunction\_.ncomps();}
-\DoxyCodeLine{59     \}}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61     [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01233_aeab965379985b94a9c60059b01595f6b}{name}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{62       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{63         \textcolor{keywordflow}{return} toString(resultRequirements\_.getRequestedResult());}
-\DoxyCodeLine{64       \textcolor{keywordflow}{else}}
-\DoxyCodeLine{65         \textcolor{keywordflow}{return} userFunction\_.name();}
-\DoxyCodeLine{66     \}}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{68     \mbox{\hyperlink{a01233_a92ae43568c42e7d621e5a99d8ecce538}{ResultFunction}}(std::vector<ElementType>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01233_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}\& req, UserFunction userFunction = \{\})}
-\DoxyCodeLine{69         : gridView\{fes-\/>at(0).localView().globalBasis().gridView()\},}
-\DoxyCodeLine{70           resultRequirements\_\{req\},}
-\DoxyCodeLine{71           fes\_\{fes\},}
-\DoxyCodeLine{72           userFunction\_\{userFunction\} \{}
-\DoxyCodeLine{73       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) userFunction\_ = userFunction;}
-\DoxyCodeLine{74     \}}
-\DoxyCodeLine{75 }
-\DoxyCodeLine{76   \textcolor{keyword}{private}:}
-\DoxyCodeLine{77     \textcolor{keywordtype}{double} evaluateStressComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01217}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{78       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{79         \textcolor{keywordflow}{return} userFunction\_(fes\_-\/>at(eleID), resultRequirements\_, local, comp);}
-\DoxyCodeLine{80       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{81         fes\_-\/>at(eleID).calculateAt(resultRequirements\_, local, resultTypeMap);}
-\DoxyCodeLine{82         \textcolor{keyword}{auto} result = resultTypeMap.\mbox{\hyperlink{a01145_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
-\DoxyCodeLine{83         \textcolor{keywordflow}{return} result(comp);}
-\DoxyCodeLine{84       \}}
-\DoxyCodeLine{85     \}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00050}{findlinesegment.hh}}"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00301}{Ikarus::utils}} \{}
+\DoxyCodeLine{18   \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{27     \textcolor{keywordtype}{double} drawResultAndReturnSlope(std::string\&\& functionName, \textcolor{keyword}{const} std::function<\textcolor{keywordtype}{double}(\textcolor{keywordtype}{double})>\& ftfunc, \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00209_a2634a2b365ea0b95c6dcfad0dbefac1f}{draw}},}
+\DoxyCodeLine{28                                     \textcolor{keywordtype}{int} slopeOfReference);}
+\DoxyCodeLine{29   \}  \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{33 \textcolor{comment}{}  \textcolor{keyword}{struct }\mbox{\hyperlink{a01463}{CheckFlags}} \{}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01463_a08fa473dcdfbdb5dcf759546ea2da3b8}{draw}}                        = \textcolor{keyword}{true};}
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01463_ac9946207ee221c94e843ea7c048a16a3}{writeSlopeStatementIfFailed}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{36     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01463_a6c1e702608ca901f9f7efca524560b25}{tolerance}}                 = 1e-\/2;}
+\DoxyCodeLine{37   \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{51   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{52   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00287_gacb9e813539bfd84df99ad097cabc9de9}{checkGradient}}(}
+\DoxyCodeLine{53       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01463}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01463}{CheckFlags}}(),}
+\DoxyCodeLine{54       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{55       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{56     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{57     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{58     UpdateType b;}
+\DoxyCodeLine{59     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{60       b.resizeLike(nonLinOp.derivative());}
+\DoxyCodeLine{61       b.setRandom();}
+\DoxyCodeLine{62       b /= b.norm();}
+\DoxyCodeLine{63     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{64       b = 1;}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     nonLinOp.updateAll();}
+\DoxyCodeLine{67     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69     \textcolor{keywordtype}{double} gradfv;}
+\DoxyCodeLine{70     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>)}
+\DoxyCodeLine{71       gradfv = nonLinOp.derivative().dot(b);}
+\DoxyCodeLine{72     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{73       gradfv = nonLinOp.derivative() * b;}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{76       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{77       nonLinOp.template update<0>();}
+\DoxyCodeLine{78       \textcolor{keyword}{auto} value = std::abs(nonLinOp.value() -\/ e -\/ t * gradfv);}
+\DoxyCodeLine{79       x          = xOld;}
+\DoxyCodeLine{80       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{81     \};}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Gradient"{}}, ftfunc, checkFlags.draw, 2);}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(2.0, slope, checkFlags.tolerance);}
 \DoxyCodeLine{86 }
-\DoxyCodeLine{87     \mbox{\hyperlink{a01233_a60f3b0a6336812436e18ac14de25e0fc}{GridView}} gridView;}
-\DoxyCodeLine{88     \mbox{\hyperlink{a01233_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}} resultRequirements\_;}
-\DoxyCodeLine{89     std::vector<ElementType>* fes\_;}
-\DoxyCodeLine{90     \textcolor{keyword}{mutable} ResultTypeMap<ctype> resultTypeMap;}
-\DoxyCodeLine{91     [[no\_unique\_address]] std::string name\_\{\};}
-\DoxyCodeLine{92     UserFunction userFunction\_;}
-\DoxyCodeLine{93   \};}
-\DoxyCodeLine{94 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{87     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{88       spdlog::info(\textcolor{stringliteral}{"{}Gradient check:"{}});}
+\DoxyCodeLine{89       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 2. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{90       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{91         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{92       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{93         spdlog::info(\textcolor{stringliteral}{"{}The gradient seems wrong."{}});}
+\DoxyCodeLine{94     \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     nonLinOp.updateAll();}
+\DoxyCodeLine{97     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{98   \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{112   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{113   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00287_ga553465359c199ef676945832587d2869}{checkJacobian}}(}
+\DoxyCodeLine{114       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01463}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01463}{CheckFlags}}(),}
+\DoxyCodeLine{115       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{116       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{117     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{118     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{119     UpdateType b;}
+\DoxyCodeLine{120     b.resizeLike(nonLinOp.derivative().row(0).transpose());}
+\DoxyCodeLine{121     b.setRandom();}
+\DoxyCodeLine{122     b /= b.norm();}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124     nonLinOp.updateAll();}
+\DoxyCodeLine{125     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keyword}{const} \textcolor{keyword}{auto} jacofv = (nonLinOp.derivative() * b).eval();}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{130       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{131       nonLinOp.template update<0>();}
+\DoxyCodeLine{132       \textcolor{keyword}{auto} value = (nonLinOp.value() -\/ e -\/ t * jacofv).\mbox{\hyperlink{a00287_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}();}
+\DoxyCodeLine{133       x          = xOld;}
+\DoxyCodeLine{134       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{135     \};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Jacobian"{}}, ftfunc, checkFlags.draw, 2);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(2.0, slope, checkFlags.tolerance);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{142       spdlog::info(\textcolor{stringliteral}{"{}Jacobian check:"{}});}
+\DoxyCodeLine{143       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 2. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{144       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{145         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{146       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{147         spdlog::info(\textcolor{stringliteral}{"{}The Jacobian seems wrong."{}});}
+\DoxyCodeLine{148     \}}
+\DoxyCodeLine{149     nonLinOp.updateAll();}
+\DoxyCodeLine{150     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{151   \}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{165   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{166   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00287_ga5d1a87964a3d6b6ddc994532e93b6798}{checkHessian}}(}
+\DoxyCodeLine{167       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01463}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01463}{CheckFlags}}(),}
+\DoxyCodeLine{168       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{169       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{170     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{171     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{172     UpdateType b;}
+\DoxyCodeLine{173     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{174       b.resizeLike(nonLinOp.derivative());}
+\DoxyCodeLine{175       b.setRandom();}
+\DoxyCodeLine{176       b /= b.norm();}
+\DoxyCodeLine{177     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{178       b = 1;}
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180     nonLinOp.updateAll();}
+\DoxyCodeLine{181     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183     \textcolor{keywordtype}{double} gradfv, vhessv;}
+\DoxyCodeLine{184     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{185       gradfv = nonLinOp.derivative().dot(b);}
+\DoxyCodeLine{186       vhessv = (nonLinOp.secondDerivative() * b).dot(b);}
+\DoxyCodeLine{187     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{188       gradfv = nonLinOp.derivative() * b;}
+\DoxyCodeLine{189       vhessv = nonLinOp.secondDerivative() * b * b;}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{193       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{194       nonLinOp.template update<0>();}
+\DoxyCodeLine{195       \textcolor{keyword}{auto} value = std::abs(nonLinOp.value() -\/ e -\/ t * gradfv -\/ 0.5 * t * t * vhessv);}
+\DoxyCodeLine{196       x          = xOld;}
+\DoxyCodeLine{197       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{198     \};}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Hessian"{}}, ftfunc, checkFlags.draw, 3);}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(3.0, slope, checkFlags.tolerance);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{205       spdlog::info(\textcolor{stringliteral}{"{}Hessian check:"{}});}
+\DoxyCodeLine{206       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 3. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{207       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{208         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{209       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{210         spdlog::info(\textcolor{stringliteral}{"{}The Hessian seems wrong."{}});}
+\DoxyCodeLine{211     \}}
+\DoxyCodeLine{212     nonLinOp.updateAll();}
+\DoxyCodeLine{213     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{214   \}}
+\DoxyCodeLine{215 \}  \textcolor{comment}{// namespace Ikarus::utils}}
 
 \end{DoxyCode}

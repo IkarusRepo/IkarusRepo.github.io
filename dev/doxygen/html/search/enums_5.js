@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tcgstopreason_0',['TCGStopReason',['../dc/d98/a00225.html#a99c0436bed03f4dd4168a21f6b69ad5a',1,'Eigen']]]
+  ['resulttype_0',['ResultType',['../d2/d82/a00279.html#ga531be167e924b749eb8b4ccc7f1c18c9',1,'Ikarus']]]
 ];

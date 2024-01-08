@@ -1,5 +1,4 @@
 var a00185 =
 [
-    [ "Ikarus::AdaptiveStepSizing::NoOp", "d0/dd3/a01077.html", "d0/dd3/a01077" ],
-    [ "Ikarus::AdaptiveStepSizing::IterationBased", "dd/dee/a01081.html", "dd/dee/a01081" ]
+    [ "registerBoundaryPatch", "de/df3/a00185.html#a331fd78be5a4155963abe5829282c8f1", null ]
 ];

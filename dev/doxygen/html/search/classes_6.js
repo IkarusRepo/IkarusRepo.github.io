@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['genericobserver_0',['GenericObserver',['../d7/d1c/a01397.html',1,'Ikarus']]],
-  ['griddrawerobserver_1',['GridDrawerObserver',['../dc/df4/a01401.html',1,'']]]
+  ['genericobserver_0',['GenericObserver',['../d2/d36/a01495.html',1,'Ikarus']]]
 ];

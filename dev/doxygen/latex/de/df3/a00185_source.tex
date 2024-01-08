@@ -1,5 +1,5 @@
-\hypertarget{a00185_source}{}\doxysection{adaptivestepsizing.\+hh}
-\label{a00185_source}\index{adaptivestepsizing.hh@{adaptivestepsizing.hh}}
+\hypertarget{a00185_source}{}\doxysection{boundarypatch.\+hh}
+\label{a00185_source}\index{boundarypatch.hh@{boundarypatch.hh}}
 \mbox{\hyperlink{a00185}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,37 +7,32 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00188}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00167}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00220}{Ikarus::AdaptiveStepSizing}} \{}
-\DoxyCodeLine{10   \textcolor{keyword}{struct }\mbox{\hyperlink{a01077}{NoOp}} \{}
-\DoxyCodeLine{11     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{12     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01077_aab69ce284a8a68572d0ac1edea6e0791}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01309}{NonLinearSolverInformation}}\&, \mbox{\hyperlink{a01093}{Ikarus::SubsidiaryArgs}}\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01253}{NonLinearOperator}}\&) \{\}}
-\DoxyCodeLine{13     [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01077_af42dff6b9945230918607a14f159e52e}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \}}
-\DoxyCodeLine{14     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01077_a11d06e5af06b4cf8fb95a1c37624e393}{setTargetIterations}}(\textcolor{keywordtype}{int}) \{\}}
-\DoxyCodeLine{15   \};}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17   \textcolor{keyword}{struct }\mbox{\hyperlink{a01081}{IterationBased}} \{}
-\DoxyCodeLine{18     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{19     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01081_aeb04564978e21c0cb75faf5494d6937c}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01309}{NonLinearSolverInformation}}\& solverInfo, \mbox{\hyperlink{a01093}{Ikarus::SubsidiaryArgs}}\& subsidiaryArgs,}
-\DoxyCodeLine{20                     \textcolor{keyword}{const} \mbox{\hyperlink{a01253}{NonLinearOperator}}\&) \{}
-\DoxyCodeLine{21       \textcolor{keywordflow}{if} (subsidiaryArgs.\mbox{\hyperlink{a01093_a217c729e1ae8b05a98c852f19b0d6ae5}{currentStep}} == 0) \textcolor{keywordflow}{return};}
-\DoxyCodeLine{22       \textcolor{keywordflow}{if} (targetIterations\_ == 0)}
-\DoxyCodeLine{23         DUNE\_THROW(Dune::InvalidStateException,}
-\DoxyCodeLine{24                    \textcolor{stringliteral}{"{}For IterationBased, targetIterations should not be equal to 0. Try calling "{}}}
-\DoxyCodeLine{25                    \textcolor{stringliteral}{"{}setTargetIterations(int) first."{}});}
-\DoxyCodeLine{26       \textcolor{keyword}{const} \textcolor{keyword}{auto} previousIterations = solverInfo.\mbox{\hyperlink{a01309_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}};}
-\DoxyCodeLine{27       \textcolor{keywordflow}{if} (previousIterations > targetIterations\_)}
-\DoxyCodeLine{28         subsidiaryArgs.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}}}
-\DoxyCodeLine{29             = sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(targetIterations\_) / previousIterations) * subsidiaryArgs.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{30     \}}
-\DoxyCodeLine{31     [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01081_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} targetIterations\_; \}}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01081_a52017ebcd89859d5ae214cc8767ef78d}{setTargetIterations}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{a01081_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}) \{ targetIterations\_ = \mbox{\hyperlink{a01081_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}; \}}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34   \textcolor{keyword}{private}:}
-\DoxyCodeLine{35     \textcolor{keywordtype}{int} targetIterations\_\{0\};}
-\DoxyCodeLine{36   \};}
-\DoxyCodeLine{37 \}  \textcolor{comment}{// namespace Ikarus::AdaptiveStepSizing}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/python/pybind11/functional.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00122}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00300}{Ikarus::Python}} \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15   \textcolor{comment}{// Python wrapper for the FVAssembler C++ class}}
+\DoxyCodeLine{16   \textcolor{keyword}{template} <\textcolor{keyword}{class }BoundaryPatch, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{17   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00300_a331fd78be5a4155963abe5829282c8f1}{registerBoundaryPatch}}(pybind11::handle scope, pybind11::class\_<BoundaryPatch, options...> cls) \{}
+\DoxyCodeLine{18     \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20     \textcolor{keyword}{using }GridView = \textcolor{keyword}{typename} BoundaryPatch::GridView;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22     cls.def(\mbox{\hyperlink{a00292_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GridView\& gv, Eigen::Ref<Eigen::VectorX<bool>> vec) \{}
+\DoxyCodeLine{23               Dune::BitSetVector<1> bitSetVector;}
+\DoxyCodeLine{24               bitSetVector.resize(vec.size());}
+\DoxyCodeLine{25               for (\textcolor{keywordtype}{size\_t} i = 0; i < vec.size(); ++i)}
+\DoxyCodeLine{26                 bitSetVector[i] = vec[i];}
+\DoxyCodeLine{27               \textcolor{keywordflow}{return} \textcolor{keyword}{new} BoundaryPatch(gv, bitSetVector);}
+\DoxyCodeLine{28             \}),}
+\DoxyCodeLine{29             pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{30   \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \}  \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

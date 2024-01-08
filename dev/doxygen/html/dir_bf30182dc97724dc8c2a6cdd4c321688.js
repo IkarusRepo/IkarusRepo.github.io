@@ -1,7 +1,7 @@
 var dir_bf30182dc97724dc8c2a6cdd4c321688 =
 [
-    [ "newtonraphson.hh", "d5/dcb/a00170.html", "d5/dcb/a00170" ],
-    [ "newtonraphsonwithscalarsubsidiaryfunction.hh", "d5/de9/a00176.html", "d5/de9/a00176" ],
-    [ "solverinfos.hh", "dc/de6/a00167.html", "dc/de6/a00167" ],
-    [ "trustregion.hh", "d7/d3f/a00173.html", "d7/d3f/a00173" ]
+    [ "newtonraphson.hh", "d3/dd5/a00215.html", "d3/dd5/a00215" ],
+    [ "newtonraphsonwithscalarsubsidiaryfunction.hh", "dd/d52/a00221.html", "dd/d52/a00221" ],
+    [ "solverinfos.hh", "dd/dc1/a00212.html", "dd/dc1/a00212" ],
+    [ "trustregion.hh", "dc/d9a/a00218.html", "dc/d9a/a00218" ]
 ];

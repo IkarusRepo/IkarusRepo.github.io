@@ -1,17 +1,16 @@
 var searchData=
 [
-  ['sd_5fcholmodsupernodalllt_0',['sd_CholmodSupernodalLLT',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906a286dc99776bcd1ea313e669aa17b3236',1,'Ikarus']]],
-  ['sd_5fsimplicialldlt_1',['sd_SimplicialLDLT',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c',1,'Ikarus']]],
-  ['sd_5fsimplicialllt_2',['sd_SimplicialLLT',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906acd4c06ca3bfe2246c9ec45bee84b5852',1,'Ikarus']]],
-  ['sd_5fsparselu_3',['sd_SparseLU',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906ae7cfd15be408672026faa788c0c112e5',1,'Ikarus']]],
-  ['sd_5fsparseqr_4',['sd_SparseQR',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906a259246f1b3299da36945e32f5660bebd',1,'Ikarus']]],
-  ['sd_5fsuperlu_5',['sd_SuperLU',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906aa8fe11042608f12d110c154033361fcc',1,'Ikarus']]],
-  ['sd_5fumfpacklu_6',['sd_UmfPackLU',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906afe6a46ed15566813699daa9c9cbf85d5',1,'Ikarus']]],
-  ['si_5fbicgstab_7',['si_BiCGSTAB',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906a3ba09bd833aa666cbeca9bfd4a33be6f',1,'Ikarus']]],
-  ['si_5fconjugategradient_8',['si_ConjugateGradient',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906a43e7ad1498548ecfbe9359418877c793',1,'Ikarus']]],
-  ['si_5fleastsquaresconjugategradient_9',['si_LeastSquaresConjugateGradient',['../dd/df3/a00219.html#a731a9ee6621f91193c15f31b9a399906a64a3b585d23ed07479c1452d49f397bb',1,'Ikarus']]],
-  ['solution_5fchanged_10',['SOLUTION_CHANGED',['../dd/df3/a00219.html#a35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577',1,'Ikarus::SOLUTION_CHANGED()'],['../dd/df3/a00219.html#a662b2b6a80547adf4b9ce8b30d87fab5a0d30d757bf062e88728ebe7f8e2b2577',1,'Ikarus::SOLUTION_CHANGED()']]],
-  ['sparse_11',['Sparse',['../dd/df3/a00219.html#a4763ca5888a027ed9b8d965d67cbb9aba7407fb7e6a4df6392aaabd2368157312',1,'Ikarus']]],
-  ['step_5fended_12',['STEP_ENDED',['../dd/df3/a00219.html#a35fa62fd2d4186a9750af3d0692f2893ae2b2386af3d7379bd2ddde735d5867b2',1,'Ikarus']]],
-  ['step_5fstarted_13',['STEP_STARTED',['../dd/df3/a00219.html#a35fa62fd2d4186a9750af3d0692f2893a18e0c9ecde68d13f1d2608dd1a180945',1,'Ikarus']]]
+  ['magnetization_0',['magnetization',['../d2/d82/a00279.html#gga531be167e924b749eb8b4ccc7f1c18c9ae32847e757c83ed980680fa215e356f7',1,'Ikarus']]],
+  ['magnetizationandvectorpotential_1',['magnetizationAndVectorPotential',['../d2/d82/a00279.html#ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff',1,'Ikarus']]],
+  ['mass_2',['mass',['../dc/d5d/a00278.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f',1,'Ikarus']]],
+  ['material_3',['Material',['../d0/dcd/a00280.html#gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206',1,'Ikarus']]],
+  ['materialstiffness_4',['materialstiffness',['../dc/d5d/a00278.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62',1,'Ikarus']]],
+  ['maximuminneriterations_5',['maximumInnerIterations',['../d9/d0d/a00298.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30',1,'Eigen']]],
+  ['maximumiterationsreached_6',['maximumIterationsReached',['../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe',1,'Ikarus']]],
+  ['maximumtimereached_7',['maximumTimeReached',['../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9',1,'Ikarus']]],
+  ['mechanicalpotentialenergy_8',['mechanicalPotentialEnergy',['../dc/d5d/a00278.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6',1,'Ikarus']]],
+  ['micromagneticforces_9',['microMagneticForces',['../dc/d5d/a00278.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc',1,'Ikarus']]],
+  ['micromagnetichessian_10',['microMagneticHessian',['../dc/d5d/a00278.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9',1,'Ikarus']]],
+  ['micromagneticpotentialenergy_11',['microMagneticPotentialEnergy',['../dc/d5d/a00278.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a',1,'Ikarus']]],
+  ['modelincreased_12',['modelIncreased',['../d9/d0d/a00298.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab',1,'Eigen']]]
 ];

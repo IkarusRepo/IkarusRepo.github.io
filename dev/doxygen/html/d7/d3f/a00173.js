@@ -1,21 +1,15 @@
 var a00173 =
 [
-    [ "Ikarus::TrustRegionSettings", "de/d90/a01313.html", "de/d90/a01313" ],
-    [ "Ikarus::AlgoInfo", "df/db8/a01317.html", "df/db8/a01317" ],
-    [ "Ikarus::Stats", "d9/d5c/a01321.html", "d9/d5c/a01321" ],
-    [ "Ikarus::TrustRegion< NonLinearOperatorImpl, preConditioner, UpdateType >", "dd/d5d/a01325.html", "dd/d5d/a01325" ],
-    [ "Ikarus::TrustRegion< NonLinearOperatorImpl, preConditioner, UpdateType >::NoPredictor", "df/d29/a01329.html", null ],
-    [ "PreConditioner", "d7/d3f/a00173.html#ace28d4868cfc647491f7938f04ef6c66", [
-      [ "IncompleteCholesky", "d7/d3f/a00173.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff", null ],
-      [ "IdentityPreconditioner", "d7/d3f/a00173.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608", null ],
-      [ "DiagonalPreconditioner", "d7/d3f/a00173.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc", null ]
+    [ "Eigen::TCGInfo< Scalar >", "d3/da4/a01343.html", "d3/da4/a01343" ],
+    [ "Eigen::internal::traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "d1/dcd/a01351.html", "d1/dcd/a01351" ],
+    [ "Eigen::TruncatedConjugateGradient< MatrixType_, UpLo_, Preconditioner_ >", "df/d96/a01347.html", "df/d96/a01347" ],
+    [ "TCGStopReason", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
+      [ "negativeCurvature", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
+      [ "exceededTrustRegion", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],
+      [ "reachedTargetResidualKappaLinear", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c", null ],
+      [ "reachedTargetResidualThetaSuperLinear", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27", null ],
+      [ "maximumInnerIterations", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30", null ],
+      [ "modelIncreased", "d7/d3f/a00173.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab", null ]
     ] ],
-    [ "StopReason", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674", [
-      [ "gradientNormTolReached", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1", null ],
-      [ "correctionNormTolReached", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3", null ],
-      [ "maximumTimeReached", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9", null ],
-      [ "maximumIterationsReached", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe", null ],
-      [ "dontStop", "d7/d3f/a00173.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f", null ]
-    ] ],
-    [ "makeTrustRegion", "d7/d3f/a00173.html#af4e1bfa553f08778e4abf1548684eff1", null ]
+    [ "truncated_conjugate_gradient", "d7/d3f/a00173.html#a38414bb29b6ce1a1d8cc03749acb95f7", null ]
 ];

@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['maximuminneriterations_0',['maximumInnerIterations',['../dc/d98/a00225.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30',1,'Eigen']]],
-  ['maximumiterationsreached_1',['maximumIterationsReached',['../dd/df3/a00219.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe',1,'Ikarus']]],
-  ['maximumtimereached_2',['maximumTimeReached',['../dd/df3/a00219.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9',1,'Ikarus']]],
-  ['modelincreased_3',['modelIncreased',['../dc/d98/a00225.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab',1,'Eigen']]]
+  ['identitypreconditioner_0',['IdentityPreconditioner',['../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608',1,'Ikarus']]],
+  ['incompletecholesky_1',['IncompleteCholesky',['../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff',1,'Ikarus']]],
+  ['init_2',['INIT',['../d5/d7b/a00286.html#gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498',1,'Ikarus']]],
+  ['iteration_5fended_3',['ITERATION_ENDED',['../d5/d7b/a00286.html#gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815',1,'Ikarus']]],
+  ['iteration_5fstarted_4',['ITERATION_STARTED',['../d5/d7b/a00286.html#gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4',1,'Ikarus']]]
 ];

@@ -1,155 +1,26 @@
-\hypertarget{a00188_source}{}\doxysection{pathfollowingfunctions.\+hh}
-\label{a00188_source}\index{pathfollowingfunctions.hh@{pathfollowingfunctions.hh}}
+\hypertarget{a00188_source}{}\doxysection{observermessages.\+hh}
+\label{a00188_source}\index{observermessages.hh@{observermessages.hh}}
 \mbox{\hyperlink{a00188}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <cmath>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <optional>}}
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00179}{ikarus/solver/linearsolver/linearsolver.hh}}>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00101}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00107}{ikarus/utils/defaultfunctions.hh}}>}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00149}{ikarus/utils/traits.hh}}>}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00219}{Ikarus}} \{}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23   \textcolor{keyword}{struct }\mbox{\hyperlink{a01093}{SubsidiaryArgs}} \{}
-\DoxyCodeLine{24     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{25     Eigen::VectorX<double> \mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
-\DoxyCodeLine{26     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}}\{\};}
-\DoxyCodeLine{27     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01093_a628b23aa9e90c0e0ba1461ad2241645a}{f}}\{\};}
-\DoxyCodeLine{28     Eigen::VectorX<double> \mbox{\hyperlink{a01093_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}};}
-\DoxyCodeLine{29     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01093_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}}\{\};}
-\DoxyCodeLine{30     \textcolor{keywordtype}{int} \mbox{\hyperlink{a01093_a217c729e1ae8b05a98c852f19b0d6ae5}{currentStep}};}
-\DoxyCodeLine{31   \};}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{34   \textcolor{keyword}{struct }\mbox{\hyperlink{a01097}{StandardArcLength}} \{}
-\DoxyCodeLine{35     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01097_afe1b684e05372d505d34a7e7458cca50}{evaluateSubsidiaryFunction}}(\mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{36       \textcolor{keywordflow}{if} (psi) \{}
-\DoxyCodeLine{37         \textcolor{keyword}{const} \textcolor{keyword}{auto} root = sqrt(args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}.squaredNorm() + psi.value() * psi.value() * args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} * args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}});}
-\DoxyCodeLine{38         args.\mbox{\hyperlink{a01093_a628b23aa9e90c0e0ba1461ad2241645a}{f}}          = root -\/ args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{39         args.\mbox{\hyperlink{a01093_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}      = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}} / root;}
-\DoxyCodeLine{40         args.\mbox{\hyperlink{a01093_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}} = (psi.value() * psi.value() * args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}}) / root;}
-\DoxyCodeLine{41       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{42         DUNE\_THROW(Dune::InvalidStateException,}
-\DoxyCodeLine{43                    \textcolor{stringliteral}{"{}You have to call initialPrediction first. Otherwise psi is not defined"{}});}
-\DoxyCodeLine{44     \}}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01097_af6d5d9da1195b4b2c9b5ee59c2937720}{initialPrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{48       \mbox{\hyperlink{a00219_a731a9ee6621f91193c15f31b9a399906}{Ikarus::SolverTypeTag}} solverTag;}
-\DoxyCodeLine{49       \textcolor{keyword}{using }JacobianType = std::remove\_cvref\_t<typename NonLinearOperator::DerivativeType>;}
-\DoxyCodeLine{50       \textcolor{keyword}{static\_assert}((\mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::Matrix, JacobianType>::value}})}
-\DoxyCodeLine{51                         or (\mbox{\hyperlink{a01469}{Ikarus::Std::isSpecializationTypeNonTypeAndType<Eigen::SparseMatrix, JacobianType>::value}}),}
-\DoxyCodeLine{52                     \textcolor{stringliteral}{"{}Linear solver not implemented for the chosen derivative type of the non-\/linear operator"{}});}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{54       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01453}{Ikarus::Std::isSpecializationTypeAndNonTypes<Eigen::Matrix, JacobianType>::value}})}
-\DoxyCodeLine{55         solverTag = \mbox{\hyperlink{a00219_a731a9ee6621f91193c15f31b9a399906ad495de2cc8831501954c24afe8688190}{Ikarus::SolverTypeTag::d\_LDLT}};}
-\DoxyCodeLine{56       \textcolor{keywordflow}{else}}
-\DoxyCodeLine{57         solverTag = \mbox{\hyperlink{a00219_a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c}{Ikarus::SolverTypeTag::sd\_SimplicialLDLT}};}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{59       nonLinearOperator.lastParameter() = 1.0;  \textcolor{comment}{// lambda =1.0}}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61       nonLinearOperator.template update<0>();}
-\DoxyCodeLine{62       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& R = nonLinearOperator.value();}
-\DoxyCodeLine{63       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = nonLinearOperator.derivative();}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65       \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isLinearSolver}
-\DoxyCodeLine{66           = \mbox{\hyperlink{a01568}{Ikarus::Concepts::LinearSolverCheck}}<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00219_ae747d502e8f67af4c5412d8a6febeb4c}{Ikarus::LinearSolver}}(solverTag)),}
-\DoxyCodeLine{67                                                 \textcolor{keyword}{typename} NonLinearOperator::DerivativeType,}
-\DoxyCodeLine{68                                                 \textcolor{keyword}{typename} NonLinearOperator::ValueType>;}
-\DoxyCodeLine{69       \textcolor{keyword}{static\_assert}(isLinearSolver,}
-\DoxyCodeLine{70                     \textcolor{stringliteral}{"{}Initial predictor step in the standard arc-\/length method doesn't have a linear solver"{}});}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{72       \textcolor{keyword}{auto} linearSolver = \mbox{\hyperlink{a00219_ae747d502e8f67af4c5412d8a6febeb4c}{Ikarus::LinearSolver}}(solverTag);  \textcolor{comment}{// for the linear predictor step}}
-\DoxyCodeLine{73       linearSolver.analyzePattern(K);}
-\DoxyCodeLine{74       linearSolver.factorize(K);}
-\DoxyCodeLine{75       linearSolver.solve(args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}, -\/R);}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77       \textcolor{keyword}{const} \textcolor{keyword}{auto} DD2 = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}.squaredNorm();}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{79       psi    = sqrt(DD2);}
-\DoxyCodeLine{80       \textcolor{keyword}{auto} s = sqrt(psi.value() * psi.value() + DD2);}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{82       args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}      = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}} * args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} / s;}
-\DoxyCodeLine{83       args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} = args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} / s;}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85       nonLinearOperator.firstParameter() = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
-\DoxyCodeLine{86       nonLinearOperator.lastParameter()  = args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
-\DoxyCodeLine{87     \}}
-\DoxyCodeLine{88 }
-\DoxyCodeLine{89     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{90     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01097_a0c2107beffebae7d097120da2b04a850}{intermediatePrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{91       nonLinearOperator.firstParameter() += args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
-\DoxyCodeLine{92       nonLinearOperator.lastParameter() += args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
-\DoxyCodeLine{93     \}}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95     std::string \mbox{\hyperlink{a01097_a6761eae338aa420f4c1373013065d493}{name}} = \textcolor{stringliteral}{"{}Arc length"{}};}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{97   \textcolor{keyword}{private}:}
-\DoxyCodeLine{98     std::optional<double> psi;}
-\DoxyCodeLine{99   \};}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{102   \textcolor{keyword}{struct }\mbox{\hyperlink{a01101}{LoadControlWithSubsidiaryFunction}} \{}
-\DoxyCodeLine{103     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01101_af87fa5ec13fd52529d19ea843c99dbbd}{evaluateSubsidiaryFunction}}(\mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{104       args.\mbox{\hyperlink{a01093_a628b23aa9e90c0e0ba1461ad2241645a}{f}} = args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} -\/ args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{105       args.\mbox{\hyperlink{a01093_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.setZero();}
-\DoxyCodeLine{106       args.\mbox{\hyperlink{a01093_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}} = 1.0;}
-\DoxyCodeLine{107     \}}
-\DoxyCodeLine{108 }
-\DoxyCodeLine{109     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{110     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01101_a3ec349a905f844f6d935b30f2f747d75}{initialPrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{111       args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}}                      = args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{112       nonLinearOperator.lastParameter() = args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
-\DoxyCodeLine{113     \}}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{115     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{116     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01101_a14f2f84067290853cdaad6e009dd7130}{intermediatePrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{117       nonLinearOperator.lastParameter() += args.\mbox{\hyperlink{a01093_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
-\DoxyCodeLine{118     \}}
-\DoxyCodeLine{119     std::string \mbox{\hyperlink{a01101_a4cd2f54b19f8d1f84954cca36896e14a}{name}} = \textcolor{stringliteral}{"{}Load control"{}};}
-\DoxyCodeLine{120   \};}
-\DoxyCodeLine{121 }
-\DoxyCodeLine{123   \textcolor{keyword}{struct }\mbox{\hyperlink{a01105}{DisplacementControl}} \{}
-\DoxyCodeLine{124     \textcolor{keyword}{explicit} \mbox{\hyperlink{a01105_aa15060bf256c9786fe44096fad899733}{DisplacementControl}}(std::vector<int> p\_controlledIndices)}
-\DoxyCodeLine{125         : controlledIndices\{std::move(p\_controlledIndices)\} \{\}}
-\DoxyCodeLine{126 }
-\DoxyCodeLine{127     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01105_aea9a8e2704c82def9288b97683faf342}{evaluateSubsidiaryFunction}}(\mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{128       \textcolor{keyword}{auto} controlledDOFsNorm = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices).norm();}
-\DoxyCodeLine{129       args.\mbox{\hyperlink{a01093_a628b23aa9e90c0e0ba1461ad2241645a}{f}}                  = controlledDOFsNorm -\/ args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{130       args.\mbox{\hyperlink{a01093_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}}         = 0.0;}
-\DoxyCodeLine{131       args.\mbox{\hyperlink{a01093_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.setZero();}
-\DoxyCodeLine{132       args.\mbox{\hyperlink{a01093_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}(controlledIndices) = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices) / controlledDOFsNorm;}
-\DoxyCodeLine{133     \}}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{135     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{136     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01105_a745ce332f4df7c4483d2d86e06013f24}{initialPrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{137       args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices).array() = args.\mbox{\hyperlink{a01093_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{138       nonLinearOperator.firstParameter() = args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
-\DoxyCodeLine{139     \}}
-\DoxyCodeLine{140 }
-\DoxyCodeLine{141     \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperator>}
-\DoxyCodeLine{142     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01105_a11625614df35e7e3c627e7d87a1670fe}{intermediatePrediction}}(\mbox{\hyperlink{a01253}{NonLinearOperator}}\& nonLinearOperator, \mbox{\hyperlink{a01093}{SubsidiaryArgs}}\& args) \{}
-\DoxyCodeLine{143       nonLinearOperator.firstParameter() += args.\mbox{\hyperlink{a01093_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
-\DoxyCodeLine{144     \}}
-\DoxyCodeLine{145 }
-\DoxyCodeLine{146     std::string \mbox{\hyperlink{a01105_ab2966f19b7b2434a0ffdf3bf11ba4637}{name}} = \textcolor{stringliteral}{"{}Displacement control"{}};}
-\DoxyCodeLine{147 }
-\DoxyCodeLine{148   \textcolor{keyword}{private}:}
-\DoxyCodeLine{149     std::vector<int> controlledIndices;}
-\DoxyCodeLine{150   \};}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{152 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00292}{Ikarus}} \{}
+\DoxyCodeLine{16   \textcolor{keyword}{enum class} \mbox{\hyperlink{a00286_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} \{ \mbox{\hyperlink{a00278_gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775}{BEGIN}}, \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893a3fbccdb8d4ddfe10b3c9ee45ed07aad0}{CONTROL\_STARTED}}, \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893a1c32d268de88f801deb25166d98a3938}{CONTROL\_ENDED}}, \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893a18e0c9ecde68d13f1d2608dd1a180945}{STEP\_STARTED}}, \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893ae2b2386af3d7379bd2ddde735d5867b2}{STEP\_ENDED}}, \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{SOLUTION\_CHANGED}}, \mbox{\hyperlink{a00278_gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905}{END}} \};}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22   \textcolor{keyword}{enum class} \mbox{\hyperlink{a00286_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} \{}
+\DoxyCodeLine{23     \mbox{\hyperlink{a00278_gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775}{BEGIN}},}
+\DoxyCodeLine{24     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498}{INIT}},}
+\DoxyCodeLine{25     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4}{ITERATION\_STARTED}},}
+\DoxyCodeLine{26     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815}{ITERATION\_ENDED}},}
+\DoxyCodeLine{27     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14}{RESIDUALNORM\_UPDATED}},}
+\DoxyCodeLine{28     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5a07a63a77745ab72a7e89fb22a8bcfd78}{CORRECTIONNORM\_UPDATED}},}
+\DoxyCodeLine{29     \mbox{\hyperlink{a00286_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{SOLUTION\_CHANGED}},}
+\DoxyCodeLine{30     \mbox{\hyperlink{a00286_gga662b2b6a80547adf4b9ce8b30d87fab5a15380ac35d47cdbcbd64aada4bc21931}{FINISHED\_SUCESSFULLY}},}
+\DoxyCodeLine{31     \mbox{\hyperlink{a00278_gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905}{END}}}
+\DoxyCodeLine{32   \};}
+\DoxyCodeLine{33 \}  \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

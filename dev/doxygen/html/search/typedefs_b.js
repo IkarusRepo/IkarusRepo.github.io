@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['parameterspacetype_0',['ParameterSpaceType',['../dc/d06/a01153.html#a648bf1c9ac859211c342924a0d8dc66f',1,'Ikarus::FETraits']]],
-  ['parametertype_1',['ParameterType',['../de/df6/a01141.html#a283e736964dbc4b20b80904020cd5cc6',1,'Ikarus::FErequirements']]],
-  ['parametertyperaw_2',['ParameterTypeRaw',['../de/df6/a01141.html#aa3ecebd0be1a26600e54c0adaa46d74d',1,'Ikarus::FErequirements::ParameterTypeRaw()'],['../d8/d02/a01149.html#a249d873676137eb115f5451427f7503e',1,'Ikarus::ResultRequirements::ParameterTypeRaw()']]],
-  ['prebasis_3',['PreBasis',['../dc/d2a/a01333.html#a50104dd97ab4530b5eedc6ecdc0ff530',1,'Ikarus::Basis']]],
-  ['preconditioner_4',['Preconditioner',['../d6/d16/a01269.html#a6854c22e7816c75ad6495977616aab71',1,'Eigen::internal::traits&lt; TruncatedConjugateGradient&lt; MatrixType_, UpLo, Preconditioner_ &gt; &gt;::Preconditioner()'],['../da/dd8/a01265.html#a62244905718a3538dbc1f9b36046d4d6',1,'Eigen::TruncatedConjugateGradient::Preconditioner()']]]
+  ['scalar_0',['Scalar',['../df/d96/a01347.html#a7451d2a0e27db7fb57336f288343a84f',1,'Eigen::TruncatedConjugateGradient']]],
+  ['scalartype_1',['ScalarType',['../d9/da8/a01227.html#acf22857c6bf16c206d4f75f8893ee326',1,'Ikarus::FETraits::ScalarType()'],['../d4/d41/a01267.html#affaed4051b992b204f777f7cb43ff78c',1,'Ikarus::LinearElasticityT::ScalarType()'],['../dd/d39/a01271.html#a2c6a3eab38f9a88b18a869d9e66eda53',1,'Ikarus::NeoHookeT::ScalarType()'],['../d3/d42/a01275.html#a3a382a8805a37e4a8e1cf86ee215ee31',1,'Ikarus::StVenantKirchhoffT::ScalarType()'],['../d5/da7/a01283.html#a01a5f04bd4cf950907221fd2fe65c8da',1,'Ikarus::VanishingStress::ScalarType()'],['../d6/d64/a01399.html#a9dfa2682ded15aa0978bfd927ca7b2a8',1,'Ikarus::TrustRegion::ScalarType()']]],
+  ['solutionvectortype_2',['SolutionVectorType',['../da/d3f/a01215.html#a410aab421a30588621b0186225dbe3bd',1,'Ikarus::FErequirements::SolutionVectorType()'],['../d7/ddd/a01223.html#ade5c36f80718337e7f4ef4ae8b391146',1,'Ikarus::ResultRequirements::SolutionVectorType()']]],
+  ['solutionvectortyperaw_3',['SolutionVectorTypeRaw',['../da/d3f/a01215.html#afe01a23ad3c9115402dbf4590ace78d9',1,'Ikarus::FErequirements::SolutionVectorTypeRaw()'],['../d7/ddd/a01223.html#a666b1e8176883471623c42d37211dbbc',1,'Ikarus::ResultRequirements::SolutionVectorTypeRaw()']]],
+  ['sparsematrixtype_4',['SparseMatrixType',['../d8/d4e/a01355.html#a374226b59baa30615d574bdd7ec230c8',1,'Ikarus::LinearSolverTemplate']]],
+  ['strainmatrix_5',['StrainMatrix',['../d4/d41/a01267.html#a17fefe644cfaa144782a2a369841732e',1,'Ikarus::LinearElasticityT::StrainMatrix()'],['../dd/d39/a01271.html#a273e05e32f6a9728440ad3da6669ec7a',1,'Ikarus::NeoHookeT::StrainMatrix()'],['../d3/d42/a01275.html#a0fb732938eb00ca0a6c59cf2d483f456',1,'Ikarus::StVenantKirchhoffT::StrainMatrix()']]],
+  ['stressmatrix_6',['StressMatrix',['../d4/d41/a01267.html#a6a1259d8a3ea5f4489a36dd3460d1d1a',1,'Ikarus::LinearElasticityT::StressMatrix()'],['../dd/d39/a01271.html#ac8ebe95bef84eb82bf38ed45261f2173',1,'Ikarus::NeoHookeT::StressMatrix()'],['../d3/d42/a01275.html#a70bea18fc103ae2673a1d7bf19c455a2',1,'Ikarus::StVenantKirchhoffT::StressMatrix()']]],
+  ['stvenantkirchhoff_7',['StVenantKirchhoff',['../d8/d0a/a00292.html#ab6b67c66afecf13985c9bf252ac644da',1,'Ikarus']]]
 ];

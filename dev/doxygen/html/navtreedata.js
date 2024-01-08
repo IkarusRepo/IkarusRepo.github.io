@@ -25,7 +25,15 @@
 var NAVTREE =
 [
   [ "ikarus", "index.html", [
-    [ "Ikarus documentation", "index.html", null ],
+    [ "Introduction", "index.html", [
+      [ "Overview", "index.html#autotoc_md1", null ],
+      [ "Modules", "index.html#mods", null ],
+      [ "How to cite", "index.html#autotoc_md2", null ]
+    ] ],
+    [ "Copyright holders", "d6/dff/a02390.html", null ],
+    [ "Deprecated List", "d9/dd6/a00272.html", null ],
+    [ "Bibliography", "d1/df1/a02431.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -64,16 +72,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d2/db8/a01057.html#a8fd0336be5b5e2d0bcbcdb25bacc5f2f",
-"d3/df8/a00155.html#ac25618d0e7c4aece653662d2541b61ec",
-"d6/dc4/a01125.html#a02e0fc97626b53e154bee9121582a69b",
-"d8/d02/a01149.html#ac70755df382d8f81da6abbaa1c2e5199",
-"d9/d25/a01157.html#a6419fdc9d308eda0155d587bf0d55c20",
-"da/d77/a01381.html#addf74c9437ed58b73d914ff34530da48",
-"dc/d98/a01177.html#a468ab55507d04b1cea816372d4e49bdf",
-"dd/df3/a00219.html#a4dcfdd178a3466c2591ce841eba49cf6",
-"de/d90/a01313.html#a6c171df067c667d9c5257d12b85a9e6d",
-"functions_func_v.html"
+"d2/d82/a00279.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe",
+"d5/d06/a01499.html#a4b7267849be75994c85c8ebe7af10465",
+"d6/d7f/a00287.html#ga1496a9776a583f8b09c4244a68453394",
+"d7/dd6/a01167.html",
+"d8/ddb/a01147.html#a85a20ef2dd30a677994a9c79677cfdf2",
+"db/dc3/a00284.html#ga39b6df6adfe4858b13ac71f5830f29f6",
+"dd/d52/a00221.html",
+"functions_e.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
