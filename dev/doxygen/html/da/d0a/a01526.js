@@ -1,17 +1,18 @@
 var a01526 =
 [
-    [ "IObservable", "da/d0a/a01526.html#ac8058d5b1ebb462a10712ba598154e23", null ],
-    [ "~IObservable", "da/d0a/a01526.html#ad1fe15b31cccec8e44c695af550938ed", null ],
-    [ "notify", "da/d0a/a01526.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
-    [ "notify", "da/d0a/a01526.html#a2f93322aa7327069dd4469983933bd16", null ],
-    [ "notify", "da/d0a/a01526.html#ac72b261cd2af7f59e98f1504814bc785", null ],
-    [ "notify", "da/d0a/a01526.html#a47ac8ae7cc4e9304cfb220f1d93ce1fc", null ],
-    [ "notify", "da/d0a/a01526.html#a72e3156874ce81a1c7548b9f74db522c", null ],
-    [ "notify", "da/d0a/a01526.html#ae0c6cec757e540f22b65fce1f782e380", null ],
-    [ "notify", "da/d0a/a01526.html#ac035ba934c33e090c4a45128ac13f190", null ],
-    [ "subscribe", "da/d0a/a01526.html#ae182a206a72de6bc4585152d32332349", null ],
-    [ "subscribeAll", "da/d0a/a01526.html#a026462a1a050728e37bc24e33d2edd9c", null ],
-    [ "subscribeAll", "da/d0a/a01526.html#a13bd8d73b485186680f640786e2682e5", null ],
-    [ "unSubscribe", "da/d0a/a01526.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
-    [ "unSubscribeAll", "da/d0a/a01526.html#a5c20f7eab2233d085071a4fd3b44cbda", null ]
+    [ "~IObserver", "da/d0a/a01526.html#afda55d0cee706fa7a2df824e2a149a9e", null ],
+    [ "update", "da/d0a/a01526.html#a8c171635a257ce7fe905a58337717efe", null ],
+    [ "update", "da/d0a/a01526.html#a20e3859480f6cab562f33ce9da888380", null ],
+    [ "update", "da/d0a/a01526.html#a05a6a76b6875406ae8ff5e05f2662d57", null ],
+    [ "update", "da/d0a/a01526.html#a0f235d3f9f49582c0902dfcd5217f4a1", null ],
+    [ "update", "da/d0a/a01526.html#a97bf3fd861a8eac696a97ec56d953b47", null ],
+    [ "update", "da/d0a/a01526.html#a5d2fb507095933199fab726c17e01bcf", null ],
+    [ "update", "da/d0a/a01526.html#ab87bc0dab48de914d7f5221fb9c3477b", null ],
+    [ "updateImpl", "da/d0a/a01526.html#a478eaa94650cf462a050e28ecf098773", null ],
+    [ "updateImpl", "da/d0a/a01526.html#a4b7267849be75994c85c8ebe7af10465", null ],
+    [ "updateImpl", "da/d0a/a01526.html#ae97b76e37ab99f985a0ef71f4a9efd37", null ],
+    [ "updateImpl", "da/d0a/a01526.html#a663889f78a7dbd3561fa6a497e023a23", null ],
+    [ "updateImpl", "da/d0a/a01526.html#adc61a4813394bdde201018db198544a3", null ],
+    [ "updateImpl", "da/d0a/a01526.html#af53b8b154a887fce37fee355b0244c21", null ],
+    [ "updateImpl", "da/d0a/a01526.html#a4d0a13cbe1104d10c4ec5e928f64ab4b", null ]
 ];

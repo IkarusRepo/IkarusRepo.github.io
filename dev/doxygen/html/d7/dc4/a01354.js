@@ -1,5 +1,15 @@
 var a01354 =
 [
-    [ "MatrixType", "d7/dc4/a01354.html#a830b9c5b03ee1316e9e571a7ba05b2f2", null ],
-    [ "Preconditioner", "d7/dc4/a01354.html#a6854c22e7816c75ad6495977616aab71", null ]
+    [ "Base", "d7/dc4/a01354.html#ae16fb346feda99ba74d0eb6c6e3e7ece", null ],
+    [ "MatrixType", "d7/dc4/a01354.html#a8fb475e49bebbab5c9dfcf5325f4bb73", null ],
+    [ "Preconditioner", "d7/dc4/a01354.html#a62244905718a3538dbc1f9b36046d4d6", null ],
+    [ "RealScalar", "d7/dc4/a01354.html#a86d1cdc1073006c2d5d809b4c0b77908", null ],
+    [ "Scalar", "d7/dc4/a01354.html#a7451d2a0e27db7fb57336f288343a84f", null ],
+    [ "TruncatedConjugateGradient", "d7/dc4/a01354.html#a424099a1cac74a8684bcd170441f5415", null ],
+    [ "TruncatedConjugateGradient", "d7/dc4/a01354.html#a02491a65df30cd0cfb68b894f3627a6e", null ],
+    [ "TruncatedConjugateGradient", "d7/dc4/a01354.html#a6c5ad1eb772b8f2590827647ad6594f2", null ],
+    [ "~TruncatedConjugateGradient", "d7/dc4/a01354.html#aa572ab1738a73b78411575a2574c1339", null ],
+    [ "_solve_vector_with_guess_impl", "d7/dc4/a01354.html#a23170151337c9f8681f6087d0c036c8a", null ],
+    [ "getInfo", "d7/dc4/a01354.html#a5ea4822b3fd6ed682262d6624209e116", null ],
+    [ "setInfo", "d7/dc4/a01354.html#a73bcfc1126485468abd73569c0a1a6ac", null ]
 ];

@@ -1,5 +1,5 @@
 var a01318 =
 [
-    [ "lambda", "d6/dfa/a01318.html#a0157695e9fc8b735e86f828cc35b64fc", null ],
-    [ "mu", "d6/dfa/a01318.html#a3558ad06d2a831f0d412d76956d516f8", null ]
+    [ "K", "d6/dfa/a01318.html#a4f5868738c5673adf557e914123d0c8e", null ],
+    [ "lambda", "d6/dfa/a01318.html#a82f624b8171315c48c0bb5d39ef2f5d8", null ]
 ];

@@ -1,8 +1,8 @@
-\hypertarget{a01592}{}\doxysection{Ikarus\+::Concepts\+::Multiply\+Assign\+Able Concept Reference}
-\label{a01592}\index{Ikarus::Concepts::MultiplyAssignAble@{Ikarus::Concepts::MultiplyAssignAble}}
+\hypertarget{a01592}{}\doxysection{Ikarus\+::Concepts\+::Non\+Linear\+Solver\+Check\+For\+Path\+Following Concept Reference}
+\label{a01592}\index{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing@{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}}
 
 
-Concept defining the requirements for types that support in-\/place multiplication.  
+Concept to check if a non-\/linear solver with its non-\/linear operator satisfies requirements for path following.  
 
 
 
@@ -12,9 +12,12 @@ Concept defining the requirements for types that support in-\/place multiplicati
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} L, \textcolor{keyword}{typename} R>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01592}{Ikarus::Concepts::MultiplyAssignAble}} =  \textcolor{keyword}{requires}(L x, R y) \{}
-\DoxyCodeLine{      x *= y;}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} NonLinearSolver>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01592}{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}} =  \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{      std::tuple\_size<typename NonLinearSolver::NonLinearOperator::ParameterValues>::value == 2;}
+\DoxyCodeLine{      not(std::is\_same\_v<}
+\DoxyCodeLine{              \textcolor{keyword}{typename} NonLinearSolver::NonLinearOperator::ValueType,}
+\DoxyCodeLine{              \textcolor{keywordtype}{double}> and ((traits::isSpecializationTypeAndNonTypes<Eigen::Matrix, typename NonLinearSolver::NonLinearOperator::DerivativeType>::value) or (traits::isSpecializationTypeNonTypeAndType<Eigen::SparseMatrix, typename NonLinearSolver::NonLinearOperator::DerivativeType>::value)));}
 \DoxyCodeLine{    \}}
 
 \end{DoxyCode}
@@ -23,9 +26,6 @@ Concept defining the requirements for types that support in-\/place multiplicati
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em L} & Type of the left operand. \\
-\hline
-{\em R} & Type of the right operand.\\
+{\em Non\+Linear\+Solver} & The non-\/linear solver type. \\
 \hline
 \end{DoxyTemplParams}
-The concept specifies that instances of type {\ttfamily L} can be multiplied in-\/place by instances of type {\ttfamily R} using the {\ttfamily $\ast$=} operator. 

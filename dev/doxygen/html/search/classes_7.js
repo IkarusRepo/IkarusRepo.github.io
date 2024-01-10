@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hastype_0',['hasType',['../d7/def/a01538.html',1,'Ikarus::traits']]]
+  ['hastype_0',['hasType',['../d6/d02/a01542.html',1,'Ikarus::traits']]]
 ];

@@ -1,12 +1,18 @@
 var a01230 =
 [
-    [ "ctype", "d0/d58/a01230.html#aeb4e7d9c543d447bc0e6a5c7476b6fb4", null ],
-    [ "GlobalCoordinates", "d0/d58/a01230.html#ae1d02a37eb77c1aa1e0fb1e0e6c9c05b", null ],
-    [ "MatrixType", "d0/d58/a01230.html#a405ef6db050717d063f7587f5a58c21c", null ],
-    [ "ParameterSpaceType", "d0/d58/a01230.html#a24177c7d265e27fcadfe7af1aeaf5a40", null ],
-    [ "ScalarType", "d0/d58/a01230.html#acf22857c6bf16c206d4f75f8893ee326", null ],
-    [ "VectorType", "d0/d58/a01230.html#abc110b2eae43b3e5557690e4a68eb006", null ],
-    [ "dimension", "d0/d58/a01230.html#ab97e837467021b234d6dc21b90eab042", null ],
-    [ "mydim", "d0/d58/a01230.html#a09762892e8ebbcffa4b579ea5c7480e9", null ],
-    [ "worlddim", "d0/d58/a01230.html#ab7c23edc4b9aca3298ac840b9f235a5a", null ]
+    [ "ParameterTypeRaw", "d0/d58/a01230.html#acf475b20f169aa0c5d35067cac32f0c2", null ],
+    [ "SolutionVectorType", "d0/d58/a01230.html#a6572e4b55efcac594536459775487a28", null ],
+    [ "SolutionVectorTypeRaw", "d0/d58/a01230.html#a9c76a8f7f9a65f0663ea09d444e4843b", null ],
+    [ "ResultRequirements", "d0/d58/a01230.html#ae9f5aa3ebb36cf7bb2d647d984354075", null ],
+    [ "ResultRequirements", "d0/d58/a01230.html#acc8b5392590e2ea3ebd73f3cb920f2cd", null ],
+    [ "ResultRequirements", "d0/d58/a01230.html#a7209c38b9e0f6f251a00b582859d852b", null ],
+    [ "addAffordance", "d0/d58/a01230.html#a0900b42cbc6485aad82c55179234b087", null ],
+    [ "addResultRequest", "d0/d58/a01230.html#a18e3aaa93d9106e11d846c7378f1e849", null ],
+    [ "getFERequirements", "d0/d58/a01230.html#a55da3509459a63cd2ffcb20df9039d0d", null ],
+    [ "getGlobalSolution", "d0/d58/a01230.html#a15c5fab8c1190b52ff013c244fdfa486", null ],
+    [ "getParameter", "d0/d58/a01230.html#aa548e0d7e6823134a51d91d5ec47c37f", null ],
+    [ "getRequestedResult", "d0/d58/a01230.html#a244a5a171cdb08dbed0797d5c0669b85", null ],
+    [ "insertGlobalSolution", "d0/d58/a01230.html#a98129560488126934c2937dc3954a74d", null ],
+    [ "insertParameter", "d0/d58/a01230.html#a3ee8e39fcf1acce22dc1b5c36c70a1fd", null ],
+    [ "isResultRequested", "d0/d58/a01230.html#aa75a1bfbcca39d7c30d1b1141eae4795", null ]
 ];
