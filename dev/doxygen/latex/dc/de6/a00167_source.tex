@@ -1,0 +1,70 @@
+\hypertarget{a00167_source}{}\doxysection{resultevaluators.\+hh}
+\label{a00167_source}\index{resultevaluators.hh@{resultevaluators.hh}}
+\mbox{\hyperlink{a00167}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/common/math.hh>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00302}{Dune}} \{}
+\DoxyCodeLine{18   \textcolor{comment}{// Forward declaration}}
+\DoxyCodeLine{19   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{20   \textcolor{keyword}{class }\mbox{\hyperlink{a01341}{FieldVector}};}
+\DoxyCodeLine{21 \}  \textcolor{comment}{// namespace Dune}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00303}{Ikarus::ResultEvaluators}} \{}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{35   \textcolor{keyword}{struct }\mbox{\hyperlink{a01345}{VonMises}} \{}
+\DoxyCodeLine{36     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{37     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01345_a1cf7d88462db0aba4e49e6c635269c46}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01233}{ResultRequirements<FERequirements>}}\& req,}
+\DoxyCodeLine{38                       \textcolor{keyword}{const} \mbox{\hyperlink{a01341}{Dune::FieldVector<ScalarType, size>}}\& pos, [[maybe\_unused]] \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const}}
+\DoxyCodeLine{39         \textcolor{keyword}{requires}(size == 2) \{}
+\DoxyCodeLine{40       \mbox{\hyperlink{a01229}{ResultTypeMap<ScalarType>}} res\_;}
+\DoxyCodeLine{41       fe.calculateAt(req, pos, res\_);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01229_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
+\DoxyCodeLine{44       assert(resultType == \mbox{\hyperlink{a00285_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00285_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
+\DoxyCodeLine{45       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
+\DoxyCodeLine{46       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
+\DoxyCodeLine{47       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49       \textcolor{keywordflow}{return} std::sqrt(std::pow(s\_x, 2) + Dune::power(s\_y, 2) -\/ s\_x * s\_y + 3 * Dune::power(s\_xy, 2));}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56     \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01345_a60952d65a227074bcb68af8ed78d4129}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01345_acdfd2226b12f3819350f4ea231e337bf}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{63   \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{76   \textcolor{keyword}{struct }\mbox{\hyperlink{a01349}{PrincipalStress}} \{}
+\DoxyCodeLine{77     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{78     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01349_a30ccc009cdf990e107cb807f769bbc5b}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01233}{ResultRequirements<FERequirements>}}\& req,}
+\DoxyCodeLine{79                       \textcolor{keyword}{const} \mbox{\hyperlink{a01341}{Dune::FieldVector<ScalarType, size>}}\& pos, \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const} \textcolor{keyword}{requires}(size == 2) \{}
+\DoxyCodeLine{80       \mbox{\hyperlink{a01229}{ResultTypeMap<ScalarType>}} res\_;}
+\DoxyCodeLine{81       fe.calculateAt(req, pos, res\_);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01229_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
+\DoxyCodeLine{84       assert(resultType == \mbox{\hyperlink{a00285_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00285_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
+\DoxyCodeLine{85       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
+\DoxyCodeLine{86       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
+\DoxyCodeLine{87       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89       \textcolor{keyword}{auto} t1 = (s\_x + s\_y) / 2;}
+\DoxyCodeLine{90       \textcolor{keyword}{auto} t2 = std::sqrt(Dune::power((s\_x -\/ s\_y) / 2, 2) + Dune::power(s\_xy, 2));}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92       \textcolor{keywordflow}{return} comp == 0 ? t1 + t2 : t1 -\/ t2;}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{99     \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01349_a3bf1a9009747f7fe1e645192bcf6350d}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{105     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01349_a5f3b81a2fcecace3ee76bff9acee54d3}{ncomps}}() \{ \textcolor{keywordflow}{return} 2; \}}
+\DoxyCodeLine{106   \};}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108 \}  \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
+
+\end{DoxyCode}
