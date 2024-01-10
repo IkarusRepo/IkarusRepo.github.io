@@ -1,5 +1,4 @@
 var a00053 =
 [
-    [ "ReturnType", "dc/dee/a00053.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
-    [ "countType", "dc/dee/a00053.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
+    [ "findLineSegment", "dc/dee/a00053.html#ga16e7d5f51cc42190c090e727495c1609", null ]
 ];

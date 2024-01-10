@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updatedefault_0',['UpdateDefault',['../d9/ddc/a01423.html',1,'Ikarus::utils']]]
+  ['updatedefault_0',['UpdateDefault',['../d0/de2/a01442.html',1,'Ikarus::utils']]]
 ];

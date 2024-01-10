@@ -1,4 +1,4 @@
 var a02416 =
 [
-    [ "registerDirichletValues", "d1/da0/a02416.html#ga39b6df6adfe4858b13ac71f5830f29f6", null ]
+    [ "registerKirchhoffLoveShell", "d1/da0/a02416.html#ga31d84874c3995448666f6a1e070647d2", null ]
 ];

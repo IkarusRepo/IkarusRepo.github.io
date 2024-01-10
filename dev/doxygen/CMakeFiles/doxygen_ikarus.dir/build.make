@@ -125,6 +125,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/eigendunetransfo
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/eigensparseaddon.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/findlinesegment.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/flatprebasis.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/functionhelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/functionsanitychecks.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/init.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/linearalgebrahelper.hh

@@ -1,5 +1,5 @@
-\hypertarget{a00164_source}{}\doxysection{resultfunction.\+hh}
-\label{a00164_source}\index{resultfunction.hh@{resultfunction.hh}}
+\hypertarget{a00164_source}{}\doxysection{resultevaluators.\+hh}
+\label{a00164_source}\index{resultevaluators.hh@{resultevaluators.hh}}
 \mbox{\hyperlink{a00164}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,83 +7,64 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00122}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00161}{ikarus/io/resultevaluators.hh}}>}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/eigendunetransformations.hh}}>}}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00292}{Ikarus}} \{}
-\DoxyCodeLine{23   \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{24     \textcolor{keyword}{struct }DefaultUserFunction \{\};}
-\DoxyCodeLine{25   \}  \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{47   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType\_, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
-\DoxyCodeLine{48   \textcolor{keyword}{class }\mbox{\hyperlink{a01339}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename ElementType\_::GridView> \{}
-\DoxyCodeLine{49   \textcolor{keyword}{public}:}
-\DoxyCodeLine{50     \textcolor{keyword}{using }\mbox{\hyperlink{a01339_af9644b833b303bd3cabf3f4fb284effc}{ElementType}}            = ElementType\_;}
-\DoxyCodeLine{51     \textcolor{keyword}{using }\mbox{\hyperlink{a01339_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}     = \textcolor{keyword}{typename} ElementType::ResultRequirementsType;}
-\DoxyCodeLine{52     \textcolor{keyword}{using }\mbox{\hyperlink{a01339_a60f3b0a6336812436e18ac14de25e0fc}{GridView}}               = \textcolor{keyword}{typename} ElementType::GridView;}
-\DoxyCodeLine{53     \textcolor{keyword}{using }\mbox{\hyperlink{a01339_a2b614ca2965a4d07f6388f3070c85c4f}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
-\DoxyCodeLine{54     \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01339_a1b40b371171256b66b51c1c2b12a37a3}{griddim}} = GridView::dimension;}
-\DoxyCodeLine{55     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} GridView::template Codim<0>::Entity \mbox{\hyperlink{a01339_a95b6a8f8be831236e4b2634bc852a342}{Entity}};}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{67     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01339_ae07a0f7cfdc977d153022c33b2c4ada9}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01339_a95b6a8f8be831236e4b2634bc852a342}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01323}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{68       \textcolor{keyword}{auto} index = gridView.indexSet().index(e);}
-\DoxyCodeLine{69       \textcolor{keywordflow}{return} evaluateComponent(index, local, comp);}
-\DoxyCodeLine{70     \}}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{79     [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01339_a55ddba55f148fabc822146919f7c2864}{ncomps}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{80       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
-\DoxyCodeLine{81         \mbox{\hyperlink{a01323}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/common/math.hh>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00299}{Dune}} \{}
+\DoxyCodeLine{18   \textcolor{comment}{// Forward declaration}}
+\DoxyCodeLine{19   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keywordtype}{int} size>}
+\DoxyCodeLine{20   \textcolor{keyword}{class }\mbox{\hyperlink{a01326}{FieldVector}};}
+\DoxyCodeLine{21 \}  \textcolor{comment}{// namespace Dune}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00300}{Ikarus::ResultEvaluators}} \{}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{35   \textcolor{keyword}{struct }\mbox{\hyperlink{a01330}{VonMises}} \{}
+\DoxyCodeLine{36     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{37     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01330_a1cf7d88462db0aba4e49e6c635269c46}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01226}{ResultRequirements<FERequirements>}}\& req,}
+\DoxyCodeLine{38                       \textcolor{keyword}{const} \mbox{\hyperlink{a01326}{Dune::FieldVector<ScalarType, size>}}\& pos, [[maybe\_unused]] \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const}}
+\DoxyCodeLine{39         \textcolor{keyword}{requires}(size == 2) \{}
+\DoxyCodeLine{40       \mbox{\hyperlink{a01222}{ResultTypeMap<ScalarType>}} res\_;}
+\DoxyCodeLine{41       fe.calculateAt(req, pos, res\_);}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01222_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
+\DoxyCodeLine{44       assert(resultType == \mbox{\hyperlink{a00282_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00282_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
+\DoxyCodeLine{45       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
+\DoxyCodeLine{46       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
+\DoxyCodeLine{47       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49       \textcolor{keywordflow}{return} std::sqrt(std::pow(s\_x, 2) + Dune::power(s\_y, 2) -\/ s\_x * s\_y + 3 * Dune::power(s\_xy, 2));}
+\DoxyCodeLine{50     \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{56     \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01330_a60952d65a227074bcb68af8ed78d4129}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{62     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01330_acdfd2226b12f3819350f4ea231e337bf}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{63   \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{76   \textcolor{keyword}{struct }\mbox{\hyperlink{a01334}{PrincipalStress}} \{}
+\DoxyCodeLine{77     \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{78     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01334_a30ccc009cdf990e107cb807f769bbc5b}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01226}{ResultRequirements<FERequirements>}}\& req,}
+\DoxyCodeLine{79                       \textcolor{keyword}{const} \mbox{\hyperlink{a01326}{Dune::FieldVector<ScalarType, size>}}\& pos, \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const} \textcolor{keyword}{requires}(size == 2) \{}
+\DoxyCodeLine{80       \mbox{\hyperlink{a01222}{ResultTypeMap<ScalarType>}} res\_;}
+\DoxyCodeLine{81       fe.calculateAt(req, pos, res\_);}
 \DoxyCodeLine{82 }
-\DoxyCodeLine{83         fes\_-\/>at(0).calculateAt(resultRequirements\_, val, resultTypeMap);}
-\DoxyCodeLine{84         \textcolor{keywordflow}{if} (resultRequirements\_.getRequestedResult() != resultTypeMap.\mbox{\hyperlink{a01219_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().first)}
-\DoxyCodeLine{85           DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The return result should be the requested one"{}});}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{87         \textcolor{keyword}{auto} sigma = resultTypeMap.\mbox{\hyperlink{a01219_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
+\DoxyCodeLine{83       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01222_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
+\DoxyCodeLine{84       assert(resultType == \mbox{\hyperlink{a00282_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00282_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
+\DoxyCodeLine{85       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
+\DoxyCodeLine{86       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
+\DoxyCodeLine{87       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
 \DoxyCodeLine{88 }
-\DoxyCodeLine{89         \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.rows() * sigma.cols());}
-\DoxyCodeLine{90       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{91         \textcolor{keywordflow}{return} userFunction\_.ncomps();}
-\DoxyCodeLine{92     \}}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{101     [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01339_aeab965379985b94a9c60059b01595f6b}{name}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{102       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{103         \textcolor{keywordflow}{return} \mbox{\hyperlink{a00292_a0853622412d4cedc078b81ba454eb250}{toString}}(resultRequirements\_.getRequestedResult());}
-\DoxyCodeLine{104       \textcolor{keywordflow}{else}}
-\DoxyCodeLine{105         \textcolor{keywordflow}{return} userFunction\_.name();}
-\DoxyCodeLine{106     \}}
+\DoxyCodeLine{89       \textcolor{keyword}{auto} t1 = (s\_x + s\_y) / 2;}
+\DoxyCodeLine{90       \textcolor{keyword}{auto} t2 = std::sqrt(Dune::power((s\_x -\/ s\_y) / 2, 2) + Dune::power(s\_xy, 2));}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92       \textcolor{keywordflow}{return} comp == 0 ? t1 + t2 : t1 -\/ t2;}
+\DoxyCodeLine{93     \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{99     \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01334_a3bf1a9009747f7fe1e645192bcf6350d}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{105     \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01334_a5f3b81a2fcecace3ee76bff9acee54d3}{ncomps}}() \{ \textcolor{keywordflow}{return} 2; \}}
+\DoxyCodeLine{106   \};}
 \DoxyCodeLine{107 }
-\DoxyCodeLine{118     \mbox{\hyperlink{a01339_a92ae43568c42e7d621e5a99d8ecce538}{ResultFunction}}(std::vector<ElementType>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01339_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}\& req, UserFunction userFunction = \{\})}
-\DoxyCodeLine{119         : gridView\{fes-\/>at(0).localView().globalBasis().gridView()\},}
-\DoxyCodeLine{120           resultRequirements\_\{req\},}
-\DoxyCodeLine{121           fes\_\{fes\},}
-\DoxyCodeLine{122           userFunction\_\{userFunction\} \{}
-\DoxyCodeLine{123       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) userFunction\_ = userFunction;}
-\DoxyCodeLine{124     \}}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126   \textcolor{keyword}{private}:}
-\DoxyCodeLine{127     \textcolor{keywordtype}{double} evaluateComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01323}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{128       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{129         \textcolor{keywordflow}{return} userFunction\_(fes\_-\/>at(eleID), resultRequirements\_, local, comp);}
-\DoxyCodeLine{130       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{131         fes\_-\/>at(eleID).calculateAt(resultRequirements\_, local, resultTypeMap);}
-\DoxyCodeLine{132         \textcolor{keyword}{auto} result = resultTypeMap.\mbox{\hyperlink{a01219_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
-\DoxyCodeLine{133         \textcolor{keywordflow}{return} result(comp);}
-\DoxyCodeLine{134       \}}
-\DoxyCodeLine{135     \}}
-\DoxyCodeLine{136 }
-\DoxyCodeLine{137     \mbox{\hyperlink{a01339_a60f3b0a6336812436e18ac14de25e0fc}{GridView}} gridView;}
-\DoxyCodeLine{138     \mbox{\hyperlink{a01339_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}} resultRequirements\_;}
-\DoxyCodeLine{139     std::vector<ElementType>* fes\_;}
-\DoxyCodeLine{140     \textcolor{keyword}{mutable} ResultTypeMap<ctype> resultTypeMap;}
-\DoxyCodeLine{141     [[no\_unique\_address]] std::string name\_\{\};}
-\DoxyCodeLine{142     UserFunction userFunction\_;}
-\DoxyCodeLine{143   \};}
-\DoxyCodeLine{144 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{108 \}  \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
 
 \end{DoxyCode}

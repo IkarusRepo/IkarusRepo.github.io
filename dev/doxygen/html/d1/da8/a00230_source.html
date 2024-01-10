@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: adaptivestepsizing.hh Source File</title>
+    <title>ikarus: loadcontrol.hh Source File</title>
     <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../jquery.js"></script>
     <script type="text/javascript" src="../../dynsections.js"></script>
@@ -149,69 +149,66 @@ $(document).ready(function(){initNavTree('d1/da8/a00230_source.html','../../'); 
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">adaptivestepsizing.hh</div></div>
+  <div class="headertitle"><div class="title">loadcontrol.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="../../d1/da8/a00230.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/dc8/a00242.html">ikarus/controlroutines/pathfollowingfunctions.hh</a>&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="../../dd/dc1/a00212.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="../../dd/dd7/a00248.html">ikarus/controlroutines/controlinfos.hh</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="../../de/d79/a00203.html">ikarus/utils/observer/observer.hh</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/dd0/a00191.html">ikarus/utils/observer/observermessages.hh</a>&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d6/d82/a00293.html">   17</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d6/d82/a00293.html">Ikarus::AdaptiveStepSizing</a> {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d9/d5e/a00295.html">Ikarus</a> {</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="../../de/df1/a01151.html">   24</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="../../de/df1/a01151.html">NoOp</a> {</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NonLinearOperator&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="../../de/df1/a01151.html#ada90a32692ed0e5c05867ca427e38d18">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../de/df1/a01151.html#ada90a32692ed0e5c05867ca427e38d18">operator()</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/dfe/a01383.html">NonLinearSolverInformation</a>&amp; solverInfo, <a class="code hl_struct" href="../../d2/d22/a01171.html">SubsidiaryArgs</a>&amp; subsidiaryArgs,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../da/d1e/a01479.html">NonLinearOperator</a>&amp; nonLinearOperator) {}</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../de/df1/a01151.html#af42dff6b9945230918607a14f159e52e">   42</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/df1/a01151.html#af42dff6b9945230918607a14f159e52e">targetIterations</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 0; }</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="../../de/df1/a01151.html#aae9af895e735c2c5f87a9e2eb77aa737">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../de/df1/a01151.html#aae9af895e735c2c5f87a9e2eb77aa737">setTargetIterations</a>([[maybe_unused]] <span class="keywordtype">int</span> <a class="code hl_function" href="../../de/df1/a01151.html#af42dff6b9945230918607a14f159e52e">targetIterations</a>) {}</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  };</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="../../db/d07/a01155.html">   61</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="../../db/d07/a01155.html">IterationBased</a> {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NonLinearOperator&gt;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="../../db/d07/a01155.html#adbaaeb5daa06234f1886efa3f7bc8f1a">   72</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d07/a01155.html#adbaaeb5daa06234f1886efa3f7bc8f1a">operator()</a>(<span class="keyword">const</span> <a class="code hl_struct" href="../../de/dfe/a01383.html">NonLinearSolverInformation</a>&amp; solverInfo, <a class="code hl_struct" href="../../d2/d22/a01171.html">SubsidiaryArgs</a>&amp; subsidiaryArgs,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>                    <span class="keyword">const</span> <a class="code hl_class" href="../../da/d1e/a01479.html">NonLinearOperator</a>&amp;) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      <span class="keywordflow">if</span> (subsidiaryArgs.<a class="code hl_variable" href="../../d2/d22/a01171.html#a217c729e1ae8b05a98c852f19b0d6ae5">currentStep</a> == 0) <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>      <span class="keywordflow">if</span> (targetIterations_ == 0)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        DUNE_THROW(Dune::InvalidStateException,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                   <span class="stringliteral">&quot;For IterationBased, targetIterations should not be equal to 0. Try calling &quot;</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                   <span class="stringliteral">&quot;setTargetIterations(int) first.&quot;</span>);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keyword">const</span> <span class="keyword">auto</span> previousIterations = solverInfo.<a class="code hl_variable" href="../../de/dfe/a01383.html#a81570cd3d9f6589a4d1ba81211f41b99">iterations</a>;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      <span class="keywordflow">if</span> (previousIterations &gt; targetIterations_)</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        subsidiaryArgs.<a class="code hl_variable" href="../../d2/d22/a01171.html#a9c0bca7ed999dcf751648d41b5d9aa78">stepSize</a></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            = sqrt(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(targetIterations_) / previousIterations) * subsidiaryArgs.<a class="code hl_variable" href="../../d2/d22/a01171.html#a9c0bca7ed999dcf751648d41b5d9aa78">stepSize</a>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="../../db/d07/a01155.html#aabdaad05b950b53e014624271a16fd9c">   89</a></span>    [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="../../db/d07/a01155.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> targetIterations_; }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="../../db/d07/a01155.html#a52017ebcd89859d5ae214cc8767ef78d">   95</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="../../db/d07/a01155.html#a52017ebcd89859d5ae214cc8767ef78d">setTargetIterations</a>(<span class="keywordtype">int</span> <a class="code hl_function" href="../../db/d07/a01155.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>) { targetIterations_ = <a class="code hl_function" href="../../db/d07/a01155.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>; }</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keywordtype">int</span> targetIterations_{0};</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  };</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>}  <span class="comment">// namespace Ikarus::AdaptiveStepSizing</span></div>
-<div class="ttc" id="aa00212_html"><div class="ttname"><a href="../../dd/dc1/a00212.html">solverinfos.hh</a></div><div class="ttdoc">Implementation of the Newton-Raphson method for solving nonlinear equations.</div></div>
-<div class="ttc" id="aa00242_html"><div class="ttname"><a href="../../d2/dc8/a00242.html">pathfollowingfunctions.hh</a></div><div class="ttdoc">Defines structures and methods related to subsidiary functions for control routines.</div></div>
-<div class="ttc" id="aa00293_html"><div class="ttname"><a href="../../d6/d82/a00293.html">Ikarus::AdaptiveStepSizing</a></div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:17</div></div>
-<div class="ttc" id="aa01151_html"><div class="ttname"><a href="../../de/df1/a01151.html">Ikarus::AdaptiveStepSizing::NoOp</a></div><div class="ttdoc">The NoOp strategy for adaptive step sizing.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:24</div></div>
-<div class="ttc" id="aa01151_html_aae9af895e735c2c5f87a9e2eb77aa737"><div class="ttname"><a href="../../de/df1/a01151.html#aae9af895e735c2c5f87a9e2eb77aa737">Ikarus::AdaptiveStepSizing::NoOp::setTargetIterations</a></div><div class="ttdeci">void setTargetIterations(int targetIterations)</div><div class="ttdoc">Set the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:48</div></div>
-<div class="ttc" id="aa01151_html_ada90a32692ed0e5c05867ca427e38d18"><div class="ttname"><a href="../../de/df1/a01151.html#ada90a32692ed0e5c05867ca427e38d18">Ikarus::AdaptiveStepSizing::NoOp::operator()</a></div><div class="ttdeci">void operator()(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NonLinearOperator &amp;nonLinearOperator)</div><div class="ttdoc">Call operator for the NoOp strategy.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:35</div></div>
-<div class="ttc" id="aa01151_html_af42dff6b9945230918607a14f159e52e"><div class="ttname"><a href="../../de/df1/a01151.html#af42dff6b9945230918607a14f159e52e">Ikarus::AdaptiveStepSizing::NoOp::targetIterations</a></div><div class="ttdeci">int targetIterations() const</div><div class="ttdoc">Get the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:42</div></div>
-<div class="ttc" id="aa01155_html"><div class="ttname"><a href="../../db/d07/a01155.html">Ikarus::AdaptiveStepSizing::IterationBased</a></div><div class="ttdoc">The IterationBased strategy for adaptive step sizing.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:61</div></div>
-<div class="ttc" id="aa01155_html_a52017ebcd89859d5ae214cc8767ef78d"><div class="ttname"><a href="../../db/d07/a01155.html#a52017ebcd89859d5ae214cc8767ef78d">Ikarus::AdaptiveStepSizing::IterationBased::setTargetIterations</a></div><div class="ttdeci">void setTargetIterations(int targetIterations)</div><div class="ttdoc">Set the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:95</div></div>
-<div class="ttc" id="aa01155_html_aabdaad05b950b53e014624271a16fd9c"><div class="ttname"><a href="../../db/d07/a01155.html#aabdaad05b950b53e014624271a16fd9c">Ikarus::AdaptiveStepSizing::IterationBased::targetIterations</a></div><div class="ttdeci">int targetIterations() const</div><div class="ttdoc">Get the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:89</div></div>
-<div class="ttc" id="aa01155_html_adbaaeb5daa06234f1886efa3f7bc8f1a"><div class="ttname"><a href="../../db/d07/a01155.html#adbaaeb5daa06234f1886efa3f7bc8f1a">Ikarus::AdaptiveStepSizing::IterationBased::operator()</a></div><div class="ttdeci">void operator()(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NonLinearOperator &amp;)</div><div class="ttdoc">Call operator of the IterationBased strategy.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:72</div></div>
-<div class="ttc" id="aa01171_html"><div class="ttname"><a href="../../d2/d22/a01171.html">Ikarus::SubsidiaryArgs</a></div><div class="ttdoc">Structure containing arguments for subsidiary functions.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:38</div></div>
-<div class="ttc" id="aa01171_html_a217c729e1ae8b05a98c852f19b0d6ae5"><div class="ttname"><a href="../../d2/d22/a01171.html#a217c729e1ae8b05a98c852f19b0d6ae5">Ikarus::SubsidiaryArgs::currentStep</a></div><div class="ttdeci">int currentStep</div><div class="ttdoc">The current step index in the control routine.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:45</div></div>
-<div class="ttc" id="aa01171_html_a9c0bca7ed999dcf751648d41b5d9aa78"><div class="ttname"><a href="../../d2/d22/a01171.html#a9c0bca7ed999dcf751648d41b5d9aa78">Ikarus::SubsidiaryArgs::stepSize</a></div><div class="ttdeci">double stepSize</div><div class="ttdoc">The step size in the control routine.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:39</div></div>
-<div class="ttc" id="aa01383_html"><div class="ttname"><a href="../../de/dfe/a01383.html">Ikarus::NonLinearSolverInformation</a></div><div class="ttdoc">Information about the result of a non-linear solver.</div><div class="ttdef"><b>Definition:</b> solverinfos.hh:18</div></div>
-<div class="ttc" id="aa01383_html_a81570cd3d9f6589a4d1ba81211f41b99"><div class="ttname"><a href="../../de/dfe/a01383.html#a81570cd3d9f6589a4d1ba81211f41b99">Ikarus::NonLinearSolverInformation::iterations</a></div><div class="ttdeci">int iterations</div><div class="ttdef"><b>Definition:</b> solverinfos.hh:28</div></div>
-<div class="ttc" id="aa01479_html"><div class="ttname"><a href="../../da/d1e/a01479.html">Ikarus::NonLinearOperator</a></div><div class="ttdoc">Represents a NonLinearOperator class for handling nonlinear operators.</div><div class="ttdef"><b>Definition:</b> nonlinearoperator.hh:154</div></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NonLinearSolver&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="../../dc/dee/a01166.html">   30</a></span>  <span class="keyword">class </span><a class="code hl_class" href="../../dc/dee/a01166.html">LoadControl</a> : <span class="keyword">public</span> <a class="code hl_class" href="../../da/d0a/a01526.html">IObservable</a>&lt;ControlMessages&gt; {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="../../dc/dee/a01166.html#a5be00442ee05d28d9e22de5ace368ed8">   33</a></span>    <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="../../dc/dee/a01166.html#a5be00442ee05d28d9e22de5ace368ed8">name</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;Load Control Method&quot;</span>); }</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="../../dc/dee/a01166.html#a561dc43b8cf1bc3bad02af6d04ce5380">   42</a></span>    <a class="code hl_function" href="../../dc/dee/a01166.html#a561dc43b8cf1bc3bad02af6d04ce5380">LoadControl</a>(<span class="keyword">const</span> std::shared_ptr&lt;NonLinearSolver&gt;&amp; nonLinearSolver_, <span class="keywordtype">int</span> loadSteps,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                <span class="keyword">const</span> std::array&lt;double, 2&gt;&amp; tbeginEnd)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        : nonLinearSolver{nonLinearSolver_},</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>          loadSteps_{loadSteps},</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>          parameterBegin_{tbeginEnd[0]},</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>          parameterEnd_{tbeginEnd[1]},</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>          stepSize_{(parameterEnd_ - parameterBegin_) / loadSteps_} {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      <span class="keyword">static_assert</span>(</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>          <span class="keyword">requires</span> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            nonLinearSolver-&gt;nonLinearOperator().lastParameter() = 0.0;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            nonLinearSolver-&gt;nonLinearOperator().lastParameter() += 0.0;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>          },</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>          <span class="stringliteral">&quot;The last parameter (load factor) must be assignable and incrementable with a double!&quot;</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <a class="code hl_struct" href="../../d4/d13/a01162.html">ControlInformation</a> <a class="code hl_function" href="../../dc/dee/a01166.html#ac4a34370d6533e681070f5a88cb43e0f">run</a>();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    std::shared_ptr&lt;NonLinearSolver&gt; nonLinearSolver;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">int</span> loadSteps_;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">double</span> parameterBegin_;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">double</span> parameterEnd_;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">double</span> stepSize_;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  };</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}  <span class="comment">// namespace Ikarus</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d27/a00239.html">ikarus/controlroutines/loadcontrol.inl</a>&gt;</span></div>
+<div class="ttc" id="aa00191_html"><div class="ttname"><a href="../../d9/dd0/a00191.html">observermessages.hh</a></div><div class="ttdoc">Enums for observer messages.</div></div>
+<div class="ttc" id="aa00203_html"><div class="ttname"><a href="../../de/d79/a00203.html">observer.hh</a></div><div class="ttdoc">Implementation of the observer design pattern.</div></div>
+<div class="ttc" id="aa00239_html"><div class="ttname"><a href="../../d0/d27/a00239.html">loadcontrol.inl</a></div><div class="ttdoc">Implementation of the run function.</div></div>
+<div class="ttc" id="aa00248_html"><div class="ttname"><a href="../../dd/dd7/a00248.html">controlinfos.hh</a></div><div class="ttdoc">Defines the ControlInformation structure for storing control results.</div></div>
+<div class="ttc" id="aa00295_html"><div class="ttname"><a href="../../d9/d5e/a00295.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:21</div></div>
+<div class="ttc" id="aa01162_html"><div class="ttname"><a href="../../d4/d13/a01162.html">Ikarus::ControlInformation</a></div><div class="ttdoc">Structure containing information about the control results.</div><div class="ttdef"><b>Definition:</b> controlinfos.hh:20</div></div>
+<div class="ttc" id="aa01166_html"><div class="ttname"><a href="../../dc/dee/a01166.html">Ikarus::LoadControl</a></div><div class="ttdoc">The LoadControl control routine increases the last parameter of a nonlinear operator and calls a nonl...</div><div class="ttdef"><b>Definition:</b> loadcontrol.hh:30</div></div>
+<div class="ttc" id="aa01166_html_a561dc43b8cf1bc3bad02af6d04ce5380"><div class="ttname"><a href="../../dc/dee/a01166.html#a561dc43b8cf1bc3bad02af6d04ce5380">Ikarus::LoadControl::LoadControl</a></div><div class="ttdeci">LoadControl(const std::shared_ptr&lt; NonLinearSolver &gt; &amp;nonLinearSolver_, int loadSteps, const std::array&lt; double, 2 &gt; &amp;tbeginEnd)</div><div class="ttdoc">Constructor for LoadControl.</div><div class="ttdef"><b>Definition:</b> loadcontrol.hh:42</div></div>
+<div class="ttc" id="aa01166_html_a5be00442ee05d28d9e22de5ace368ed8"><div class="ttname"><a href="../../dc/dee/a01166.html#a5be00442ee05d28d9e22de5ace368ed8">Ikarus::LoadControl::name</a></div><div class="ttdeci">constexpr auto name() const</div><div class="ttdoc">The name of the LoadControl method.</div><div class="ttdef"><b>Definition:</b> loadcontrol.hh:33</div></div>
+<div class="ttc" id="aa01166_html_ac4a34370d6533e681070f5a88cb43e0f"><div class="ttname"><a href="../../dc/dee/a01166.html#ac4a34370d6533e681070f5a88cb43e0f">Ikarus::LoadControl::run</a></div><div class="ttdeci">ControlInformation run()</div><div class="ttdoc">Executes the LoadControl routine.</div><div class="ttdef"><b>Definition:</b> loadcontrol.inl:14</div></div>
+<div class="ttc" id="aa01526_html"><div class="ttname"><a href="../../da/d0a/a01526.html">Ikarus::IObservable</a></div><div class="ttdoc">Generic observable interface for the Observer design pattern. See  for a description of the design pa...</div><div class="ttdef"><b>Definition:</b> observer.hh:125</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -222,7 +219,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_a97b071c9c6f7bcc51f4d0bc7519f177.html">controlroutines</a></li><li class="navelem"><a class="el" href="../../d1/da8/a00230.html">adaptivestepsizing.hh</a></li>
+        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_a97b071c9c6f7bcc51f4d0bc7519f177.html">controlroutines</a></li><li class="navelem"><a class="el" href="../../d1/da8/a00230.html">loadcontrol.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

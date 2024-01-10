@@ -1,20 +1,59 @@
-\hypertarget{a00212_source}{}\doxysection{solverinfos.\+hh}
-\label{a00212_source}\index{solverinfos.hh@{solverinfos.hh}}
+\hypertarget{a00212_source}{}\doxysection{griddrawer.\+hh}
+\label{a00212_source}\index{griddrawer.hh@{griddrawer.hh}}
 \mbox{\hyperlink{a00212}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00292}{Ikarus}} \{}
-\DoxyCodeLine{18   \textcolor{keyword}{struct }\mbox{\hyperlink{a01383}{NonLinearSolverInformation}} \{}
-\DoxyCodeLine{24     \textcolor{keyword}{explicit} \textcolor{keyword}{operator} bool()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01383_acb65d72d7b2291a9b0d958ce0e4e0887}{success}}; \}}
-\DoxyCodeLine{25     \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01383_acb65d72d7b2291a9b0d958ce0e4e0887}{success}}\{\textcolor{keyword}{false}\};}
-\DoxyCodeLine{26     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01383_ab09859737734f97734f20624f9f3c934}{residualNorm}}\{std::numeric\_limits<double>::infinity()\};}
-\DoxyCodeLine{27     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01383_a66f51414779f3e563557157fb688f18b}{correctionNorm}}\{std::numeric\_limits<double>::infinity()\};}
-\DoxyCodeLine{28     \textcolor{keywordtype}{int} \mbox{\hyperlink{a01383_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}}\{-\/1\};}
-\DoxyCodeLine{29   \};}
-\DoxyCodeLine{30 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <matplot/matplot.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <thread>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/geometry/dimension.hh>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Gr\textcolor{keywordtype}{id}View>}
+\DoxyCodeLine{31 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00212_a2634a2b365ea0b95c6dcfad0dbefac1f}{draw}}(\textcolor{keyword}{const} GridView\& gridView, \textcolor{keywordtype}{bool} forever = \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{32   \textcolor{keyword}{using namespace }matplot;}
+\DoxyCodeLine{33   \textcolor{keyword}{auto} f  = figure(\textcolor{keyword}{true});}
+\DoxyCodeLine{34   \textcolor{keyword}{auto} ax = gca();}
+\DoxyCodeLine{35   hold(ax, \textcolor{keyword}{true});}
+\DoxyCodeLine{36   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} edgeCodim = GridView::dimension -\/ 1;}
+\DoxyCodeLine{37   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& element : elements(gridView)) \{}
+\DoxyCodeLine{38     std::array<std::array<double, 2>, GridView::dimensionworld> edgeCoords\{\};}
+\DoxyCodeLine{39     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} edgeIndex = 0; edgeIndex < element.subEntities(edgeCodim); ++edgeIndex) \{}
+\DoxyCodeLine{40       \textcolor{keyword}{auto} edge = element.template subEntity<edgeCodim>(edgeIndex);}
+\DoxyCodeLine{41       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 2; ++i) \{}
+\DoxyCodeLine{42         \textcolor{keyword}{const} \textcolor{keyword}{auto} vertCoords = edge.geometry().corner(i);}
+\DoxyCodeLine{43         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < GridView::dimensionworld; ++j)}
+\DoxyCodeLine{44           edgeCoords[j][i] = vertCoords[j];}
+\DoxyCodeLine{45       \}}
+\DoxyCodeLine{46       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (GridView::dimensionworld == 3) \{}
+\DoxyCodeLine{47         \textcolor{keyword}{auto} l = ax-\/>plot3(edgeCoords[0], edgeCoords[1], edgeCoords[2], \textcolor{stringliteral}{"{}-\/o"{}});}
+\DoxyCodeLine{48         l-\/>line\_width(2);}
+\DoxyCodeLine{49         l-\/>color(\textcolor{stringliteral}{"{}black"{}});}
+\DoxyCodeLine{50         l-\/>marker\_size(10);}
+\DoxyCodeLine{51         l-\/>marker\_face\_color(\textcolor{stringliteral}{"{}red"{}});}
+\DoxyCodeLine{52       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{53         \textcolor{keyword}{auto} l = ax-\/>plot(edgeCoords[0], edgeCoords[1], \textcolor{stringliteral}{"{}-\/o"{}});}
+\DoxyCodeLine{54         l-\/>line\_width(2);}
+\DoxyCodeLine{55         l-\/>color(\textcolor{stringliteral}{"{}black"{}});}
+\DoxyCodeLine{56         l-\/>marker\_size(10);}
+\DoxyCodeLine{57         l-\/>marker\_face\_color(\textcolor{stringliteral}{"{}red"{}});}
+\DoxyCodeLine{58       \}}
+\DoxyCodeLine{59     \}}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   \textcolor{keywordflow}{if} (forever)}
+\DoxyCodeLine{63     f-\/>show();}
+\DoxyCodeLine{64   \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{65     f-\/>draw();}
+\DoxyCodeLine{66     \textcolor{keyword}{using namespace }std::chrono\_literals;}
+\DoxyCodeLine{67     std::this\_thread::sleep\_for(5s);}
+\DoxyCodeLine{68   \}}
+\DoxyCodeLine{69   f.reset();}
+\DoxyCodeLine{70 \}}
 
 \end{DoxyCode}

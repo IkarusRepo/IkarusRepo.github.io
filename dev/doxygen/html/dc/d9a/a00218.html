@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: trustregion.hh File Reference</title>
+    <title>ikarus: newtonraphson.hh File Reference</title>
     <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../jquery.js"></script>
     <script type="text/javascript" src="../../dynsections.js"></script>
@@ -152,74 +152,43 @@ $(document).ready(function(){initNavTree('dc/d9a/a00218.html','../../'); initRes
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">trustregion.hh File Reference</div></div>
+  <div class="headertitle"><div class="title">newtonraphson.hh File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of the Trust-region method for solving nonlinear equations.  
+<p>Implementation of the Newton-Raphson method for solving nonlinear equations.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;iosfwd&gt;</code><br />
-<code>#include &lt;dune/common/float_cmp.hh&gt;</code><br />
-<code>#include &lt;spdlog/spdlog.h&gt;</code><br />
-<code>#include &lt;Eigen/Sparse&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d7/d3f/a00173_source.html">ikarus/linearalgebra/truncatedconjugategradient.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../dd/dc1/a00212_source.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d6/d5b/a00026_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d3/d8b/a00059_source.html">ikarus/utils/linearalgebrahelper.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d3/db1/a00200_source.html">ikarus/utils/observer/observer.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../da/d15/a00188_source.html">ikarus/utils/observer/observermessages.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../dc/dee/a00053_source.html">ikarus/utils/traits.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="../../d9/d01/a00227_source.html">ikarus/solver/linearsolver/linearsolver.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d3/dd5/a00215_source.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../db/db2/a00020_source.html">ikarus/utils/concepts.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d5/d16/a00029_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../df/d03/a00062_source.html">ikarus/utils/linearalgebrahelper.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../de/d79/a00203_source.html">ikarus/utils/observer/observer.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="../../d9/dd0/a00191_source.html">ikarus/utils/observer/observermessages.hh</a>&gt;</code><br />
 </div>
 <p><a href="../../dc/d9a/a00218_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d40/a01387.html">Ikarus::TrustRegionSettings</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration settings for the <a class="el" href="../../d6/d64/a01399.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../d9/d40/a01387.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/dbe/a01370.html">Ikarus::NewtonRaphsonSettings</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings for the Newton-Raphson solver.  <a href="../../d8/dbe/a01370.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dbc/a01391.html">Ikarus::AlgoInfo</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional information about the <a class="el" href="../../d6/d64/a01399.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> algorithm.  <a href="../../dc/dbc/a01391.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/df5/a01395.html">Ikarus::Stats</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about the <a class="el" href="../../d6/d64/a01399.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../d2/df5/a01395.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d64/a01399.html">Ikarus::TrustRegion&lt; NonLinearOperatorImpl, preConditioner, UpdateFunctionTypeImpl &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trust Region solver for non-linear optimization problems.  <a href="../../d6/d64/a01399.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/dff/a01374.html">Ikarus::NewtonRaphson&lt; NonLinearOperatorImpl, LinearSolver, UpdateFunctionTypeImpl &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of the Newton-Raphson method for solving nonlinear equations.  <a href="../../d2/dff/a01374.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:d8/d0a/a00292"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0a/a00292.html">Ikarus</a></td></tr>
+<tr class="memitem:d9/d5e/a00295"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d5e/a00295.html">Ikarus</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ace28d4868cfc647491f7938f04ef6c66"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66">Ikarus::PreConditioner</a> { <a class="el" href="../../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff">Ikarus::IncompleteCholesky</a>
-, <a class="el" href="../../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608">Ikarus::IdentityPreconditioner</a>
-, <a class="el" href="../../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc">Ikarus::DiagonalPreconditioner</a>
- }</td></tr>
-<tr class="memdesc:ace28d4868cfc647491f7938f04ef6c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of available preconditioners for the trust region solver.  <a href="../../d8/d0a/a00292.html#ace28d4868cfc647491f7938f04ef6c66">More...</a><br /></td></tr>
-<tr class="separator:ace28d4868cfc647491f7938f04ef6c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674">Ikarus::StopReason</a> { <br />
-&#160;&#160;<a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1">Ikarus::gradientNormTolReached</a>
-, <a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3">Ikarus::correctionNormTolReached</a>
-, <a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9">Ikarus::maximumTimeReached</a>
-, <a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe">Ikarus::maximumIterationsReached</a>
-, <br />
-&#160;&#160;<a class="el" href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f">Ikarus::dontStop</a>
-<br />
- }</td></tr>
-<tr class="memdesc:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of reasons for stopping the TrustRegion solver.  <a href="../../d8/d0a/a00292.html#abd5d0cf356d1ae81f6ee827b0f47c674">More...</a><br /></td></tr>
-<tr class="separator:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a729c70214792799fb38684febff75e9f"><td class="memTemplParams" colspan="2">template&lt;typename NonLinearOperatorImpl , PreConditioner preConditioner = PreConditioner::IncompleteCholesky, typename UpdateFunctionType  = utils::UpdateDefault&gt; </td></tr>
-<tr class="memitem:a729c70214792799fb38684febff75e9f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d8/d0a/a00292.html#a729c70214792799fb38684febff75e9f">Ikarus::makeTrustRegion</a> (const NonLinearOperatorImpl &amp;p_nonLinearOperator, UpdateFunctionType &amp;&amp;p_updateFunction={})</td></tr>
-<tr class="memdesc:a729c70214792799fb38684febff75e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of the <a class="el" href="../../d6/d64/a01399.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../d8/d0a/a00292.html#a729c70214792799fb38684febff75e9f">More...</a><br /></td></tr>
-<tr class="separator:a729c70214792799fb38684febff75e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88c3bed4f749a93760f96c52c91091e7"><td class="memTemplParams" colspan="2">template&lt;typename NonLinearOperatorImpl , typename LinearSolver  = utils::SolverDefault, typename UpdateFunctionType  = utils::UpdateDefault&gt; </td></tr>
+<tr class="memitem:a88c3bed4f749a93760f96c52c91091e7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d9/d5e/a00295.html#a88c3bed4f749a93760f96c52c91091e7">Ikarus::makeNewtonRaphson</a> (const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType &amp;&amp;p_updateFunction={})</td></tr>
+<tr class="memdesc:a88c3bed4f749a93760f96c52c91091e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create a <a class="el" href="../../d2/dff/a01374.html" title="Implementation of the Newton-Raphson method for solving nonlinear equations.">NewtonRaphson</a> solver instance.  <a href="../../d9/d5e/a00295.html#a88c3bed4f749a93760f96c52c91091e7">More...</a><br /></td></tr>
+<tr class="separator:a88c3bed4f749a93760f96c52c91091e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -231,7 +200,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_26588bed129c997bc132e8888f2113fa.html">solver</a></li><li class="navelem"><a class="el" href="../../dir_bf30182dc97724dc8c2a6cdd4c321688.html">nonlinearsolver</a></li><li class="navelem"><a class="el" href="../../dc/d9a/a00218.html">trustregion.hh</a></li>
+        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_26588bed129c997bc132e8888f2113fa.html">solver</a></li><li class="navelem"><a class="el" href="../../dir_bf30182dc97724dc8c2a6cdd4c321688.html">nonlinearsolver</a></li><li class="navelem"><a class="el" href="../../dc/d9a/a00218.html">newtonraphson.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

@@ -1,4 +1,15 @@
 var a00176 =
 [
-    [ "registerElement", "d5/de9/a00176.html#ga40f83e4d7b90006b1019add3b1b218b5", null ]
+    [ "Eigen::TCGInfo< Scalar >", "d9/de4/a01346.html", "d9/de4/a01346" ],
+    [ "Eigen::internal::traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "d7/dc4/a01354.html", "d7/dc4/a01354" ],
+    [ "Eigen::TruncatedConjugateGradient< MatrixType_, UpLo_, Preconditioner_ >", "da/d61/a01350.html", "da/d61/a01350" ],
+    [ "TCGStopReason", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
+      [ "negativeCurvature", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
+      [ "exceededTrustRegion", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],
+      [ "reachedTargetResidualKappaLinear", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c", null ],
+      [ "reachedTargetResidualThetaSuperLinear", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27", null ],
+      [ "maximumInnerIterations", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30", null ],
+      [ "modelIncreased", "d5/de9/a00176.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab", null ]
+    ] ],
+    [ "truncated_conjugate_gradient", "d5/de9/a00176.html#a38414bb29b6ce1a1d8cc03749acb95f7", null ]
 ];
