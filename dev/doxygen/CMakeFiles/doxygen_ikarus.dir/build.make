@@ -94,6 +94,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechani
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/svk.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/tags.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/vanishingstress.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/membranestrains.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/nonlinearelastic.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/physicshelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultevaluators.hh
