@@ -1518,7 +1518,7 @@
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>de/d25/a00290.html</anchorfile>
-      <anchor>gae2fcf07da1bfae04148b8d570590930c</anchor>
+      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
       <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
   </compound>
@@ -10637,7 +10637,7 @@
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>de/d25/a00290.html</anchorfile>
-      <anchor>gae2fcf07da1bfae04148b8d570590930c</anchor>
+      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
       <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
     <member kind="function">
@@ -11111,7 +11111,7 @@
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>de/d25/a00290.html</anchorfile>
-      <anchor>gae2fcf07da1bfae04148b8d570590930c</anchor>
+      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
       <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
     <member kind="function">

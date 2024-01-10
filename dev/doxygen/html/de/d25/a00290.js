@@ -61,7 +61,7 @@ var a00290 =
     [ "Ikarus::increment", "de/d25/a00290.html#ga5db6e8f04892e85e6b17e276cdbd0e54", null ],
     [ "Ikarus::norm", "de/d25/a00290.html#ga0ffc0c74dbd9aeee3e53b199a21b828c", null ],
     [ "Ikarus::norm", "de/d25/a00290.html#gaceb8dc8f6f43516dabf75155b1f22d4c", null ],
-    [ "Ikarus::utils::obtainLagrangeNodePositions", "de/d25/a00290.html#gae2fcf07da1bfae04148b8d570590930c", null ],
+    [ "Ikarus::utils::obtainLagrangeNodePositions", "de/d25/a00290.html#ga276a9de351512c4cacf6e09cad649265", null ],
     [ "Ikarus::operator*", "de/d25/a00290.html#gacbc60e06e8e43a9bc14660189eb1baa1", null ],
     [ "Ikarus::operator+", "de/d25/a00290.html#gafe54695fd1436b5f2d75934a6fda8fe8", null ],
     [ "Ikarus::operator+", "de/d25/a00290.html#ga9377cd2cf3a5ec468d140cb7063efa58", null ],
