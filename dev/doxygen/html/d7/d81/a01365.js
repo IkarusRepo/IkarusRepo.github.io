@@ -1,15 +1,11 @@
 var a01365 =
 [
-    [ "Base", "d7/d81/a01365.html#ae16fb346feda99ba74d0eb6c6e3e7ece", null ],
-    [ "MatrixType", "d7/d81/a01365.html#a8fb475e49bebbab5c9dfcf5325f4bb73", null ],
-    [ "Preconditioner", "d7/d81/a01365.html#a62244905718a3538dbc1f9b36046d4d6", null ],
-    [ "RealScalar", "d7/d81/a01365.html#a86d1cdc1073006c2d5d809b4c0b77908", null ],
-    [ "Scalar", "d7/d81/a01365.html#a7451d2a0e27db7fb57336f288343a84f", null ],
-    [ "TruncatedConjugateGradient", "d7/d81/a01365.html#a424099a1cac74a8684bcd170441f5415", null ],
-    [ "TruncatedConjugateGradient", "d7/d81/a01365.html#a02491a65df30cd0cfb68b894f3627a6e", null ],
-    [ "TruncatedConjugateGradient", "d7/d81/a01365.html#a6c5ad1eb772b8f2590827647ad6594f2", null ],
-    [ "~TruncatedConjugateGradient", "d7/d81/a01365.html#aa572ab1738a73b78411575a2574c1339", null ],
-    [ "_solve_vector_with_guess_impl", "d7/d81/a01365.html#a23170151337c9f8681f6087d0c036c8a", null ],
-    [ "getInfo", "d7/d81/a01365.html#a5ea4822b3fd6ed682262d6624209e116", null ],
-    [ "setInfo", "d7/d81/a01365.html#a73bcfc1126485468abd73569c0a1a6ac", null ]
+    [ "initRuntimeOptions", "d7/d81/a01365.html#a981486cf6f877aab41fa5e4bb660a4e1", null ],
+    [ "Delta", "d7/d81/a01365.html#a8e52ebafb750281e8b3f00cb698bd3dd", null ],
+    [ "kappa", "d7/d81/a01365.html#a2513528ae4acf6f87352c21d231df432", null ],
+    [ "maxinner", "d7/d81/a01365.html#a7afe22dd21170afd03420ab0a2b363df", null ],
+    [ "mininner", "d7/d81/a01365.html#a6d7b2d2804c136db788473b7a36e4fad", null ],
+    [ "numInnerIter", "d7/d81/a01365.html#aea7d60a8e86f8c8a17251b1da948ea68", null ],
+    [ "stop_tCG", "d7/d81/a01365.html#a9c7c8b39cd33322b4ce22154628f4b7e", null ],
+    [ "theta", "d7/d81/a01365.html#abd45d0da5afd14bd4201289fac65db38", null ]
 ];

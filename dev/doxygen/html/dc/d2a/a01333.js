@@ -1,5 +1,5 @@
 var a01333 =
 [
-    [ "lambda", "dc/d2a/a01333.html#a0157695e9fc8b735e86f828cc35b64fc", null ],
-    [ "mu", "dc/d2a/a01333.html#a3558ad06d2a831f0d412d76956d516f8", null ]
+    [ "K", "dc/d2a/a01333.html#a4f5868738c5673adf557e914123d0c8e", null ],
+    [ "lambda", "dc/d2a/a01333.html#a82f624b8171315c48c0bb5d39ef2f5d8", null ]
 ];

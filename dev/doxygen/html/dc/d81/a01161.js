@@ -1,6 +1,6 @@
 var a01161 =
 [
-    [ "operator()", "dc/d81/a01161.html#adbaaeb5daa06234f1886efa3f7bc8f1a", null ],
-    [ "setTargetIterations", "dc/d81/a01161.html#a52017ebcd89859d5ae214cc8767ef78d", null ],
-    [ "targetIterations", "dc/d81/a01161.html#aabdaad05b950b53e014624271a16fd9c", null ]
+    [ "operator()", "dc/d81/a01161.html#ada90a32692ed0e5c05867ca427e38d18", null ],
+    [ "setTargetIterations", "dc/d81/a01161.html#aae9af895e735c2c5f87a9e2eb77aa737", null ],
+    [ "targetIterations", "dc/d81/a01161.html#af42dff6b9945230918607a14f159e52e", null ]
 ];

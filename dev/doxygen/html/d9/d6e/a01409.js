@@ -1,15 +1,15 @@
 var a01409 =
 [
-    [ "acceptProposal", "d9/d6e/a01409.html#a8c3abc0958c354cc92394dfd12a0317b", null ],
-    [ "accstr", "d9/d6e/a01409.html#af3d423f3f05e0bdd445e2b9de7dc9daf", null ],
-    [ "cauchystr", "d9/d6e/a01409.html#a3947b27f29bf44beb7f3f19e91c344f9", null ],
-    [ "consecutive_Rejected", "d9/d6e/a01409.html#ae1f58001cb449db18bdbd98740dd143d", null ],
-    [ "consecutive_TRminus", "d9/d6e/a01409.html#aab1636ca718e535e09e61cdefc348084", null ],
-    [ "consecutive_TRplus", "d9/d6e/a01409.html#afc288b38be6c8627cf079d9bffc3cda9", null ],
-    [ "randomPredictionString", "d9/d6e/a01409.html#a84be03aa6ebbd80ab2e6fac5a78aacd3", null ],
-    [ "reasonString", "d9/d6e/a01409.html#a8df37485a1fdbbce8d153a8fadd537bf", null ],
-    [ "stop", "d9/d6e/a01409.html#a68f203529fcd8a947fd49330a83d42b2", null ],
-    [ "stopReasonString", "d9/d6e/a01409.html#af34cb5bb79e983db99b959d871afd353", null ],
-    [ "trstr", "d9/d6e/a01409.html#ae987404091035ade31e839e9f00b7cbd", null ],
-    [ "used_cauchy", "d9/d6e/a01409.html#ac6037dd6d1303ded090d9da71dea06b9", null ]
+    [ "corr_tol", "d9/d6e/a01409.html#af8eb8f7712201c0cf01336a92d704892", null ],
+    [ "debug", "d9/d6e/a01409.html#a72e069d6cb3b98ec116172ec886a4986", null ],
+    [ "Delta0", "d9/d6e/a01409.html#a6c171df067c667d9c5257d12b85a9e6d", null ],
+    [ "Delta_bar", "d9/d6e/a01409.html#a8d52f35057ed50714fb0d3f6f94588ec", null ],
+    [ "grad_tol", "d9/d6e/a01409.html#a64868ebbbe9e92ac762a411882399fc9", null ],
+    [ "maxiter", "d9/d6e/a01409.html#ad17916490e9c02177566877df2af606c", null ],
+    [ "maxtime", "d9/d6e/a01409.html#ae255ad8f1baddf2e46981bc017da6d26", null ],
+    [ "miniter", "d9/d6e/a01409.html#a074d2f0fd5ba3fab047d60e9a94b817d", null ],
+    [ "rho_prime", "d9/d6e/a01409.html#ade6e855ba3b6c9bb3e0b54264f1a10eb", null ],
+    [ "rho_reg", "d9/d6e/a01409.html#a10ae2ded9785759dbca6a18136baf5ed", null ],
+    [ "useRand", "d9/d6e/a01409.html#ac9338497c49d411382bf56863298f916", null ],
+    [ "verbosity", "d9/d6e/a01409.html#a5c041eabf13458ca696bcf25a4e043b2", null ]
 ];

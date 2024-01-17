@@ -1,15 +1,15 @@
 var a01201 =
 [
-    [ "Basis", "de/df7/a01201.html#a942f223567b284637a3b76a8a14bffbf", null ],
-    [ "GlobalIndex", "de/df7/a01201.html#af2417966ae12f57911096e30a38fe034", null ],
-    [ "GridElement", "de/df7/a01201.html#a768640691f8600157b9e42d96104f178", null ],
-    [ "LocalView", "de/df7/a01201.html#a0a5c29c7931d3df2d08869e361e31edf", null ],
-    [ "Traits", "de/df7/a01201.html#a22279ecf1b25c6f471cf3ddd40dbb191", null ],
-    [ "ScalarFieldFE", "de/df7/a01201.html#add0f253f23dca461f7007fc19415efdc", null ],
-    [ "globalFlatIndices", "de/df7/a01201.html#a14e333e804dd7bc079e753a6c007b3e4", null ],
-    [ "gridElement", "de/df7/a01201.html#a11dc18a7cfdfbc8c9fe8f7e8d444be1f", null ],
-    [ "localView", "de/df7/a01201.html#acbf06776c078f9683ba836df0c28525e", null ],
-    [ "localView", "de/df7/a01201.html#a0f30480c63ff8ee1a2a3b2a61fb994f6", null ],
-    [ "size", "de/df7/a01201.html#a951333aa6f311510c5d7ad79db0a4fdb", null ],
-    [ "worlddim", "de/df7/a01201.html#a4052077fc854d7284ebf358ef0a4de2a", null ]
+    [ "GlobalIndex", "de/df7/a01201.html#a6f9f635b6e082d4f56988229a944b4e6", null ],
+    [ "GridElement", "de/df7/a01201.html#a74443a55b1c44a242d4089637228d001", null ],
+    [ "LocalView", "de/df7/a01201.html#a382561903c15241286d1d3bb4b8dba25", null ],
+    [ "RootBasis", "de/df7/a01201.html#a603635da96938a751807c9dc1dd81f39", null ],
+    [ "Traits", "de/df7/a01201.html#a3c123212a9c175c1c9d33237a3d5dba3", null ],
+    [ "PowerBasisFE", "de/df7/a01201.html#a009345be8aeaf011f22f4c32c7d6f638", null ],
+    [ "globalFlatIndices", "de/df7/a01201.html#ac47a208cf2511bf8676282280360ab38", null ],
+    [ "gridElement", "de/df7/a01201.html#a0fe5d4e10f331905629351786c72ce6a", null ],
+    [ "localView", "de/df7/a01201.html#a00a045439d18c431ef49d7349230272b", null ],
+    [ "localView", "de/df7/a01201.html#a4b49c02de08fb5c115affa646c5f249a", null ],
+    [ "size", "de/df7/a01201.html#a65fbcfb67bd20fd4a434230b5efa5bd1", null ],
+    [ "num_children", "de/df7/a01201.html#a08d63c99f722a352ee1ebe29bcb88bcd", null ]
 ];

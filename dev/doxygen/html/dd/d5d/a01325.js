@@ -1,5 +1,5 @@
 var a01325 =
 [
-    [ "emodul", "dd/d5d/a01325.html#ac0163a851cf3f135906c79a95cca835f", null ],
-    [ "lambda", "dd/d5d/a01325.html#ab38e15b12e0e703652627c73b8639ee8", null ]
+    [ "emodul", "dd/d5d/a01325.html#a218a7076cb5434dd30811ffe50b39964", null ],
+    [ "K", "dd/d5d/a01325.html#a996ac473697809e0e44551037cf6d4f0", null ]
 ];

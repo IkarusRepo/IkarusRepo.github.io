@@ -1,19 +1,11 @@
 var a01261 =
 [
-    [ "FERequirementType", "de/d34/a01261.html#a5a888bacae06491a7e890c9424518f25", null ],
-    [ "GridView", "de/d34/a01261.html#aee26978267fb07c5c013a33bbc85f380", null ],
-    [ "LocalView", "de/d34/a01261.html#a5699ce520159375f9737ec518130e50e", null ],
-    [ "ResultRequirementsType", "de/d34/a01261.html#a5ed0cee3df4cbf8a9aed6a705dd8642e", null ],
-    [ "Traits", "de/d34/a01261.html#a550c9fb8dcd8c64d21c9adaf4749c866", null ],
-    [ "EnhancedAssumedStrains", "de/d34/a01261.html#a1f09e03a1efdba3ff76ad0f37acc0abc", null ],
-    [ "calculateAt", "de/d34/a01261.html#a22e25753bb3cf0c5b296c3af10c443b6", null ],
-    [ "calculateMatrix", "de/d34/a01261.html#a7f2216c3b8f6b94145ae586324018376", null ],
-    [ "calculateScalar", "de/d34/a01261.html#aa455935bfd539dbd145450c9e8732bdc", null ],
-    [ "calculateScalarImpl", "de/d34/a01261.html#afc5adc55bc187c5d033a90cbae91ae44", null ],
-    [ "calculateVector", "de/d34/a01261.html#a3a92d4669635a5ab22a10bc353111d95", null ],
-    [ "calculateVectorImpl", "de/d34/a01261.html#afa32c429e6121e0573a0fedbe43d2f45", null ],
-    [ "easVariant", "de/d34/a01261.html#ab8c3ff043b0808de14656d79ec56de5f", null ],
-    [ "getNumberOfEASParameters", "de/d34/a01261.html#aa75e2ef6c92f084608e36d5aa6a1122e", null ],
-    [ "isDisplacementBased", "de/d34/a01261.html#a27a311be4e36cbb8d68d96e6d9046afd", null ],
-    [ "setEASType", "de/d34/a01261.html#a3990ba9792f807ae9d0c2f5fd7fb7e85", null ]
+    [ "MType", "de/d34/a01261.html#ae4d88268d8bbccfa19801db35b60564f", null ],
+    [ "EASH1E21", "de/d34/a01261.html#a8c5b5847f3fec76168c02e05114b1df5", null ],
+    [ "EASH1E21", "de/d34/a01261.html#a72cdd4c83d4373c7623f9a397eb6d520", null ],
+    [ "calcM", "de/d34/a01261.html#a58741a35769a0b13c530e47ffd8dffcd", null ],
+    [ "enhancedStrainSize", "de/d34/a01261.html#af2217d81619792495bb7ee6ea40205bd", null ],
+    [ "geometry", "de/d34/a01261.html#adde8fea3f6eb6e806044c5131a7bc919", null ],
+    [ "strainSize", "de/d34/a01261.html#add6a1247960eb038a2cc4d129b0b79e5", null ],
+    [ "T0InverseTransformed", "de/d34/a01261.html#aff9381f83c01e85c46cce75c3bf9633b", null ]
 ];

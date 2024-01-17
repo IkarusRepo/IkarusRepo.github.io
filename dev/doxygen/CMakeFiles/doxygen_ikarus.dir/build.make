@@ -81,6 +81,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfo
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/autodifffe.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/powerbasisfe.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/scalarfe.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fehelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/ferequirements.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fetraits.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/enhancedassumedstrains.hh

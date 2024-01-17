@@ -1,4 +1,5 @@
 var a00263 =
 [
-    [ "dirichletValues", "df/da9/a00263.html#a453691a9a22118c4736e30240481a281", null ]
+    [ "ValueWrapper< T >", "d7/d29/a01589.html", "d7/d29/a01589" ],
+    [ "PYBIND11_MODULE", "df/da9/a00263.html#a0e4f7cface71bec1c24bbed3aaa798d8", null ]
 ];

@@ -1,11 +1,15 @@
 var a01413 =
 [
-    [ "energy", "d7/d68/a01413.html#a43b868b19908b5435f1e2f18fb1d7625", null ],
-    [ "energyProposal", "d7/d68/a01413.html#a3a03ce164638213312bece9e8b54fdcd", null ],
-    [ "etaNorm", "d7/d68/a01413.html#a178607b87a8d27eb7b02bb22dc0d2c63", null ],
-    [ "gradNorm", "d7/d68/a01413.html#a58ec024d2233720f0bf164b8b21a6626", null ],
-    [ "innerIterSum", "d7/d68/a01413.html#ac5053b65db9ceae8340aaebe952c7792", null ],
-    [ "outerIter", "d7/d68/a01413.html#a79ff262003d1f3ff65ef2877aca8df0f", null ],
-    [ "rho", "d7/d68/a01413.html#a1111f89e925a512bd145b50a8f25c2be", null ],
-    [ "time", "d7/d68/a01413.html#ab3cab6865c16d06ec81b5db14b0dc5e2", null ]
+    [ "acceptProposal", "d7/d68/a01413.html#a8c3abc0958c354cc92394dfd12a0317b", null ],
+    [ "accstr", "d7/d68/a01413.html#af3d423f3f05e0bdd445e2b9de7dc9daf", null ],
+    [ "cauchystr", "d7/d68/a01413.html#a3947b27f29bf44beb7f3f19e91c344f9", null ],
+    [ "consecutive_Rejected", "d7/d68/a01413.html#ae1f58001cb449db18bdbd98740dd143d", null ],
+    [ "consecutive_TRminus", "d7/d68/a01413.html#aab1636ca718e535e09e61cdefc348084", null ],
+    [ "consecutive_TRplus", "d7/d68/a01413.html#afc288b38be6c8627cf079d9bffc3cda9", null ],
+    [ "randomPredictionString", "d7/d68/a01413.html#a84be03aa6ebbd80ab2e6fac5a78aacd3", null ],
+    [ "reasonString", "d7/d68/a01413.html#a8df37485a1fdbbce8d153a8fadd537bf", null ],
+    [ "stop", "d7/d68/a01413.html#a68f203529fcd8a947fd49330a83d42b2", null ],
+    [ "stopReasonString", "d7/d68/a01413.html#af34cb5bb79e983db99b959d871afd353", null ],
+    [ "trstr", "d7/d68/a01413.html#ae987404091035ade31e839e9f00b7cbd", null ],
+    [ "used_cauchy", "d7/d68/a01413.html#ac6037dd6d1303ded090d9da71dea06b9", null ]
 ];

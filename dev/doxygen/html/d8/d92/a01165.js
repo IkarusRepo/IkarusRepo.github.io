@@ -1,6 +1,6 @@
 var a01165 =
 [
-    [ "solverInfos", "d8/d92/a01165.html#aedbd5de28f127726884cb99b067313bf", null ],
-    [ "success", "d8/d92/a01165.html#aaeccd3cd24ed5d809397ab055da1b695", null ],
-    [ "totalIterations", "d8/d92/a01165.html#a4712b189651e59cd46fd43b2e6a326bf", null ]
+    [ "operator()", "d8/d92/a01165.html#adbaaeb5daa06234f1886efa3f7bc8f1a", null ],
+    [ "setTargetIterations", "d8/d92/a01165.html#a52017ebcd89859d5ae214cc8767ef78d", null ],
+    [ "targetIterations", "d8/d92/a01165.html#aabdaad05b950b53e014624271a16fd9c", null ]
 ];

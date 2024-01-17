@@ -1,11 +1,12 @@
 var a01241 =
 [
-    [ "MType", "d3/d07/a01241.html#aa88f171600c9a12e1e56f0eac6184b20", null ],
-    [ "EASQ1E4", "d3/d07/a01241.html#ac30d67e782b291e459cad4eacdf16cf2", null ],
-    [ "EASQ1E4", "d3/d07/a01241.html#a322fdf68966e7fb0ee8165f0c966cc40", null ],
-    [ "calcM", "d3/d07/a01241.html#a69fd71138345d01372e9434a1fa904fe", null ],
-    [ "enhancedStrainSize", "d3/d07/a01241.html#ad14763e1531d0b04751e51cc1ca0f23f", null ],
-    [ "geometry", "d3/d07/a01241.html#a98834915295f56b2eb15eae744202339", null ],
-    [ "strainSize", "d3/d07/a01241.html#a091b2d7ab16564e0355e5078fae6eabd", null ],
-    [ "T0InverseTransformed", "d3/d07/a01241.html#a39592b62d7442344006f6c1f7254631f", null ]
+    [ "ctype", "d3/d07/a01241.html#aeb4e7d9c543d447bc0e6a5c7476b6fb4", null ],
+    [ "GlobalCoordinates", "d3/d07/a01241.html#ae1d02a37eb77c1aa1e0fb1e0e6c9c05b", null ],
+    [ "MatrixType", "d3/d07/a01241.html#a405ef6db050717d063f7587f5a58c21c", null ],
+    [ "ParameterSpaceType", "d3/d07/a01241.html#a24177c7d265e27fcadfe7af1aeaf5a40", null ],
+    [ "ScalarType", "d3/d07/a01241.html#acf22857c6bf16c206d4f75f8893ee326", null ],
+    [ "VectorType", "d3/d07/a01241.html#abc110b2eae43b3e5557690e4a68eb006", null ],
+    [ "dimension", "d3/d07/a01241.html#ab97e837467021b234d6dc21b90eab042", null ],
+    [ "mydim", "d3/d07/a01241.html#a09762892e8ebbcffa4b579ea5c7480e9", null ],
+    [ "worlddim", "d3/d07/a01241.html#ab7c23edc4b9aca3298ac840b9f235a5a", null ]
 ];
