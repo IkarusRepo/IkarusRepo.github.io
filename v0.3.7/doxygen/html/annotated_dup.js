@@ -1,0 +1,116 @@
+var annotated_dup =
+[
+    [ "Dune", "d1/de3/a00306.html", [
+      [ "FieldVector", "d4/deb/a01345.html", null ]
+    ] ],
+    [ "Eigen", "d5/d0f/a00308.html", [
+      [ "internal", "d2/d71/a00309.html", [
+        [ "traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "d7/d38/a01373.html", "d7/d38/a01373" ]
+      ] ],
+      [ "EigenBase", "d9/db0/a01437.html", null ],
+      [ "TCGInfo", "d7/d81/a01365.html", "d7/d81/a01365" ],
+      [ "TruncatedConjugateGradient", "d1/d17/a01369.html", "d1/d17/a01369" ]
+    ] ],
+    [ "Ikarus", "da/d50/a00301.html", [
+      [ "AdaptiveStepSizing", "d0/d61/a00302.html", [
+        [ "IterationBased", "d8/d92/a01165.html", "d8/d92/a01165" ],
+        [ "NoOp", "dc/d81/a01161.html", "dc/d81/a01161" ]
+      ] ],
+      [ "ResultEvaluators", "d0/da2/a00307.html", [
+        [ "PrincipalStress", "d4/dad/a01353.html", "d4/dad/a01353" ],
+        [ "VonMises", "de/d6c/a01349.html", "de/d6c/a01349" ]
+      ] ],
+      [ "traits", "da/de0/a00317.html", [
+        [ "FunctionTraits", "da/de2/a01585.html", null ],
+        [ "hasType", "d9/dac/a01557.html", null ],
+        [ "Index", "d3/daa/a01577.html", null ],
+        [ "is_tuple< std::tuple< T... > >", "de/d2c/a01553.html", null ],
+        [ "isSpecialization< U, U< T... > >", "d2/d49/a01561.html", null ],
+        [ "isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "d6/d82/a01565.html", null ],
+        [ "isSpecializationNonTypes< Type, Type< N... > >", "d6/db5/a01573.html", null ],
+        [ "isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "d9/d32/a01569.html", null ],
+        [ "Rebind", "da/df3/a01581.html", null ]
+      ] ],
+      [ "utils", "d1/d5d/a00311.html", [
+        [ "CheckFlags", "db/d2c/a01501.html", "db/d2c/a01501" ],
+        [ "LoadDefault", "d4/dfd/a01465.html", null ],
+        [ "SolverDefault", "da/df7/a01457.html", "da/df7/a01457" ],
+        [ "UpdateDefault", "dc/d60/a01461.html", "dc/d60/a01461" ]
+      ] ],
+      [ "AffordanceCollectionImpl", "de/d04/a01209.html", "de/d04/a01209" ],
+      [ "AlgoInfo", "d7/d68/a01413.html", "d7/d68/a01413" ],
+      [ "ArcLength", "d3/dd3/a01185.html", "d3/dd3/a01185" ],
+      [ "AutoDiffFE", "d4/d10/a01197.html", "d4/d10/a01197" ],
+      [ "Basis", "d2/d9b/a01433.html", "d2/d9b/a01433" ],
+      [ "BulkModulusAndLamesFirstParameter", "dc/d2a/a01333.html", "dc/d2a/a01333" ],
+      [ "ControlInformation", "d7/daf/a01169.html", "d7/daf/a01169" ],
+      [ "ControlLogger", "db/de9/a01525.html", "db/de9/a01525" ],
+      [ "ControlSubsamplingVertexVTKWriter", "db/dce/a01529.html", "db/dce/a01529" ],
+      [ "ConvertLameConstants", "de/da0/a01341.html", "de/da0/a01341" ],
+      [ "DefaultMembraneStrain", "dc/d9e/a01305.html", "dc/d9e/a01305" ],
+      [ "DenseFlatAssembler", "d9/d25/a01157.html", "d9/d25/a01157" ],
+      [ "DirichletValues", "d9/d8b/a01469.html", "d9/d8b/a01469" ],
+      [ "DisplacementControl", "dd/d43/a01193.html", "dd/d43/a01193" ],
+      [ "EASH1E21", "de/d34/a01261.html", "de/d34/a01261" ],
+      [ "EASH1E9", "d9/de7/a01257.html", "d9/de7/a01257" ],
+      [ "EASQ1E4", "d1/d31/a01245.html", "d1/d31/a01245" ],
+      [ "EASQ1E5", "d3/d7b/a01249.html", "d3/d7b/a01249" ],
+      [ "EASQ1E7", "d3/d0b/a01253.html", "d3/d0b/a01253" ],
+      [ "EnhancedAssumedStrains", "da/dd8/a01265.html", "da/dd8/a01265" ],
+      [ "FErequirements", "db/d1c/a01229.html", "db/d1c/a01229" ],
+      [ "FERequirements", "d8/d53/a01225.html", "d8/d53/a01225" ],
+      [ "FETraits", "d3/d07/a01241.html", "d3/d07/a01241" ],
+      [ "FlatAssemblerBase", "de/df6/a01141.html", "de/df6/a01141" ],
+      [ "FlatIndexMergingStrategy", "d1/de4/a01481.html", "d1/de4/a01481" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "d4/d39/a01485.html", "d4/d39/a01485" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "d2/dac/a01489.html", "d2/dac/a01489" ],
+      [ "FlatPreBasis", "d8/d67/a01477.html", "d8/d67/a01477" ],
+      [ "FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "d2/d41/a01493.html", "d2/d41/a01493" ],
+      [ "FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "db/d1e/a01497.html", "db/d1e/a01497" ],
+      [ "GenericObserver", "d1/d62/a01533.html", "d1/d62/a01533" ],
+      [ "IkarusInstance", "dc/dce/a01505.html", "dc/dce/a01505" ],
+      [ "IObservable", "dd/dba/a01545.html", "dd/dba/a01545" ],
+      [ "IObserver", "d5/dc8/a01541.html", "d5/dc8/a01541" ],
+      [ "KirchhoffLoveShell", "d6/d16/a01269.html", "d6/d16/a01269" ],
+      [ "LamesFirstParameterAndShearModulus", "db/dec/a01337.html", "db/dec/a01337" ],
+      [ "LinearElastic", "d2/d1d/a01277.html", "d2/d1d/a01277" ],
+      [ "LinearElasticityT", "d1/d1a/a01285.html", "d1/d1a/a01285" ],
+      [ "LinearSolverTemplate", "d3/dea/a01377.html", "d3/dea/a01377" ],
+      [ "LoadControl", "d7/d0c/a01173.html", "d7/d0c/a01173" ],
+      [ "LoadControlSubsidiaryFunction", "d3/d10/a01189.html", "d3/d10/a01189" ],
+      [ "Material", "d5/d6f/a01281.html", "d5/d6f/a01281" ],
+      [ "NeoHookeT", "d9/dda/a01289.html", "d9/dda/a01289" ],
+      [ "NewtonRaphson", "d3/d92/a01393.html", "d3/d92/a01393" ],
+      [ "NewtonRaphsonSettings", "d0/d95/a01389.html", "d0/d95/a01389" ],
+      [ "NewtonRaphsonWithSubsidiaryFunction", "dc/df4/a01401.html", "dc/df4/a01401" ],
+      [ "NewtonRaphsonWithSubsidiaryFunctionSettings", "d7/d1c/a01397.html", "d7/d1c/a01397" ],
+      [ "NonLinearElastic", "db/d4b/a01309.html", "db/d4b/a01309" ],
+      [ "NonLinearOperator", "dc/d96/a01517.html", "dc/d96/a01517" ],
+      [ "NonLinearSolverInformation", "d4/d1a/a01405.html", "d4/d1a/a01405" ],
+      [ "NonLinearSolverLogger", "df/d3f/a01537.html", "df/d3f/a01537" ],
+      [ "PathFollowing", "dc/d98/a01177.html", "dc/d98/a01177" ],
+      [ "PowerBasisFE", "de/df7/a01201.html", "de/df7/a01201" ],
+      [ "ResultFunction", "d2/d1f/a01361.html", "d2/d1f/a01361" ],
+      [ "ResultRequirements", "dc/dab/a01237.html", "dc/dab/a01237" ],
+      [ "ResultTypeMap", "d6/da1/a01233.html", "d6/da1/a01233" ],
+      [ "ScalarAssembler", "d9/d65/a01145.html", "d9/d65/a01145" ],
+      [ "ScalarFieldFE", "de/d61/a01205.html", "de/d61/a01205" ],
+      [ "SparseFlatAssembler", "dc/d06/a01153.html", "dc/d06/a01153" ],
+      [ "Stats", "de/daf/a01417.html", "de/daf/a01417" ],
+      [ "StVenantKirchhoffT", "dc/dd5/a01293.html", "dc/dd5/a01293" ],
+      [ "SubsidiaryArgs", "de/db5/a01181.html", "de/db5/a01181" ],
+      [ "TraitsFromLocalView", "de/d90/a01313.html", "de/d90/a01313" ],
+      [ "TrustRegion", "d4/d20/a01421.html", "d4/d20/a01421" ],
+      [ "TrustRegionSettings", "d9/d6e/a01409.html", "d9/d6e/a01409" ],
+      [ "VanishingStress", "d3/d07/a01301.html", "d3/d07/a01301" ],
+      [ "VectorFlatAssembler", "d8/d02/a01149.html", "d8/d02/a01149" ],
+      [ "YoungsModulusAndBulkModulus", "dd/d5d/a01325.html", "dd/d5d/a01325" ],
+      [ "YoungsModulusAndLamesFirstParameter", "df/d29/a01329.html", "df/d29/a01329" ],
+      [ "YoungsModulusAndPoissonsRatio", "df/db8/a01317.html", "df/db8/a01317" ],
+      [ "YoungsModulusAndShearModulus", "d9/d5c/a01321.html", "d9/d5c/a01321" ]
+    ] ],
+    [ "Python", "d3/db8/a00316.html", [
+      [ "Conversion< autodiff::Real< order, T > >", "d3/d1b/a01549.html", "d3/d1b/a01549" ]
+    ] ],
+    [ "ValueWrapper", "d7/d29/a01589.html", "d7/d29/a01589" ]
+];

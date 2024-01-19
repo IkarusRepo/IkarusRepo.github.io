@@ -1,0 +1,26 @@
+var dir_36505a9bfb81f81ed7a4e794d4cf597e =
+[
+    [ "drawing", "dir_d45ffc48cf12df7e348ec0b798d36815.html", "dir_d45ffc48cf12df7e348ec0b798d36815" ],
+    [ "observer", "dir_8f2573d1a9c53251c08257bad1a27fd3.html", "dir_8f2573d1a9c53251c08257bad1a27fd3" ],
+    [ "algorithms.hh", "d5/df9/a00044.html", "d5/df9/a00044" ],
+    [ "autodiffhelper.hh", "d6/d5b/a00026.html", "d6/d5b/a00026" ],
+    [ "utils/basis.hh", "df/d68/a02461.html", "df/d68/a02461" ],
+    [ "concepts.hh", "db/db2/a00020.html", "db/db2/a00020" ],
+    [ "defaultfunctions.hh", "d5/d16/a00029.html", null ],
+    [ "utils/dirichletvalues.hh", "da/dae/a02467.html", null ],
+    [ "eigendunetransformations.hh", "d4/d8c/a00035.html", "d4/d8c/a00035" ],
+    [ "eigensparseaddon.hh", "d5/de0/a00050.html", "d5/de0/a00050" ],
+    [ "findlinesegment.hh", "dc/dee/a00053.html", "dc/dee/a00053" ],
+    [ "flatprebasis.hh", "dd/dad/a00005.html", "dd/dad/a00005" ],
+    [ "functionhelper.hh", "d3/d52/a00023.html", "d3/d52/a00023" ],
+    [ "functionsanitychecks.hh", "de/de1/a00065.html", "de/de1/a00065" ],
+    [ "init.hh", "d8/d41/a00038.html", "d8/d41/a00038" ],
+    [ "linearalgebrahelper.hh", "df/d03/a00062.html", "df/d03/a00062" ],
+    [ "makeenum.hh", "d4/dee/a00008.html", "d4/dee/a00008" ],
+    [ "math.hh", "dd/d32/a00041.html", "dd/d32/a00041" ],
+    [ "nonlinearoperator.hh", "da/d45/a00011.html", "da/d45/a00011" ],
+    [ "polyfit.hh", "d3/d8b/a00059.html", "d3/d8b/a00059" ],
+    [ "pythonautodiffdefinitions.hh", "dc/d87/a00032.html", "dc/d87/a00032" ],
+    [ "tensorutils.hh", "d4/d51/a00017.html", "d4/d51/a00017" ],
+    [ "traits.hh", "d9/d2e/a00056.html", "d9/d2e/a00056" ]
+];

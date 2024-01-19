@@ -1,0 +1,169 @@
+\hypertarget{a00065_source}{}\doxysection{functionsanitychecks.\+hh}
+\label{a00065_source}\index{functionsanitychecks.hh@{functionsanitychecks.hh}}
+\mbox{\hyperlink{a00065}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00053}{findlinesegment.hh}}"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00311}{Ikarus::utils}} \{}
+\DoxyCodeLine{18   \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{28     \textcolor{keywordtype}{double} drawResultAndReturnSlope(std::string\&\& functionName, \textcolor{keyword}{const} std::function<\textcolor{keywordtype}{double}(\textcolor{keywordtype}{double})>\& ftfunc, \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00218_a2634a2b365ea0b95c6dcfad0dbefac1f}{draw}},}
+\DoxyCodeLine{29                                     \textcolor{keywordtype}{int} slopeOfReference);}
+\DoxyCodeLine{30   \}  \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{34 \textcolor{comment}{}  \textcolor{keyword}{struct }\mbox{\hyperlink{a01501}{CheckFlags}} \{}
+\DoxyCodeLine{35     \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01501_a08fa473dcdfbdb5dcf759546ea2da3b8}{draw}}                        = \textcolor{keyword}{true};}
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01501_ac9946207ee221c94e843ea7c048a16a3}{writeSlopeStatementIfFailed}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{37     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01501_a6c1e702608ca901f9f7efca524560b25}{tolerance}}                 = 1e-\/2;}
+\DoxyCodeLine{38   \};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{52   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{53   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00296_gacb9e813539bfd84df99ad097cabc9de9}{checkGradient}}(}
+\DoxyCodeLine{54       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01501}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01501}{CheckFlags}}(),}
+\DoxyCodeLine{55       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{56       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{57     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{58     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{59     UpdateType b;}
+\DoxyCodeLine{60     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{61       b.resizeLike(nonLinOp.derivative());}
+\DoxyCodeLine{62       b.setRandom();}
+\DoxyCodeLine{63       b /= b.norm();}
+\DoxyCodeLine{64     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{65       b = 1;}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     nonLinOp.updateAll();}
+\DoxyCodeLine{68     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{double} gradfv;}
+\DoxyCodeLine{71     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>)}
+\DoxyCodeLine{72       gradfv = nonLinOp.derivative().dot(b);}
+\DoxyCodeLine{73     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{74       gradfv = nonLinOp.derivative() * b;}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{77       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{78       nonLinOp.template update<0>();}
+\DoxyCodeLine{79       \textcolor{keyword}{auto} value = std::abs(nonLinOp.value() -\/ e -\/ t * gradfv);}
+\DoxyCodeLine{80       x          = xOld;}
+\DoxyCodeLine{81       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{82     \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Gradient"{}}, ftfunc, checkFlags.draw, 2);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(2.0, slope, checkFlags.tolerance);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{89       spdlog::info(\textcolor{stringliteral}{"{}Gradient check:"{}});}
+\DoxyCodeLine{90       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 2. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{91       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{92         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{93       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{94         spdlog::info(\textcolor{stringliteral}{"{}The gradient seems wrong."{}});}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97     nonLinOp.updateAll();}
+\DoxyCodeLine{98     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{99   \}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{113   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{114   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00296_ga553465359c199ef676945832587d2869}{checkJacobian}}(}
+\DoxyCodeLine{115       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01501}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01501}{CheckFlags}}(),}
+\DoxyCodeLine{116       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{117       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{118     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{119     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{120     UpdateType b;}
+\DoxyCodeLine{121     b.resizeLike(nonLinOp.derivative().row(0).transpose());}
+\DoxyCodeLine{122     b.setRandom();}
+\DoxyCodeLine{123     b /= b.norm();}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     nonLinOp.updateAll();}
+\DoxyCodeLine{126     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{keyword}{const} \textcolor{keyword}{auto} jacofv = (nonLinOp.derivative() * b).eval();}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{131       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{132       nonLinOp.template update<0>();}
+\DoxyCodeLine{133       \textcolor{keyword}{auto} value = (nonLinOp.value() -\/ e -\/ t * jacofv).\mbox{\hyperlink{a00296_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}();}
+\DoxyCodeLine{134       x          = xOld;}
+\DoxyCodeLine{135       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{136     \};}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Jacobian"{}}, ftfunc, checkFlags.draw, 2);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(2.0, slope, checkFlags.tolerance);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{143       spdlog::info(\textcolor{stringliteral}{"{}Jacobian check:"{}});}
+\DoxyCodeLine{144       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 2. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{145       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{146         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{147       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{148         spdlog::info(\textcolor{stringliteral}{"{}The Jacobian seems wrong."{}});}
+\DoxyCodeLine{149     \}}
+\DoxyCodeLine{150     nonLinOp.updateAll();}
+\DoxyCodeLine{151     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{152   \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{166   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonlinearOperator, \textcolor{keyword}{typename} UpdateType = \textcolor{keyword}{typename} NonlinearOperator::\textcolor{keyword}{template} ParameterValue<0>>}
+\DoxyCodeLine{167   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00296_ga5d1a87964a3d6b6ddc994532e93b6798}{checkHessian}}(}
+\DoxyCodeLine{168       NonlinearOperator\& nonLinOp, \mbox{\hyperlink{a01501}{CheckFlags}} checkFlags = \mbox{\hyperlink{a01501}{CheckFlags}}(),}
+\DoxyCodeLine{169       std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\&, \textcolor{keyword}{const} UpdateType\&)> p\_updateFunction}
+\DoxyCodeLine{170       = [](\textcolor{keyword}{typename} NonlinearOperator::template ParameterValue<0>\& a, \textcolor{keyword}{const} UpdateType\& b) \{ a += b; \}) \{}
+\DoxyCodeLine{171     \textcolor{keyword}{auto}\& x         = nonLinOp.firstParameter();}
+\DoxyCodeLine{172     \textcolor{keyword}{const} \textcolor{keyword}{auto} xOld = x;}
+\DoxyCodeLine{173     UpdateType b;}
+\DoxyCodeLine{174     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{175       b.resizeLike(nonLinOp.derivative());}
+\DoxyCodeLine{176       b.setRandom();}
+\DoxyCodeLine{177       b /= b.norm();}
+\DoxyCodeLine{178     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{179       b = 1;}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181     nonLinOp.updateAll();}
+\DoxyCodeLine{182     \textcolor{keyword}{const} \textcolor{keyword}{auto} e = nonLinOp.value();}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     \textcolor{keywordtype}{double} gradfv, vhessv;}
+\DoxyCodeLine{185     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_floating\_point\_v<UpdateType>) \{}
+\DoxyCodeLine{186       gradfv = nonLinOp.derivative().dot(b);}
+\DoxyCodeLine{187       vhessv = (nonLinOp.secondDerivative() * b).dot(b);}
+\DoxyCodeLine{188     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{189       gradfv = nonLinOp.derivative() * b;}
+\DoxyCodeLine{190       vhessv = nonLinOp.secondDerivative() * b * b;}
+\DoxyCodeLine{191     \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193     \textcolor{keyword}{auto} ftfunc = [\&](\textcolor{keyword}{auto} t) \{}
+\DoxyCodeLine{194       p\_updateFunction(x, t * b);}
+\DoxyCodeLine{195       nonLinOp.template update<0>();}
+\DoxyCodeLine{196       \textcolor{keyword}{auto} value = std::abs(nonLinOp.value() -\/ e -\/ t * gradfv -\/ 0.5 * t * t * vhessv);}
+\DoxyCodeLine{197       x          = xOld;}
+\DoxyCodeLine{198       \textcolor{keywordflow}{return} value;}
+\DoxyCodeLine{199     \};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{201     \textcolor{keyword}{const} \textcolor{keywordtype}{double} slope = Impl::drawResultAndReturnSlope(\textcolor{stringliteral}{"{}Hessian"{}}, ftfunc, checkFlags.draw, 3);}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{keyword}{const} \textcolor{keywordtype}{bool} checkPassed = Dune::FloatCmp::le(3.0, slope, checkFlags.tolerance);}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205     \textcolor{keywordflow}{if} (checkFlags.writeSlopeStatementIfFailed and not checkPassed) \{}
+\DoxyCodeLine{206       spdlog::info(\textcolor{stringliteral}{"{}Hessian check:"{}});}
+\DoxyCodeLine{207       spdlog::info(\textcolor{stringliteral}{"{}The slope should be 3. It seems to be \{\}."{}}, slope);}
+\DoxyCodeLine{208       \textcolor{keywordflow}{if} (checkPassed)}
+\DoxyCodeLine{209         spdlog::info(\textcolor{stringliteral}{"{}We consider this as sufficient."{}});}
+\DoxyCodeLine{210       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{211         spdlog::info(\textcolor{stringliteral}{"{}The Hessian seems wrong."{}});}
+\DoxyCodeLine{212     \}}
+\DoxyCodeLine{213     nonLinOp.updateAll();}
+\DoxyCodeLine{214     \textcolor{keywordflow}{return} checkPassed;}
+\DoxyCodeLine{215   \}}
+\DoxyCodeLine{216 \}  \textcolor{comment}{// namespace Ikarus::utils}}
+
+\end{DoxyCode}
