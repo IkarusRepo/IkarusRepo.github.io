@@ -1,89 +1,64 @@
-\hypertarget{a00173_source}{}\doxysection{resultfunction.\+hh}
-\label{a00173_source}\index{resultfunction.hh@{resultfunction.hh}}
+\hypertarget{a00173_source}{}\doxysection{membranestrains.\+hh}
+\label{a00173_source}\index{membranestrains.hh@{membranestrains.hh}}
 \mbox{\hyperlink{a00173}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00170}{ikarus/io/resultevaluators.hh}}>}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00035}{ikarus/utils/eigendunetransformations.hh}}>}}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00301}{Ikarus}} \{}
-\DoxyCodeLine{23   \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{24     \textcolor{keyword}{struct }DefaultUserFunction \{\};}
-\DoxyCodeLine{25   \}  \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{47   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType\_, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
-\DoxyCodeLine{48   \textcolor{keyword}{class }\mbox{\hyperlink{a01361}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename ElementType\_::GridView> \{}
-\DoxyCodeLine{49   \textcolor{keyword}{public}:}
-\DoxyCodeLine{50     \textcolor{keyword}{using }\mbox{\hyperlink{a01361_af9644b833b303bd3cabf3f4fb284effc}{ElementType}}            = ElementType\_;}
-\DoxyCodeLine{51     \textcolor{keyword}{using }\mbox{\hyperlink{a01361_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}     = \textcolor{keyword}{typename} ElementType::ResultRequirementsType;}
-\DoxyCodeLine{52     \textcolor{keyword}{using }\mbox{\hyperlink{a01361_a60f3b0a6336812436e18ac14de25e0fc}{GridView}}               = \textcolor{keyword}{typename} ElementType::GridView;}
-\DoxyCodeLine{53     \textcolor{keyword}{using }\mbox{\hyperlink{a01361_a2b614ca2965a4d07f6388f3070c85c4f}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
-\DoxyCodeLine{54     \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01361_a1b40b371171256b66b51c1c2b12a37a3}{griddim}} = GridView::dimension;}
-\DoxyCodeLine{55     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} GridView::template Codim<0>::Entity \mbox{\hyperlink{a01361_a95b6a8f8be831236e4b2634bc852a342}{Entity}};}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{67     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01361_ae07a0f7cfdc977d153022c33b2c4ada9}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01361_a95b6a8f8be831236e4b2634bc852a342}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01345}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{68       \textcolor{keyword}{auto} index = gridView.indexSet().index(e);}
-\DoxyCodeLine{69       \textcolor{keywordflow}{return} evaluateComponent(index, local, comp);}
-\DoxyCodeLine{70     \}}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{79     [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01361_a55ddba55f148fabc822146919f7c2864}{ncomps}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{80       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
-\DoxyCodeLine{81         \mbox{\hyperlink{a01345}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{83         fes\_-\/>at(0).calculateAt(resultRequirements\_, val, resultTypeMap);}
-\DoxyCodeLine{84         \textcolor{keywordflow}{if} (resultRequirements\_.getRequestedResult() != resultTypeMap.\mbox{\hyperlink{a01233_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().first)}
-\DoxyCodeLine{85           DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The return result should be the requested one"{}});}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{87         \textcolor{keyword}{auto} sigma = resultTypeMap.\mbox{\hyperlink{a01233_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
-\DoxyCodeLine{88 }
-\DoxyCodeLine{89         \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.rows() * sigma.cols());}
-\DoxyCodeLine{90       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{91         \textcolor{keywordflow}{return} userFunction\_.ncomps();}
-\DoxyCodeLine{92     \}}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{101     [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01361_aeab965379985b94a9c60059b01595f6b}{name}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{102       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{103         \textcolor{keywordflow}{return} \mbox{\hyperlink{a00301_a0853622412d4cedc078b81ba454eb250}{toString}}(resultRequirements\_.getRequestedResult());}
-\DoxyCodeLine{104       \textcolor{keywordflow}{else}}
-\DoxyCodeLine{105         \textcolor{keywordflow}{return} userFunction\_.name();}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/common/fvector.hh>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00310}{Ikarus}} \{}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17   \textcolor{keyword}{struct }\mbox{\hyperlink{a01322}{DefaultMembraneStrain}} \{}
+\DoxyCodeLine{29     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
+\DoxyCodeLine{30     \textcolor{keyword}{auto} \mbox{\hyperlink{a01322_acfe8c5424970d44c34005e13e851494a}{value}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01362}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} Geometry\& geo, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction) \textcolor{keyword}{const}}
+\DoxyCodeLine{31         -\/> Eigen::Vector3<\textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype> \{}
+\DoxyCodeLine{32       \textcolor{keyword}{using }ScalarType = \textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype;}
+\DoxyCodeLine{33       Eigen::Vector3<ScalarType> epsV;}
+\DoxyCodeLine{34       \textcolor{keyword}{const} \textcolor{keyword}{auto} J = Dune::toEigen(geo.jacobianTransposed(gpPos));}
+\DoxyCodeLine{35       \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00315}{Dune}};}
+\DoxyCodeLine{36       \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{37       \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 3, 2> gradu = toEigen(}
+\DoxyCodeLine{38           uFunction.evaluateDerivative(gpPos,  \textcolor{comment}{// Here the gpIndex could be passed}}
+\DoxyCodeLine{39                                        Dune::wrt(spatialAll), Dune::on(Dune::DerivativeDirections::referenceElement)));}
+\DoxyCodeLine{40       \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 2, 3> j = J + gradu.transpose();}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42       epsV << J.row(0).dot(gradu.col(0)) + 0.5 * gradu.col(0).squaredNorm(),}
+\DoxyCodeLine{43           J.row(1).dot(gradu.col(1)) + 0.5 * gradu.col(1).squaredNorm(),}
+\DoxyCodeLine{44           j.row(0).dot(j.row(1)) -\/ J.row(0).dot(J.row(1));}
+\DoxyCodeLine{45       \textcolor{keywordflow}{return} epsV;}
+\DoxyCodeLine{46     \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{64     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{65     \textcolor{keyword}{auto} \mbox{\hyperlink{a01322_a1c17239105e26dfdc369583624d8a200}{derivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01362}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 2, 3>\& jcur,}
+\DoxyCodeLine{66                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} Geometry\& geo, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis,}
+\DoxyCodeLine{67                     \textcolor{keyword}{const} \textcolor{keywordtype}{int} node)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{68       Eigen::Matrix<ScalarType, 3, 3> bop;}
+\DoxyCodeLine{69       bop.row(0) = jcur.row(0) * dNAtGp(node, 0);}
+\DoxyCodeLine{70       bop.row(1) = jcur.row(1) * dNAtGp(node, 1);}
+\DoxyCodeLine{71       bop.row(2) = jcur.row(0) * dNAtGp(node, 1) + jcur.row(1) * dNAtGp(node, 0);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73       \textcolor{keywordflow}{return} bop;}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{95     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{96     \textcolor{keyword}{auto} \mbox{\hyperlink{a01322_a95cb97998e73fcf05fb7d9df0249b2e9}{secondDerivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01362}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} Geometry\& geo,}
+\DoxyCodeLine{97                           \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis, \textcolor{keyword}{const} Eigen::Vector3<ScalarType>\& S, \textcolor{keywordtype}{int} I,}
+\DoxyCodeLine{98                           \textcolor{keywordtype}{int} J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{99       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1i                   = dNAtGp(I, 0);}
+\DoxyCodeLine{100       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1j                   = dNAtGp(J, 0);}
+\DoxyCodeLine{101       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2i                   = dNAtGp(I, 1);}
+\DoxyCodeLine{102       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2j                   = dNAtGp(J, 1);}
+\DoxyCodeLine{103       \textcolor{keyword}{const} ScalarType NS                = dN1i * dN1j * S[0] + dN2i * dN2j * S[1] + (dN1i * dN2j + dN2i * dN1j) * S[2];}
+\DoxyCodeLine{104       Eigen::Matrix<ScalarType, 3, 3> kg = Eigen::Matrix<double, 3, 3>::Identity() * NS;}
+\DoxyCodeLine{105       \textcolor{keywordflow}{return} kg;}
 \DoxyCodeLine{106     \}}
-\DoxyCodeLine{107 }
-\DoxyCodeLine{118     \mbox{\hyperlink{a01361_a92ae43568c42e7d621e5a99d8ecce538}{ResultFunction}}(std::vector<ElementType>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01361_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}}\& req, UserFunction userFunction = \{\})}
-\DoxyCodeLine{119         : gridView\{fes-\/>at(0).localView().globalBasis().gridView()\},}
-\DoxyCodeLine{120           resultRequirements\_\{req\},}
-\DoxyCodeLine{121           fes\_\{fes\},}
-\DoxyCodeLine{122           userFunction\_\{userFunction\} \{}
-\DoxyCodeLine{123       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) userFunction\_ = userFunction;}
-\DoxyCodeLine{124     \}}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126   \textcolor{keyword}{private}:}
-\DoxyCodeLine{127     \textcolor{keywordtype}{double} evaluateComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01345}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{128       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{129         \textcolor{keywordflow}{return} userFunction\_(fes\_-\/>at(eleID), resultRequirements\_, local, comp);}
-\DoxyCodeLine{130       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{131         fes\_-\/>at(eleID).calculateAt(resultRequirements\_, local, resultTypeMap);}
-\DoxyCodeLine{132         \textcolor{keyword}{auto} result = resultTypeMap.\mbox{\hyperlink{a01233_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
-\DoxyCodeLine{133         \textcolor{keywordflow}{return} result(comp);}
-\DoxyCodeLine{134       \}}
-\DoxyCodeLine{135     \}}
-\DoxyCodeLine{136 }
-\DoxyCodeLine{137     \mbox{\hyperlink{a01361_a60f3b0a6336812436e18ac14de25e0fc}{GridView}} gridView;}
-\DoxyCodeLine{138     \mbox{\hyperlink{a01361_aa661da19892469d54bc070dbd0e04631}{ResultRequirements}} resultRequirements\_;}
-\DoxyCodeLine{139     std::vector<ElementType>* fes\_;}
-\DoxyCodeLine{140     \textcolor{keyword}{mutable} ResultTypeMap<ctype> resultTypeMap;}
-\DoxyCodeLine{141     [[no\_unique\_address]] std::string name\_\{\};}
-\DoxyCodeLine{142     UserFunction userFunction\_;}
-\DoxyCodeLine{143   \};}
-\DoxyCodeLine{144 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{107   \};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \}  \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

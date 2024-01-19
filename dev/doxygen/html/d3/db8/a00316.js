@@ -1,4 +1,5 @@
 var a00316 =
 [
-    [ "Conversion< autodiff::Real< order, T > >", "d3/d1b/a01549.html", "d3/d1b/a01549" ]
+    [ "PrincipalStress", "d8/dbe/a01370.html", "d8/dbe/a01370" ],
+    [ "VonMises", "d6/dfe/a01366.html", "d6/dfe/a01366" ]
 ];

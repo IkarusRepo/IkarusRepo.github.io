@@ -1,15 +1,14 @@
 var a00308 =
 [
-    [ "internal", "d2/d71/a00309.html", "d2/d71/a00309" ],
-    [ "EigenBase", "d9/db0/a01437.html", null ],
-    [ "TCGInfo", "d7/d81/a01365.html", "d7/d81/a01365" ],
-    [ "TruncatedConjugateGradient", "d1/d17/a01369.html", "d1/d17/a01369" ],
-    [ "TCGStopReason", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
-      [ "negativeCurvature", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
-      [ "exceededTrustRegion", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],
-      [ "reachedTargetResidualKappaLinear", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c", null ],
-      [ "reachedTargetResidualThetaSuperLinear", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27", null ],
-      [ "maximumInnerIterations", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30", null ],
-      [ "modelIncreased", "d5/d0f/a00308.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab", null ]
-    ] ]
+    [ "Ikarus::traits::Pointer", "dd/d55/a01638.html", null ],
+    [ "Ikarus::traits::is_tuple< std::tuple< T... > >", "d5/d75/a01570.html", null ],
+    [ "Ikarus::traits::hasType< T, Tuple >", "d9/df5/a01574.html", null ],
+    [ "Ikarus::traits::isSpecialization< U, U< T... > >", "d1/d88/a01578.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "d0/d21/a01582.html", null ],
+    [ "Ikarus::traits::isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "d2/d2f/a01586.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypes< Type, Type< N... > >", "d4/d49/a01590.html", null ],
+    [ "Ikarus::traits::Index< T, Tuple >", "dc/def/a01594.html", null ],
+    [ "Ikarus::traits::FunctionTraits< T, typename >", "d5/dcf/a01602.html", null ],
+    [ "Ikarus::traits::ReturnType", "d5/d0f/a00308.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
+    [ "Ikarus::traits::countType", "d5/d0f/a00308.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
 ];

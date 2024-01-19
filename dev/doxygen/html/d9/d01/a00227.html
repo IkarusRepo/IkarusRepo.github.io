@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: trustregion.hh File Reference</title>
+    <title>ikarus: griddrawer.hh File Reference</title>
     <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../jquery.js"></script>
     <script type="text/javascript" src="../../dynsections.js"></script>
@@ -153,77 +153,73 @@ $(document).ready(function(){initNavTree('d9/d01/a00227.html','../../'); initRes
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">trustregion.hh File Reference</div></div>
+  <div class="headertitle"><div class="title">griddrawer.hh File Reference<div class="ingroups"><a class="el" href="../../da/dd4/a00291.html">Ikarus Modules</a> &raquo; <a class="el" href="../../db/da2/a00300.html">IO</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of the Trust-region method for solving nonlinear equations.  
+<p>Draw grid view using Matplot library.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;iosfwd&gt;</code><br />
-<code>#include &lt;dune/common/float_cmp.hh&gt;</code><br />
-<code>#include &lt;spdlog/spdlog.h&gt;</code><br />
-<code>#include &lt;Eigen/Sparse&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d7/d25/a00182_source.html">ikarus/linearalgebra/truncatedconjugategradient.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../dd/d52/a00221_source.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d5/d16/a00029_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../df/d03/a00062_source.html">ikarus/utils/linearalgebrahelper.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d3/de5/a00209_source.html">ikarus/utils/observer/observer.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../de/db1/a00197_source.html">ikarus/utils/observer/observermessages.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="../../d9/d2e/a00056_source.html">ikarus/utils/traits.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;matplot/matplot.h&gt;</code><br />
+<code>#include &lt;ranges&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
+<code>#include &lt;thread&gt;</code><br />
+<code>#include &lt;dune/geometry/dimension.hh&gt;</code><br />
 </div>
 <p><a href="../../d9/d01/a00227_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d6e/a01409.html">Ikarus::TrustRegionSettings</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configuration settings for the <a class="el" href="../../d4/d20/a01421.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../d9/d6e/a01409.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d68/a01413.html">Ikarus::AlgoInfo</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional information about the <a class="el" href="../../d4/d20/a01421.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> algorithm.  <a href="../../d7/d68/a01413.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/daf/a01417.html">Ikarus::Stats</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about the <a class="el" href="../../d4/d20/a01421.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../de/daf/a01417.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d20/a01421.html">Ikarus::TrustRegion&lt; NonLinearOperatorImpl, preConditioner, UpdateFunctionTypeImpl &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trust Region solver for non-linear optimization problems.  <a href="../../d4/d20/a01421.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:da/d50/a00301"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d50/a00301.html">Ikarus</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:ace28d4868cfc647491f7938f04ef6c66"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d50/a00301.html#ace28d4868cfc647491f7938f04ef6c66">Ikarus::PreConditioner</a> { <a class="el" href="../../da/d50/a00301.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff">Ikarus::IncompleteCholesky</a>
-, <a class="el" href="../../da/d50/a00301.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608">Ikarus::IdentityPreconditioner</a>
-, <a class="el" href="../../da/d50/a00301.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc">Ikarus::DiagonalPreconditioner</a>
- }</td></tr>
-<tr class="memdesc:ace28d4868cfc647491f7938f04ef6c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of available preconditioners for the trust region solver.  <a href="../../da/d50/a00301.html#ace28d4868cfc647491f7938f04ef6c66">More...</a><br /></td></tr>
-<tr class="separator:ace28d4868cfc647491f7938f04ef6c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674">Ikarus::StopReason</a> { <br />
-&#160;&#160;<a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1">Ikarus::gradientNormTolReached</a>
-, <a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3">Ikarus::correctionNormTolReached</a>
-, <a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9">Ikarus::maximumTimeReached</a>
-, <a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe">Ikarus::maximumIterationsReached</a>
-, <br />
-&#160;&#160;<a class="el" href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f">Ikarus::dontStop</a>
-<br />
- }</td></tr>
-<tr class="memdesc:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of reasons for stopping the TrustRegion solver.  <a href="../../da/d50/a00301.html#abd5d0cf356d1ae81f6ee827b0f47c674">More...</a><br /></td></tr>
-<tr class="separator:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a729c70214792799fb38684febff75e9f"><td class="memTemplParams" colspan="2">template&lt;typename NonLinearOperatorImpl , PreConditioner preConditioner = PreConditioner::IncompleteCholesky, typename UpdateFunctionType  = utils::UpdateDefault&gt; </td></tr>
-<tr class="memitem:a729c70214792799fb38684febff75e9f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/d50/a00301.html#a729c70214792799fb38684febff75e9f">Ikarus::makeTrustRegion</a> (const NonLinearOperatorImpl &amp;p_nonLinearOperator, UpdateFunctionType &amp;&amp;p_updateFunction={})</td></tr>
-<tr class="memdesc:a729c70214792799fb38684febff75e9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of the <a class="el" href="../../d4/d20/a01421.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="../../da/d50/a00301.html#a729c70214792799fb38684febff75e9f">More...</a><br /></td></tr>
-<tr class="separator:a729c70214792799fb38684febff75e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2634a2b365ea0b95c6dcfad0dbefac1f"><td class="memTemplParams" colspan="2">template&lt;typename GridView &gt; </td></tr>
+<tr class="memitem:a2634a2b365ea0b95c6dcfad0dbefac1f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d9/d01/a00227.html#a2634a2b365ea0b95c6dcfad0dbefac1f">draw</a> (const GridView &amp;gridView, bool forever=false)</td></tr>
+<tr class="memdesc:a2634a2b365ea0b95c6dcfad0dbefac1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw function for visualizing the elements of a DUNE grid view.  <a href="../../d9/d01/a00227.html#a2634a2b365ea0b95c6dcfad0dbefac1f">More...</a><br /></td></tr>
+<tr class="separator:a2634a2b365ea0b95c6dcfad0dbefac1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a2634a2b365ea0b95c6dcfad0dbefac1f" name="a2634a2b365ea0b95c6dcfad0dbefac1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2634a2b365ea0b95c6dcfad0dbefac1f">&#9670;&nbsp;</a></span>draw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename GridView &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void draw </td>
+          <td>(</td>
+          <td class="paramtype">const GridView &amp;&#160;</td>
+          <td class="paramname"><em>gridView</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forever</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This function uses the Matplot library to visualize the elements of a DUNE grid view. It draws the edges of the elements in either 2D or 3D space.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">GridView</td><td>The type of the DUNE grid view. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gridView</td><td>The DUNE grid view to visualize. </td></tr>
+    <tr><td class="paramname">forever</td><td>If true, the plot will be displayed until closed; otherwise, it will be displayed for a short duration. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -234,7 +230,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_26588bed129c997bc132e8888f2113fa.html">solver</a></li><li class="navelem"><a class="el" href="../../dir_bf30182dc97724dc8c2a6cdd4c321688.html">nonlinearsolver</a></li><li class="navelem"><a class="el" href="../../d9/d01/a00227.html">trustregion.hh</a></li>
+        <li class="navelem"><a class="el" href="../../dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="../../dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="../../dir_d45ffc48cf12df7e348ec0b798d36815.html">drawing</a></li><li class="navelem"><a class="el" href="../../d9/d01/a00227.html">griddrawer.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

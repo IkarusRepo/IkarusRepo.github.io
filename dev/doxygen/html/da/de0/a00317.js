@@ -1,15 +1,15 @@
 var a00317 =
 [
-    [ "FunctionTraits", "da/de2/a01585.html", null ],
-    [ "hasType", "d9/dac/a01557.html", null ],
-    [ "Index", "d3/daa/a01577.html", null ],
-    [ "is_tuple< std::tuple< T... > >", "de/d2c/a01553.html", null ],
-    [ "isSpecialization< U, U< T... > >", "d2/d49/a01561.html", null ],
-    [ "isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "d6/d82/a01565.html", null ],
-    [ "isSpecializationNonTypes< Type, Type< N... > >", "d6/db5/a01573.html", null ],
-    [ "isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "d9/d32/a01569.html", null ],
-    [ "Rebind", "da/df3/a01581.html", null ],
-    [ "Pointer", "dd/dda/a01621.html", null ],
-    [ "ReturnType", "df/d95/a00299.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
-    [ "countType", "df/d95/a00299.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
+    [ "internal", "d2/d41/a00318.html", "d2/d41/a00318" ],
+    [ "EigenBase", "da/df6/a01454.html", null ],
+    [ "TCGInfo", "de/d9d/a01382.html", "de/d9d/a01382" ],
+    [ "TruncatedConjugateGradient", "d3/deb/a01386.html", "d3/deb/a01386" ],
+    [ "TCGStopReason", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
+      [ "negativeCurvature", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
+      [ "exceededTrustRegion", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],
+      [ "reachedTargetResidualKappaLinear", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c", null ],
+      [ "reachedTargetResidualThetaSuperLinear", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27", null ],
+      [ "maximumInnerIterations", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30", null ],
+      [ "modelIncreased", "da/de0/a00317.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab", null ]
+    ] ]
 ];

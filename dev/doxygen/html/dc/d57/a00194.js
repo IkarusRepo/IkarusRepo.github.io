@@ -1,4 +1,4 @@
 var a00194 =
 [
-    [ "registerBoundaryPatch", "dc/d57/a00194.html#a331fd78be5a4155963abe5829282c8f1", null ]
+    [ "registerElement", "dc/d57/a00194.html#ga40f83e4d7b90006b1019add3b1b218b5", null ]
 ];
