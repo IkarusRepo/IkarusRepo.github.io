@@ -1,0 +1,118 @@
+var annotated_dup =
+[
+    [ "Dune", "a00318.html", [
+      [ "FieldVector", "a01365.html", null ]
+    ] ],
+    [ "Eigen", "a00320.html", [
+      [ "internal", "a00321.html", [
+        [ "traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01393.html", "a01393" ]
+      ] ],
+      [ "EigenBase", "a01457.html", null ],
+      [ "TCGInfo", "a01385.html", "a01385" ],
+      [ "TruncatedConjugateGradient", "a01389.html", "a01389" ]
+    ] ],
+    [ "Ikarus", "a00313.html", [
+      [ "AdaptiveStepSizing", "a00314.html", [
+        [ "IterationBased", "a01177.html", "a01177" ],
+        [ "NoOp", "a01173.html", "a01173" ]
+      ] ],
+      [ "ResultEvaluators", "a00319.html", [
+        [ "PrincipalStress", "a01373.html", "a01373" ],
+        [ "VonMises", "a01369.html", "a01369" ]
+      ] ],
+      [ "traits", "a00329.html", [
+        [ "FunctionTraits", "a01605.html", null ],
+        [ "hasType", "a01577.html", null ],
+        [ "Index", "a01597.html", null ],
+        [ "is_tuple< std::tuple< T... > >", "a01573.html", null ],
+        [ "isSpecialization< U, U< T... > >", "a01581.html", null ],
+        [ "isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01585.html", null ],
+        [ "isSpecializationNonTypes< Type, Type< N... > >", "a01593.html", null ],
+        [ "isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01589.html", null ],
+        [ "Rebind", "a01601.html", null ]
+      ] ],
+      [ "utils", "a00323.html", [
+        [ "CheckFlags", "a01521.html", "a01521" ],
+        [ "LoadDefault", "a01485.html", null ],
+        [ "SolverDefault", "a01477.html", "a01477" ],
+        [ "UpdateDefault", "a01481.html", "a01481" ]
+      ] ],
+      [ "AffordanceCollectionImpl", "a01221.html", "a01221" ],
+      [ "AlgoInfo", "a01433.html", "a01433" ],
+      [ "ArcLength", "a01197.html", "a01197" ],
+      [ "AutoDiffFE", "a01209.html", "a01209" ],
+      [ "Basis", "a01453.html", "a01453" ],
+      [ "BulkModulusAndLamesFirstParameter", "a01353.html", "a01353" ],
+      [ "ControlInformation", "a01181.html", "a01181" ],
+      [ "ControlLogger", "a01545.html", "a01545" ],
+      [ "ControlSubsamplingVertexVTKWriter", "a01549.html", "a01549" ],
+      [ "ConvertLameConstants", "a01361.html", "a01361" ],
+      [ "DefaultMembraneStrain", "a01325.html", "a01325" ],
+      [ "DenseFlatAssembler", "a01169.html", "a01169" ],
+      [ "DirichletValues", "a01489.html", "a01489" ],
+      [ "DisplacementControl", "a01205.html", "a01205" ],
+      [ "EASH1E21", "a01273.html", "a01273" ],
+      [ "EASH1E9", "a01269.html", "a01269" ],
+      [ "EASQ1E4", "a01257.html", "a01257" ],
+      [ "EASQ1E5", "a01261.html", "a01261" ],
+      [ "EASQ1E7", "a01265.html", "a01265" ],
+      [ "EnhancedAssumedStrains", "a01277.html", "a01277" ],
+      [ "FERequirements", "a01237.html", "a01237" ],
+      [ "FErequirements", "a01241.html", "a01241" ],
+      [ "FETraits", "a01253.html", "a01253" ],
+      [ "FlatAssemblerBase", "a01153.html", "a01153" ],
+      [ "FlatIndexMergingStrategy", "a01501.html", "a01501" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "a01505.html", "a01505" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "a01509.html", "a01509" ],
+      [ "FlatPreBasis", "a01497.html", "a01497" ],
+      [ "FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "a01513.html", "a01513" ],
+      [ "FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "a01517.html", "a01517" ],
+      [ "GenericObserver", "a01553.html", "a01553" ],
+      [ "IkarusInstance", "a01525.html", "a01525" ],
+      [ "IObservable", "a01565.html", "a01565" ],
+      [ "IObserver", "a01561.html", "a01561" ],
+      [ "KirchhoffLoveShell", "a01281.html", "a01281" ],
+      [ "LamesFirstParameterAndShearModulus", "a01357.html", "a01357" ],
+      [ "LinearElastic", "a01289.html", "a01289" ],
+      [ "LinearElasticityT", "a01305.html", "a01305" ],
+      [ "LinearSolverTemplate", "a01397.html", "a01397" ],
+      [ "LoadControl", "a01185.html", "a01185" ],
+      [ "LoadControlSubsidiaryFunction", "a01201.html", "a01201" ],
+      [ "Material", "a01301.html", "a01301" ],
+      [ "NeoHookeT", "a01309.html", "a01309" ],
+      [ "NewtonRaphson", "a01413.html", "a01413" ],
+      [ "NewtonRaphsonSettings", "a01409.html", "a01409" ],
+      [ "NewtonRaphsonWithSubsidiaryFunction", "a01421.html", "a01421" ],
+      [ "NewtonRaphsonWithSubsidiaryFunctionSettings", "a01417.html", "a01417" ],
+      [ "NonLinearElastic", "a01329.html", "a01329" ],
+      [ "NonLinearOperator", "a01537.html", "a01537" ],
+      [ "NonLinearSolverInformation", "a01425.html", "a01425" ],
+      [ "NonLinearSolverLogger", "a01557.html", "a01557" ],
+      [ "PathFollowing", "a01189.html", "a01189" ],
+      [ "PowerBasisFE", "a01213.html", "a01213" ],
+      [ "ResultFunction", "a01381.html", "a01381" ],
+      [ "ResultRequirements", "a01249.html", "a01249" ],
+      [ "ResultTypeMap", "a01245.html", "a01245" ],
+      [ "ScalarAssembler", "a01157.html", "a01157" ],
+      [ "ScalarFieldFE", "a01217.html", "a01217" ],
+      [ "SparseFlatAssembler", "a01165.html", "a01165" ],
+      [ "Stats", "a01437.html", "a01437" ],
+      [ "StVenantKirchhoffT", "a01313.html", "a01313" ],
+      [ "SubsidiaryArgs", "a01193.html", "a01193" ],
+      [ "Traction", "a01293.html", "a01293" ],
+      [ "TraitsFromFE", "a01333.html", "a01333" ],
+      [ "TrustRegion", "a01441.html", "a01441" ],
+      [ "TrustRegionSettings", "a01429.html", "a01429" ],
+      [ "VanishingStress", "a01321.html", "a01321" ],
+      [ "VectorFlatAssembler", "a01161.html", "a01161" ],
+      [ "Volume", "a01297.html", "a01297" ],
+      [ "YoungsModulusAndBulkModulus", "a01345.html", "a01345" ],
+      [ "YoungsModulusAndLamesFirstParameter", "a01349.html", "a01349" ],
+      [ "YoungsModulusAndPoissonsRatio", "a01337.html", "a01337" ],
+      [ "YoungsModulusAndShearModulus", "a01341.html", "a01341" ]
+    ] ],
+    [ "Python", "a00328.html", [
+      [ "Conversion< autodiff::Real< order, T > >", "a01569.html", "a01569" ]
+    ] ],
+    [ "ValueWrapper", "a01609.html", "a01609" ]
+];

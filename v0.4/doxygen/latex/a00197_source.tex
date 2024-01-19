@@ -1,0 +1,124 @@
+\hypertarget{a00197_source}{}\doxysection{registerelement.\+hh}
+\label{a00197_source}\index{registerelement.hh@{registerelement.hh}}
+\mbox{\hyperlink{a00197}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/fufem/boundarypatch.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/lagrangebasis.hh>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/powerbasis.hh>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/grid/yaspgrid.hh>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/python/functions/globalbasis.hh>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <dune/python/pybind11/functional.h>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02490}{ikarus/finiteelements/mechanics/linearelastic.hh}}>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02505}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00322}{Ikarus::Python}} \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{44   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} defaultInitializers = \textcolor{keyword}{true}, \textcolor{keyword}{class }FE, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{45   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00305_ga40f83e4d7b90006b1019add3b1b218b5}{registerElement}}(pybind11::handle scope, pybind11::class\_<FE, options...> cls) \{}
+\DoxyCodeLine{46     \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keyword}{using }GlobalBasis            = \textcolor{keyword}{typename} FE::Basis;}
+\DoxyCodeLine{49     \textcolor{keyword}{using }FlatBasis              = \textcolor{keyword}{typename} FE::FlatBasis;}
+\DoxyCodeLine{50     \textcolor{keyword}{using }GridView               = \textcolor{keyword}{typename} GlobalBasis::GridView;}
+\DoxyCodeLine{51     \textcolor{keyword}{using }Element                = \textcolor{keyword}{typename} FE::Element;}
+\DoxyCodeLine{52     \textcolor{keyword}{using }Traits                 = \textcolor{keyword}{typename} FE::Traits;}
+\DoxyCodeLine{53     \textcolor{keyword}{using }\mbox{\hyperlink{a01237}{FERequirements}}         = \textcolor{keyword}{typename} FE::FERequirementType;}
+\DoxyCodeLine{54     \textcolor{keyword}{using }ResultRequirementsType = \textcolor{keyword}{typename} FE::ResultRequirementsType;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (defaultInitializers)}
+\DoxyCodeLine{57       cls.def(\mbox{\hyperlink{a00313_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00332_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu) \{}
+\DoxyCodeLine{58                 return new FE(basis, element, emod, nu);}
+\DoxyCodeLine{59               \}),}
+\DoxyCodeLine{60               pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \textcolor{keyword}{using }LoadFunction = std::function<Eigen::Vector<double, Traits::worlddim>(}
+\DoxyCodeLine{63         \mbox{\hyperlink{a01365}{Dune::FieldVector<double, Traits::worlddim>}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{64     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (defaultInitializers)}
+\DoxyCodeLine{65       cls.def(}
+\DoxyCodeLine{66           \mbox{\hyperlink{a00313_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00332_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu,}
+\DoxyCodeLine{67                             \textcolor{keyword}{const} LoadFunction volumeLoad) \{ return new FE(basis, element, emod, nu, volumeLoad); \}),}
+\DoxyCodeLine{68           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{69     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (defaultInitializers)}
+\DoxyCodeLine{70       cls.def(\mbox{\hyperlink{a00313_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00332_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu,}
+\DoxyCodeLine{71                                 \textcolor{keyword}{const} LoadFunction volumeLoad, \textcolor{keyword}{const} BoundaryPatch<GridView>\& bp,}
+\DoxyCodeLine{72                                 \textcolor{keyword}{const} LoadFunction neumannBoundaryLoad) \{}
+\DoxyCodeLine{73                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} FE(\mbox{\hyperlink{a00332_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, emod, nu, volumeLoad, \&bp, neumannBoundaryLoad);}
+\DoxyCodeLine{74               \}),}
+\DoxyCodeLine{75               pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>(), pybind11::keep\_alive<1, 7>());}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77     pybind11::module scopedf = pybind11::module::import(\textcolor{stringliteral}{"{}dune.functions"{}});}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keyword}{typedef} Dune::Python::LocalViewWrapper<FlatBasis> LocalViewWrapper;}
+\DoxyCodeLine{80     \textcolor{keyword}{auto} includes = Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}dune/python/functions/globalbasis.hh"{}}\};}
+\DoxyCodeLine{81     \textcolor{keyword}{auto} lv       = Dune::Python::insertClass<LocalViewWrapper>(}
+\DoxyCodeLine{82                   scopedf, \textcolor{stringliteral}{"{}LocalViewWrapper"{}},}
+\DoxyCodeLine{83                   Dune::Python::GenerateTypeName(\textcolor{stringliteral}{"{}Dune::Python::LocalViewWrapperWrapper"{}}, Dune::MetaType<FlatBasis>()),}
+\DoxyCodeLine{84                   includes)}
+\DoxyCodeLine{85                   .first;}
+\DoxyCodeLine{86     lv.def(\textcolor{stringliteral}{"{}bind"{}}, \&LocalViewWrapper::bind);}
+\DoxyCodeLine{87     lv.def(\textcolor{stringliteral}{"{}unbind"{}}, \&LocalViewWrapper::unbind);}
+\DoxyCodeLine{88     lv.def(\textcolor{stringliteral}{"{}index"{}}, [](\textcolor{keyword}{const} LocalViewWrapper\& localView, \textcolor{keywordtype}{int} index) \{ \textcolor{keywordflow}{return} localView.index(index); \});}
+\DoxyCodeLine{89     lv.def(\textcolor{stringliteral}{"{}\_\_len\_\_"{}}, [](LocalViewWrapper\& self) -\/> \textcolor{keywordtype}{int} \{ \textcolor{keywordflow}{return} self.size(); \});}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91     Dune::Python::Functions::registerTree<typename LocalViewWrapper::Tree>(lv);}
+\DoxyCodeLine{92     lv.def(\textcolor{stringliteral}{"{}tree"{}}, [](\textcolor{keyword}{const} LocalViewWrapper\& view) \{ \textcolor{keywordflow}{return} view.tree(); \});}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94     \textcolor{keyword}{auto} basisName = Dune::className<FlatBasis>();}
+\DoxyCodeLine{95     \textcolor{keyword}{auto} entry     = Dune::Python::insertClass<FlatBasis>(}
+\DoxyCodeLine{96         scopedf, \textcolor{stringliteral}{"{}DefaultGlobalBasis"{}}, pybind11::buffer\_protocol(), Dune::Python::GenerateTypeName(basisName),}
+\DoxyCodeLine{97         Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}dune/python/functions/globalbasis.hh"{}}\});}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (entry.second) Dune::Python::registerGlobalBasis(scopedf, entry.first);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100     cls.def(}
+\DoxyCodeLine{101         \textcolor{stringliteral}{"{}localView"{}},}
+\DoxyCodeLine{102         [](FE\& self) -\/> LocalViewWrapper \{}
+\DoxyCodeLine{103           \textcolor{keyword}{auto} lvWrapped = LocalViewWrapper(self.localView().globalBasis());}
+\DoxyCodeLine{104           \textcolor{comment}{// this can be simplified when https://gitlab.dune-\/project.org/staging/dune-\/functions/-\//merge\_requests/418}}
+\DoxyCodeLine{105           \textcolor{comment}{// becomes available}}
+\DoxyCodeLine{106           pybind11::object obj = pybind11::cast(self.localView().element());}
+\DoxyCodeLine{107           lvWrapped.bind(obj);}
+\DoxyCodeLine{108           \textcolor{keywordflow}{return} lvWrapped;}
+\DoxyCodeLine{109         \},}
+\DoxyCodeLine{110         pybind11::keep\_alive<0, 1>());}
+\DoxyCodeLine{111     cls.def(\textcolor{stringliteral}{"{}calculateScalar"{}}, [](FE\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237}{FERequirements}}\& req) \{ \textcolor{keywordflow}{return} self.calculateScalar(req); \});}
+\DoxyCodeLine{112     cls.def(\textcolor{stringliteral}{"{}calculateVector"{}}, [](FE\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237}{FERequirements}}\& req, Eigen::Ref<Eigen::VectorXd> vec) \{}
+\DoxyCodeLine{113       \textcolor{keywordflow}{return} self.calculateVector(req, vec);}
+\DoxyCodeLine{114     \});}
+\DoxyCodeLine{115     cls.def(}
+\DoxyCodeLine{116         \textcolor{stringliteral}{"{}calculateMatrix"{}},}
+\DoxyCodeLine{117         [](FE\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237}{FERequirements}}\& req, Eigen::Ref<Eigen::MatrixXd> mat) \{}
+\DoxyCodeLine{118           \textcolor{keywordflow}{return} self.calculateMatrix(req, mat);}
+\DoxyCodeLine{119         \},}
+\DoxyCodeLine{120         pybind11::arg(\textcolor{stringliteral}{"{}FERequirements"{}}), pybind11::arg(\textcolor{stringliteral}{"{}elementMatrix"{}}).noconvert());}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ std::declval<FE>().materialTangent(); \})}
+\DoxyCodeLine{123       cls.def(\textcolor{stringliteral}{"{}materialTangent"{}}, [](FE\& self) \{ \textcolor{keywordflow}{return} self.materialTangent(); \});}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     cls.def(}
+\DoxyCodeLine{126         \textcolor{stringliteral}{"{}resultAt"{}},}
+\DoxyCodeLine{127         [](FE\& self, \textcolor{keyword}{const} ResultRequirementsType\& req, \textcolor{keyword}{const} \mbox{\hyperlink{a01365}{Dune::FieldVector<double, Traits::mydim>}}\& local,}
+\DoxyCodeLine{128            \mbox{\hyperlink{a00300_ga531be167e924b749eb8b4ccc7f1c18c9}{ResultType}} resType = \mbox{\hyperlink{a00300_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}}) \{}
+\DoxyCodeLine{129           \mbox{\hyperlink{a01245}{ResultTypeMap<double>}} resultTypeMap;}
+\DoxyCodeLine{130           self.calculateAt(req, local, resultTypeMap);}
+\DoxyCodeLine{131           \textcolor{keywordflow}{if} (resType == \mbox{\hyperlink{a00300_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}})}
+\DoxyCodeLine{132             \textcolor{keywordflow}{return} resultTypeMap.\mbox{\hyperlink{a01245_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
+\DoxyCodeLine{133           \textcolor{keywordflow}{else}}
+\DoxyCodeLine{134             \textcolor{keywordflow}{return} resultTypeMap.\mbox{\hyperlink{a01245_a7f9a61700e42a5507d7dfcfd059a4067}{getResult}}(resType);}
+\DoxyCodeLine{135         \},}
+\DoxyCodeLine{136         pybind11::arg(\textcolor{stringliteral}{"{}resultRequirements"{}}), pybind11::arg(\textcolor{stringliteral}{"{}local"{}}), pybind11::arg(\textcolor{stringliteral}{"{}resultType"{}}) = \mbox{\hyperlink{a00300_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}});}
+\DoxyCodeLine{137   \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139 \}  \textcolor{comment}{// namespace Ikarus::Python}}
+
+\end{DoxyCode}
