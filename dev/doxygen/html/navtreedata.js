@@ -26,9 +26,9 @@ var NAVTREE =
 [
   [ "ikarus", "index.html", [
     [ "Introduction", "index.html", [
-      [ "Overview", "index.html#autotoc_md1", null ],
+      [ "Overview", "index.html#autotoc_md2", null ],
       [ "Modules", "index.html#mods", null ],
-      [ "How to cite", "index.html#autotoc_md2", null ]
+      [ "How to cite", "index.html#autotoc_md3", null ]
     ] ],
     [ "Copyright holders", "da/d6b/a02438.html", null ],
     [ "Deprecated List", "d2/d04/a00281.html", null ],
