@@ -1,4 +1,4 @@
 var a00119 =
 [
-    [ "Ikarus::ScalarFieldFE< Basis_ >", "a01217.html", "a01217" ]
+    [ "Ikarus::PowerBasisFE< Basis >", "a01216.html", "a01216" ]
 ];

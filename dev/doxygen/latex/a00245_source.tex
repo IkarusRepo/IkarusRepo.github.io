@@ -1,160 +1,162 @@
-\hypertarget{a00245_source}{}\doxysection{linearsolver.\+hh}
-\label{a00245_source}\index{linearsolver.hh@{linearsolver.hh}}
+\hypertarget{a00245_source}{}\doxysection{newtonraphsonwithscalarsubsidiaryfunction.\+hh}
+\label{a00245_source}\index{newtonraphsonwithscalarsubsidiaryfunction.hh@{newtonraphsonwithscalarsubsidiaryfunction.hh}}
 \mbox{\hyperlink{a00245}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <memory>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iosfwd>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <utility>}}
 \DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Eigen/SparseCore>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00313}{Ikarus}} \{}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{27   \textcolor{keyword}{enum class} \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}} \{}
-\DoxyCodeLine{28     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a334c4a4c42fdb79d7ebc3e73b517e6f8}{none}},}
-\DoxyCodeLine{29     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a43e7ad1498548ecfbe9359418877c793}{si\_ConjugateGradient}},}
-\DoxyCodeLine{30     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a64a3b585d23ed07479c1452d49f397bb}{si\_LeastSquaresConjugateGradient}},}
-\DoxyCodeLine{31     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a3ba09bd833aa666cbeca9bfd4a33be6f}{si\_BiCGSTAB}},}
-\DoxyCodeLine{32     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906acd4c06ca3bfe2246c9ec45bee84b5852}{sd\_SimplicialLLT}},}
-\DoxyCodeLine{33     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c}{sd\_SimplicialLDLT}},}
-\DoxyCodeLine{34     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906ae7cfd15be408672026faa788c0c112e5}{sd\_SparseLU}},}
-\DoxyCodeLine{35     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a259246f1b3299da36945e32f5660bebd}{sd\_SparseQR}},}
-\DoxyCodeLine{36     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a286dc99776bcd1ea313e669aa17b3236}{sd\_CholmodSupernodalLLT}},}
-\DoxyCodeLine{37     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906afe6a46ed15566813699daa9c9cbf85d5}{sd\_UmfPackLU}},}
-\DoxyCodeLine{38     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906aa8fe11042608f12d110c154033361fcc}{sd\_SuperLU}},}
-\DoxyCodeLine{39     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a97eafebe024f68db956c95519ddf66f2}{d\_PartialPivLU}},}
-\DoxyCodeLine{40     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a4c20d1c5006d9987b894313a4af5de6e}{d\_FullPivLU}},}
-\DoxyCodeLine{41     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a290d38c1d75cda978733c7ee8266e16e}{d\_HouseholderQR}},}
-\DoxyCodeLine{42     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906af66de0478863779eca4d9e7dcf39c59a}{d\_ColPivHouseholderQR}},}
-\DoxyCodeLine{43     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a9be60de1df84a8b371f0ad372aba4582}{d\_FullPivHouseholderQR}},}
-\DoxyCodeLine{44     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906ae1f5f0486da0c6645a75c3df39d8d942}{d\_CompleteOrthogonalDecomposition}},}
-\DoxyCodeLine{45     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a40c05e324bcfe6242fddbef28720e86a}{d\_LLT}},}
-\DoxyCodeLine{46     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906ad495de2cc8831501954c24afe8688190}{d\_LDLT}}}
-\DoxyCodeLine{47   \};}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{53   \textcolor{keyword}{enum class} \mbox{\hyperlink{a00313_a4763ca5888a027ed9b8d965d67cbb9ab}{MatrixTypeTag}} \{ \mbox{\hyperlink{a00313_a4763ca5888a027ed9b8d965d67cbb9aba9a71a13863c84ba34fc41595fc2ee0c6}{Dense}}, \mbox{\hyperlink{a00313_a4763ca5888a027ed9b8d965d67cbb9aba7407fb7e6a4df6392aaabd2368157312}{Sparse}} \};}
-\DoxyCodeLine{54 }
-\DoxyCodeLine{61   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}>}
-\DoxyCodeLine{62   \textcolor{keyword}{class }\mbox{\hyperlink{a01397}{LinearSolverTemplate}} \{}
-\DoxyCodeLine{63   \textcolor{keyword}{public}:}
-\DoxyCodeLine{64     \textcolor{keyword}{using }\mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}} = Eigen::SparseMatrix<ScalarType>;}
-\DoxyCodeLine{65     \textcolor{keyword}{using }\mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}  = Eigen::MatrixX<ScalarType>;}
-\DoxyCodeLine{66 }
-\DoxyCodeLine{71     \textcolor{keyword}{explicit} \mbox{\hyperlink{a01397_a477e8cefcd049db15451e765fcef4d76}{LinearSolverTemplate}}(\textcolor{keyword}{const} \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}}\& p\_solverTypeTag);}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{76     \mbox{\hyperlink{a01397_af2696f3af9722c49e0a828f2e31d8622}{\string~LinearSolverTemplate}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00266}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00236}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/linearalgebrahelper.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00011}{ikarus/utils/nonlinearoperator.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00224}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00212}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
+\DoxyCodeLine{27   \textcolor{keyword}{struct }\mbox{\hyperlink{a01420}{NewtonRaphsonWithSubsidiaryFunctionSettings}} \{}
+\DoxyCodeLine{28     \textcolor{keywordtype}{double} \mbox{\hyperlink{a01420_a7e8e3668e5eca2b115ec77fcaabc8899}{tol}}\{1e-\/8\};}
+\DoxyCodeLine{29     \textcolor{keywordtype}{int} \mbox{\hyperlink{a01420_a7ef35a86ec4e9a39bcc54182c5dc17b7}{maxIter}}\{20\};}
+\DoxyCodeLine{30   \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{42   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperatorImpl, \textcolor{keyword}{typename} \mbox{\hyperlink{a00316_ae747d502e8f67af4c5412d8a6febeb4c}{LinearSolver}} = utils::SolverDefault,}
+\DoxyCodeLine{43             \textcolor{keyword}{typename} UpdateFunctionTypeImpl = utils::UpdateDefault>}
+\DoxyCodeLine{44   \textcolor{keyword}{class }\mbox{\hyperlink{a01424}{NewtonRaphsonWithSubsidiaryFunction}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01568}{IObservable}}<NonLinearSolverMessages> \{}
+\DoxyCodeLine{45   \textcolor{keyword}{public}:}
+\DoxyCodeLine{47     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01424_ad8df3b2ee18a76d69b531c7b6402970d}{isLinearSolver}}}
+\DoxyCodeLine{48         = \mbox{\hyperlink{a01629}{Ikarus::Concepts::LinearSolverCheck}}<\mbox{\hyperlink{a00316_ae747d502e8f67af4c5412d8a6febeb4c}{LinearSolver}}, \textcolor{keyword}{typename} NonLinearOperatorImpl::DerivativeType,}
+\DoxyCodeLine{49                                               \textcolor{keyword}{typename} NonLinearOperatorImpl::ValueType>;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{52     \textcolor{keyword}{using }\mbox{\hyperlink{a01424_a28457466df96034316437e231e9831df}{ValueType}} = \textcolor{keyword}{typename} NonLinearOperatorImpl::template ParameterValue<0>;}
+\DoxyCodeLine{54     \textcolor{keyword}{using }\mbox{\hyperlink{a01424_a6f1cbb0e111b1621da367961fe6eb134}{UpdateFunctionType}} = UpdateFunctionTypeImpl;}
+\DoxyCodeLine{55     \textcolor{keyword}{using }\mbox{\hyperlink{a01424_aa548756cad74bde3286938474f13023f}{NonLinearOperator}}  = NonLinearOperatorImpl;  }
+\DoxyCodeLine{56 }
+\DoxyCodeLine{64     \textcolor{keyword}{explicit} \mbox{\hyperlink{a01424_a41f8e2bf25a62bb349cdaf8c8e4090da}{NewtonRaphsonWithSubsidiaryFunction}}(\textcolor{keyword}{const} NonLinearOperatorImpl\& p\_nonLinearOperator,}
+\DoxyCodeLine{65                                                  \mbox{\hyperlink{a01400}{LinearSolver}}\&\& p\_linearSolver       = \{\},}
+\DoxyCodeLine{66                                                  \mbox{\hyperlink{a01424_a6f1cbb0e111b1621da367961fe6eb134}{UpdateFunctionType}} p\_updateFunction = \{\})}
+\DoxyCodeLine{67         : nonLinearOperator\_\{p\_nonLinearOperator\},}
+\DoxyCodeLine{68           linearSolver\{std::move(p\_linearSolver)\},}
+\DoxyCodeLine{69           updateFunction\{p\_updateFunction\} \{\}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01424_acadfca6b95ce86efde93b8dd3d12306a}{setup}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01420}{NewtonRaphsonWithSubsidiaryFunctionSettings}}\& p\_settings) \{ settings = p\_settings; \}}
 \DoxyCodeLine{77 }
-\DoxyCodeLine{83     \mbox{\hyperlink{a01397}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01397_ac7a43c5219405e5a5e5295f18525c54e}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397}{LinearSolverTemplate}}\& other) \{}
-\DoxyCodeLine{84       \mbox{\hyperlink{a01397}{LinearSolverTemplate}} tmp(other);}
-\DoxyCodeLine{85       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{86     \}}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{92     \mbox{\hyperlink{a01397_a8510a3ec009ad9680ad7dcc72f357cc9}{LinearSolverTemplate}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397}{LinearSolverTemplate}}\& other) \{ *\textcolor{keyword}{this} = \mbox{\hyperlink{a01397_a8510a3ec009ad9680ad7dcc72f357cc9}{LinearSolverTemplate}}(other.solverTypeTag); \}}
-\DoxyCodeLine{97     \mbox{\hyperlink{a01397_ad37d02209b2f59e00cd19cc38ec29a70}{LinearSolverTemplate}}(\mbox{\hyperlink{a01397}{LinearSolverTemplate}}\&\& other) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{103     \mbox{\hyperlink{a01397}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01397_a2aafcf7d9b1f801b236097ca067c9b80}{operator=}}(\mbox{\hyperlink{a01397}{LinearSolverTemplate}}\&\& other) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{104 }
-\DoxyCodeLine{105   \textcolor{keyword}{private}:}
-\DoxyCodeLine{106     \textcolor{keyword}{struct }SolverBase \{}
-\DoxyCodeLine{107       \textcolor{keyword}{virtual} \string~SolverBase() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{108       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a33237d5e237bf2272d2c58c648eda5a1}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}\&)\textcolor{keyword}{ const }\{\}}
-\DoxyCodeLine{109       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a33237d5e237bf2272d2c58c648eda5a1}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\&)                                         = 0;}
-\DoxyCodeLine{110       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}\&)                                               = 0;}
-\DoxyCodeLine{111       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\&)                                              = 0;}
-\DoxyCodeLine{112       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\&)                                                = 0;}
-\DoxyCodeLine{113       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}\&)                                                 = 0;}
-\DoxyCodeLine{114       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\&) \textcolor{keyword}{const}   = 0;}
-\DoxyCodeLine{115       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\&) \textcolor{keyword}{const} = 0;}
-\DoxyCodeLine{116       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\&) \textcolor{keyword}{const} = 0;}
-\DoxyCodeLine{117       \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\&) \textcolor{keyword}{const}   = 0;}
-\DoxyCodeLine{118     \};}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{120     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Solver>}
-\DoxyCodeLine{121     \textcolor{keyword}{struct }SolverImpl : \textcolor{keyword}{public} SolverBase \{}
-\DoxyCodeLine{122       \textcolor{keyword}{using }SolverBase::analyzePattern;  \textcolor{comment}{// forward use of analyzePattern(DenseMatrixType)}}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{124       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a33237d5e237bf2272d2c58c648eda5a1}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{125         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.analyzePattern(A); \}) solver.analyzePattern(A);}
-\DoxyCodeLine{126       \}}
-\DoxyCodeLine{127 }
-\DoxyCodeLine{128       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{129         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.factorize(A); \}) solver.factorize(A);}
-\DoxyCodeLine{130       \}}
-\DoxyCodeLine{131 }
-\DoxyCodeLine{132       \textcolor{comment}{// Dense Solvers do not have a factorize method therefore}}
-\DoxyCodeLine{133       \textcolor{comment}{// our interface we just call compute for dense matrices}}
-\DoxyCodeLine{134       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}\& A) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{135         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.compute(A); \} \&\& std::is\_base\_of\_v<Eigen::SolverBase<Solver>, Solver>)}
-\DoxyCodeLine{136           solver.compute(A);}
-\DoxyCodeLine{137       \}}
-\DoxyCodeLine{138       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a374226b59baa30615d574bdd7ec230c8}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{139         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_base\_of\_v<Eigen::SparseSolverBase<Solver>, Solver>)}
-\DoxyCodeLine{140           solver.\mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(A);}
-\DoxyCodeLine{141         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{142           DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}This solver does not support solving with sparse matrices."{}});}
-\DoxyCodeLine{143       \}}
-\DoxyCodeLine{144 }
-\DoxyCodeLine{145       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01397_a878cccde0e595d7b0f7d6a2188aeeb31}{DenseMatrixType}}\& A) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{146         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_base\_of\_v<Eigen::SolverBase<Solver>, Solver>)}
-\DoxyCodeLine{147           solver.\mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(A);}
-\DoxyCodeLine{148         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{149           DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}This solver does not support solving with dense matrices."{}});}
-\DoxyCodeLine{150       \}}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{152       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
-\DoxyCodeLine{153         x = solver.solve(b);}
-\DoxyCodeLine{154       \}}
-\DoxyCodeLine{155 }
-\DoxyCodeLine{156       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
-\DoxyCodeLine{157         x = solver.solve(b);}
-\DoxyCodeLine{158       \}}
-\DoxyCodeLine{159 }
-\DoxyCodeLine{160       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
-\DoxyCodeLine{161         x = solver.solve(b);}
-\DoxyCodeLine{162       \}}
+\DoxyCodeLine{78 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{79     \textcolor{keyword}{struct }NoPredictor \{\};}
+\DoxyCodeLine{80 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{92     \textcolor{keyword}{template} <\textcolor{keyword}{typename} SolutionType = NoPredictor, \textcolor{keyword}{typename} Subs\textcolor{keywordtype}{id}iaryType>}
+\DoxyCodeLine{93     \textcolor{keyword}{requires} std::is\_same\_v<SolutionType, NoPredictor> || std::is\_convertible\_v<}
+\DoxyCodeLine{94         SolutionType, std::remove\_cvref\_t<typename NonLinearOperatorImpl::ValueType>>}
+\DoxyCodeLine{95     [[nodiscard(}
+\DoxyCodeLine{96         \textcolor{stringliteral}{"{}The solve method returns information of the solution process. You should store this information and check if "{}}}
+\DoxyCodeLine{97         \textcolor{stringliteral}{"{}it was successful"{}})]] NonLinearSolverInformation}
+\DoxyCodeLine{98     \mbox{\hyperlink{a01424_a437477e42855cfa9d46f5173ffa465d8}{solve}}(SubsidiaryType\& subsidiaryFunction, \mbox{\hyperlink{a01196}{SubsidiaryArgs}}\& subsidiaryArgs,}
+\DoxyCodeLine{99           \textcolor{keyword}{const} SolutionType\& dx\_predictor = NoPredictor\{\}) \{}
+\DoxyCodeLine{100       this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498}{NonLinearSolverMessages::INIT}});}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{103       \mbox{\hyperlink{a01428}{Ikarus::NonLinearSolverInformation}} solverInformation;}
+\DoxyCodeLine{104       solverInformation.\mbox{\hyperlink{a01428_acb65d72d7b2291a9b0d958ce0e4e0887}{success}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{105       \textcolor{keyword}{auto}\& x                   = \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().firstParameter();  \textcolor{comment}{// x = D (Displacements)}}
+\DoxyCodeLine{106       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_same\_v<SolutionType, NoPredictor>) updateFunction(x, dx\_predictor);}
+\DoxyCodeLine{107       \textcolor{keyword}{auto}\& lambda = \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().lastParameter();}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113       \textcolor{keyword}{auto} lambdaDummy = lambda;}
+\DoxyCodeLine{114       \textcolor{keyword}{auto} DDummy      = x;}
+\DoxyCodeLine{115       x.setZero();}
+\DoxyCodeLine{116       lambda = 1.0;}
+\DoxyCodeLine{117       \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().template update<0>();}
+\DoxyCodeLine{118       \textcolor{keyword}{const} \textcolor{keyword}{auto} Fext0 = (-\/\mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().value()).eval();  \textcolor{comment}{// dRdlambda(lambda)}}
+\DoxyCodeLine{119       lambda           = lambdaDummy;}
+\DoxyCodeLine{120       x                = DDummy;}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122       Eigen::MatrixX2<double> residual2d, sol2d;}
+\DoxyCodeLine{123       \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().updateAll();}
+\DoxyCodeLine{124       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& rx = \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().value();}
+\DoxyCodeLine{125       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& Ax = \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().derivative();}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127       Eigen::VectorXd deltaD;}
+\DoxyCodeLine{128       deltaD.resizeLike(rx);}
+\DoxyCodeLine{129       deltaD.setZero();}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{131       subsidiaryArgs.\mbox{\hyperlink{a01196_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.resizeLike(Fext0);}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133       subsidiaryFunction(subsidiaryArgs);}
+\DoxyCodeLine{134       \textcolor{keyword}{auto} rNorm = sqrt(rx.dot(rx));}
+\DoxyCodeLine{135       \textcolor{keyword}{decltype}(rNorm) dNorm;}
+\DoxyCodeLine{136       \textcolor{keywordtype}{int} iter\{0\};}
+\DoxyCodeLine{137       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01424_ad8df3b2ee18a76d69b531c7b6402970d}{isLinearSolver}}) linearSolver.\mbox{\hyperlink{a01400_a33237d5e237bf2272d2c58c648eda5a1}{analyzePattern}}(Ax);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{140       \textcolor{keywordflow}{while} (rNorm > settings.\mbox{\hyperlink{a01420_a7e8e3668e5eca2b115ec77fcaabc8899}{tol}} \&\& iter < settings.\mbox{\hyperlink{a01420_a7ef35a86ec4e9a39bcc54182c5dc17b7}{maxIter}}) \{}
+\DoxyCodeLine{141         this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4}{NonLinearSolverMessages::ITERATION\_STARTED}});}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{144         residual2d.resize(rx.rows(), 2);}
+\DoxyCodeLine{145         residual2d << -\/rx, Fext0;}
+\DoxyCodeLine{146         sol2d.resize(rx.rows(), 2);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148         \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01424_ad8df3b2ee18a76d69b531c7b6402970d}{isLinearSolver}}) \{}
+\DoxyCodeLine{149           linearSolver.\mbox{\hyperlink{a01400_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(Ax);}
+\DoxyCodeLine{150           linearSolver.\mbox{\hyperlink{a01400_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(sol2d, residual2d);}
+\DoxyCodeLine{151         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{152           sol2d = linearSolver(residual2d, Ax);}
+\DoxyCodeLine{153         \}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155         subsidiaryFunction(subsidiaryArgs);}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157         \textcolor{keyword}{const} \textcolor{keywordtype}{double} deltalambda = (-\/subsidiaryArgs.\mbox{\hyperlink{a01196_a628b23aa9e90c0e0ba1461ad2241645a}{f}} -\/ subsidiaryArgs.\mbox{\hyperlink{a01196_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.dot(sol2d.col(0)))}
+\DoxyCodeLine{158                                    / (subsidiaryArgs.\mbox{\hyperlink{a01196_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.dot(sol2d.col(1)) + subsidiaryArgs.\mbox{\hyperlink{a01196_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}});}
+\DoxyCodeLine{159         deltaD = sol2d.col(0) + deltalambda * sol2d.col(1);}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{161         updateFunction(x, deltaD);}
+\DoxyCodeLine{162         updateFunction(subsidiaryArgs.\mbox{\hyperlink{a01196_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}, deltaD);}
 \DoxyCodeLine{163 }
-\DoxyCodeLine{164       \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
-\DoxyCodeLine{165         x = solver.solve(b);}
-\DoxyCodeLine{166       \}}
-\DoxyCodeLine{167 }
-\DoxyCodeLine{168       Solver solver;}
-\DoxyCodeLine{169     \};}
+\DoxyCodeLine{164         lambda += deltalambda;}
+\DoxyCodeLine{165         subsidiaryArgs.\mbox{\hyperlink{a01196_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} += deltalambda;}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167         dNorm = sqrt(deltaD.dot(deltaD) + deltalambda * deltalambda);}
+\DoxyCodeLine{168         \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}().updateAll();}
+\DoxyCodeLine{169         rNorm = sqrt(rx.dot(rx) + subsidiaryArgs.\mbox{\hyperlink{a01196_a628b23aa9e90c0e0ba1461ad2241645a}{f}} * subsidiaryArgs.\mbox{\hyperlink{a01196_a628b23aa9e90c0e0ba1461ad2241645a}{f}});}
 \DoxyCodeLine{170 }
-\DoxyCodeLine{171     std::unique\_ptr<SolverBase> solverimpl;}
-\DoxyCodeLine{172     \mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}} solverTypeTag\{\mbox{\hyperlink{a00313_a731a9ee6621f91193c15f31b9a399906a334c4a4c42fdb79d7ebc3e73b517e6f8}{SolverTypeTag::none}}\};}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{174   \textcolor{keyword}{public}:}
-\DoxyCodeLine{181     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
-\DoxyCodeLine{182     \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
-\DoxyCodeLine{183     \textcolor{keyword}{inline} \mbox{\hyperlink{a01397}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(\textcolor{keyword}{const} MatrixType\& A) \{}
-\DoxyCodeLine{184       solverimpl-\/>\mbox{\hyperlink{a01397_a347fcf892a32d3f382cebe8a09fcb86f}{compute}}(A);}
-\DoxyCodeLine{185       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{171         this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5a0d30d757bf062e88728ebe7f8e2b2577}{NonLinearSolverMessages::SOLUTION\_CHANGED}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(lambda));}
+\DoxyCodeLine{172         this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5a07a63a77745ab72a7e89fb22a8bcfd78}{NonLinearSolverMessages::CORRECTIONNORM\_UPDATED}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(dNorm));}
+\DoxyCodeLine{173         this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14}{NonLinearSolverMessages::RESIDUALNORM\_UPDATED}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(rNorm));}
+\DoxyCodeLine{174         this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815}{NonLinearSolverMessages::ITERATION\_ENDED}});}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176         ++iter;}
+\DoxyCodeLine{177       \}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179       \textcolor{keywordflow}{if} (iter == settings.\mbox{\hyperlink{a01420_a7ef35a86ec4e9a39bcc54182c5dc17b7}{maxIter}}) solverInformation.\mbox{\hyperlink{a01428_acb65d72d7b2291a9b0d958ce0e4e0887}{success}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{180       solverInformation.\mbox{\hyperlink{a01428_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}}     = iter;}
+\DoxyCodeLine{181       solverInformation.\mbox{\hyperlink{a01428_ab09859737734f97734f20624f9f3c934}{residualNorm}}   = rNorm;}
+\DoxyCodeLine{182       solverInformation.\mbox{\hyperlink{a01428_a66f51414779f3e563557157fb688f18b}{correctionNorm}} = dNorm;}
+\DoxyCodeLine{183       \textcolor{keywordflow}{if} (solverInformation.\mbox{\hyperlink{a01428_acb65d72d7b2291a9b0d958ce0e4e0887}{success}}) this-\/>\mbox{\hyperlink{a01568_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00310_gga662b2b6a80547adf4b9ce8b30d87fab5a15380ac35d47cdbcbd64aada4bc21931}{NonLinearSolverMessages::FINISHED\_SUCESSFULLY}}, iter);}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185       \textcolor{keywordflow}{return} solverInformation;}
 \DoxyCodeLine{186     \}}
 \DoxyCodeLine{187 }
-\DoxyCodeLine{193     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
-\DoxyCodeLine{194     \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
-\DoxyCodeLine{195     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a33237d5e237bf2272d2c58c648eda5a1}{analyzePattern}}(\textcolor{keyword}{const} MatrixType\& A) \{ solverimpl-\/>analyzePattern(A); \}}
-\DoxyCodeLine{196 }
-\DoxyCodeLine{202     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
-\DoxyCodeLine{203     \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
-\DoxyCodeLine{204     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_ad9515d35c770a9d2a087a20593af5d85}{factorize}}(\textcolor{keyword}{const} MatrixType\& A) \{ solverimpl-\/>factorize(A); \}}
-\DoxyCodeLine{205 }
-\DoxyCodeLine{211     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a4ddf79d3353ecc1c7e7a25c7e249cb78}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\& b) \{ solverimpl-\/>solve(x, b); \}}
-\DoxyCodeLine{212 }
-\DoxyCodeLine{218     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_af33f3862045be96e92dd09a954260857}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\& b) \{ solverimpl-\/>solve(x, b); \}}
-\DoxyCodeLine{224     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a77afedeea7ca3cc8ee541aade55e859b}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\& b) \{ solverimpl-\/>solve(x, b); \}}
-\DoxyCodeLine{225 }
-\DoxyCodeLine{231     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01397_a0db3eb266a56bb16e2f4fbd22a66b14d}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\& b) \{ solverimpl-\/>solve(x, b); \}}
-\DoxyCodeLine{232   \};}
-\DoxyCodeLine{233 }
-\DoxyCodeLine{234   \textcolor{keyword}{typedef} \mbox{\hyperlink{a01397}{LinearSolverTemplate<double>}} \mbox{\hyperlink{a00313_ae747d502e8f67af4c5412d8a6febeb4c}{LinearSolver}};}
-\DoxyCodeLine{235   \textcolor{keyword}{extern} \textcolor{keyword}{template} \textcolor{keyword}{class }\mbox{\hyperlink{a01397}{LinearSolverTemplate<double>}};}
-\DoxyCodeLine{236 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{192     \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01424_a11cdacd88c7d199ecc8be67d0d21c298}{nonLinearOperator}}() \{ \textcolor{keywordflow}{return} nonLinearOperator\_; \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194   \textcolor{keyword}{private}:}
+\DoxyCodeLine{195     NonLinearOperatorImpl nonLinearOperator\_;}
+\DoxyCodeLine{196     \mbox{\hyperlink{a01400}{LinearSolver}} linearSolver;}
+\DoxyCodeLine{197     \mbox{\hyperlink{a01424_a6f1cbb0e111b1621da367961fe6eb134}{UpdateFunctionType}} updateFunction;}
+\DoxyCodeLine{198     \mbox{\hyperlink{a01420}{NewtonRaphsonWithSubsidiaryFunctionSettings}} settings;}
+\DoxyCodeLine{199   \};}
+\DoxyCodeLine{200 }
+\DoxyCodeLine{211   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NonLinearOperatorImpl, \textcolor{keyword}{typename} \mbox{\hyperlink{a00316_ae747d502e8f67af4c5412d8a6febeb4c}{LinearSolver}} = utils::SolverDefault,}
+\DoxyCodeLine{212             \textcolor{keyword}{typename} UpdateFunctionType = utils::UpdateDefault>}
+\DoxyCodeLine{213   \textcolor{keyword}{auto} \mbox{\hyperlink{a00316_a674c58e9e3dd89675adb727587a08850}{makeNewtonRaphsonWithSubsidiaryFunction}}(\textcolor{keyword}{const} NonLinearOperatorImpl\& p\_nonLinearOperator,}
+\DoxyCodeLine{214                                                \mbox{\hyperlink{a01400}{LinearSolver}}\&\& p\_linearSolver         = \{\},}
+\DoxyCodeLine{215                                                UpdateFunctionType\&\& p\_updateFunction = \{\}) \{}
+\DoxyCodeLine{216     \textcolor{keywordflow}{return} std::make\_shared<}
+\DoxyCodeLine{217         NewtonRaphsonWithSubsidiaryFunction<NonLinearOperatorImpl, LinearSolver, UpdateFunctionType>>(}
+\DoxyCodeLine{218         p\_nonLinearOperator, std::forward<LinearSolver>(p\_linearSolver), std::move(p\_updateFunction));}
+\DoxyCodeLine{219   \}}
+\DoxyCodeLine{220 \}  \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: fehelper.hh Source File</title>
+    <title>ikarus: membranestrains.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,42 +152,74 @@ $(document).ready(function(){initNavTree('a00179_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">fehelper.hh</div></div>
+  <div class="headertitle"><div class="title">membranestrains.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00179.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;dune/localfefunctions/manifolds/realTuple.hh&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="a00128.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;<a class="code" href="a00122.html">ikarus/finiteelements/physicshelper.hh</a>&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="a00316.html">   11</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00316.html">Ikarus::FEHelper</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits, <span class="keyword">typename</span> ScalarType&gt;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="a00316.html#a2c8d65eb2c1b14e022a42dbccf0b5cb1">   25</a></span>  <span class="keyword">auto</span> <a class="code hl_function" href="a00316.html#a2c8d65eb2c1b14e022a42dbccf0b5cb1">localSolutionBlockVector</a>(<span class="keyword">const</span> <span class="keyword">typename</span> Traits::FERequirementType::SolutionVectorTypeRaw&amp; x,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                                <span class="keyword">const</span> <span class="keyword">typename</span> Traits::LocalView&amp; localView,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                                <span class="keyword">const</span> std::optional&lt;<span class="keyword">const</span> Eigen::VectorX&lt;ScalarType&gt;&gt;&amp; dx = std::nullopt) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keyword">constexpr</span> <span class="keywordtype">int</span> worldDim = Traits::worlddim;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; fe         = localView.tree().child(0).finiteElement();</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    Dune::BlockVector&lt;Dune::RealTuple&lt;ScalarType, worldDim&gt;&gt; localX(fe.size());</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">if</span> (dx)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0U; i &lt; localX.size(); ++i)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> j = 0U; j &lt; worldDim; ++j)</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>          localX[i][j] = dx.value()[i * worldDim + j] + x[localView.index(localView.tree().child(j).localIndex(i))[0]];</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0U; i &lt; localX.size(); ++i)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">for</span> (<span class="keyword">auto</span> j = 0U; j &lt; worldDim; ++j)</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>          localX[i][j] = x[localView.index(localView.tree().child(j).localIndex(i))[0]];</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> localX;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}  <span class="comment">// namespace Ikarus::FEHelper</span></div>
-<div class="ttc" id="aa00122_html"><div class="ttname"><a href="a00122.html">physicshelper.hh</a></div><div class="ttdoc">Material property functions and conversion utilities.</div></div>
-<div class="ttc" id="aa00128_html"><div class="ttname"><a href="a00128.html">ferequirements.hh</a></div><div class="ttdoc">Definition of the LinearElastic class for finite element mechanics computations.</div></div>
-<div class="ttc" id="aa00316_html"><div class="ttname"><a href="a00316.html">Ikarus::FEHelper</a></div><div class="ttdef"><b>Definition:</b> fehelper.hh:11</div></div>
-<div class="ttc" id="aa00316_html_a2c8d65eb2c1b14e022a42dbccf0b5cb1"><div class="ttname"><a href="a00316.html#a2c8d65eb2c1b14e022a42dbccf0b5cb1">Ikarus::FEHelper::localSolutionBlockVector</a></div><div class="ttdeci">auto localSolutionBlockVector(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt)</div><div class="ttdoc">Gets the local solution Dune block vector.</div><div class="ttdef"><b>Definition:</b> fehelper.hh:25</div></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;ranges&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;dune/common/fvector.hh&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00316.html">Ikarus</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="a01328.html">   17</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="a01328.html">DefaultMembraneStrain</a> {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Geometry&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="a01328.html#acfe8c5424970d44c34005e13e851494a">   30</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="a01328.html#acfe8c5424970d44c34005e13e851494a">value</a>(<span class="keyword">const</span> <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;double, 2&gt;</a>&amp; gpPos, <span class="keyword">const</span> Geometry&amp; geo, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; uFunction) <span class="keyword">const</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        -&gt; Eigen::Vector3&lt;<span class="keyword">typename</span> std::remove_cvref_t&lt;<span class="keyword">decltype</span>(uFunction)&gt;::ctype&gt; {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keyword">using </span>ScalarType = <span class="keyword">typename</span> std::remove_cvref_t&lt;<span class="keyword">decltype</span>(uFunction)&gt;::ctype;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>      Eigen::Vector3&lt;ScalarType&gt; epsV;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>      <span class="keyword">const</span> <span class="keyword">auto</span> J = Dune::toEigen(geo.jacobianTransposed(gpPos));</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>      <span class="keyword">using namespace </span><a class="code hl_namespace" href="a00321.html">Dune</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keyword">using namespace </span>Dune::DerivativeDirections;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keyword">const</span> Eigen::Matrix&lt;ScalarType, 3, 2&gt; gradu = toEigen(</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>          uFunction.evaluateDerivative(gpPos,  <span class="comment">// Here the gpIndex could be passed</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                                       Dune::wrt(spatialAll), Dune::on(Dune::DerivativeDirections::referenceElement)));</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keyword">const</span> Eigen::Matrix&lt;ScalarType, 2, 3&gt; j = J + gradu.transpose();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      epsV &lt;&lt; J.row(0).dot(gradu.col(0)) + 0.5 * gradu.col(0).squaredNorm(),</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>          J.row(1).dot(gradu.col(1)) + 0.5 * gradu.col(1).squaredNorm(),</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>          j.row(0).dot(j.row(1)) - J.row(0).dot(J.row(1));</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keywordflow">return</span> epsV;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Geometry, <span class="keyword">typename</span> ScalarType&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="a01328.html#a1c17239105e26dfdc369583624d8a200">   65</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="a01328.html#a1c17239105e26dfdc369583624d8a200">derivative</a>(<span class="keyword">const</span> <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;double, 2&gt;</a>&amp; gpPos, <span class="keyword">const</span> Eigen::Matrix&lt;ScalarType, 2, 3&gt;&amp; jcur,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dNAtGp, <span class="keyword">const</span> Geometry&amp; geo, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; uFunction, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; localBasis,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                    <span class="keyword">const</span> <span class="keywordtype">int</span> node)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      Eigen::Matrix&lt;ScalarType, 3, 3&gt; bop;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      bop.row(0) = jcur.row(0) * dNAtGp(node, 0);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      bop.row(1) = jcur.row(1) * dNAtGp(node, 1);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      bop.row(2) = jcur.row(0) * dNAtGp(node, 1) + jcur.row(1) * dNAtGp(node, 0);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">return</span> bop;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Geometry, <span class="keyword">typename</span> ScalarType&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="a01328.html#a95cb97998e73fcf05fb7d9df0249b2e9">   96</a></span>    <span class="keyword">auto</span> <a class="code hl_function" href="a01328.html#a95cb97998e73fcf05fb7d9df0249b2e9">secondDerivative</a>(<span class="keyword">const</span> <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;double, 2&gt;</a>&amp; gpPos, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dNAtGp, <span class="keyword">const</span> Geometry&amp; geo,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                          <span class="keyword">const</span> <span class="keyword">auto</span>&amp; uFunction, <span class="keyword">const</span> <span class="keyword">auto</span>&amp; localBasis, <span class="keyword">const</span> Eigen::Vector3&lt;ScalarType&gt;&amp; S, <span class="keywordtype">int</span> I,</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                          <span class="keywordtype">int</span> J)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dN1i                   = dNAtGp(I, 0);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dN1j                   = dNAtGp(J, 0);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dN2i                   = dNAtGp(I, 1);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">const</span> <span class="keyword">auto</span>&amp; dN2j                   = dNAtGp(J, 1);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keyword">const</span> ScalarType NS                = dN1i * dN1j * S[0] + dN2i * dN2j * S[1] + (dN1i * dN2j + dN2i * dN1j) * S[2];</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      Eigen::Matrix&lt;ScalarType, 3, 3&gt; kg = Eigen::Matrix&lt;double, 3, 3&gt;::Identity() * NS;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keywordflow">return</span> kg;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  };</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}  <span class="comment">// namespace Ikarus</span></div>
+<div class="ttc" id="aa00316_html"><div class="ttname"><a href="a00316.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:21</div></div>
+<div class="ttc" id="aa00321_html"><div class="ttname"><a href="a00321.html">Dune</a></div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:17</div></div>
+<div class="ttc" id="aa01328_html"><div class="ttname"><a href="a01328.html">Ikarus::DefaultMembraneStrain</a></div><div class="ttdef"><b>Definition:</b> membranestrains.hh:17</div></div>
+<div class="ttc" id="aa01328_html_a1c17239105e26dfdc369583624d8a200"><div class="ttname"><a href="a01328.html#a1c17239105e26dfdc369583624d8a200">Ikarus::DefaultMembraneStrain::derivative</a></div><div class="ttdeci">auto derivative(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const Eigen::Matrix&lt; ScalarType, 2, 3 &gt; &amp;jcur, const auto &amp;dNAtGp, const Geometry &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const int node) const</div><div class="ttdoc">Compute the strain-displacement matrix for a given node and integration point.</div><div class="ttdef"><b>Definition:</b> membranestrains.hh:65</div></div>
+<div class="ttc" id="aa01328_html_a95cb97998e73fcf05fb7d9df0249b2e9"><div class="ttname"><a href="a01328.html#a95cb97998e73fcf05fb7d9df0249b2e9">Ikarus::DefaultMembraneStrain::secondDerivative</a></div><div class="ttdeci">auto secondDerivative(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const auto &amp;dNAtGp, const Geometry &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const Eigen::Vector3&lt; ScalarType &gt; &amp;S, int I, int J) const</div><div class="ttdoc">Compute the second derivative of the membrane strain for a given node pair and integration point.</div><div class="ttdef"><b>Definition:</b> membranestrains.hh:96</div></div>
+<div class="ttc" id="aa01328_html_acfe8c5424970d44c34005e13e851494a"><div class="ttname"><a href="a01328.html#acfe8c5424970d44c34005e13e851494a">Ikarus::DefaultMembraneStrain::value</a></div><div class="ttdeci">auto value(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const Geometry &amp;geo, const auto &amp;uFunction) const -&gt; Eigen::Vector3&lt; typename std::remove_cvref_t&lt; decltype(uFunction)&gt;::ctype &gt;</div><div class="ttdoc">Compute the strain vector at a given integration point.</div><div class="ttdef"><b>Definition:</b> membranestrains.hh:30</div></div>
+<div class="ttc" id="aa01368_html"><div class="ttname"><a href="a01368.html">Dune::FieldVector</a></div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -198,7 +230,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00179.html">fehelper.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="dir_d9d7fab038fcca5270fe0241ec433d4d.html">mechanics</a></li><li class="navelem"><a class="el" href="a00179.html">membranestrains.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

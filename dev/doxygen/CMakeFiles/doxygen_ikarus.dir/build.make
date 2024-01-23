@@ -145,6 +145,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/observer/observe
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/observer/observermessages.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/polyfit.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/pythonautodiffdefinitions.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/tensorproductquadrule.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/tensorutils.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/traits.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/docs/website/doxygen/modules.hh

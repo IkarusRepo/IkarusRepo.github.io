@@ -1,28 +1,70 @@
 var a00299 =
 [
-    [ "Ikarus::MatrixAffordances", "a00299.html#ga52cb89165daabb500f6e2eb68ddd76ee", [
-      [ "Ikarus::MatrixAffordances::BEGIN", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eea19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::MatrixAffordances::noAffordance", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eea9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "Ikarus::MatrixAffordances::stiffness", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1", null ],
-      [ "Ikarus::MatrixAffordances::materialstiffness", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62", null ],
-      [ "Ikarus::MatrixAffordances::geometricstiffness", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eeae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
-      [ "Ikarus::MatrixAffordances::stiffnessdiffBucklingVector", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532", null ],
-      [ "Ikarus::MatrixAffordances::microMagneticHessian", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9", null ],
-      [ "Ikarus::MatrixAffordances::mass", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f", null ],
-      [ "Ikarus::MatrixAffordances::END", "a00299.html#gga52cb89165daabb500f6e2eb68ddd76eeab1a326c06d88bf042f73d70f50197905", null ]
+    [ "adaptivestepsizing.hh", "a00254.html", null ],
+    [ "controlinfos.hh", "a00269.html", null ],
+    [ "loadcontrol.inl", "a00260.html", null ],
+    [ "pathfollowing.inl", "a00263.html", null ],
+    [ "Ikarus::LoadControl< NonLinearSolver >", "a01188.html", [
+      [ "LoadControl", "a01188.html#a561dc43b8cf1bc3bad02af6d04ce5380", null ],
+      [ "name", "a01188.html#a5be00442ee05d28d9e22de5ace368ed8", null ],
+      [ "notify", "a01188.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
+      [ "notify", "a01188.html#a2f93322aa7327069dd4469983933bd16", null ],
+      [ "notify", "a01188.html#ac72b261cd2af7f59e98f1504814bc785", null ],
+      [ "notify", "a01188.html#a47ac8ae7cc4e9304cfb220f1d93ce1fc", null ],
+      [ "notify", "a01188.html#a72e3156874ce81a1c7548b9f74db522c", null ],
+      [ "notify", "a01188.html#ae0c6cec757e540f22b65fce1f782e380", null ],
+      [ "notify", "a01188.html#ac035ba934c33e090c4a45128ac13f190", null ],
+      [ "run", "a01188.html#ac4a34370d6533e681070f5a88cb43e0f", null ],
+      [ "subscribe", "a01188.html#ae182a206a72de6bc4585152d32332349", null ],
+      [ "subscribeAll", "a01188.html#a026462a1a050728e37bc24e33d2edd9c", null ],
+      [ "subscribeAll", "a01188.html#a13bd8d73b485186680f640786e2682e5", null ],
+      [ "unSubscribe", "a01188.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
+      [ "unSubscribeAll", "a01188.html#a5c20f7eab2233d085071a4fd3b44cbda", null ]
     ] ],
-    [ "Ikarus::ScalarAffordances", "a00299.html#ga8a33210894e12be4feb3d96fdfde215c", [
-      [ "Ikarus::ScalarAffordances::BEGIN", "a00299.html#gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::ScalarAffordances::noAffordance", "a00299.html#gga8a33210894e12be4feb3d96fdfde215ca9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "Ikarus::ScalarAffordances::mechanicalPotentialEnergy", "a00299.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6", null ],
-      [ "Ikarus::ScalarAffordances::microMagneticPotentialEnergy", "a00299.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a", null ],
-      [ "Ikarus::ScalarAffordances::END", "a00299.html#gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905", null ]
+    [ "Ikarus::PathFollowing< NonLinearSolver, PathFollowingType, AdaptiveStepSizing >", "a01192.html", [
+      [ "PathFollowing", "a01192.html#adc5522a16e0e190efacb4923a36de67e", null ],
+      [ "name", "a01192.html#ab9eed4b69c451cedf8ae4d0845a0f478", null ],
+      [ "notify", "a01192.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
+      [ "notify", "a01192.html#a2f93322aa7327069dd4469983933bd16", null ],
+      [ "notify", "a01192.html#ac72b261cd2af7f59e98f1504814bc785", null ],
+      [ "notify", "a01192.html#a47ac8ae7cc4e9304cfb220f1d93ce1fc", null ],
+      [ "notify", "a01192.html#a72e3156874ce81a1c7548b9f74db522c", null ],
+      [ "notify", "a01192.html#ae0c6cec757e540f22b65fce1f782e380", null ],
+      [ "notify", "a01192.html#ac035ba934c33e090c4a45128ac13f190", null ],
+      [ "run", "a01192.html#a1da5f7921dc9d16774ad45c7897d97f0", null ],
+      [ "subscribe", "a01192.html#ae182a206a72de6bc4585152d32332349", null ],
+      [ "subscribeAll", "a01192.html#a026462a1a050728e37bc24e33d2edd9c", null ],
+      [ "subscribeAll", "a01192.html#a13bd8d73b485186680f640786e2682e5", null ],
+      [ "unSubscribe", "a01192.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
+      [ "unSubscribeAll", "a01192.html#a5c20f7eab2233d085071a4fd3b44cbda", null ]
     ] ],
-    [ "Ikarus::VectorAffordances", "a00299.html#ga122268ff4d2c0beee58799d85ba5e52a", [
-      [ "Ikarus::VectorAffordances::BEGIN", "a00299.html#gga122268ff4d2c0beee58799d85ba5e52aa19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::VectorAffordances::noAffordance", "a00299.html#gga122268ff4d2c0beee58799d85ba5e52aa9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "Ikarus::VectorAffordances::forces", "a00299.html#gga122268ff4d2c0beee58799d85ba5e52aa2c05161a7e67e946ddc889571aac4e89", null ],
-      [ "Ikarus::VectorAffordances::microMagneticForces", "a00299.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
-      [ "Ikarus::VectorAffordances::END", "a00299.html#gga122268ff4d2c0beee58799d85ba5e52aab1a326c06d88bf042f73d70f50197905", null ]
-    ] ]
+    [ "Ikarus::SubsidiaryArgs", "a01196.html", [
+      [ "currentStep", "a01196.html#a217c729e1ae8b05a98c852f19b0d6ae5", null ],
+      [ "DD", "a01196.html#afc97f3ae46ddd6a208b90d253aa8a7e6", null ],
+      [ "dfdDD", "a01196.html#aa1bc7c1fc866571e3b6b22e14ed9afcf", null ],
+      [ "dfdDlambda", "a01196.html#a198c4e48b353f1ebe5c5922bf51e34e5", null ],
+      [ "Dlambda", "a01196.html#a0cd5cc302f164ea614b9edfadd7c82c9", null ],
+      [ "f", "a01196.html#a628b23aa9e90c0e0ba1461ad2241645a", null ],
+      [ "stepSize", "a01196.html#a9c0bca7ed999dcf751648d41b5d9aa78", null ]
+    ] ],
+    [ "Ikarus::ArcLength", "a01200.html", [
+      [ "initialPrediction", "a00299.html#gaede73886a736a968e9783df389df245f", null ],
+      [ "intermediatePrediction", "a01200.html#a693ad9054ad2b8f41da254028a33ec6a", null ],
+      [ "name", "a01200.html#afa77b974566da3b74cb5b35693540c16", null ],
+      [ "operator()", "a01200.html#a2fabf5f8515ac122ecf588f1d8c860bf", null ]
+    ] ],
+    [ "Ikarus::LoadControlSubsidiaryFunction", "a01204.html", [
+      [ "initialPrediction", "a01204.html#a3c180ee35066bbb51af604b2d6482a0c", null ],
+      [ "intermediatePrediction", "a01204.html#a5e378c06d11bfe70acb5b9b3ac40f9f0", null ],
+      [ "name", "a01204.html#a6e2ee6e5a234c1b14ce197f4a1460ed3", null ],
+      [ "operator()", "a01204.html#aea5de41cde5e7506712e8bdd84be6ffa", null ]
+    ] ],
+    [ "Ikarus::DisplacementControl", "a01208.html", [
+      [ "DisplacementControl", "a01208.html#aa15060bf256c9786fe44096fad899733", null ],
+      [ "initialPrediction", "a01208.html#a745ce332f4df7c4483d2d86e06013f24", null ],
+      [ "intermediatePrediction", "a01208.html#a11625614df35e7e3c627e7d87a1670fe", null ],
+      [ "name", "a01208.html#a16cd9773e9704597d967f144d674bcd4", null ],
+      [ "operator()", "a01208.html#a980d44ede46996fd077ffa1bbda66952", null ]
+    ] ],
+    [ "Ikarus::ArcLength::initialPrediction", "a00299.html#gaede73886a736a968e9783df389df245f", null ]
 ];

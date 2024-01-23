@@ -1,5 +1,5 @@
 var a00275 =
 [
-    [ "ValueWrapper< T >", "a01609.html", "a01609" ],
-    [ "PYBIND11_MODULE", "a00275.html#a0e4f7cface71bec1c24bbed3aaa798d8", null ]
+    [ "moduleName", "a00275.html#accab2501ce940db483da0b3ebe2cf723", null ],
+    [ "modulePath", "a00275.html#a9ebab9199168d32a8ab347a990044552", null ]
 ];

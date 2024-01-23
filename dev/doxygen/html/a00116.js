@@ -1,4 +1,4 @@
 var a00116 =
 [
-    [ "Ikarus::PowerBasisFE< Basis >", "a01213.html", "a01213" ]
+    [ "Ikarus::AutoDiffFE< RealFE_, FERequirementType_, useEigenRef, forceAutoDiff >", "a01212.html", "a01212" ]
 ];

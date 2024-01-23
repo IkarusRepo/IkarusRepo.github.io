@@ -1,195 +1,64 @@
-\hypertarget{a00221_source}{}\doxysection{observer.\+hh}
-\label{a00221_source}\index{observer.hh@{observer.hh}}
+\hypertarget{a00221_source}{}\doxysection{controlvtkwriter.\+hh}
+\label{a00221_source}\index{controlvtkwriter.hh@{controlvtkwriter.hh}}
 \mbox{\hyperlink{a00221}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <map>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00224}{observer.hh}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00212}{observermessages.hh}}"{}}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00008}{ikarus/utils/makeenum.hh}}>}}
-\DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00313}{Ikarus}} \{}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/functions/gridfunctions/discreteglobalbasisfunction.hh>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/grid/io/file/vtk/subsamplingvtkwriter.hh>}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{24   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{25   \textcolor{keyword}{class }\mbox{\hyperlink{a01561}{IObserver}} \{}
-\DoxyCodeLine{26   \textcolor{keyword}{public}:}
-\DoxyCodeLine{28     \textcolor{keyword}{virtual} \mbox{\hyperlink{a01561_afda55d0cee706fa7a2df824e2a149a9e}{\string~IObserver}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{34     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a8c171635a257ce7fe905a58337717efe}{update}}(MessageType message) \{}
-\DoxyCodeLine{35       checkMessageType(message);}
-\DoxyCodeLine{36       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message);}
-\DoxyCodeLine{37     \}}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{44     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a0f235d3f9f49582c0902dfcd5217f4a1}{update}}(MessageType message, \textcolor{keywordtype}{double} val) \{}
-\DoxyCodeLine{45       checkMessageType(message);}
-\DoxyCodeLine{46       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{47     \}}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{54     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a97bf3fd861a8eac696a97ec56d953b47}{update}}(MessageType message, \textcolor{keywordtype}{int} val) \{}
-\DoxyCodeLine{55       checkMessageType(message);}
-\DoxyCodeLine{56       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{57     \};}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{64     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a05a6a76b6875406ae8ff5e05f2662d57}{update}}(MessageType message, \textcolor{keyword}{const} std::string\& val) \{}
-\DoxyCodeLine{65       checkMessageType(message);}
-\DoxyCodeLine{66       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{67     \};}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#pragma GCC diagnostic push}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma GCC diagnostic ignored "{}-\/Wswitch-\/enum"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{30   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Basis>}
+\DoxyCodeLine{31   \textcolor{keyword}{class }\mbox{\hyperlink{a01552}{ControlSubsamplingVertexVTKWriter}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01564}{IObserver}}<ControlMessages> \{}
+\DoxyCodeLine{32     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} components = Basis::LocalView::Tree::degree() == 0 ? 1 : Basis::LocalView::Tree::degree();}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keyword}{public}:}
+\DoxyCodeLine{44     \mbox{\hyperlink{a01552_ac1580434b973badf5715358d5365a2b6}{ControlSubsamplingVertexVTKWriter}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01456}{Basis}}\& p\_basis, \textcolor{keyword}{const} Eigen::VectorXd\& sol, \textcolor{keywordtype}{int} refinementLevels = 0)}
+\DoxyCodeLine{45         : basis\{\&p\_basis\}, vtkWriter(p\_basis.gridView(), \mbox{\hyperlink{a00321}{Dune}}::refinementLevels(refinementLevels)), solution\{\&sol\} \{\}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{56     \textcolor{keyword}{auto} \mbox{\hyperlink{a01552_a351251161ca8fbb31aaea0cffaac3e90}{setFieldInfo}}(std::string\&\& name, Dune::VTK::FieldInfo::Type type, std::size\_t size,}
+\DoxyCodeLine{57                       Dune::VTK::Precision prec = Dune::VTK::Precision::float32) \{}
+\DoxyCodeLine{58       fieldInfo      = Dune::VTK::FieldInfo(std::move(name), type, size, prec);}
+\DoxyCodeLine{59       isFieldInfoSet = \textcolor{keyword}{true};}
+\DoxyCodeLine{60     \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67     \textcolor{keyword}{auto} \mbox{\hyperlink{a01552_ab19f208c66b4af13d7248800d4fd1179}{setFileNamePrefix}}(std::string\&\& p\_name) \{ prefixString = std::move(p\_name); \}}
 \DoxyCodeLine{68 }
-\DoxyCodeLine{75     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_ab87bc0dab48de914d7f5221fb9c3477b}{update}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2) \{}
-\DoxyCodeLine{76       checkMessageType(message);}
-\DoxyCodeLine{77       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val1, val2);}
-\DoxyCodeLine{78     \};}
-\DoxyCodeLine{79 }
-\DoxyCodeLine{86     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a5d2fb507095933199fab726c17e01bcf}{update}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2) \{}
-\DoxyCodeLine{87       checkMessageType(message);}
-\DoxyCodeLine{88       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val1, val2);}
-\DoxyCodeLine{89     \};}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01552_aa0c6914ffa6bcdbf95d0e5a815ca44ef}{updateImpl}}(\mbox{\hyperlink{a00310_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{78       assert(isFieldInfoSet \&\& \textcolor{stringliteral}{"{}You need to call setFieldInfo first!"{}});}
+\DoxyCodeLine{79       \textcolor{keywordflow}{switch} (message) \{}
+\DoxyCodeLine{80         \textcolor{keywordflow}{case} \mbox{\hyperlink{a00310_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}}: \{}
+\DoxyCodeLine{81           \textcolor{keyword}{auto} disp = Dune::Functions::makeDiscreteGlobalBasisFunction<Dune::FieldVector<double, components>>(}
+\DoxyCodeLine{82               *basis, *solution);}
+\DoxyCodeLine{83           vtkWriter.addVertexData(disp, fieldInfo);}
+\DoxyCodeLine{84           vtkWriter.write(prefixString + std::to\_string(step++));}
+\DoxyCodeLine{85         \} \textcolor{keywordflow}{break};}
+\DoxyCodeLine{86         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{87           \textcolor{keywordflow}{break};  \textcolor{comment}{//   default: do nothing when notified}}
+\DoxyCodeLine{88       \}}
+\DoxyCodeLine{89     \}}
 \DoxyCodeLine{90 }
-\DoxyCodeLine{96     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a20e3859480f6cab562f33ce9da888380}{update}}(MessageType message, \textcolor{keyword}{const} Eigen::VectorXd\& vec) \{}
-\DoxyCodeLine{97       checkMessageType(message);}
-\DoxyCodeLine{98       \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, vec);}
-\DoxyCodeLine{99     \}}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101   \textcolor{keyword}{protected}:}
-\DoxyCodeLine{102     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a478eaa94650cf462a050e28ecf098773}{updateImpl}}([[maybe\_unused]] MessageType message)\{\};}
-\DoxyCodeLine{103     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a663889f78a7dbd3561fa6a497e023a23}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{double} val)\{\};}
-\DoxyCodeLine{104     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_adc61a4813394bdde201018db198544a3}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val)\{\};}
-\DoxyCodeLine{105     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_ae97b76e37ab99f985a0ef71f4a9efd37}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keyword}{const} std::string\& val)\{\};}
-\DoxyCodeLine{106     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_af53b8b154a887fce37fee355b0244c21}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2)\{\};}
-\DoxyCodeLine{107     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a4d0a13cbe1104d10c4ec5e928f64ab4b}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2)\{\};}
-\DoxyCodeLine{108     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01561_a4b7267849be75994c85c8ebe7af10465}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keyword}{const} Eigen::VectorXd\& vec) \{\}}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{110   \textcolor{keyword}{private}:}
-\DoxyCodeLine{111     \textcolor{keywordtype}{void} checkMessageType(MessageType message) \{}
-\DoxyCodeLine{112       \textcolor{keywordflow}{if} (MessageType::END == message) DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The END enum type should not be used"{}});}
-\DoxyCodeLine{113       \textcolor{keywordflow}{if} (MessageType::BEGIN == message)}
-\DoxyCodeLine{114         DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The BEGIN enum type should not be used"{}});}
-\DoxyCodeLine{115     \}}
-\DoxyCodeLine{116   \};}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{124   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{125   \textcolor{keyword}{class }\mbox{\hyperlink{a01565}{IObservable}} \{}
-\DoxyCodeLine{126   \textcolor{keyword}{public}:}
-\DoxyCodeLine{127     \mbox{\hyperlink{a01565_ac8058d5b1ebb462a10712ba598154e23}{IObservable}}() \{}
-\DoxyCodeLine{128       \textcolor{keywordflow}{for} (MessageType msg = MessageType::BEGIN; msg != MessageType::END; \mbox{\hyperlink{a00308_ga5db6e8f04892e85e6b17e276cdbd0e54}{Ikarus::increment}}(msg))}
-\DoxyCodeLine{129         messages\_.push\_back(msg);}
-\DoxyCodeLine{130     \}}
-\DoxyCodeLine{131     \textcolor{keyword}{virtual} \mbox{\hyperlink{a01565_ad1fe15b31cccec8e44c695af550938ed}{\string~IObservable}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{137     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_ae182a206a72de6bc4585152d32332349}{subscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{142     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a13bd8d73b485186680f640786e2682e5}{subscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{147     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a026462a1a050728e37bc24e33d2edd9c}{subscribeAll}}(std::initializer\_list<std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}>> observers);}
-\DoxyCodeLine{153     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a49622286d2b15f0b8a2b25275e6bc771}{unSubscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{158     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a5c20f7eab2233d085071a4fd3b44cbda}{unSubscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{163     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(MessageType message);}
-\DoxyCodeLine{164 }
-\DoxyCodeLine{171     \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{172     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_ac035ba934c33e090c4a45128ac13f190}{notify}}(MessageType message, ScalarType val);}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{179     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a47ac8ae7cc4e9304cfb220f1d93ce1fc}{notify}}(MessageType message, \textcolor{keywordtype}{int} val);}
-\DoxyCodeLine{180 }
-\DoxyCodeLine{186     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a2f93322aa7327069dd4469983933bd16}{notify}}(MessageType message, \textcolor{keyword}{const} std::string\& val);}
-\DoxyCodeLine{187 }
-\DoxyCodeLine{194     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_ae0c6cec757e540f22b65fce1f782e380}{notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2);}
-\DoxyCodeLine{195 }
-\DoxyCodeLine{202     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a72e3156874ce81a1c7548b9f74db522c}{notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2);}
-\DoxyCodeLine{203 }
-\DoxyCodeLine{210     \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{211     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_ac72b261cd2af7f59e98f1504814bc785}{notify}}(MessageType message, Eigen::VectorX<ScalarType> vec);}
-\DoxyCodeLine{212 }
-\DoxyCodeLine{213   \textcolor{keyword}{private}:}
-\DoxyCodeLine{214     \textcolor{keyword}{using }ObserverVector = std::vector<std::shared\_ptr<IObserver<MessageType>>>;}
-\DoxyCodeLine{215     \textcolor{keyword}{using }ObserverMap    = std::map<MessageType, ObserverVector>;}
-\DoxyCodeLine{216     ObserverMap observers\_;}
-\DoxyCodeLine{217     std::vector<MessageType> messages\_;}
-\DoxyCodeLine{218   \};}
-\DoxyCodeLine{219 }
-\DoxyCodeLine{220   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{221   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_ae182a206a72de6bc4585152d32332349}{IObservable<MessageType>::subscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{222     observers\_[message];}
-\DoxyCodeLine{223     \textcolor{keyword}{auto}\&\& vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{224     vectorOfObserversOfASpecificMessage.push\_back(observer);}
-\DoxyCodeLine{225   \}}
-\DoxyCodeLine{226 }
-\DoxyCodeLine{227   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{228   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a13bd8d73b485186680f640786e2682e5}{IObservable<MessageType>::subscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{229     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{230       subscribe(msg, observer);}
-\DoxyCodeLine{231   \}}
-\DoxyCodeLine{232 }
-\DoxyCodeLine{233   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{234   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a13bd8d73b485186680f640786e2682e5}{IObservable<MessageType>::subscribeAll}}(}
-\DoxyCodeLine{235       std::initializer\_list<std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}>> observers) \{}
-\DoxyCodeLine{236     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& observer : observers)}
-\DoxyCodeLine{237       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{238         subscribe(msg, observer);}
-\DoxyCodeLine{239   \}}
-\DoxyCodeLine{240 }
-\DoxyCodeLine{241   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{242   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a49622286d2b15f0b8a2b25275e6bc771}{IObservable<MessageType>::unSubscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{243     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{244     std::ranges::remove\_if(vectorOfObserversOfASpecificMessage, [\&observer](\textcolor{keyword}{auto}\&\& obs) \{ \textcolor{keywordflow}{return} obs == observer; \});}
-\DoxyCodeLine{245   \}}
-\DoxyCodeLine{246 }
-\DoxyCodeLine{247   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{248   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a5c20f7eab2233d085071a4fd3b44cbda}{IObservable<MessageType>::unSubscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01561}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{249     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{250       unSubscribe(msg, observer);}
-\DoxyCodeLine{251   \}}
-\DoxyCodeLine{252 }
-\DoxyCodeLine{253   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{254   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message) \{}
-\DoxyCodeLine{255     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{256     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{257       obs-\/>update(message);}
-\DoxyCodeLine{258   \}}
-\DoxyCodeLine{259 }
-\DoxyCodeLine{260   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{261   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{262   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, ScalarType val) \{}
-\DoxyCodeLine{263     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{264     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{265       obs-\/>update(message, val);}
-\DoxyCodeLine{266   \}}
-\DoxyCodeLine{267 }
-\DoxyCodeLine{268   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{269   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val) \{}
-\DoxyCodeLine{270     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{271     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{272       obs-\/>update(message, val);}
-\DoxyCodeLine{273   \}}
-\DoxyCodeLine{274 }
-\DoxyCodeLine{275   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{276   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keyword}{const} std::string\& val) \{}
-\DoxyCodeLine{277     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{278     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{279       obs-\/>update(message, val);}
-\DoxyCodeLine{280   \}}
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{283   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2) \{}
-\DoxyCodeLine{284     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{285     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{286       obs-\/>update(message, val1, val2);}
-\DoxyCodeLine{287   \}}
-\DoxyCodeLine{288 }
-\DoxyCodeLine{289   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{290   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2) \{}
-\DoxyCodeLine{291     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{292     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{293       obs-\/>update(message, val1, val2);}
-\DoxyCodeLine{294   \}}
-\DoxyCodeLine{295 }
-\DoxyCodeLine{296   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{297   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{298   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01565_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, Eigen::VectorX<ScalarType> vec) \{}
-\DoxyCodeLine{299     \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{300     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{301       obs-\/>update(message, vec);}
-\DoxyCodeLine{302   \}}
-\DoxyCodeLine{303 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{91   \textcolor{keyword}{private}:}
+\DoxyCodeLine{92     \mbox{\hyperlink{a01456}{Basis}} \textcolor{keyword}{const}* basis;}
+\DoxyCodeLine{93     Dune::SubsamplingVTKWriter<typename Basis::GridView> vtkWriter;}
+\DoxyCodeLine{94     Eigen::VectorXd \textcolor{keyword}{const}* solution;}
+\DoxyCodeLine{95     \textcolor{keywordtype}{int} step\{0\};}
+\DoxyCodeLine{96     Dune::VTK::FieldInfo fieldInfo\{\textcolor{stringliteral}{"{}Default"{}}, Dune::VTK::FieldInfo::Type::scalar, 1\};}
+\DoxyCodeLine{97     std::string prefixString\{\};}
+\DoxyCodeLine{98     \textcolor{keywordtype}{bool} isFieldInfoSet\{\textcolor{keyword}{false}\};}
+\DoxyCodeLine{99   \};}
+\DoxyCodeLine{100 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{101 \textcolor{preprocessor}{\#pragma GCC diagnostic pop}}
 
 \end{DoxyCode}
