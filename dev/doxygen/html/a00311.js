@@ -34,8 +34,8 @@ var a00311 =
     ] ],
     [ "Ikarus::FlatPreBasis< PreBasis >", "a01500.html", [
       [ "type", "a01500.html#a448426468de3637416804f6ef6f8ce90", null ],
-      [ "create", "a01500.html#a9c133ba014522aa8c8d90f2a3835c7e1", null ],
-      [ "create", "a01500.html#ae0b3f304d3219200114a68fc58eee20f", null ]
+      [ "create", "a01500.html#af5414357864c26a827136edac1a085f4", null ],
+      [ "create", "a01500.html#a9c133ba014522aa8c8d90f2a3835c7e1", null ]
     ] ],
     [ "Ikarus::NonLinearOperator< TypeListOne, TypeListTwo >", "a01540.html", [
       [ "NonLinearOperator", "a01540.html#a2308f86b14266d7b7049b0a12cf20cdc", null ]
@@ -48,7 +48,7 @@ var a00311 =
     ] ],
     [ "Ikarus::utils::LoadDefault", "a01488.html", null ],
     [ "MAKE_ENUM", "a00311.html#ga14ad7d33267cea1c93f97f3998081657", null ],
-    [ "Ikarus::addInEmbedding", "a00311.html#gad6bf040c4e1fadbf243d4c1c9d2855b2", null ],
+    [ "Ikarus::addInEmbedding", "a00311.html#gadab36ca6a3183fb9fedbb02b3ecba736", null ],
     [ "Ikarus::utils::checkGradient", "a00311.html#gacb9e813539bfd84df99ad097cabc9de9", null ],
     [ "Ikarus::utils::checkHessian", "a00311.html#ga5d1a87964a3d6b6ddc994532e93b6798", null ],
     [ "Ikarus::utils::checkJacobian", "a00311.html#ga553465359c199ef676945832587d2869", null ],
@@ -56,7 +56,7 @@ var a00311 =
     [ "Ikarus::createRandomVector", "a00311.html#ga821ecf80e4a83241318d825f49cd79e4", null ],
     [ "Ikarus::enlargeIfReduced", "a00311.html#ga30500f2c49b7d1997c7eb7b6ee90ad75", null ],
     [ "Ikarus::utils::findLineSegment", "a00311.html#ga16e7d5f51cc42190c090e727495c1609", null ],
-    [ "Ikarus::flatPreBasis", "a00311.html#ga42681f6971dbcfa99e66dc7593f95b38", null ],
+    [ "Ikarus::flatPreBasis", "a00311.html#ga0728039472747184e9eb2ec0992a4a2b", null ],
     [ "Ikarus::utils::hessianN", "a00311.html#ga2a6c26beeb8d52283e82939ca585dc20", null ],
     [ "Ikarus::increment", "a00311.html#ga5db6e8f04892e85e6b17e276cdbd0e54", null ],
     [ "Ikarus::norm", "a00311.html#ga0ffc0c74dbd9aeee3e53b199a21b828c", null ],
@@ -67,11 +67,11 @@ var a00311 =
     [ "Ikarus::operator+", "a00311.html#ga9377cd2cf3a5ec468d140cb7063efa58", null ],
     [ "Ikarus::operator+", "a00311.html#ga098b554b29619e0cea837f3daa6e0e30", null ],
     [ "Ikarus::operator+", "a00311.html#ga0fe1660eb760ecc49838d130ba6c6712", null ],
-    [ "Ikarus::operator+=", "a00311.html#gace6bdf5ec8a965423e5a13c20c91dd89", null ],
+    [ "Ikarus::operator+=", "a00311.html#ga09cedf6a65b142340c1934c987ed064c", null ],
     [ "Ikarus::operator+=", "a00311.html#gaada5360aeb17e59d87ae2ba82057421d", null ],
     [ "Ikarus::operator+=", "a00311.html#ga96968bbff353ac49f48d0aa8b9810b7a", null ],
     [ "Ikarus::operator-", "a00311.html#ga9ab6437d6235e378a6171bfffd4bf1cc", null ],
-    [ "Ikarus::operator-=", "a00311.html#ga09e1060b2b3a53a77bb0da6345d844b1", null ],
+    [ "Ikarus::operator-=", "a00311.html#ga90c40b4eebec59eeb02294cd7cb0470c", null ],
     [ "Ikarus::operator<<", "a00311.html#gac2cdcc3047e59b91a4874a1355503cd5", null ],
     [ "Ikarus::orthonormalizeMatrixColumns", "a00311.html#gaa33adfa2e95d7040a816bb2da81d275d", null ],
     [ "Ikarus::utils::polyfit", "a00311.html#ga0d3a38551806e4de3ff44f311847ba51", null ],

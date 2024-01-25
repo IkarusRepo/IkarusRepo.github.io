@@ -1,4 +1,4 @@
 var a02487 =
 [
-    [ "Ikarus::KirchhoffLoveShell< Basis_, FERequirements_, useEigenRef >::KinematicVariables< ScalarType >", "a01288.html", "a01288" ]
+    [ "registerBasis", "a02487.html#ga3792308fbe7fa149d290329ed46c5bb9", null ]
 ];

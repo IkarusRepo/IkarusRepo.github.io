@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: autodiffhelper.hh Source File</title>
+    <title>ikarus: eigendunetransformations.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,31 +152,68 @@ $(document).ready(function(){initNavTree('a00026_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">autodiffhelper.hh</div></div>
+  <div class="headertitle"><div class="title">eigendunetransformations.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00026.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;autodiff/forward/dual.hpp&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;autodiff/forward/dual/eigen.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;assert.h&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00326.html">Ikarus::utils</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Fun, <span class="keyword">typename</span>... Vars, <span class="keyword">typename</span>... Args, <span class="keyword">typename</span> U, <span class="keyword">typename</span> G, <span class="keyword">typename</span> H&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="a00311.html#ga2a6c26beeb8d52283e82939ca585dc20">   35</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="a00311.html#ga2a6c26beeb8d52283e82939ca585dc20">hessianN</a>(<span class="keyword">const</span> Fun&amp; f, <span class="keyword">const</span> autodiff::Wrt&lt;Vars...&gt;&amp; wrt, <span class="keyword">const</span> autodiff::At&lt;Args...&gt;&amp; at, U&amp; u,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                std::array&lt;G, U::RowsAtCompileTime&gt;&amp; g, std::array&lt;H, U::RowsAtCompileTime&gt;&amp; h) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Vars) &gt;= 1);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Args) &gt;= 1);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">auto</span> fEntry = [&amp;](<span class="keyword">auto</span>&amp; I) { <span class="keywordflow">return</span> [&amp;](<span class="keyword">const</span> <span class="keyword">auto</span>&amp;) { <span class="keywordflow">return</span> std::apply(f, at.args)[I]; }; };</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; U::RowsAtCompileTime; ++i)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      hessian(fEntry(i), wrt, at, u[i], g[i], h[i]);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  }</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}  <span class="comment">// namespace Ikarus::utils</span></div>
-<div class="ttc" id="aa00311_html_ga2a6c26beeb8d52283e82939ca585dc20"><div class="ttname"><a href="a00311.html#ga2a6c26beeb8d52283e82939ca585dc20">Ikarus::utils::hessianN</a></div><div class="ttdeci">void hessianN(const Fun &amp;f, const autodiff::Wrt&lt; Vars... &gt; &amp;wrt, const autodiff::At&lt; Args... &gt; &amp;at, U &amp;u, std::array&lt; G, U::RowsAtCompileTime &gt; &amp;g, std::array&lt; H, U::RowsAtCompileTime &gt; &amp;h)</div><div class="ttdoc">Computes the Hessian matrix for each parameter of a given function.The Hessian matrix represents the ...</div><div class="ttdef"><b>Definition:</b> autodiffhelper.hh:35</div></div>
-<div class="ttc" id="aa00326_html"><div class="ttname"><a href="a00326.html">Ikarus::utils</a></div><div class="ttdef"><b>Definition:</b> algorithms.hh:17</div></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;dune/common/diagonalmatrix.hh&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;dune/common/fmatrix.hh&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;dune/common/fvector.hh&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;dune/istl/scaledidmatrix.hh&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;Eigen/Core&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00316.html">Ikarus</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ScalarType, <span class="keywordtype">int</span> size&gt;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="a00316.html#ab3afd8732c7518fb5cad5fc85f660ff4">   30</a></span><a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, size&gt;</a> <a class="code hl_function" href="a00316.html#ab3afd8732c7518fb5cad5fc85f660ff4">toDune</a>(<span class="keyword">const</span> Eigen::Vector&lt;ScalarType, size&gt;&amp; vec) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, size&gt;</a> fieldVector;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; ++i)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    fieldVector[i] = vec[i];</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">return</span> fieldVector;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ScalarType, <span class="keywordtype">int</span> rows&gt;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="a00316.html#a93a33caf49e0072f27298b2745e9ae56">   47</a></span><a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, rows&gt;</a> <a class="code hl_function" href="a00316.html#ab3afd8732c7518fb5cad5fc85f660ff4">toDune</a>(<span class="keyword">const</span> Eigen::Matrix&lt;ScalarType, rows, 0&gt;&amp; vec) {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  assert(vec.cols() == 1 &amp;&amp; <span class="stringliteral">&quot;The passed matrix needs to have a single column.&quot;</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, rows&gt;</a> fieldVector{0.0};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; vec.rows(); ++i)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    fieldVector[i] = vec(i, 0);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">return</span> fieldVector;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ScalarType, <span class="keywordtype">int</span> rows, <span class="keywordtype">int</span> cols&gt;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="a00316.html#a332dc3abf615826c1eeb5e4dba37dfb8">   66</a></span>Dune::FieldMatrix&lt;ScalarType, rows, cols&gt; <a class="code hl_function" href="a00316.html#ab3afd8732c7518fb5cad5fc85f660ff4">toDune</a>(<span class="keyword">const</span> Eigen::Matrix&lt;ScalarType, rows, cols&gt;&amp; mat) {</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  Dune::FieldMatrix&lt;ScalarType, rows, cols&gt; fieldMatrix{0.0};</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; mat.rows(); ++i)</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; mat.cols(); ++j)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      fieldMatrix[i][j] = mat(i, j);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keywordflow">return</span> fieldMatrix;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ScalarType, <span class="keywordtype">int</span> size&gt;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="a00316.html#ab33f0f88435ac31e2f1230b321fe16db">   83</a></span>Eigen::Map&lt;const Eigen::Vector&lt;ScalarType, size&gt;&gt; <a class="code hl_function" href="a00316.html#ab33f0f88435ac31e2f1230b321fe16db">toEigenMap</a>(<span class="keyword">const</span> <a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, size&gt;</a>&amp; vec) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordflow">return</span> {vec.data(), size};</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> ScalarType, <span class="keywordtype">int</span> size&gt;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="a00316.html#a8f500d064c150a65ba93e8a4d5fe6df7">   95</a></span>Eigen::Map&lt;Eigen::Vector&lt;ScalarType, size&gt;&gt; <a class="code hl_function" href="a00316.html#ab33f0f88435ac31e2f1230b321fe16db">toEigenMap</a>(<a class="code hl_class" href="a01368.html">Dune::FieldVector&lt;ScalarType, size&gt;</a>&amp; vec) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keywordflow">return</span> {vec.data(), size};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>} <span class="comment">// namespace Ikarus</span></div>
+<div class="ttc" id="aa00316_html"><div class="ttname"><a href="a00316.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:21</div></div>
+<div class="ttc" id="aa00316_html_ab33f0f88435ac31e2f1230b321fe16db"><div class="ttname"><a href="a00316.html#ab33f0f88435ac31e2f1230b321fe16db">Ikarus::toEigenMap</a></div><div class="ttdeci">Eigen::Map&lt; const Eigen::Vector&lt; ScalarType, size &gt; &gt; toEigenMap(const Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)</div><div class="ttdoc">View a Dune::FieldVector as an Eigen::Vector using Map, no copies take place.</div><div class="ttdef"><b>Definition:</b> eigendunetransformations.hh:83</div></div>
+<div class="ttc" id="aa00316_html_ab3afd8732c7518fb5cad5fc85f660ff4"><div class="ttname"><a href="a00316.html#ab3afd8732c7518fb5cad5fc85f660ff4">Ikarus::toDune</a></div><div class="ttdeci">Dune::FieldVector&lt; ScalarType, size &gt; toDune(const Eigen::Vector&lt; ScalarType, size &gt; &amp;vec)</div><div class="ttdoc">Create Eigen::Vector to Dune::FieldVector.</div><div class="ttdef"><b>Definition:</b> eigendunetransformations.hh:30</div></div>
+<div class="ttc" id="aa01368_html"><div class="ttname"><a href="a01368.html">Dune::FieldVector</a></div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -187,7 +224,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00026.html">autodiffhelper.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00026.html">eigendunetransformations.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

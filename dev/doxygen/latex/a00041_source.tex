@@ -1,5 +1,5 @@
-\hypertarget{a00041_source}{}\doxysection{init.\+hh}
-\label{a00041_source}\index{init.hh@{init.hh}}
+\hypertarget{a00041_source}{}\doxysection{functionhelper.\+hh}
+\label{a00041_source}\index{functionhelper.hh@{functionhelper.hh}}
 \mbox{\hyperlink{a00041}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,77 +7,26 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <chrono>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/parallel/mpihelper.hh>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <spdlog/details/registry.h>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <spdlog/fmt/chrono.h>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <spdlog/fmt/ostr.h>}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <spdlog/fmt/ranges.h>}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <spdlog/sinks/basic\_file\_sink.h>}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <spdlog/sinks/stdout\_color\_sinks.h>}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{32   \textcolor{keyword}{class }\mbox{\hyperlink{a01528}{IkarusInstance}} \{}
-\DoxyCodeLine{33   \textcolor{keyword}{public}:}
-\DoxyCodeLine{39     \textcolor{keyword}{static} \mbox{\hyperlink{a01528}{IkarusInstance}}\& \mbox{\hyperlink{a01528_a76a31b1d9f5b1fba7180451b1edddf0a}{getInstance}}() \{}
-\DoxyCodeLine{40       \textcolor{keyword}{static} \mbox{\hyperlink{a01528}{IkarusInstance}} instance;}
-\DoxyCodeLine{41       \textcolor{keywordflow}{return} instance;}
-\DoxyCodeLine{42     \}}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01528_a833f9b23184e3d0f5b06f5b7b85d9233}{enableFileLogger}}(std::string\&\& filename = \textcolor{stringliteral}{"{}"{}}) \{}
-\DoxyCodeLine{50       \textcolor{keyword}{using namespace }std::chrono;}
-\DoxyCodeLine{51       std::string currentTime = fmt::format(\textcolor{stringliteral}{"{}\_\{\}"{}}, std::chrono::system\_clock::now());}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53       std::ranges::transform(currentTime, currentTime.begin(), [](\textcolor{keywordtype}{char} ch) \{}
-\DoxyCodeLine{54         return (ch == \textcolor{stringliteral}{' '} or ch == \textcolor{stringliteral}{':'}) ? \textcolor{stringliteral}{'\_'} : ch;}
-\DoxyCodeLine{55       \});  \textcolor{comment}{// replace space and colon with underscore}}
-\DoxyCodeLine{56       \textcolor{keyword}{auto} logFilename = (filename.empty() ? executableName : filename) + currentTime + \textcolor{stringliteral}{"{}.log"{}};}
-\DoxyCodeLine{57       \textcolor{keyword}{auto} file\_sink   = std::make\_shared<spdlog::sinks::basic\_file\_sink\_mt>(logFilename, \textcolor{keyword}{true});}
-\DoxyCodeLine{58       file\_sink-\/>set\_pattern(\textcolor{stringliteral}{"{}\%v"{}});}
-\DoxyCodeLine{59       file\_sink-\/>set\_level(spdlog::level::trace);}
-\DoxyCodeLine{60       \textcolor{keyword}{auto} logger = spdlog::default\_logger();}
-\DoxyCodeLine{61       logger-\/>sinks().push\_back(file\_sink);}
-\DoxyCodeLine{62     \}}
-\DoxyCodeLine{63 }
-\DoxyCodeLine{64   \textcolor{keyword}{private}:}
-\DoxyCodeLine{65     \textcolor{keyword}{friend} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01528_a4865c52ed9d7e9c0f00e8bd5295ee853}{init}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv, \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01528_a833f9b23184e3d0f5b06f5b7b85d9233}{enableFileLogger}});}
-\DoxyCodeLine{66     \mbox{\hyperlink{a01528}{IkarusInstance}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{67     std::string executableName;}
-\DoxyCodeLine{68 }
-\DoxyCodeLine{69   \textcolor{keyword}{public}:}
-\DoxyCodeLine{70     \mbox{\hyperlink{a01528_a5310bd753ef99eb8cd3814f93b6fc345}{IkarusInstance}}(\mbox{\hyperlink{a01528}{IkarusInstance}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{71     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01528_a77f7470b50ebee705f221d80b689f6f5}{operator=}}(\mbox{\hyperlink{a01528}{IkarusInstance}} \textcolor{keyword}{const}\&) = \textcolor{keyword}{delete};}
-\DoxyCodeLine{72   \};}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{81   \textcolor{keywordtype}{void} \textcolor{keyword}{inline} \mbox{\hyperlink{a00316_ac8243891c1b961e50a066140ab79a142}{init}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv, \textcolor{keywordtype}{bool} enableFileLogger = \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{82     Dune::MPIHelper::instance(argc, argv);}
-\DoxyCodeLine{83     \textcolor{keyword}{auto}\& instance          = \mbox{\hyperlink{a01528_a76a31b1d9f5b1fba7180451b1edddf0a}{IkarusInstance::getInstance}}();}
-\DoxyCodeLine{84     instance.executableName = argv[0];}
-\DoxyCodeLine{85     \textcolor{keyword}{auto} logger             = spdlog::default\_logger();}
-\DoxyCodeLine{86     logger-\/>set\_pattern(\textcolor{stringliteral}{"{}\%v"{}});}
-\DoxyCodeLine{87     \textcolor{keywordflow}{if} (enableFileLogger) instance.enableFileLogger();}
-\DoxyCodeLine{88 }
-\DoxyCodeLine{89     \textcolor{keyword}{auto} currentTime = std::chrono::system\_clock::now();}
-\DoxyCodeLine{90     \textcolor{keyword}{const} std::chrono::year\_month\_day currentYearMonthDay\{floor<std::chrono::days>(currentTime)\};}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{92     spdlog::info(\textcolor{stringliteral}{"{}Start of execution: \{\}"{}}, currentTime);}
-\DoxyCodeLine{94     spdlog::info(R\textcolor{stringliteral}{"{}xxx(    \_/\_/\_/  \_/    \_/    \_/\_/    \_/\_/\_/    \_/    \_/    \_/\_/\_/)xxx"{});}}
-\DoxyCodeLine{95 \textcolor{stringliteral}{    spdlog::info(R}\textcolor{stringliteral}{"{}xxx(     \_/    \_/  \_/    \_/    \_/  \_/    \_/  \_/    \_/  \_/       )xxx"{});}}
-\DoxyCodeLine{96 \textcolor{stringliteral}{    spdlog::info(R}\textcolor{stringliteral}{"{}xxx(    \_/    \_/\_/      \_/\_/\_/\_/  \_/\_/\_/    \_/    \_/    \_/\_/    )xxx"{});}}
-\DoxyCodeLine{97 \textcolor{stringliteral}{    spdlog::info(R}\textcolor{stringliteral}{"{}xxx(   \_/    \_/  \_/    \_/    \_/  \_/    \_/  \_/    \_/        \_/   )xxx"{});}}
-\DoxyCodeLine{98 \textcolor{stringliteral}{    spdlog::info(R}\textcolor{stringliteral}{"{}xxx(\_/\_/\_/  \_/    \_/  \_/    \_/  \_/    \_/    \_/\_/    \_/\_/\_/      )xxx"{});}}
-\DoxyCodeLine{99 \textcolor{stringliteral}{}}
-\DoxyCodeLine{100 \textcolor{stringliteral}{    spdlog::info(}\textcolor{stringliteral}{"{}© 2021-\/\{\} The Ikarus Developers, see LICENSE.md "{}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(currentYearMonthDay.year()));}
-\DoxyCodeLine{101     spdlog::info(\textcolor{stringliteral}{"{}You are using Ikarus v\{\}. Please don't forget to cite us:"{}}, IKARUS\_VERSION);}
-\DoxyCodeLine{102     spdlog::info(}
-\DoxyCodeLine{103         \textcolor{stringliteral}{"{}Müller, A., \& Vinod Kumar Mitruka, T. K. M. (2023). Ikarus v0.3 (Version V1). Version V1. "{}}}
-\DoxyCodeLine{104         \textcolor{stringliteral}{"{}doi:<https://doi.org/10.18419/darus-\/3303>"{}});}
-\DoxyCodeLine{105   \}}
-\DoxyCodeLine{106 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00326}{Ikarus::utils}} \{}
+\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LocalView>}
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00311_ga276a9de351512c4cacf6e09cad649265}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LocalView\& localView,}
+\DoxyCodeLine{25                                  std::vector<\mbox{\hyperlink{a01368}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
+\DoxyCodeLine{26   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01618}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
+\DoxyCodeLine{27                 \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
+\DoxyCodeLine{28   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
+\DoxyCodeLine{29   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{30   lagrangeNodeCoords.resize(localFE.size());}
+\DoxyCodeLine{31   std::vector<double> out;}
+\DoxyCodeLine{32   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
+\DoxyCodeLine{33     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
+\DoxyCodeLine{34     localFE.localInterpolation().interpolate(ithCoord, out);}
+\DoxyCodeLine{35     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
+\DoxyCodeLine{36       lagrangeNodeCoords[j][i] = out[j];}
+\DoxyCodeLine{37   \}}
+\DoxyCodeLine{38   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
+\DoxyCodeLine{39     nCoord = localView.element().geometry().global(nCoord);}
+\DoxyCodeLine{40 \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 \} \textcolor{comment}{// namespace Ikarus::utils}}
 
 \end{DoxyCode}

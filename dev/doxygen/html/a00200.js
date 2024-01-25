@@ -1,4 +1,7 @@
 var a00200 =
 [
-    [ "registerElement", "a00200.html#ga40f83e4d7b90006b1019add3b1b218b5", null ]
+    [ "createDeformationGradient", "a00200.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
+    [ "createGreenLagrangianStrains", "a00200.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
+    [ "createRightCauchyGreen", "a00200.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
+    [ "transformStrain", "a00200.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
 ];

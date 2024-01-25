@@ -1,141 +1,125 @@
-\hypertarget{a02514_source}{}\doxysection{utils/dirichletvalues.hh}
-\label{a02514_source}\index{dirichletvalues.hh@{dirichletvalues.hh}}
+\hypertarget{a02514_source}{}\doxysection{python/finiteelements/nonlinearelastic.hh}
+\label{a02514_source}\index{nonlinearelastic.hh@{nonlinearelastic.hh}}
 \mbox{\hyperlink{a02514}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <algorithm>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <concepts>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <cstddef>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <functional>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <dune/functions/backends/istlvectorbackend.hh>}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/boundarydofs.hh>}}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <autodiff/forward/real/real.hpp>}}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{28 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00321}{Dune}} \{}
-\DoxyCodeLine{29   \textcolor{keyword}{template} <\textcolor{keyword}{class} K, \textcolor{keywordtype}{int} N>}
-\DoxyCodeLine{30   \textcolor{keyword}{class }FieldVector;}
-\DoxyCodeLine{31 \}}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{33 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{45   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Basis\_, \textcolor{keyword}{typename} FlagsType\_ = std::vector<\textcolor{keywordtype}{bool}>>}
-\DoxyCodeLine{46   \textcolor{keyword}{class }\mbox{\hyperlink{a01492}{DirichletValues}} \{}
-\DoxyCodeLine{47   \textcolor{keyword}{public}:}
-\DoxyCodeLine{48     \textcolor{keyword}{using }\mbox{\hyperlink{a01492_a90174bec95fb08a186f29d1d98e350dc}{Basis}}                         = std::remove\_cvref\_t<Basis\_>;}
-\DoxyCodeLine{49     \textcolor{keyword}{using }\mbox{\hyperlink{a01492_a824bc5693b4b784c8ec9c65aad07da92}{FlagsType}}                     = FlagsType\_;}
-\DoxyCodeLine{50     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01492_ac5610d23a04c8eab17dc643528503b1b}{worldDimension}} = Basis::GridView::dimensionworld;}
-\DoxyCodeLine{51     \textcolor{keyword}{using }\mbox{\hyperlink{a01492_a4b708d1ae34c1f28389273f209ea79f7}{BackendType}}                   = \textcolor{keyword}{decltype}(Dune::Functions::istlVectorBackend(std::declval<FlagsType\&>()));}
-\DoxyCodeLine{52     \textcolor{keyword}{explicit} \mbox{\hyperlink{a01492_a6c7e1cf2122e41f3f41ec87ec3415a47}{DirichletValues}}(\textcolor{keyword}{const} Basis\_\& p\_basis) : basis\_\{p\_basis\}, dirichletFlagsBackend\{dirichletFlags\} \{}
-\DoxyCodeLine{53       dirichletFlagsBackend.resize(basis\_);}
-\DoxyCodeLine{54       std::fill(dirichletFlags.begin(), dirichletFlags.end(), \textcolor{keyword}{false});}
-\DoxyCodeLine{55       inhomogeneousBoundaryVectorDummy.setZero(\textcolor{keyword}{static\_cast<}Eigen::Index\textcolor{keyword}{>}(basis\_.size()));}
-\DoxyCodeLine{56     \}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/fufem/boundarypatch.hh>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/lagrangebasis.hh>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/powerbasis.hh>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <dune/grid/yaspgrid.hh>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/functions/globalbasis.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/functional.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00227}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02511}{ikarus/finiteelements/mechanics/nonlinearelastic.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02490}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus::Python}} \{}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a00337_a6114e5fee4b037e1baa43925a79eee38}{NonLinearElastic}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{24 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00325_a4124469fcacfc527cb971b40fe86e244}{registerNonLinearElastic}}(pybind11::handle scope, pybind11::class\_<NonLinearElastic, options...> cls) \{}
+\DoxyCodeLine{25   \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \textcolor{keyword}{using }GlobalBasis            = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_ae61be1f5b6bdd9443c5ac05e1c526e2f}{NonLinearElastic::Basis}};}
+\DoxyCodeLine{28   \textcolor{keyword}{using }FlatBasis              = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_afc4ec54126ffcf064c026548b8def36f}{NonLinearElastic::FlatBasis}};}
+\DoxyCodeLine{29   \textcolor{keyword}{using }GridView               = \textcolor{keyword}{typename} GlobalBasis::GridView;}
+\DoxyCodeLine{30   \textcolor{keyword}{using }Element                = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_a6b5b825027cf741ba76c9683701373d5}{NonLinearElastic::Element}};}
+\DoxyCodeLine{31   \textcolor{keyword}{using }Traits                 = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_aad6d75ca17e07cb7deab8f2d2e76b0d9}{NonLinearElastic::Traits}};}
+\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01240}{FERequirements}}         = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_a845acdbdee4d31a14517c29a6e41a633}{NonLinearElastic::FERequirementType}};}
+\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01304}{Material}}               = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_ac44404a0f9d5ee9c786775dc0b8ef760}{NonLinearElastic::Material}};}
+\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01240}{FERequirements}}         = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_a845acdbdee4d31a14517c29a6e41a633}{NonLinearElastic::FERequirementType}};}
+\DoxyCodeLine{35   \textcolor{keyword}{using }ResultRequirementsType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01332_a10a6dce759626ef381f39b5798316619}{NonLinearElastic::ResultRequirementsType}};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   cls.def(\mbox{\hyperlink{a00316_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keyword}{const} \mbox{\hyperlink{a01304}{Material}}\& mat) \{}
+\DoxyCodeLine{38             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00337_a6114e5fee4b037e1baa43925a79eee38}{NonLinearElastic}}(\mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, mat);}
+\DoxyCodeLine{39           \}),}
+\DoxyCodeLine{40           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   \textcolor{keyword}{using }LoadFunction = std::function<Eigen::Vector<double, Traits::worlddim>(}
+\DoxyCodeLine{43       \mbox{\hyperlink{a01368}{Dune::FieldVector<double, Traits::worlddim>}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45   cls.def(\mbox{\hyperlink{a00316_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}(}
+\DoxyCodeLine{46               [](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keyword}{const} \mbox{\hyperlink{a01304}{Material}}\& mat, \textcolor{keyword}{const} LoadFunction volumeLoad) \{}
+\DoxyCodeLine{47                 \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00337_a6114e5fee4b037e1baa43925a79eee38}{NonLinearElastic}}(\mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, mat, volumeLoad);}
+\DoxyCodeLine{48               \}),}
+\DoxyCodeLine{49           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   cls.def(\mbox{\hyperlink{a00316_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keyword}{const} \mbox{\hyperlink{a01304}{Material}}\& mat,}
+\DoxyCodeLine{52                             \textcolor{keyword}{const} LoadFunction volumeLoad, \textcolor{keyword}{const} BoundaryPatch<GridView>\& bp,}
+\DoxyCodeLine{53                             \textcolor{keyword}{const} LoadFunction neumannBoundaryLoad) \{}
+\DoxyCodeLine{54             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00337_a6114e5fee4b037e1baa43925a79eee38}{NonLinearElastic}}(\mbox{\hyperlink{a00335_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, mat, volumeLoad, \&bp, neumannBoundaryLoad);}
+\DoxyCodeLine{55           \}),}
+\DoxyCodeLine{56           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>(), pybind11::keep\_alive<1, 7>());}
 \DoxyCodeLine{57 }
-\DoxyCodeLine{66     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_a7de80e6ad56431b46750ddbc2580c45e}{fixBoundaryDOFs}}(F\&\& f) \{}
-\DoxyCodeLine{68       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01641}{Concepts::IsFunctorWithArgs<F, BackendType, typename Basis::MultiIndex>}}) \{}
-\DoxyCodeLine{69         \textcolor{keyword}{auto} lambda = [\&](\textcolor{keyword}{auto}\&\& indexGlobal) \{ f(dirichletFlagsBackend, indexGlobal); \};}
-\DoxyCodeLine{70         Dune::Functions::forEachBoundaryDOF(basis\_, lambda);}
-\DoxyCodeLine{71       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01641}{Concepts::IsFunctorWithArgs<F, BackendType, int, typename Basis::LocalView>}}) \{}
-\DoxyCodeLine{72         \textcolor{keyword}{auto} lambda = [\&](\textcolor{keyword}{auto}\&\& localIndex, \textcolor{keyword}{auto}\&\& localView) \{ f(dirichletFlagsBackend, localIndex, localView); \};}
-\DoxyCodeLine{73         Dune::Functions::forEachBoundaryDOF(basis\_, lambda);}
-\DoxyCodeLine{74       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01641}{Concepts::IsFunctorWithArgs}}<F, \mbox{\hyperlink{a01492_a4b708d1ae34c1f28389273f209ea79f7}{BackendType}}, int, \textcolor{keyword}{typename} Basis::LocalView,}
-\DoxyCodeLine{75                                                        \textcolor{keyword}{typename} Basis::GridView::Intersection>) \{}
-\DoxyCodeLine{76         \textcolor{keyword}{auto} lambda = [\&](\textcolor{keyword}{auto}\&\& localIndex, \textcolor{keyword}{auto}\&\& localView, \textcolor{keyword}{auto}\&\& intersection) \{}
-\DoxyCodeLine{77           f(dirichletFlagsBackend, localIndex, localView, intersection);}
-\DoxyCodeLine{78         \};}
-\DoxyCodeLine{79         Dune::Functions::forEachBoundaryDOF(basis\_, lambda);}
-\DoxyCodeLine{80       \}}
-\DoxyCodeLine{81     \}}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{91     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{92     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_ad62158c0ddba6753a04ed26097610bbd}{fixDOFs}}(F\&\& f) \{}
-\DoxyCodeLine{93       f(basis\_, dirichletFlagsBackend);}
-\DoxyCodeLine{94     \}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{101     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_afbe5f38622ea7524c4d2230f32530a96}{fixIthDOF}}(\textcolor{keyword}{typename} Basis::MultiIndex i) \{ dirichletFlagsBackend[i] = \textcolor{keyword}{true}; \}}
-\DoxyCodeLine{102 }
-\DoxyCodeLine{103     \textcolor{comment}{/* \(\backslash\)brief Returns the local basis object */}}
-\DoxyCodeLine{104     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01492_a9a1bebfa473fd329494f484d943148c7}{basis}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} basis\_; \}}
-\DoxyCodeLine{105 }
-\DoxyCodeLine{106     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the give multiIndex is constrained */}}
-\DoxyCodeLine{107     \textcolor{keyword}{template} <\textcolor{keyword}{typename} MultiIndex>}
-\DoxyCodeLine{108     \textcolor{keyword}{requires}(not std::integral<MultiIndex>) [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01492_ac4547ca3a0f7c62ec907da614b0c720a}{isConstrained}}(\textcolor{keyword}{const} MultiIndex\& multiIndex) \textcolor{keyword}{const} \{}
-\DoxyCodeLine{109       \textcolor{keywordflow}{return} dirichletFlagsBackend[multiIndex];}
-\DoxyCodeLine{110     \}}
-\DoxyCodeLine{111 }
-\DoxyCodeLine{112     \textcolor{comment}{/* \(\backslash\)brief Returns a boolean values, if the i-\/th degree of freedom is constrained */}}
-\DoxyCodeLine{113     [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01492_ad54d4f91d00e803bca5191c10f6e9ba8}{isConstrained}}(std::size\_t i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags[i]; \}}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{115     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedoms are fixed */}}
-\DoxyCodeLine{116     \textcolor{keyword}{auto} \mbox{\hyperlink{a01492_a1076b17755b91d92b46905319abe3114}{fixedDOFsize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::ranges::count(dirichletFlags, \textcolor{keyword}{true}); \}}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{118     \textcolor{comment}{/* \(\backslash\)brief Returns how many degrees of freedom there are */}}
-\DoxyCodeLine{119     \textcolor{keyword}{auto} \mbox{\hyperlink{a01492_ae9bb578246b89ec0b5f0960955a36c04}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags.size(); \}}
-\DoxyCodeLine{120 }
-\DoxyCodeLine{121     \textcolor{comment}{/* \(\backslash\)brief Returns the underlying dof flag container */}}
-\DoxyCodeLine{122     \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01492_af96b1166dd15062fdafd3ba40440c1c0}{container}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletFlags; \}}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{133     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{134     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_ac2d42d17c6813a4a04bc98fe4346a231}{storeInhomogeneousBoundaryCondition}}(F\&\& f) \{}
-\DoxyCodeLine{135       \textcolor{keyword}{auto} derivativeLambda = [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{136         autodiff::real lambdaDual = lambda;}
-\DoxyCodeLine{137         lambdaDual[1]             = 1;  \textcolor{comment}{// Setting the derivative in lambda direction to 1}}
-\DoxyCodeLine{138         \textcolor{keywordflow}{return} derivative(f(globalCoord, lambdaDual));}
-\DoxyCodeLine{139       \};}
-\DoxyCodeLine{140       dirichletFunctions.push\_back(\{f, derivativeLambda\});}
-\DoxyCodeLine{141     \}}
-\DoxyCodeLine{142 }
-\DoxyCodeLine{152     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_ad314b92f19e3c809aa6d1ea9c4ef9674}{evaluateInhomogeneousBoundaryCondition}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{153       inhomogeneousBoundaryVectorDummy.setZero();}
-\DoxyCodeLine{154       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
-\DoxyCodeLine{155       xIh.setZero();}
-\DoxyCodeLine{156       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
-\DoxyCodeLine{157         interpolate(}
-\DoxyCodeLine{158             basis\_, inhomogeneousBoundaryVectorDummy,}
-\DoxyCodeLine{159             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.value(globalCoord, lambda); \}, dirichletFlagsBackend);}
-\DoxyCodeLine{160         xIh += inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{161       \}}
-\DoxyCodeLine{162     \}}
-\DoxyCodeLine{163 }
-\DoxyCodeLine{173     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01492_ae309809bc3f63a4b3cd29273e1dda01e}{evaluateInhomogeneousBoundaryConditionDerivative}}(Eigen::VectorXd\& xIh, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& lambda) \{}
-\DoxyCodeLine{174       inhomogeneousBoundaryVectorDummy.setZero();}
-\DoxyCodeLine{175       xIh.resizeLike(inhomogeneousBoundaryVectorDummy);}
-\DoxyCodeLine{176       xIh.setZero();}
-\DoxyCodeLine{177       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& f : dirichletFunctions) \{}
-\DoxyCodeLine{178         interpolate(}
-\DoxyCodeLine{179             basis\_, inhomogeneousBoundaryVectorDummy,}
-\DoxyCodeLine{180             [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& globalCoord) \{ \textcolor{keywordflow}{return} f.derivative(globalCoord, lambda); \}, dirichletFlagsBackend);}
-\DoxyCodeLine{181         xIh += inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{182       \}}
-\DoxyCodeLine{183     \}}
-\DoxyCodeLine{184 }
-\DoxyCodeLine{185   \textcolor{keyword}{private}:}
-\DoxyCodeLine{186     Eigen::VectorXd inhomogeneousBoundaryVectorDummy;}
-\DoxyCodeLine{187     \mbox{\hyperlink{a01456}{Basis}} basis\_;}
-\DoxyCodeLine{188     \mbox{\hyperlink{a01492_a824bc5693b4b784c8ec9c65aad07da92}{FlagsType}} dirichletFlags;}
-\DoxyCodeLine{189     \mbox{\hyperlink{a01492_a4b708d1ae34c1f28389273f209ea79f7}{BackendType}} dirichletFlagsBackend;}
-\DoxyCodeLine{190     \textcolor{keyword}{struct }DirichletFunctions \{}
-\DoxyCodeLine{191       \textcolor{keyword}{using }Signature = std::function<Eigen::Vector<double, worldDimension>(}
-\DoxyCodeLine{192           \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Dune::FieldVector<double, worldDimension>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
-\DoxyCodeLine{193       Signature value;}
-\DoxyCodeLine{194       Signature derivative;}
-\DoxyCodeLine{195     \};}
-\DoxyCodeLine{196     std::vector<DirichletFunctions> dirichletFunctions;}
-\DoxyCodeLine{197   \};}
-\DoxyCodeLine{198 }
-\DoxyCodeLine{199 \}  \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{58   pybind11::module scopedf = pybind11::module::import(\textcolor{stringliteral}{"{}dune.functions"{}});}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60   \textcolor{keyword}{typedef} Dune::Python::LocalViewWrapper<FlatBasis> LocalViewWrapper;}
+\DoxyCodeLine{61   \textcolor{keyword}{auto} includes = Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}dune/python/functions/globalbasis.hh"{}}\};}
+\DoxyCodeLine{62   \textcolor{keyword}{auto} lv       = Dune::Python::insertClass<LocalViewWrapper>(}
+\DoxyCodeLine{63                 scopedf, \textcolor{stringliteral}{"{}LocalViewWrapper"{}},}
+\DoxyCodeLine{64                 Dune::Python::GenerateTypeName(\textcolor{stringliteral}{"{}Dune::Python::LocalViewWrapperWrapper"{}}, Dune::MetaType<FlatBasis>()),}
+\DoxyCodeLine{65                 includes)}
+\DoxyCodeLine{66                 .first;}
+\DoxyCodeLine{67   lv.def(\textcolor{stringliteral}{"{}bind"{}}, \&LocalViewWrapper::bind);}
+\DoxyCodeLine{68   lv.def(\textcolor{stringliteral}{"{}unbind"{}}, \&LocalViewWrapper::unbind);}
+\DoxyCodeLine{69   lv.def(\textcolor{stringliteral}{"{}index"{}}, [](\textcolor{keyword}{const} LocalViewWrapper\& localView, \textcolor{keywordtype}{int} index) \{ \textcolor{keywordflow}{return} localView.index(index); \});}
+\DoxyCodeLine{70   lv.def(\textcolor{stringliteral}{"{}\_\_len\_\_"{}}, [](LocalViewWrapper\& self) -\/> \textcolor{keywordtype}{int} \{ \textcolor{keywordflow}{return} self.size(); \});}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72   Dune::Python::Functions::registerTree<typename LocalViewWrapper::Tree>(lv);}
+\DoxyCodeLine{73   lv.def(\textcolor{stringliteral}{"{}tree"{}}, [](\textcolor{keyword}{const} LocalViewWrapper\& view) \{ \textcolor{keywordflow}{return} view.tree(); \});}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75   \textcolor{keyword}{auto} basisName = Dune::className<FlatBasis>();}
+\DoxyCodeLine{76   \textcolor{keyword}{auto} entry     = Dune::Python::insertClass<FlatBasis>(scopedf, \textcolor{stringliteral}{"{}DefaultGlobalBasis"{}}, pybind11::buffer\_protocol(),}
+\DoxyCodeLine{77                                                     Dune::Python::GenerateTypeName(basisName),}
+\DoxyCodeLine{78                                                     Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}dune/python/functions/globalbasis.hh"{}}\});}
+\DoxyCodeLine{79   \textcolor{keywordflow}{if} (entry.second)}
+\DoxyCodeLine{80     Dune::Python::registerGlobalBasis(scopedf, entry.first);}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   cls.def(}
+\DoxyCodeLine{83       \textcolor{stringliteral}{"{}localView"{}},}
+\DoxyCodeLine{84       [](\mbox{\hyperlink{a01332}{NonLinearElastic}}\& self) -\/> LocalViewWrapper \{}
+\DoxyCodeLine{85         \textcolor{keyword}{auto} lvWrapped = LocalViewWrapper(self.localView().globalBasis());}
+\DoxyCodeLine{86         \textcolor{comment}{// this can be simplified when https://gitlab.dune-\/project.org/staging/dune-\/functions/-\//merge\_requests/418}}
+\DoxyCodeLine{87         \textcolor{comment}{// becomes available}}
+\DoxyCodeLine{88         pybind11::object obj = pybind11::cast(self.localView().element());}
+\DoxyCodeLine{89         lvWrapped.bind(obj);}
+\DoxyCodeLine{90         \textcolor{keywordflow}{return} lvWrapped;}
+\DoxyCodeLine{91       \},}
+\DoxyCodeLine{92       pybind11::keep\_alive<0, 1>());}
+\DoxyCodeLine{93   cls.def(\textcolor{stringliteral}{"{}calculateScalar"{}},}
+\DoxyCodeLine{94           [](\mbox{\hyperlink{a01332}{NonLinearElastic}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01240}{FERequirements}}\& req) \{ \textcolor{keywordflow}{return} self.calculateScalar(req); \});}
+\DoxyCodeLine{95   cls.def(\textcolor{stringliteral}{"{}calculateVector"{}}, [](\mbox{\hyperlink{a01332}{NonLinearElastic}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01240}{FERequirements}}\& req, Eigen::Ref<Eigen::VectorXd> vec) \{}
+\DoxyCodeLine{96     \textcolor{keywordflow}{return} self.calculateVector(req, vec);}
+\DoxyCodeLine{97   \});}
+\DoxyCodeLine{98   cls.def(}
+\DoxyCodeLine{99       \textcolor{stringliteral}{"{}calculateMatrix"{}},}
+\DoxyCodeLine{100       [](\mbox{\hyperlink{a01332}{NonLinearElastic}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01240}{FERequirements}}\& req, Eigen::Ref<Eigen::MatrixXd> mat) \{}
+\DoxyCodeLine{101         \textcolor{keywordflow}{return} self.calculateMatrix(req, mat);}
+\DoxyCodeLine{102       \},}
+\DoxyCodeLine{103       pybind11::arg(\textcolor{stringliteral}{"{}FERequirements"{}}), pybind11::arg(\textcolor{stringliteral}{"{}elementMatrix"{}}).noconvert());}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   cls.def(}
+\DoxyCodeLine{106       \textcolor{stringliteral}{"{}resultAt"{}},}
+\DoxyCodeLine{107       [](\mbox{\hyperlink{a01332}{NonLinearElastic}}\& self, \textcolor{keyword}{const} ResultRequirementsType\& req,}
+\DoxyCodeLine{108          \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Dune::FieldVector<double, Traits::mydim>}}\& local, \mbox{\hyperlink{a00303_ga531be167e924b749eb8b4ccc7f1c18c9}{ResultType}} resType = \mbox{\hyperlink{a00303_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}}) \{}
+\DoxyCodeLine{109         \mbox{\hyperlink{a01248}{ResultTypeMap<double>}} resultTypeMap;}
+\DoxyCodeLine{110         self.calculateAt(req, local, resultTypeMap);}
+\DoxyCodeLine{111         \textcolor{keywordflow}{if} (resType == \mbox{\hyperlink{a00303_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}})}
+\DoxyCodeLine{112           \textcolor{keywordflow}{return} resultTypeMap.\mbox{\hyperlink{a01248_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}().second;}
+\DoxyCodeLine{113         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{114           \textcolor{keywordflow}{return} resultTypeMap.\mbox{\hyperlink{a01248_a7f9a61700e42a5507d7dfcfd059a4067}{getResult}}(resType);}
+\DoxyCodeLine{115       \},}
+\DoxyCodeLine{116       pybind11::arg(\textcolor{stringliteral}{"{}resultRequirements"{}}), pybind11::arg(\textcolor{stringliteral}{"{}local"{}}), pybind11::arg(\textcolor{stringliteral}{"{}resultType"{}}) = \mbox{\hyperlink{a00303_gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713}{ResultType::noType}});}
+\DoxyCodeLine{117 \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

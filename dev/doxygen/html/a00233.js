@@ -1,4 +1,6 @@
 var a00233 =
 [
-    [ "draw", "a00233.html#a2634a2b365ea0b95c6dcfad0dbefac1f", null ]
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01420.html", "a01420" ],
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NonLinearOperatorImpl, LinearSolver, UpdateFunctionTypeImpl >", "a01424.html", "a01424" ],
+    [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00233.html#a674c58e9e3dd89675adb727587a08850", null ]
 ];

@@ -13,7 +13,7 @@ var a01424 =
     [ "notify", "a01424.html#ae0c6cec757e540f22b65fce1f782e380", null ],
     [ "notify", "a01424.html#ac035ba934c33e090c4a45128ac13f190", null ],
     [ "setup", "a01424.html#acadfca6b95ce86efde93b8dd3d12306a", null ],
-    [ "solve", "a01424.html#a437477e42855cfa9d46f5173ffa465d8", null ],
+    [ "solve", "a01424.html#a8268fba35d7489060c9ee2974d079877", null ],
     [ "subscribe", "a01424.html#ae182a206a72de6bc4585152d32332349", null ],
     [ "subscribeAll", "a01424.html#a026462a1a050728e37bc24e33d2edd9c", null ],
     [ "subscribeAll", "a01424.html#a13bd8d73b485186680f640786e2682e5", null ],

@@ -1,4 +1,4 @@
 var a00179 =
 [
-    [ "Ikarus::DefaultMembraneStrain", "a01328.html", "a01328" ]
+    [ "Ikarus::PowerBasisFE< Basis >", "a01216.html", "a01216" ]
 ];

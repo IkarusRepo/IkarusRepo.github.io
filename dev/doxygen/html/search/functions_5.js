@@ -8,7 +8,7 @@ var searchData=
   ['easvariant_5',['easVariant',['../a01280.html#ab8c3ff043b0808de14656d79ec56de5f',1,'Ikarus::EnhancedAssumedStrains']]],
   ['elementconstructordecoratorfactory_6',['elementConstructorDecoratorFactory',['../a00337.html#ac473256064f0c1fb683ca226b5615420',1,'ikarus::finite_elements']]],
   ['enablefilelogger_7',['enableFileLogger',['../a01528.html#a833f9b23184e3d0f5b06f5b7b85d9233',1,'Ikarus::IkarusInstance']]],
-  ['enhancedassumedstrains_8',['EnhancedAssumedStrains',['../a01280.html#a1f09e03a1efdba3ff76ad0f37acc0abc',1,'Ikarus::EnhancedAssumedStrains']]],
+  ['enhancedassumedstrains_8',['EnhancedAssumedStrains',['../a01280.html#a1405d5a39d16aaed2a794b4bbbc75039',1,'Ikarus::EnhancedAssumedStrains']]],
   ['enlargeifreduced_9',['enlargeIfReduced',['../a00311.html#ga30500f2c49b7d1997c7eb7b6ee90ad75',1,'Ikarus']]],
   ['estimateofconnectivity_10',['estimateOfConnectivity',['../a01156.html#a6179ef97228c75448f8d109f031bc667',1,'Ikarus::FlatAssemblerBase']]],
   ['evaluate_11',['evaluate',['../a01384.html#ae07a0f7cfdc977d153022c33b2c4ada9',1,'Ikarus::ResultFunction']]],
