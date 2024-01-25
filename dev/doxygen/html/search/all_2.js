@@ -15,6 +15,6 @@ var searchData=
   ['bibliography_12',['Bibliography',['../a02526.html',1,'']]],
   ['bopbending_13',['bopBending',['../a01284.html#a90e0bb85ca10d2bb5b97f509cc973931',1,'Ikarus::KirchhoffLoveShell']]],
   ['boundarypatch_14',['boundaryPatch',['../a00339.html#a7340cb604093dba2860368264f055a76',1,'ikarus::utils']]],
-  ['boundarypatch_2ehh_15',['boundarypatch.hh',['../a00161.html',1,'']]],
+  ['boundarypatch_2ehh_15',['boundarypatch.hh',['../a00209.html',1,'']]],
   ['bulkmodulusandlamesfirstparameter_16',['BulkModulusAndLamesFirstParameter',['../a01356.html',1,'Ikarus']]]
 ];

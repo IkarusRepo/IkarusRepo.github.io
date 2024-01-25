@@ -1,4 +1,4 @@
 var a00221 =
 [
-    [ "Ikarus::DefaultMembraneStrain", "a01328.html", "a01328" ]
+    [ "Ikarus::ControlSubsamplingVertexVTKWriter< Basis >", "a01552.html", "a01552" ]
 ];

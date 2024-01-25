@@ -1,8 +1,8 @@
 var searchData=
 [
   ['_5f_5finit_5f_5f_2epy_0',['__init__.py',['../a02523.html',1,'']]],
-  ['basis_2ehh_1',['basis.hh',['../a02490.html',1,'']]],
-  ['dirichletvalues_2ehh_2',['dirichletvalues.hh',['../a02496.html',1,'']]],
+  ['basis_2ehh_1',['basis.hh',['../a02508.html',1,'']]],
+  ['dirichletvalues_2ehh_2',['dirichletvalues.hh',['../a02514.html',1,'']]],
   ['underlying_3',['Underlying',['../a01324.html#ad37a57829794ef9bfd1a583e9fb1920a',1,'Ikarus::VanishingStress']]],
   ['unique_4',['unique',['../a00313.html#ga12de8f77a63ef488a87a5aa8536146ee',1,'Ikarus::utils']]],
   ['unsubscribe_5',['unSubscribe',['../a01568.html#a49622286d2b15f0b8a2b25275e6bc771',1,'Ikarus::IObservable']]],
