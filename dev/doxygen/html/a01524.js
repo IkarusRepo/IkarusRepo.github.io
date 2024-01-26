@@ -1,6 +1,8 @@
 var a01524 =
 [
-    [ "draw", "a01524.html#a08fa473dcdfbdb5dcf759546ea2da3b8", null ],
-    [ "tolerance", "a01524.html#a6c1e702608ca901f9f7efca524560b25", null ],
-    [ "writeSlopeStatementIfFailed", "a01524.html#ac9946207ee221c94e843ea7c048a16a3", null ]
+    [ "IkarusInstance", "a01524.html#ab4ee067880d13079efa9b45cd0bcef43", null ],
+    [ "enableFileLogger", "a01524.html#a833f9b23184e3d0f5b06f5b7b85d9233", null ],
+    [ "getInstance", "a01524.html#a76a31b1d9f5b1fba7180451b1edddf0a", null ],
+    [ "operator=", "a01524.html#a7f11ddf595903d8796cbff4943e620a6", null ],
+    [ "init", "a01524.html#a4865c52ed9d7e9c0f00e8bd5295ee853", null ]
 ];

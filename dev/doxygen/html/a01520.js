@@ -1,6 +1,6 @@
 var a01520 =
 [
-    [ "FIMS", "a01520.html#aef8f8b43a63a4bf4c7c3bc193c4ee1f0", null ],
-    [ "type", "a01520.html#ae56d4cd604948715e51d517f27d7f0c9", null ],
-    [ "create", "a01520.html#ad2ce954f09e165f4440f6e4139ed0b85", null ]
+    [ "draw", "a01520.html#a08fa473dcdfbdb5dcf759546ea2da3b8", null ],
+    [ "tolerance", "a01520.html#a6c1e702608ca901f9f7efca524560b25", null ],
+    [ "writeSlopeStatementIfFailed", "a01520.html#ac9946207ee221c94e843ea7c048a16a3", null ]
 ];

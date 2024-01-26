@@ -1,8 +1,8 @@
-\hypertarget{a01624}{}\doxysection{Ikarus\+::Concepts\+::Dune\+Local\+Basis Concept Reference}
-\label{a01624}\index{Ikarus::Concepts::DuneLocalBasis@{Ikarus::Concepts::DuneLocalBasis}}
+\hypertarget{a01624}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01624}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept to check if a local basis is a dune\+Local\+Basis.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,20 +12,12 @@ Concept to check if a local basis is a dune\+Local\+Basis.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} DuneLocalBasisImpl>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01624}{Ikarus::Concepts::DuneLocalBasis}} =  \textcolor{keyword}{requires}(DuneLocalBasisImpl\& duneLocalBasis) \{}
-\DoxyCodeLine{    \textcolor{keyword}{typename} DuneLocalBasisImpl::Traits::RangeType;}
-\DoxyCodeLine{    \textcolor{keyword}{typename} DuneLocalBasisImpl::Traits::JacobianType;}
-\DoxyCodeLine{    DuneLocalBasisImpl::Traits::dimDomain;}
-\DoxyCodeLine{    \textcolor{keyword}{typename} DuneLocalBasisImpl::Traits::DomainType;}
-\DoxyCodeLine{}
-\DoxyCodeLine{    \textcolor{keyword}{typename} DuneLocalBasisImpl::Traits::DomainFieldType;}
-\DoxyCodeLine{    \textcolor{keyword}{typename} DuneLocalBasisImpl::Traits::RangeFieldType;}
-\DoxyCodeLine{}
-\DoxyCodeLine{    duneLocalBasis.evaluateFunction(std::declval<typename DuneLocalBasisImpl::Traits::DomainType>(),}
-\DoxyCodeLine{                                    std::declval<std::vector<typename DuneLocalBasisImpl::Traits::RangeType>\&>());}
-\DoxyCodeLine{    duneLocalBasis.evaluateJacobian(std::declval<typename DuneLocalBasisImpl::Traits::DomainType>(),}
-\DoxyCodeLine{                                    std::declval<std::vector<typename DuneLocalBasisImpl::Traits::JacobianType>\&>());}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} AdaptiveStepSizing, \textcolor{keyword}{typename} NonLinearSolverInformation, \textcolor{keyword}{typename} Subs\textcolor{keywordtype}{id}iaryArgs, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01624}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(AdaptiveStepSizing adaptiveSS, NonLinearSolverInformation info,}
+\DoxyCodeLine{                                                SubsidiaryArgs args, NonLinearOperator nop) \{}
+\DoxyCodeLine{    \{ adaptiveSS(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveSS.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveSS.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
 \DoxyCodeLine{  \}}
 
 \end{DoxyCode}
@@ -34,6 +26,10 @@ Concept to check if a local basis is a dune\+Local\+Basis.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Dune\+Local\+Basis\+Impl} & The basis type. \\
+{\em Adaptive\+Step\+Sizing} & The adaptive step sizing type. \\
+\hline
+{\em Non\+Linear\+Solver\+Information} & The non-\/linear solver information type. \\
+\hline
+{\em Subsidiary\+Args} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}

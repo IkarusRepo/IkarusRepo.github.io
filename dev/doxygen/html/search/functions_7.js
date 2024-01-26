@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['genericobserver_0',['GenericObserver',['../a01556.html#a14ce7f5c94fc9c0ad4aa1d95b4005d55',1,'Ikarus::GenericObserver']]],
+  ['genericobserver_0',['GenericObserver',['../a01552.html#a14ce7f5c94fc9c0ad4aa1d95b4005d55',1,'Ikarus::GenericObserver']]],
   ['geometry_1',['geometry',['../a01284.html#af5dc455b63fa15beb17e93e1a118080c',1,'Ikarus::KirchhoffLoveShell::geometry()'],['../a01292.html#a9d79259ab8e7093c190171a8b4ddff13',1,'Ikarus::LinearElastic::geometry()'],['../a01332.html#a19b3729a38801ee4b804c5a90c95c763',1,'Ikarus::NonLinearElastic::geometry()']]],
   ['getferequirements_2',['getFERequirements',['../a01252.html#a55da3509459a63cd2ffcb20df9039d0d',1,'Ikarus::ResultRequirements']]],
   ['getglobalsolution_3',['getGlobalSolution',['../a01240.html#ae7fc156ad6fff17f82c3ebefb188949e',1,'Ikarus::FERequirements::getGlobalSolution()'],['../a01252.html#a15c5fab8c1190b52ff013c244fdfa486',1,'Ikarus::ResultRequirements::getGlobalSolution()']]],
-  ['getinfo_4',['getInfo',['../a01392.html#a5ea4822b3fd6ed682262d6624209e116',1,'Eigen::TruncatedConjugateGradient']]],
-  ['getinstance_5',['getInstance',['../a01528.html#a76a31b1d9f5b1fba7180451b1edddf0a',1,'Ikarus::IkarusInstance']]],
+  ['getinfo_4',['getInfo',['../a01388.html#a5ea4822b3fd6ed682262d6624209e116',1,'Eigen::TruncatedConjugateGradient']]],
+  ['getinstance_5',['getInstance',['../a01524.html#a76a31b1d9f5b1fba7180451b1edddf0a',1,'Ikarus::IkarusInstance']]],
   ['getinternalenergy_6',['getInternalEnergy',['../a01332.html#a5e139eb8977fd8a47656dc680ac15214',1,'Ikarus::NonLinearElastic']]],
   ['getlinearindex_7',['getLinearIndex',['../a00053.html#a6cfefe8fc3c51b09b7633cf8397a67e9',1,'eigensparseaddon.hh']]],
   ['getmatrix_8',['getMatrix',['../a01168.html#a918263cc6329db0934491008567898f3',1,'Ikarus::SparseFlatAssembler::getMatrix()'],['../a01172.html#a0bcf15aedf444d941ef9efb2b7514733',1,'Ikarus::DenseFlatAssembler::getMatrix()']]],
@@ -24,5 +24,5 @@ var searchData=
   ['getvector_21',['getVector',['../a01164.html#a99690d51394f943e44743365d4d3b57e',1,'Ikarus::VectorFlatAssembler']]],
   ['globalflatindices_22',['globalFlatIndices',['../a01216.html#ac47a208cf2511bf8676282280360ab38',1,'Ikarus::PowerBasisFE::globalFlatIndices()'],['../a01220.html#a14e333e804dd7bc079e753a6c007b3e4',1,'Ikarus::ScalarFieldFE::globalFlatIndices()']]],
   ['gridelement_23',['gridElement',['../a01216.html#a0fe5d4e10f331905629351786c72ce6a',1,'Ikarus::PowerBasisFE::gridElement()'],['../a01220.html#a11dc18a7cfdfbc8c9fe8f7e8d444be1f',1,'Ikarus::ScalarFieldFE::gridElement()']]],
-  ['gridview_24',['gridView',['../a01456.html#a6bac19b2dddd3d31bb81552e7f6a2189',1,'Ikarus::Basis::gridView() const'],['../a01456.html#a82022613dbfd0a13e0ca8a03d8be51f5',1,'Ikarus::Basis::gridView()']]]
+  ['gridview_24',['gridView',['../a01452.html#a6bac19b2dddd3d31bb81552e7f6a2189',1,'Ikarus::Basis::gridView() const'],['../a01452.html#a82022613dbfd0a13e0ca8a03d8be51f5',1,'Ikarus::Basis::gridView()']]]
 ];

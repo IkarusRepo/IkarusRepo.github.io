@@ -1,8 +1,8 @@
-\hypertarget{a01626}{}\doxysection{Ikarus\+::Concepts\+::Power\+Basis Concept Reference}
-\label{a01626}\index{Ikarus::Concepts::PowerBasis@{Ikarus::Concepts::PowerBasis}}
+\hypertarget{a01626}{}\doxysection{Ikarus\+::Concepts\+::Non\+Linear\+Solver\+Check\+For\+Path\+Following Concept Reference}
+\label{a01626}\index{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing@{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}}
 
 
-Concept to check if a basis uses power indexing strategy.  
+Concept to check if a non-\/linear solver with its non-\/linear operator satisfies requirements for path following.  
 
 
 
@@ -12,17 +12,22 @@ Concept to check if a basis uses power indexing strategy.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} Basis>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01626}{Ikarus::Concepts::PowerBasis}} =  \textcolor{keyword}{requires} \{ Basis::PreBasis::Node::isPower == \textcolor{keyword}{true}; \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} NonLinearSolver>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01626}{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}} =  \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{    std::tuple\_size<typename NonLinearSolver::NonLinearOperator::ParameterValues>::value == 2;}
+\DoxyCodeLine{    not(std::is\_same\_v<typename NonLinearSolver::NonLinearOperator::ValueType, double> and}
+\DoxyCodeLine{        ((traits::isSpecializationTypeAndNonTypes<}
+\DoxyCodeLine{             Eigen::Matrix, \textcolor{keyword}{typename} NonLinearSolver::NonLinearOperator::DerivativeType>::value) or}
+\DoxyCodeLine{         (traits::isSpecializationTypeNonTypeAndType<}
+\DoxyCodeLine{             Eigen::SparseMatrix, \textcolor{keyword}{typename} NonLinearSolver::NonLinearOperator::DerivativeType>::value)));}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
 
 \doxysubsection{Detailed Description}
-This concept checks if the given Basis type uses power indexing strategy.
-
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Basis} & The basis type. \\
+{\em Non\+Linear\+Solver} & The non-\/linear solver type. \\
 \hline
 \end{DoxyTemplParams}

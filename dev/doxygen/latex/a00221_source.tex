@@ -1,67 +1,64 @@
-\hypertarget{a00221_source}{}\doxysection{controlvtkwriter.\+hh}
-\label{a00221_source}\index{controlvtkwriter.hh@{controlvtkwriter.hh}}
+\hypertarget{a00221_source}{}\doxysection{membranestrains.\+hh}
+\label{a00221_source}\index{membranestrains.hh@{membranestrains.hh}}
 \mbox{\hyperlink{a00221}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00224}{observer.hh}}"{}}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00212}{observermessages.hh}}"{}}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/functions/gridfunctions/discreteglobalbasisfunction.hh>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/grid/io/file/vtk/subsamplingvtkwriter.hh>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#pragma GCC diagnostic push}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma GCC diagnostic ignored "{}-\/Wswitch-\/enum"{}}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Basis>}
-\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{a01552}{ControlSubsamplingVertexVTKWriter}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01564}{IObserver}}<ControlMessages>}
-\DoxyCodeLine{32 \{}
-\DoxyCodeLine{33   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} components = Basis::LocalView::Tree::degree() == 0 ? 1 : Basis::LocalView::Tree::degree();}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{35 \textcolor{keyword}{public}:}
-\DoxyCodeLine{45   \mbox{\hyperlink{a01552_ac1580434b973badf5715358d5365a2b6}{ControlSubsamplingVertexVTKWriter}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01456}{Basis}}\& p\_basis, \textcolor{keyword}{const} Eigen::VectorXd\& sol, \textcolor{keywordtype}{int} refinementLevels = 0)}
-\DoxyCodeLine{46       : basis\{\&p\_basis\},}
-\DoxyCodeLine{47         vtkWriter(p\_basis.gridView(), \mbox{\hyperlink{a00321}{Dune}}::refinementLevels(refinementLevels)),}
-\DoxyCodeLine{48         solution\{\&sol\} \{\}}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{59   \textcolor{keyword}{auto} \mbox{\hyperlink{a01552_a351251161ca8fbb31aaea0cffaac3e90}{setFieldInfo}}(std::string\&\& name, Dune::VTK::FieldInfo::Type type, std::size\_t size,}
-\DoxyCodeLine{60                     Dune::VTK::Precision prec = Dune::VTK::Precision::float32) \{}
-\DoxyCodeLine{61     fieldInfo      = Dune::VTK::FieldInfo(std::move(name), type, size, prec);}
-\DoxyCodeLine{62     isFieldInfoSet = \textcolor{keyword}{true};}
-\DoxyCodeLine{63   \}}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{70   \textcolor{keyword}{auto} \mbox{\hyperlink{a01552_ab19f208c66b4af13d7248800d4fd1179}{setFileNamePrefix}}(std::string\&\& p\_name) \{ prefixString = std::move(p\_name); \}}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{80   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01552_aa0c6914ffa6bcdbf95d0e5a815ca44ef}{updateImpl}}(\mbox{\hyperlink{a00310_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{81     assert(isFieldInfoSet \&\& \textcolor{stringliteral}{"{}You need to call setFieldInfo first!"{}});}
-\DoxyCodeLine{82     \textcolor{keywordflow}{switch} (message) \{}
-\DoxyCodeLine{83       \textcolor{keywordflow}{case} \mbox{\hyperlink{a00310_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}}: \{}
-\DoxyCodeLine{84         \textcolor{keyword}{auto} disp =}
-\DoxyCodeLine{85             Dune::Functions::makeDiscreteGlobalBasisFunction<Dune::FieldVector<double, components>>(*basis, *solution);}
-\DoxyCodeLine{86         vtkWriter.addVertexData(disp, fieldInfo);}
-\DoxyCodeLine{87         vtkWriter.write(prefixString + std::to\_string(step++));}
-\DoxyCodeLine{88       \} \textcolor{keywordflow}{break};}
-\DoxyCodeLine{89       \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{90         \textcolor{keywordflow}{break}; \textcolor{comment}{// default: do nothing when notified}}
-\DoxyCodeLine{91     \}}
-\DoxyCodeLine{92   \}}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{94 \textcolor{keyword}{private}:}
-\DoxyCodeLine{95   \textcolor{keyword}{const} \mbox{\hyperlink{a01456}{Basis}}* basis;}
-\DoxyCodeLine{96   Dune::SubsamplingVTKWriter<typename Basis::GridView> vtkWriter;}
-\DoxyCodeLine{97   \textcolor{keyword}{const} Eigen::VectorXd* solution;}
-\DoxyCodeLine{98   \textcolor{keywordtype}{int} step\{0\};}
-\DoxyCodeLine{99   Dune::VTK::FieldInfo fieldInfo\{\textcolor{stringliteral}{"{}Default"{}}, Dune::VTK::FieldInfo::Type::scalar, 1\};}
-\DoxyCodeLine{100   std::string prefixString\{\};}
-\DoxyCodeLine{101   \textcolor{keywordtype}{bool} isFieldInfoSet\{\textcolor{keyword}{false}\};}
-\DoxyCodeLine{102 \};}
-\DoxyCodeLine{103 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{104 \textcolor{preprocessor}{\#pragma GCC diagnostic pop}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/common/fvector.hh>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00316}{Ikarus}} \{}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{a01328}{DefaultMembraneStrain}}}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{30   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
+\DoxyCodeLine{31   \textcolor{keyword}{auto} \mbox{\hyperlink{a01328_acfe8c5424970d44c34005e13e851494a}{value}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01364}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} Geometry\& geo, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction) \textcolor{keyword}{const}}
+\DoxyCodeLine{32       -\/> Eigen::Vector3<\textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype> \{}
+\DoxyCodeLine{33     \textcolor{keyword}{using }ScalarType = \textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype;}
+\DoxyCodeLine{34     Eigen::Vector3<ScalarType> epsV;}
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keyword}{auto} J = Dune::toEigen(geo.jacobianTransposed(gpPos));}
+\DoxyCodeLine{36     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00321}{Dune}};}
+\DoxyCodeLine{37     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{38     \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 3, 2> gradu = toEigen(}
+\DoxyCodeLine{39         uFunction.evaluateDerivative(gpPos, \textcolor{comment}{// Here the gpIndex could be passed}}
+\DoxyCodeLine{40                                      Dune::wrt(spatialAll), Dune::on(Dune::DerivativeDirections::referenceElement)));}
+\DoxyCodeLine{41     \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 2, 3> j = J + gradu.transpose();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     epsV << J.row(0).dot(gradu.col(0)) + 0.5 * gradu.col(0).squaredNorm(),}
+\DoxyCodeLine{44         J.row(1).dot(gradu.col(1)) + 0.5 * gradu.col(1).squaredNorm(), j.row(0).dot(j.row(1)) -\/ J.row(0).dot(J.row(1));}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} epsV;}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{64   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{65   \textcolor{keyword}{auto} \mbox{\hyperlink{a01328_a1c17239105e26dfdc369583624d8a200}{derivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01364}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 2, 3>\& jcur,}
+\DoxyCodeLine{66                   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} Geometry\& geo, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis,}
+\DoxyCodeLine{67                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} node)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{68     Eigen::Matrix<ScalarType, 3, 3> bop;}
+\DoxyCodeLine{69     bop.row(0) = jcur.row(0) * dNAtGp(node, 0);}
+\DoxyCodeLine{70     bop.row(1) = jcur.row(1) * dNAtGp(node, 1);}
+\DoxyCodeLine{71     bop.row(2) = jcur.row(0) * dNAtGp(node, 1) + jcur.row(1) * dNAtGp(node, 0);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} bop;}
+\DoxyCodeLine{74   \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{95   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry, \textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{96   \textcolor{keyword}{auto} \mbox{\hyperlink{a01328_a95cb97998e73fcf05fb7d9df0249b2e9}{secondDerivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01364}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} Geometry\& geo,}
+\DoxyCodeLine{97                         \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis, \textcolor{keyword}{const} Eigen::Vector3<ScalarType>\& S, \textcolor{keywordtype}{int} I,}
+\DoxyCodeLine{98                         \textcolor{keywordtype}{int} J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1i                   = dNAtGp(I, 0);}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1j                   = dNAtGp(J, 0);}
+\DoxyCodeLine{101     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2i                   = dNAtGp(I, 1);}
+\DoxyCodeLine{102     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2j                   = dNAtGp(J, 1);}
+\DoxyCodeLine{103     \textcolor{keyword}{const} ScalarType NS                = dN1i * dN1j * S[0] + dN2i * dN2j * S[1] + (dN1i * dN2j + dN2i * dN1j) * S[2];}
+\DoxyCodeLine{104     Eigen::Matrix<ScalarType, 3, 3> kg = Eigen::Matrix<double, 3, 3>::Identity() * NS;}
+\DoxyCodeLine{105     \textcolor{keywordflow}{return} kg;}
+\DoxyCodeLine{106   \}}
+\DoxyCodeLine{107 \};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

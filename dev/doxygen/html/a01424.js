@@ -1,23 +1,8 @@
 var a01424 =
 [
-    [ "NonLinearOperator", "a01424.html#aa548756cad74bde3286938474f13023f", null ],
-    [ "UpdateFunctionType", "a01424.html#a6f1cbb0e111b1621da367961fe6eb134", null ],
-    [ "ValueType", "a01424.html#a28457466df96034316437e231e9831df", null ],
-    [ "NewtonRaphsonWithSubsidiaryFunction", "a01424.html#a41f8e2bf25a62bb349cdaf8c8e4090da", null ],
-    [ "nonLinearOperator", "a01424.html#a11cdacd88c7d199ecc8be67d0d21c298", null ],
-    [ "notify", "a01424.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
-    [ "notify", "a01424.html#a2f93322aa7327069dd4469983933bd16", null ],
-    [ "notify", "a01424.html#ac72b261cd2af7f59e98f1504814bc785", null ],
-    [ "notify", "a01424.html#a47ac8ae7cc4e9304cfb220f1d93ce1fc", null ],
-    [ "notify", "a01424.html#a72e3156874ce81a1c7548b9f74db522c", null ],
-    [ "notify", "a01424.html#ae0c6cec757e540f22b65fce1f782e380", null ],
-    [ "notify", "a01424.html#ac035ba934c33e090c4a45128ac13f190", null ],
-    [ "setup", "a01424.html#acadfca6b95ce86efde93b8dd3d12306a", null ],
-    [ "solve", "a01424.html#a8268fba35d7489060c9ee2974d079877", null ],
-    [ "subscribe", "a01424.html#ae182a206a72de6bc4585152d32332349", null ],
-    [ "subscribeAll", "a01424.html#a026462a1a050728e37bc24e33d2edd9c", null ],
-    [ "subscribeAll", "a01424.html#a13bd8d73b485186680f640786e2682e5", null ],
-    [ "unSubscribe", "a01424.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
-    [ "unSubscribeAll", "a01424.html#a5c20f7eab2233d085071a4fd3b44cbda", null ],
-    [ "isLinearSolver", "a01424.html#ad8df3b2ee18a76d69b531c7b6402970d", null ]
+    [ "operator bool", "a01424.html#a7aaa0619f5238daab90db07d9e29d0d8", null ],
+    [ "correctionNorm", "a01424.html#a66f51414779f3e563557157fb688f18b", null ],
+    [ "iterations", "a01424.html#a81570cd3d9f6589a4d1ba81211f41b99", null ],
+    [ "residualNorm", "a01424.html#ab09859737734f97734f20624f9f3c934", null ],
+    [ "success", "a01424.html#acb65d72d7b2291a9b0d958ce0e4e0887", null ]
 ];

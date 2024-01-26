@@ -1,10 +1,6 @@
 var a00005 =
 [
-    [ "Ikarus::FlatIndexMergingStrategy< IMS >", "a01504.html", "a01504" ],
-    [ "Ikarus::FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "a01508.html", "a01508" ],
-    [ "Ikarus::FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "a01512.html", "a01512" ],
-    [ "Ikarus::FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "a01516.html", "a01516" ],
-    [ "Ikarus::FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "a01520.html", "a01520" ],
-    [ "FlatPreBasis_t", "a00005.html#a98cbe3aef4b3238ea7de77ee9c4c19ac", null ],
-    [ "flatPreBasis", "a00005.html#ga0728039472747184e9eb2ec0992a4a2b", null ]
+    [ "functions", "a00005.html#ab787b670f0d338c870988f417cf85f76", null ],
+    [ "initResults", "a00005.html#ac4a51a33b91a6e959c61fb4a71cef19c", null ],
+    [ "parameter", "a00005.html#ac00abda505aa8ccc73ce59afd165ce49", null ]
 ];

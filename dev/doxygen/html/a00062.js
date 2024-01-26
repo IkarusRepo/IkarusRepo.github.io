@@ -1,4 +1,4 @@
 var a00062 =
 [
-    [ "polyfit", "a00062.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
+    [ "ct_sqrt", "a00062.html#ae55d4d0c3478ab3ecf54ce905ddf223b", null ]
 ];

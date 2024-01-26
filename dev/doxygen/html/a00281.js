@@ -1,4 +1,5 @@
 var a00281 =
 [
-    [ "dirichletValues", "a00281.html#a453691a9a22118c4736e30240481a281", null ]
+    [ "ValueWrapper< T >", "a01608.html", "a01608" ],
+    [ "PYBIND11_MODULE", "a00281.html#a0e4f7cface71bec1c24bbed3aaa798d8", null ]
 ];

@@ -1,4 +1,5 @@
 var a00038 =
 [
-    [ "tensorProductQuadrature", "a00038.html#a839e2d8a648318c584c66024e62ddd91", null ]
+    [ "ReturnType", "a00038.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
+    [ "countType", "a00038.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
 ];

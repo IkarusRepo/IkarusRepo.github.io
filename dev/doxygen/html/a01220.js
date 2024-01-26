@@ -1,10 +1,11 @@
 var a01220 =
 [
-    [ "Basis", "a01220.html#a942f223567b284637a3b76a8a14bffbf", null ],
-    [ "GlobalIndex", "a01220.html#af2417966ae12f57911096e30a38fe034", null ],
-    [ "GridElement", "a01220.html#a768640691f8600157b9e42d96104f178", null ],
-    [ "LocalView", "a01220.html#a0a5c29c7931d3df2d08869e361e31edf", null ],
-    [ "Traits", "a01220.html#a22279ecf1b25c6f471cf3ddd40dbb191", null ],
+    [ "Basis", "a01220.html#a63255346acc181331570dc41dc238db9", null ],
+    [ "GlobalIndex", "a01220.html#accd85ccd2c96113218193bd80e1604b1", null ],
+    [ "GridElement", "a01220.html#aba237b127f2ab1f91a13b7de9f63a971", null ],
+    [ "LocalView", "a01220.html#a82d968a5c3406276f58b028743d9ce56", null ],
+    [ "RootBasis", "a01220.html#ac9962a34e7d9bec1feb9d1eec708a7b5", null ],
+    [ "Traits", "a01220.html#a8278ef910dac64472757dddcca6d4a13", null ],
     [ "ScalarFieldFE", "a01220.html#add0f253f23dca461f7007fc19415efdc", null ],
     [ "globalFlatIndices", "a01220.html#a14e333e804dd7bc079e753a6c007b3e4", null ],
     [ "gridElement", "a01220.html#a11dc18a7cfdfbc8c9fe8f7e8d444be1f", null ],

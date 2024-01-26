@@ -1,5 +1,4 @@
 var a00041 =
 [
-    [ "Ikarus::IkarusInstance", "a01528.html", "a01528" ],
-    [ "init", "a00041.html#ac8243891c1b961e50a066140ab79a142", null ]
+    [ "obtainLagrangeNodePositions", "a00041.html#ga276a9de351512c4cacf6e09cad649265", null ]
 ];
