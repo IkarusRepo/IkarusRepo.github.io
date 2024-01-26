@@ -1,19 +1,29 @@
 var a00239 =
 [
-    [ "Ikarus::TrustRegionSettings", "a01428.html", "a01428" ],
-    [ "Ikarus::AlgoInfo", "a01432.html", "a01432" ],
-    [ "Ikarus::Stats", "a01436.html", "a01436" ],
-    [ "PreConditioner", "a00239.html#ace28d4868cfc647491f7938f04ef6c66", [
-      [ "IncompleteCholesky", "a00239.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff", null ],
-      [ "IdentityPreconditioner", "a00239.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608", null ],
-      [ "DiagonalPreconditioner", "a00239.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc", null ]
+    [ "LinearSolver", "a00239.html#ae747d502e8f67af4c5412d8a6febeb4c", null ],
+    [ "MatrixTypeTag", "a00239.html#a4763ca5888a027ed9b8d965d67cbb9ab", [
+      [ "Dense", "a00239.html#a4763ca5888a027ed9b8d965d67cbb9aba9a71a13863c84ba34fc41595fc2ee0c6", null ],
+      [ "Sparse", "a00239.html#a4763ca5888a027ed9b8d965d67cbb9aba7407fb7e6a4df6392aaabd2368157312", null ]
     ] ],
-    [ "StopReason", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674", [
-      [ "gradientNormTolReached", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1", null ],
-      [ "correctionNormTolReached", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3", null ],
-      [ "maximumTimeReached", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9", null ],
-      [ "maximumIterationsReached", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe", null ],
-      [ "dontStop", "a00239.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f", null ]
-    ] ],
-    [ "makeTrustRegion", "a00239.html#a729c70214792799fb38684febff75e9f", null ]
+    [ "SolverTypeTag", "a00239.html#a731a9ee6621f91193c15f31b9a399906", [
+      [ "none", "a00239.html#a731a9ee6621f91193c15f31b9a399906a334c4a4c42fdb79d7ebc3e73b517e6f8", null ],
+      [ "si_ConjugateGradient", "a00239.html#a731a9ee6621f91193c15f31b9a399906a43e7ad1498548ecfbe9359418877c793", null ],
+      [ "si_LeastSquaresConjugateGradient", "a00239.html#a731a9ee6621f91193c15f31b9a399906a64a3b585d23ed07479c1452d49f397bb", null ],
+      [ "si_BiCGSTAB", "a00239.html#a731a9ee6621f91193c15f31b9a399906a3ba09bd833aa666cbeca9bfd4a33be6f", null ],
+      [ "sd_SimplicialLLT", "a00239.html#a731a9ee6621f91193c15f31b9a399906acd4c06ca3bfe2246c9ec45bee84b5852", null ],
+      [ "sd_SimplicialLDLT", "a00239.html#a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c", null ],
+      [ "sd_SparseLU", "a00239.html#a731a9ee6621f91193c15f31b9a399906ae7cfd15be408672026faa788c0c112e5", null ],
+      [ "sd_SparseQR", "a00239.html#a731a9ee6621f91193c15f31b9a399906a259246f1b3299da36945e32f5660bebd", null ],
+      [ "sd_CholmodSupernodalLLT", "a00239.html#a731a9ee6621f91193c15f31b9a399906a286dc99776bcd1ea313e669aa17b3236", null ],
+      [ "sd_UmfPackLU", "a00239.html#a731a9ee6621f91193c15f31b9a399906afe6a46ed15566813699daa9c9cbf85d5", null ],
+      [ "sd_SuperLU", "a00239.html#a731a9ee6621f91193c15f31b9a399906aa8fe11042608f12d110c154033361fcc", null ],
+      [ "d_PartialPivLU", "a00239.html#a731a9ee6621f91193c15f31b9a399906a97eafebe024f68db956c95519ddf66f2", null ],
+      [ "d_FullPivLU", "a00239.html#a731a9ee6621f91193c15f31b9a399906a4c20d1c5006d9987b894313a4af5de6e", null ],
+      [ "d_HouseholderQR", "a00239.html#a731a9ee6621f91193c15f31b9a399906a290d38c1d75cda978733c7ee8266e16e", null ],
+      [ "d_ColPivHouseholderQR", "a00239.html#a731a9ee6621f91193c15f31b9a399906af66de0478863779eca4d9e7dcf39c59a", null ],
+      [ "d_FullPivHouseholderQR", "a00239.html#a731a9ee6621f91193c15f31b9a399906a9be60de1df84a8b371f0ad372aba4582", null ],
+      [ "d_CompleteOrthogonalDecomposition", "a00239.html#a731a9ee6621f91193c15f31b9a399906ae1f5f0486da0c6645a75c3df39d8d942", null ],
+      [ "d_LLT", "a00239.html#a731a9ee6621f91193c15f31b9a399906a40c05e324bcfe6242fddbef28720e86a", null ],
+      [ "d_LDLT", "a00239.html#a731a9ee6621f91193c15f31b9a399906ad495de2cc8831501954c24afe8688190", null ]
+    ] ]
 ];

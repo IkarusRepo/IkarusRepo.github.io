@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['_7eiobservable_0',['~IObservable',['../a01564.html#ad1fe15b31cccec8e44c695af550938ed',1,'Ikarus::IObservable']]],
-  ['_7eiobserver_1',['~IObserver',['../a01560.html#afda55d0cee706fa7a2df824e2a149a9e',1,'Ikarus::IObserver']]],
-  ['_7elinearsolvertemplate_2',['~LinearSolverTemplate',['../a01396.html#af2696f3af9722c49e0a828f2e31d8622',1,'Ikarus::LinearSolverTemplate']]],
-  ['_7etruncatedconjugategradient_3',['~TruncatedConjugateGradient',['../a01388.html#aa572ab1738a73b78411575a2574c1339',1,'Eigen::TruncatedConjugateGradient']]]
+  ['value_0',['value',['../a01342.html#acfe8c5424970d44c34005e13e851494a',1,'Ikarus::DefaultMembraneStrain']]],
+  ['valuesize_1',['valueSize',['../a00320.html#gac1df27a0dfa864327029cdb906a1840c',1,'Ikarus']]],
+  ['vanishingstress_2',['VanishingStress',['../a01338.html#a9a6d28f0977eda48a8a2d5f8e0aac8f6',1,'Ikarus::VanishingStress']]],
+  ['vectorflatassembler_3',['VectorFlatAssembler',['../a01174.html#ab29654e07434ec261e3f2b449eb36a8c',1,'Ikarus::VectorFlatAssembler']]],
+  ['viewaseigenmatrixasdynfixed_4',['viewAsEigenMatrixAsDynFixed',['../a00320.html#gaf9d7cf401f9f03ce1aae728c646ce178',1,'Ikarus::viewAsEigenMatrixAsDynFixed(Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)'],['../a00320.html#gaf1c6bdf14e40ee46e881f646e1c28b0d',1,'Ikarus::viewAsEigenMatrixAsDynFixed(const Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)']]],
+  ['viewaseigenmatrixfixeddyn_5',['viewAsEigenMatrixFixedDyn',['../a00320.html#gac25618d0e7c4aece653662d2541b61ec',1,'Ikarus::viewAsEigenMatrixFixedDyn(Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)'],['../a00320.html#ga146a052f6eb97304a8172c7b65fe70fb',1,'Ikarus::viewAsEigenMatrixFixedDyn(const Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)']]],
+  ['viewasflateigenvector_6',['viewAsFlatEigenVector',['../a00320.html#ga545d74839895f4576a3b8c97d72abefd',1,'Ikarus::viewAsFlatEigenVector(Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)'],['../a00320.html#ga3beeb26c911116fa02df8756214484aa',1,'Ikarus::viewAsFlatEigenVector(const Dune::BlockVector&lt; ValueType &gt; &amp;blockedVector)']]],
+  ['volume_7',['Volume',['../a01314.html#a4b5995b4de476887526d16c90600b634',1,'Ikarus::Volume']]]
 ];

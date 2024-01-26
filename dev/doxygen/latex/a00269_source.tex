@@ -1,238 +1,30 @@
-\hypertarget{a00269_source}{}\doxysection{truncatedconjugategradient.\+hh}
-\label{a00269_source}\index{truncatedconjugategradient.hh@{truncatedconjugategradient.hh}}
+\hypertarget{a00269_source}{}\doxysection{nonlinearsolverlogger.\+hh}
+\label{a00269_source}\index{nonlinearsolverlogger.hh@{nonlinearsolverlogger.hh}}
 \mbox{\hyperlink{a00269}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{comment}{// Original File: https://gitlab.com/libeigen/eigen/-\//blob/master/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h}}
-\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2011-\/2014 Copyright (C) Gael Guennebaud <gael.guennebaud@inria.fr>}}
-\DoxyCodeLine{3 \textcolor{comment}{// SPDX-\/License-\/Identifier: MPL-\/2.0}}
-\DoxyCodeLine{4 \textcolor{comment}{// Modifications:}}
-\DoxyCodeLine{5 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
-\DoxyCodeLine{6 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <Eigen/Sparse>}}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00323}{Eigen}} \{}
-\DoxyCodeLine{25 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5a}{TCGStopReason}} : \textcolor{keywordtype}{int}}
-\DoxyCodeLine{26 \{}
-\DoxyCodeLine{27   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba}{negativeCurvature}},}
-\DoxyCodeLine{28   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed}{exceededTrustRegion}},}
-\DoxyCodeLine{29   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c}{reachedTargetResidualKappaLinear}},}
-\DoxyCodeLine{30   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27}{reachedTargetResidualThetaSuperLinear}},}
-\DoxyCodeLine{31   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30}{maximumInnerIterations}},}
-\DoxyCodeLine{32   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab}{modelIncreased}}}
-\DoxyCodeLine{33 \};}
-\DoxyCodeLine{34 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Scalar>}
-\DoxyCodeLine{35 \textcolor{keyword}{struct }\mbox{\hyperlink{a01384}{TCGInfo}}}
-\DoxyCodeLine{36 \{}
-\DoxyCodeLine{37   \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5a}{TCGStopReason}} \mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}}    = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30}{TCGStopReason::maximumInnerIterations}};}
-\DoxyCodeLine{38   Scalar \mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}              = 100000;}
-\DoxyCodeLine{39   Scalar \mbox{\hyperlink{a01384_a2513528ae4acf6f87352c21d231df432}{kappa}}              = 0.1;}
-\DoxyCodeLine{40   Scalar \mbox{\hyperlink{a01384_abd45d0da5afd14bd4201289fac65db38}{theta}}              = 1.0;}
-\DoxyCodeLine{41   Eigen::Index \mbox{\hyperlink{a01384_a6d7b2d2804c136db788473b7a36e4fad}{mininner}}     = 1;}
-\DoxyCodeLine{42   Eigen::Index \mbox{\hyperlink{a01384_a7afe22dd21170afd03420ab0a2b363df}{maxinner}}     = 1000;}
-\DoxyCodeLine{43   Eigen::Index \mbox{\hyperlink{a01384_aea7d60a8e86f8c8a17251b1da948ea68}{numInnerIter}} = 0;}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01384_a981486cf6f877aab41fa5e4bb660a4e1}{initRuntimeOptions}}(\textcolor{keywordtype}{int} \_num\_dof\_solve) \{}
-\DoxyCodeLine{46     \mbox{\hyperlink{a01384_a7afe22dd21170afd03420ab0a2b363df}{maxinner}} = \_num\_dof\_solve * 2;}
-\DoxyCodeLine{47     \mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}    = 100000; \textcolor{comment}{// typical distance of manifold}}
-\DoxyCodeLine{48     \textcolor{comment}{// Delta0 = Delta\_bar/8.0;}}
-\DoxyCodeLine{49   \}}
-\DoxyCodeLine{50 \};}
-\DoxyCodeLine{51 \textcolor{keyword}{namespace }internal \{}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{68   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType, \textcolor{keyword}{typename} Rhs, \textcolor{keyword}{typename} Dest, \textcolor{keyword}{typename} Preconditioner>}
-\DoxyCodeLine{69   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00324_a38414bb29b6ce1a1d8cc03749acb95f7}{truncated\_conjugate\_gradient}}(\textcolor{keyword}{const} MatrixType\& mat, \textcolor{keyword}{const} Rhs\& rhs, Dest\& x, \textcolor{keyword}{const} Preconditioner\& precond,}
-\DoxyCodeLine{70                                     Eigen::Index\& iters, \textcolor{keyword}{typename} Dest::RealScalar\& tol\_error,}
-\DoxyCodeLine{71                                     \mbox{\hyperlink{a01384}{TCGInfo<typename Dest::RealScalar>}}\& \_info) \{}
-\DoxyCodeLine{72     \textcolor{keyword}{using }std::abs;}
-\DoxyCodeLine{73     \textcolor{keyword}{using }std::sqrt;}
-\DoxyCodeLine{74     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} Dest::RealScalar RealScalar;}
-\DoxyCodeLine{75     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} Dest::Scalar Scalar;}
-\DoxyCodeLine{76     \textcolor{keyword}{typedef} Matrix<Scalar, Dynamic, 1> VectorType;}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{78     RealScalar tol = tol\_error;}
-\DoxyCodeLine{79     Index maxIters = iters;}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{81     Index n = mat.cols();}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{83     VectorType residual = rhs -\/ mat * x; \textcolor{comment}{// initial residual}}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85     RealScalar rhsNorm2             = rhs.norm();}
-\DoxyCodeLine{86     \textcolor{keyword}{const} RealScalar considerAsZero = (std::numeric\_limits<RealScalar>::min)();}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{88     \textcolor{keywordflow}{if} (rhsNorm2 <= considerAsZero) \{}
-\DoxyCodeLine{89       x.setZero();}
-\DoxyCodeLine{90       iters     = 0;}
-\DoxyCodeLine{91       tol\_error = 0;}
-\DoxyCodeLine{92       \textcolor{keywordflow}{return};}
-\DoxyCodeLine{93     \}}
-\DoxyCodeLine{94     RealScalar threshold     = numext::maxi(tol * tol * rhsNorm2 * rhsNorm2, considerAsZero);}
-\DoxyCodeLine{95     RealScalar residualNorm2 = residual.norm();}
-\DoxyCodeLine{96     \textcolor{keywordflow}{if} (residualNorm2 * residualNorm2 < threshold) \{}
-\DoxyCodeLine{97       iters     = 0;}
-\DoxyCodeLine{98       tol\_error = (residualNorm2 / rhsNorm2);}
-\DoxyCodeLine{99       \textcolor{keywordflow}{return};}
-\DoxyCodeLine{100     \}}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{102     \textcolor{keywordtype}{double} e\_Pd     = 0.0;}
-\DoxyCodeLine{103     \textcolor{keywordtype}{double} e\_Pe\_new = 0.0;}
-\DoxyCodeLine{104     \textcolor{keywordtype}{double} e\_Pe     = x.squaredNorm();}
-\DoxyCodeLine{105     \textcolor{keywordtype}{double} d\_Pd;}
-\DoxyCodeLine{106     \textcolor{keywordtype}{double} d\_Hd;}
-\DoxyCodeLine{107     VectorType p(n);}
-\DoxyCodeLine{108     p = precond.solve(residual); \textcolor{comment}{// initial search direction}}
-\DoxyCodeLine{109                                  \textcolor{comment}{// bool coutflag=true;}}
-\DoxyCodeLine{110     \_info.\mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30}{TCGStopReason::maximumInnerIterations}};}
-\DoxyCodeLine{111     VectorType z(n), tmp(n);}
-\DoxyCodeLine{112     RealScalar absNew = numext::real(residual.dot(p)); \textcolor{comment}{// the square of the absolute value of r scaled by invM}}
-\DoxyCodeLine{113     d\_Pd              = absNew;}
-\DoxyCodeLine{114     Index i           = 1;}
-\DoxyCodeLine{115     \textcolor{keywordflow}{while} (i < maxIters) \{}
-\DoxyCodeLine{116       tmp.noalias() = mat * p; \textcolor{comment}{// the bottleneck of the algorithm}}
-\DoxyCodeLine{117       d\_Hd          = p.dot(tmp);}
-\DoxyCodeLine{118       Scalar alpha  = absNew / d\_Hd; \textcolor{comment}{// the amount we travel on dir}}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{120       e\_Pe\_new = e\_Pe + 2.0 * alpha * e\_Pd + alpha * alpha * d\_Pd;}
-\DoxyCodeLine{121 }
-\DoxyCodeLine{122       \textcolor{keywordflow}{if} (d\_Hd <= 0 || e\_Pe\_new >= \_info.\mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} * \_info.\mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}) \textcolor{comment}{// negative curvature or execdet trustregion}}
-\DoxyCodeLine{123       \{}
-\DoxyCodeLine{124         \textcolor{keywordtype}{double} tau = (-\/e\_Pd + sqrt(e\_Pd * e\_Pd + d\_Pd * (\_info.\mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} * \_info.\mbox{\hyperlink{a01384_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} -\/ e\_Pe))) / d\_Pd;}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126         x += tau * p;}
-\DoxyCodeLine{127         \textcolor{keywordflow}{if} (d\_Hd <= 0)}
-\DoxyCodeLine{128           \_info.\mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba}{TCGStopReason::negativeCurvature}};}
-\DoxyCodeLine{129         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{130           \_info.\mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed}{TCGStopReason::exceededTrustRegion}};}
-\DoxyCodeLine{131 }
-\DoxyCodeLine{132         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{133       \}}
-\DoxyCodeLine{134       e\_Pe = e\_Pe\_new;}
-\DoxyCodeLine{135       x += alpha * p;          \textcolor{comment}{// update solution}}
-\DoxyCodeLine{136       residual -\/= alpha * tmp; \textcolor{comment}{// update residual}}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{138       residualNorm2 = residual.norm();}
-\DoxyCodeLine{139 }
-\DoxyCodeLine{140       \textcolor{keywordflow}{if} (i >= \_info.\mbox{\hyperlink{a01384_a6d7b2d2804c136db788473b7a36e4fad}{mininner}} \&\&}
-\DoxyCodeLine{141           residualNorm2 <= rhsNorm2 * std::min(rhsNorm2, \_info.\mbox{\hyperlink{a01384_a2513528ae4acf6f87352c21d231df432}{kappa}})) \textcolor{comment}{// missing pow(rhsNorm2,\_info.theta}}
-\DoxyCodeLine{142       \{}
-\DoxyCodeLine{143         \textcolor{comment}{// Residual is small enough to quit}}
-\DoxyCodeLine{144         \textcolor{keywordflow}{if} (\_info.\mbox{\hyperlink{a01384_a2513528ae4acf6f87352c21d231df432}{kappa}} < rhsNorm2)}
-\DoxyCodeLine{145           \_info.\mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c}{TCGStopReason::reachedTargetResidualKappaLinear}};}
-\DoxyCodeLine{146         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{147           \_info.\mbox{\hyperlink{a01384_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} = \mbox{\hyperlink{a00323_a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27}{TCGStopReason::reachedTargetResidualThetaSuperLinear}};}
-\DoxyCodeLine{148         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{149       \}}
-\DoxyCodeLine{150       \textcolor{keywordflow}{if} (residualNorm2 < threshold)}
-\DoxyCodeLine{151         \textcolor{keywordflow}{break};}
-\DoxyCodeLine{152 }
-\DoxyCodeLine{153       z = precond.solve(residual); \textcolor{comment}{// approximately solve for "{}A z = residual"{}}}
-\DoxyCodeLine{154 }
-\DoxyCodeLine{155       RealScalar absOld = absNew;}
-\DoxyCodeLine{156       absNew            = numext::real(residual.dot(z)); \textcolor{comment}{// update the absolute value of r}}
-\DoxyCodeLine{157       RealScalar beta   = absNew / absOld; \textcolor{comment}{// calculate the Gram-\/Schmidt value used to create the new search direction}}
-\DoxyCodeLine{158 }
-\DoxyCodeLine{159       e\_Pd = beta * (e\_Pd + alpha * d\_Pd);}
-\DoxyCodeLine{160       d\_Pd = absNew + beta * beta * d\_Pd;}
-\DoxyCodeLine{161 }
-\DoxyCodeLine{162       p = z + beta * p; \textcolor{comment}{// update search direction}}
-\DoxyCodeLine{163       i++;}
-\DoxyCodeLine{164     \}}
-\DoxyCodeLine{165     tol\_error          = (residualNorm2 / rhsNorm2);}
-\DoxyCodeLine{166     iters              = i;}
-\DoxyCodeLine{167     \_info.\mbox{\hyperlink{a01384_aea7d60a8e86f8c8a17251b1da948ea68}{numInnerIter}} = i;}
-\DoxyCodeLine{168   \}}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{170 \} \textcolor{comment}{// namespace internal}}
-\DoxyCodeLine{171 }
-\DoxyCodeLine{172 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType, \textcolor{keywordtype}{int} UpLo = Lower,}
-\DoxyCodeLine{173           \textcolor{keyword}{typename} Preconditioner = DiagonalPreconditioner<typename MatrixType::Scalar> >}
-\DoxyCodeLine{174 \textcolor{keyword}{class }TruncatedConjugateGradient;}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{176 \textcolor{keyword}{namespace }internal \{}
-\DoxyCodeLine{177 }
-\DoxyCodeLine{178   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType\_, \textcolor{keywordtype}{int} UpLo, \textcolor{keyword}{typename} Preconditioner\_>}
-\DoxyCodeLine{179   \textcolor{keyword}{struct }traits<\mbox{\hyperlink{a01388}{TruncatedConjugateGradient}}<MatrixType\_, UpLo, Preconditioner\_> >}
-\DoxyCodeLine{180   \{}
-\DoxyCodeLine{181     \textcolor{keyword}{typedef} MatrixType\_ \mbox{\hyperlink{a01392_a830b9c5b03ee1316e9e571a7ba05b2f2}{MatrixType}};}
-\DoxyCodeLine{182     \textcolor{keyword}{typedef} Preconditioner\_ \mbox{\hyperlink{a01392_a6854c22e7816c75ad6495977616aab71}{Preconditioner}};}
-\DoxyCodeLine{183   \};}
-\DoxyCodeLine{184 }
-\DoxyCodeLine{185 \} \textcolor{comment}{// namespace internal}}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{194 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType\_, \textcolor{keywordtype}{int} UpLo\_, \textcolor{keyword}{typename} Preconditioner\_>}
-\DoxyCodeLine{195 \textcolor{keyword}{class }\mbox{\hyperlink{a01388}{TruncatedConjugateGradient}}}
-\DoxyCodeLine{196     : \textcolor{keyword}{public} IterativeSolverBase<TruncatedConjugateGradient<MatrixType\_, UpLo\_, Preconditioner\_> >}
-\DoxyCodeLine{197 \{}
-\DoxyCodeLine{198 \textcolor{keyword}{public}:}
-\DoxyCodeLine{199   \textcolor{keyword}{typedef} IterativeSolverBase<TruncatedConjugateGradient> \mbox{\hyperlink{a01388_ae16fb346feda99ba74d0eb6c6e3e7ece}{Base}};}
-\DoxyCodeLine{200   \mbox{\hyperlink{a01388_a424099a1cac74a8684bcd170441f5415}{TruncatedConjugateGradient}}(\mbox{\hyperlink{a01388}{TruncatedConjugateGradient}}\&\& other) noexcept}
-\DoxyCodeLine{201       : \mbox{\hyperlink{a01388_ae16fb346feda99ba74d0eb6c6e3e7ece}{Base}}(std::move(other)),}
-\DoxyCodeLine{202         algInfo\{other.algInfo\} \{\}}
-\DoxyCodeLine{203 }
-\DoxyCodeLine{204 \textcolor{keyword}{private}:}
-\DoxyCodeLine{205   \textcolor{keyword}{using }Base::m\_error;}
-\DoxyCodeLine{206   \textcolor{keyword}{using }Base::m\_info;}
-\DoxyCodeLine{207   \textcolor{keyword}{using }Base::m\_isInitialized;}
-\DoxyCodeLine{208   \textcolor{keyword}{using }Base::m\_iterations;}
-\DoxyCodeLine{209   \textcolor{keyword}{using }Base::matrix;}
-\DoxyCodeLine{210   \textcolor{keyword}{mutable} TCGInfo<typename MatrixType\_::RealScalar> algInfo;}
-\DoxyCodeLine{211 }
-\DoxyCodeLine{212 \textcolor{keyword}{public}:}
-\DoxyCodeLine{213   \textcolor{keyword}{typedef} MatrixType\_ \mbox{\hyperlink{a01388_a8fb475e49bebbab5c9dfcf5325f4bb73}{MatrixType}};}
-\DoxyCodeLine{214   \textcolor{keyword}{typedef} \textcolor{keyword}{typename} MatrixType::Scalar \mbox{\hyperlink{a01388_a7451d2a0e27db7fb57336f288343a84f}{Scalar}};}
-\DoxyCodeLine{215   \textcolor{keyword}{typedef} \textcolor{keyword}{typename} MatrixType::RealScalar \mbox{\hyperlink{a01388_a86d1cdc1073006c2d5d809b4c0b77908}{RealScalar}};}
-\DoxyCodeLine{216   \textcolor{keyword}{typedef} Preconditioner\_ \mbox{\hyperlink{a01388_a62244905718a3538dbc1f9b36046d4d6}{Preconditioner}};}
-\DoxyCodeLine{217 }
-\DoxyCodeLine{218   \textcolor{keyword}{enum}}
-\DoxyCodeLine{219   \{}
-\DoxyCodeLine{220     \mbox{\hyperlink{a01388_a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b}{UpLo}} = UpLo\_}
-\DoxyCodeLine{221   \};}
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223 \textcolor{keyword}{public}:}
-\DoxyCodeLine{228   \mbox{\hyperlink{a01384}{TCGInfo<typename MatrixType::RealScalar>}} \mbox{\hyperlink{a01388_a5ea4822b3fd6ed682262d6624209e116}{getInfo}}() \{ \textcolor{keywordflow}{return} algInfo; \}}
-\DoxyCodeLine{229 }
-\DoxyCodeLine{234   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01388_a73bcfc1126485468abd73569c0a1a6ac}{setInfo}}(\mbox{\hyperlink{a01384}{TCGInfo<typename MatrixType::RealScalar>}} \_alginfo) \{ this-\/>algInfo = \_alginfo; \}}
-\DoxyCodeLine{236   \mbox{\hyperlink{a01388_a02491a65df30cd0cfb68b894f3627a6e}{TruncatedConjugateGradient}}()}
-\DoxyCodeLine{237       : \mbox{\hyperlink{a01388_ae16fb346feda99ba74d0eb6c6e3e7ece}{Base}}() \{\}}
-\DoxyCodeLine{238 }
-\DoxyCodeLine{249   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixDerived>}
-\DoxyCodeLine{250   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01388_a6c5ad1eb772b8f2590827647ad6594f2}{TruncatedConjugateGradient}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01456}{EigenBase<MatrixDerived>}}\& A)}
-\DoxyCodeLine{251       : \mbox{\hyperlink{a01388_ae16fb346feda99ba74d0eb6c6e3e7ece}{Base}}(A.derived()) \{\}}
-\DoxyCodeLine{252 }
-\DoxyCodeLine{253   \mbox{\hyperlink{a01388_aa572ab1738a73b78411575a2574c1339}{\string~TruncatedConjugateGradient}}() \{\}}
-\DoxyCodeLine{254 }
-\DoxyCodeLine{256   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Rhs, \textcolor{keyword}{typename} Dest>}
-\DoxyCodeLine{257   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01388_a23170151337c9f8681f6087d0c036c8a}{\_solve\_vector\_with\_guess\_impl}}(\textcolor{keyword}{const} Rhs\& b, Dest\& x)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{258     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} Base::MatrixWrapper MatrixWrapper;}
-\DoxyCodeLine{259     \textcolor{keyword}{typedef} \textcolor{keyword}{typename} Base::ActualMatrixType ActualMatrixType;}
-\DoxyCodeLine{260     \textcolor{keyword}{enum}}
-\DoxyCodeLine{261     \{}
-\DoxyCodeLine{262       TransposeInput = (!MatrixWrapper::MatrixFree) \&\& (\mbox{\hyperlink{a01388_a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b}{UpLo}} == (Lower | Upper)) \&\& (!MatrixType::IsRowMajor) \&\&}
-\DoxyCodeLine{263                        (!NumTraits<Scalar>::IsComplex)}
-\DoxyCodeLine{264     \};}
-\DoxyCodeLine{265     \textcolor{keyword}{typedef} std::conditional\_t<TransposeInput, Transpose<const ActualMatrixType>, \textcolor{keyword}{const} ActualMatrixType\&>}
-\DoxyCodeLine{266         RowMajorWrapper;}
-\DoxyCodeLine{267     EIGEN\_STATIC\_ASSERT(internal::check\_implication(MatrixWrapper::MatrixFree, \mbox{\hyperlink{a01388_a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b}{UpLo}} == (Lower | Upper)),}
-\DoxyCodeLine{268                         MATRIX\_FREE\_CONJUGATE\_GRADIENT\_IS\_COMPATIBLE\_WITH\_UPPER\_UNION\_LOWER\_MODE\_ONLY);}
-\DoxyCodeLine{269     \textcolor{keyword}{typedef} std::conditional\_t<\mbox{\hyperlink{a01388_a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b}{UpLo}} == (Lower | Upper), RowMajorWrapper,}
-\DoxyCodeLine{270                                \textcolor{keyword}{typename} MatrixWrapper::template ConstSelfAdjointViewReturnType<UpLo>::Type>}
-\DoxyCodeLine{271         SelfAdjointWrapper;}
-\DoxyCodeLine{272 }
-\DoxyCodeLine{273     m\_iterations = Base::maxIterations();}
-\DoxyCodeLine{274     m\_error      = Base::m\_tolerance;}
-\DoxyCodeLine{275 }
-\DoxyCodeLine{276     RowMajorWrapper row\_mat(matrix());}
-\DoxyCodeLine{277     \mbox{\hyperlink{a00324_a38414bb29b6ce1a1d8cc03749acb95f7}{internal::truncated\_conjugate\_gradient}}(SelfAdjointWrapper(row\_mat), b, x, Base::m\_preconditioner, m\_iterations,}
-\DoxyCodeLine{278                                            m\_error, algInfo);}
-\DoxyCodeLine{279     m\_info = m\_error <= Base::m\_tolerance ? Success : NoConvergence;}
-\DoxyCodeLine{280   \}}
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{283 \};}
-\DoxyCodeLine{284 }
-\DoxyCodeLine{285 \} \textcolor{comment}{// end namespace Eigen}}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00257}{observer.hh}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00266}{observermessages.hh}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01570}{NonLinearSolverLogger}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01574}{IObserver}}<NonLinearSolverMessages>}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a131da094b77cab07c39b4017d5419dac}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message) \textcolor{keyword}{final};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{36   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a17558ed4ad25de4e80b2bccdbf670e0b}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{double} val) \textcolor{keyword}{final};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{44   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a2a30782a175f8fc1dfb583531718cabf}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{int} intVal) \textcolor{keyword}{final};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{private}:}
+\DoxyCodeLine{47   \textcolor{keywordtype}{int} iters\{0\};}
+\DoxyCodeLine{48   \textcolor{keywordtype}{double} dNorm\{0\};}
+\DoxyCodeLine{49   \textcolor{keywordtype}{double} rNorm\{0\};}
+\DoxyCodeLine{50   \textcolor{keywordtype}{double} lambda\{0\};}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

@@ -1,19 +1,26 @@
-\hypertarget{a01640}{}\doxysection{Ikarus\+::traits\+::Pointer Concept Reference}
-\label{a01640}\index{Ikarus::traits::Pointer@{Ikarus::traits::Pointer}}
+\hypertarget{a01640}{}\doxysection{Ikarus\+::Concepts\+::Non\+Linear\+Solver\+Check\+For\+Path\+Following Concept Reference}
+\label{a01640}\index{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing@{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}}
 
 
-Concept to check if a type is a pointer or nullptr\+\_\+t.  
+Concept to check if a non-\/linear solver with its non-\/linear operator satisfies requirements for path following.  
 
 
 
 
-{\ttfamily \#include $<$ikarus/utils/traits.\+hh$>$}
+{\ttfamily \#include $<$ikarus/utils/concepts.\+hh$>$}
 
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01640}{Ikarus::traits::Pointer}} =  std::is\_pointer\_v<T> || std::is\_same\_v<T, std::nullptr\_t>}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} NonLinearSolver>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01640}{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}} =  \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{    std::tuple\_size<typename NonLinearSolver::NonLinearOperator::ParameterValues>::value == 2;}
+\DoxyCodeLine{    not(std::is\_same\_v<typename NonLinearSolver::NonLinearOperator::ValueType, double> and}
+\DoxyCodeLine{        ((traits::isSpecializationTypeAndNonTypes<}
+\DoxyCodeLine{             Eigen::Matrix, \textcolor{keyword}{typename} NonLinearSolver::NonLinearOperator::DerivativeType>::value) or}
+\DoxyCodeLine{         (traits::isSpecializationTypeNonTypeAndType<}
+\DoxyCodeLine{             Eigen::SparseMatrix, \textcolor{keyword}{typename} NonLinearSolver::NonLinearOperator::DerivativeType>::value)));}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,6 +28,6 @@ Concept to check if a type is a pointer or nullptr\+\_\+t.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Type to check. \\
+{\em Non\+Linear\+Solver} & The non-\/linear solver type. \\
 \hline
 \end{DoxyTemplParams}

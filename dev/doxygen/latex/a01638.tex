@@ -1,8 +1,8 @@
-\hypertarget{a01638}{}\doxysection{Ikarus\+::Concepts\+::Eigen\+Vector Concept Reference}
-\label{a01638}\index{Ikarus::Concepts::EigenVector@{Ikarus::Concepts::EigenVector}}
+\hypertarget{a01638}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01638}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept defining the requirements for \mbox{\hyperlink{a00323}{Eigen}} vectors.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,8 +12,13 @@ Concept defining the requirements for \mbox{\hyperlink{a00323}{Eigen}} vectors.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} V>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01638}{Ikarus::Concepts::EigenVector}} =  \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool}\textcolor{keyword}{>}(V::IsVectorAtCompileTime)}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} AdaptiveStepSizing, \textcolor{keyword}{typename} NonLinearSolverInformation, \textcolor{keyword}{typename} Subs\textcolor{keywordtype}{id}iaryArgs, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01638}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(AdaptiveStepSizing adaptiveSS, NonLinearSolverInformation info,}
+\DoxyCodeLine{                                                SubsidiaryArgs args, NonLinearOperator nop) \{}
+\DoxyCodeLine{    \{ adaptiveSS(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveSS.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveSS.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,7 +26,10 @@ Concept defining the requirements for \mbox{\hyperlink{a00323}{Eigen}} vectors.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em V} & Type representing an \mbox{\hyperlink{a00323}{Eigen}} vector.\\
+{\em Adaptive\+Step\+Sizing} & The adaptive step sizing type. \\
+\hline
+{\em Non\+Linear\+Solver\+Information} & The non-\/linear solver information type. \\
+\hline
+{\em Subsidiary\+Args} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}
-The concept specifies that the type {\ttfamily V} is an \mbox{\hyperlink{a00323}{Eigen}} vector based on its compile-\/time information ({\ttfamily Is\+Vector\+At\+Compile\+Time}). 

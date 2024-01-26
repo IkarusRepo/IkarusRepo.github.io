@@ -1,5 +1,5 @@
 var a00272 =
 [
-    [ "moduleName", "a00272.html#accab2501ce940db483da0b3ebe2cf723", null ],
-    [ "modulePath", "a00272.html#a9ebab9199168d32a8ab347a990044552", null ]
+    [ "draw_xy", "a00272.html#a4c07b9ce66d5837a4052977b3dd1eeb0", null ],
+    [ "drawFunction", "a00272.html#ae2cefb2db97492f0b6e5987cb95ad40b", null ]
 ];

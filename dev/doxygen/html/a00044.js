@@ -1,5 +1,7 @@
 var a00044 =
 [
+    [ "calcTransformationMatrix2D", "a00044.html#a7a5b9f5e83f6918ca1726fb4316c3b86", null ],
+    [ "calcTransformationMatrix3D", "a00044.html#a95234ab8588ced83708c6e5a30e2368e", null ],
     [ "dyadic", "a00044.html#gab2cea9ac847cc3635812467c9d96ceb4", null ],
     [ "fourthOrderIKJL", "a00044.html#ga8fa2b440586483c1ee0f9b90b9081da2", null ],
     [ "fromVoigt", "a00044.html#ga0afe53095f875017b5673a42e13e6f5a", null ],

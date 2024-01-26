@@ -1,5 +1,4 @@
 var a00209 =
 [
-    [ "Ikarus::CorrectStrainSize", "a01611.html", null ],
-    [ "hasCorrectSize", "a00209.html#ab6a92f48acd6be62f36b7f499491fc8a", null ]
+    [ "LinearElasticity", "a00209.html#ae7fcb8a58863e680e7a25d75766df15c", null ]
 ];

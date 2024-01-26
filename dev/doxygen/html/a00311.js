@@ -1,93 +1,28 @@
 var a00311 =
 [
-    [ "Ikarus::Basis< PreBasis_ >", "a01452.html", [
-      [ "FlatBasis", "a01452.html#ab9e57abdb5f4abeb030f6122df75849e", null ],
-      [ "GridView", "a01452.html#a066e94e24a8000ee0f47fff24c5c09b4", null ],
-      [ "PreBasis", "a01452.html#a50104dd97ab4530b5eedc6ecdc0ff530", null ],
-      [ "UntouchedBasis", "a01452.html#ae225fdb14e6987a3605368af297f7a82", null ],
-      [ "Basis", "a01452.html#ad30be8c9ee635f5a6488ce8034f51236", null ],
-      [ "flat", "a01452.html#ae41361752339b43462385790a8f52583", null ],
-      [ "flat", "a01452.html#a952b839980686e7dd82c71ac14557faa", null ],
-      [ "gridView", "a01452.html#a82022613dbfd0a13e0ca8a03d8be51f5", null ],
-      [ "gridView", "a01452.html#a6bac19b2dddd3d31bb81552e7f6a2189", null ],
-      [ "untouched", "a01452.html#a1ab0a01bf57e94e1f5dcaf8e699badbc", null ],
-      [ "untouched", "a01452.html#a70edf63a23eeed841214738e5d4042d9", null ]
+    [ "Ikarus::MatrixAffordances", "a00311.html#ga52cb89165daabb500f6e2eb68ddd76ee", [
+      [ "Ikarus::MatrixAffordances::BEGIN", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::MatrixAffordances::noAffordance", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eea9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::MatrixAffordances::stiffness", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1", null ],
+      [ "Ikarus::MatrixAffordances::materialstiffness", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62", null ],
+      [ "Ikarus::MatrixAffordances::geometricstiffness", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eeae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
+      [ "Ikarus::MatrixAffordances::stiffnessdiffBucklingVector", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532", null ],
+      [ "Ikarus::MatrixAffordances::microMagneticHessian", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9", null ],
+      [ "Ikarus::MatrixAffordances::mass", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f", null ],
+      [ "Ikarus::MatrixAffordances::END", "a00311.html#gga52cb89165daabb500f6e2eb68ddd76eeab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "Ikarus::DirichletValues< Basis_, FlagsType_ >", "a01488.html", [
-      [ "BackendType", "a01488.html#a4b708d1ae34c1f28389273f209ea79f7", null ],
-      [ "Basis", "a01488.html#a90174bec95fb08a186f29d1d98e350dc", null ],
-      [ "FlagsType", "a01488.html#a824bc5693b4b784c8ec9c65aad07da92", null ],
-      [ "DirichletValues", "a01488.html#a6c7e1cf2122e41f3f41ec87ec3415a47", null ],
-      [ "basis", "a01488.html#a9a1bebfa473fd329494f484d943148c7", null ],
-      [ "container", "a01488.html#af96b1166dd15062fdafd3ba40440c1c0", null ],
-      [ "evaluateInhomogeneousBoundaryCondition", "a01488.html#ad314b92f19e3c809aa6d1ea9c4ef9674", null ],
-      [ "evaluateInhomogeneousBoundaryConditionDerivative", "a01488.html#ae309809bc3f63a4b3cd29273e1dda01e", null ],
-      [ "fixBoundaryDOFs", "a01488.html#a7de80e6ad56431b46750ddbc2580c45e", null ],
-      [ "fixDOFs", "a01488.html#ad62158c0ddba6753a04ed26097610bbd", null ],
-      [ "fixedDOFsize", "a01488.html#a1076b17755b91d92b46905319abe3114", null ],
-      [ "fixIthDOF", "a01488.html#afbe5f38622ea7524c4d2230f32530a96", null ],
-      [ "isConstrained", "a01488.html#ac4547ca3a0f7c62ec907da614b0c720a", null ],
-      [ "isConstrained", "a01488.html#ad54d4f91d00e803bca5191c10f6e9ba8", null ],
-      [ "size", "a01488.html#ae9bb578246b89ec0b5f0960955a36c04", null ],
-      [ "storeInhomogeneousBoundaryCondition", "a01488.html#ac2d42d17c6813a4a04bc98fe4346a231", null ],
-      [ "worldDimension", "a01488.html#ac5610d23a04c8eab17dc643528503b1b", null ]
+    [ "Ikarus::ScalarAffordances", "a00311.html#ga8a33210894e12be4feb3d96fdfde215c", [
+      [ "Ikarus::ScalarAffordances::BEGIN", "a00311.html#gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::ScalarAffordances::noAffordance", "a00311.html#gga8a33210894e12be4feb3d96fdfde215ca9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::ScalarAffordances::mechanicalPotentialEnergy", "a00311.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6", null ],
+      [ "Ikarus::ScalarAffordances::microMagneticPotentialEnergy", "a00311.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a", null ],
+      [ "Ikarus::ScalarAffordances::END", "a00311.html#gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "Ikarus::FlatPreBasis< PreBasis >", "a01496.html", [
-      [ "type", "a01496.html#a448426468de3637416804f6ef6f8ce90", null ],
-      [ "create", "a01496.html#af5414357864c26a827136edac1a085f4", null ],
-      [ "create", "a01496.html#a9c133ba014522aa8c8d90f2a3835c7e1", null ]
-    ] ],
-    [ "Ikarus::NonLinearOperator< TypeListOne, TypeListTwo >", "a01536.html", [
-      [ "NonLinearOperator", "a01536.html#a2308f86b14266d7b7049b0a12cf20cdc", null ]
-    ] ],
-    [ "Ikarus::utils::SolverDefault", "a01476.html", [
-      [ "operator()", "a01476.html#a4797d17bf96aa9e387567878a9591d7a", null ]
-    ] ],
-    [ "Ikarus::utils::UpdateDefault", "a01480.html", [
-      [ "operator()", "a01480.html#a23b7d9d2df3caa179c9fbc353efaed36", null ]
-    ] ],
-    [ "Ikarus::utils::LoadDefault", "a01484.html", null ],
-    [ "MAKE_ENUM", "a00311.html#ga14ad7d33267cea1c93f97f3998081657", null ],
-    [ "Ikarus::addInEmbedding", "a00311.html#gadab36ca6a3183fb9fedbb02b3ecba736", null ],
-    [ "Ikarus::utils::checkGradient", "a00311.html#gacb9e813539bfd84df99ad097cabc9de9", null ],
-    [ "Ikarus::utils::checkHessian", "a00311.html#ga5d1a87964a3d6b6ddc994532e93b6798", null ],
-    [ "Ikarus::utils::checkJacobian", "a00311.html#ga553465359c199ef676945832587d2869", null ],
-    [ "Ikarus::correctionSize", "a00311.html#ga609664964681787f2f736f772b82a01e", null ],
-    [ "Ikarus::createRandomVector", "a00311.html#ga821ecf80e4a83241318d825f49cd79e4", null ],
-    [ "Ikarus::enlargeIfReduced", "a00311.html#ga30500f2c49b7d1997c7eb7b6ee90ad75", null ],
-    [ "Ikarus::utils::findLineSegment", "a00311.html#ga16e7d5f51cc42190c090e727495c1609", null ],
-    [ "Ikarus::flatPreBasis", "a00311.html#ga0728039472747184e9eb2ec0992a4a2b", null ],
-    [ "Ikarus::utils::hessianN", "a00311.html#ga2a6c26beeb8d52283e82939ca585dc20", null ],
-    [ "Ikarus::increment", "a00311.html#ga5db6e8f04892e85e6b17e276cdbd0e54", null ],
-    [ "Ikarus::norm", "a00311.html#ga0ffc0c74dbd9aeee3e53b199a21b828c", null ],
-    [ "Ikarus::norm", "a00311.html#gaceb8dc8f6f43516dabf75155b1f22d4c", null ],
-    [ "Ikarus::utils::obtainLagrangeNodePositions", "a00311.html#ga276a9de351512c4cacf6e09cad649265", null ],
-    [ "Ikarus::operator*", "a00311.html#gacbc60e06e8e43a9bc14660189eb1baa1", null ],
-    [ "Ikarus::operator+", "a00311.html#gafe54695fd1436b5f2d75934a6fda8fe8", null ],
-    [ "Ikarus::operator+", "a00311.html#ga9377cd2cf3a5ec468d140cb7063efa58", null ],
-    [ "Ikarus::operator+", "a00311.html#ga098b554b29619e0cea837f3daa6e0e30", null ],
-    [ "Ikarus::operator+", "a00311.html#ga0fe1660eb760ecc49838d130ba6c6712", null ],
-    [ "Ikarus::operator+=", "a00311.html#ga09cedf6a65b142340c1934c987ed064c", null ],
-    [ "Ikarus::operator+=", "a00311.html#gaada5360aeb17e59d87ae2ba82057421d", null ],
-    [ "Ikarus::operator+=", "a00311.html#ga96968bbff353ac49f48d0aa8b9810b7a", null ],
-    [ "Ikarus::operator-", "a00311.html#ga9ab6437d6235e378a6171bfffd4bf1cc", null ],
-    [ "Ikarus::operator-=", "a00311.html#ga90c40b4eebec59eeb02294cd7cb0470c", null ],
-    [ "Ikarus::operator<<", "a00311.html#gac2cdcc3047e59b91a4874a1355503cd5", null ],
-    [ "Ikarus::orthonormalizeMatrixColumns", "a00311.html#gaa33adfa2e95d7040a816bb2da81d275d", null ],
-    [ "Ikarus::utils::polyfit", "a00311.html#ga0d3a38551806e4de3ff44f311847ba51", null ],
-    [ "Ikarus::printForMaple", "a00311.html#ga40c08050aff1e3e49e58c7823ecbcc77", null ],
-    [ "Ikarus::removeCol", "a00311.html#ga2f675229501979101656ec4dee7764d5", null ],
-    [ "Ikarus::skew", "a00311.html#ga1496a9776a583f8b09c4244a68453394", null ],
-    [ "Ikarus::skew", "a00311.html#gabf7cb564e7fa11a403cb8439e2436205", null ],
-    [ "Ikarus::staticCondensation", "a00311.html#ga19d425a4fbc72c2ef7a97d71de9329a4", null ],
-    [ "Ikarus::sym", "a00311.html#gabd35ea7f69bcc71ee90ea421a1c48167", null ],
-    [ "Ikarus::toVoigtAndMaybeReduce", "a00311.html#ga378c5569b7b899586e7c8006fb776351", null ],
-    [ "Ikarus::valueSize", "a00311.html#gac1df27a0dfa864327029cdb906a1840c", null ],
-    [ "Ikarus::viewAsEigenMatrixAsDynFixed", "a00311.html#gaf1c6bdf14e40ee46e881f646e1c28b0d", null ],
-    [ "Ikarus::viewAsEigenMatrixAsDynFixed", "a00311.html#gaf9d7cf401f9f03ce1aae728c646ce178", null ],
-    [ "Ikarus::viewAsEigenMatrixFixedDyn", "a00311.html#ga146a052f6eb97304a8172c7b65fe70fb", null ],
-    [ "Ikarus::viewAsEigenMatrixFixedDyn", "a00311.html#gac25618d0e7c4aece653662d2541b61ec", null ],
-    [ "Ikarus::viewAsFlatEigenVector", "a00311.html#ga3beeb26c911116fa02df8756214484aa", null ],
-    [ "Ikarus::viewAsFlatEigenVector", "a00311.html#ga545d74839895f4576a3b8c97d72abefd", null ],
-    [ "Ikarus::voigtNotationContainer", "a00311.html#ga8bdeefaffd49685e7dcd89f34af51d76", null ]
+    [ "Ikarus::VectorAffordances", "a00311.html#ga122268ff4d2c0beee58799d85ba5e52a", [
+      [ "Ikarus::VectorAffordances::BEGIN", "a00311.html#gga122268ff4d2c0beee58799d85ba5e52aa19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::VectorAffordances::noAffordance", "a00311.html#gga122268ff4d2c0beee58799d85ba5e52aa9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::VectorAffordances::forces", "a00311.html#gga122268ff4d2c0beee58799d85ba5e52aa2c05161a7e67e946ddc889571aac4e89", null ],
+      [ "Ikarus::VectorAffordances::microMagneticForces", "a00311.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
+      [ "Ikarus::VectorAffordances::END", "a00311.html#gga122268ff4d2c0beee58799d85ba5e52aab1a326c06d88bf042f73d70f50197905", null ]
+    ] ]
 ];

@@ -1,23 +1,56 @@
-\hypertarget{a00248}{}\doxysection{observer.\+hh File Reference}
-\label{a00248}\index{observer.hh@{observer.hh}}
+\hypertarget{a00248}{}\doxysection{trustregion.\+hh File Reference}
+\label{a00248}\index{trustregion.hh@{trustregion.hh}}
 
 
-Implementation of the observer design pattern.  
+Implementation of the Trust-\/region method for solving nonlinear equations.  
 
 
-{\ttfamily \#include $<$map$>$}\newline
-{\ttfamily \#include $<$memory$>$}\newline
-{\ttfamily \#include $<$Eigen/\+Core$>$}\newline
-{\ttfamily \#include $<$ikarus/utils/makeenum.\+hh$>$}\newline
+{\ttfamily \#include $<$iosfwd$>$}\newline
+{\ttfamily \#include $<$dune/common/float\+\_\+cmp.\+hh$>$}\newline
+{\ttfamily \#include $<$spdlog/spdlog.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Sparse$>$}\newline
+{\ttfamily \#include $<$ikarus/linearalgebra/truncatedconjugategradient.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/solver/nonlinearsolver/solverinfos.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/defaultfunctions.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/linearalgebrahelper.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/observer/observer.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/observer/observermessages.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/traits.\+hh$>$}\newline
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{a01560}{Ikarus\+::\+IObserver$<$ Message\+Type $>$}}
-\begin{DoxyCompactList}\small\item\em Generic observer interface for the Observer design pattern. See \cite{gamma1995design} for a description of the design pattern. \end{DoxyCompactList}\item 
-class \mbox{\hyperlink{a01564}{Ikarus\+::\+IObservable$<$ Message\+Type $>$}}
-\begin{DoxyCompactList}\small\item\em Generic observable interface for the Observer design pattern. See \cite{gamma1995design} for a description of the design pattern. \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{a01442}{Ikarus\+::\+Trust\+Region\+Settings}}
+\begin{DoxyCompactList}\small\item\em Configuration settings for the \mbox{\hyperlink{a01454}{Trust\+Region}} solver. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{a01446}{Ikarus\+::\+Algo\+Info}}
+\begin{DoxyCompactList}\small\item\em Additional information about the \mbox{\hyperlink{a01454}{Trust\+Region}} algorithm. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{a01450}{Ikarus\+::\+Stats}}
+\begin{DoxyCompactList}\small\item\em Information about the \mbox{\hyperlink{a01454}{Trust\+Region}} solver. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{a01454}{Ikarus\+::\+Trust\+Region$<$ Non\+Linear\+Operator\+Impl, pre\+Conditioner, Update\+Function\+Type\+Impl $>$}}
+\begin{DoxyCompactList}\small\item\em Trust Region solver for non-\/linear optimization problems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \mbox{\hyperlink{a00316}{Ikarus}}
+namespace \mbox{\hyperlink{a00325}{Ikarus}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{a00325_ace28d4868cfc647491f7938f04ef6c66}{Ikarus\+::\+Pre\+Conditioner}} \{ \mbox{\hyperlink{a00325_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{Ikarus\+::\+Incomplete\+Cholesky}}
+, \mbox{\hyperlink{a00325_ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608}{Ikarus\+::\+Identity\+Preconditioner}}
+, \mbox{\hyperlink{a00325_ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc}{Ikarus\+::\+Diagonal\+Preconditioner}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of available preconditioners for the trust region solver. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674}{Ikarus\+::\+Stop\+Reason}} \{ \newline
+\mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1}{Ikarus\+::gradient\+Norm\+Tol\+Reached}}
+, \mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3}{Ikarus\+::correction\+Norm\+Tol\+Reached}}
+, \mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9}{Ikarus\+::maximum\+Time\+Reached}}
+, \mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe}{Ikarus\+::maximum\+Iterations\+Reached}}
+, \newline
+\mbox{\hyperlink{a00325_abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f}{Ikarus\+::dont\+Stop}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of reasons for stopping the Trust\+Region solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Non\+Linear\+Operator\+Impl , Pre\+Conditioner pre\+Conditioner = Pre\+Conditioner\+::\+Incomplete\+Cholesky, typename Update\+Function\+Type  = utils\+::\+Update\+Default$>$ }\\auto \mbox{\hyperlink{a00325_a729c70214792799fb38684febff75e9f}{Ikarus\+::make\+Trust\+Region}} (const Non\+Linear\+Operator\+Impl \&p\+\_\+non\+Linear\+Operator, Update\+Function\+Type \&\&p\+\_\+update\+Function=\{\})
+\begin{DoxyCompactList}\small\item\em Creates an instance of the \mbox{\hyperlink{a01454}{Trust\+Region}} solver. \end{DoxyCompactList}\end{DoxyCompactItemize}

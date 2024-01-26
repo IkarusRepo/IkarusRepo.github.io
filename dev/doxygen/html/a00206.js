@@ -1,4 +1,7 @@
 var a00206 =
 [
-    [ "NeoHooke", "a00206.html#a8d5cb9f5246159271193458daad08fdd", null ]
+    [ "createDeformationGradient", "a00206.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
+    [ "createGreenLagrangianStrains", "a00206.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
+    [ "createRightCauchyGreen", "a00206.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
+    [ "transformStrain", "a00206.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
 ];
