@@ -1,0 +1,61 @@
+\hypertarget{a02460_source}{}\doxysection{python/finiteelements/kirchhoffloveshell.hh}
+\label{a02460_source}\index{kirchhoffloveshell.hh@{kirchhoffloveshell.hh}}
+\mbox{\hyperlink{a02460}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00149}{registerelement.hh}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/fufem/boundarypatch.hh>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/lagrangebasis.hh>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/powerbasis.hh>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/grid/yaspgrid.hh>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <dune/python/functions/globalbasis.hh>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <dune/python/pybind11/functional.h>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00236}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02457}{ikarus/finiteelements/mechanics/kirchhoffloveshell.hh}}>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02448}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00335}{Ikarus::Python}} \{}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{44 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a00347_ae99103e78f095269d466041d3b654837}{KirchhoffLoveShell}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{45 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00317_ga31d84874c3995448666f6a1e070647d2}{registerKirchhoffLoveShell}}(pybind11::handle scope, pybind11::class\_<KirchhoffLoveShell, options...> cls) \{}
+\DoxyCodeLine{46   \mbox{\hyperlink{a00317_ga40f83e4d7b90006b1019add3b1b218b5}{registerElement}}<\textcolor{keyword}{false}, \mbox{\hyperlink{a00347_ae99103e78f095269d466041d3b654837}{KirchhoffLoveShell}}, options...>(scope, cls);}
+\DoxyCodeLine{47   \textcolor{keyword}{using }GlobalBasis    = \textcolor{keyword}{typename} \mbox{\hyperlink{a01290_af98e6a01ee535a71ad4b313e539350d9}{KirchhoffLoveShell::Basis}};}
+\DoxyCodeLine{48   \textcolor{keyword}{using }FlatBasis      = \textcolor{keyword}{typename} \mbox{\hyperlink{a01290_adcfabe21127d23b622c866763b0a2e06}{KirchhoffLoveShell::FlatBasis}};}
+\DoxyCodeLine{49   \textcolor{keyword}{using }GridView       = \textcolor{keyword}{typename} GlobalBasis::GridView;}
+\DoxyCodeLine{50   \textcolor{keyword}{using }Element        = \textcolor{keyword}{typename} \mbox{\hyperlink{a01290_a3c23269e355c19d11ac92deceaebc4e1}{KirchhoffLoveShell::Element}};}
+\DoxyCodeLine{51   \textcolor{keyword}{using }Traits         = \textcolor{keyword}{typename} \mbox{\hyperlink{a01290_aba2bc0da8164a9acbaccfedc02bac856}{KirchhoffLoveShell::Traits}};}
+\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01250}{FERequirements}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01290_a6bf559258069202dfb9564448a95f856}{KirchhoffLoveShell::FERequirementType}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \textcolor{keyword}{using }LoadFunction = std::function<Eigen::Vector<double, Traits::worlddim>(}
+\DoxyCodeLine{55       \mbox{\hyperlink{a01370}{Dune::FieldVector<double, Traits::worlddim>}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{56   cls.def(\mbox{\hyperlink{a00325_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu, \textcolor{keywordtype}{double} thickness,}
+\DoxyCodeLine{57                             \textcolor{keyword}{const} LoadFunction volumeLoad) \{}
+\DoxyCodeLine{58             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00347_ae99103e78f095269d466041d3b654837}{KirchhoffLoveShell}}(\mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, emod, nu, thickness, volumeLoad);}
+\DoxyCodeLine{59           \}),}
+\DoxyCodeLine{60           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62   cls.def(\mbox{\hyperlink{a00325_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu,}
+\DoxyCodeLine{63                             \textcolor{keywordtype}{double} thickness) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00347_ae99103e78f095269d466041d3b654837}{KirchhoffLoveShell}}(\mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, emod, nu, thickness); \}),}
+\DoxyCodeLine{64           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66   cls.def(\mbox{\hyperlink{a00325_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} GlobalBasis\& \mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Element\& element, \textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} nu, \textcolor{keywordtype}{double} thickness,}
+\DoxyCodeLine{67                             \textcolor{keyword}{const} LoadFunction volumeLoad, \textcolor{keyword}{const} BoundaryPatch<GridView>\& bp,}
+\DoxyCodeLine{68                             \textcolor{keyword}{const} LoadFunction neumannBoundaryLoad) \{}
+\DoxyCodeLine{69             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00347_ae99103e78f095269d466041d3b654837}{KirchhoffLoveShell}}(\mbox{\hyperlink{a00345_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, element, emod, nu, thickness, volumeLoad, \&bp, neumannBoundaryLoad);}
+\DoxyCodeLine{70           \}),}
+\DoxyCodeLine{71           pybind11::keep\_alive<1, 2>(), pybind11::keep\_alive<1, 3>(), pybind11::keep\_alive<1, 8>());}
+\DoxyCodeLine{72 \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \} \textcolor{comment}{// namespace Ikarus::Python}}
+
+\end{DoxyCode}

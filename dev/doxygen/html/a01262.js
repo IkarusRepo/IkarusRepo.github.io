@@ -1,18 +1,11 @@
 var a01262 =
 [
-    [ "ParameterTypeRaw", "a01262.html#acf475b20f169aa0c5d35067cac32f0c2", null ],
-    [ "SolutionVectorType", "a01262.html#a6572e4b55efcac594536459775487a28", null ],
-    [ "SolutionVectorTypeRaw", "a01262.html#a9c76a8f7f9a65f0663ea09d444e4843b", null ],
-    [ "ResultRequirements", "a01262.html#ae9f5aa3ebb36cf7bb2d647d984354075", null ],
-    [ "ResultRequirements", "a01262.html#acc8b5392590e2ea3ebd73f3cb920f2cd", null ],
-    [ "ResultRequirements", "a01262.html#a7209c38b9e0f6f251a00b582859d852b", null ],
-    [ "addAffordance", "a01262.html#a0900b42cbc6485aad82c55179234b087", null ],
-    [ "addResultRequest", "a01262.html#a18e3aaa93d9106e11d846c7378f1e849", null ],
-    [ "getFERequirements", "a01262.html#a55da3509459a63cd2ffcb20df9039d0d", null ],
-    [ "getGlobalSolution", "a01262.html#a15c5fab8c1190b52ff013c244fdfa486", null ],
-    [ "getParameter", "a01262.html#aa548e0d7e6823134a51d91d5ec47c37f", null ],
-    [ "getRequestedResult", "a01262.html#a244a5a171cdb08dbed0797d5c0669b85", null ],
-    [ "insertGlobalSolution", "a01262.html#a98129560488126934c2937dc3954a74d", null ],
-    [ "insertParameter", "a01262.html#a3ee8e39fcf1acce22dc1b5c36c70a1fd", null ],
-    [ "isResultRequested", "a01262.html#aa75a1bfbcca39d7c30d1b1141eae4795", null ]
+    [ "MType", "a01262.html#a12c4056812c21e637efec8e60c6a746f", null ],
+    [ "Q1E4", "a01262.html#a8a936241393c34c23fab0e309b31d823", null ],
+    [ "Q1E4", "a01262.html#a1eed27a214142967a158c0d1662a95e5", null ],
+    [ "calcM", "a01262.html#a51a3f1e9a7f90b5724a29ea3086b2221", null ],
+    [ "enhancedStrainSize", "a01262.html#adbfba4b7c0b496a742f6ae4cfe284811", null ],
+    [ "geometry", "a01262.html#a503ba5b1c26a5fd7411a5cea2f4f6111", null ],
+    [ "strainSize", "a01262.html#af629a777529f814b3aeca3a0409bac55", null ],
+    [ "T0InverseTransformed", "a01262.html#af9d5a48936a550de9e53b95f44e553a1", null ]
 ];

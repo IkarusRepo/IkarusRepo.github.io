@@ -1,9 +1,9 @@
 var a00336 =
 [
-    [ "CheckFlags", "a01534.html", "a01534" ],
-    [ "LoadDefault", "a01498.html", null ],
-    [ "SolverDefault", "a01490.html", "a01490" ],
-    [ "UpdateDefault", "a01494.html", "a01494" ],
+    [ "CheckFlags", "a01526.html", "a01526" ],
+    [ "LoadDefault", "a01490.html", null ],
+    [ "SolverDefault", "a01482.html", "a01482" ],
+    [ "UpdateDefault", "a01486.html", "a01486" ],
     [ "any_of", "a00322.html#gab6d955a70ec9215ae9a8f3841582ab49", null ],
     [ "appendUnique", "a00322.html#ga8f6d2c90383de63c518cefeaccee76f8", null ],
     [ "checkGradient", "a00320.html#gacb9e813539bfd84df99ad097cabc9de9", null ],

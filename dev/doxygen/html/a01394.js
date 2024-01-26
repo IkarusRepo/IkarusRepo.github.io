@@ -1,13 +1,15 @@
 var a01394 =
 [
-    [ "ctype", "a01394.html#a2b614ca2965a4d07f6388f3070c85c4f", null ],
-    [ "ElementType", "a01394.html#af9644b833b303bd3cabf3f4fb284effc", null ],
-    [ "Entity", "a01394.html#a95b6a8f8be831236e4b2634bc852a342", null ],
-    [ "GridView", "a01394.html#a60f3b0a6336812436e18ac14de25e0fc", null ],
-    [ "ResultRequirements", "a01394.html#aa661da19892469d54bc070dbd0e04631", null ],
-    [ "ResultFunction", "a01394.html#a92ae43568c42e7d621e5a99d8ecce538", null ],
-    [ "evaluate", "a01394.html#ae07a0f7cfdc977d153022c33b2c4ada9", null ],
-    [ "name", "a01394.html#aeab965379985b94a9c60059b01595f6b", null ],
-    [ "ncomps", "a01394.html#a55ddba55f148fabc822146919f7c2864", null ],
-    [ "griddim", "a01394.html#a1b40b371171256b66b51c1c2b12a37a3", null ]
+    [ "Base", "a01394.html#ae16fb346feda99ba74d0eb6c6e3e7ece", null ],
+    [ "MatrixType", "a01394.html#a8fb475e49bebbab5c9dfcf5325f4bb73", null ],
+    [ "Preconditioner", "a01394.html#a62244905718a3538dbc1f9b36046d4d6", null ],
+    [ "RealScalar", "a01394.html#a86d1cdc1073006c2d5d809b4c0b77908", null ],
+    [ "Scalar", "a01394.html#a7451d2a0e27db7fb57336f288343a84f", null ],
+    [ "TruncatedConjugateGradient", "a01394.html#a424099a1cac74a8684bcd170441f5415", null ],
+    [ "TruncatedConjugateGradient", "a01394.html#a02491a65df30cd0cfb68b894f3627a6e", null ],
+    [ "TruncatedConjugateGradient", "a01394.html#a6c5ad1eb772b8f2590827647ad6594f2", null ],
+    [ "~TruncatedConjugateGradient", "a01394.html#aa572ab1738a73b78411575a2574c1339", null ],
+    [ "_solve_vector_with_guess_impl", "a01394.html#a23170151337c9f8681f6087d0c036c8a", null ],
+    [ "getInfo", "a01394.html#a5ea4822b3fd6ed682262d6624209e116", null ],
+    [ "setInfo", "a01394.html#a73bcfc1126485468abd73569c0a1a6ac", null ]
 ];

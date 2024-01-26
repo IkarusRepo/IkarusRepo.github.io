@@ -14,62 +14,58 @@
 \DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00331}{Dune}} \{}
 \DoxyCodeLine{18 \textcolor{comment}{// Forward declaration}}
 \DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keywordtype}{int} size>}
-\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01378}{FieldVector}};}
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01370}{FieldVector}};}
 \DoxyCodeLine{21 \} \textcolor{comment}{// namespace Dune}}
 \DoxyCodeLine{22 }
 \DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00332}{Ikarus::ResultEvaluators}} \{}
 \DoxyCodeLine{24 }
-\DoxyCodeLine{35 \textcolor{keyword}{struct }\mbox{\hyperlink{a01382}{VonMises}}}
-\DoxyCodeLine{36 \{}
-\DoxyCodeLine{37   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
-\DoxyCodeLine{38   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01382_a1cf7d88462db0aba4e49e6c635269c46}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01262}{ResultRequirements<FERequirements>}}\& req,}
-\DoxyCodeLine{39                     \textcolor{keyword}{const} \mbox{\hyperlink{a01378}{Dune::FieldVector<ScalarType, size>}}\& pos, [[maybe\_unused]] \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const}}
-\DoxyCodeLine{40   \textcolor{keyword}{requires}(size == 2)}
-\DoxyCodeLine{41   \{}
-\DoxyCodeLine{42     \mbox{\hyperlink{a01258}{ResultTypeMap<ScalarType>}} res\_;}
-\DoxyCodeLine{43     fe.calculateAt(req, pos, res\_);}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01258_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
-\DoxyCodeLine{46     assert(resultType == \mbox{\hyperlink{a00312_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00312_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
-\DoxyCodeLine{47     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
-\DoxyCodeLine{48     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
-\DoxyCodeLine{49     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{51     \textcolor{keywordflow}{return} std::sqrt(std::pow(s\_x, 2) + Dune::power(s\_y, 2) -\/ s\_x * s\_y + 3 * Dune::power(s\_xy, 2));}
-\DoxyCodeLine{52   \}}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{58   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01382_a60952d65a227074bcb68af8ed78d4129}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
-\DoxyCodeLine{59 }
-\DoxyCodeLine{64   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01382_acdfd2226b12f3819350f4ea231e337bf}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
-\DoxyCodeLine{65 \};}
+\DoxyCodeLine{31 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim>}
+\DoxyCodeLine{32 \textcolor{keyword}{requires}(dim == 2 or dim == 3)}
+\DoxyCodeLine{33 \textcolor{keyword}{struct} \mbox{\hyperlink{a01374}{VonMises}}}
+\DoxyCodeLine{34 \{}
+\DoxyCodeLine{41   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01374_afd2a803b2aaf8c2fb4296c1dc1f431fe}{operator()}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{42     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (dim == 2) \{}
+\DoxyCodeLine{43       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = resultArray(0, 0);}
+\DoxyCodeLine{44       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = resultArray(1, 0);}
+\DoxyCodeLine{45       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = resultArray(2, 0);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47       \textcolor{keywordflow}{return} std::sqrt(Dune::power(s\_x, 2) + Dune::power(s\_y, 2) -\/ s\_x * s\_y + 3 * Dune::power(s\_xy, 2));}
+\DoxyCodeLine{48     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{49       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = resultArray(0, 0);}
+\DoxyCodeLine{50       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = resultArray(1, 0);}
+\DoxyCodeLine{51       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_z  = resultArray(2, 0);}
+\DoxyCodeLine{52       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_yz = resultArray(4, 0);}
+\DoxyCodeLine{53       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xz = resultArray(5, 0);}
+\DoxyCodeLine{54       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = resultArray(6, 0);}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56       \textcolor{keywordflow}{return} std::sqrt(Dune::power(s\_x, 2) + Dune::power(s\_y, 2) + Dune::power(s\_z, 2) -\/ s\_x * s\_y -\/ s\_x * s\_z -\/}
+\DoxyCodeLine{57                        s\_y * s\_z + 3 * (Dune::power(s\_xy, 2) + Dune::power(s\_xz, 2) + Dune::power(s\_yz, 2)));}
+\DoxyCodeLine{58     \}}
+\DoxyCodeLine{59   \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{65   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01374_a473eff527cf8488ad4ef21749b5461cd}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
 \DoxyCodeLine{66 }
-\DoxyCodeLine{78 \textcolor{keyword}{struct }\mbox{\hyperlink{a01386}{PrincipalStress}}}
-\DoxyCodeLine{79 \{}
-\DoxyCodeLine{80   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ElementType, \textcolor{keyword}{typename} FERequirements, \textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} ScalarType>}
-\DoxyCodeLine{81   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01386_a30ccc009cdf990e107cb807f769bbc5b}{operator()}}(\textcolor{keyword}{const} ElementType\& fe, \textcolor{keyword}{const} \mbox{\hyperlink{a01262}{ResultRequirements<FERequirements>}}\& req,}
-\DoxyCodeLine{82                     \textcolor{keyword}{const} \mbox{\hyperlink{a01378}{Dune::FieldVector<ScalarType, size>}}\& pos, \textcolor{keywordtype}{int} comp) \textcolor{keyword}{const}}
-\DoxyCodeLine{83   \textcolor{keyword}{requires}(size == 2)}
-\DoxyCodeLine{84   \{}
-\DoxyCodeLine{85     \mbox{\hyperlink{a01258}{ResultTypeMap<ScalarType>}} res\_;}
-\DoxyCodeLine{86     fe.calculateAt(req, pos, res\_);}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{88     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& [resultType, sigma] = res\_.\mbox{\hyperlink{a01258_a6c2c52fc90ff0af02def08b0c8f5deb2}{getSingleResult}}();}
-\DoxyCodeLine{89     assert(resultType == \mbox{\hyperlink{a00312_gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02}{ResultType::cauchyStress}} or resultType == \mbox{\hyperlink{a00312_gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241}{ResultType::PK2Stress}});}
-\DoxyCodeLine{90     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = sigma(0, 0);}
-\DoxyCodeLine{91     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = sigma(1, 0);}
-\DoxyCodeLine{92     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = sigma(2, 0);}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{94     \textcolor{keyword}{auto} t1 = (s\_x + s\_y) / 2;}
-\DoxyCodeLine{95     \textcolor{keyword}{auto} t2 = std::sqrt(Dune::power((s\_x -\/ s\_y) / 2, 2) + Dune::power(s\_xy, 2));}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{97     \textcolor{keywordflow}{return} comp == 0 ? t1 + t2 : t1 -\/ t2;}
-\DoxyCodeLine{98   \}}
-\DoxyCodeLine{99 }
-\DoxyCodeLine{104   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01386_a3bf1a9009747f7fe1e645192bcf6350d}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
-\DoxyCodeLine{105 }
-\DoxyCodeLine{110   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01386_a5f3b81a2fcecace3ee76bff9acee54d3}{ncomps}}() \{ \textcolor{keywordflow}{return} 2; \}}
-\DoxyCodeLine{111 \};}
-\DoxyCodeLine{112 }
-\DoxyCodeLine{113 \} \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
+\DoxyCodeLine{71   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01374_a9bfcf1298b628c002d6431957dc1df53}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{72 \};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{80 \textcolor{keyword}{struct }\mbox{\hyperlink{a01378}{PrincipalStress}}}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{88   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01378_ab5ed104b76d7ea256fff0aa922f33466}{operator()}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& resultArray, \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{89     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x  = resultArray(0, 0);}
+\DoxyCodeLine{90     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y  = resultArray(1, 0);}
+\DoxyCodeLine{91     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = resultArray(2, 0);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keyword}{auto} t1 = (s\_x + s\_y) / 2;}
+\DoxyCodeLine{94     \textcolor{keyword}{auto} t2 = std::sqrt(Dune::power((s\_x -\/ s\_y) / 2, 2) + Dune::power(s\_xy, 2));}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96     \textcolor{keywordflow}{return} comp == 0 ? t1 + t2 : t1 -\/ t2;}
+\DoxyCodeLine{97   \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{103   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01378_a3bf1a9009747f7fe1e645192bcf6350d}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{109   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01378_a5f3b81a2fcecace3ee76bff9acee54d3}{ncomps}}() \{ \textcolor{keywordflow}{return} 2; \}}
+\DoxyCodeLine{110 \};}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \} \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
 
 \end{DoxyCode}

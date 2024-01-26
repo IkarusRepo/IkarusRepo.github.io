@@ -1,15 +1,11 @@
 var a01442 =
 [
-    [ "corr_tol", "a01442.html#af8eb8f7712201c0cf01336a92d704892", null ],
-    [ "debug", "a01442.html#a72e069d6cb3b98ec116172ec886a4986", null ],
-    [ "Delta0", "a01442.html#a6c171df067c667d9c5257d12b85a9e6d", null ],
-    [ "Delta_bar", "a01442.html#a8d52f35057ed50714fb0d3f6f94588ec", null ],
-    [ "grad_tol", "a01442.html#a64868ebbbe9e92ac762a411882399fc9", null ],
-    [ "maxiter", "a01442.html#ad17916490e9c02177566877df2af606c", null ],
-    [ "maxtime", "a01442.html#ae255ad8f1baddf2e46981bc017da6d26", null ],
-    [ "miniter", "a01442.html#a074d2f0fd5ba3fab047d60e9a94b817d", null ],
-    [ "rho_prime", "a01442.html#ade6e855ba3b6c9bb3e0b54264f1a10eb", null ],
-    [ "rho_reg", "a01442.html#a10ae2ded9785759dbca6a18136baf5ed", null ],
-    [ "useRand", "a01442.html#ac9338497c49d411382bf56863298f916", null ],
-    [ "verbosity", "a01442.html#a5c041eabf13458ca696bcf25a4e043b2", null ]
+    [ "energy", "a01442.html#a43b868b19908b5435f1e2f18fb1d7625", null ],
+    [ "energyProposal", "a01442.html#a3a03ce164638213312bece9e8b54fdcd", null ],
+    [ "etaNorm", "a01442.html#a178607b87a8d27eb7b02bb22dc0d2c63", null ],
+    [ "gradNorm", "a01442.html#a58ec024d2233720f0bf164b8b21a6626", null ],
+    [ "innerIterSum", "a01442.html#ac5053b65db9ceae8340aaebe952c7792", null ],
+    [ "outerIter", "a01442.html#a79ff262003d1f3ff65ef2877aca8df0f", null ],
+    [ "rho", "a01442.html#a1111f89e925a512bd145b50a8f25c2be", null ],
+    [ "time", "a01442.html#ab3cab6865c16d06ec81b5db14b0dc5e2", null ]
 ];

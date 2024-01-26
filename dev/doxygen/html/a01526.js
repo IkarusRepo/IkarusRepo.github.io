@@ -1,7 +1,6 @@
 var a01526 =
 [
-    [ "FIMS", "a01526.html#a2387375090283dac7ebbfb8bc58e1994", null ],
-    [ "type", "a01526.html#a5b93764f4d9fd3897ad37658526e37fd", null ],
-    [ "create", "a01526.html#aaaf91aed22e7c32c6f2c26ff961ae3e1", null ],
-    [ "create", "a01526.html#aab16d08ac65576f292078b2c4f135645", null ]
+    [ "draw", "a01526.html#a08fa473dcdfbdb5dcf759546ea2da3b8", null ],
+    [ "tolerance", "a01526.html#a6c1e702608ca901f9f7efca524560b25", null ],
+    [ "writeSlopeStatementIfFailed", "a01526.html#ac9946207ee221c94e843ea7c048a16a3", null ]
 ];

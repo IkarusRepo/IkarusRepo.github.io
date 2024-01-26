@@ -1,14 +1,14 @@
 var a00316 =
 [
     [ "resultevaluators.hh", "a00164.html", null ],
-    [ "Ikarus::ResultEvaluators::VonMises", "a01382.html", [
-      [ "name", "a01382.html#a60952d65a227074bcb68af8ed78d4129", null ],
-      [ "ncomps", "a01382.html#acdfd2226b12f3819350f4ea231e337bf", null ],
-      [ "operator()", "a01382.html#a1cf7d88462db0aba4e49e6c635269c46", null ]
+    [ "Ikarus::ResultEvaluators::VonMises< dim >", "a01374.html", [
+      [ "name", "a01374.html#a473eff527cf8488ad4ef21749b5461cd", null ],
+      [ "ncomps", "a01374.html#a9bfcf1298b628c002d6431957dc1df53", null ],
+      [ "operator()", "a01374.html#afd2a803b2aaf8c2fb4296c1dc1f431fe", null ]
     ] ],
-    [ "Ikarus::ResultEvaluators::PrincipalStress", "a01386.html", [
-      [ "name", "a01386.html#a3bf1a9009747f7fe1e645192bcf6350d", null ],
-      [ "ncomps", "a01386.html#a5f3b81a2fcecace3ee76bff9acee54d3", null ],
-      [ "operator()", "a01386.html#a30ccc009cdf990e107cb807f769bbc5b", null ]
+    [ "Ikarus::ResultEvaluators::PrincipalStress", "a01378.html", [
+      [ "name", "a01378.html#a3bf1a9009747f7fe1e645192bcf6350d", null ],
+      [ "ncomps", "a01378.html#a5f3b81a2fcecace3ee76bff9acee54d3", null ],
+      [ "operator()", "a01378.html#ab5ed104b76d7ea256fff0aa922f33466", null ]
     ] ]
 ];

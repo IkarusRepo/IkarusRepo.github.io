@@ -3,10 +3,8 @@ var a00236 =
     [ "Ikarus::AffordanceCollectionImpl", "a01234.html", "a01234" ],
     [ "Ikarus::FERequirements< SolutionVectorType_, ParameterType_ >", "a01250.html", "a01250" ],
     [ "Ikarus::FErequirements< SolutionVectorType_, ParameterType_ >", "a01254.html", "a01254" ],
-    [ "Ikarus::ResultTypeMap< ParameterType >", "a01258.html", "a01258" ],
-    [ "Ikarus::ResultRequirements< FERequirements >", "a01262.html", "a01262" ],
-    [ "Ikarus::FEAffordance", "a01623.html", null ],
-    [ "Ikarus::ResultTypeConcept", "a01624.html", null ],
+    [ "Ikarus::FEAffordance", "a01615.html", null ],
+    [ "Ikarus::ResultTypeConcept", "a01616.html", null ],
     [ "FEParameter", "a00236.html#ga0c1577fd05efee8475b0f7fef795bbbe", [
       [ "BEGIN", "a00236.html#gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775", null ],
       [ "noParameter", "a00236.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe", null ],

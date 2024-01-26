@@ -11,6 +11,6 @@ var searchData=
   ['maketuplesubset_8',['makeTupleSubset',['../a00322.html#ga32de94604b9d1a7423134f33f49d613f',1,'Ikarus::utils']]],
   ['makeuniqueandsort_9',['makeUniqueAndSort',['../a00322.html#ga6e36d8f5163f232e3142ecbd0575e8b4',1,'Ikarus::utils']]],
   ['makevanishingstress_10',['makeVanishingStress',['../a00325.html#a317c0a50c0a7d482e2a20d8146e08df8',1,'Ikarus']]],
-  ['materialtangent_11',['materialTangent',['../a01346.html#ae091d629e7aa235d88e381368a75f5bc',1,'Ikarus::NonLinearElastic::materialTangent()'],['../a01306.html#ae9391f3895e965ecc5dfea1af1ac62f7',1,'Ikarus::LinearElastic::materialTangent()'],['../a01298.html#aa135b5062856432512c7d29f1ff675b0',1,'Ikarus::KirchhoffLoveShell::materialTangent()']]],
-  ['materialtangentfunction_12',['materialTangentFunction',['../a01306.html#a23a003fe0c49bfc18714da0889b00c65',1,'Ikarus::LinearElastic']]]
+  ['materialtangent_11',['materialTangent',['../a01338.html#ae091d629e7aa235d88e381368a75f5bc',1,'Ikarus::NonLinearElastic::materialTangent()'],['../a01298.html#ae9391f3895e965ecc5dfea1af1ac62f7',1,'Ikarus::LinearElastic::materialTangent()'],['../a01290.html#aa135b5062856432512c7d29f1ff675b0',1,'Ikarus::KirchhoffLoveShell::materialTangent()']]],
+  ['materialtangentfunction_12',['materialTangentFunction',['../a01298.html#a23a003fe0c49bfc18714da0889b00c65',1,'Ikarus::LinearElastic']]]
 ];

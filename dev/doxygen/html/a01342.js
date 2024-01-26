@@ -1,6 +1,5 @@
 var a01342 =
 [
-    [ "derivative", "a01342.html#a1c17239105e26dfdc369583624d8a200", null ],
-    [ "secondDerivative", "a01342.html#a95cb97998e73fcf05fb7d9df0249b2e9", null ],
-    [ "value", "a01342.html#acfe8c5424970d44c34005e13e851494a", null ]
+    [ "emodul", "a01342.html#a6c00be8aacc18c845b00748b1e56c83c", null ],
+    [ "nu", "a01342.html#acb99903e7b1b13967a0757d284e014ed", null ]
 ];

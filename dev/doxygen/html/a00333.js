@@ -1,9 +1,9 @@
 var a00333 =
 [
     [ "internal", "a00334.html", "a00334" ],
-    [ "EigenBase", "a01470.html", null ],
-    [ "TCGInfo", "a01398.html", "a01398" ],
-    [ "TruncatedConjugateGradient", "a01402.html", "a01402" ],
+    [ "EigenBase", "a01462.html", null ],
+    [ "TCGInfo", "a01390.html", "a01390" ],
+    [ "TruncatedConjugateGradient", "a01394.html", "a01394" ],
     [ "TCGStopReason", "a00333.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
       [ "negativeCurvature", "a00333.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
       [ "exceededTrustRegion", "a00333.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],

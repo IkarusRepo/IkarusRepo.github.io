@@ -1,8 +1,8 @@
-\hypertarget{a01630}{}\doxysection{Ikarus\+::Concepts\+::Flat\+Lexicographic\+Basis Concept Reference}
-\label{a01630}\index{Ikarus::Concepts::FlatLexicographicBasis@{Ikarus::Concepts::FlatLexicographicBasis}}
+\hypertarget{a01630}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01630}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept to check if a basis uses Flat\+Lexicographic indexing strategy.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,19 +12,24 @@ Concept to check if a basis uses Flat\+Lexicographic indexing strategy.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} Basis>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01630}{Ikarus::Concepts::FlatLexicographicBasis}} =  \textcolor{keyword}{requires} \{}
-\DoxyCodeLine{    std::is\_same\_v<typename Basis::PreBasis::IndexMergingStrategy, Dune::Functions::BasisFactory::FlatLexicographic>;}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} AdaptiveStepSizing, \textcolor{keyword}{typename} NonLinearSolverInformation, \textcolor{keyword}{typename} Subs\textcolor{keywordtype}{id}iaryArgs, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01630}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(AdaptiveStepSizing adaptiveSS, NonLinearSolverInformation info,}
+\DoxyCodeLine{                                                SubsidiaryArgs args, NonLinearOperator nop) \{}
+\DoxyCodeLine{    \{ adaptiveSS(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveSS.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveSS.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
 \DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
 
 \doxysubsection{Detailed Description}
-This concept checks if the given Basis type uses Flat\+Lexicographic indexing strategy.
-
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Basis} & The basis type. \\
+{\em Adaptive\+Step\+Sizing} & The adaptive step sizing type. \\
+\hline
+{\em Non\+Linear\+Solver\+Information} & The non-\/linear solver information type. \\
+\hline
+{\em Subsidiary\+Args} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}
