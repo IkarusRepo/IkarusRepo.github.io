@@ -36,6 +36,6 @@ var concepts =
       [ "FEAffordance", "a01615.html", null ],
       [ "ResultTypeConcept", "a01616.html", null ],
       [ "CorrectStrainSize", "a01617.html", null ],
-      [ "MaterialParameterTuple", "a01618.html", null ]
+      [ "MPTuple", "a01618.html", null ]
     ] ]
 ];

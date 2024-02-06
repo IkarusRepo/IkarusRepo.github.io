@@ -1,6 +1,7 @@
 var a00242 =
 [
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01422.html", "a01422" ],
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NonLinearOperatorImpl, LinearSolver, UpdateFunctionTypeImpl >", "a01426.html", "a01426" ],
-    [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00242.html#a674c58e9e3dd89675adb727587a08850", null ]
+    [ "createDeformationGradient", "a00242.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
+    [ "createGreenLagrangianStrains", "a00242.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
+    [ "createRightCauchyGreen", "a00242.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
+    [ "transformStrain", "a00242.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
 ];

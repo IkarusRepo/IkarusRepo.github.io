@@ -1,6 +1,6 @@
 var a01334 =
 [
-    [ "derivative", "a01334.html#a1c17239105e26dfdc369583624d8a200", null ],
-    [ "secondDerivative", "a01334.html#a95cb97998e73fcf05fb7d9df0249b2e9", null ],
-    [ "value", "a01334.html#acfe8c5424970d44c34005e13e851494a", null ]
+    [ "derivative", "a01334.html#af2e92a20898c224f6fe6968f766404b3", null ],
+    [ "secondDerivative", "a01334.html#a3a4c92723db3bf34028b55d9d9ac8d7a", null ],
+    [ "value", "a01334.html#ab4ddaa746b858e45fe37237baba4a797", null ]
 ];

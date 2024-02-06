@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['correctiontype_0',['CorrectionType',['../a01446.html#aadc89cc68a82db3b7e8f25ce032bd71f',1,'Ikarus::TrustRegion']]],
-  ['ctype_1',['ctype',['../a01258.html#ac8ae58d68b66589a010dc40370022572',1,'Ikarus::FETraits::ctype()'],['../a01386.html#afe05553bbd7e7f98f81e6823bea11b53',1,'Ikarus::ResultFunction::ctype()']]]
+  ['correctiontype_0',['CorrectionType',['../a01446.html#a1071054a0b75f9fbe27832ea672792b0',1,'Ikarus::TrustRegion']]],
+  ['ctype_1',['ctype',['../a01258.html#a36abe84d9f27e4d736c9258376af3e92',1,'Ikarus::FETraits::ctype()'],['../a01386.html#a1b960380b9e520e5c37a552158dcbc9e',1,'Ikarus::ResultFunction::ctype()']]]
 ];

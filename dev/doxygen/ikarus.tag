@@ -13,9 +13,9 @@
   <compound kind="file">
     <name>simpleassemblers.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
-    <filename>a00119.html</filename>
-    <includes id="a02454" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
-    <includes id="a00116" name="simpleassemblers.inl" local="yes" imported="no">simpleassemblers.inl</includes>
+    <filename>a00185.html</filename>
+    <includes id="a02476" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
+    <includes id="a00188" name="simpleassemblers.inl" local="yes" imported="no">simpleassemblers.inl</includes>
     <class kind="class">Ikarus::FlatAssemblerBase</class>
     <class kind="class">Ikarus::ScalarAssembler</class>
     <class kind="class">Ikarus::VectorFlatAssembler</class>
@@ -26,15 +26,15 @@
   <compound kind="file">
     <name>simpleassemblers.inl</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
-    <filename>a00116.html</filename>
+    <filename>a00188.html</filename>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>adaptivestepsizing.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00134.html</filename>
-    <includes id="a00137" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
-    <includes id="a00245" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
+    <filename>a00272.html</filename>
+    <includes id="a00269" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
+    <includes id="a00173" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
     <class kind="struct">Ikarus::AdaptiveStepSizing::NoOp</class>
     <class kind="struct">Ikarus::AdaptiveStepSizing::IterationBased</class>
     <namespace>Ikarus</namespace>
@@ -43,63 +43,63 @@
   <compound kind="file">
     <name>controlinfos.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00125.html</filename>
-    <includes id="a00245" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
+    <filename>a00275.html</filename>
+    <includes id="a00173" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
     <class kind="struct">Ikarus::ControlInformation</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>loadcontrol.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00128.html</filename>
-    <includes id="a00125" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
-    <includes id="a00131" name="loadcontrol.inl" local="no" imported="no">ikarus/controlroutines/loadcontrol.inl</includes>
+    <filename>a00278.html</filename>
+    <includes id="a00275" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <includes id="a00266" name="loadcontrol.inl" local="no" imported="no">ikarus/controlroutines/loadcontrol.inl</includes>
     <class kind="class">Ikarus::LoadControl</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>loadcontrol.inl</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00131.html</filename>
+    <filename>a00266.html</filename>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>pathfollowing.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00140.html</filename>
-    <includes id="a00134" name="adaptivestepsizing.hh" local="no" imported="no">ikarus/controlroutines/adaptivestepsizing.hh</includes>
-    <includes id="a00125" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
-    <includes id="a00137" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
-    <includes id="a00242" name="newtonraphsonwithscalarsubsidiaryfunction.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
-    <includes id="a00122" name="pathfollowing.inl" local="no" imported="no">ikarus/controlroutines/pathfollowing.inl</includes>
+    <filename>a00260.html</filename>
+    <includes id="a00272" name="adaptivestepsizing.hh" local="no" imported="no">ikarus/controlroutines/adaptivestepsizing.hh</includes>
+    <includes id="a00275" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
+    <includes id="a00269" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
+    <includes id="a00164" name="newtonraphsonwithscalarsubsidiaryfunction.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <includes id="a00263" name="pathfollowing.inl" local="no" imported="no">ikarus/controlroutines/pathfollowing.inl</includes>
     <class kind="class">Ikarus::PathFollowing</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>pathfollowing.inl</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00122.html</filename>
-    <includes id="a00134" name="adaptivestepsizing.hh" local="no" imported="no">ikarus/controlroutines/adaptivestepsizing.hh</includes>
-    <includes id="a00125" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
-    <includes id="a00137" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
-    <includes id="a00242" name="newtonraphsonwithscalarsubsidiaryfunction.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh</includes>
-    <includes id="a00005" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <filename>a00263.html</filename>
+    <includes id="a00272" name="adaptivestepsizing.hh" local="no" imported="no">ikarus/controlroutines/adaptivestepsizing.hh</includes>
+    <includes id="a00275" name="controlinfos.hh" local="no" imported="no">ikarus/controlroutines/controlinfos.hh</includes>
+    <includes id="a00269" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
+    <includes id="a00164" name="newtonraphsonwithscalarsubsidiaryfunction.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh</includes>
+    <includes id="a00032" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>pathfollowingfunctions.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/controlroutines/</path>
-    <filename>a00137.html</filename>
-    <includes id="a00239" name="linearsolver.hh" local="no" imported="no">ikarus/solver/linearsolver/linearsolver.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00269.html</filename>
+    <includes id="a00176" name="linearsolver.hh" local="no" imported="no">ikarus/solver/linearsolver/linearsolver.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="struct">Ikarus::SubsidiaryArgs</class>
     <class kind="struct">Ikarus::ArcLength</class>
     <class kind="struct">Ikarus::LoadControlSubsidiaryFunction</class>
@@ -109,50 +109,50 @@
   <compound kind="file">
     <name>autodifffe.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/</path>
-    <filename>a00182.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00185" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00200.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00203" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="class">Ikarus::AutoDiffFE</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>powerbasisfe.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/</path>
-    <filename>a00179.html</filename>
-    <includes id="a00185" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
+    <filename>a00194.html</filename>
+    <includes id="a00203" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
     <class kind="class">Ikarus::PowerBasisFE</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>scalarfe.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/</path>
-    <filename>a00176.html</filename>
-    <includes id="a00185" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
+    <filename>a00197.html</filename>
+    <includes id="a00203" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
     <class kind="class">Ikarus::ScalarFieldFE</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>fehelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/</path>
-    <filename>a00170.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00173" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
+    <filename>a00191.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00257" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::FEHelper</namespace>
     <member kind="function">
       <type>auto</type>
       <name>localSolutionBlockVector</name>
       <anchorfile>a00328.html</anchorfile>
-      <anchor>a2c8d65eb2c1b14e022a42dbccf0b5cb1</anchor>
-      <arglist>(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt)</arglist>
+      <anchor>a98c9e3d7c5cc47d0c177684a18a41bd5</anchor>
+      <arglist>(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>ferequirements.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/</path>
-    <filename>a00236.html</filename>
-    <includes id="a00032" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
+    <filename>a00206.html</filename>
+    <includes id="a00005" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
     <class kind="struct">Ikarus::AffordanceCollectionImpl</class>
     <class kind="class">Ikarus::FERequirements</class>
     <class kind="class">Ikarus::FErequirements</class>
@@ -334,17 +334,17 @@
   <compound kind="file">
     <name>fetraits.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/</path>
-    <filename>a00185.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <filename>a00203.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <class kind="struct">Ikarus::FETraits</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>eas2d.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/</path>
-    <filename>a00191.html</filename>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00224.html</filename>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::EAS::Q1E4</class>
     <class kind="struct">Ikarus::EAS::Q1E5</class>
     <class kind="struct">Ikarus::EAS::Q1E7</class>
@@ -354,8 +354,8 @@
   <compound kind="file">
     <name>eas3d.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/</path>
-    <filename>a00188.html</filename>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00227.html</filename>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::EAS::H1E9</class>
     <class kind="struct">Ikarus::EAS::H1E21</class>
     <namespace>Ikarus</namespace>
@@ -364,10 +364,10 @@
   <compound kind="file">
     <name>easvariants.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a00227.html</filename>
-    <includes id="a00191" name="eas2d.hh" local="no" imported="no">ikarus/finiteelements/mechanics/eas/eas2d.hh</includes>
-    <includes id="a00188" name="eas3d.hh" local="no" imported="no">ikarus/finiteelements/mechanics/eas/eas3d.hh</includes>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00254.html</filename>
+    <includes id="a00224" name="eas2d.hh" local="no" imported="no">ikarus/finiteelements/mechanics/eas/eas2d.hh</includes>
+    <includes id="a00227" name="eas3d.hh" local="no" imported="no">ikarus/finiteelements/mechanics/eas/eas3d.hh</includes>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::EAS::Variants</class>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::EAS</namespace>
@@ -375,59 +375,59 @@
   <compound kind="file">
     <name>enhancedassumedstrains.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a00203.html</filename>
-    <includes id="a00170" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00227" name="easvariants.hh" local="no" imported="no">ikarus/finiteelements/mechanics/easvariants.hh</includes>
-    <includes id="a00026" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
+    <filename>a00221.html</filename>
+    <includes id="a00191" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00254" name="easvariants.hh" local="no" imported="no">ikarus/finiteelements/mechanics/easvariants.hh</includes>
+    <includes id="a00044" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
     <class kind="class">Ikarus::EnhancedAssumedStrains</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>loads.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a00233.html</filename>
-    <includes id="a00194" name="traction.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads/traction.hh</includes>
-    <includes id="a00197" name="volume.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads/volume.hh</includes>
+    <filename>a00218.html</filename>
+    <includes id="a00215" name="traction.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads/traction.hh</includes>
+    <includes id="a00212" name="volume.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads/volume.hh</includes>
   </compound>
   <compound kind="file">
     <name>traction.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/loads/</path>
-    <filename>a00194.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <filename>a00215.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
     <class kind="class">Ikarus::Traction</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>volume.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/loads/</path>
-    <filename>a00197.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <filename>a00212.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
     <class kind="class">Ikarus::Volume</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>materials.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a00200.html</filename>
-    <includes id="a00209" name="linearelasticity.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/linearelasticity.hh</includes>
-    <includes id="a00212" name="neohooke.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/neohooke.hh</includes>
-    <includes id="a00224" name="svk.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/svk.hh</includes>
-    <includes id="a00218" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
-    <includes id="a00221" name="vanishingstress.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/vanishingstress.hh</includes>
+    <filename>a00251.html</filename>
+    <includes id="a00239" name="linearelasticity.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/linearelasticity.hh</includes>
+    <includes id="a00245" name="neohooke.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/neohooke.hh</includes>
+    <includes id="a00236" name="svk.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/svk.hh</includes>
+    <includes id="a00248" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
+    <includes id="a00233" name="vanishingstress.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/vanishingstress.hh</includes>
   </compound>
   <compound kind="file">
     <name>interface.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00215.html</filename>
-    <includes id="a00206" name="strainconversions.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/strainconversions.hh</includes>
-    <includes id="a00218" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
-    <includes id="a00173" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00230.html</filename>
+    <includes id="a00242" name="strainconversions.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/strainconversions.hh</includes>
+    <includes id="a00248" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
+    <includes id="a00257" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="struct">Ikarus::Material</class>
     <namespace>Ikarus</namespace>
     <concept>Ikarus::CorrectStrainSize</concept>
@@ -442,42 +442,41 @@
   <compound kind="file">
     <name>linearelasticity.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00209.html</filename>
-    <includes id="a00224" name="svk.hh" local="yes" imported="no">svk.hh</includes>
-    <includes id="a00215" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00239.html</filename>
+    <includes id="a00236" name="svk.hh" local="yes" imported="no">svk.hh</includes>
+    <includes id="a00230" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <class kind="struct">Ikarus::LinearElasticityT</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
       <type>LinearElasticityT&lt; double &gt;</type>
       <name>LinearElasticity</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ae7fcb8a58863e680e7a25d75766df15c</anchor>
+      <anchor>a5b06e456a4b64c291dedbcf428026ba7</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>neohooke.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00212.html</filename>
-    <includes id="a00215" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00245.html</filename>
+    <includes id="a00230" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::NeoHookeT</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
       <type>NeoHookeT&lt; double &gt;</type>
       <name>NeoHooke</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a8d5cb9f5246159271193458daad08fdd</anchor>
+      <anchor>ab764233e8704d8d4462d202a362892c8</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>strainconversions.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00206.html</filename>
-    <includes id="a00218" name="tags.hh" local="yes" imported="no">tags.hh</includes>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00242.html</filename>
+    <includes id="a00248" name="tags.hh" local="yes" imported="no">tags.hh</includes>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <namespace>Ikarus</namespace>
     <member kind="function">
       <type>auto</type>
@@ -511,24 +510,24 @@
   <compound kind="file">
     <name>svk.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00224.html</filename>
-    <includes id="a00215" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
-    <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
+    <filename>a00236.html</filename>
+    <includes id="a00230" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a00020" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::StVenantKirchhoffT</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
       <type>StVenantKirchhoffT&lt; double &gt;</type>
       <name>StVenantKirchhoff</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab6b67c66afecf13985c9bf252ac644da</anchor>
+      <anchor>a965823ec0538ab6b5bdf7f69c33f3910</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>tags.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00218.html</filename>
-    <includes id="a00032" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
+    <filename>a00248.html</filename>
+    <includes id="a00005" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
     <namespace>Ikarus</namespace>
     <member kind="enumeration">
       <type></type>
@@ -595,10 +594,10 @@
   <compound kind="file">
     <name>vanishingstress.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a00221.html</filename>
-    <includes id="a00215" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
-    <includes id="a00251" name="newtonraphson.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphson.hh</includes>
-    <includes id="a00005" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
+    <filename>a00233.html</filename>
+    <includes id="a00230" name="interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a00170" name="newtonraphson.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphson.hh</includes>
+    <includes id="a00032" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
     <class kind="struct">Ikarus::VanishingStress</class>
     <namespace>Ikarus</namespace>
     <member kind="function">
@@ -612,35 +611,35 @@
       <type>auto</type>
       <name>planeStress</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a9b0fa242d65e9b14680cedcbaeed3301</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>ad43f50b1b1c3410c4a0c547be7ada4a0</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>shellMaterial</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a97580749c5279282142d9e17d612b77e</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>a9a1d1c81201b4c4c8cbee139df43b5d6</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>beamMaterial</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a9bf89561a3cb74c038a5e137608ee22d</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>a9b582bcc3c887a57428b25984bc6f7ac</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>membranestrains.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a00230.html</filename>
+    <filename>a00209.html</filename>
     <class kind="struct">Ikarus::DefaultMembraneStrain</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>physicshelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/</path>
-    <filename>a00173.html</filename>
+    <filename>a00257.html</filename>
     <class kind="struct">Ikarus::YoungsModulusAndPoissonsRatio</class>
     <class kind="struct">Ikarus::YoungsModulusAndShearModulus</class>
     <class kind="struct">Ikarus::YoungsModulusAndBulkModulus</class>
@@ -649,7 +648,7 @@
     <class kind="struct">Ikarus::LamesFirstParameterAndShearModulus</class>
     <class kind="struct">Ikarus::ConvertLameConstants</class>
     <namespace>Ikarus</namespace>
-    <concept>Ikarus::MaterialParameterTuple</concept>
+    <concept>Ikarus::MPTuple</concept>
     <member kind="function">
       <type>Eigen::Matrix3d</type>
       <name>planeStressLinearElasticMaterialTangent</name>
@@ -661,43 +660,43 @@
       <type>Eigen::Matrix&lt; double, 6, 6 &gt;</type>
       <name>linearElasticMaterialTangent3D</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>afc9c57d60ca4a8c1075c44d926e497a8</anchor>
+      <anchor>ab859759a8309b785e7872d8360171030</anchor>
       <arglist>(double E, double nu)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndPoissonsRatio &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>aef16f39eb73407dd874bc14426576a4e</anchor>
-      <arglist>(const YoungsModulusAndPoissonsRatio &amp;p_vp)</arglist>
+      <anchor>a5e27551f9edaebc557108aa164899b54</anchor>
+      <arglist>(const YoungsModulusAndPoissonsRatio &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a12d4dc64780852248f63e127056a9acd</anchor>
-      <arglist>(const YoungsModulusAndShearModulus &amp;p_vp)</arglist>
+      <anchor>a6a85c01d9e8f0e2adff8035087485109</anchor>
+      <arglist>(const YoungsModulusAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndBulkModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ac497080ab39c3c111c14fe3494537f19</anchor>
-      <arglist>(const YoungsModulusAndBulkModulus &amp;p_vp)</arglist>
+      <anchor>ad80fc80be73cb847542e1b7c5bde5af6</anchor>
+      <arglist>(const YoungsModulusAndBulkModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; LamesFirstParameterAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a5d423c9a6e6c2c397453649be42ac3c4</anchor>
-      <arglist>(const LamesFirstParameterAndShearModulus &amp;p_vp)</arglist>
+      <anchor>aec5648541007a5e5bb89c1f64ec2da92</anchor>
+      <arglist>(const LamesFirstParameterAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; BulkModulusAndLamesFirstParameter &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a1f84cd5962ef6c6b47fba01a130c7ea1</anchor>
-      <arglist>(const BulkModulusAndLamesFirstParameter &amp;p_vp)</arglist>
+      <anchor>a8c72e37743694391da18e64618a7c799</anchor>
+      <arglist>(const BulkModulusAndLamesFirstParameter &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -717,8 +716,8 @@
   <compound kind="file">
     <name>resultevaluators.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/io/</path>
-    <filename>a00164.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <filename>a00182.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <class kind="struct">Ikarus::ResultEvaluators::VonMises</class>
     <class kind="struct">Ikarus::ResultEvaluators::PrincipalStress</class>
     <namespace>Dune</namespace>
@@ -728,17 +727,17 @@
   <compound kind="file">
     <name>resultfunction.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/io/</path>
-    <filename>a00167.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00164" name="resultevaluators.hh" local="no" imported="no">ikarus/io/resultevaluators.hh</includes>
-    <includes id="a00026" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
+    <filename>a00179.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00182" name="resultevaluators.hh" local="no" imported="no">ikarus/io/resultevaluators.hh</includes>
+    <includes id="a00044" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
     <class kind="class">Ikarus::ResultFunction</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>truncatedconjugategradient.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/linearalgebra/</path>
-    <filename>a00278.html</filename>
+    <filename>a00161.html</filename>
     <class kind="struct">Eigen::TCGInfo</class>
     <class kind="struct">Eigen::internal::traits&lt; TruncatedConjugateGradient&lt; MatrixType_, UpLo, Preconditioner_ &gt; &gt;</class>
     <class kind="class">Eigen::TruncatedConjugateGradient</class>
@@ -769,8 +768,8 @@
     <name>flatassembler.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/assembler/</path>
     <filename>a00143.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="define">
@@ -796,78 +795,16 @@
     </member>
   </compound>
   <compound kind="file">
-    <name>python/basis/basis.hh</name>
-    <path>/__w/ikarus/ikarus/repo/ikarus/python/basis/</path>
-    <filename>a02445.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
-    <namespace>Ikarus</namespace>
-    <namespace>Ikarus::Python</namespace>
-    <member kind="function">
-      <type>void</type>
-      <name>registerBasis</name>
-      <anchorfile>a00317.html</anchorfile>
-      <anchor>ga3792308fbe7fa149d290329ed46c5bb9</anchor>
-      <arglist>(pybind11::handle scope, pybind11::class_&lt; Basis, options... &gt; cls)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>utils/basis.hh</name>
-    <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02448.html</filename>
-    <includes id="a00059" name="flatprebasis.hh" local="no" imported="no">ikarus/utils/flatprebasis.hh</includes>
-    <class kind="class">Ikarus::Basis</class>
-    <namespace>Ikarus</namespace>
-    <member kind="function">
-      <type>auto</type>
-      <name>makeBasis</name>
-      <anchorfile>a00325.html</anchorfile>
-      <anchor>a9a51c77ff0881c59e81e96c902b1fcd4</anchor>
-      <arglist>(const GridView &amp;gv, const PreBasisFactory &amp;pb)</arglist>
-    </member>
-    <member kind="function">
-      <type>auto</type>
-      <name>makeBasis</name>
-      <anchorfile>a00325.html</anchorfile>
-      <anchor>a41f7bb765ece7777057ad9bde7b2c10f</anchor>
-      <arglist>(const Dune::Functions::DefaultGlobalBasis&lt; PreBasis &gt; &amp;gb)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>python/dirichletvalues/dirichletvalues.hh</name>
-    <path>/__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/</path>
-    <filename>a02451.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <namespace>Ikarus</namespace>
-    <namespace>Ikarus::Python</namespace>
-    <member kind="function">
-      <type>void</type>
-      <name>registerDirichletValues</name>
-      <anchorfile>a00317.html</anchorfile>
-      <anchor>ga39b6df6adfe4858b13ac71f5830f29f6</anchor>
-      <arglist>(pybind11::handle scope, pybind11::class_&lt; DirichletValues, options... &gt; cls)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>utils/dirichletvalues.hh</name>
-    <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02454.html</filename>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <class kind="class">Ikarus::DirichletValues</class>
-    <namespace>Dune</namespace>
-    <namespace>Ikarus</namespace>
-  </compound>
-  <compound kind="file">
     <name>finiteelements/mechanics/kirchhoffloveshell.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a02457.html</filename>
-    <includes id="a00179" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
-    <includes id="a00170" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00233" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
-    <includes id="a00200" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
-    <includes id="a00230" name="membranestrains.hh" local="no" imported="no">ikarus/finiteelements/mechanics/membranestrains.hh</includes>
-    <includes id="a00173" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
+    <filename>a02449.html</filename>
+    <includes id="a00194" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
+    <includes id="a00191" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00218" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
+    <includes id="a00251" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a00209" name="membranestrains.hh" local="no" imported="no">ikarus/finiteelements/mechanics/membranestrains.hh</includes>
+    <includes id="a00257" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
     <class kind="class">Ikarus::KirchhoffLoveShell</class>
     <class kind="struct">Ikarus::KirchhoffLoveShell::KinematicVariables</class>
     <namespace>Ikarus</namespace>
@@ -875,11 +812,11 @@
   <compound kind="file">
     <name>python/finiteelements/kirchhoffloveshell.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/</path>
-    <filename>a02460.html</filename>
-    <includes id="a00149" name="registerelement.hh" local="yes" imported="no">registerelement.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02457" name="finiteelements/mechanics/kirchhoffloveshell.hh" local="no" imported="no">ikarus/finiteelements/mechanics/kirchhoffloveshell.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <filename>a02452.html</filename>
+    <includes id="a00158" name="registerelement.hh" local="yes" imported="no">registerelement.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02449" name="finiteelements/mechanics/kirchhoffloveshell.hh" local="no" imported="no">ikarus/finiteelements/mechanics/kirchhoffloveshell.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -893,27 +830,27 @@
   <compound kind="file">
     <name>finiteelements/mechanics/linearelastic.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a02463.html</filename>
-    <includes id="a00179" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
-    <includes id="a00170" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00185" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
-    <includes id="a00233" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
-    <includes id="a00200" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
-    <includes id="a00173" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
+    <filename>a02455.html</filename>
+    <includes id="a00194" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
+    <includes id="a00191" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00203" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
+    <includes id="a00218" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
+    <includes id="a00251" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a00257" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
     <class kind="class">Ikarus::LinearElastic</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>python/finiteelements/linearelastic.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/</path>
-    <filename>a02466.html</filename>
-    <includes id="a00149" name="registerelement.hh" local="yes" imported="no">registerelement.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02463" name="finiteelements/mechanics/linearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/linearelastic.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <filename>a02458.html</filename>
+    <includes id="a00158" name="registerelement.hh" local="yes" imported="no">registerelement.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02455" name="finiteelements/mechanics/linearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/linearelastic.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -927,29 +864,29 @@
   <compound kind="file">
     <name>material.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/materials/</path>
-    <filename>a00158.html</filename>
-    <includes id="a00200" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <filename>a00155.html</filename>
+    <includes id="a00251" name="materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_MaterialFunction</name>
-      <anchorfile>a00158.html</anchorfile>
+      <anchorfile>a00155.html</anchorfile>
       <anchor>a52604789ad84df5cf20d4571f90af39e</anchor>
       <arglist>(clsName, materialName, functionname, vecSize)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_MATERIAL_REGISTERY_FUNCTION</name>
-      <anchorfile>a00158.html</anchorfile>
+      <anchorfile>a00155.html</anchorfile>
       <anchor>a6ba0ee08c7d011c16c073dae9e6d1048</anchor>
       <arglist>(Materialname, vecSize)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_MATERIAL_CLASS_IN_MODULE</name>
-      <anchorfile>a00158.html</anchorfile>
+      <anchorfile>a00155.html</anchorfile>
       <anchor>a6f5f346f12a40d01d5b8ed25dcd4b3ab</anchor>
       <arglist>(Materialname, args)</arglist>
     </member>
@@ -978,27 +915,27 @@
   <compound kind="file">
     <name>finiteelements/mechanics/nonlinearelastic.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a02469.html</filename>
-    <includes id="a00179" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
-    <includes id="a00170" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00185" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
-    <includes id="a00233" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
-    <includes id="a00218" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
-    <includes id="a00173" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
-    <includes id="a00026" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
+    <filename>a02461.html</filename>
+    <includes id="a00194" name="powerbasisfe.hh" local="no" imported="no">ikarus/finiteelements/febases/powerbasisfe.hh</includes>
+    <includes id="a00191" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00203" name="fetraits.hh" local="no" imported="no">ikarus/finiteelements/fetraits.hh</includes>
+    <includes id="a00218" name="loads.hh" local="no" imported="no">ikarus/finiteelements/mechanics/loads.hh</includes>
+    <includes id="a00248" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
+    <includes id="a00257" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <includes id="a00044" name="eigendunetransformations.hh" local="no" imported="no">ikarus/utils/eigendunetransformations.hh</includes>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
     <class kind="class">Ikarus::NonLinearElastic</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>python/finiteelements/nonlinearelastic.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/</path>
-    <filename>a02472.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02469" name="finiteelements/mechanics/nonlinearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/nonlinearelastic.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <filename>a02464.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02461" name="finiteelements/mechanics/nonlinearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/nonlinearelastic.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -1012,10 +949,10 @@
   <compound kind="file">
     <name>registerelement.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/</path>
-    <filename>a00149.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02463" name="finiteelements/mechanics/linearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/linearelastic.hh</includes>
-    <includes id="a02448" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <filename>a00158.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02455" name="finiteelements/mechanics/linearelastic.hh" local="no" imported="no">ikarus/finiteelements/mechanics/linearelastic.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -1029,8 +966,8 @@
   <compound kind="file">
     <name>boundarypatch.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/utils/</path>
-    <filename>a00161.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <filename>a00140.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -1044,14 +981,14 @@
   <compound kind="file">
     <name>linearsolver.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/</path>
-    <filename>a00239.html</filename>
+    <filename>a00176.html</filename>
     <class kind="class">Ikarus::LinearSolverTemplate</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
       <type>LinearSolverTemplate&lt; double &gt;</type>
       <name>LinearSolver</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ae747d502e8f67af4c5412d8a6febeb4c</anchor>
+      <anchor>a2afda25e777ed3a794da319ba535b87b</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumeration">
@@ -1093,14 +1030,14 @@
   <compound kind="file">
     <name>newtonraphson.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/</path>
-    <filename>a00251.html</filename>
-    <includes id="a00239" name="linearsolver.hh" local="no" imported="no">ikarus/solver/linearsolver/linearsolver.hh</includes>
-    <includes id="a00245" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <filename>a00170.html</filename>
+    <includes id="a00176" name="linearsolver.hh" local="no" imported="no">ikarus/solver/linearsolver/linearsolver.hh</includes>
+    <includes id="a00173" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
     <class kind="struct">Ikarus::NewtonRaphsonSettings</class>
     <class kind="class">Ikarus::NewtonRaphson</class>
     <namespace>Ikarus</namespace>
@@ -1108,21 +1045,19 @@
       <type>auto</type>
       <name>makeNewtonRaphson</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a88c3bed4f749a93760f96c52c91091e7</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>afa463e708cffd14133ff65ffa366e329</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UF &amp;&amp;updateFunction={})</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>newtonraphsonwithscalarsubsidiaryfunction.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/</path>
-    <filename>a00242.html</filename>
-    <includes id="a00137" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
-    <includes id="a00245" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
-    <includes id="a00005" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <filename>a00164.html</filename>
+    <includes id="a00269" name="pathfollowingfunctions.hh" local="no" imported="no">ikarus/controlroutines/pathfollowingfunctions.hh</includes>
+    <includes id="a00173" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
     <class kind="struct">Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings</class>
     <class kind="class">Ikarus::NewtonRaphsonWithSubsidiaryFunction</class>
     <namespace>Ikarus</namespace>
@@ -1130,28 +1065,28 @@
       <type>auto</type>
       <name>makeNewtonRaphsonWithSubsidiaryFunction</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a674c58e9e3dd89675adb727587a08850</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>ade2a979ee79a657c6ab7530ee203056f</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UF &amp;&amp;updateFunction={})</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>solverinfos.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/</path>
-    <filename>a00245.html</filename>
+    <filename>a00173.html</filename>
     <class kind="struct">Ikarus::NonLinearSolverInformation</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>trustregion.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/</path>
-    <filename>a00248.html</filename>
-    <includes id="a00278" name="truncatedconjugategradient.hh" local="no" imported="no">ikarus/linearalgebra/truncatedconjugategradient.hh</includes>
-    <includes id="a00245" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
-    <includes id="a00056" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00167.html</filename>
+    <includes id="a00161" name="truncatedconjugategradient.hh" local="no" imported="no">ikarus/linearalgebra/truncatedconjugategradient.hh</includes>
+    <includes id="a00173" name="solverinfos.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/solverinfos.hh</includes>
+    <includes id="a00023" name="defaultfunctions.hh" local="no" imported="no">ikarus/utils/defaultfunctions.hh</includes>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="no" imported="no">ikarus/utils/linearalgebrahelper.hh</includes>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="struct">Ikarus::TrustRegionSettings</class>
     <class kind="struct">Ikarus::AlgoInfo</class>
     <class kind="struct">Ikarus::Stats</class>
@@ -1183,15 +1118,15 @@
       <type>auto</type>
       <name>makeTrustRegion</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a729c70214792799fb38684febff75e9f</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>a547326eb09552d3d1fed0830d0e2d269</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, UF &amp;&amp;updateFunction={})</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>algorithms.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00023.html</filename>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00059.html</filename>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::utils</namespace>
     <member kind="function">
@@ -1205,29 +1140,29 @@
       <type>auto</type>
       <name>appendUnique</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga8f6d2c90383de63c518cefeaccee76f8</anchor>
-      <arglist>(std::ranges::random_access_range auto &amp;r, Value &amp;&amp;v)</arglist>
+      <anchor>ga0ccbb016e46741bd00c69436dc11e2d0</anchor>
+      <arglist>(std::ranges::random_access_range auto &amp;r, T &amp;&amp;v)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>printContent</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga11bb80da2430170954d6b7519f9498a6</anchor>
-      <arglist>(Container &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
+      <anchor>ga2b7954c72a2393ab7494fa0b66d828cd</anchor>
+      <arglist>(C &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformValueRangeToPointerRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga5f3a9e195a06ac4419ccb479f8819d62</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga7f597d87c8f2bcbf4afc65ebc929b680</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformPointerRangeToReferenceRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>gaabfee41eeb4843cb2fa37b5f381e9fef</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga83bd9e4f59f0aa9fadd797efefa751d9</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
@@ -1345,7 +1280,7 @@
   <compound kind="file">
     <name>autodiffhelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00065.html</filename>
+    <filename>a00053.html</filename>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::utils</namespace>
     <member kind="function">
@@ -1357,10 +1292,48 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>python/basis/basis.hh</name>
+    <path>/__w/ikarus/ikarus/repo/ikarus/python/basis/</path>
+    <filename>a02467.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a02470" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <namespace>Ikarus</namespace>
+    <namespace>Ikarus::Python</namespace>
+    <member kind="function">
+      <type>void</type>
+      <name>registerBasis</name>
+      <anchorfile>a00317.html</anchorfile>
+      <anchor>ga3792308fbe7fa149d290329ed46c5bb9</anchor>
+      <arglist>(pybind11::handle scope, pybind11::class_&lt; Basis, options... &gt; cls)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>utils/basis.hh</name>
+    <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
+    <filename>a02470.html</filename>
+    <includes id="a00038" name="flatprebasis.hh" local="no" imported="no">ikarus/utils/flatprebasis.hh</includes>
+    <class kind="class">Ikarus::Basis</class>
+    <namespace>Ikarus</namespace>
+    <member kind="function">
+      <type>auto</type>
+      <name>makeBasis</name>
+      <anchorfile>a00325.html</anchorfile>
+      <anchor>a9acabb8291c86afe74e8617830e033de</anchor>
+      <arglist>(const GV &amp;gv, const PBF &amp;pb)</arglist>
+    </member>
+    <member kind="function">
+      <type>auto</type>
+      <name>makeBasis</name>
+      <anchorfile>a00325.html</anchorfile>
+      <anchor>aa8350697b25edf5034483b28fb0c3f76</anchor>
+      <arglist>(const Dune::Functions::DefaultGlobalBasis&lt; PB &gt; &amp;gb)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>concepts.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00050.html</filename>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00017.html</filename>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <namespace>Eigen</namespace>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Concepts</namespace>
@@ -1394,21 +1367,21 @@
     <member kind="define">
       <type>#define</type>
       <name>MAKE_EIGEN_FIXED_VECTOR_CONCEPT</name>
-      <anchorfile>a00050.html</anchorfile>
+      <anchorfile>a00017.html</anchorfile>
       <anchor>ac8757039febcebb4741b376dc8258d6d</anchor>
       <arglist>(Size)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_EIGEN_FIXED_MATRIX_CONCEPT</name>
-      <anchorfile>a00050.html</anchorfile>
+      <anchorfile>a00017.html</anchorfile>
       <anchor>a5556bdb5e6cc63333c07f9ef487fb478</anchor>
       <arglist>(Size1, Size2)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT</name>
-      <anchorfile>a00050.html</anchorfile>
+      <anchorfile>a00017.html</anchorfile>
       <anchor>aba360f830591dbc713b7fa692d614101</anchor>
       <arglist>(Size1, Size2)</arglist>
     </member>
@@ -1423,8 +1396,8 @@
   <compound kind="file">
     <name>defaultfunctions.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00056.html</filename>
-    <includes id="a00017" name="linearalgebrahelper.hh" local="yes" imported="no">linearalgebrahelper.hh</includes>
+    <filename>a00023.html</filename>
+    <includes id="a00062" name="linearalgebrahelper.hh" local="yes" imported="no">linearalgebrahelper.hh</includes>
     <class kind="struct">Ikarus::utils::SolverDefault</class>
     <class kind="struct">Ikarus::utils::UpdateDefault</class>
     <class kind="struct">Ikarus::utils::LoadDefault</class>
@@ -1432,21 +1405,45 @@
     <namespace>Ikarus::utils</namespace>
   </compound>
   <compound kind="file">
+    <name>python/dirichletvalues/dirichletvalues.hh</name>
+    <path>/__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/</path>
+    <filename>a02473.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <namespace>Ikarus</namespace>
+    <namespace>Ikarus::Python</namespace>
+    <member kind="function">
+      <type>void</type>
+      <name>registerDirichletValues</name>
+      <anchorfile>a00317.html</anchorfile>
+      <anchor>ga39b6df6adfe4858b13ac71f5830f29f6</anchor>
+      <arglist>(pybind11::handle scope, pybind11::class_&lt; DirichletValues, options... &gt; cls)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>utils/dirichletvalues.hh</name>
+    <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
+    <filename>a02476.html</filename>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <class kind="class">Ikarus::DirichletValues</class>
+    <namespace>Dune</namespace>
+    <namespace>Ikarus</namespace>
+  </compound>
+  <compound kind="file">
     <name>griddrawer.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/drawing/</path>
-    <filename>a00275.html</filename>
+    <filename>a00137.html</filename>
     <member kind="function">
       <type>void</type>
       <name>draw</name>
-      <anchorfile>a00275.html</anchorfile>
-      <anchor>a2634a2b365ea0b95c6dcfad0dbefac1f</anchor>
-      <arglist>(const GridView &amp;gridView, bool forever=false)</arglist>
+      <anchorfile>a00137.html</anchorfile>
+      <anchor>a65b25c4ffa5a9d9f808da12703e79cb2</anchor>
+      <arglist>(const GV &amp;gridView, bool forever=false)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>matplothelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/drawing/</path>
-    <filename>a00272.html</filename>
+    <filename>a00134.html</filename>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::plot</namespace>
     <member kind="function">
@@ -1467,52 +1464,52 @@
   <compound kind="file">
     <name>eigendunetransformations.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00026.html</filename>
+    <filename>a00044.html</filename>
     <namespace>Ikarus</namespace>
     <member kind="function">
-      <type>Dune::FieldVector&lt; ScalarType, size &gt;</type>
+      <type>Dune::FieldVector&lt; ST, size &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab3afd8732c7518fb5cad5fc85f660ff4</anchor>
-      <arglist>(const Eigen::Vector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>a0fdba7f3ebe4bf1ada6618f450b50221</anchor>
+      <arglist>(const Eigen::Vector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Dune::FieldVector&lt; ScalarType, rows &gt;</type>
+      <type>Dune::FieldVector&lt; ST, rows &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a93a33caf49e0072f27298b2745e9ae56</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, rows, 0 &gt; &amp;vec)</arglist>
+      <anchor>a4e9e21776afdaaa93c4a9d19554976fa</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, rows, 0 &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Dune::FieldMatrix&lt; ScalarType, rows, cols &gt;</type>
+      <type>Dune::FieldMatrix&lt; ST, rows, cols &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a332dc3abf615826c1eeb5e4dba37dfb8</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, rows, cols &gt; &amp;mat)</arglist>
+      <anchor>a83633e77ee5a35cb31a7cd2f02aedb7f</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, rows, cols &gt; &amp;mat)</arglist>
     </member>
     <member kind="function">
-      <type>Eigen::Map&lt; const Eigen::Vector&lt; ScalarType, size &gt; &gt;</type>
+      <type>Eigen::Map&lt; const Eigen::Vector&lt; ST, size &gt; &gt;</type>
       <name>toEigenMap</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab33f0f88435ac31e2f1230b321fe16db</anchor>
-      <arglist>(const Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>aaa7e8e9b8bd8247afecc24cdd54ec658</anchor>
+      <arglist>(const Dune::FieldVector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Eigen::Map&lt; Eigen::Vector&lt; ScalarType, size &gt; &gt;</type>
+      <type>Eigen::Map&lt; Eigen::Vector&lt; ST, size &gt; &gt;</type>
       <name>toEigenMap</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a8f500d064c150a65ba93e8a4d5fe6df7</anchor>
-      <arglist>(Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>aaac71220182c301ee8c864f2a507c3db</anchor>
+      <arglist>(Dune::FieldVector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>eigensparseaddon.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00053.html</filename>
+    <filename>a00008.html</filename>
     <member kind="function">
       <type>Index</type>
       <name>getLinearIndex</name>
-      <anchorfile>a00053.html</anchorfile>
+      <anchorfile>a00008.html</anchorfile>
       <anchor>a6cfefe8fc3c51b09b7633cf8397a67e9</anchor>
       <arglist>(Index row, Index col) const</arglist>
     </member>
@@ -1520,7 +1517,7 @@
   <compound kind="file">
     <name>findlinesegment.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00047.html</filename>
+    <filename>a00026.html</filename>
     <includes id="a00029" name="polyfit.hh" local="yes" imported="no">polyfit.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::utils</namespace>
@@ -1535,7 +1532,7 @@
   <compound kind="file">
     <name>flatprebasis.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00059.html</filename>
+    <filename>a00038.html</filename>
     <class kind="struct">Ikarus::FlatPreBasis</class>
     <class kind="struct">Ikarus::FlatIndexMergingStrategy</class>
     <class kind="struct">Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedInterleaved &gt;</class>
@@ -1561,22 +1558,22 @@
   <compound kind="file">
     <name>functionhelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00041.html</filename>
+    <filename>a00035.html</filename>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::utils</namespace>
     <member kind="function">
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>a00320.html</anchorfile>
-      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
-      <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
+      <anchor>gac0aa110e209c93e655de9df0915c2fcc</anchor>
+      <arglist>(const LV &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>functionsanitychecks.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00014.html</filename>
-    <includes id="a00047" name="findlinesegment.hh" local="yes" imported="no">findlinesegment.hh</includes>
+    <filename>a00041.html</filename>
+    <includes id="a00026" name="findlinesegment.hh" local="yes" imported="no">findlinesegment.hh</includes>
     <class kind="struct">Ikarus::utils::CheckFlags</class>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::utils</namespace>
@@ -1605,7 +1602,7 @@
   <compound kind="file">
     <name>init.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00020.html</filename>
+    <filename>a00047.html</filename>
     <class kind="class">Ikarus::IkarusInstance</class>
     <namespace>Ikarus</namespace>
     <member kind="function">
@@ -1619,9 +1616,9 @@
   <compound kind="file">
     <name>linearalgebrahelper.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00017.html</filename>
-    <includes id="a00050" name="concepts.hh" local="yes" imported="no">concepts.hh</includes>
-    <includes id="a00038" name="traits.hh" local="yes" imported="no">traits.hh</includes>
+    <filename>a00062.html</filename>
+    <includes id="a00017" name="concepts.hh" local="yes" imported="no">concepts.hh</includes>
+    <includes id="a00068" name="traits.hh" local="yes" imported="no">traits.hh</includes>
     <namespace>Ikarus</namespace>
     <member kind="function">
       <type>auto</type>
@@ -1858,82 +1855,82 @@
   <compound kind="file">
     <name>makeenum.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00032.html</filename>
+    <filename>a00005.html</filename>
     <namespace>Ikarus</namespace>
     <member kind="define">
       <type>#define</type>
       <name>PARENS</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a9357f62275c685754a405c064db6ec41</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>ENUM_CASE</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a65e77c633f605712a9237282c4e12a75</anchor>
       <arglist>(name)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>EXPAND</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a5b8637b5731207983d4e1d3559abaf64</anchor>
       <arglist>(arg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>EXPAND1</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a71de15a9598542c211fe77d5ed898cbf</anchor>
       <arglist>(arg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>EXPAND2</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>add8e876b47b4041fb362a44a69bacaa3</anchor>
       <arglist>(arg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>EXPAND3</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>ac0b2cb8cf5978dc7d9a519133d80e77e</anchor>
       <arglist>(arg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>EXPAND4</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>ae458b53f78bc249c6bc1da95a456c774</anchor>
       <arglist>(arg)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>FOR_EACH</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a816aef23498fb528e440575e504589ab</anchor>
       <arglist>(macro,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>FOR_EACH_HELPER</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a9632c2c84e33729af95fb75b0c2a7e32</anchor>
       <arglist>(macro, a1,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>FOR_EACH_AGAIN</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a149ad7b97cba9d51c9cb0cb6d8c77a72</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>ENUM_CASE</name>
-      <anchorfile>a00032.html</anchorfile>
+      <anchorfile>a00005.html</anchorfile>
       <anchor>a65e77c633f605712a9237282c4e12a75</anchor>
       <arglist>(name)</arglist>
     </member>
@@ -1955,7 +1952,7 @@
   <compound kind="file">
     <name>math.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00062.html</filename>
+    <filename>a00011.html</filename>
     <namespace>Ikarus</namespace>
     <member kind="function">
       <type>constexpr T</type>
@@ -1968,8 +1965,8 @@
   <compound kind="file">
     <name>nonlinearoperator.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00005.html</filename>
-    <includes id="a00038" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
+    <filename>a00032.html</filename>
+    <includes id="a00068" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="class">Ikarus::NonLinearOperator</class>
     <namespace>Ikarus</namespace>
     <member kind="function">
@@ -1990,51 +1987,51 @@
       <type>auto</type>
       <name>initResults</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ac4a51a33b91a6e959c61fb4a71cef19c</anchor>
-      <arglist>(const Impl::Functions&lt; DerivativeArgs... &gt; &amp;derivativesFunctions, const Impl::Parameter&lt; ParameterArgs... &gt; &amp;parameterI)</arglist>
+      <anchor>a5357efca8ce4f70831d107f93f2cda1d</anchor>
+      <arglist>(const Impl::Functions&lt; DerivativeArgs... &gt; &amp;derivativesFunctions, const Impl::Parameter&lt; ParameterArgs... &gt; &amp;parameter)</arglist>
     </member>
   </compound>
   <compound kind="file">
     <name>controllogger.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00263.html</filename>
-    <includes id="a00257" name="observer.hh" local="yes" imported="no">observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
+    <filename>a00125.html</filename>
+    <includes id="a00128" name="observer.hh" local="yes" imported="no">observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
     <class kind="class">Ikarus::ControlLogger</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>controlvtkwriter.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00254.html</filename>
-    <includes id="a00257" name="observer.hh" local="yes" imported="no">observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
+    <filename>a00131.html</filename>
+    <includes id="a00128" name="observer.hh" local="yes" imported="no">observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
     <class kind="class">Ikarus::ControlSubsamplingVertexVTKWriter</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>genericobserver.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00260.html</filename>
-    <includes id="a00257" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
+    <filename>a00122.html</filename>
+    <includes id="a00128" name="observer.hh" local="no" imported="no">ikarus/utils/observer/observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="no" imported="no">ikarus/utils/observer/observermessages.hh</includes>
     <class kind="class">Ikarus::GenericObserver</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>nonlinearsolverlogger.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00269.html</filename>
-    <includes id="a00257" name="observer.hh" local="yes" imported="no">observer.hh</includes>
-    <includes id="a00266" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
+    <filename>a00116.html</filename>
+    <includes id="a00128" name="observer.hh" local="yes" imported="no">observer.hh</includes>
+    <includes id="a00119" name="observermessages.hh" local="yes" imported="no">observermessages.hh</includes>
     <class kind="class">Ikarus::NonLinearSolverLogger</class>
     <namespace>Ikarus</namespace>
   </compound>
   <compound kind="file">
     <name>observer.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00257.html</filename>
-    <includes id="a00032" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
+    <filename>a00128.html</filename>
+    <includes id="a00005" name="makeenum.hh" local="no" imported="no">ikarus/utils/makeenum.hh</includes>
     <class kind="class">Ikarus::IObserver</class>
     <class kind="class">Ikarus::IObservable</class>
     <namespace>Ikarus</namespace>
@@ -2042,7 +2039,7 @@
   <compound kind="file">
     <name>observermessages.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/observer/</path>
-    <filename>a00266.html</filename>
+    <filename>a00119.html</filename>
     <namespace>Ikarus</namespace>
     <member kind="enumeration">
       <type></type>
@@ -2092,14 +2089,14 @@
   <compound kind="file">
     <name>pythonautodiffdefinitions.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00008.html</filename>
+    <filename>a00050.html</filename>
     <class kind="struct">Python::Conversion&lt; autodiff::Real&lt; order, T &gt; &gt;</class>
     <namespace>Python</namespace>
   </compound>
   <compound kind="file">
     <name>tensorproductquadrule.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00011.html</filename>
+    <filename>a00014.html</filename>
     <namespace>Ikarus</namespace>
     <member kind="function">
       <type>auto</type>
@@ -2112,9 +2109,9 @@
   <compound kind="file">
     <name>tensorutils.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00044.html</filename>
-    <includes id="a00050" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a00062" name="math.hh" local="no" imported="no">ikarus/utils/math.hh</includes>
+    <filename>a00020.html</filename>
+    <includes id="a00017" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
+    <includes id="a00011" name="math.hh" local="no" imported="no">ikarus/utils/math.hh</includes>
     <namespace>Ikarus</namespace>
     <member kind="function">
       <type>Eigen::Tensor&lt; typename Derived::Scalar, rank &gt;</type>
@@ -2225,7 +2222,7 @@
   <compound kind="file">
     <name>traits.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a00038.html</filename>
+    <filename>a00068.html</filename>
     <class kind="struct">Ikarus::traits::is_tuple&lt; std::tuple&lt; T... &gt; &gt;</class>
     <class kind="struct">Ikarus::traits::hasType</class>
     <class kind="struct">Ikarus::traits::isSpecialization&lt; U, U&lt; T... &gt; &gt;</class>
@@ -2258,14 +2255,14 @@
   <compound kind="file">
     <name>_ikarus.cc</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
-    <filename>a00290.html</filename>
-    <includes id="a00236" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a00158" name="material.hh" local="no" imported="no">ikarus/python/finiteelements/materials/material.hh</includes>
+    <filename>a00281.html</filename>
+    <includes id="a00206" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
+    <includes id="a00155" name="material.hh" local="no" imported="no">ikarus/python/finiteelements/materials/material.hh</includes>
     <class kind="struct">ValueWrapper</class>
     <member kind="function">
       <type></type>
       <name>PYBIND11_MODULE</name>
-      <anchorfile>a00290.html</anchorfile>
+      <anchorfile>a00281.html</anchorfile>
       <anchor>a0e4f7cface71bec1c24bbed3aaa798d8</anchor>
       <arglist>(_ikarus, m)</arglist>
     </member>
@@ -2287,7 +2284,7 @@
   <compound kind="file">
     <name>dirichlet_values.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
-    <filename>a00284.html</filename>
+    <filename>a00287.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::dirichlet_values</namespace>
     <member kind="function">
@@ -2299,9 +2296,37 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>generator.py</name>
+    <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
+    <filename>a00290.html</filename>
+    <namespace>ikarus</namespace>
+    <namespace>ikarus::generator</namespace>
+    <member kind="function">
+      <type>def</type>
+      <name>decoratePre</name>
+      <anchorfile>a00348.html</anchorfile>
+      <anchor>aed4c65416b98831e883ce413eb6e5419</anchor>
+      <arglist>(pre)</arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>myAttributes</name>
+      <anchorfile>a00348.html</anchorfile>
+      <anchor>aebb527e5c0c73be25ff173e2e456ed5d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type></type>
+      <name>MySimpleGenerator</name>
+      <anchorfile>a00348.html</anchorfile>
+      <anchor>a932fc5dd441c8a8a16bb175cae03f96c</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
-    <filename>a00281.html</filename>
+    <filename>a00284.html</filename>
     <namespace>ikarus</namespace>
     <member kind="variable">
       <type></type>
@@ -2321,7 +2346,7 @@
   <compound kind="file">
     <name>assembler/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/assembler/</path>
-    <filename>a02475.html</filename>
+    <filename>a02479.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::assembler</namespace>
     <member kind="function">
@@ -2342,7 +2367,7 @@
   <compound kind="file">
     <name>finite_elements/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/finite_elements/</path>
-    <filename>a02478.html</filename>
+    <filename>a02482.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::finite_elements</namespace>
     <member kind="function">
@@ -2377,7 +2402,7 @@
   <compound kind="file">
     <name>utils/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/utils/</path>
-    <filename>a02481.html</filename>
+    <filename>a02485.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::utils</namespace>
     <member kind="function">
@@ -2386,34 +2411,6 @@
       <anchorfile>a00349.html</anchorfile>
       <anchor>a7340cb604093dba2860368264f055a76</anchor>
       <arglist>(gridView, booleanVector)</arglist>
-    </member>
-  </compound>
-  <compound kind="file">
-    <name>generator.py</name>
-    <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
-    <filename>a00287.html</filename>
-    <namespace>ikarus</namespace>
-    <namespace>ikarus::generator</namespace>
-    <member kind="function">
-      <type>def</type>
-      <name>decoratePre</name>
-      <anchorfile>a00348.html</anchorfile>
-      <anchor>aed4c65416b98831e883ce413eb6e5419</anchor>
-      <arglist>(pre)</arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>myAttributes</name>
-      <anchorfile>a00348.html</anchorfile>
-      <anchor>aebb527e5c0c73be25ff173e2e456ed5d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type></type>
-      <name>MySimpleGenerator</name>
-      <anchorfile>a00348.html</anchorfile>
-      <anchor>a932fc5dd441c8a8a16bb175cae03f96c</anchor>
-      <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -2543,15 +2540,15 @@
       <type>void</type>
       <name>initialPrediction</name>
       <anchorfile>a00308.html</anchorfile>
-      <anchor>gaede73886a736a968e9783df389df245f</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>ga0a84b97adf02eb4fbd07ac3fc0c134bf</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>intermediatePrediction</name>
       <anchorfile>a01210.html</anchorfile>
-      <anchor>a693ad9054ad2b8f41da254028a33ec6a</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>af2af0315b650a1b8c997792f22829585</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>constexpr auto</type>
@@ -2564,174 +2561,174 @@
   <compound kind="class">
     <name>Ikarus::AutoDiffFE</name>
     <filename>a01222.html</filename>
-    <templarg>typename RealFE_</templarg>
-    <templarg>typename FERequirementType_</templarg>
+    <templarg>typename FEImpl</templarg>
+    <templarg>typename FER</templarg>
     <templarg>bool useEigenRef</templarg>
     <templarg>bool forceAutoDiff</templarg>
     <member kind="typedef">
-      <type>RealFE_</type>
+      <type>FEImpl</type>
       <name>RealFE</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>ae3eeda5463148aeab6bec5e774791384</anchor>
+      <anchor>a55e79f1fd8fa7a9554efd396aa69d03d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename RealFE::Basis</type>
       <name>Basis</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a89a700073503fa0567afbcb5f4638b7e</anchor>
+      <anchor>a781385c5016ede8dec178f57e900263c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FETraits&lt; Basis, FERequirementType_, useEigenRef &gt;</type>
+      <type>FETraits&lt; Basis, FER, useEigenRef &gt;</type>
       <name>Traits</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a9663b20b1695fb56ea0fc06bbf0d49fd</anchor>
+      <anchor>a5bfc0087f082fe022be1daa7904f524b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a7a35e87063266fd105193cbde16286fe</anchor>
+      <anchor>a0b46f142dac2d62833c3198845b39c2d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>Element</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a13e58c2d0abbeccf2ae33f94d0f335b8</anchor>
+      <anchor>a2e94f1607fc0a1b2be051002a5edbb0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a89666ec5f15efd5047f9bd4734b9da67</anchor>
+      <anchor>a757f3808eea2fa9d03e21ebb1454e8b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a2650fc875e359aab7e22e59ccbed53f8</anchor>
+      <anchor>aed0fc753f44d568f4be4861aa62f2159</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; h) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a70030068b3205be5d75548ce1f1c126f</anchor>
+      <anchor>aa677eba3f26376fedbf5b45c12dc0e77</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; g) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateLocalSystem</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>aa35fb8992a69d3b8a4272722eea90c8a</anchor>
+      <anchor>ac4a83219a78d90224f288ff2fe339da2</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; h, typename Traits::template VectorType&lt;&gt; g) const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a1ceee52422b438e6c24386e7c17dc124</anchor>
+      <anchor>a467c4ed0b15360441cc5d77b6eb5c591</anchor>
       <arglist>(const FERequirementType &amp;par) const</arglist>
     </member>
     <member kind="function">
       <type>const RealFE &amp;</type>
       <name>realFE</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>af1726c92c0d829e25de3bfede15c4291</anchor>
+      <anchor>ae5b38b906dbe5945d9e1928a7db49fe4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>AutoDiffFE</name>
       <anchorfile>a01222.html</anchorfile>
-      <anchor>a0945c8f2eb83323d6b8767b4ce47c919</anchor>
+      <anchor>a50e737961fa37b8401f57c6f919f0091</anchor>
       <arglist>(Args &amp;&amp;... args)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::Basis</name>
     <filename>a01458.html</filename>
-    <templarg>typename PreBasis_</templarg>
+    <templarg>typename PB</templarg>
     <member kind="typedef">
-      <type>PreBasis_</type>
+      <type>PB</type>
       <name>PreBasis</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a50104dd97ab4530b5eedc6ecdc0ff530</anchor>
+      <anchor>abc71a37f00569d6e252c2a6d8b27e6a8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename PreBasis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a066e94e24a8000ee0f47fff24c5c09b4</anchor>
+      <anchor>a8d38f4dcf756dd8cd92cb32df9f4b841</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(Dune::Functions::DefaultGlobalBasis(std::declval&lt; PreBasis &gt;()))</type>
       <name>UntouchedBasis</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>ae225fdb14e6987a3605368af297f7a82</anchor>
+      <anchor>a4a038594cf7686b3607a757614d9a4cb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(Dune::Functions::DefaultGlobalBasis(Ikarus::flatPreBasis(std::declval&lt; PreBasis &gt;())))</type>
       <name>FlatBasis</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>ab9e57abdb5f4abeb030f6122df75849e</anchor>
+      <anchor>ac3a602884975d46137f29afd143286b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Basis</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>ad30be8c9ee635f5a6488ce8034f51236</anchor>
+      <anchor>a1b835e17ce6f3f48669c38d89770501d</anchor>
       <arglist>(const PreBasis &amp;pb)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>flat</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>ae41361752339b43462385790a8f52583</anchor>
+      <anchor>a6f1e5e5482aa3ec74d3eaceb8eb3c656</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>untouched</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a1ab0a01bf57e94e1f5dcaf8e699badbc</anchor>
+      <anchor>a7212d2f09ec83c7a1c35d4e129708a4d</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>flat</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a952b839980686e7dd82c71ac14557faa</anchor>
+      <anchor>a4c08072e3135887d2c5ded81007509a5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>untouched</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a70edf63a23eeed841214738e5d4042d9</anchor>
+      <anchor>a6094c3045cc898d2e530009b1b9e19e6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>gridView</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a6bac19b2dddd3d31bb81552e7f6a2189</anchor>
+      <anchor>a81b67336a725a312c5ddbde0f1c94d82</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>gridView</name>
       <anchorfile>a01458.html</anchorfile>
-      <anchor>a82022613dbfd0a13e0ca8a03d8be51f5</anchor>
+      <anchor>a93f97fd443e710a829992fc3b998d768</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -2807,6 +2804,13 @@
     <name>Ikarus::ControlLogger</name>
     <filename>a01550.html</filename>
     <base>IObserver&lt; ControlMessages &gt;</base>
+    <member kind="typedef">
+      <type>ControlMessages</type>
+      <name>MessageType</name>
+      <anchorfile>a01566.html</anchorfile>
+      <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
@@ -2839,196 +2843,203 @@
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a8c171635a257ce7fe905a58337717efe</anchor>
-      <arglist>(ControlMessages message)</arglist>
+      <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
+      <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a0f235d3f9f49582c0902dfcd5217f4a1</anchor>
-      <arglist>(ControlMessages message, double val)</arglist>
+      <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a97bf3fd861a8eac696a97ec56d953b47</anchor>
-      <arglist>(ControlMessages message, int val)</arglist>
+      <anchor>a9ec023872625942d0b64244709966464</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a05a6a76b6875406ae8ff5e05f2662d57</anchor>
-      <arglist>(ControlMessages message, const std::string &amp;val)</arglist>
+      <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ab87bc0dab48de914d7f5221fb9c3477b</anchor>
-      <arglist>(ControlMessages message, int val1, double val2)</arglist>
+      <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a5d2fb507095933199fab726c17e01bcf</anchor>
-      <arglist>(ControlMessages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a04b8667b08713503e82ede950a337950</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a20e3859480f6cab562f33ce9da888380</anchor>
-      <arglist>(ControlMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a663889f78a7dbd3561fa6a497e023a23</anchor>
-      <arglist>(ControlMessages message, double val)</arglist>
+      <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>adc61a4813394bdde201018db198544a3</anchor>
-      <arglist>(ControlMessages message, int val)</arglist>
+      <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4b7267849be75994c85c8ebe7af10465</anchor>
-      <arglist>(ControlMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::ControlSubsamplingVertexVTKWriter</name>
     <filename>a01554.html</filename>
-    <templarg>typename Basis</templarg>
+    <templarg>typename B</templarg>
     <base>IObserver&lt; ControlMessages &gt;</base>
+    <member kind="typedef">
+      <type>ControlMessages</type>
+      <name>MessageType</name>
+      <anchorfile>a01566.html</anchorfile>
+      <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>ControlSubsamplingVertexVTKWriter</name>
       <anchorfile>a01554.html</anchorfile>
-      <anchor>ac1580434b973badf5715358d5365a2b6</anchor>
-      <arglist>(const Basis &amp;p_basis, const Eigen::VectorXd &amp;sol, int refinementLevels=0)</arglist>
+      <anchor>a1e07865751a32e0a1dd29e8f001babc3</anchor>
+      <arglist>(const Basis &amp;basis, const Eigen::VectorXd &amp;sol, int refinementLevels=0)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>setFieldInfo</name>
       <anchorfile>a01554.html</anchorfile>
-      <anchor>a351251161ca8fbb31aaea0cffaac3e90</anchor>
+      <anchor>afec0c3fe2aa8cac3e9970d8c9720c219</anchor>
       <arglist>(std::string &amp;&amp;name, Dune::VTK::FieldInfo::Type type, std::size_t size, Dune::VTK::Precision prec=Dune::VTK::Precision::float32)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>setFileNamePrefix</name>
       <anchorfile>a01554.html</anchorfile>
-      <anchor>ab19f208c66b4af13d7248800d4fd1179</anchor>
-      <arglist>(std::string &amp;&amp;p_name)</arglist>
+      <anchor>a8061e516e4c6626a2f6ea160e692e4e1</anchor>
+      <arglist>(std::string &amp;&amp;name)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
       <anchorfile>a01554.html</anchorfile>
-      <anchor>aa0c6914ffa6bcdbf95d0e5a815ca44ef</anchor>
+      <anchor>a72b675b3fb4b0b2989b315e2a0337e44</anchor>
       <arglist>(ControlMessages message) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a8c171635a257ce7fe905a58337717efe</anchor>
-      <arglist>(ControlMessages message)</arglist>
+      <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
+      <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a0f235d3f9f49582c0902dfcd5217f4a1</anchor>
-      <arglist>(ControlMessages message, double val)</arglist>
+      <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a97bf3fd861a8eac696a97ec56d953b47</anchor>
-      <arglist>(ControlMessages message, int val)</arglist>
+      <anchor>a9ec023872625942d0b64244709966464</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a05a6a76b6875406ae8ff5e05f2662d57</anchor>
-      <arglist>(ControlMessages message, const std::string &amp;val)</arglist>
+      <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ab87bc0dab48de914d7f5221fb9c3477b</anchor>
-      <arglist>(ControlMessages message, int val1, double val2)</arglist>
+      <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a5d2fb507095933199fab726c17e01bcf</anchor>
-      <arglist>(ControlMessages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a04b8667b08713503e82ede950a337950</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a20e3859480f6cab562f33ce9da888380</anchor>
-      <arglist>(ControlMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a663889f78a7dbd3561fa6a497e023a23</anchor>
-      <arglist>(ControlMessages message, double val)</arglist>
+      <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>adc61a4813394bdde201018db198544a3</anchor>
-      <arglist>(ControlMessages message, int val)</arglist>
+      <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ae97b76e37ab99f985a0ef71f4a9efd37</anchor>
-      <arglist>(ControlMessages message, const std::string &amp;val)</arglist>
+      <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>af53b8b154a887fce37fee355b0244c21</anchor>
-      <arglist>(ControlMessages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4d0a13cbe1104d10c4ec5e928f64ab4b</anchor>
-      <arglist>(ControlMessages message, int val1, double val2)</arglist>
+      <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4b7267849be75994c85c8ebe7af10465</anchor>
-      <arglist>(ControlMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -3113,36 +3124,36 @@
       <type>friend ConvertLameConstants&lt; YoungsModulusAndPoissonsRatio &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a01366.html</anchorfile>
-      <anchor>aafc9afc69d20972e526bd6202a342739</anchor>
-      <arglist>(const YoungsModulusAndPoissonsRatio &amp;p_vp)</arglist>
+      <anchor>a9bba84cf58912269ed839cb4d6dd7996</anchor>
+      <arglist>(const YoungsModulusAndPoissonsRatio &amp;valuePair)</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend ConvertLameConstants&lt; YoungsModulusAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a01366.html</anchorfile>
-      <anchor>af982ce6129d0a9d0da287417d2a39b68</anchor>
-      <arglist>(const YoungsModulusAndShearModulus &amp;p_vp)</arglist>
+      <anchor>a910b0eb5805503f2629a58ac565d5493</anchor>
+      <arglist>(const YoungsModulusAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend ConvertLameConstants&lt; YoungsModulusAndBulkModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a01366.html</anchorfile>
-      <anchor>a4017f87caa93536fc86abb622a594b78</anchor>
-      <arglist>(const YoungsModulusAndBulkModulus &amp;p_vp)</arglist>
+      <anchor>a97a57e9e0e18185b0f0c4237649e00a7</anchor>
+      <arglist>(const YoungsModulusAndBulkModulus &amp;valuePair)</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend ConvertLameConstants&lt; LamesFirstParameterAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a01366.html</anchorfile>
-      <anchor>a04195b1bca1ae486a1702b4626755389</anchor>
-      <arglist>(const LamesFirstParameterAndShearModulus &amp;p_vp)</arglist>
+      <anchor>ab07833cf0c324d05f0b984cba3ccd946</anchor>
+      <arglist>(const LamesFirstParameterAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend ConvertLameConstants&lt; BulkModulusAndLamesFirstParameter &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a01366.html</anchorfile>
-      <anchor>a9b8deebfb22a5e0403ec45a0ba614265</anchor>
-      <arglist>(const BulkModulusAndLamesFirstParameter &amp;p_vp)</arglist>
+      <anchor>ac2255a654c3a7d80c01113b68dc712a6</anchor>
+      <arglist>(const BulkModulusAndLamesFirstParameter &amp;valuePair)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -3152,321 +3163,321 @@
       <type>auto</type>
       <name>value</name>
       <anchorfile>a01334.html</anchorfile>
-      <anchor>acfe8c5424970d44c34005e13e851494a</anchor>
-      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const Geometry &amp;geo, const auto &amp;uFunction) const -&gt; Eigen::Vector3&lt; typename std::remove_cvref_t&lt; decltype(uFunction)&gt;::ctype &gt;</arglist>
+      <anchor>ab4ddaa746b858e45fe37237baba4a797</anchor>
+      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const GEO &amp;geo, const auto &amp;uFunction) const -&gt; Eigen::Vector3&lt; typename std::remove_cvref_t&lt; decltype(uFunction)&gt;::ctype &gt;</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>derivative</name>
       <anchorfile>a01334.html</anchorfile>
-      <anchor>a1c17239105e26dfdc369583624d8a200</anchor>
-      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const Eigen::Matrix&lt; ScalarType, 2, 3 &gt; &amp;jcur, const auto &amp;dNAtGp, const Geometry &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const int node) const</arglist>
+      <anchor>af2e92a20898c224f6fe6968f766404b3</anchor>
+      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const Eigen::Matrix&lt; ST, 2, 3 &gt; &amp;jcur, const auto &amp;dNAtGp, const GEO &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const int node) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>secondDerivative</name>
       <anchorfile>a01334.html</anchorfile>
-      <anchor>a95cb97998e73fcf05fb7d9df0249b2e9</anchor>
-      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const auto &amp;dNAtGp, const Geometry &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const Eigen::Vector3&lt; ScalarType &gt; &amp;S, int I, int J) const</arglist>
+      <anchor>a3a4c92723db3bf34028b55d9d9ac8d7a</anchor>
+      <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, const auto &amp;dNAtGp, const GEO &amp;geo, const auto &amp;uFunction, const auto &amp;localBasis, const Eigen::Vector3&lt; ST &gt; &amp;S, int I, int J) const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::DenseFlatAssembler</name>
     <filename>a01182.html</filename>
-    <templarg>typename FEContainer_</templarg>
-    <templarg>typename DirichletValuesType_</templarg>
+    <templarg>typename FEC</templarg>
+    <templarg>typename DV</templarg>
     <base>Ikarus::VectorFlatAssembler</base>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; FEContainer_ &gt;</type>
+      <type>std::remove_cvref_t&lt; FEC &gt;</type>
       <name>FEContainerRaw</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a334210ba75f3f2dab50953542c04389c</anchor>
+      <anchor>a54962e56b865ac1c9065c42d96fb6780</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>VectorFlatAssembler&lt; FEContainer_, DirichletValuesType_ &gt;</type>
+      <type>VectorFlatAssembler&lt; FEC, DV &gt;</type>
       <name>Base</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>ad3da48d82eaa5961657783fef91818f8</anchor>
+      <anchor>aa2e4d50fb9ac8b9d9922d98e9bcaf81b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename DirichletValuesType_::Basis</type>
+      <type>typename DV::Basis</type>
       <name>Basis</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>aec6afbe8af2828aa945ab2b8f2c1aca6</anchor>
+      <anchor>affbdfc67b017b9304f2dfd519509a8fb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>DirichletValuesType_</type>
+      <type>DV</type>
       <name>DirichletValuesType</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>ab0275407303cf74b78fe44f0ad405e06</anchor>
+      <anchor>abf6599ec65ab1574a3282a553584f9e9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FEContainer_</type>
+      <type>FEC</type>
       <name>FEContainer</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a030d83efead739f9abcb338d8f1d06b4</anchor>
+      <anchor>a4bb11a213bcf6c6f18e731bf4281edcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>aba7339d4e117f0f310c8ba9cd6da1e5a</anchor>
+      <anchor>a69ef7a0291ed086199b2f5b4b1173bfc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a1b2ccee915a297c90f3865c71f2c3c14</anchor>
+      <anchor>a9cd6c79d6625adb9767a14ba5c1ff283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a0c71856323f0e835ec785987c0aada18</anchor>
+      <anchor>acee7beef45351811911847086414709e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; std::is_reference_v&lt; FEContainer &gt;, const FEContainer, FEContainer &gt;</type>
       <name>FEContainerType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a554c8df2e30ed6ec250e5395f77d8f6f</anchor>
+      <anchor>ad65c9d93766e445ec688411634e9bce6</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>DenseFlatAssembler</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>ab93366f696ae7d7ff75428d9fd117e00</anchor>
-      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_)</arglist>
+      <anchor>ad225386e9ac269916f38107030c5508d</anchor>
+      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::MatrixXd &amp;</type>
       <name>getRawMatrix</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a5e5a10127e9307c47c51a59de2596010</anchor>
+      <anchor>a1b25b3be5126355ae0a06b08a204ffc6</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::MatrixXd &amp;</type>
       <name>getMatrix</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a0bcf15aedf444d941ef9efb2b7514733</anchor>
+      <anchor>a3baaec4dae68ca424102650fd660871b</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::MatrixXd &amp;</type>
       <name>getReducedMatrix</name>
       <anchorfile>a01182.html</anchorfile>
-      <anchor>a4515a90eaa4c9f8b9de019dd4c6c8d76</anchor>
+      <anchor>a58efbb96e88836e88b8352d1bd605e0b</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getRawVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a1d7cf1f4e62251a01d2207310f336e75</anchor>
+      <anchor>a15da22b282305962bc6498a1451694de</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a99690d51394f943e44743365d4d3b57e</anchor>
+      <anchor>a027ac8d2135f675df889fdf80a678081</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getReducedVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a51fec3e98ce787300a069ccd30c75c67</anchor>
+      <anchor>a51fc1c4a8302dd955bd27dfa6e81bc6f</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const double &amp;</type>
       <name>getScalar</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a152538dd394310fc57729163cace3289</anchor>
+      <anchor>a0bf594865140bd900a6f31807dfc6f7e</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>reducedSize</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8fd0336be5b5e2d0bcbcdb25bacc5f2f</anchor>
+      <anchor>a8b47f036b83e4e712b791d9cfe910f2b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>size</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ac105af5d51473a274f597d509308c55f</anchor>
+      <anchor>ae3fed93b367a8d5eb4e369132a7cc355</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Eigen::VectorXd</type>
       <name>createFullVector</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a796d9b40d32762d5857b49afb30cec2a</anchor>
+      <anchor>a5ca172ae99902193abf31ab542ff4aaf</anchor>
       <arglist>(Eigen::Ref&lt; const Eigen::VectorXd &gt; reducedVector)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>finiteElements</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aa92c131a0915eb5864613bdbab5c4990</anchor>
+      <anchor>aa8da4086d468797668b6d551129e96dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>constraintsBelow</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a85a20ef2dd30a677994a9c79677cfdf2</anchor>
+      <anchor>aa1a20226eacfb65d0f2b09b397578cab</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a317a691c0aca9e9d5953845762c7f626</anchor>
+      <anchor>a75a1882ad41715632ebeb6a13ed14d69</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>estimateOfConnectivity</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a6179ef97228c75448f8d109f031bc667</anchor>
+      <anchor>adf77b0e3c1dab4782a2da06fc712b9c5</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::DirichletValues</name>
     <filename>a01494.html</filename>
-    <templarg>typename Basis_</templarg>
-    <templarg>typename FlagsType_</templarg>
+    <templarg>typename B</templarg>
+    <templarg>typename FC</templarg>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; Basis_ &gt;</type>
+      <type>std::remove_cvref_t&lt; B &gt;</type>
       <name>Basis</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a90174bec95fb08a186f29d1d98e350dc</anchor>
+      <anchor>a2e6f1ef4a810a7269303f54a6f74539f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FlagsType_</type>
+      <type>FC</type>
       <name>FlagsType</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a824bc5693b4b784c8ec9c65aad07da92</anchor>
+      <anchor>aa71c2b94b37f2b4e83f9f1e059e6fe4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(Dune::Functions::istlVectorBackend(std::declval&lt; FlagsType &amp; &gt;()))</type>
       <name>BackendType</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a4b708d1ae34c1f28389273f209ea79f7</anchor>
+      <anchor>a3db820fbcd2b7edf58ce3b21b261f621</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>DirichletValues</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a6c7e1cf2122e41f3f41ec87ec3415a47</anchor>
-      <arglist>(const Basis_ &amp;p_basis)</arglist>
+      <anchor>aeb81ceb2617369a584dd12f4574ab1dc</anchor>
+      <arglist>(const B &amp;basis)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>fixBoundaryDOFs</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a7de80e6ad56431b46750ddbc2580c45e</anchor>
+      <anchor>a57486778cd8e2e42be337b5d1ff0d564</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>fixDOFs</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ad62158c0ddba6753a04ed26097610bbd</anchor>
+      <anchor>a956ce2cdc09731f001821c7b59d49e85</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>fixIthDOF</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>afbe5f38622ea7524c4d2230f32530a96</anchor>
+      <anchor>a3ccd03313f8c6837b077e14ac9f50d16</anchor>
       <arglist>(typename Basis::MultiIndex i)</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>basis</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a9a1bebfa473fd329494f484d943148c7</anchor>
+      <anchor>ae783c95d2e4b55d9d37f4c141b1d719b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ac4547ca3a0f7c62ec907da614b0c720a</anchor>
+      <anchor>a1b1fccdb71619c0a49aa24977682d43a</anchor>
       <arglist>(const MultiIndex &amp;multiIndex) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ad54d4f91d00e803bca5191c10f6e9ba8</anchor>
+      <anchor>a7c30706789441e0dce7a7c3f80cb6d2e</anchor>
       <arglist>(std::size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>fixedDOFsize</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>a1076b17755b91d92b46905319abe3114</anchor>
+      <anchor>aeb299b04b2777be56012b32a3b2e6a9c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>size</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ae9bb578246b89ec0b5f0960955a36c04</anchor>
+      <anchor>a010fa7b0721c137eb61221493e52dc92</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>container</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>af96b1166dd15062fdafd3ba40440c1c0</anchor>
+      <anchor>af8495b65eac223b7b6c64f07b31cc814</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>storeInhomogeneousBoundaryCondition</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ac2d42d17c6813a4a04bc98fe4346a231</anchor>
+      <anchor>abc3413114cb9272944e1b44606c6a0a1</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>evaluateInhomogeneousBoundaryCondition</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ad314b92f19e3c809aa6d1ea9c4ef9674</anchor>
+      <anchor>ac3950f8821f8e8c1f2a8b8f8a7e86875</anchor>
       <arglist>(Eigen::VectorXd &amp;xIh, const double &amp;lambda)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>evaluateInhomogeneousBoundaryConditionDerivative</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ae309809bc3f63a4b3cd29273e1dda01e</anchor>
+      <anchor>a5d7fdc80dfd3ebdcb58f0770844f71da</anchor>
       <arglist>(Eigen::VectorXd &amp;xIh, const double &amp;lambda)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDimension</name>
       <anchorfile>a01494.html</anchorfile>
-      <anchor>ac5610d23a04c8eab17dc643528503b1b</anchor>
+      <anchor>a79e90730d4ac67efb5e38590c0429df5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3491,15 +3502,15 @@
       <type>void</type>
       <name>initialPrediction</name>
       <anchorfile>a01218.html</anchorfile>
-      <anchor>a745ce332f4df7c4483d2d86e06013f24</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>abcca64d9ae96884cfbd65a324f15e8f8</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>intermediatePrediction</name>
       <anchorfile>a01218.html</anchorfile>
-      <anchor>a11625614df35e7e3c627e7d87a1670fe</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>a9a15e5b053c27997596589ded6e09616</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>constexpr auto</type>
@@ -3517,424 +3528,431 @@
   <compound kind="class">
     <name>Ikarus::EnhancedAssumedStrains</name>
     <filename>a01286.html</filename>
-    <templarg>typename DisplacementBasedElement</templarg>
+    <templarg>typename DFE</templarg>
+    <member kind="typedef">
+      <type>DFE</type>
+      <name>DisplacementBasedElement</name>
+      <anchorfile>a01286.html</anchorfile>
+      <anchor>aa4d918d0864a183347834f9861174790</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>typename DisplacementBasedElement::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a5a888bacae06491a7e890c9424518f25</anchor>
+      <anchor>a97269308bd2801507db2e6a94dbb2af6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename DisplacementBasedElement::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a5699ce520159375f9737ec518130e50e</anchor>
+      <anchor>a74d724732937e321623e6176fa6972b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename DisplacementBasedElement::Geometry</type>
       <name>Geometry</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a429fd3bd9c0252bb90bdee6d124518c0</anchor>
+      <anchor>a1b26b4672074c3cab9342283a103d24f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename DisplacementBasedElement::GridView</type>
       <name>GridView</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>aee26978267fb07c5c013a33bbc85f380</anchor>
+      <anchor>a43e20490ab0d404b63750e724c06d420</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename DisplacementBasedElement::Traits</type>
       <name>Traits</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a550c9fb8dcd8c64d21c9adaf4749c866</anchor>
+      <anchor>a953bd75b1ff8c1dec35e12bb7f44a27d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>EnhancedAssumedStrains</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a1405d5a39d16aaed2a794b4bbbc75039</anchor>
+      <anchor>aea3c27cdfb45456acdc300b2bce56dce</anchor>
       <arglist>(Args &amp;&amp;... args)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>aa455935bfd539dbd145450c9e8732bdc</anchor>
+      <anchor>a1a7e1d6360c959bd4d8262a930cd7b0b</anchor>
       <arglist>(const FERequirementType &amp;par) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isDisplacementBased</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a27a311be4e36cbb8d68d96e6d9046afd</anchor>
+      <anchor>ac3916915d1d0e5b9bc89468acb9faed2</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a3a92d4669635a5ab22a10bc353111d95</anchor>
+      <anchor>ab6b14cef4929414a0b054799e83b0a32</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>easVariant</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>ab8c3ff043b0808de14656d79ec56de5f</anchor>
+      <anchor>a6c74ad9c1f3de43daf4253232969f324</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>getNumberOfEASParameters</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>aa75e2ef6c92f084608e36d5aa6a1122e</anchor>
+      <anchor>ab7067fb1cf5bd9ba08d4cca2d99e1ad7</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a7f2216c3b8f6b94145ae586324018376</anchor>
+      <anchor>a710d6492af5902d5cc4a3e4481372898</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calculateAt</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a445cefcc0d54458d804b14c1f7e427e7</anchor>
+      <anchor>a362c0e974d3441af17e9d4594ce4eb84</anchor>
       <arglist>(const FERequirementType &amp;req, const Dune::FieldVector&lt; double, Traits::mydim &gt; &amp;local) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setEASType</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>a3990ba9792f807ae9d0c2f5fd7fb7e85</anchor>
-      <arglist>(int numberOfEASParameters_)</arglist>
+      <anchor>adfe962d09df6de05e8a8a3e875ba046c</anchor>
+      <arglist>(int numberOfEASParameters)</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>ScalarType</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>afc5adc55bc187c5d033a90cbae91ae44</anchor>
+      <anchor>a0ec23706e5aeda1d9d8ed1a952d57027</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01286.html</anchorfile>
-      <anchor>afa32c429e6121e0573a0fedbe43d2f45</anchor>
+      <anchor>a24d232578192661667e78c555dc5b7b3</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::FErequirements</name>
     <filename>a01254.html</filename>
-    <templarg>typename SolutionVectorType_</templarg>
-    <templarg>typename ParameterType_</templarg>
+    <templarg>typename SV</templarg>
+    <templarg>typename PM</templarg>
     <base>FERequirements&lt; std::reference_wrapper&lt; Eigen::VectorXd &gt;, std::reference_wrapper&lt; double &gt; &gt;</base>
     <member kind="typedef">
       <type>std::reference_wrapper&lt; Eigen::VectorXd &gt;</type>
       <name>SolutionVectorType</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>af1af058f84d982946aa834c9dd29f504</anchor>
+      <anchor>abe68bcd08ef5188a7afb3da261843230</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Impl::DeduceRawVectorType&lt; std::remove_cvref_t&lt; std::reference_wrapper&lt; Eigen::VectorXd &gt; &gt; &gt;::Type</type>
       <name>SolutionVectorTypeRaw</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a0911acef8d62b37965de7a0ead42c85b</anchor>
+      <anchor>adc4ad440a8d045f2d048d20130cf323e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::reference_wrapper&lt; double &gt;</type>
       <name>ParameterType</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a9da906516e03b5d6db852aaabec0f458</anchor>
+      <anchor>ab71870a060195b870bf050577e1493a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename ParameterType_::type</type>
+      <type>typename PM::type</type>
       <name>ParameterTypeRaw</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>ad5d5b9eab0760b9d8be25e6ee75200f8</anchor>
+      <anchor>af80d75a0b1418035a1b5e9658a3a56d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>FErequirements</name>
       <anchorfile>a01254.html</anchorfile>
-      <anchor>a82afd35371823de34db162e31ea8102b</anchor>
+      <anchor>ac76350ff4a2e0a82d1d71ddcee4f0a77</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>FErequirements</name>
       <anchorfile>a01254.html</anchorfile>
-      <anchor>a35fe6544c072e98f65f36ab8e3f16738</anchor>
+      <anchor>af2600ef2e60beb75c1613dbe0b8b0742</anchor>
       <arglist>(Base &amp;&amp;base)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>FErequirements</name>
       <anchorfile>a01254.html</anchorfile>
-      <anchor>af6dc438f49b7ff19613329217bb86df4</anchor>
+      <anchor>af9063da0bfecd083b3d021ff9d825c54</anchor>
       <arglist>(const Base &amp;base)</arglist>
     </member>
     <member kind="function">
       <type>FErequirements &amp;</type>
       <name>operator=</name>
       <anchorfile>a01254.html</anchorfile>
-      <anchor>a985a97bcb9fc27876df7cfab27e791ad</anchor>
+      <anchor>a9be0e4fe96a1a0ba082711cc7cac5abd</anchor>
       <arglist>(const Base &amp;base)</arglist>
     </member>
     <member kind="function">
       <type>FErequirements &amp;</type>
       <name>operator=</name>
       <anchorfile>a01254.html</anchorfile>
-      <anchor>a3112db3d77a5487d6ea3e48598b64a44</anchor>
+      <anchor>ad3f7bbaa6737dfdba2dfe5b75a955818</anchor>
       <arglist>(Base &amp;&amp;base)</arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>addAffordance</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a1e23968b6a7d57454626054bd42dfea0</anchor>
+      <anchor>ac691d2377e4df99285b4e2cea067b062</anchor>
       <arglist>(Affordance &amp;&amp;affordance)</arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>insertParameter</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a2aab5fe2d897e6af030d488832fc0eb2</anchor>
+      <anchor>adc86ba90fa2e45c688cf03020f487271</anchor>
       <arglist>(const FEParameter &amp;key, ParameterTypeRaw &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>insertGlobalSolution</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a37df4d17ff9e92b448b0c4d89aadc87b</anchor>
+      <anchor>a4fafac757343aa4709c1c986290e3e18</anchor>
       <arglist>(const FESolutions &amp;key, SolutionVectorTypeRaw &amp;sol)</arglist>
     </member>
     <member kind="function">
       <type>const SolutionVectorTypeRaw &amp;</type>
       <name>getGlobalSolution</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>ae7fc156ad6fff17f82c3ebefb188949e</anchor>
+      <anchor>a6a1c765d729145258fab79b29f20450c</anchor>
       <arglist>(const FESolutions &amp;key) const</arglist>
     </member>
     <member kind="function">
       <type>const ParameterTypeRaw &amp;</type>
       <name>getParameter</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>aed233407eb8ab5e7c7d7c8ea35265328</anchor>
+      <anchor>a451f4d103d32aa85b43b059642832cb2</anchor>
       <arglist>(FEParameter &amp;&amp;key) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>hasAffordance</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a1f2ddb05542926dd20a8e5bfc652479c</anchor>
+      <anchor>a01df6acb6d68e28f974dbda21c544cfa</anchor>
       <arglist>(Affordance &amp;&amp;affordance) const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::FERequirements</name>
     <filename>a01250.html</filename>
-    <templarg>typename SolutionVectorType_</templarg>
-    <templarg>typename ParameterType_</templarg>
+    <templarg>typename SV</templarg>
+    <templarg>typename PM</templarg>
     <member kind="typedef">
-      <type>SolutionVectorType_</type>
+      <type>SV</type>
       <name>SolutionVectorType</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>af1af058f84d982946aa834c9dd29f504</anchor>
+      <anchor>abe68bcd08ef5188a7afb3da261843230</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename Impl::DeduceRawVectorType&lt; std::remove_cvref_t&lt; SolutionVectorType_ &gt; &gt;::Type</type>
+      <type>typename Impl::DeduceRawVectorType&lt; std::remove_cvref_t&lt; SV &gt; &gt;::Type</type>
       <name>SolutionVectorTypeRaw</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a0911acef8d62b37965de7a0ead42c85b</anchor>
+      <anchor>adc4ad440a8d045f2d048d20130cf323e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>ParameterType_</type>
+      <type>PM</type>
       <name>ParameterType</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a9da906516e03b5d6db852aaabec0f458</anchor>
+      <anchor>ab71870a060195b870bf050577e1493a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename ParameterType_::type</type>
+      <type>typename PM::type</type>
       <name>ParameterTypeRaw</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>ad5d5b9eab0760b9d8be25e6ee75200f8</anchor>
+      <anchor>af80d75a0b1418035a1b5e9658a3a56d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>addAffordance</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a1e23968b6a7d57454626054bd42dfea0</anchor>
+      <anchor>ac691d2377e4df99285b4e2cea067b062</anchor>
       <arglist>(Affordance &amp;&amp;affordance)</arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>insertParameter</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a2aab5fe2d897e6af030d488832fc0eb2</anchor>
+      <anchor>adc86ba90fa2e45c688cf03020f487271</anchor>
       <arglist>(const FEParameter &amp;key, ParameterTypeRaw &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>FERequirements &amp;</type>
       <name>insertGlobalSolution</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a37df4d17ff9e92b448b0c4d89aadc87b</anchor>
+      <anchor>a4fafac757343aa4709c1c986290e3e18</anchor>
       <arglist>(const FESolutions &amp;key, SolutionVectorTypeRaw &amp;sol)</arglist>
     </member>
     <member kind="function">
       <type>const SolutionVectorTypeRaw &amp;</type>
       <name>getGlobalSolution</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>ae7fc156ad6fff17f82c3ebefb188949e</anchor>
+      <anchor>a6a1c765d729145258fab79b29f20450c</anchor>
       <arglist>(const FESolutions &amp;key) const</arglist>
     </member>
     <member kind="function">
       <type>const ParameterTypeRaw &amp;</type>
       <name>getParameter</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>aed233407eb8ab5e7c7d7c8ea35265328</anchor>
+      <anchor>a451f4d103d32aa85b43b059642832cb2</anchor>
       <arglist>(FEParameter &amp;&amp;key) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>hasAffordance</name>
       <anchorfile>a01250.html</anchorfile>
-      <anchor>a1f2ddb05542926dd20a8e5bfc652479c</anchor>
+      <anchor>a01df6acb6d68e28f974dbda21c544cfa</anchor>
       <arglist>(Affordance &amp;&amp;affordance) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FETraits</name>
     <filename>a01258.html</filename>
-    <templarg>typename Basis_</templarg>
-    <templarg>typename FERequirements_</templarg>
+    <templarg>typename B</templarg>
+    <templarg>typename FER</templarg>
     <templarg>bool useRef</templarg>
     <member kind="typedef">
-      <type>Basis_</type>
+      <type>B</type>
       <name>Basis</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a60167d06e28805974dec7b7bfda0b8fe</anchor>
+      <anchor>ac38b6d826a6105100cb178a8e896e4bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FERequirements_</type>
+      <type>FER</type>
       <name>FERequirementType</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>ac302107e3a891954c504b6cc9b739f32</anchor>
+      <anchor>af25ce4c31d34d582828b36c3ab80208f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::FlatBasis</type>
       <name>FlatBasis</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>aa32f74d438637b2a1e3862b20b010823</anchor>
+      <anchor>aa7a2eee69d868c1ca3bee04cf862d099</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FlatBasis::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>aaff1416c2f755aa06e3f85dbf46c2bcb</anchor>
+      <anchor>ab45140c593175ec84e44e41c8681da90</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FlatBasis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>ab7206c907598ab750532f44d70c58ae0</anchor>
+      <anchor>aba50215af089c1b5508527fe4bc1b936</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename LocalView::Element</type>
       <name>Element</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a17b758b602def406352e9dd72a136288</anchor>
+      <anchor>a66ef325fde5f1608478498ae6581e33b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Element::Geometry</type>
       <name>Geometry</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a4fd6cbc70d8a5bd3af746776aec58338</anchor>
+      <anchor>a740ef7b268cb90f85febb9f0b0504993</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename LocalView::MultiIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a58c165013cc9427aef846dad4dc6703e</anchor>
+      <anchor>aafbad167b59d1204a948e4aed9e7c8ea</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>double</type>
       <name>ctype</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>ac8ae58d68b66589a010dc40370022572</anchor>
+      <anchor>a36abe84d9f27e4d736c9258376af3e92</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; ctype, worlddim, 1 &gt;</type>
       <name>GlobalCoordinates</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a19797c2be25c2233c6f375ccddf7d0c1</anchor>
+      <anchor>aa000fb869fe6497eb60fa781fd2803f9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; ctype, mydim, 1 &gt;</type>
       <name>ParameterSpaceType</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a329c6642d0322aad69e50f10159d4183</anchor>
+      <anchor>aaed5b4e85d4b1b24cadf5d8c7909d37f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; useRef, Eigen::Ref&lt; Eigen::VectorX&lt; ScalarType &gt; &gt;, Eigen::VectorX&lt; ScalarType &gt; &amp; &gt;</type>
       <name>VectorType</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>aa88c14dbc6aac9895b9a2776bc6a15ba</anchor>
+      <anchor>a4f3ec489fc4c4f20e0bf7a50910a4544</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; useRef, Eigen::Ref&lt; Eigen::MatrixX&lt; ScalarType &gt; &gt;, Eigen::MatrixX&lt; ScalarType &gt; &amp; &gt;</type>
       <name>MatrixType</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a3e7516edc185964dc24e97d8dce21157</anchor>
+      <anchor>ad99d04cb5571e4707da08fc58a679f58</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worlddim</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a57322c18c54f5e1fe9ac41912df8428f</anchor>
+      <anchor>a08a1b1ba4b59e1ef870eafd058033539</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>mydim</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>a43fba779ca28962b6c1ae5a78a6fa890</anchor>
+      <anchor>a172046f544deb556462c3a2eb84aa479</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>dimension</name>
       <anchorfile>a01258.html</anchorfile>
-      <anchor>ae46489b38cb2caa1980303893659dadd</anchor>
+      <anchor>ae55aa30c35fc52075e57b0b6306c3f11</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -3947,118 +3965,118 @@
   <compound kind="class">
     <name>Ikarus::FlatAssemblerBase</name>
     <filename>a01166.html</filename>
-    <templarg>typename FEContainer_</templarg>
-    <templarg>typename DirichletValuesType_</templarg>
+    <templarg>typename FEC</templarg>
+    <templarg>typename DV</templarg>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; FEContainer_ &gt;</type>
+      <type>std::remove_cvref_t&lt; FEC &gt;</type>
       <name>FEContainerRaw</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8d033b14de49e508c7edfd5f8c37ca83</anchor>
+      <anchor>a05cbe5a00c2847e75eb7beb544f136ec</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aba7339d4e117f0f310c8ba9cd6da1e5a</anchor>
+      <anchor>a69ef7a0291ed086199b2f5b4b1173bfc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a1b2ccee915a297c90f3865c71f2c3c14</anchor>
+      <anchor>a9cd6c79d6625adb9767a14ba5c1ff283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename DirichletValuesType_::Basis</type>
+      <type>typename DV::Basis</type>
       <name>Basis</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aec6afbe8af2828aa945ab2b8f2c1aca6</anchor>
+      <anchor>affbdfc67b017b9304f2dfd519509a8fb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a0c71856323f0e835ec785987c0aada18</anchor>
+      <anchor>acee7beef45351811911847086414709e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FEContainer_</type>
+      <type>FEC</type>
       <name>FEContainer</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a030d83efead739f9abcb338d8f1d06b4</anchor>
+      <anchor>a4bb11a213bcf6c6f18e731bf4281edcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; std::is_reference_v&lt; FEContainer &gt;, const FEContainer, FEContainer &gt;</type>
       <name>FEContainerType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a554c8df2e30ed6ec250e5395f77d8f6f</anchor>
+      <anchor>ad65c9d93766e445ec688411634e9bce6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>DirichletValuesType_</type>
+      <type>DV</type>
       <name>DirichletValuesType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ab0275407303cf74b78fe44f0ad405e06</anchor>
+      <anchor>abf6599ec65ab1574a3282a553584f9e9</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>FlatAssemblerBase</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aaa76896f0fdb0e6a116bb7790dbaceb1</anchor>
-      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;p_dirichletValues)</arglist>
+      <anchor>a09b56d7e0fd2161b781450e89a8a32d6</anchor>
+      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>reducedSize</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8fd0336be5b5e2d0bcbcdb25bacc5f2f</anchor>
+      <anchor>a8b47f036b83e4e712b791d9cfe910f2b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>size</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ac105af5d51473a274f597d509308c55f</anchor>
+      <anchor>ae3fed93b367a8d5eb4e369132a7cc355</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Eigen::VectorXd</type>
       <name>createFullVector</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a796d9b40d32762d5857b49afb30cec2a</anchor>
+      <anchor>a5ca172ae99902193abf31ab542ff4aaf</anchor>
       <arglist>(Eigen::Ref&lt; const Eigen::VectorXd &gt; reducedVector)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>finiteElements</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aa92c131a0915eb5864613bdbab5c4990</anchor>
+      <anchor>aa8da4086d468797668b6d551129e96dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>constraintsBelow</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a85a20ef2dd30a677994a9c79677cfdf2</anchor>
+      <anchor>aa1a20226eacfb65d0f2b09b397578cab</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a317a691c0aca9e9d5953845762c7f626</anchor>
+      <anchor>a75a1882ad41715632ebeb6a13ed14d69</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>estimateOfConnectivity</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a6179ef97228c75448f8d109f031bc667</anchor>
+      <anchor>adf77b0e3c1dab4782a2da06fc712b9c5</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -4193,133 +4211,119 @@
   <compound kind="class">
     <name>Ikarus::GenericObserver</name>
     <filename>a01558.html</filename>
-    <templarg>typename Messages</templarg>
-    <base>IObserver&lt; Messages &gt;</base>
+    <templarg>typename M</templarg>
+    <base>IObserver&lt; M &gt;</base>
+    <member kind="typedef">
+      <type>M</type>
+      <name>MessageType</name>
+      <anchorfile>a01566.html</anchorfile>
+      <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type></type>
       <name>GenericObserver</name>
       <anchorfile>a01558.html</anchorfile>
-      <anchor>a14ce7f5c94fc9c0ad4aa1d95b4005d55</anchor>
-      <arglist>(Messages p_message, F &amp;&amp;p_f)</arglist>
+      <anchor>a25f96660b74e238b1084af70977ddd26</anchor>
+      <arglist>(Messages message, F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
       <anchorfile>a01558.html</anchorfile>
-      <anchor>aa51b225ec700905006965c2ea07aebd3</anchor>
-      <arglist>(Messages p_message) override</arglist>
+      <anchor>a3f42fa4e0a798aff5c0d29254cb06e6e</anchor>
+      <arglist>(Messages message) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a8c171635a257ce7fe905a58337717efe</anchor>
-      <arglist>(Messages message)</arglist>
+      <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
+      <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a0f235d3f9f49582c0902dfcd5217f4a1</anchor>
-      <arglist>(Messages message, double val)</arglist>
+      <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a97bf3fd861a8eac696a97ec56d953b47</anchor>
-      <arglist>(Messages message, int val)</arglist>
+      <anchor>a9ec023872625942d0b64244709966464</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a05a6a76b6875406ae8ff5e05f2662d57</anchor>
-      <arglist>(Messages message, const std::string &amp;val)</arglist>
+      <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ab87bc0dab48de914d7f5221fb9c3477b</anchor>
-      <arglist>(Messages message, int val1, double val2)</arglist>
+      <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a5d2fb507095933199fab726c17e01bcf</anchor>
-      <arglist>(Messages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a04b8667b08713503e82ede950a337950</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a20e3859480f6cab562f33ce9da888380</anchor>
-      <arglist>(Messages message, const Eigen::VectorXd &amp;vec)</arglist>
-    </member>
-    <member kind="variable">
-      <type>Messages</type>
-      <name>message</name>
-      <anchorfile>a01558.html</anchorfile>
-      <anchor>a1a25e8df97f7b6bc3f69fec6c10b3424</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>std::function&lt; void(int)&gt;</type>
-      <name>f</name>
-      <anchorfile>a01558.html</anchorfile>
-      <anchor>a89d4890d4e929497bcf2159b66f35371</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>int</type>
-      <name>step</name>
-      <anchorfile>a01558.html</anchorfile>
-      <anchor>a9608696f98ec46332bed57d6bbecccd6</anchor>
-      <arglist></arglist>
+      <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a663889f78a7dbd3561fa6a497e023a23</anchor>
-      <arglist>(Messages message, double val)</arglist>
+      <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>adc61a4813394bdde201018db198544a3</anchor>
-      <arglist>(Messages message, int val)</arglist>
+      <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ae97b76e37ab99f985a0ef71f4a9efd37</anchor>
-      <arglist>(Messages message, const std::string &amp;val)</arglist>
+      <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>af53b8b154a887fce37fee355b0244c21</anchor>
-      <arglist>(Messages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4d0a13cbe1104d10c4ec5e928f64ab4b</anchor>
-      <arglist>(Messages message, int val1, double val2)</arglist>
+      <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4b7267849be75994c85c8ebe7af10465</anchor>
-      <arglist>(Messages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -4354,20 +4358,6 @@
       <anchor>a941f708e558b767c8e5406e82cc40f61</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 3 &gt; &amp;quadPos) const</arglist>
     </member>
-    <member kind="variable">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>geometry</name>
-      <anchorfile>a01278.html</anchorfile>
-      <anchor>a1dc163dac6edbe73b874141d37943923</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Eigen::Matrix&lt; double, 6, 6 &gt;</type>
-      <name>T0InverseTransformed</name>
-      <anchorfile>a01278.html</anchorfile>
-      <anchor>ad6ddf52fe05bf6e43ac11564a2a465df</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>strainSize</name>
@@ -4386,61 +4376,47 @@
   <compound kind="struct">
     <name>Ikarus::EAS::H1E9</name>
     <filename>a01274.html</filename>
-    <templarg>typename Geometry</templarg>
+    <templarg>typename GEO</templarg>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; double, strainSize, enhancedStrainSize &gt;</type>
       <name>MType</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a5ae72ddd888340fcc4d64727df692fc0</anchor>
+      <anchor>a4ebc7570a1a18ca9d2cc77d5d1d4a05f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>H1E9</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a2215aaf947ff4f3283fff3d8842ce72d</anchor>
+      <anchor>af2ffc65346e400a7ce3cc5fb0a3be34a</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>H1E9</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a7bf2f8a857358d055a68e78ba37334e5</anchor>
-      <arglist>(const Geometry &amp;geometry_)</arglist>
+      <anchor>a3b14b18f924c0b5000ec609d441239ac</anchor>
+      <arglist>(const GEO &amp;geometry)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calcM</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a4ad5fe1f5f2fbeb859c56bc46243d86d</anchor>
+      <anchor>adafa86c9c1ed38a3b165af332dfe2afc</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 3 &gt; &amp;quadPos) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>geometry</name>
-      <anchorfile>a01274.html</anchorfile>
-      <anchor>ab9ba5f7617a1a646473d9602a1e79854</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Eigen::Matrix&lt; double, 6, 6 &gt;</type>
-      <name>T0InverseTransformed</name>
-      <anchorfile>a01274.html</anchorfile>
-      <anchor>a024eb0b36904f9641069d4237a198443</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>strainSize</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a032c5ecf8221f381b81180c5ca37c543</anchor>
+      <anchor>ae9198131bd07f28e06519c81d22020d1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>enhancedStrainSize</name>
       <anchorfile>a01274.html</anchorfile>
-      <anchor>a1822b8de9d289f8069201e99d5f288ba</anchor>
+      <anchor>abae7fca7b5ca54582745e3444b1401c3</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -4517,7 +4493,7 @@
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(MessageType message, std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -4538,14 +4514,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(MessageType message, std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -4597,114 +4573,170 @@
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(MessageType message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::IObserver</name>
     <filename>a01566.html</filename>
-    <templarg>typename MessageType</templarg>
+    <templarg>typename MT</templarg>
+    <member kind="typedef">
+      <type>MT</type>
+      <name>MessageType</name>
+      <anchorfile>a01566.html</anchorfile>
+      <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~IObserver</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>afda55d0cee706fa7a2df824e2a149a9e</anchor>
+      <anchor>a39df4c52c73f721bb2ef1c90fe76d74a</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a8c171635a257ce7fe905a58337717efe</anchor>
+      <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a0f235d3f9f49582c0902dfcd5217f4a1</anchor>
+      <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a97bf3fd861a8eac696a97ec56d953b47</anchor>
+      <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a05a6a76b6875406ae8ff5e05f2662d57</anchor>
+      <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ab87bc0dab48de914d7f5221fb9c3477b</anchor>
+      <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a5d2fb507095933199fab726c17e01bcf</anchor>
+      <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a20e3859480f6cab562f33ce9da888380</anchor>
+      <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a478eaa94650cf462a050e28ecf098773</anchor>
+      <anchor>ac6dc170df122bd224f2a440cedf33934</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a663889f78a7dbd3561fa6a497e023a23</anchor>
+      <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>adc61a4813394bdde201018db198544a3</anchor>
+      <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ae97b76e37ab99f985a0ef71f4a9efd37</anchor>
+      <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>af53b8b154a887fce37fee355b0244c21</anchor>
+      <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4d0a13cbe1104d10c4ec5e928f64ab4b</anchor>
+      <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4b7267849be75994c85c8ebe7af10465</anchor>
+      <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
@@ -4747,8 +4779,8 @@
       <type>void</type>
       <name>operator()</name>
       <anchorfile>a01190.html</anchorfile>
-      <anchor>adbaaeb5daa06234f1886efa3f7bc8f1a</anchor>
-      <arglist>(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NonLinearOperator &amp;)</arglist>
+      <anchor>a5869ac09a02a7b2222873ca31a30989e</anchor>
+      <arglist>(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NLO &amp;nonLinearOperator)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -4768,451 +4800,444 @@
   <compound kind="struct">
     <name>Ikarus::KirchhoffLoveShell::KinematicVariables</name>
     <filename>a01294.html</filename>
-    <templarg>typename ScalarType</templarg>
+    <templarg>typename ST</templarg>
     <member kind="variable">
       <type>Eigen::Matrix&lt; double, 3, 3 &gt;</type>
       <name>C</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>ad316c22f4d476201d66dd916ce51579a</anchor>
+      <anchor>a5a9e34822ba30b71ef25c153a2587a8d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3&lt; ScalarType &gt;</type>
+      <type>Eigen::Vector3&lt; ST &gt;</type>
       <name>epsV</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>adb0ea578820d6324bd697abf0103ceaf</anchor>
+      <anchor>ada9898fe80232ef211c66968399d2a09</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3&lt; ScalarType &gt;</type>
+      <type>Eigen::Vector3&lt; ST &gt;</type>
       <name>kappaV</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>a385e50cb48b7f29f352913ef01e857ff</anchor>
+      <anchor>a0383f44a086e6e10965186dd60c9702d</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Matrix&lt; ScalarType, 2, 3 &gt;</type>
+      <type>Eigen::Matrix&lt; ST, 2, 3 &gt;</type>
       <name>j</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>a448b848a807d314c3d9b1a07bea0cc9e</anchor>
+      <anchor>afc9be296289325dda33b69bedb344abb</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Eigen::Matrix&lt; double, 2, 3 &gt;</type>
       <name>J</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>a0ab087b4fe7a12f7cad0a0f2f1ab6bd3</anchor>
+      <anchor>a31936471e567c0baa22490eeb183e344</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Matrix3&lt; ScalarType &gt;</type>
+      <type>Eigen::Matrix3&lt; ST &gt;</type>
       <name>h</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>a5afc75ec69c2154ac00733db1fe5ea6f</anchor>
+      <anchor>afadc0c6a4322f428d96d4712d6fae1a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>Eigen::Matrix3&lt; double &gt;</type>
       <name>H</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>ad8bae2aebefb88c7d7888b14a58e0c22</anchor>
+      <anchor>a18ed9983d3546d17c2dbe7688b018dbd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3&lt; ScalarType &gt;</type>
+      <type>Eigen::Vector3&lt; ST &gt;</type>
       <name>a3N</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>acd947bf70bae3f7ec5f58e679b19619e</anchor>
+      <anchor>a08f3037efc53617c15957ded9f3d88aa</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>Eigen::Vector3&lt; ScalarType &gt;</type>
+      <type>Eigen::Vector3&lt; ST &gt;</type>
       <name>a3</name>
       <anchorfile>a01294.html</anchorfile>
-      <anchor>a333dd0e23eb3fe1606a281a4f4620b05</anchor>
+      <anchor>a6c34a9de71385b73f65f4adbe88524cb</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::KirchhoffLoveShell</name>
     <filename>a01290.html</filename>
-    <templarg>typename Basis_</templarg>
-    <templarg>typename FERequirements_</templarg>
+    <templarg>typename B</templarg>
+    <templarg>typename FER</templarg>
     <templarg>bool useEigenRef</templarg>
-    <base>PowerBasisFE&lt; Basis_ &gt;</base>
-    <base>Volume&lt; KirchhoffLoveShell&lt; Basis_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
-    <base>Traction&lt; KirchhoffLoveShell&lt; Basis_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Ikarus::PowerBasisFE</base>
+    <base>Volume&lt; KirchhoffLoveShell&lt; B, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Traction&lt; KirchhoffLoveShell&lt; B, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
     <class kind="struct">Ikarus::KirchhoffLoveShell::KinematicVariables</class>
     <member kind="typedef">
-      <type>FETraits&lt; Basis_, FERequirements_, useEigenRef &gt;</type>
+      <type>FETraits&lt; B, FER, useEigenRef &gt;</type>
       <name>Traits</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>aba2bc0da8164a9acbaccfedc02bac856</anchor>
+      <anchor>aa8d2b633ed829d01a71ca4a662e9dc38</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Basis</type>
       <name>Basis</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>af98e6a01ee535a71ad4b313e539350d9</anchor>
+      <anchor>a7f3c6cdf32b6923f79729755de330f47</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FlatBasis</type>
       <name>FlatBasis</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>adcfabe21127d23b622c866763b0a2e06</anchor>
+      <anchor>aa3190d3261afcfbf3a2cbb98a7049d12</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a6bf559258069202dfb9564448a95f856</anchor>
+      <anchor>ae27360dec5c89ee56f3d392da6ecdacb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>abe0762d335f7a77f44e21ac8889c2317</anchor>
+      <anchor>a7c04d7ac67b97edbf6f12bd815dfa50e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Geometry</type>
       <name>Geometry</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a3b65995044ee9ef12b0a61f2c10cd691</anchor>
+      <anchor>a2ce7bc7c7d353624dae8f3bd9e73f5da</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GridView</type>
       <name>GridView</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>ab5ed269ad77b4a2e2e436fb81defca6f</anchor>
+      <anchor>aa38016f091ab50ca56dd39b6413a5567</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>Element</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a3c23269e355c19d11ac92deceaebc4e1</anchor>
+      <anchor>a003605675dd6821680f514d25da75780</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>PowerBasisFE&lt; Basis &gt;</type>
       <name>BasePowerFE</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a354be52502eedb3eb1e2c538c55cbfee</anchor>
+      <anchor>aadf14a26d22bb17ce4eaeedf864b2de4</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Volume&lt; KirchhoffLoveShell&lt; Basis_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Volume&lt; KirchhoffLoveShell, Traits &gt;</type>
       <name>VolumeType</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>ad78f77e945ad60bf29d8d93c9a2a1ebe</anchor>
+      <anchor>a2e4eddc12c2a00950121e8d6b8313b33</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Traction&lt; KirchhoffLoveShell&lt; Basis_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Traction&lt; KirchhoffLoveShell, Traits &gt;</type>
       <name>TractionType</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>afb43a5dc810fa4a4f0b5d078ef493c70</anchor>
+      <anchor>a69fb54e784d9498ec4435221850599b1</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(std::declval&lt; LocalView &gt;().tree().child(0).finiteElement().localBasis())</type>
       <name>LocalBasisType</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>aac3537d44f24e9ce48b080471bc0744b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>typename Traits::FlatBasis</type>
-      <name>RootBasis</name>
-      <anchorfile>a01226.html</anchorfile>
-      <anchor>a9199b27c710f3cf1bb3379381e1d3ac8</anchor>
+      <anchor>a8eea352836af2b1b413b697849183acf</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a8d6c61ef84c53a1468462f803cdba0a5</anchor>
+      <anchor>acbfd17b79bb5882e5c7e74f922bae703</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>GridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a983249c2d5963504ba570dd6da67f67c</anchor>
+      <anchor>a5574b829dfa9bad6a600c7d203b73442</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>KirchhoffLoveShell</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>ae749b820da13eb29aafad5f0b704ea39</anchor>
-      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, double emod, double nu, double thickness, VolumeLoad p_volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *p_neumannBoundary=nullptr, NeumannBoundaryLoad p_neumannBoundaryLoad={})</arglist>
+      <anchor>ac71a04603b18b08f732e41e9339ebcec</anchor>
+      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, double emod, double nu, double thickness, VolumeLoad volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *neumannBoundary=nullptr, NeumannBoundaryLoad neumannBoundaryLoad={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>displacementFunction</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a350c17c18e3275ce3afdda767b841b7a</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a48b4389c47d552e860a9d47a2a744bde</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function">
       <type>const Geometry &amp;</type>
       <name>geometry</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>af5dc455b63fa15beb17e93e1a118080c</anchor>
+      <anchor>a85cd7276f921fd8fe604613beec8d2f9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>numberOfNodes</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a44201ca55798fc660ed96933164db512</anchor>
+      <anchor>aad820495930fffb8a0449ffdfddceac8</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>order</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a9c160e6614cdf72561fc3f51ba0561ba</anchor>
+      <anchor>aa08615ffebf7e8b51c719173306e5833</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>adc4d072b60d55436de62651fb8af784d</anchor>
+      <anchor>afbb146a77ec1e4d125257babf1fb7370</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a1ff594b2a01b8f20a2ff9f7dfa77a763</anchor>
+      <anchor>a76f17d5cdc1f5a591a5a0af7338a04f4</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>abfce8179210ee09d9b86c6444adf7f62</anchor>
+      <anchor>a727321026a1630bd3717b4fcf93eb0aa</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calculateAt</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a011327a5d0436bf209934c26598c0b45</anchor>
+      <anchor>a606b209d6e336915758417a9bccab65c</anchor>
       <arglist>(const FERequirementType &amp;req, const Dune::FieldVector&lt; double, Traits::mydim &gt; &amp;local) const</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
       <name>size</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a65fbcfb67bd20fd4a434230b5efa5bd1</anchor>
+      <anchor>a0f2828bc60acbfe60cecbb3eca99ef13</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>globalFlatIndices</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>ac47a208cf2511bf8676282280360ab38</anchor>
+      <anchor>ae25d85da7c545b079c74d878eb71ce1b</anchor>
       <arglist>(std::vector&lt; GlobalIndex &gt; &amp;globalIndices) const</arglist>
     </member>
     <member kind="function">
       <type>const GridElement &amp;</type>
       <name>gridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a0fe5d4e10f331905629351786c72ce6a</anchor>
+      <anchor>a426b90558224e8fc9165dd6e2784d42e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a4b49c02de08fb5c115affa646c5f249a</anchor>
+      <anchor>a04e6a87845af2aa6630237bc0fec5462</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a00a045439d18c431ef49d7349230272b</anchor>
+      <anchor>aaa63813d6f71f54faca3c5d87b4db3e2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a33edddd4d3ef260d45b1c029efd9046d</anchor>
+      <anchor>a57dda3eb802306012e41237636de1ec4</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ad2cf691094d779dd4681c79a1d768aae</anchor>
+      <anchor>a60ccd349727ba418dbfb1a3012a1d856</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ab34ccd72bb7397283f7c2dcbf595841e</anchor>
+      <anchor>a50c6859b6c9a40fbb8ac9cc77d8087db</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ac9ed9f5497683a52effe2c572056c6e0</anchor>
+      <anchor>a96c3bc299da08a776e46b488aed3ded7</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a7c9d37bb3d426f00c1451d5a5222b748</anchor>
+      <anchor>af90d4b6149bb2241644c92855759e6f5</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ad5b9f64124013ab2e98b6494e9b511b3</anchor>
+      <anchor>aa4336b55618b836ca7b2b3aebf4242bf</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>myDim</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a22273fa4834535f534e9dfab377aec83</anchor>
+      <anchor>acb93f8b942e083575b383370d3a21c75</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>ae10307f9b4c83ee2c8f4441a1eabe2f3</anchor>
+      <anchor>ad9def52a393437d3f371f7385e812bcf</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>membraneStrainSize</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a28615c16c3294908775337438007dbff</anchor>
+      <anchor>a1d7630b8905639de3bd172e8c83393ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>bendingStrainSize</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>aff4ce56707d43655851a80dc37f3f19b</anchor>
+      <anchor>a679f783ce531f1503a10843aa4e51dd9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>num_children</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a08d63c99f722a352ee1ebe29bcb88bcd</anchor>
+      <anchor>a3a162d15d209caf4db3d68917ed6fa69</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>computeMaterialAndStrains</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a02b95fb491292c3230a70d4ea77b85c8</anchor>
+      <anchor>a994624bc06728e1a33adcb3723f4ee8e</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;gpPos, int gpIndex, const Geometry &amp;geo, const auto &amp;uFunction) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>aab5382fc4bf1bac0f78dbd306a6ba010</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt; ScalarType &gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a5b084c57d60f743b9bf8f8cd7bfbc059</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt; ST &gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a41a0a9873dd4107fd444250de72e99bc</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>af53cd4c2f326eea7d30b0bfb3fcb4177</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a83c5d12a0591fce31bc29ea903156863</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>aefe1853e0e5f64b7315da30936263f9d</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>Eigen::Matrix&lt; ScalarType, 3, 3 &gt;</type>
+      <type>Eigen::Matrix&lt; ST, 3, 3 &gt;</type>
       <name>kgBending</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a1acdd9123a1e1268a5f990b5655a737c</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, 2, 3 &gt; &amp;jcur, const Eigen::Matrix3&lt; ScalarType &gt; &amp;h, const auto &amp;dN, const auto &amp;ddN, const Eigen::Vector3&lt; ScalarType &gt; &amp;a3N, const Eigen::Vector3&lt; ScalarType &gt; &amp;a3, const Eigen::Vector3&lt; ScalarType &gt; &amp;S, int I, int J) const</arglist>
+      <anchor>a470610d359a9dd69415d9957505f594b</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, 2, 3 &gt; &amp;jcur, const Eigen::Matrix3&lt; ST &gt; &amp;h, const auto &amp;dN, const auto &amp;ddN, const Eigen::Vector3&lt; ST &gt; &amp;a3N, const Eigen::Vector3&lt; ST &gt; &amp;a3, const Eigen::Vector3&lt; ST &gt; &amp;S, int I, int J) const</arglist>
     </member>
     <member kind="function" protection="protected">
-      <type>Eigen::Matrix&lt; ScalarType, 3, 3 &gt;</type>
+      <type>Eigen::Matrix&lt; ST, 3, 3 &gt;</type>
       <name>bopBending</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>a90e0bb85ca10d2bb5b97f509cc973931</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, 2, 3 &gt; &amp;jcur, const Eigen::Matrix3&lt; ScalarType &gt; &amp;h, const auto &amp;dN, const auto &amp;ddN, const int node, const Eigen::Vector3&lt; ScalarType &gt; &amp;a3N, const Eigen::Vector3&lt; ScalarType &gt; &amp;a3) const</arglist>
+      <anchor>adef9992c1720510edd81557fda7cfa20</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, 2, 3 &gt; &amp;jcur, const Eigen::Matrix3&lt; ST &gt; &amp;h, const auto &amp;dN, const auto &amp;ddN, const int node, const Eigen::Vector3&lt; ST &gt; &amp;a3N, const Eigen::Vector3&lt; ST &gt; &amp;a3) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>Eigen::Matrix&lt; double, 3, 3 &gt;</type>
       <name>materialTangent</name>
       <anchorfile>a01290.html</anchorfile>
-      <anchor>aa135b5062856432512c7d29f1ff675b0</anchor>
+      <anchor>a8276e3a39ed9d5ef3ff6c6bbff0cc236</anchor>
       <arglist>(const Eigen::Matrix&lt; double, 3, 3 &gt; &amp;Aconv) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a38b6d9f88ad5734093413497e3ac7b29</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a7ec1326b708d8c08fee05ca7b601f997</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>af2fc872a641d42398fc9d8bd60aa973c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a9b91a057a51ab4487656d8bd94fdd234</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a6903f5e92a06b8066ef67b6a1f22e142</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>aaed2462e36f9d119ff5c60867ebcaf62</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a3b3de553171d016228f21cbac1e7f47d</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a2576d38cb79bb0b5bf59f433fa7c1633</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a0cac2c7cc2a06ae38bc83f97664e4d8c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; dx=std::nullopt) const</arglist>
+      <anchor>aabcfd5d855e2230fe90abb12a1ba8d2b</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>aae1b4a04dd13b2ec2145ef141bf3190c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a38ba7822f8f38691c80a0b607e488d03</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -5236,720 +5261,713 @@
   <compound kind="class">
     <name>Ikarus::LinearElastic</name>
     <filename>a01298.html</filename>
-    <templarg>typename Basis_</templarg>
-    <templarg>typename FERequirements_</templarg>
+    <templarg>typename B</templarg>
+    <templarg>typename FER</templarg>
     <templarg>bool useEigenRef</templarg>
-    <base>PowerBasisFE&lt; Basis_ &gt;</base>
-    <base>Volume&lt; LinearElastic&lt; Basis_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
-    <base>Traction&lt; LinearElastic&lt; Basis_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Ikarus::PowerBasisFE</base>
+    <base>Volume&lt; LinearElastic&lt; B, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Traction&lt; LinearElastic&lt; B, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
     <member kind="typedef">
-      <type>FETraits&lt; Basis_, FERequirements_, useEigenRef &gt;</type>
+      <type>FETraits&lt; B, FER, useEigenRef &gt;</type>
       <name>Traits</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a151396e2005263ff69e3a85deaeccc02</anchor>
+      <anchor>af7263c3f57fc7fddb14e13f1e468c55e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Basis</type>
       <name>Basis</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>ac67d77bbb42299a97ba00a00265a2a98</anchor>
+      <anchor>a686371c5896eae89ba0d81943eefc6d6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FlatBasis</type>
       <name>FlatBasis</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>aaf49fc71022971578d72cce0ae28aa55</anchor>
+      <anchor>a34d2bf79d243ef70b24780d7632be86e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a50164592b0aa80d9027a707436cfc50c</anchor>
+      <anchor>acb9f819664701f2672f17dce540398bd</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a630a04c604ae2e56673604452e3fd39a</anchor>
+      <anchor>a2e5553a4af3992305782e011ad77805b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Geometry</type>
       <name>Geometry</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a199e66dea3f46b43e92443e427335c20</anchor>
+      <anchor>ade093ac3f4cf3bc94e4af77cc16aac7d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GridView</type>
       <name>GridView</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a32bea39022e61c6978c29f0b75847e44</anchor>
+      <anchor>a4b2b0a0b713bed04b793afd14b45d923</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>Element</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>af40ba2ffc4ec6ba9e438a1a5a066a1bf</anchor>
+      <anchor>a5d971c8e8339046424e4d1f1f2c9a16d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>PowerBasisFE&lt; Basis &gt;</type>
       <name>BaseDisp</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a18f201870e665245470e44ab1f677662</anchor>
+      <anchor>a8acfbc7577c1d54c9bda196afc94834e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Volume&lt; LinearElastic&lt; Basis_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Volume&lt; LinearElastic, Traits &gt;</type>
       <name>VolumeType</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>afb5b60dfe956fa4b70195462b2e4ac0e</anchor>
+      <anchor>acb4bb1f6ef106b48fc3db43487fcd614</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Traction&lt; LinearElastic&lt; Basis_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Traction&lt; LinearElastic, Traits &gt;</type>
       <name>TractionType</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a68d172e1b8834272956a8fa7e138072e</anchor>
+      <anchor>a7c1e9da574d58348cd8c504e2f9e73ad</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(std::declval&lt; LocalView &gt;().tree().child(0).finiteElement().localBasis())</type>
       <name>LocalBasisType</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a1d9cc0964e73991e6a06ad38e7bfb78a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>typename Traits::FlatBasis</type>
-      <name>RootBasis</name>
-      <anchorfile>a01226.html</anchorfile>
-      <anchor>a9199b27c710f3cf1bb3379381e1d3ac8</anchor>
+      <anchor>a60a2639d979520ad3a864a73913a6206</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a8d6c61ef84c53a1468462f803cdba0a5</anchor>
+      <anchor>acbfd17b79bb5882e5c7e74f922bae703</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>GridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a983249c2d5963504ba570dd6da67f67c</anchor>
+      <anchor>a5574b829dfa9bad6a600c7d203b73442</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LinearElastic</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a99c658e2b0aa008672bfbc67e11c56db</anchor>
-      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, double emod, double nu, VolumeLoad p_volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *p_neumannBoundary=nullptr, NeumannBoundaryLoad p_neumannBoundaryLoad={})</arglist>
+      <anchor>a75984084ffce4fdda25c9cdd15d8e98d</anchor>
+      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, double emod, double nu, VolumeLoad volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *neumannBoundary=nullptr, NeumannBoundaryLoad neumannBoundaryLoad={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>displacementFunction</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a80bcd6e7b26b4529df93d12314d92117</anchor>
+      <anchor>aadc2cb33ce478106a0d8c4c7c89a76a6</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>strainFunction</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a8622364f84baada158d636021dc3d3d4</anchor>
+      <anchor>afcb7791c5c26c3b28eec8807265ca493</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>materialTangent</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>ae9391f3895e965ecc5dfea1af1ac62f7</anchor>
+      <anchor>a32ffbf97a5709decb3db826952ae1df5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>materialTangentFunction</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a23a003fe0c49bfc18714da0889b00c65</anchor>
+      <anchor>ae527a87d62737855206417b20e3f8cbb</anchor>
       <arglist>(const FERequirementType &amp;par) const</arglist>
     </member>
     <member kind="function">
       <type>const Geometry &amp;</type>
       <name>geometry</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a9d79259ab8e7093c190171a8b4ddff13</anchor>
+      <anchor>ad56291480c7edcf6c5b33800a66f054e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>numberOfNodes</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>ab6ce7edbeb15b437c5977d4f8962d03d</anchor>
+      <anchor>aefdafc8d5989fd98386adbce42b5efb1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>order</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a2bf5dffeeb22108cae5126814dd98163</anchor>
+      <anchor>a2f9ede566fc8a18d9fa9d2a0a0a3a104</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>afa5f1b3ac1cb7ccfa05d396377f8ac9c</anchor>
+      <anchor>a5364887d6816973686f884369739e035</anchor>
       <arglist>(const FERequirementType &amp;par) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a35aa251bcd641913a8448b9502030349</anchor>
+      <anchor>aa539230c36a1fcbe81e33234c6fe35ae</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a9d491b6c69f9f28b2a838075526fa705</anchor>
+      <anchor>a078e95d6b83829fa717778f47ca33872</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calculateAt</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>ac79fd288abc1dd3fd720b5a11f2ebc09</anchor>
+      <anchor>a6dcb4695a8a2d1d3cb9d555dd087f28c</anchor>
       <arglist>(const FERequirementType &amp;req, const Dune::FieldVector&lt; double, Traits::mydim &gt; &amp;local) const</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
       <name>size</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a65fbcfb67bd20fd4a434230b5efa5bd1</anchor>
+      <anchor>a0f2828bc60acbfe60cecbb3eca99ef13</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>globalFlatIndices</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>ac47a208cf2511bf8676282280360ab38</anchor>
+      <anchor>ae25d85da7c545b079c74d878eb71ce1b</anchor>
       <arglist>(std::vector&lt; GlobalIndex &gt; &amp;globalIndices) const</arglist>
     </member>
     <member kind="function">
       <type>const GridElement &amp;</type>
       <name>gridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a0fe5d4e10f331905629351786c72ce6a</anchor>
+      <anchor>a426b90558224e8fc9165dd6e2784d42e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a4b49c02de08fb5c115affa646c5f249a</anchor>
+      <anchor>a04e6a87845af2aa6630237bc0fec5462</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a00a045439d18c431ef49d7349230272b</anchor>
+      <anchor>aaa63813d6f71f54faca3c5d87b4db3e2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a33edddd4d3ef260d45b1c029efd9046d</anchor>
+      <anchor>a57dda3eb802306012e41237636de1ec4</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ad2cf691094d779dd4681c79a1d768aae</anchor>
+      <anchor>a60ccd349727ba418dbfb1a3012a1d856</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ab34ccd72bb7397283f7c2dcbf595841e</anchor>
+      <anchor>a50c6859b6c9a40fbb8ac9cc77d8087db</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ac9ed9f5497683a52effe2c572056c6e0</anchor>
+      <anchor>a96c3bc299da08a776e46b488aed3ded7</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a7c9d37bb3d426f00c1451d5a5222b748</anchor>
+      <anchor>af90d4b6149bb2241644c92855759e6f5</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ad5b9f64124013ab2e98b6494e9b511b3</anchor>
+      <anchor>aa4336b55618b836ca7b2b3aebf4242bf</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>myDim</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a2279ac283b972f47d58c51730ca47d6b</anchor>
+      <anchor>a8bbfc1afb01386fcde2a491f13fbc877</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>num_children</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a08d63c99f722a352ee1ebe29bcb88bcd</anchor>
+      <anchor>a3a162d15d209caf4db3d68917ed6fa69</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>aa57591d28c62806bfac624043d2e0258</anchor>
+      <anchor>a073fb2d3afae0bd3e0afe1c2534f9afd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a1eee242b581174d0fd8e7587130234be</anchor>
+      <anchor>a1d2ad110e77cf497bc88ac1a8735fc97</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a2f4e42b682af401fcfaada66e5a05d53</anchor>
+      <anchor>aaccf80635025096e4ff250f47febd549</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01298.html</anchorfile>
-      <anchor>a3cb0f7f1a2745097f3e91b9c0928722f</anchor>
+      <anchor>a8e52623d4850ccde18d34ee34b028ef7</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a38b6d9f88ad5734093413497e3ac7b29</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a7ec1326b708d8c08fee05ca7b601f997</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>af2fc872a641d42398fc9d8bd60aa973c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a9b91a057a51ab4487656d8bd94fdd234</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a6903f5e92a06b8066ef67b6a1f22e142</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>aaed2462e36f9d119ff5c60867ebcaf62</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a3b3de553171d016228f21cbac1e7f47d</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a2576d38cb79bb0b5bf59f433fa7c1633</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a0cac2c7cc2a06ae38bc83f97664e4d8c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; dx=std::nullopt) const</arglist>
+      <anchor>aabcfd5d855e2230fe90abb12a1ba8d2b</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>aae1b4a04dd13b2ec2145ef141bf3190c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a38ba7822f8f38691c80a0b607e488d03</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::LinearElasticityT</name>
     <filename>a01314.html</filename>
-    <templarg>typename ScalarType_</templarg>
-    <base>Material&lt; LinearElasticityT&lt; ScalarType_ &gt; &gt;</base>
+    <templarg>typename ST</templarg>
+    <base>Material&lt; LinearElasticityT&lt; ST &gt; &gt;</base>
     <member kind="typedef">
-      <type>ScalarType_</type>
+      <type>ST</type>
       <name>ScalarType</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>affaed4051b992b204f777f7cb43ff78c</anchor>
+      <anchor>a77d870f52b123d3a237e4d02d38589f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>StVenantKirchhoffT&lt; ScalarType &gt;</type>
       <name>Base</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>ab6cf578603f09e73c7dc6e50a04c0e5e</anchor>
+      <anchor>a5f6155bf9a699f2129308056476d5de4</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>ScalarType</type>
       <name>field_type</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a1f729348c560fc6385e6cc69f68b49c3</anchor>
+      <anchor>ad73d906e86f52371f4c68924b6da41a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; ScalarType, worldDimension, worldDimension &gt;</type>
       <name>StrainMatrix</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a17fefe644cfaa144782a2a369841732e</anchor>
+      <anchor>a91c9787944251777723d0177aa5e1df6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>StrainMatrix</type>
       <name>StressMatrix</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a6a1259d8a3ea5f4489a36dd3460d1d1a</anchor>
+      <anchor>a872a6fc2940c71490de7464b82dafa98</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>LinearElasticityT&lt; ScalarType_ &gt;</type>
-      <name>MaterialImplType</name>
+      <type>LinearElasticityT&lt; ST &gt;</type>
+      <name>MaterialImpl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>aa30c942d1fd3c011dab0e23e1df0ef63</anchor>
+      <anchor>a45254a604fc6a7913aa384cc60fa1422</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>nameImpl</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>aaebce9e06d715f29bba48ff6ebb08ff4</anchor>
+      <anchor>a7650002253b3835e5887bc880bf7f012</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LinearElasticityT</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a177c698afe010468edf53f256984623c</anchor>
+      <anchor>a9d88dabb40b32e9c617d1e9b171a4bf5</anchor>
       <arglist>(const LamesFirstParameterAndShearModulus &amp;mpt)</arglist>
     </member>
     <member kind="function">
       <type>ScalarType</type>
       <name>storedEnergyImpl</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a4dc238ec33be65f6f826603e0df8f298</anchor>
+      <anchor>aec129dc9365c8a52e262115ca99f99b4</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stressesImpl</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a35fcde4fc84e78b2a36dce05c445c994</anchor>
+      <anchor>a85980083b520f0af677abfdf577bfad8</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuliImpl</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a7719515b5aba56071a61617a89d6522a</anchor>
+      <anchor>adbdd31dbe305ef34be6c80c289deef94</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>rebind</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a677310a9145477244230e325d7c8bf66</anchor>
+      <anchor>a4a7a48ac90de2c494406681354b0f088</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr const LinearElasticityT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr const MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a001e7e5968c6dfce64ac6932e2a0517a</anchor>
+      <anchor>a1f36564023973d1684bf337b4584f8d6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr LinearElasticityT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a61cc58c93007911d68bf6a8b6bbc2bd5</anchor>
+      <anchor>ad3e663912e4700acb1444ce254a2599c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>ada3530e97519400e78b32ec1989343f9</anchor>
+      <anchor>aaa3ba3c13eef01692e03621abc8f35b5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>storedEnergy</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a297b4cab80330a8c473dbc06552c8808</anchor>
+      <anchor>ab2015ecf069d4d5022852d7cfc62c689</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stresses</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>af10f8631c73d1c4cb78f8b6d44bf6f1a</anchor>
+      <anchor>ae47b0b923d01f3f2abcf5d3fd5ff04bc</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuli</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a00e7bb30244df751617e1e613d382ea0</anchor>
+      <anchor>a2d9d9509fa8bbdc909868c8fd0dfe5fd</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>StVenantKirchhoffT&lt; ScalarType &gt;</type>
-      <name>svk</name>
-      <anchorfile>a01314.html</anchorfile>
-      <anchor>a71f7c378157f7e1766d15cf19d427512</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDimension</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a5281421662edff239eb1eb9301ec4a98</anchor>
+      <anchor>a19d0f531d6317ee35215abcb24ea4443</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>strainTag</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>aa20d4080ae5e176f0382130971540d14</anchor>
+      <anchor>a4ad4462749a7b1909647a44ee907ea20</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>stressTag</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>aaa6e5f32e38224440600e5a50ec1c96c</anchor>
+      <anchor>a3cb0c0e557dbd3858145d445704de71e</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>tangentModuliTag</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>afc0b8981285b0555764d70014257969d</anchor>
+      <anchor>a5d52d0f1f3da9bf6671dbf0321a3221f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>energyAcceptsVoigt</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a723cba604804f7fe7f6e852e0971be4e</anchor>
+      <anchor>a0e2508175ba048816d130cf18ea7a84c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressToVoigt</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>ae3d3653ad862db0061147c7401f81d32</anchor>
+      <anchor>a13a2a4712cd8e194ae1a25fc29f882be</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressAcceptsVoigt</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a6c65f46890da2fce7ca7323ece4dc590</anchor>
+      <anchor>a097e204b391f2b4034d91067629a11f9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliToVoigt</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a148f2dc939582fa560794495215b44cd</anchor>
+      <anchor>a6172b64547cf8424b7ad62166b4dbb4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliAcceptsVoigt</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>a72f1eb26c76f538b4e351bfbacb2e144</anchor>
+      <anchor>adc4e8cfdb108c23170b6bf184d54d2dd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr double</type>
       <name>derivativeFactor</name>
       <anchorfile>a01314.html</anchorfile>
-      <anchor>ae2f5508a95d1557a561ffdab41bdcc85</anchor>
+      <anchor>a7a7a3816adf059f0319b97aa8ceb8c7a</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isReduced</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a9c276dd6faf7062d02dde5c01644fd10</anchor>
+      <anchor>a6e16de35bf2d955d777a8441e939a20b</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::LinearSolverTemplate</name>
     <filename>a01402.html</filename>
-    <templarg>typename ScalarType</templarg>
+    <templarg>typename ST</templarg>
+    <member kind="typedef">
+      <type>ST</type>
+      <name>ScalarType</name>
+      <anchorfile>a01402.html</anchorfile>
+      <anchor>ab222fb68571b860471b41e2c707d5637</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>Eigen::SparseMatrix&lt; ScalarType &gt;</type>
       <name>SparseMatrixType</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a374226b59baa30615d574bdd7ec230c8</anchor>
+      <anchor>ab653f5550c90008600c77abe785963a0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::MatrixX&lt; ScalarType &gt;</type>
       <name>DenseMatrixType</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a878cccde0e595d7b0f7d6a2188aeeb31</anchor>
+      <anchor>a9f52825b9226c080976fa759fc0f5a1b</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LinearSolverTemplate</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a477e8cefcd049db15451e765fcef4d76</anchor>
-      <arglist>(const SolverTypeTag &amp;p_solverTypeTag)</arglist>
+      <anchor>a2d2c1ea4b5bdb1642442e94c64e03aef</anchor>
+      <arglist>(const SolverTypeTag &amp;solverTypeTag)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>~LinearSolverTemplate</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>af2696f3af9722c49e0a828f2e31d8622</anchor>
+      <anchor>a683577ea4ceced6e7e74a6a37180c279</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type>LinearSolverTemplate &amp;</type>
       <name>operator=</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>ac7a43c5219405e5a5e5295f18525c54e</anchor>
+      <anchor>ab08cf628010af09d0de6155ac8da25a6</anchor>
       <arglist>(const LinearSolverTemplate &amp;other)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LinearSolverTemplate</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a8510a3ec009ad9680ad7dcc72f357cc9</anchor>
+      <anchor>a5e6a040954d7452eed8cb74d08b7e1d5</anchor>
       <arglist>(const LinearSolverTemplate &amp;other)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LinearSolverTemplate</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>ad37d02209b2f59e00cd19cc38ec29a70</anchor>
+      <anchor>a77210b698dab50ebe8a001b5c086ebce</anchor>
       <arglist>(LinearSolverTemplate &amp;&amp;other) noexcept=default</arglist>
     </member>
     <member kind="function">
       <type>LinearSolverTemplate &amp;</type>
       <name>operator=</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a2aafcf7d9b1f801b236097ca067c9b80</anchor>
+      <anchor>a38ea395ad12b0d6056a8f5845d483276</anchor>
       <arglist>(LinearSolverTemplate &amp;&amp;other) noexcept=default</arglist>
     </member>
     <member kind="function">
       <type>LinearSolverTemplate &amp;</type>
       <name>compute</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a347fcf892a32d3f382cebe8a09fcb86f</anchor>
+      <anchor>a1c92808f8c8139bb32f50740f0bcb783</anchor>
       <arglist>(const MatrixType &amp;A)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>analyzePattern</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a33237d5e237bf2272d2c58c648eda5a1</anchor>
+      <anchor>a771b39a199d35745e0a1cbdec03db762</anchor>
       <arglist>(const MatrixType &amp;A)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>factorize</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>ad9515d35c770a9d2a087a20593af5d85</anchor>
+      <anchor>ad19ae7c98843dd8ecad6586003ed3b5d</anchor>
       <arglist>(const MatrixType &amp;A)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>solve</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a4ddf79d3353ecc1c7e7a25c7e249cb78</anchor>
+      <anchor>aee8cb48155fb74e976d6ccdef6313dac</anchor>
       <arglist>(Eigen::VectorX&lt; ScalarType &gt; &amp;x, const Eigen::VectorX&lt; ScalarType &gt; &amp;b)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>solve</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>af33f3862045be96e92dd09a954260857</anchor>
+      <anchor>a6313a4e4112c84af47156be3463acabc</anchor>
       <arglist>(Eigen::MatrixX3&lt; ScalarType &gt; &amp;x, const Eigen::MatrixX3&lt; ScalarType &gt; &amp;b)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>solve</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a77afedeea7ca3cc8ee541aade55e859b</anchor>
+      <anchor>aef63652936885765e62b9cca984e347a</anchor>
       <arglist>(Eigen::MatrixX2&lt; ScalarType &gt; &amp;x, const Eigen::MatrixX2&lt; ScalarType &gt; &amp;b)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>solve</name>
       <anchorfile>a01402.html</anchorfile>
-      <anchor>a0db3eb266a56bb16e2f4fbd22a66b14d</anchor>
+      <anchor>a6cd3b6346a6299ca7e4c77324e271c63</anchor>
       <arglist>(Eigen::MatrixX&lt; ScalarType &gt; &amp;x, const Eigen::MatrixX&lt; ScalarType &gt; &amp;b)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::LoadControl</name>
     <filename>a01198.html</filename>
-    <templarg>typename NonLinearSolver</templarg>
+    <templarg>typename NLS</templarg>
     <base>IObservable&lt; ControlMessages &gt;</base>
     <member kind="function">
       <type>constexpr auto</type>
       <name>name</name>
       <anchorfile>a01198.html</anchorfile>
-      <anchor>a5be00442ee05d28d9e22de5ace368ed8</anchor>
+      <anchor>ab0c5144a3b5d67f3c582772a48271105</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>LoadControl</name>
       <anchorfile>a01198.html</anchorfile>
-      <anchor>a561dc43b8cf1bc3bad02af6d04ce5380</anchor>
-      <arglist>(const std::shared_ptr&lt; NonLinearSolver &gt; &amp;nonLinearSolver_, int loadSteps, const std::array&lt; double, 2 &gt; &amp;tbeginEnd)</arglist>
+      <anchor>a073af96d9cd179a918cf18656be19947</anchor>
+      <arglist>(const std::shared_ptr&lt; NLS &gt; &amp;nonLinearSolver, int loadSteps, const std::array&lt; double, 2 &gt; &amp;tbeginEnd)</arglist>
     </member>
     <member kind="function">
       <type>ControlInformation</type>
       <name>run</name>
       <anchorfile>a01198.html</anchorfile>
-      <anchor>ac4a34370d6533e681070f5a88cb43e0f</anchor>
+      <anchor>aea1be825e746e898092e83a41efaedac</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -5970,14 +5988,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -6029,6 +6047,55 @@
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(ControlMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::LoadControlSubsidiaryFunction</name>
@@ -6044,15 +6111,15 @@
       <type>void</type>
       <name>initialPrediction</name>
       <anchorfile>a01214.html</anchorfile>
-      <anchor>a3c180ee35066bbb51af604b2d6482a0c</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>a4670840cb26672b50f79dfc70ba47973</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>intermediatePrediction</name>
       <anchorfile>a01214.html</anchorfile>
-      <anchor>a5e378c06d11bfe70acb5b9b3ac40f9f0</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>abd2369cff03a98552df1f8c8a4184e90</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
     <member kind="function">
       <type>constexpr auto</type>
@@ -6069,334 +6136,327 @@
   <compound kind="struct">
     <name>Ikarus::Material</name>
     <filename>a01310.html</filename>
-    <templarg>class MaterialImpl</templarg>
+    <templarg>class MI</templarg>
     <member kind="typedef">
-      <type>MaterialImpl</type>
-      <name>MaterialImplType</name>
+      <type>MI</type>
+      <name>MaterialImpl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>aa30c942d1fd3c011dab0e23e1df0ef63</anchor>
+      <anchor>a45254a604fc6a7913aa384cc60fa1422</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr const MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a001e7e5968c6dfce64ac6932e2a0517a</anchor>
+      <anchor>a1f36564023973d1684bf337b4584f8d6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>constexpr MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a61cc58c93007911d68bf6a8b6bbc2bd5</anchor>
+      <anchor>ad3e663912e4700acb1444ce254a2599c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>ada3530e97519400e78b32ec1989343f9</anchor>
+      <anchor>aaa3ba3c13eef01692e03621abc8f35b5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>storedEnergy</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a297b4cab80330a8c473dbc06552c8808</anchor>
+      <anchor>ab2015ecf069d4d5022852d7cfc62c689</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stresses</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>af10f8631c73d1c4cb78f8b6d44bf6f1a</anchor>
+      <anchor>ae47b0b923d01f3f2abcf5d3fd5ff04bc</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuli</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a00e7bb30244df751617e1e613d382ea0</anchor>
+      <anchor>a2d9d9509fa8bbdc909868c8fd0dfe5fd</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>rebind</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>afae928f196f5ad1aeaffd2aaf0fcca45</anchor>
+      <anchor>a2ebc8765eb320eaab532589999fa002a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isReduced</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a9c276dd6faf7062d02dde5c01644fd10</anchor>
+      <anchor>a6e16de35bf2d955d777a8441e939a20b</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::NeoHookeT</name>
     <filename>a01318.html</filename>
-    <templarg>typename ScalarType_</templarg>
-    <base>Material&lt; NeoHookeT&lt; ScalarType_ &gt; &gt;</base>
+    <templarg>typename ST</templarg>
+    <base>Material&lt; NeoHookeT&lt; ST &gt; &gt;</base>
     <member kind="typedef">
-      <type>ScalarType_</type>
+      <type>ST</type>
       <name>ScalarType</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a2c6a3eab38f9a88b18a869d9e66eda53</anchor>
+      <anchor>aee2a2c4f04a3c4bc88990465054d087d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; ScalarType, worldDimension, worldDimension &gt;</type>
       <name>StrainMatrix</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a273e05e32f6a9728440ad3da6669ec7a</anchor>
+      <anchor>a2a64dda19c783d3bd170bca4e7196cf3</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>StrainMatrix</type>
       <name>StressMatrix</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>ac8ebe95bef84eb82bf38ed45261f2173</anchor>
+      <anchor>a3df55ad5f8f91fb1d5fb5c2a56747993</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>NeoHookeT&lt; ScalarType_ &gt;</type>
-      <name>MaterialImplType</name>
+      <type>NeoHookeT&lt; ST &gt;</type>
+      <name>MaterialImpl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>aa30c942d1fd3c011dab0e23e1df0ef63</anchor>
+      <anchor>a45254a604fc6a7913aa384cc60fa1422</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>nameImpl</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a437008f3343a4f701fdd4c5e425313ce</anchor>
+      <anchor>a69e7385223dcb0a67228828c67352b46</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>NeoHookeT</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a10eb1792f7a78e2f52c625a01301f5ef</anchor>
+      <anchor>af73a099f4a2f144e1bef5412315bce18</anchor>
       <arglist>(const LamesFirstParameterAndShearModulus &amp;mpt)</arglist>
     </member>
     <member kind="function">
       <type>ScalarType</type>
       <name>storedEnergyImpl</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a49da0bb7428a0cf780cdcad97ec97b74</anchor>
+      <anchor>ae92330c1397f932d837d8525e3362ee2</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;C) const noexcept</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stressesImpl</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a2cfcf4034eb9e07c06829785ea92c3f4</anchor>
+      <anchor>af706e2f81dce3a9e7f7c4c3082862405</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;C) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuliImpl</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>aec2dfac0aca87f7998a0f0c2b3b63133</anchor>
+      <anchor>a4a0fcea9a714d1a6d4cb3aa691f5596d</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;C) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>rebind</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a5d32fe6c728cb508b20bc11099baf6a1</anchor>
+      <anchor>aa931aacb98a90c88f54e4569f999b49f</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr const NeoHookeT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr const MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a001e7e5968c6dfce64ac6932e2a0517a</anchor>
+      <anchor>a1f36564023973d1684bf337b4584f8d6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr NeoHookeT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a61cc58c93007911d68bf6a8b6bbc2bd5</anchor>
+      <anchor>ad3e663912e4700acb1444ce254a2599c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>ada3530e97519400e78b32ec1989343f9</anchor>
+      <anchor>aaa3ba3c13eef01692e03621abc8f35b5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>storedEnergy</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a297b4cab80330a8c473dbc06552c8808</anchor>
+      <anchor>ab2015ecf069d4d5022852d7cfc62c689</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stresses</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>af10f8631c73d1c4cb78f8b6d44bf6f1a</anchor>
+      <anchor>ae47b0b923d01f3f2abcf5d3fd5ff04bc</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuli</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a00e7bb30244df751617e1e613d382ea0</anchor>
+      <anchor>a2d9d9509fa8bbdc909868c8fd0dfe5fd</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>LamesFirstParameterAndShearModulus</type>
-      <name>lambdaAndmu</name>
-      <anchorfile>a01318.html</anchorfile>
-      <anchor>a65f7f8af8bb74bba74ea19836eceab25</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDimension</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a5eebe95a0e13399abd7f26020f0c0f3a</anchor>
+      <anchor>a8116da78327989dc5a3aa32b66de7986</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>strainTag</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a505b0b0ada1c096262412fda6a823cef</anchor>
+      <anchor>a6325f048f3fdb7fbb61309ba2a7a8c9b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>stressTag</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>aa0b04d47fd84e036f8487cf9641abb41</anchor>
+      <anchor>a8b5a258ce78ec354b9b99bf80e782f61</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>tangentModuliTag</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>ab6adef71801c1e3d9cff0fc522950c1f</anchor>
+      <anchor>a6743dac8b98436e471458ff12e4d571c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>energyAcceptsVoigt</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a39c43bb592cf54c9a2fd3b60c741a252</anchor>
+      <anchor>a08b15decdb252e9cd3ced0342f6afce8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressToVoigt</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a37a9776bddff633282912937c1e737a3</anchor>
+      <anchor>a752d3c75e5a701897a4102e63259259c</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressAcceptsVoigt</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>ada1f302b0b332d6cff1ddfa62ac72871</anchor>
+      <anchor>ae730e168cf90c7b103bf3b0911bf7a9f</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliToVoigt</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>ad72e02a26d4a3b6d8d29f6341a15952a</anchor>
+      <anchor>af24fa23bbc051cbd5d9415a0682d58af</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliAcceptsVoigt</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a0f1786af1344f46596f6e58babd87543</anchor>
+      <anchor>aa4d29e6ae2d0df4c9baa76938dbd51ab</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr double</type>
       <name>derivativeFactor</name>
       <anchorfile>a01318.html</anchorfile>
-      <anchor>a38a89c3043d1eaa77d3a743b89a99480</anchor>
+      <anchor>a1424cca1c4a2a173a2e4e459d02da159</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isReduced</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a9c276dd6faf7062d02dde5c01644fd10</anchor>
+      <anchor>a6e16de35bf2d955d777a8441e939a20b</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::NewtonRaphson</name>
     <filename>a01418.html</filename>
-    <templarg>typename NonLinearOperatorImpl</templarg>
-    <templarg>typename LinearSolver</templarg>
-    <templarg>typename UpdateFunctionTypeImpl</templarg>
+    <templarg>typename NLO</templarg>
+    <templarg>typename LS</templarg>
+    <templarg>typename UF</templarg>
     <base>IObservable&lt; NonLinearSolverMessages &gt;</base>
     <member kind="typedef">
-      <type>typename NonLinearOperatorImpl::template ParameterValue&lt; 0 &gt;</type>
+      <type>typename NLO::template ParameterValue&lt; 0 &gt;</type>
       <name>ValueType</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a007d87454967ec574d6058c48d9927d4</anchor>
+      <anchor>aeecb2abbbd2c547db013f45e673b7291</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>UpdateFunctionTypeImpl</type>
-      <name>UpdateFunctionType</name>
+      <type>UF</type>
+      <name>UpdateFunction</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>ad2379dc80d46888aa9280a132b4de5b9</anchor>
+      <anchor>a3c66f49cc8972a9e93322724be43d6c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>NonLinearOperatorImpl</type>
+      <type>NLO</type>
       <name>NonLinearOperator</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a495f35d7f20899be453381082b3b6c10</anchor>
+      <anchor>a41064bd40996c2c0a2e5d79dc72543ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>NewtonRaphson</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>ae51b0f687ceaf2051b4ddebb7ea39411</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionTypeImpl p_updateFunction={})</arglist>
+      <anchor>a385c8e64b095f4136872d7e5a3c0d5eb</anchor>
+      <arglist>(const NonLinearOperator &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UpdateFunction updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setup</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a146aaddd7122c3f73bc6b87890d18f63</anchor>
-      <arglist>(const NewtonRaphsonSettings &amp;p_settings)</arglist>
+      <anchor>adba93357667c2e8f36fca7c4c99d3f41</anchor>
+      <arglist>(const NewtonRaphsonSettings &amp;settings)</arglist>
     </member>
     <member kind="function">
       <type>Ikarus::NonLinearSolverInformation</type>
       <name>solve</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a54db75ca795ea338eea8af84ab52a71c</anchor>
-      <arglist>(const SolutionType &amp;dx_predictor=NoPredictor{})</arglist>
+      <anchor>a1670320a70ab0d6bd33e320811591bbe</anchor>
+      <arglist>(const SolutionType &amp;dxPredictor=NoPredictor{})</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>nonLinearOperator</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a17be0037f6b48da2eef9f256b0aed795</anchor>
+      <anchor>ab5a5c4aafcce50ee9c1050b42d2c6c89</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -6417,14 +6477,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -6476,11 +6536,60 @@
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isLinearSolver</name>
       <anchorfile>a01418.html</anchorfile>
-      <anchor>a9aa900c629f705627481374206a52be1</anchor>
+      <anchor>ad3561144041515b7c3fd8cf5d8f10a94</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6505,64 +6614,64 @@
   <compound kind="class">
     <name>Ikarus::NewtonRaphsonWithSubsidiaryFunction</name>
     <filename>a01426.html</filename>
-    <templarg>typename NonLinearOperatorImpl</templarg>
-    <templarg>typename LinearSolver</templarg>
-    <templarg>typename UpdateFunctionTypeImpl</templarg>
+    <templarg>typename NLO</templarg>
+    <templarg>typename LS</templarg>
+    <templarg>typename UF</templarg>
     <base>IObservable&lt; NonLinearSolverMessages &gt;</base>
     <member kind="typedef">
-      <type>typename NonLinearOperatorImpl::template ParameterValue&lt; 0 &gt;</type>
+      <type>typename NLO::template ParameterValue&lt; 0 &gt;</type>
       <name>ValueType</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>a28457466df96034316437e231e9831df</anchor>
+      <anchor>a2bfe4785b1216911ef967fea45a4b9e8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>UpdateFunctionTypeImpl</type>
+      <type>UF</type>
       <name>UpdateFunctionType</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>a6f1cbb0e111b1621da367961fe6eb134</anchor>
+      <anchor>a129397c33f072adf0a119868280ae165</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>NonLinearOperatorImpl</type>
+      <type>NLO</type>
       <name>NonLinearOperator</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>aa548756cad74bde3286938474f13023f</anchor>
+      <anchor>aef79b0fa82503669e86d848d842cf5d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>NewtonRaphsonWithSubsidiaryFunction</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>a41f8e2bf25a62bb349cdaf8c8e4090da</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType p_updateFunction={})</arglist>
+      <anchor>a82102504f9b0a43523019304badf74f9</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UpdateFunctionType updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setup</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>acadfca6b95ce86efde93b8dd3d12306a</anchor>
-      <arglist>(const NewtonRaphsonWithSubsidiaryFunctionSettings &amp;p_settings)</arglist>
+      <anchor>a608cbd1e584a4bdfe68b14c9609ee30f</anchor>
+      <arglist>(const NewtonRaphsonWithSubsidiaryFunctionSettings &amp;settings)</arglist>
     </member>
     <member kind="function">
       <type>NonLinearSolverInformation</type>
       <name>solve</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>a8268fba35d7489060c9ee2974d079877</anchor>
-      <arglist>(SubsidiaryType &amp;subsidiaryFunction, SubsidiaryArgs &amp;subsidiaryArgs, const SolutionType &amp;dx_predictor=NoPredictor{})</arglist>
+      <anchor>a27ce0e601431f3e24998e621be769ed9</anchor>
+      <arglist>(SubsidiaryType &amp;subsidiaryFunction, SubsidiaryArgs &amp;subsidiaryArgs, const SolutionType &amp;dxPredictor=NoPredictor{})</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>nonLinearOperator</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>a11cdacd88c7d199ecc8be67d0d21c298</anchor>
+      <anchor>ad1e2d29e41b8596d709effc804bc8718</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -6583,14 +6692,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -6642,11 +6751,60 @@
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isLinearSolver</name>
       <anchorfile>a01426.html</anchorfile>
-      <anchor>ad8df3b2ee18a76d69b531c7b6402970d</anchor>
+      <anchor>a371ae6b37b18c88c4e2c0f14e52eada5</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -6671,383 +6829,376 @@
   <compound kind="class">
     <name>Ikarus::NonLinearElastic</name>
     <filename>a01338.html</filename>
-    <templarg>typename Basis_</templarg>
-    <templarg>typename Material_</templarg>
-    <templarg>typename FERequirements_</templarg>
+    <templarg>typename B</templarg>
+    <templarg>typename MAT</templarg>
+    <templarg>typename FER</templarg>
     <templarg>bool useEigenRef</templarg>
-    <base>PowerBasisFE&lt; Basis_ &gt;</base>
-    <base>Volume&lt; NonLinearElastic&lt; Basis_, Material_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
-    <base>Traction&lt; NonLinearElastic&lt; Basis_, Material_, FERequirements&lt;&gt;, false &gt;, FETraits&lt; Basis_, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Ikarus::PowerBasisFE</base>
+    <base>Volume&lt; NonLinearElastic&lt; B, MAT, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
+    <base>Traction&lt; NonLinearElastic&lt; B, MAT, FERequirements&lt;&gt;, false &gt;, FETraits&lt; B, FERequirements&lt;&gt;, false &gt; &gt;</base>
     <member kind="typedef">
-      <type>FETraits&lt; Basis_, FERequirements_, useEigenRef &gt;</type>
+      <type>FETraits&lt; B, FER, useEigenRef &gt;</type>
       <name>Traits</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a470c63e09f0085be08a18eca7c31edc5</anchor>
+      <anchor>aef9577cd5e260ba7b82835c935011035</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Basis</type>
       <name>Basis</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ae61be1f5b6bdd9443c5ac05e1c526e2f</anchor>
+      <anchor>aa4ecab060cee08abbdcaf3d46b59118e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FlatBasis</type>
       <name>FlatBasis</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>afc4ec54126ffcf064c026548b8def36f</anchor>
+      <anchor>a905bbe5c87f735b15507abf10863f073</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a845acdbdee4d31a14517c29a6e41a633</anchor>
+      <anchor>a358fe3461a6465be28ecc1198de63977</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a734b832d2e3da29878954ac6e195b777</anchor>
+      <anchor>a73ba889d8eaf486509091f2ffe750251</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Geometry</type>
       <name>Geometry</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>adfc5aadc33a3225e2493c91d106d951d</anchor>
+      <anchor>a63ad9abc7bde88106164d037417c81a8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GridView</type>
       <name>GridView</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>adf29dfa503f9123880503d874f80e670</anchor>
+      <anchor>adefb3d87eb7e39a969ab03c8f87f106c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>Element</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a6b5b825027cf741ba76c9683701373d5</anchor>
+      <anchor>ab33cfebc8e589f24ba787d4076ee676c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>PowerBasisFE&lt; Basis &gt;</type>
       <name>BasePowerFE</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>aa7182016ca36060d769175bb4a612026</anchor>
+      <anchor>ab94f58302426e57029c701ad6cafe1fd</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Material_</type>
+      <type>MAT</type>
       <name>Material</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ac44404a0f9d5ee9c786775dc0b8ef760</anchor>
+      <anchor>aa5d9c80e5f15dd6b52e7ec188754a49d</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Volume&lt; NonLinearElastic&lt; Basis_, Material_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Volume&lt; NonLinearElastic, Traits &gt;</type>
       <name>VolumeType</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a6d5e4e1db7af32672a4345589e00ebe8</anchor>
+      <anchor>ab4b65e44b3958ac078faa4b4277b46a6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Traction&lt; NonLinearElastic&lt; Basis_, Material_, FERequirements_, useEigenRef &gt;, Traits &gt;</type>
+      <type>Traction&lt; NonLinearElastic, Traits &gt;</type>
       <name>TractionType</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a030408ba33d6f027a9057e8d3a829159</anchor>
+      <anchor>ab204fac361bde0cb5a9e92049020ff4a</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(std::declval&lt; LocalView &gt;().tree().child(0).finiteElement().localBasis())</type>
       <name>LocalBasisType</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ac980630bbf94190d87100b44b7a53837</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>typename Traits::FlatBasis</type>
-      <name>RootBasis</name>
-      <anchorfile>a01226.html</anchorfile>
-      <anchor>a9199b27c710f3cf1bb3379381e1d3ac8</anchor>
+      <anchor>ab1cdc08129172e8ddf449935e8c2cb0c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a8d6c61ef84c53a1468462f803cdba0a5</anchor>
+      <anchor>acbfd17b79bb5882e5c7e74f922bae703</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>GridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a983249c2d5963504ba570dd6da67f67c</anchor>
+      <anchor>a5574b829dfa9bad6a600c7d203b73442</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>NonLinearElastic</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>afcba98cc2fcdf140b11fd652dcc7d361</anchor>
-      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, const Material &amp;p_mat, VolumeLoad p_volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *p_neumannBoundary=nullptr, NeumannBoundaryLoad p_neumannBoundaryLoad={})</arglist>
+      <anchor>a3e1489b79d76782bafad0fce664240cc</anchor>
+      <arglist>(const Basis &amp;globalBasis, const typename LocalView::Element &amp;element, const Material &amp;mat, VolumeLoad volumeLoad={}, const BoundaryPatch&lt; GridView &gt; *neumannBoundary=nullptr, NeumannBoundaryLoad neumannBoundaryLoad={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>displacementFunction</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a89b811cd039a701d8a1d2c5b8796c50f</anchor>
+      <anchor>a550c57ffc66443501bd41f9e4906043e</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>strainFunction</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ae258d2211b130b7b6f167aa86ac1fab7</anchor>
+      <anchor>a457ebdb2c3001fc71c97cab13944dabe</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>materialTangent</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ae091d629e7aa235d88e381368a75f5bc</anchor>
+      <anchor>a602e4b2335e0755256c5cd1a760a6acf</anchor>
       <arglist>(const Eigen::Vector&lt; ScalarType, strainDim &gt; &amp;strain) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>getInternalEnergy</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a5e139eb8977fd8a47656dc680ac15214</anchor>
+      <anchor>a207c0ede2cd6369a080dce3e11508639</anchor>
       <arglist>(const Eigen::Vector&lt; ScalarType, strainDim &gt; &amp;strain) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>getStress</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ad86ce202de620c405536c11514a0f6db</anchor>
+      <anchor>ae2168f667ccfe2fc55912d9de21eea7f</anchor>
       <arglist>(const Eigen::Vector&lt; ScalarType, strainDim &gt; &amp;strain) const</arglist>
     </member>
     <member kind="function">
       <type>const Geometry &amp;</type>
       <name>geometry</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a19b3729a38801ee4b804c5a90c95c763</anchor>
+      <anchor>a7c3af22b65bf22a848675146a5b6115a</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>numberOfNodes</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>aca8d346ffc5392056481de5c925e4866</anchor>
+      <anchor>a7fc7f112eeef243f61f64b4e9e56f0c1</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>order</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a3cf664c8926af751cbc5c55c42a860bc</anchor>
+      <anchor>a598c1149ba7086691cda99ba138e6a35</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a744057f5543df5a612211f6fb1acbd7c</anchor>
+      <anchor>a47190fc0911c6c9327a4609e8ea75d20</anchor>
       <arglist>(const FERequirementType &amp;par) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>affd164f3f82e4856e5fea2cf9479324c</anchor>
+      <anchor>a7821bf0a2aef2c493083f07191b67769</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a4cdd78cc86c784202967911c9953e667</anchor>
+      <anchor>a04e2110e0ff9db322567ace0ad778a2d</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calculateAt</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a7eb013e741bad3ae7105ef86c1f3d117</anchor>
+      <anchor>a765f9740fe927b34ab4d0add274be811</anchor>
       <arglist>(const FERequirementType &amp;req, const Dune::FieldVector&lt; double, Traits::mydim &gt; &amp;local) const</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
       <name>size</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a65fbcfb67bd20fd4a434230b5efa5bd1</anchor>
+      <anchor>a0f2828bc60acbfe60cecbb3eca99ef13</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>globalFlatIndices</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>ac47a208cf2511bf8676282280360ab38</anchor>
+      <anchor>ae25d85da7c545b079c74d878eb71ce1b</anchor>
       <arglist>(std::vector&lt; GlobalIndex &gt; &amp;globalIndices) const</arglist>
     </member>
     <member kind="function">
       <type>const GridElement &amp;</type>
       <name>gridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a0fe5d4e10f331905629351786c72ce6a</anchor>
+      <anchor>a426b90558224e8fc9165dd6e2784d42e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a4b49c02de08fb5c115affa646c5f249a</anchor>
+      <anchor>a04e6a87845af2aa6630237bc0fec5462</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a00a045439d18c431ef49d7349230272b</anchor>
+      <anchor>aaa63813d6f71f54faca3c5d87b4db3e2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a33edddd4d3ef260d45b1c029efd9046d</anchor>
+      <anchor>a57dda3eb802306012e41237636de1ec4</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ad2cf691094d779dd4681c79a1d768aae</anchor>
+      <anchor>a60ccd349727ba418dbfb1a3012a1d856</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ab34ccd72bb7397283f7c2dcbf595841e</anchor>
+      <anchor>a50c6859b6c9a40fbb8ac9cc77d8087db</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ac9ed9f5497683a52effe2c572056c6e0</anchor>
+      <anchor>a96c3bc299da08a776e46b488aed3ded7</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a7c9d37bb3d426f00c1451d5a5222b748</anchor>
+      <anchor>af90d4b6149bb2241644c92855759e6f5</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ad5b9f64124013ab2e98b6494e9b511b3</anchor>
+      <anchor>aa4336b55618b836ca7b2b3aebf4242bf</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>myDim</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a089f6bc160374739a5111aa99e2f4b95</anchor>
+      <anchor>af305e0684d5588ddfc89efc0edc37fa9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>strainType</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>a2b89a8d5f5b634b295327b9cdbf8579d</anchor>
+      <anchor>ac4bf74a35f096cc4fa3268dd9f73c280</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>num_children</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a08d63c99f722a352ee1ebe29bcb88bcd</anchor>
+      <anchor>a3a162d15d209caf4db3d68917ed6fa69</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>aa57591d28c62806bfac624043d2e0258</anchor>
+      <anchor>a073fb2d3afae0bd3e0afe1c2534f9afd</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a1eee242b581174d0fd8e7587130234be</anchor>
+      <anchor>a1d2ad110e77cf497bc88ac1a8735fc97</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>aa5bba94f05661386e4e62d6c74889490</anchor>
+      <anchor>a29221e7dd472e3f821d850817814ca86</anchor>
       <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01338.html</anchorfile>
-      <anchor>ab3328f45d8603589239dcea4c86a745b</anchor>
+      <anchor>a0f93cbb54ccb1a8a2ee75fe62c2d57fc</anchor>
       <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a38b6d9f88ad5734093413497e3ac7b29</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a7ec1326b708d8c08fee05ca7b601f997</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>af2fc872a641d42398fc9d8bd60aa973c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a9b91a057a51ab4487656d8bd94fdd234</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a6903f5e92a06b8066ef67b6a1f22e142</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>aaed2462e36f9d119ff5c60867ebcaf62</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a3b3de553171d016228f21cbac1e7f47d</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a2576d38cb79bb0b5bf59f433fa7c1633</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a0cac2c7cc2a06ae38bc83f97664e4d8c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; dx=std::nullopt) const</arglist>
+      <anchor>aabcfd5d855e2230fe90abb12a1ba8d2b</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>aae1b4a04dd13b2ec2145ef141bf3190c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a38ba7822f8f38691c80a0b607e488d03</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="class">
@@ -7106,6 +7257,13 @@
     <name>Ikarus::NonLinearSolverLogger</name>
     <filename>a01562.html</filename>
     <base>IObserver&lt; NonLinearSolverMessages &gt;</base>
+    <member kind="typedef">
+      <type>NonLinearSolverMessages</type>
+      <name>MessageType</name>
+      <anchorfile>a01566.html</anchorfile>
+      <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
@@ -7131,78 +7289,78 @@
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a8c171635a257ce7fe905a58337717efe</anchor>
-      <arglist>(NonLinearSolverMessages message)</arglist>
+      <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
+      <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a0f235d3f9f49582c0902dfcd5217f4a1</anchor>
-      <arglist>(NonLinearSolverMessages message, double val)</arglist>
+      <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
+      <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a97bf3fd861a8eac696a97ec56d953b47</anchor>
-      <arglist>(NonLinearSolverMessages message, int val)</arglist>
+      <anchor>a9ec023872625942d0b64244709966464</anchor>
+      <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a05a6a76b6875406ae8ff5e05f2662d57</anchor>
-      <arglist>(NonLinearSolverMessages message, const std::string &amp;val)</arglist>
+      <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ab87bc0dab48de914d7f5221fb9c3477b</anchor>
-      <arglist>(NonLinearSolverMessages message, int val1, double val2)</arglist>
+      <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a5d2fb507095933199fab726c17e01bcf</anchor>
-      <arglist>(NonLinearSolverMessages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a04b8667b08713503e82ede950a337950</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a20e3859480f6cab562f33ce9da888380</anchor>
-      <arglist>(NonLinearSolverMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>ae97b76e37ab99f985a0ef71f4a9efd37</anchor>
-      <arglist>(NonLinearSolverMessages message, const std::string &amp;val)</arglist>
+      <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
+      <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>af53b8b154a887fce37fee355b0244c21</anchor>
-      <arglist>(NonLinearSolverMessages message, int val1, const std::string &amp;val2)</arglist>
+      <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
+      <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4d0a13cbe1104d10c4ec5e928f64ab4b</anchor>
-      <arglist>(NonLinearSolverMessages message, int val1, double val2)</arglist>
+      <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
+      <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
       <anchorfile>a01566.html</anchorfile>
-      <anchor>a4b7267849be75994c85c8ebe7af10465</anchor>
-      <arglist>(NonLinearSolverMessages message, const Eigen::VectorXd &amp;vec)</arglist>
+      <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
+      <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -7212,8 +7370,8 @@
       <type>void</type>
       <name>operator()</name>
       <anchorfile>a01186.html</anchorfile>
-      <anchor>ada90a32692ed0e5c05867ca427e38d18</anchor>
-      <arglist>(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NonLinearOperator &amp;nonLinearOperator)</arglist>
+      <anchor>a7e3bcfe2fdfa61730adaccde62fad844</anchor>
+      <arglist>(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NLO &amp;nonLinearOperator)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
@@ -7233,36 +7391,36 @@
   <compound kind="class">
     <name>Ikarus::PathFollowing</name>
     <filename>a01202.html</filename>
-    <templarg>typename NonLinearSolver</templarg>
-    <templarg>typename PathFollowingType</templarg>
-    <templarg>typename AdaptiveStepSizing</templarg>
+    <templarg>typename NLS</templarg>
+    <templarg>typename PF</templarg>
+    <templarg>typename ASS</templarg>
     <base>IObservable&lt; ControlMessages &gt;</base>
     <member kind="function">
       <type>constexpr auto</type>
       <name>name</name>
       <anchorfile>a01202.html</anchorfile>
-      <anchor>ab9eed4b69c451cedf8ae4d0845a0f478</anchor>
+      <anchor>a31b9c556cef2540c66676589b230ef5d</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>PathFollowing</name>
       <anchorfile>a01202.html</anchorfile>
-      <anchor>adc5522a16e0e190efacb4923a36de67e</anchor>
-      <arglist>(const std::shared_ptr&lt; NonLinearSolver &gt; &amp;p_nonLinearSolver, int steps, double stepSize, PathFollowingType p_pathFollowingType=ArcLength{}, AdaptiveStepSizing p_adaptiveStepSizing={})</arglist>
+      <anchor>afa8baf4eca6f6dd442165592c7fe3871</anchor>
+      <arglist>(const std::shared_ptr&lt; NLS &gt; &amp;nonLinearSolver, int steps, double stepSize, PF pathFollowingType=ArcLength{}, ASS adaptiveStepSizing={})</arglist>
     </member>
     <member kind="function">
       <type>ControlInformation</type>
       <name>run</name>
       <anchorfile>a01202.html</anchorfile>
-      <anchor>a83b8a3aa34deb10db3e3f774bdc973df</anchor>
+      <anchor>a9fa5e99c1a3e23b526939be2c6ee87bf</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -7283,14 +7441,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -7342,93 +7500,142 @@
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(ControlMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::PowerBasisFE</name>
     <filename>a01226.html</filename>
-    <templarg>typename Basis</templarg>
+    <templarg>typename B</templarg>
     <member kind="typedef">
-      <type>FETraits&lt; Basis &gt;</type>
+      <type>FETraits&lt; B &gt;</type>
       <name>Traits</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a973d9b3c2b654a7363b3055bc51ac9bc</anchor>
+      <anchor>a5ee5556c492d3350b2628c3945e625c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FlatBasis</type>
-      <name>RootBasis</name>
+      <name>FlatBasis</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a9199b27c710f3cf1bb3379381e1d3ac8</anchor>
+      <anchor>a13d8d7846ebe60b586e69790598bde22</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>ae2267e6126300a8e6afac2b3cdf15a87</anchor>
+      <anchor>aef04f88f70cb50c75515ee00412d5675</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a8d6c61ef84c53a1468462f803cdba0a5</anchor>
+      <anchor>acbfd17b79bb5882e5c7e74f922bae703</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>GridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a983249c2d5963504ba570dd6da67f67c</anchor>
+      <anchor>a5574b829dfa9bad6a600c7d203b73442</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>PowerBasisFE</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a009345be8aeaf011f22f4c32c7d6f638</anchor>
-      <arglist>(const Basis &amp;p_basis, const typename LocalView::Element &amp;element)</arglist>
+      <anchor>afd5535b2b8008b8bfcabb7421238fdea</anchor>
+      <arglist>(const B &amp;p_basis, const typename LocalView::Element &amp;element)</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
       <name>size</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a65fbcfb67bd20fd4a434230b5efa5bd1</anchor>
+      <anchor>a0f2828bc60acbfe60cecbb3eca99ef13</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>globalFlatIndices</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>ac47a208cf2511bf8676282280360ab38</anchor>
+      <anchor>ae25d85da7c545b079c74d878eb71ce1b</anchor>
       <arglist>(std::vector&lt; GlobalIndex &gt; &amp;globalIndices) const</arglist>
     </member>
     <member kind="function">
       <type>const GridElement &amp;</type>
       <name>gridElement</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a0fe5d4e10f331905629351786c72ce6a</anchor>
+      <anchor>a426b90558224e8fc9165dd6e2784d42e</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a4b49c02de08fb5c115affa646c5f249a</anchor>
+      <anchor>a04e6a87845af2aa6630237bc0fec5462</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a00a045439d18c431ef49d7349230272b</anchor>
+      <anchor>aaa63813d6f71f54faca3c5d87b4db3e2</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>num_children</name>
       <anchorfile>a01226.html</anchorfile>
-      <anchor>a08d63c99f722a352ee1ebe29bcb88bcd</anchor>
+      <anchor>a3a162d15d209caf4db3d68917ed6fa69</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -7460,183 +7667,141 @@
   <compound kind="struct">
     <name>Ikarus::EAS::Q1E4</name>
     <filename>a01262.html</filename>
-    <templarg>typename Geometry</templarg>
+    <templarg>typename GEO</templarg>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; double, strainSize, enhancedStrainSize &gt;</type>
       <name>MType</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>a12c4056812c21e637efec8e60c6a746f</anchor>
+      <anchor>a9d9bcd6fbf0b5560904dc1ab9b872633</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E4</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>a8a936241393c34c23fab0e309b31d823</anchor>
+      <anchor>a68eb22d5d7f45fe8c0fed77de62ad799</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E4</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>a1eed27a214142967a158c0d1662a95e5</anchor>
-      <arglist>(const Geometry &amp;geometry_)</arglist>
+      <anchor>a43ede2403a5e817099bd51ae4f26f8f1</anchor>
+      <arglist>(const GEO &amp;geometry)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calcM</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>a51a3f1e9a7f90b5724a29ea3086b2221</anchor>
+      <anchor>a03e4a1b446ffd59d5e15c95fd7291b9f</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;quadPos) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>geometry</name>
-      <anchorfile>a01262.html</anchorfile>
-      <anchor>a503ba5b1c26a5fd7411a5cea2f4f6111</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Eigen::Matrix3d</type>
-      <name>T0InverseTransformed</name>
-      <anchorfile>a01262.html</anchorfile>
-      <anchor>af9d5a48936a550de9e53b95f44e553a1</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>strainSize</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>af629a777529f814b3aeca3a0409bac55</anchor>
+      <anchor>a31972bc371b0267eb4f04f62f4c88219</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>enhancedStrainSize</name>
       <anchorfile>a01262.html</anchorfile>
-      <anchor>adbfba4b7c0b496a742f6ae4cfe284811</anchor>
+      <anchor>ab1a8b1d505b07f61bc8182de7c65d66a</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::EAS::Q1E5</name>
     <filename>a01266.html</filename>
-    <templarg>typename Geometry</templarg>
+    <templarg>typename GEO</templarg>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; double, strainSize, enhancedStrainSize &gt;</type>
       <name>MType</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>aef174f0729b6199c792b3d851d30d561</anchor>
+      <anchor>aa19cdd636627ea0efc74bb2c380d6836</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E5</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>ac7d813ec7fd53eabd5bb78a0860e0999</anchor>
+      <anchor>a7bedf208a422c415e0037f898c8ec85a</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E5</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>a27d02943e80afa564f1fdc03276c7f40</anchor>
-      <arglist>(const Geometry &amp;geometry_)</arglist>
+      <anchor>a7a4921dd86b88f516f34cd55accf0629</anchor>
+      <arglist>(const GEO &amp;geometry)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calcM</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>a5f76435027f0fd1e577b85bd231a728d</anchor>
+      <anchor>a2f5b495d9eabc2e3fcccfee1595e61eb</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;quadPos) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>geometry</name>
-      <anchorfile>a01266.html</anchorfile>
-      <anchor>a0e8d34702b3839289fe6c142ce22d918</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Eigen::Matrix3d</type>
-      <name>T0InverseTransformed</name>
-      <anchorfile>a01266.html</anchorfile>
-      <anchor>af60427cbcd93aec819184c0607f7570b</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>strainSize</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>a5e13d2d7de002e3db51ae221ecf5ae66</anchor>
+      <anchor>a70978fa46b16e2d6210cf77d76bead62</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>enhancedStrainSize</name>
       <anchorfile>a01266.html</anchorfile>
-      <anchor>aff00c9143b33e07931e0edc554149631</anchor>
+      <anchor>ab1a680222be27a73de9204c3881f7ec8</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::EAS::Q1E7</name>
     <filename>a01270.html</filename>
-    <templarg>typename Geometry</templarg>
+    <templarg>typename GEO</templarg>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; double, strainSize, enhancedStrainSize &gt;</type>
       <name>MType</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a705bc8c4357a5472b514150dc9f92016</anchor>
+      <anchor>a3936fb3159e8887532007a2df1cc3915</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E7</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a51c1536543840630fe2d481644afd4d8</anchor>
+      <anchor>ac320a2701922ade2a114460221fd8897</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Q1E7</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a32392c0d86975d3430f8ab0afbe54ee1</anchor>
-      <arglist>(const Geometry &amp;geometry_)</arglist>
+      <anchor>a8db7bc977482fbd9cc783ef8515b3aba</anchor>
+      <arglist>(const GEO &amp;geometry)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>calcM</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a5b64b7a2e3702925d458643e36f52990</anchor>
+      <anchor>adee00ef1f4bd1c7db877fb39626b4ed8</anchor>
       <arglist>(const Dune::FieldVector&lt; double, 2 &gt; &amp;quadPos) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>std::shared_ptr&lt; Geometry &gt;</type>
-      <name>geometry</name>
-      <anchorfile>a01270.html</anchorfile>
-      <anchor>a0f0164156bd51b7be2b96140fdf6bad0</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>Eigen::Matrix3d</type>
-      <name>T0InverseTransformed</name>
-      <anchorfile>a01270.html</anchorfile>
-      <anchor>a6db9b25556a8e7a21ca195428076fa68</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>strainSize</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a10bb824c273c0bcbca880c12dd175883</anchor>
+      <anchor>a79a495f2932fe90867b44e1f4e92bfd3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>enhancedStrainSize</name>
       <anchorfile>a01270.html</anchorfile>
-      <anchor>a81f3f9895d45197f14adc855dd804fa9</anchor>
+      <anchor>a3373c7120dffedafda0be40fa6647c46</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -7649,292 +7814,285 @@
   <compound kind="class">
     <name>Ikarus::ResultFunction</name>
     <filename>a01386.html</filename>
-    <templarg>typename ElementType_</templarg>
+    <templarg>typename FE</templarg>
     <templarg>ResultType resType</templarg>
     <templarg>typename UserFunction</templarg>
     <member kind="typedef">
-      <type>ElementType_</type>
-      <name>ElementType</name>
+      <type>FE</type>
+      <name>FiniteElement</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>ab767a2a99f8a7a4864d7e2375e147d3f</anchor>
+      <anchor>aba444e0afcbef3afab7c7dba660dd39c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename ElementType::FERequirementType</type>
+      <type>typename FiniteElement::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>a1376ce8ed894daf97cf33d9ba47a3080</anchor>
+      <anchor>a6c4177e83cfe14cba5d6de0a7ce87283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename ElementType::GridView</type>
+      <type>typename FiniteElement::GridView</type>
       <name>GridView</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>ad3bf17db4685dd6163c2d44aadbaa007</anchor>
+      <anchor>a2744c437727bc72267b949c121fc912b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename GridView::ctype</type>
       <name>ctype</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>afe05553bbd7e7f98f81e6823bea11b53</anchor>
+      <anchor>a1b960380b9e520e5c37a552158dcbc9e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename GridView::template Codim&lt; 0 &gt;::Entity</type>
       <name>Entity</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>a9d4a16551fbcc6ea2c28422c8940de8c</anchor>
+      <anchor>a51070aab44aa6c0d6399555c3b737542</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>evaluate</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>a65d6c379aff40e196b8bf71b3aa1a9f1</anchor>
+      <anchor>a91d31c9d876847fd0e136a03dab6969a</anchor>
       <arglist>(int comp, const Entity &amp;e, const Dune::FieldVector&lt; ctype, griddim &gt; &amp;local) const override</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>ncomps</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>aaeb8d5d82f871924ba565861155f3014</anchor>
+      <anchor>a45726779c3ca035c7c4fa700cee30d93</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>a0c2f6fd71f2eabf8963f690e17e287c5</anchor>
+      <anchor>a8be0f4769c4f515b64805b77b0146ae4</anchor>
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>ResultFunction</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>a1697f1e77287d97449f086e98064dd7e</anchor>
-      <arglist>(std::vector&lt; ElementType &gt; *fes, const FERequirementType &amp;req)</arglist>
+      <anchor>ab9999ef0144c8caf38883e080ac489a0</anchor>
+      <arglist>(std::vector&lt; FiniteElement &gt; *fes, const FERequirementType &amp;req)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>griddim</name>
       <anchorfile>a01386.html</anchorfile>
-      <anchor>ac4059cf43d314738236f596e8ca52e95</anchor>
+      <anchor>ae74f225ad7718b34215ae249c3d235b1</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::ScalarAssembler</name>
     <filename>a01170.html</filename>
-    <templarg>typename FEContainer_</templarg>
-    <templarg>typename DirichletValuesType_</templarg>
+    <templarg>typename FEC</templarg>
+    <templarg>typename DV</templarg>
     <base>Ikarus::FlatAssemblerBase</base>
     <member kind="typedef">
-      <type>typename DirichletValuesType_::Basis</type>
+      <type>typename DV::Basis</type>
       <name>Basis</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>aec6afbe8af2828aa945ab2b8f2c1aca6</anchor>
+      <anchor>affbdfc67b017b9304f2dfd519509a8fb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>DirichletValuesType_</type>
+      <type>DV</type>
       <name>DirichletValuesType</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>ab0275407303cf74b78fe44f0ad405e06</anchor>
+      <anchor>abf6599ec65ab1574a3282a553584f9e9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FEContainer_</type>
+      <type>FEC</type>
       <name>FEContainer</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a030d83efead739f9abcb338d8f1d06b4</anchor>
+      <anchor>a4bb11a213bcf6c6f18e731bf4281edcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>aba7339d4e117f0f310c8ba9cd6da1e5a</anchor>
+      <anchor>a69ef7a0291ed086199b2f5b4b1173bfc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a1b2ccee915a297c90f3865c71f2c3c14</anchor>
+      <anchor>a9cd6c79d6625adb9767a14ba5c1ff283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a0c71856323f0e835ec785987c0aada18</anchor>
+      <anchor>acee7beef45351811911847086414709e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; std::is_reference_v&lt; FEContainer &gt;, const FEContainer, FEContainer &gt;</type>
       <name>FEContainerType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a554c8df2e30ed6ec250e5395f77d8f6f</anchor>
+      <anchor>ad65c9d93766e445ec688411634e9bce6</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>ScalarAssembler</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a7fa7751093b40062b2250205cb1b27b2</anchor>
-      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_)</arglist>
+      <anchor>aea70457453f4efbf67bf9541c43afff2</anchor>
+      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues)</arglist>
     </member>
     <member kind="function">
       <type>const double &amp;</type>
       <name>getScalar</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a152538dd394310fc57729163cace3289</anchor>
+      <anchor>a0bf594865140bd900a6f31807dfc6f7e</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>reducedSize</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8fd0336be5b5e2d0bcbcdb25bacc5f2f</anchor>
+      <anchor>a8b47f036b83e4e712b791d9cfe910f2b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>size</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ac105af5d51473a274f597d509308c55f</anchor>
+      <anchor>ae3fed93b367a8d5eb4e369132a7cc355</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Eigen::VectorXd</type>
       <name>createFullVector</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a796d9b40d32762d5857b49afb30cec2a</anchor>
+      <anchor>a5ca172ae99902193abf31ab542ff4aaf</anchor>
       <arglist>(Eigen::Ref&lt; const Eigen::VectorXd &gt; reducedVector)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>finiteElements</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aa92c131a0915eb5864613bdbab5c4990</anchor>
+      <anchor>aa8da4086d468797668b6d551129e96dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>constraintsBelow</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a85a20ef2dd30a677994a9c79677cfdf2</anchor>
+      <anchor>aa1a20226eacfb65d0f2b09b397578cab</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a317a691c0aca9e9d5953845762c7f626</anchor>
+      <anchor>a75a1882ad41715632ebeb6a13ed14d69</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>estimateOfConnectivity</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a6179ef97228c75448f8d109f031bc667</anchor>
+      <anchor>adf77b0e3c1dab4782a2da06fc712b9c5</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::ScalarFieldFE</name>
     <filename>a01230.html</filename>
-    <templarg>typename Basis_</templarg>
+    <templarg>typename B</templarg>
     <member kind="typedef">
-      <type>FETraits&lt; Basis_ &gt;</type>
+      <type>FETraits&lt; B &gt;</type>
       <name>Traits</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a8278ef910dac64472757dddcca6d4a13</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
-      <type>typename Traits::Basis</type>
-      <name>Basis</name>
-      <anchorfile>a01230.html</anchorfile>
-      <anchor>a63255346acc181331570dc41dc238db9</anchor>
+      <anchor>a2ec4a2c3492000b92b18239dcc1dd945</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::FlatBasis</type>
-      <name>RootBasis</name>
+      <name>FlatBasis</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>ac9962a34e7d9bec1feb9d1eec708a7b5</anchor>
+      <anchor>a1ccd80fcb5b8d79e8a6a9f1362a956f2</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a82d968a5c3406276f58b028743d9ce56</anchor>
+      <anchor>ab2ec703d0e992c9dc9491bf5e207d838</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>accd85ccd2c96113218193bd80e1604b1</anchor>
+      <anchor>aacb19077e942342a17e930b04a157204</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>GridElement</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>aba237b127f2ab1f91a13b7de9f63a971</anchor>
+      <anchor>aeff2500b356381aa05714b936183a213</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>ScalarFieldFE</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>add0f253f23dca461f7007fc19415efdc</anchor>
-      <arglist>(const Basis &amp;basis, const typename LocalView::Element &amp;element)</arglist>
+      <anchor>ab053f2b9c21f570c533ada918cd8937f</anchor>
+      <arglist>(const B &amp;basis, const typename LocalView::Element &amp;element)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>size</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a951333aa6f311510c5d7ad79db0a4fdb</anchor>
+      <anchor>aaa44911081e663dca687f297d83e0dd5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>globalFlatIndices</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a14e333e804dd7bc079e753a6c007b3e4</anchor>
+      <anchor>a4754952c9ddcdce8e05c7cf01a0fb047</anchor>
       <arglist>(std::vector&lt; GlobalIndex &gt; &amp;globalIndices) const</arglist>
     </member>
     <member kind="function">
       <type>const GridElement &amp;</type>
       <name>gridElement</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a11dc18a7cfdfbc8c9fe8f7e8d444be1f</anchor>
+      <anchor>a587aa5046bee9bb877bbfc9409224513</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>const LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a0f30480c63ff8ee1a2a3b2a61fb994f6</anchor>
+      <anchor>a5e199d1e24f3515b3d8f792dbe9e4b61</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>LocalView &amp;</type>
       <name>localView</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>acbf06776c078f9683ba836df0c28525e</anchor>
+      <anchor>a2ca572065999c6f24f628d3a16c4e1c8</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worlddim</name>
       <anchorfile>a01230.html</anchorfile>
-      <anchor>a4052077fc854d7284ebf358ef0a4de2a</anchor>
+      <anchor>a800bfb4baa37339a3f0eccfca6fadced</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -7952,175 +8110,175 @@
   <compound kind="class">
     <name>Ikarus::SparseFlatAssembler</name>
     <filename>a01178.html</filename>
-    <templarg>typename FEContainer_</templarg>
-    <templarg>typename DirichletValuesType_</templarg>
+    <templarg>typename FEC</templarg>
+    <templarg>typename DV</templarg>
     <base>Ikarus::VectorFlatAssembler</base>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; FEContainer_ &gt;</type>
+      <type>std::remove_cvref_t&lt; FEC &gt;</type>
       <name>FEContainerRaw</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a1be71ac498aa851e515bfd6108604e80</anchor>
+      <anchor>a1eb28b0dea6febdf02f74f3422978ca2</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>VectorFlatAssembler&lt; FEContainer_, DirichletValuesType_ &gt;</type>
+      <type>VectorFlatAssembler&lt; FEC, DV &gt;</type>
       <name>Base</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a0da50524ab5114b8ef9745549a9c3b78</anchor>
+      <anchor>a4f4a61e636a7641a557ae5cdfeabd00f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>ad099d9aefb36d816f0eaec9c76caf025</anchor>
+      <anchor>ab9a93227ae1013354e49cf1db29323ae</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename DirichletValuesType_::Basis</type>
+      <type>typename DV::Basis</type>
       <name>Basis</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>aec6afbe8af2828aa945ab2b8f2c1aca6</anchor>
+      <anchor>affbdfc67b017b9304f2dfd519509a8fb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>DirichletValuesType_</type>
+      <type>DV</type>
       <name>DirichletValuesType</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>ab0275407303cf74b78fe44f0ad405e06</anchor>
+      <anchor>abf6599ec65ab1574a3282a553584f9e9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FEContainer_</type>
+      <type>FEC</type>
       <name>FEContainer</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a030d83efead739f9abcb338d8f1d06b4</anchor>
+      <anchor>a4bb11a213bcf6c6f18e731bf4281edcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>aba7339d4e117f0f310c8ba9cd6da1e5a</anchor>
+      <anchor>a69ef7a0291ed086199b2f5b4b1173bfc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a1b2ccee915a297c90f3865c71f2c3c14</anchor>
+      <anchor>a9cd6c79d6625adb9767a14ba5c1ff283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; std::is_reference_v&lt; FEContainer &gt;, const FEContainer, FEContainer &gt;</type>
       <name>FEContainerType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a554c8df2e30ed6ec250e5395f77d8f6f</anchor>
+      <anchor>ad65c9d93766e445ec688411634e9bce6</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>SparseFlatAssembler</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a3015c0013b0a8773370353b1602b17b9</anchor>
-      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_)</arglist>
+      <anchor>acc0799517783d8b8b055afe0e11734db</anchor>
+      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::SparseMatrix&lt; double &gt; &amp;</type>
       <name>getRawMatrix</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a6647be8ee2865cd3808f9f871ff02707</anchor>
+      <anchor>ab3f0321d5506c724e811b6fbb491af11</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::SparseMatrix&lt; double &gt; &amp;</type>
       <name>getMatrix</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a918263cc6329db0934491008567898f3</anchor>
+      <anchor>ace023f955094720794257593607b80f9</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::SparseMatrix&lt; double &gt; &amp;</type>
       <name>getReducedMatrix</name>
       <anchorfile>a01178.html</anchorfile>
-      <anchor>a630e3aa4d0e4b4aeee7c4d14af54c794</anchor>
+      <anchor>ab9732b32498a6852a4e0447cf193722b</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getRawVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a1d7cf1f4e62251a01d2207310f336e75</anchor>
+      <anchor>a15da22b282305962bc6498a1451694de</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a99690d51394f943e44743365d4d3b57e</anchor>
+      <anchor>a027ac8d2135f675df889fdf80a678081</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getReducedVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a51fec3e98ce787300a069ccd30c75c67</anchor>
+      <anchor>a51fc1c4a8302dd955bd27dfa6e81bc6f</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const double &amp;</type>
       <name>getScalar</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a152538dd394310fc57729163cace3289</anchor>
+      <anchor>a0bf594865140bd900a6f31807dfc6f7e</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>reducedSize</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8fd0336be5b5e2d0bcbcdb25bacc5f2f</anchor>
+      <anchor>a8b47f036b83e4e712b791d9cfe910f2b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>size</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ac105af5d51473a274f597d509308c55f</anchor>
+      <anchor>ae3fed93b367a8d5eb4e369132a7cc355</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Eigen::VectorXd</type>
       <name>createFullVector</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a796d9b40d32762d5857b49afb30cec2a</anchor>
+      <anchor>a5ca172ae99902193abf31ab542ff4aaf</anchor>
       <arglist>(Eigen::Ref&lt; const Eigen::VectorXd &gt; reducedVector)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>finiteElements</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aa92c131a0915eb5864613bdbab5c4990</anchor>
+      <anchor>aa8da4086d468797668b6d551129e96dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>constraintsBelow</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a85a20ef2dd30a677994a9c79677cfdf2</anchor>
+      <anchor>aa1a20226eacfb65d0f2b09b397578cab</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a317a691c0aca9e9d5953845762c7f626</anchor>
+      <anchor>a75a1882ad41715632ebeb6a13ed14d69</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>estimateOfConnectivity</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a6179ef97228c75448f8d109f031bc667</anchor>
+      <anchor>adf77b0e3c1dab4782a2da06fc712b9c5</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
@@ -8187,202 +8345,195 @@
   <compound kind="struct">
     <name>Ikarus::StVenantKirchhoffT</name>
     <filename>a01322.html</filename>
-    <templarg>typename ScalarType_</templarg>
-    <base>Material&lt; StVenantKirchhoffT&lt; ScalarType_ &gt; &gt;</base>
+    <templarg>typename ST</templarg>
+    <base>Material&lt; StVenantKirchhoffT&lt; ST &gt; &gt;</base>
     <member kind="typedef">
-      <type>ScalarType_</type>
+      <type>ST</type>
       <name>ScalarType</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a3a382a8805a37e4a8e1cf86ee215ee31</anchor>
+      <anchor>af2e2dfcfb355c5eeb456de03cbfe7f47</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Eigen::Matrix&lt; ScalarType, worldDimension, worldDimension &gt;</type>
       <name>StrainMatrix</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a0fb732938eb00ca0a6c59cf2d483f456</anchor>
+      <anchor>a42c1563dfce8b0de48b2e5362e2f29d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>StrainMatrix</type>
       <name>StressMatrix</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a70bea18fc103ae2673a1d7bf19c455a2</anchor>
+      <anchor>ae797d6a15d39782d110db78dde63a927</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>StVenantKirchhoffT&lt; ScalarType_ &gt;</type>
-      <name>MaterialImplType</name>
+      <type>StVenantKirchhoffT&lt; ST &gt;</type>
+      <name>MaterialImpl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>aa30c942d1fd3c011dab0e23e1df0ef63</anchor>
+      <anchor>a45254a604fc6a7913aa384cc60fa1422</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>nameImpl</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a4ab3b1f75acb9e6aa6ed727849469b46</anchor>
+      <anchor>a751de98a1d8205842a910e1737fe8625</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>StVenantKirchhoffT</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a468ab55507d04b1cea816372d4e49bdf</anchor>
+      <anchor>ad06ba0f1373af1e3752b339934b69956</anchor>
       <arglist>(const LamesFirstParameterAndShearModulus &amp;mpt)</arglist>
     </member>
     <member kind="function">
       <type>ScalarType</type>
       <name>storedEnergyImpl</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a141b69c90248f5407096ea92863f1f63</anchor>
+      <anchor>a12718b6f404b7ab246986018bd2c50f9</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stressesImpl</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a1534366e8df0568b581deb9ad3b4bcd6</anchor>
+      <anchor>a81a6d9cbf7ce96f9f5ca5380e8effb2c</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuliImpl</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a7c2e0bf3afe37f104ae311bd9f2391f7</anchor>
+      <anchor>a9cad76128962f632ae742e8769b9803e</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>rebind</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a804a4428cd7824f964f6b7de6b6612b4</anchor>
+      <anchor>a47a0de83c91849d44fb9dee6b10a02d9</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr const StVenantKirchhoffT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr const MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a001e7e5968c6dfce64ac6932e2a0517a</anchor>
+      <anchor>a1f36564023973d1684bf337b4584f8d6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr StVenantKirchhoffT&lt; ScalarType_ &gt; &amp;</type>
+      <type>constexpr MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a61cc58c93007911d68bf6a8b6bbc2bd5</anchor>
+      <anchor>ad3e663912e4700acb1444ce254a2599c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>ada3530e97519400e78b32ec1989343f9</anchor>
+      <anchor>aaa3ba3c13eef01692e03621abc8f35b5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>storedEnergy</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a297b4cab80330a8c473dbc06552c8808</anchor>
+      <anchor>ab2015ecf069d4d5022852d7cfc62c689</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stresses</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>af10f8631c73d1c4cb78f8b6d44bf6f1a</anchor>
+      <anchor>ae47b0b923d01f3f2abcf5d3fd5ff04bc</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuli</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a00e7bb30244df751617e1e613d382ea0</anchor>
+      <anchor>a2d9d9509fa8bbdc909868c8fd0dfe5fd</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
-    </member>
-    <member kind="variable">
-      <type>LamesFirstParameterAndShearModulus</type>
-      <name>materialParameter</name>
-      <anchorfile>a01322.html</anchorfile>
-      <anchor>acc6e8e711bfb538fbcf99b2e9b9a3f2f</anchor>
-      <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDimension</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a17c96c4abafe6e6615aa0c23a8891488</anchor>
+      <anchor>a27cdc2b4a8003b052ba251302d378dec</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>strainTag</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>afb77a308376e0209e078d69202b8ac56</anchor>
+      <anchor>a6b936df1cd8db75a9c526663adfc1235</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>stressTag</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>ae423057c0e7d1894129c20564756fe84</anchor>
+      <anchor>abb8aa05d14e025ae5030f11255e19bd1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>tangentModuliTag</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a0e3a93114979e2edb67d61282b34d89c</anchor>
+      <anchor>adc79568930df223ccc520f5522f3ace6</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>energyAcceptsVoigt</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a100dbfdcc4ef61fd10cdc71aeb02168b</anchor>
+      <anchor>ae416f653e4acd68f9f11a5144027f391</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressToVoigt</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a4a237ac8dd0cd4ae7a1846be796c1600</anchor>
+      <anchor>aa4740919dc11418d8ac0b69107065302</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressAcceptsVoigt</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>a0266cef35bc72574c77c99c35e4a1124</anchor>
+      <anchor>a405931c9031f904bdbc8e92df983aa30</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliToVoigt</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>aaf29ca383a0ffd01eef92f79a4e7e692</anchor>
+      <anchor>a5d027dc6338b0b3a476e69502a93acb8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliAcceptsVoigt</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>ac5e3c259d5d00e660aa4e8d41637d2a5</anchor>
+      <anchor>a320453d35c1b9aec5c40ea828f2073f0</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr double</type>
       <name>derivativeFactor</name>
       <anchorfile>a01322.html</anchorfile>
-      <anchor>aa006c6876d478c038981ecff45bce52f</anchor>
+      <anchor>abda8b09bd3b511c1e44004e291241124</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isReduced</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a9c276dd6faf7062d02dde5c01644fd10</anchor>
+      <anchor>a6e16de35bf2d955d777a8441e939a20b</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -8503,91 +8654,91 @@
   <compound kind="class">
     <name>Ikarus::Traction</name>
     <filename>a01302.html</filename>
-    <templarg>typename DisplacementBasedElement</templarg>
+    <templarg>typename DFE</templarg>
     <templarg>typename Traits</templarg>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ab2e0b2df428dd9dd03b3589e7502b4c1</anchor>
+      <anchor>a6acd5326c47bea7af9805c069678c9c7</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>aa929e87072d4632e34dae86f12f35b6f</anchor>
+      <anchor>af70224be0c49af50928114aa0e24b22b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::GridView</type>
       <name>GridView</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a055e8c867a09ddb37177fcecfbedd827</anchor>
+      <anchor>ade2bba6c519ff851d93f6aba15e06417</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Traction</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ab0350cc85099b73b31b6f337bba45052</anchor>
-      <arglist>(const BoundaryPatch&lt; GridView &gt; *p_neumannBoundary, NeumannBoundaryLoad p_neumannBoundaryLoad)</arglist>
+      <anchor>a3fa13c11a3d654ba3800c233856574a6</anchor>
+      <arglist>(const BoundaryPatch&lt; GridView &gt; *neumannBoundary, NBL neumannBoundaryLoad)</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ac9ed9f5497683a52effe2c572056c6e0</anchor>
+      <anchor>a96c3bc299da08a776e46b488aed3ded7</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a7c9d37bb3d426f00c1451d5a5222b748</anchor>
+      <anchor>af90d4b6149bb2241644c92855759e6f5</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>ad5b9f64124013ab2e98b6494e9b511b3</anchor>
+      <anchor>aa4336b55618b836ca7b2b3aebf4242bf</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>myDim</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a38f601316eb612388ff73f6142e9aa74</anchor>
+      <anchor>abd307f8712d6f1f03617ed383ebf67c1</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a1eee242b581174d0fd8e7587130234be</anchor>
+      <anchor>a1d2ad110e77cf497bc88ac1a8735fc97</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a3b3de553171d016228f21cbac1e7f47d</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a2576d38cb79bb0b5bf59f433fa7c1633</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>a0cac2c7cc2a06ae38bc83f97664e4d8c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; dx=std::nullopt) const</arglist>
+      <anchor>aabcfd5d855e2230fe90abb12a1ba8d2b</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01302.html</anchorfile>
-      <anchor>aae1b4a04dd13b2ec2145ef141bf3190c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a38ba7822f8f38691c80a0b607e488d03</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -8614,188 +8765,188 @@
   <compound kind="class">
     <name>Eigen::TruncatedConjugateGradient</name>
     <filename>a01394.html</filename>
-    <templarg>typename MatrixType_</templarg>
-    <templarg>int UpLo_</templarg>
-    <templarg>typename Preconditioner_</templarg>
+    <templarg>typename M</templarg>
+    <templarg>int upLo</templarg>
+    <templarg>typename PC</templarg>
     <member kind="enumvalue">
       <name>UpLo</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b</anchor>
+      <anchor>a0603ac61442a6378829c85bdcbcdcf9ba0e39575913c8d56e751083aae91dc0b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>IterativeSolverBase&lt; TruncatedConjugateGradient &gt;</type>
       <name>Base</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>ae16fb346feda99ba74d0eb6c6e3e7ece</anchor>
+      <anchor>a00557d5a1f590b6d27849f0e37f825c6</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>MatrixType_</type>
+      <type>M</type>
       <name>MatrixType</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a8fb475e49bebbab5c9dfcf5325f4bb73</anchor>
+      <anchor>abdf94f4787b8d10c2d86a64e00f34188</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>MatrixType::Scalar</type>
+      <type>typename MatrixType::Scalar</type>
       <name>Scalar</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a7451d2a0e27db7fb57336f288343a84f</anchor>
+      <anchor>a8ea747fce5e24c366f34da3c3ba3c8dd</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>MatrixType::RealScalar</type>
+      <type>typename MatrixType::RealScalar</type>
       <name>RealScalar</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a86d1cdc1073006c2d5d809b4c0b77908</anchor>
+      <anchor>a2dd6b779327fad07144e6a121b12afbf</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>Preconditioner_</type>
+      <type>PC</type>
       <name>Preconditioner</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a62244905718a3538dbc1f9b36046d4d6</anchor>
+      <anchor>a636d30963f7a7261054092337269076b</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <name>UpLo</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a0603ac61442a6378829c85bdcbcdcf9baa341af00893c1487dfd65d57e9f96d6b</anchor>
+      <anchor>a0603ac61442a6378829c85bdcbcdcf9ba0e39575913c8d56e751083aae91dc0b3</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TruncatedConjugateGradient</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a424099a1cac74a8684bcd170441f5415</anchor>
+      <anchor>a17e36ca6a3756dd75d9740d756ee39c4</anchor>
       <arglist>(TruncatedConjugateGradient &amp;&amp;other) noexcept</arglist>
     </member>
     <member kind="function">
       <type>TCGInfo&lt; typename MatrixType::RealScalar &gt;</type>
       <name>getInfo</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a5ea4822b3fd6ed682262d6624209e116</anchor>
+      <anchor>a81a7f70d30cfbf103d6ac946ebc2a598</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setInfo</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a73bcfc1126485468abd73569c0a1a6ac</anchor>
-      <arglist>(TCGInfo&lt; typename MatrixType::RealScalar &gt; _alginfo)</arglist>
+      <anchor>abca8364ed9fadd6e08510b46395dbf22</anchor>
+      <arglist>(TCGInfo&lt; typename MatrixType::RealScalar &gt; alginfo)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TruncatedConjugateGradient</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a02491a65df30cd0cfb68b894f3627a6e</anchor>
+      <anchor>a267ee32f0487d9a700b13d6d61b0f000</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TruncatedConjugateGradient</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a6c5ad1eb772b8f2590827647ad6594f2</anchor>
+      <anchor>af31547cc01eca8c809bbf1161c251695</anchor>
       <arglist>(const EigenBase&lt; MatrixDerived &gt; &amp;A)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>~TruncatedConjugateGradient</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>aa572ab1738a73b78411575a2574c1339</anchor>
+      <anchor>aa60846b7835b8ffc8e26b48be8bd7069</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>_solve_vector_with_guess_impl</name>
       <anchorfile>a01394.html</anchorfile>
-      <anchor>a23170151337c9f8681f6087d0c036c8a</anchor>
+      <anchor>a6430f6e2355dc7e9eb7410d4353cb7ed</anchor>
       <arglist>(const Rhs &amp;b, Dest &amp;x) const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::TrustRegion</name>
     <filename>a01446.html</filename>
-    <templarg>typename NonLinearOperatorImpl</templarg>
+    <templarg>typename NLO</templarg>
     <templarg>PreConditioner preConditioner</templarg>
-    <templarg>typename UpdateFunctionTypeImpl</templarg>
+    <templarg>typename UF</templarg>
     <base>IObservable&lt; NonLinearSolverMessages &gt;</base>
     <member kind="typedef">
-      <type>typename NonLinearOperatorImpl::template ParameterValue&lt; 0 &gt;</type>
+      <type>typename NLO::template ParameterValue&lt; 0 &gt;</type>
       <name>ValueType</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a8166e85a9638e02fea6da29aba9cce58</anchor>
+      <anchor>a44fa96b7ca63e50d8ed3707b4129369b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename NonLinearOperatorImpl::DerivativeType</type>
+      <type>typename NLO::DerivativeType</type>
       <name>CorrectionType</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>aadc89cc68a82db3b7e8f25ce032bd71f</anchor>
+      <anchor>a1071054a0b75f9fbe27832ea672792b0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>UpdateFunctionTypeImpl</type>
-      <name>UpdateFunctionType</name>
+      <type>UF</type>
+      <name>UpdateFunction</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a5609028d2f63488106e6ae4a76b204c3</anchor>
+      <anchor>a7f187a825b0a65e7d9ab1c21578da1cf</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>NonLinearOperatorImpl</type>
+      <type>NLO</type>
       <name>NonLinearOperator</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a9939674ab4cb35d9eaca8130cf9326ac</anchor>
+      <anchor>a7334271a9133e2503f142decf6ecebb7</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; typename NonLinearOperatorImpl::template FunctionReturnType&lt; 0 &gt; &gt;</type>
+      <type>std::remove_cvref_t&lt; typename NLO::template FunctionReturnType&lt; 0 &gt; &gt;</type>
       <name>ScalarType</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a9dfa2682ded15aa0978bfd927ca7b2a8</anchor>
+      <anchor>a34bb35f72b19375a57329d3fec82515c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>std::remove_cvref_t&lt; typename NonLinearOperatorImpl::template FunctionReturnType&lt; 2 &gt; &gt;</type>
+      <type>std::remove_cvref_t&lt; typename NLO::template FunctionReturnType&lt; 2 &gt; &gt;</type>
       <name>MatrixType</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>aeaeb46919450dd6c83bec63deb3d9568</anchor>
+      <anchor>a631486c0b90c8a1a0bfc9d80694f6a4f</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>TrustRegion</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>af8b7745d1eea75d39e30c5e0a9f37865</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, UpdateFunctionTypeImpl p_updateFunction={})</arglist>
+      <anchor>aca59267eff2ad5358225cc5eafbe21d0</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, UF updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setup</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a1f238e6b0544ef8dc6f1dc3661cbc333</anchor>
-      <arglist>(const TrustRegionSettings &amp;p_settings)</arglist>
+      <anchor>a504a0eb127e772c205775a6545fbdb98</anchor>
+      <arglist>(const TrustRegionSettings &amp;settings)</arglist>
     </member>
     <member kind="function">
       <type>NonLinearSolverInformation</type>
       <name>solve</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a48fe86e2f5de6676bcebe8ffd8a8feeb</anchor>
-      <arglist>(const SolutionType &amp;dx_predictor=NoPredictor{})</arglist>
+      <anchor>af244b67329c3aab4aa81f37c9eabae8f</anchor>
+      <arglist>(const SolutionType &amp;dxPredictor=NoPredictor{})</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>nonLinearOperator</name>
       <anchorfile>a01446.html</anchorfile>
-      <anchor>a0948ebd7e2302b96192e3bc47fd419e5</anchor>
+      <anchor>a58d156c1eb6c5ac3abee28d14beadc2a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>ae182a206a72de6bc4585152d32332349</anchor>
+      <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -8816,14 +8967,14 @@
       <type>void</type>
       <name>unSubscribe</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a49622286d2b15f0b8a2b25275e6bc771</anchor>
+      <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
       <anchorfile>a01570.html</anchorfile>
-      <anchor>a5c20f7eab2233d085071a4fd3b44cbda</anchor>
+      <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
@@ -8874,6 +9025,55 @@
       <anchorfile>a01570.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
+      <arglist>(MT message)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
+      <arglist>(MT message, ScalarType val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
+      <arglist>(MT message, int val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
+      <arglist>(MT message, const std::string &amp;val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
+      <arglist>(MT message, int val1, double val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
+      <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>notify</name>
+      <anchorfile>a01570.html</anchorfile>
+      <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
+      <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -9040,466 +9240,466 @@
     <name>Ikarus::VanishingStress</name>
     <filename>a01330.html</filename>
     <templarg>auto stressIndexPair</templarg>
-    <templarg>typename MaterialImpl</templarg>
-    <base>Material&lt; VanishingStress&lt; stressIndexPair, MaterialImpl &gt; &gt;</base>
+    <templarg>typename MI</templarg>
+    <base>Material&lt; VanishingStress&lt; stressIndexPair, MI &gt; &gt;</base>
     <member kind="typedef">
-      <type>MaterialImpl</type>
+      <type>MI</type>
       <name>Underlying</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>ad37a57829794ef9bfd1a583e9fb1920a</anchor>
+      <anchor>aafb996e2bc6468edcb8cb5db451eb8d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename MaterialImpl::ScalarType</type>
+      <type>typename Underlying::ScalarType</type>
       <name>ScalarType</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a01a5f04bd4cf950907221fd2fe65c8da</anchor>
+      <anchor>abf9dc8c5818857de2da74382af6954d1</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>VanishingStress&lt; stressIndexPair, MaterialImpl &gt;</type>
-      <name>MaterialImplType</name>
+      <type>VanishingStress&lt; stressIndexPair, MI &gt;</type>
+      <name>MaterialImpl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>aa30c942d1fd3c011dab0e23e1df0ef63</anchor>
+      <anchor>a45254a604fc6a7913aa384cc60fa1422</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>VanishingStress</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a9a6d28f0977eda48a8a2d5f8e0aac8f6</anchor>
-      <arglist>(MaterialImpl mat, typename MaterialImpl::ScalarType p_tol=1e-12)</arglist>
+      <anchor>a527058d7d9690be56da3ab6cade05794</anchor>
+      <arglist>(MI mat, typename MI::ScalarType tol=1e-12)</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>nameImpl</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a30f66cb6f5ccb30e08e152b0ce9e5878</anchor>
+      <anchor>a6b9f6012e04f3c6c65a31cb26c2daae2</anchor>
       <arglist>() const noexcept</arglist>
     </member>
     <member kind="function">
       <type>ScalarType</type>
       <name>storedEnergyImpl</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>aa27b5462fbbb965c8cb5689834c755c3</anchor>
+      <anchor>aa9d1c175db6e85c7dd17b1f3dfbd3387</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stressesImpl</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a09ee586572c98a89b4b63e4952687ad4</anchor>
+      <anchor>abdfa744589b54cc5c943d781c73359f0</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuliImpl</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a3fb115007e1e4323b8f3d46f2b681ff0</anchor>
+      <anchor>acdd8f1a651ee1e15647ec146f981040d</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;E) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>rebind</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>abe41f8e6a9be4ed8c7a5bf54f0774c9d</anchor>
+      <anchor>a2ae5af2b8bd807cde5b7616da694dbe4</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr const VanishingStress&lt; stressIndexPair, MaterialImpl &gt; &amp;</type>
+      <type>constexpr const MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a001e7e5968c6dfce64ac6932e2a0517a</anchor>
+      <anchor>a1f36564023973d1684bf337b4584f8d6</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
-      <type>constexpr VanishingStress&lt; stressIndexPair, MaterialImpl &gt; &amp;</type>
+      <type>constexpr MaterialImpl &amp;</type>
       <name>impl</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a61cc58c93007911d68bf6a8b6bbc2bd5</anchor>
+      <anchor>ad3e663912e4700acb1444ce254a2599c</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>constexpr std::string</type>
       <name>name</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>ada3530e97519400e78b32ec1989343f9</anchor>
+      <anchor>aaa3ba3c13eef01692e03621abc8f35b5</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>storedEnergy</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a297b4cab80330a8c473dbc06552c8808</anchor>
+      <anchor>ab2015ecf069d4d5022852d7cfc62c689</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>stresses</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>af10f8631c73d1c4cb78f8b6d44bf6f1a</anchor>
+      <anchor>ae47b0b923d01f3f2abcf5d3fd5ff04bc</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>tangentModuli</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a00e7bb30244df751617e1e613d382ea0</anchor>
+      <anchor>a2d9d9509fa8bbdc909868c8fd0dfe5fd</anchor>
       <arglist>(const Eigen::MatrixBase&lt; Derived &gt; &amp;Eraw) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>fixedPairs</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a783fd98a63a76e58e40dbd15eaad23be</anchor>
+      <anchor>a2e9a713a4811fec3881bb7fde7d74107</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>freeVoigtIndices</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a2d54836e17bf2fe768337d0c3044189e</anchor>
+      <anchor>a6b2db750aec34e9695251368a26788ae</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>fixedVoigtIndices</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a22cf6e6afdbdf2c3442f353df4df43c3</anchor>
+      <anchor>ae5a0c7ba92468388f585117257be5819</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>fixedDiagonalVoigtIndicesSize</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a3b415fdc6e7ec6c5f0dfb896fbb157c5</anchor>
+      <anchor>acfb79f8aa14fdd77f781a981c44a5bb9</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>freeStrains</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a335c313f483cd9b6c9aae7a8939e012e</anchor>
+      <anchor>ad2f54da2e2ad2dbe6aec1842ce3cfa42</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>strainTag</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a1b26c785517e451f78bebea9138468ab</anchor>
+      <anchor>a53577fd96ff6cd07da7f8a35626d3608</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>stressTag</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a28b62b4e231713db324d97f0a86f4370</anchor>
+      <anchor>ad683d21cc4f959903371a3e1daee3802</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr auto</type>
       <name>tangentModuliTag</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>ac14957720de3575a99423a33ec38e4a4</anchor>
+      <anchor>a06d6e057f8b88b969b50710848b162e2</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>energyAcceptsVoigt</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a6c66547d214dc1e4dd54c0002de1eaf2</anchor>
+      <anchor>a9f3bf27e2d1db1c869ec480fddca3eec</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressToVoigt</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a2c6607a26a8c24687cf88efc041a434c</anchor>
+      <anchor>ac4f50c8cf7a3efddf0a098381545edce</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>stressAcceptsVoigt</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>ac209ebf251b62ac6f4184fb9f42ce718</anchor>
+      <anchor>ad7b42e98dc65d1919b77bd334e5d542b</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliToVoigt</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>aac703706261e71517a62cc02e6681dce</anchor>
+      <anchor>ac374572798da72172130212a514732d8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>moduliAcceptsVoigt</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a55c0c5ea836671191ea21dba48168a95</anchor>
+      <anchor>af71580e6843d7cfaca43b6fe33cc6799</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr double</type>
       <name>derivativeFactor</name>
       <anchorfile>a01330.html</anchorfile>
-      <anchor>a7a3c35f1d129576897ee5a43bb02d8ef</anchor>
+      <anchor>a35741ae83565f2c131d89d96c21417ef</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr bool</type>
       <name>isReduced</name>
       <anchorfile>a01310.html</anchorfile>
-      <anchor>a9c276dd6faf7062d02dde5c01644fd10</anchor>
+      <anchor>a6e16de35bf2d955d777a8441e939a20b</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::EAS::Variants</name>
     <filename>a01282.html</filename>
-    <templarg>typename Geometry</templarg>
+    <templarg>typename GEO</templarg>
     <member kind="typedef">
-      <type>std::variant&lt; std::monostate, Q1E4&lt; Geometry &gt;, Q1E5&lt; Geometry &gt;, Q1E7&lt; Geometry &gt; &gt;</type>
+      <type>std::variant&lt; std::monostate, Q1E4&lt; GEO &gt;, Q1E5&lt; GEO &gt;, Q1E7&lt; GEO &gt; &gt;</type>
       <name>EAS2D</name>
       <anchorfile>a01282.html</anchorfile>
-      <anchor>a10be943c06b6000d7843fb6a06dfedcc</anchor>
+      <anchor>a483700fc4381f83b322c87c503750dff</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>std::variant&lt; std::monostate, H1E9&lt; Geometry &gt;, H1E21&lt; Geometry &gt; &gt;</type>
+      <type>std::variant&lt; std::monostate, H1E9&lt; GEO &gt;, H1E21&lt; GEO &gt; &gt;</type>
       <name>EAS3D</name>
       <anchorfile>a01282.html</anchorfile>
-      <anchor>a468f4925381da3da9249ead9b6b72ae8</anchor>
+      <anchor>a5baebb3a03e231c0608c8f28ff2816c5</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; worldDim==2, EAS2D, EAS3D &gt;</type>
       <name>type</name>
       <anchorfile>a01282.html</anchorfile>
-      <anchor>a167e8b0ab6cfef7abffc556e699d54c8</anchor>
+      <anchor>a4fb2b1a33f08f60be81d8e4783fa3770</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01282.html</anchorfile>
-      <anchor>a40c942b8d9ca7d8bdd33d6f889a842c5</anchor>
+      <anchor>aa41ab53fac3359535fed9cf7f856e4ea</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::VectorFlatAssembler</name>
     <filename>a01174.html</filename>
-    <templarg>typename FEContainer_</templarg>
-    <templarg>typename DirichletValuesType_</templarg>
+    <templarg>typename FEC</templarg>
+    <templarg>typename DV</templarg>
     <base>Ikarus::ScalarAssembler</base>
     <member kind="typedef">
-      <type>typename DirichletValuesType_::Basis</type>
+      <type>typename DV::Basis</type>
       <name>Basis</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>aec6afbe8af2828aa945ab2b8f2c1aca6</anchor>
+      <anchor>affbdfc67b017b9304f2dfd519509a8fb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>DirichletValuesType_</type>
+      <type>DV</type>
       <name>DirichletValuesType</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>ab0275407303cf74b78fe44f0ad405e06</anchor>
+      <anchor>abf6599ec65ab1574a3282a553584f9e9</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>FEContainer_</type>
+      <type>FEC</type>
       <name>FEContainer</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a030d83efead739f9abcb338d8f1d06b4</anchor>
+      <anchor>a4bb11a213bcf6c6f18e731bf4281edcb</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>aba7339d4e117f0f310c8ba9cd6da1e5a</anchor>
+      <anchor>a69ef7a0291ed086199b2f5b4b1173bfc</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename FEContainerRaw::value_type::GlobalIndex</type>
       <name>GlobalIndex</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a1b2ccee915a297c90f3865c71f2c3c14</anchor>
+      <anchor>a9cd6c79d6625adb9767a14ba5c1ff283</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Basis::GridView</type>
       <name>GridView</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a0c71856323f0e835ec785987c0aada18</anchor>
+      <anchor>acee7beef45351811911847086414709e</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>std::conditional_t&lt; std::is_reference_v&lt; FEContainer &gt;, const FEContainer, FEContainer &gt;</type>
       <name>FEContainerType</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a554c8df2e30ed6ec250e5395f77d8f6f</anchor>
+      <anchor>ad65c9d93766e445ec688411634e9bce6</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>VectorFlatAssembler</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>ab29654e07434ec261e3f2b449eb36a8c</anchor>
-      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues_)</arglist>
+      <anchor>ae1d7d3cba6d1c1ab4373fff67e1a300c</anchor>
+      <arglist>(FEContainer &amp;&amp;fes, const DirichletValuesType &amp;dirichletValues)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getRawVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a1d7cf1f4e62251a01d2207310f336e75</anchor>
+      <anchor>a15da22b282305962bc6498a1451694de</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a99690d51394f943e44743365d4d3b57e</anchor>
+      <anchor>a027ac8d2135f675df889fdf80a678081</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const Eigen::VectorXd &amp;</type>
       <name>getReducedVector</name>
       <anchorfile>a01174.html</anchorfile>
-      <anchor>a51fec3e98ce787300a069ccd30c75c67</anchor>
+      <anchor>a51fc1c4a8302dd955bd27dfa6e81bc6f</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>const double &amp;</type>
       <name>getScalar</name>
       <anchorfile>a01170.html</anchorfile>
-      <anchor>a152538dd394310fc57729163cace3289</anchor>
+      <anchor>a0bf594865140bd900a6f31807dfc6f7e</anchor>
       <arglist>(const FERequirementType &amp;feRequirements)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>reducedSize</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a8fd0336be5b5e2d0bcbcdb25bacc5f2f</anchor>
+      <anchor>a8b47f036b83e4e712b791d9cfe910f2b</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>size</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>ac105af5d51473a274f597d509308c55f</anchor>
+      <anchor>ae3fed93b367a8d5eb4e369132a7cc355</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>Eigen::VectorXd</type>
       <name>createFullVector</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a796d9b40d32762d5857b49afb30cec2a</anchor>
+      <anchor>a5ca172ae99902193abf31ab542ff4aaf</anchor>
       <arglist>(Eigen::Ref&lt; const Eigen::VectorXd &gt; reducedVector)</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>finiteElements</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>aa92c131a0915eb5864613bdbab5c4990</anchor>
+      <anchor>aa8da4086d468797668b6d551129e96dd</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>constraintsBelow</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a85a20ef2dd30a677994a9c79677cfdf2</anchor>
+      <anchor>aa1a20226eacfb65d0f2b09b397578cab</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a317a691c0aca9e9d5953845762c7f626</anchor>
+      <anchor>a75a1882ad41715632ebeb6a13ed14d69</anchor>
       <arglist>(size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>estimateOfConnectivity</name>
       <anchorfile>a01166.html</anchorfile>
-      <anchor>a6179ef97228c75448f8d109f031bc667</anchor>
+      <anchor>adf77b0e3c1dab4782a2da06fc712b9c5</anchor>
       <arglist>() const</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::Volume</name>
     <filename>a01306.html</filename>
-    <templarg>typename DisplacementBasedElement</templarg>
+    <templarg>typename DFE</templarg>
     <templarg>typename Traits</templarg>
     <member kind="typedef">
       <type>typename Traits::FERequirementType</type>
       <name>FERequirementType</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a01685c2dca7f8f6d5e03c3b79202af65</anchor>
+      <anchor>a3095dc94e0800007d462004657c1371a</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename Traits::LocalView</type>
       <name>LocalView</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a18c85727e45cd4b1889acb15d6e5c562</anchor>
+      <anchor>a378f39e30047caf903ac564848edc697</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>Volume</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a4b5995b4de476887526d16c90600b634</anchor>
-      <arglist>(VolumeLoad p_volumeLoad={})</arglist>
+      <anchor>af67372d55f4036736affad41565639bd</anchor>
+      <arglist>(VL volumeLoad={})</arglist>
     </member>
     <member kind="function">
       <type>double</type>
       <name>calculateScalar</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a33edddd4d3ef260d45b1c029efd9046d</anchor>
+      <anchor>a57dda3eb802306012e41237636de1ec4</anchor>
       <arglist>(const FERequirementType &amp;req) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateVector</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ad2cf691094d779dd4681c79a1d768aae</anchor>
+      <anchor>a60ccd349727ba418dbfb1a3012a1d856</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template VectorType&lt;&gt; force) const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>calculateMatrix</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>ab34ccd72bb7397283f7c2dcbf595841e</anchor>
+      <anchor>a50c6859b6c9a40fbb8ac9cc77d8087db</anchor>
       <arglist>(const FERequirementType &amp;req, typename Traits::template MatrixType&lt;&gt; K) const</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDim</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>aa57591d28c62806bfac624043d2e0258</anchor>
+      <anchor>a073fb2d3afae0bd3e0afe1c2534f9afd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" protection="protected">
       <type>auto</type>
       <name>calculateScalarImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a38b6d9f88ad5734093413497e3ac7b29</anchor>
-      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const -&gt; ScalarType</arglist>
+      <anchor>a7ec1326b708d8c08fee05ca7b601f997</anchor>
+      <arglist>(const FERequirementType &amp;par, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const -&gt; ST</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateVectorImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>af2fc872a641d42398fc9d8bd60aa973c</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ScalarType &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>a9b91a057a51ab4487656d8bd94fdd234</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template VectorType&lt; ST &gt; force, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
     <member kind="function" protection="protected">
       <type>void</type>
       <name>calculateMatrixImpl</name>
       <anchorfile>a01306.html</anchorfile>
-      <anchor>a6903f5e92a06b8066ef67b6a1f22e142</anchor>
-      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt) const</arglist>
+      <anchor>aaed2462e36f9d119ff5c60867ebcaf62</anchor>
+      <arglist>(const FERequirementType &amp;par, typename Traits::template MatrixType&lt;&gt; K, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt) const</arglist>
     </member>
   </compound>
   <compound kind="struct">
@@ -9717,7 +9917,7 @@
     <filename>a01615.html</filename>
   </compound>
   <compound kind="concept">
-    <name>Ikarus::MaterialParameterTuple</name>
+    <name>Ikarus::MPTuple</name>
     <filename>a01618.html</filename>
   </compound>
   <compound kind="concept">
@@ -9847,33 +10047,33 @@
     <concept>Ikarus::FEAffordance</concept>
     <concept>Ikarus::ResultTypeConcept</concept>
     <concept>Ikarus::CorrectStrainSize</concept>
-    <concept>Ikarus::MaterialParameterTuple</concept>
+    <concept>Ikarus::MPTuple</concept>
     <member kind="typedef">
       <type>LinearElasticityT&lt; double &gt;</type>
       <name>LinearElasticity</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ae7fcb8a58863e680e7a25d75766df15c</anchor>
+      <anchor>a5b06e456a4b64c291dedbcf428026ba7</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>NeoHookeT&lt; double &gt;</type>
       <name>NeoHooke</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a8d5cb9f5246159271193458daad08fdd</anchor>
+      <anchor>ab764233e8704d8d4462d202a362892c8</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>StVenantKirchhoffT&lt; double &gt;</type>
       <name>StVenantKirchhoff</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab6b67c66afecf13985c9bf252ac644da</anchor>
+      <anchor>a965823ec0538ab6b5bdf7f69c33f3910</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>LinearSolverTemplate&lt; double &gt;</type>
       <name>LinearSolver</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ae747d502e8f67af4c5412d8a6febeb4c</anchor>
+      <anchor>a2afda25e777ed3a794da319ba535b87b</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
@@ -10205,22 +10405,22 @@
       <type>auto</type>
       <name>planeStress</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a9b0fa242d65e9b14680cedcbaeed3301</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>ad43f50b1b1c3410c4a0c547be7ada4a0</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>shellMaterial</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a97580749c5279282142d9e17d612b77e</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>a9a1d1c81201b4c4c8cbee139df43b5d6</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>beamMaterial</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a9bf89561a3cb74c038a5e137608ee22d</anchor>
-      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType p_tol=1e-8)</arglist>
+      <anchor>a9b582bcc3c887a57428b25984bc6f7ac</anchor>
+      <arglist>(const MaterialImpl &amp;mat, typename MaterialImpl::ScalarType tol=1e-8)</arglist>
     </member>
     <member kind="function">
       <type>Eigen::Matrix3d</type>
@@ -10233,43 +10433,43 @@
       <type>Eigen::Matrix&lt; double, 6, 6 &gt;</type>
       <name>linearElasticMaterialTangent3D</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>afc9c57d60ca4a8c1075c44d926e497a8</anchor>
+      <anchor>ab859759a8309b785e7872d8360171030</anchor>
       <arglist>(double E, double nu)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndPoissonsRatio &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>aef16f39eb73407dd874bc14426576a4e</anchor>
-      <arglist>(const YoungsModulusAndPoissonsRatio &amp;p_vp)</arglist>
+      <anchor>a5e27551f9edaebc557108aa164899b54</anchor>
+      <arglist>(const YoungsModulusAndPoissonsRatio &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a12d4dc64780852248f63e127056a9acd</anchor>
-      <arglist>(const YoungsModulusAndShearModulus &amp;p_vp)</arglist>
+      <anchor>a6a85c01d9e8f0e2adff8035087485109</anchor>
+      <arglist>(const YoungsModulusAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; YoungsModulusAndBulkModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ac497080ab39c3c111c14fe3494537f19</anchor>
-      <arglist>(const YoungsModulusAndBulkModulus &amp;p_vp)</arglist>
+      <anchor>ad80fc80be73cb847542e1b7c5bde5af6</anchor>
+      <arglist>(const YoungsModulusAndBulkModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; LamesFirstParameterAndShearModulus &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a5d423c9a6e6c2c397453649be42ac3c4</anchor>
-      <arglist>(const LamesFirstParameterAndShearModulus &amp;p_vp)</arglist>
+      <anchor>aec5648541007a5e5bb89c1f64ec2da92</anchor>
+      <arglist>(const LamesFirstParameterAndShearModulus &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>ConvertLameConstants&lt; BulkModulusAndLamesFirstParameter &gt;</type>
       <name>convertLameConstants</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a1f84cd5962ef6c6b47fba01a130c7ea1</anchor>
-      <arglist>(const BulkModulusAndLamesFirstParameter &amp;p_vp)</arglist>
+      <anchor>a8c72e37743694391da18e64618a7c799</anchor>
+      <arglist>(const BulkModulusAndLamesFirstParameter &amp;valuePair)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -10289,36 +10489,36 @@
       <type>auto</type>
       <name>makeNewtonRaphson</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a88c3bed4f749a93760f96c52c91091e7</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>afa463e708cffd14133ff65ffa366e329</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UF &amp;&amp;updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>makeNewtonRaphsonWithSubsidiaryFunction</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a674c58e9e3dd89675adb727587a08850</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, LinearSolver &amp;&amp;p_linearSolver={}, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>ade2a979ee79a657c6ab7530ee203056f</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, LS &amp;&amp;linearSolver={}, UF &amp;&amp;updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>makeTrustRegion</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a729c70214792799fb38684febff75e9f</anchor>
-      <arglist>(const NonLinearOperatorImpl &amp;p_nonLinearOperator, UpdateFunctionType &amp;&amp;p_updateFunction={})</arglist>
+      <anchor>a547326eb09552d3d1fed0830d0e2d269</anchor>
+      <arglist>(const NLO &amp;nonLinearOperator, UF &amp;&amp;updateFunction={})</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>makeBasis</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a9a51c77ff0881c59e81e96c902b1fcd4</anchor>
-      <arglist>(const GridView &amp;gv, const PreBasisFactory &amp;pb)</arglist>
+      <anchor>a9acabb8291c86afe74e8617830e033de</anchor>
+      <arglist>(const GV &amp;gv, const PBF &amp;pb)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>makeBasis</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a41f7bb765ece7777057ad9bde7b2c10f</anchor>
-      <arglist>(const Dune::Functions::DefaultGlobalBasis&lt; PreBasis &gt; &amp;gb)</arglist>
+      <anchor>aa8350697b25edf5034483b28fb0c3f76</anchor>
+      <arglist>(const Dune::Functions::DefaultGlobalBasis&lt; PB &gt; &amp;gb)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -10328,39 +10528,39 @@
       <arglist>(const Eigen::EigenBase&lt; Derived &gt; &amp;A)</arglist>
     </member>
     <member kind="function">
-      <type>Dune::FieldVector&lt; ScalarType, size &gt;</type>
+      <type>Dune::FieldVector&lt; ST, size &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab3afd8732c7518fb5cad5fc85f660ff4</anchor>
-      <arglist>(const Eigen::Vector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>a0fdba7f3ebe4bf1ada6618f450b50221</anchor>
+      <arglist>(const Eigen::Vector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Dune::FieldVector&lt; ScalarType, rows &gt;</type>
+      <type>Dune::FieldVector&lt; ST, rows &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a93a33caf49e0072f27298b2745e9ae56</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, rows, 0 &gt; &amp;vec)</arglist>
+      <anchor>a4e9e21776afdaaa93c4a9d19554976fa</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, rows, 0 &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Dune::FieldMatrix&lt; ScalarType, rows, cols &gt;</type>
+      <type>Dune::FieldMatrix&lt; ST, rows, cols &gt;</type>
       <name>toDune</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a332dc3abf615826c1eeb5e4dba37dfb8</anchor>
-      <arglist>(const Eigen::Matrix&lt; ScalarType, rows, cols &gt; &amp;mat)</arglist>
+      <anchor>a83633e77ee5a35cb31a7cd2f02aedb7f</anchor>
+      <arglist>(const Eigen::Matrix&lt; ST, rows, cols &gt; &amp;mat)</arglist>
     </member>
     <member kind="function">
-      <type>Eigen::Map&lt; const Eigen::Vector&lt; ScalarType, size &gt; &gt;</type>
+      <type>Eigen::Map&lt; const Eigen::Vector&lt; ST, size &gt; &gt;</type>
       <name>toEigenMap</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ab33f0f88435ac31e2f1230b321fe16db</anchor>
-      <arglist>(const Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>aaa7e8e9b8bd8247afecc24cdd54ec658</anchor>
+      <arglist>(const Dune::FieldVector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
-      <type>Eigen::Map&lt; Eigen::Vector&lt; ScalarType, size &gt; &gt;</type>
+      <type>Eigen::Map&lt; Eigen::Vector&lt; ST, size &gt; &gt;</type>
       <name>toEigenMap</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>a8f500d064c150a65ba93e8a4d5fe6df7</anchor>
-      <arglist>(Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)</arglist>
+      <anchor>aaac71220182c301ee8c864f2a507c3db</anchor>
+      <arglist>(Dune::FieldVector&lt; ST, size &gt; &amp;vec)</arglist>
     </member>
     <member kind="function">
       <type>decltype(auto)</type>
@@ -10632,8 +10832,8 @@
       <type>auto</type>
       <name>initResults</name>
       <anchorfile>a00325.html</anchorfile>
-      <anchor>ac4a51a33b91a6e959c61fb4a71cef19c</anchor>
-      <arglist>(const Impl::Functions&lt; DerivativeArgs... &gt; &amp;derivativesFunctions, const Impl::Parameter&lt; ParameterArgs... &gt; &amp;parameterI)</arglist>
+      <anchor>a5357efca8ce4f70831d107f93f2cda1d</anchor>
+      <arglist>(const Impl::Functions&lt; DerivativeArgs... &gt; &amp;derivativesFunctions, const Impl::Parameter&lt; ParameterArgs... &gt; &amp;parameter)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -10919,8 +11119,8 @@
       <type>auto</type>
       <name>localSolutionBlockVector</name>
       <anchorfile>a00328.html</anchorfile>
-      <anchor>a2c8d65eb2c1b14e022a42dbccf0b5cb1</anchor>
-      <arglist>(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ScalarType &gt; &gt; &amp;dx=std::nullopt)</arglist>
+      <anchor>a98c9e3d7c5cc47d0c177684a18a41bd5</anchor>
+      <arglist>(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt)</arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -11138,29 +11338,29 @@
       <type>auto</type>
       <name>appendUnique</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga8f6d2c90383de63c518cefeaccee76f8</anchor>
-      <arglist>(std::ranges::random_access_range auto &amp;r, Value &amp;&amp;v)</arglist>
+      <anchor>ga0ccbb016e46741bd00c69436dc11e2d0</anchor>
+      <arglist>(std::ranges::random_access_range auto &amp;r, T &amp;&amp;v)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>printContent</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga11bb80da2430170954d6b7519f9498a6</anchor>
-      <arglist>(Container &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
+      <anchor>ga2b7954c72a2393ab7494fa0b66d828cd</anchor>
+      <arglist>(C &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformValueRangeToPointerRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga5f3a9e195a06ac4419ccb479f8819d62</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga7f597d87c8f2bcbf4afc65ebc929b680</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformPointerRangeToReferenceRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>gaabfee41eeb4843cb2fa37b5f381e9fef</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga83bd9e4f59f0aa9fadd797efefa751d9</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
@@ -11285,8 +11485,8 @@
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>a00320.html</anchorfile>
-      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
-      <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
+      <anchor>gac0aa110e209c93e655de9df0915c2fcc</anchor>
+      <arglist>(const LV &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -11385,8 +11585,8 @@
       <type>void</type>
       <name>initialPrediction</name>
       <anchorfile>a00308.html</anchorfile>
-      <anchor>gaede73886a736a968e9783df389df245f</anchor>
-      <arglist>(NonLinearOperator &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
+      <anchor>ga0a84b97adf02eb4fbd07ac3fc0c134bf</anchor>
+      <arglist>(NLO &amp;nonLinearOperator, SubsidiaryArgs &amp;args)</arglist>
     </member>
   </compound>
   <compound kind="group">
@@ -11763,8 +11963,8 @@
       <type>void</type>
       <name>obtainLagrangeNodePositions</name>
       <anchorfile>a00320.html</anchorfile>
-      <anchor>ga276a9de351512c4cacf6e09cad649265</anchor>
-      <arglist>(const LocalView &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
+      <anchor>gac0aa110e209c93e655de9df0915c2fcc</anchor>
+      <arglist>(const LV &amp;localView, std::vector&lt; Dune::FieldVector&lt; double, size &gt; &gt; &amp;lagrangeNodeCoords)</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
@@ -12144,29 +12344,29 @@
       <type>auto</type>
       <name>appendUnique</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga8f6d2c90383de63c518cefeaccee76f8</anchor>
-      <arglist>(std::ranges::random_access_range auto &amp;r, Value &amp;&amp;v)</arglist>
+      <anchor>ga0ccbb016e46741bd00c69436dc11e2d0</anchor>
+      <arglist>(std::ranges::random_access_range auto &amp;r, T &amp;&amp;v)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>printContent</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga11bb80da2430170954d6b7519f9498a6</anchor>
-      <arglist>(Container &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
+      <anchor>ga2b7954c72a2393ab7494fa0b66d828cd</anchor>
+      <arglist>(C &amp;&amp;c, std::ostream &amp;os=std::cout)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformValueRangeToPointerRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>ga5f3a9e195a06ac4419ccb479f8819d62</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga7f597d87c8f2bcbf4afc65ebc929b680</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>transformPointerRangeToReferenceRange</name>
       <anchorfile>a00322.html</anchorfile>
-      <anchor>gaabfee41eeb4843cb2fa37b5f381e9fef</anchor>
-      <arglist>(Container &amp;cont)</arglist>
+      <anchor>ga83bd9e4f59f0aa9fadd797efefa751d9</anchor>
+      <arglist>(C &amp;cont)</arglist>
     </member>
     <member kind="function">
       <type>constexpr size_t</type>
@@ -12291,7 +12491,7 @@
   <compound kind="page">
     <name>md____w_ikarus_ikarus_repo_LICENSE</name>
     <title>Copyright holders</title>
-    <filename>a02443.html</filename>
+    <filename>a02447.html</filename>
   </compound>
   <compound kind="page">
     <name>index</name>

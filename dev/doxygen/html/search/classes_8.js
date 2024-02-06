@@ -7,7 +7,7 @@ var searchData=
   ['iobservable_3c_20nonlinearsolvermessages_20_3e_4',['IObservable&lt; NonLinearSolverMessages &gt;',['../a01570.html',1,'Ikarus']]],
   ['iobserver_5',['IObserver',['../a01566.html',1,'Ikarus']]],
   ['iobserver_3c_20controlmessages_20_3e_6',['IObserver&lt; ControlMessages &gt;',['../a01566.html',1,'Ikarus']]],
-  ['iobserver_3c_20messages_20_3e_7',['IObserver&lt; Messages &gt;',['../a01566.html',1,'Ikarus']]],
+  ['iobserver_3c_20m_20_3e_7',['IObserver&lt; M &gt;',['../a01566.html',1,'Ikarus']]],
   ['iobserver_3c_20nonlinearsolvermessages_20_3e_8',['IObserver&lt; NonLinearSolverMessages &gt;',['../a01566.html',1,'Ikarus']]],
   ['is_5ftuple_3c_20std_3a_3atuple_3c_20t_2e_2e_2e_20_3e_20_3e_9',['is_tuple&lt; std::tuple&lt; T... &gt; &gt;',['../a01578.html',1,'Ikarus::traits']]],
   ['isspecialization_3c_20u_2c_20u_3c_20t_2e_2e_2e_20_3e_20_3e_10',['isSpecialization&lt; U, U&lt; T... &gt; &gt;',['../a01586.html',1,'Ikarus::traits']]],

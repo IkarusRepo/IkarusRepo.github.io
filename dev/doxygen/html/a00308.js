@@ -1,12 +1,12 @@
 var a00308 =
 [
-    [ "adaptivestepsizing.hh", "a00134.html", null ],
-    [ "controlinfos.hh", "a00125.html", null ],
-    [ "loadcontrol.inl", "a00131.html", null ],
-    [ "pathfollowing.inl", "a00122.html", null ],
-    [ "Ikarus::LoadControl< NonLinearSolver >", "a01198.html", [
-      [ "LoadControl", "a01198.html#a561dc43b8cf1bc3bad02af6d04ce5380", null ],
-      [ "name", "a01198.html#a5be00442ee05d28d9e22de5ace368ed8", null ],
+    [ "adaptivestepsizing.hh", "a00272.html", null ],
+    [ "controlinfos.hh", "a00275.html", null ],
+    [ "loadcontrol.inl", "a00266.html", null ],
+    [ "pathfollowing.inl", "a00263.html", null ],
+    [ "Ikarus::LoadControl< NLS >", "a01198.html", [
+      [ "LoadControl", "a01198.html#a073af96d9cd179a918cf18656be19947", null ],
+      [ "name", "a01198.html#ab0c5144a3b5d67f3c582772a48271105", null ],
       [ "notify", "a01198.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
       [ "notify", "a01198.html#a2f93322aa7327069dd4469983933bd16", null ],
       [ "notify", "a01198.html#ac72b261cd2af7f59e98f1504814bc785", null ],
@@ -14,16 +14,23 @@ var a00308 =
       [ "notify", "a01198.html#a72e3156874ce81a1c7548b9f74db522c", null ],
       [ "notify", "a01198.html#ae0c6cec757e540f22b65fce1f782e380", null ],
       [ "notify", "a01198.html#ac035ba934c33e090c4a45128ac13f190", null ],
-      [ "run", "a01198.html#ac4a34370d6533e681070f5a88cb43e0f", null ],
-      [ "subscribe", "a01198.html#ae182a206a72de6bc4585152d32332349", null ],
+      [ "notify", "a01198.html#a19047649c66f704c2ba2f1276c1a0e8b", null ],
+      [ "notify", "a01198.html#acf19e220bc71c046619dd21b3f50e8bb", null ],
+      [ "notify", "a01198.html#aa5a60c5b81bb92de527c49ea8fce147d", null ],
+      [ "notify", "a01198.html#ad758bd6f15e8228a3439f52ee2ad6aaa", null ],
+      [ "notify", "a01198.html#ae12cb2deb2aa20f0cbc3d78b9a562eb3", null ],
+      [ "notify", "a01198.html#aae4ef907815822352e07fe25cefa8980", null ],
+      [ "notify", "a01198.html#a03d4668b7111180f0427e8382359f3bf", null ],
+      [ "run", "a01198.html#aea1be825e746e898092e83a41efaedac", null ],
+      [ "subscribe", "a01198.html#ad67c98f02c195b788f78a229e1898006", null ],
       [ "subscribeAll", "a01198.html#a026462a1a050728e37bc24e33d2edd9c", null ],
       [ "subscribeAll", "a01198.html#a13bd8d73b485186680f640786e2682e5", null ],
-      [ "unSubscribe", "a01198.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
-      [ "unSubscribeAll", "a01198.html#a5c20f7eab2233d085071a4fd3b44cbda", null ]
+      [ "unSubscribe", "a01198.html#a3eb718b8fa1ecc373371a6751a316b24", null ],
+      [ "unSubscribeAll", "a01198.html#a378a520833df0d6e27dbb35b621c838d", null ]
     ] ],
-    [ "Ikarus::PathFollowing< NonLinearSolver, PathFollowingType, AdaptiveStepSizing >", "a01202.html", [
-      [ "PathFollowing", "a01202.html#adc5522a16e0e190efacb4923a36de67e", null ],
-      [ "name", "a01202.html#ab9eed4b69c451cedf8ae4d0845a0f478", null ],
+    [ "Ikarus::PathFollowing< NLS, PF, ASS >", "a01202.html", [
+      [ "PathFollowing", "a01202.html#afa8baf4eca6f6dd442165592c7fe3871", null ],
+      [ "name", "a01202.html#a31b9c556cef2540c66676589b230ef5d", null ],
       [ "notify", "a01202.html#a4bce3750aa7d52aff9baf122a54e16b5", null ],
       [ "notify", "a01202.html#a2f93322aa7327069dd4469983933bd16", null ],
       [ "notify", "a01202.html#ac72b261cd2af7f59e98f1504814bc785", null ],
@@ -31,12 +38,19 @@ var a00308 =
       [ "notify", "a01202.html#a72e3156874ce81a1c7548b9f74db522c", null ],
       [ "notify", "a01202.html#ae0c6cec757e540f22b65fce1f782e380", null ],
       [ "notify", "a01202.html#ac035ba934c33e090c4a45128ac13f190", null ],
-      [ "run", "a01202.html#a83b8a3aa34deb10db3e3f774bdc973df", null ],
-      [ "subscribe", "a01202.html#ae182a206a72de6bc4585152d32332349", null ],
+      [ "notify", "a01202.html#a19047649c66f704c2ba2f1276c1a0e8b", null ],
+      [ "notify", "a01202.html#acf19e220bc71c046619dd21b3f50e8bb", null ],
+      [ "notify", "a01202.html#aa5a60c5b81bb92de527c49ea8fce147d", null ],
+      [ "notify", "a01202.html#ad758bd6f15e8228a3439f52ee2ad6aaa", null ],
+      [ "notify", "a01202.html#ae12cb2deb2aa20f0cbc3d78b9a562eb3", null ],
+      [ "notify", "a01202.html#aae4ef907815822352e07fe25cefa8980", null ],
+      [ "notify", "a01202.html#a03d4668b7111180f0427e8382359f3bf", null ],
+      [ "run", "a01202.html#a9fa5e99c1a3e23b526939be2c6ee87bf", null ],
+      [ "subscribe", "a01202.html#ad67c98f02c195b788f78a229e1898006", null ],
       [ "subscribeAll", "a01202.html#a026462a1a050728e37bc24e33d2edd9c", null ],
       [ "subscribeAll", "a01202.html#a13bd8d73b485186680f640786e2682e5", null ],
-      [ "unSubscribe", "a01202.html#a49622286d2b15f0b8a2b25275e6bc771", null ],
-      [ "unSubscribeAll", "a01202.html#a5c20f7eab2233d085071a4fd3b44cbda", null ]
+      [ "unSubscribe", "a01202.html#a3eb718b8fa1ecc373371a6751a316b24", null ],
+      [ "unSubscribeAll", "a01202.html#a378a520833df0d6e27dbb35b621c838d", null ]
     ] ],
     [ "Ikarus::SubsidiaryArgs", "a01206.html", [
       [ "currentStep", "a01206.html#a217c729e1ae8b05a98c852f19b0d6ae5", null ],
@@ -48,23 +62,23 @@ var a00308 =
       [ "stepSize", "a01206.html#a9c0bca7ed999dcf751648d41b5d9aa78", null ]
     ] ],
     [ "Ikarus::ArcLength", "a01210.html", [
-      [ "initialPrediction", "a00308.html#gaede73886a736a968e9783df389df245f", null ],
-      [ "intermediatePrediction", "a01210.html#a693ad9054ad2b8f41da254028a33ec6a", null ],
+      [ "initialPrediction", "a00308.html#ga0a84b97adf02eb4fbd07ac3fc0c134bf", null ],
+      [ "intermediatePrediction", "a01210.html#af2af0315b650a1b8c997792f22829585", null ],
       [ "name", "a01210.html#afa77b974566da3b74cb5b35693540c16", null ],
       [ "operator()", "a01210.html#a2fabf5f8515ac122ecf588f1d8c860bf", null ]
     ] ],
     [ "Ikarus::LoadControlSubsidiaryFunction", "a01214.html", [
-      [ "initialPrediction", "a01214.html#a3c180ee35066bbb51af604b2d6482a0c", null ],
-      [ "intermediatePrediction", "a01214.html#a5e378c06d11bfe70acb5b9b3ac40f9f0", null ],
+      [ "initialPrediction", "a01214.html#a4670840cb26672b50f79dfc70ba47973", null ],
+      [ "intermediatePrediction", "a01214.html#abd2369cff03a98552df1f8c8a4184e90", null ],
       [ "name", "a01214.html#a6e2ee6e5a234c1b14ce197f4a1460ed3", null ],
       [ "operator()", "a01214.html#aea5de41cde5e7506712e8bdd84be6ffa", null ]
     ] ],
     [ "Ikarus::DisplacementControl", "a01218.html", [
       [ "DisplacementControl", "a01218.html#aa15060bf256c9786fe44096fad899733", null ],
-      [ "initialPrediction", "a01218.html#a745ce332f4df7c4483d2d86e06013f24", null ],
-      [ "intermediatePrediction", "a01218.html#a11625614df35e7e3c627e7d87a1670fe", null ],
+      [ "initialPrediction", "a01218.html#abcca64d9ae96884cfbd65a324f15e8f8", null ],
+      [ "intermediatePrediction", "a01218.html#a9a15e5b053c27997596589ded6e09616", null ],
       [ "name", "a01218.html#a16cd9773e9704597d967f144d674bcd4", null ],
       [ "operator()", "a01218.html#a980d44ede46996fd077ffa1bbda66952", null ]
     ] ],
-    [ "Ikarus::ArcLength::initialPrediction", "a00308.html#gaede73886a736a968e9783df389df245f", null ]
+    [ "Ikarus::ArcLength::initialPrediction", "a00308.html#ga0a84b97adf02eb4fbd07ac3fc0c134bf", null ]
 ];

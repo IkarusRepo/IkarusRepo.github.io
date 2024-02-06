@@ -1,197 +1,284 @@
-\hypertarget{a00257_source}{}\doxysection{observer.\+hh}
-\label{a00257_source}\index{observer.hh@{observer.hh}}
+\hypertarget{a00257_source}{}\doxysection{physicshelper.\+hh}
+\label{a00257_source}\index{physicshelper.hh@{physicshelper.hh}}
 \mbox{\hyperlink{a00257}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <map>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/makeenum.hh}}>}}
-\DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{24 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{25 \textcolor{keyword}{class }\mbox{\hyperlink{a01566}{IObserver}}}
-\DoxyCodeLine{26 \{}
-\DoxyCodeLine{27 \textcolor{keyword}{public}:}
-\DoxyCodeLine{29   \textcolor{keyword}{virtual} \mbox{\hyperlink{a01566_afda55d0cee706fa7a2df824e2a149a9e}{\string~IObserver}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{35   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a8c171635a257ce7fe905a58337717efe}{update}}(MessageType message) \{}
-\DoxyCodeLine{36     checkMessageType(message);}
-\DoxyCodeLine{37     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message);}
-\DoxyCodeLine{38   \}}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{45   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a0f235d3f9f49582c0902dfcd5217f4a1}{update}}(MessageType message, \textcolor{keywordtype}{double} val) \{}
-\DoxyCodeLine{46     checkMessageType(message);}
-\DoxyCodeLine{47     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{48   \}}
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{23 \textcolor{keyword}{inline} Eigen::Matrix3d \mbox{\hyperlink{a00325_a90678a80e6b2b4849072623df02dae58}{planeStressLinearElasticMaterialTangent}}(\textcolor{keywordtype}{double} E, \textcolor{keywordtype}{double} nu) \{}
+\DoxyCodeLine{24   Eigen::Matrix3d C;}
+\DoxyCodeLine{25   C.setZero();}
+\DoxyCodeLine{26   C(0, 0) = C(1, 1) = 1;}
+\DoxyCodeLine{27   C(0, 1) = C(1, 0) = nu;}
+\DoxyCodeLine{28   C(2, 2)           = (1 -\/ nu) / 2;}
+\DoxyCodeLine{29   C *= E / (1 -\/ nu * nu);}
+\DoxyCodeLine{30   \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{31 \}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{40 \textcolor{keyword}{inline} Eigen::Matrix<double, 6, 6> \mbox{\hyperlink{a00325_ab859759a8309b785e7872d8360171030}{linearElasticMaterialTangent3D}}(\textcolor{keywordtype}{double} E, \textcolor{keywordtype}{double} nu) \{}
+\DoxyCodeLine{41   Eigen::Matrix<double, 6, 6> C;}
+\DoxyCodeLine{42   C.setZero();}
+\DoxyCodeLine{43   C(0, 0) = C(1, 1) = C(2, 2) = 1 -\/ nu;}
+\DoxyCodeLine{44   C(0, 1) = C(1, 0) = C(2, 0) = C(0, 2) = C(1, 2) = C(2, 1) = nu;}
+\DoxyCodeLine{45   C(3, 3) = C(4, 4) = C(5, 5) = (1 -\/ 2 * nu) / 2;}
+\DoxyCodeLine{46   C *= E / ((1 + nu) * (1 -\/ 2 * nu));}
+\DoxyCodeLine{47   \textcolor{keywordflow}{return} C;}
+\DoxyCodeLine{48 \}}
 \DoxyCodeLine{49 }
-\DoxyCodeLine{55   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a97bf3fd861a8eac696a97ec56d953b47}{update}}(MessageType message, \textcolor{keywordtype}{int} val) \{}
-\DoxyCodeLine{56     checkMessageType(message);}
-\DoxyCodeLine{57     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{58   \};}
-\DoxyCodeLine{59 }
-\DoxyCodeLine{65   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a05a6a76b6875406ae8ff5e05f2662d57}{update}}(MessageType message, \textcolor{keyword}{const} std::string\& val) \{}
-\DoxyCodeLine{66     checkMessageType(message);}
-\DoxyCodeLine{67     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val);}
-\DoxyCodeLine{68   \};}
-\DoxyCodeLine{69 }
-\DoxyCodeLine{76   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_ab87bc0dab48de914d7f5221fb9c3477b}{update}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2) \{}
-\DoxyCodeLine{77     checkMessageType(message);}
-\DoxyCodeLine{78     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val1, val2);}
-\DoxyCodeLine{79   \};}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{87   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a5d2fb507095933199fab726c17e01bcf}{update}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2) \{}
-\DoxyCodeLine{88     checkMessageType(message);}
-\DoxyCodeLine{89     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, val1, val2);}
-\DoxyCodeLine{90   \};}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{97   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a20e3859480f6cab562f33ce9da888380}{update}}(MessageType message, \textcolor{keyword}{const} Eigen::VectorXd\& vec) \{}
-\DoxyCodeLine{98     checkMessageType(message);}
-\DoxyCodeLine{99     \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}(message, vec);}
-\DoxyCodeLine{100   \}}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{102 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{103   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a478eaa94650cf462a050e28ecf098773}{updateImpl}}([[maybe\_unused]] MessageType message)\{\};}
-\DoxyCodeLine{104   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a663889f78a7dbd3561fa6a497e023a23}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{double} val)\{\};}
-\DoxyCodeLine{105   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_adc61a4813394bdde201018db198544a3}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val)\{\};}
-\DoxyCodeLine{106   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_ae97b76e37ab99f985a0ef71f4a9efd37}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keyword}{const} std::string\& val)\{\};}
-\DoxyCodeLine{107   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_af53b8b154a887fce37fee355b0244c21}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2)\{\};}
-\DoxyCodeLine{108   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a4d0a13cbe1104d10c4ec5e928f64ab4b}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2)\{\};}
-\DoxyCodeLine{109   \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01566_a4b7267849be75994c85c8ebe7af10465}{updateImpl}}([[maybe\_unused]] MessageType message, [[maybe\_unused]] \textcolor{keyword}{const} Eigen::VectorXd\& vec) \{\}}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{111 \textcolor{keyword}{private}:}
-\DoxyCodeLine{112   \textcolor{keywordtype}{void} checkMessageType(MessageType message) \{}
-\DoxyCodeLine{113     \textcolor{keywordflow}{if} (MessageType::END == message)}
-\DoxyCodeLine{114       DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The END enum type should not be used"{}});}
-\DoxyCodeLine{115     \textcolor{keywordflow}{if} (MessageType::BEGIN == message)}
-\DoxyCodeLine{116       DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The BEGIN enum type should not be used"{}});}
-\DoxyCodeLine{117   \}}
-\DoxyCodeLine{118 \};}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{126 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{127 \textcolor{keyword}{class }\mbox{\hyperlink{a01570}{IObservable}}}
-\DoxyCodeLine{128 \{}
-\DoxyCodeLine{129 \textcolor{keyword}{public}:}
-\DoxyCodeLine{130   \mbox{\hyperlink{a01570_ac8058d5b1ebb462a10712ba598154e23}{IObservable}}() \{}
-\DoxyCodeLine{131     \textcolor{keywordflow}{for} (MessageType msg = MessageType::BEGIN; msg != MessageType::END; \mbox{\hyperlink{a00320_ga5db6e8f04892e85e6b17e276cdbd0e54}{Ikarus::increment}}(msg))}
-\DoxyCodeLine{132       messages\_.push\_back(msg);}
-\DoxyCodeLine{133   \}}
-\DoxyCodeLine{134   \textcolor{keyword}{virtual} \mbox{\hyperlink{a01570_ad1fe15b31cccec8e44c695af550938ed}{\string~IObservable}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{140   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_ae182a206a72de6bc4585152d32332349}{subscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{145   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a13bd8d73b485186680f640786e2682e5}{subscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{150   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a026462a1a050728e37bc24e33d2edd9c}{subscribeAll}}(std::initializer\_list<std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}>> observers);}
-\DoxyCodeLine{156   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a49622286d2b15f0b8a2b25275e6bc771}{unSubscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{161   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a5c20f7eab2233d085071a4fd3b44cbda}{unSubscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer);}
-\DoxyCodeLine{166   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(MessageType message);}
-\DoxyCodeLine{167 }
-\DoxyCodeLine{174   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{175   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_ac035ba934c33e090c4a45128ac13f190}{notify}}(MessageType message, ScalarType val);}
-\DoxyCodeLine{176 }
-\DoxyCodeLine{182   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a47ac8ae7cc4e9304cfb220f1d93ce1fc}{notify}}(MessageType message, \textcolor{keywordtype}{int} val);}
-\DoxyCodeLine{183 }
-\DoxyCodeLine{189   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a2f93322aa7327069dd4469983933bd16}{notify}}(MessageType message, \textcolor{keyword}{const} std::string\& val);}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{197   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_ae0c6cec757e540f22b65fce1f782e380}{notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2);}
-\DoxyCodeLine{198 }
-\DoxyCodeLine{205   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a72e3156874ce81a1c7548b9f74db522c}{notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2);}
-\DoxyCodeLine{206 }
-\DoxyCodeLine{213   \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{214   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_ac72b261cd2af7f59e98f1504814bc785}{notify}}(MessageType message, Eigen::VectorX<ScalarType> vec);}
-\DoxyCodeLine{215 }
-\DoxyCodeLine{216 \textcolor{keyword}{private}:}
-\DoxyCodeLine{217   \textcolor{keyword}{using }ObserverVector = std::vector<std::shared\_ptr<IObserver<MessageType>>>;}
-\DoxyCodeLine{218   \textcolor{keyword}{using }ObserverMap    = std::map<MessageType, ObserverVector>;}
-\DoxyCodeLine{219   ObserverMap observers\_;}
-\DoxyCodeLine{220   std::vector<MessageType> messages\_;}
-\DoxyCodeLine{221 \};}
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{224 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_ae182a206a72de6bc4585152d32332349}{IObservable<MessageType>::subscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{225   observers\_[message];}
-\DoxyCodeLine{226   \textcolor{keyword}{auto}\&\& vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{227   vectorOfObserversOfASpecificMessage.push\_back(observer);}
-\DoxyCodeLine{228 \}}
-\DoxyCodeLine{229 }
-\DoxyCodeLine{230 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{231 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a13bd8d73b485186680f640786e2682e5}{IObservable<MessageType>::subscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{232   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{233     subscribe(msg, observer);}
-\DoxyCodeLine{234 \}}
-\DoxyCodeLine{235 }
-\DoxyCodeLine{236 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{237 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a13bd8d73b485186680f640786e2682e5}{IObservable<MessageType>::subscribeAll}}(std::initializer\_list<std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}>> observers) \{}
-\DoxyCodeLine{238   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& observer : observers)}
-\DoxyCodeLine{239     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{240       subscribe(msg, observer);}
-\DoxyCodeLine{241 \}}
-\DoxyCodeLine{242 }
-\DoxyCodeLine{243 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{244 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a49622286d2b15f0b8a2b25275e6bc771}{IObservable<MessageType>::unSubscribe}}(MessageType message, std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{245   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{246   std::ranges::remove\_if(vectorOfObserversOfASpecificMessage, [\&observer](\textcolor{keyword}{auto}\&\& obs) \{ \textcolor{keywordflow}{return} obs == observer; \});}
-\DoxyCodeLine{247 \}}
-\DoxyCodeLine{248 }
-\DoxyCodeLine{249 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{250 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a5c20f7eab2233d085071a4fd3b44cbda}{IObservable<MessageType>::unSubscribeAll}}(std::shared\_ptr<\mbox{\hyperlink{a01566}{IObserver<MessageType>}}> observer) \{}
-\DoxyCodeLine{251   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& msg : messages\_)}
-\DoxyCodeLine{252     unSubscribe(msg, observer);}
-\DoxyCodeLine{253 \}}
-\DoxyCodeLine{254 }
-\DoxyCodeLine{255 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{256 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message) \{}
-\DoxyCodeLine{257   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{258   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{259     obs-\/>update(message);}
-\DoxyCodeLine{260 \}}
-\DoxyCodeLine{261 }
-\DoxyCodeLine{262 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{263 \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{264 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, ScalarType val) \{}
-\DoxyCodeLine{265   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{266   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{267     obs-\/>update(message, val);}
-\DoxyCodeLine{268 \}}
-\DoxyCodeLine{269 }
-\DoxyCodeLine{270 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{271 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val) \{}
-\DoxyCodeLine{272   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{273   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{274     obs-\/>update(message, val);}
-\DoxyCodeLine{275 \}}
-\DoxyCodeLine{276 }
-\DoxyCodeLine{277 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{278 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keyword}{const} std::string\& val) \{}
-\DoxyCodeLine{279   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{280   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{281     obs-\/>update(message, val);}
-\DoxyCodeLine{282 \}}
-\DoxyCodeLine{283 }
-\DoxyCodeLine{284 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{285 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2) \{}
-\DoxyCodeLine{286   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{287   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{288     obs-\/>update(message, val1, val2);}
-\DoxyCodeLine{289 \}}
-\DoxyCodeLine{290 }
-\DoxyCodeLine{291 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{292 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2) \{}
-\DoxyCodeLine{293   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{294   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{295     obs-\/>update(message, val1, val2);}
-\DoxyCodeLine{296 \}}
-\DoxyCodeLine{297 }
-\DoxyCodeLine{298 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
-\DoxyCodeLine{299 \textcolor{keyword}{template} <std::\textcolor{keywordtype}{float}ing\_po\textcolor{keywordtype}{int} ScalarType>}
-\DoxyCodeLine{300 \textcolor{keywordtype}{void} \mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{IObservable<MessageType>::notify}}(MessageType message, Eigen::VectorX<ScalarType> vec) \{}
-\DoxyCodeLine{301   \textcolor{keyword}{auto} vectorOfObserversOfASpecificMessage = observers\_[message];}
-\DoxyCodeLine{302   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& obs : vectorOfObserversOfASpecificMessage)}
-\DoxyCodeLine{303     obs-\/>update(message, vec);}
-\DoxyCodeLine{304 \}}
-\DoxyCodeLine{305 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{52 \textcolor{keyword}{struct }\mbox{\hyperlink{a01342}{YoungsModulusAndPoissonsRatio}}}
+\DoxyCodeLine{53 \{}
+\DoxyCodeLine{54   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01342_a6c00be8aacc18c845b00748b1e56c83c}{emodul}};}
+\DoxyCodeLine{55   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01342_acb99903e7b1b13967a0757d284e014ed}{nu}};}
+\DoxyCodeLine{56 \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{59 \textcolor{keyword}{struct }\mbox{\hyperlink{a01346}{YoungsModulusAndShearModulus}}}
+\DoxyCodeLine{60 \{}
+\DoxyCodeLine{61   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_ab9d965c2a2c0409682aaea9ca45be83b}{emodul}};}
+\DoxyCodeLine{62   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_a12468705489862b9e7470f197b499d0f}{mu}};}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{66 \textcolor{keyword}{struct }\mbox{\hyperlink{a01350}{YoungsModulusAndBulkModulus}}}
+\DoxyCodeLine{67 \{}
+\DoxyCodeLine{68   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01350_a218a7076cb5434dd30811ffe50b39964}{emodul}};}
+\DoxyCodeLine{69   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01350_a996ac473697809e0e44551037cf6d4f0}{K}};}
+\DoxyCodeLine{70 \};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{73 \textcolor{keyword}{struct }\mbox{\hyperlink{a01354}{YoungsModulusAndLamesFirstParameter}}}
+\DoxyCodeLine{74 \{}
+\DoxyCodeLine{75   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01354_ac0163a851cf3f135906c79a95cca835f}{emodul}};}
+\DoxyCodeLine{76   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01354_ab38e15b12e0e703652627c73b8639ee8}{lambda}};}
+\DoxyCodeLine{77 \};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{80 \textcolor{keyword}{struct }\mbox{\hyperlink{a01358}{BulkModulusAndLamesFirstParameter}}}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{82   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01358_a4f5868738c5673adf557e914123d0c8e}{K}};}
+\DoxyCodeLine{83   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01358_a82f624b8171315c48c0bb5d39ef2f5d8}{lambda}};}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{87 \textcolor{keyword}{struct }\mbox{\hyperlink{a01362}{LamesFirstParameterAndShearModulus}}}
+\DoxyCodeLine{88 \{}
+\DoxyCodeLine{89   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01362_a0157695e9fc8b735e86f828cc35b64fc}{lambda}};}
+\DoxyCodeLine{90   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01362_a3558ad06d2a831f0d412d76956d516f8}{mu}};}
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{98 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MP>}
+\DoxyCodeLine{99 \textcolor{keyword}{concept }\mbox{\hyperlink{a01618}{MPTuple}} =}
+\DoxyCodeLine{100     std::is\_same\_v<MP, YoungsModulusAndPoissonsRatio> or std::is\_same\_v<MP, YoungsModulusAndBulkModulus> or}
+\DoxyCodeLine{101     std::is\_same\_v<MP, YoungsModulusAndLamesFirstParameter> or std::is\_same\_v<MP, BulkModulusAndLamesFirstParameter> or}
+\DoxyCodeLine{102     std::is\_same\_v<MP, LamesFirstParameterAndShearModulus> or std::is\_same\_v<MP, YoungsModulusAndShearModulus>;}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{109 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ValuePair>}
+\DoxyCodeLine{110 \textcolor{keyword}{struct }\mbox{\hyperlink{a01366}{ConvertLameConstants}}}
+\DoxyCodeLine{111 \{}
+\DoxyCodeLine{112   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_aa7f98433b434cc9b4a4491448304bbb9}{toLamesFirstParameter}}()}
+\DoxyCodeLine{113   \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter> and}
+\DoxyCodeLine{114            !std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter> and}
+\DoxyCodeLine{115            !std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>)}
+\DoxyCodeLine{116   \{}
+\DoxyCodeLine{117     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{118       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{119       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp\_.nu;}
+\DoxyCodeLine{120       \textcolor{keywordflow}{return} Dune::FloatCmp::eq(nu, 0.5) ? std::numeric\_limits<double>::infinity()}
+\DoxyCodeLine{121                                          : E * nu / ((1.0 + nu) * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{122     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{123       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{124       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp\_.mu;}
+\DoxyCodeLine{125       \textcolor{keywordflow}{return} mu * (E -\/ 2.0 * mu) / (3.0 * mu -\/ E);}
+\DoxyCodeLine{126     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{127       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp\_.emodul;}
+\DoxyCodeLine{128       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp\_.K;}
+\DoxyCodeLine{129       \textcolor{keywordflow}{return} 3.0 * K * (3.0 * K -\/ E) / (9.0 * K -\/ E);}
+\DoxyCodeLine{130     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{131       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{132   \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_a4ec6722470a792039687e29c3d3cf4f4}{toBulkModulus}}()}
+\DoxyCodeLine{135   \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus> and}
+\DoxyCodeLine{136            !std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>)}
+\DoxyCodeLine{137   \{}
+\DoxyCodeLine{138     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{139       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{140       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp\_.nu;}
+\DoxyCodeLine{141       \textcolor{keywordflow}{return} E / (3.0 * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{142     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{143       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{144       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp\_.mu;}
+\DoxyCodeLine{145       \textcolor{keywordflow}{return} E * mu / (3.0 * (3.0 * mu -\/ E));}
+\DoxyCodeLine{146     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{147       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp\_.emodul;}
+\DoxyCodeLine{148       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{149       \textcolor{keywordflow}{return} (E + 3.0 * lambda + calcR(vp\_)) / 6.0;}
+\DoxyCodeLine{150     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{151       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{152       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp\_.mu;}
+\DoxyCodeLine{153       \textcolor{keywordflow}{return} lambda + 2.0 * mu / 3.0;}
+\DoxyCodeLine{154     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{155       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{156   \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_ae3b5ba75758a910d01a576dfeabdbe6e}{toShearModulus}}()}
+\DoxyCodeLine{159   \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus> and}
+\DoxyCodeLine{160            !std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>)}
+\DoxyCodeLine{161   \{}
+\DoxyCodeLine{162     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{163       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{164       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp\_.nu;}
+\DoxyCodeLine{165       \textcolor{keywordflow}{return} E / (2.0 * (1.0 + nu));}
+\DoxyCodeLine{166     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{167       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp\_.emodul;}
+\DoxyCodeLine{168       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp\_.K;}
+\DoxyCodeLine{169       \textcolor{keywordflow}{return} 3.0 * K * E / (9.0 * K -\/ E);}
+\DoxyCodeLine{170     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{171       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp\_.emodul;}
+\DoxyCodeLine{172       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{173       \textcolor{keywordflow}{return} (E -\/ 3.0 * lambda + calcR(vp\_)) / 4.0;}
+\DoxyCodeLine{174     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{175       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp\_.K;}
+\DoxyCodeLine{176       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{177       \textcolor{keywordflow}{return} 3.0 * (K -\/ lambda) / 2.0;}
+\DoxyCodeLine{178     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{179       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{180   \}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_abf0e01900bfaeacf08cc9af500f42c05}{toPWaveModulus}}() \{}
+\DoxyCodeLine{183     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>) \{}
+\DoxyCodeLine{184       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{185       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& nu = vp\_.nu;}
+\DoxyCodeLine{186       \textcolor{keywordflow}{return} E * (1.0 -\/ nu) / ((1.0 + nu) * (1.0 -\/ 2.0 * nu));}
+\DoxyCodeLine{187     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{188       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{189       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp\_.mu;}
+\DoxyCodeLine{190       \textcolor{keywordflow}{return} mu * (4.0 * mu -\/ E) / (3.0 * mu -\/ E);}
+\DoxyCodeLine{191     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{192       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp\_.emodul;}
+\DoxyCodeLine{193       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp\_.K;}
+\DoxyCodeLine{194       \textcolor{keywordflow}{return} 3.0 * K * (3.0 * K + E) / (9.0 * K -\/ E);}
+\DoxyCodeLine{195     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{196       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp\_.emodul;}
+\DoxyCodeLine{197       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{198       \textcolor{keywordflow}{return} (E -\/ lambda + calcR(vp\_)) / 2.0;}
+\DoxyCodeLine{199     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{200       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp\_.K;}
+\DoxyCodeLine{201       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{202       \textcolor{keywordflow}{return} 3.0 * K -\/ 2.0 * lambda;}
+\DoxyCodeLine{203     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{204       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{205       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp\_.mu;}
+\DoxyCodeLine{206       \textcolor{keywordflow}{return} lambda + 2.0 * mu;}
+\DoxyCodeLine{207     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{208       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{209   \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_a7193fdef2358be914614114c45345112}{toPoissonsRatio}}()}
+\DoxyCodeLine{212   \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio>)}
+\DoxyCodeLine{213   \{}
+\DoxyCodeLine{214     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus>) \{}
+\DoxyCodeLine{215       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E  = vp\_.emodul;}
+\DoxyCodeLine{216       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu = vp\_.mu;}
+\DoxyCodeLine{217       \textcolor{keywordflow}{return} E / (2.0 * mu) -\/ 1.0;}
+\DoxyCodeLine{218     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus>) \{}
+\DoxyCodeLine{219       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E = vp\_.emodul;}
+\DoxyCodeLine{220       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = vp\_.K;}
+\DoxyCodeLine{221       \textcolor{keywordflow}{return} (3.0 * K -\/ E) / (6.0 * K);}
+\DoxyCodeLine{222     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{223       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = vp\_.emodul;}
+\DoxyCodeLine{224       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{225       \textcolor{keywordflow}{return} 2.0 * lambda / (E + lambda + calcR(vp\_));}
+\DoxyCodeLine{226     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{227       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K      = vp\_.K;}
+\DoxyCodeLine{228       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{229       \textcolor{keywordflow}{return} lambda / (3 * K -\/ lambda);}
+\DoxyCodeLine{230     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{231       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{232       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp\_.mu;}
+\DoxyCodeLine{233       \textcolor{keywordflow}{return} lambda / (2.0 * (lambda + mu));}
+\DoxyCodeLine{234     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{235       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{236   \}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01366_a28839b750c79d1c905e8606c4ba8330b}{toYoungsModulus}}()}
+\DoxyCodeLine{239   \textcolor{keyword}{requires}(!std::is\_same\_v<ValuePair, YoungsModulusAndPoissonsRatio> and}
+\DoxyCodeLine{240            !std::is\_same\_v<ValuePair, YoungsModulusAndShearModulus> and}
+\DoxyCodeLine{241            !std::is\_same\_v<ValuePair, YoungsModulusAndBulkModulus> and}
+\DoxyCodeLine{242            !std::is\_same\_v<ValuePair, YoungsModulusAndLamesFirstParameter>)}
+\DoxyCodeLine{243   \{}
+\DoxyCodeLine{244     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, BulkModulusAndLamesFirstParameter>) \{}
+\DoxyCodeLine{245       \textcolor{keywordflow}{return} 9.0 * vp\_.K * (vp\_.K -\/ vp\_.lambda) / (3.0 * vp\_.K -\/ vp\_.lambda);}
+\DoxyCodeLine{246     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ValuePair, LamesFirstParameterAndShearModulus>) \{}
+\DoxyCodeLine{247       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = vp\_.lambda;}
+\DoxyCodeLine{248       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& mu     = vp\_.mu;}
+\DoxyCodeLine{249       \textcolor{keywordflow}{return} mu * (3.0 * lambda + 2.0 * mu) / (lambda + mu);}
+\DoxyCodeLine{250     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{251       assert(\textcolor{keyword}{false} \&\& \textcolor{stringliteral}{"{}Your LameParameter request is not implemented"{}});}
+\DoxyCodeLine{252   \}}
+\DoxyCodeLine{253 }
+\DoxyCodeLine{254 \textcolor{keyword}{private}:}
+\DoxyCodeLine{255   \textcolor{keyword}{friend} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndPoissonsRatio>}} \mbox{\hyperlink{a01366_a9bba84cf58912269ed839cb4d6dd7996}{convertLameConstants}}(}
+\DoxyCodeLine{256       \textcolor{keyword}{const} \mbox{\hyperlink{a01342}{YoungsModulusAndPoissonsRatio}}\& valuePair);}
+\DoxyCodeLine{257   \textcolor{keyword}{friend} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndShearModulus>}} \mbox{\hyperlink{a01366_a9bba84cf58912269ed839cb4d6dd7996}{convertLameConstants}}(}
+\DoxyCodeLine{258       \textcolor{keyword}{const} \mbox{\hyperlink{a01346}{YoungsModulusAndShearModulus}}\& valuePair);}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260   \textcolor{keyword}{friend} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndBulkModulus>}} \mbox{\hyperlink{a01366_a9bba84cf58912269ed839cb4d6dd7996}{convertLameConstants}}(}
+\DoxyCodeLine{261       \textcolor{keyword}{const} \mbox{\hyperlink{a01350}{YoungsModulusAndBulkModulus}}\& valuePair);}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263   \textcolor{keyword}{friend} \mbox{\hyperlink{a01366}{ConvertLameConstants<LamesFirstParameterAndShearModulus>}} \mbox{\hyperlink{a01366_a9bba84cf58912269ed839cb4d6dd7996}{convertLameConstants}}(}
+\DoxyCodeLine{264       \textcolor{keyword}{const} \mbox{\hyperlink{a01362}{LamesFirstParameterAndShearModulus}}\& valuePair);}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266   \textcolor{keyword}{friend} \mbox{\hyperlink{a01366}{ConvertLameConstants<BulkModulusAndLamesFirstParameter>}} \mbox{\hyperlink{a01366_a9bba84cf58912269ed839cb4d6dd7996}{convertLameConstants}}(}
+\DoxyCodeLine{267       \textcolor{keyword}{const} \mbox{\hyperlink{a01358}{BulkModulusAndLamesFirstParameter}}\& valuePair);}
+\DoxyCodeLine{268   \mbox{\hyperlink{a01366}{ConvertLameConstants}}(ValuePair\&\& valuePair)}
+\DoxyCodeLine{269       : vp\_(valuePair) \{\}}
+\DoxyCodeLine{270   ConvertLameConstants(\textcolor{keyword}{const} ValuePair\& valuePair)}
+\DoxyCodeLine{271       : vp\_(valuePair) \{\}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273   \textcolor{keywordtype}{double} calcR(\textcolor{keyword}{const} YoungsModulusAndLamesFirstParameter\& valuePair) \{}
+\DoxyCodeLine{274     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& E      = valuePair.emodul;}
+\DoxyCodeLine{275     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda = valuePair.lambda;}
+\DoxyCodeLine{276     \textcolor{keywordflow}{return} std::sqrt(E * E + 9 * lambda * lambda + 2 * E * lambda);}
+\DoxyCodeLine{277   \}}
+\DoxyCodeLine{278   ValuePair vp\_;}
+\DoxyCodeLine{279 \};}
+\DoxyCodeLine{280 \textcolor{keyword}{inline} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndPoissonsRatio>}} \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(}
+\DoxyCodeLine{281     \textcolor{keyword}{const} \mbox{\hyperlink{a01342}{YoungsModulusAndPoissonsRatio}}\& valuePair) \{}
+\DoxyCodeLine{282   \textcolor{keywordflow}{return} \{valuePair\};}
+\DoxyCodeLine{283 \}}
+\DoxyCodeLine{284 \textcolor{keyword}{inline} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndShearModulus>}} \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(}
+\DoxyCodeLine{285     \textcolor{keyword}{const} \mbox{\hyperlink{a01346}{YoungsModulusAndShearModulus}}\& valuePair) \{}
+\DoxyCodeLine{286   \textcolor{keywordflow}{return} \{valuePair\};}
+\DoxyCodeLine{287 \}}
+\DoxyCodeLine{288 \textcolor{keyword}{inline} \mbox{\hyperlink{a01366}{ConvertLameConstants<YoungsModulusAndBulkModulus>}} \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(}
+\DoxyCodeLine{289     \textcolor{keyword}{const} \mbox{\hyperlink{a01350}{YoungsModulusAndBulkModulus}}\& valuePair) \{}
+\DoxyCodeLine{290   \textcolor{keywordflow}{return} \{valuePair\};}
+\DoxyCodeLine{291 \}}
+\DoxyCodeLine{292 \textcolor{keyword}{inline} \mbox{\hyperlink{a01366}{ConvertLameConstants<LamesFirstParameterAndShearModulus>}} \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(}
+\DoxyCodeLine{293     \textcolor{keyword}{const} \mbox{\hyperlink{a01362}{LamesFirstParameterAndShearModulus}}\& valuePair) \{}
+\DoxyCodeLine{294   \textcolor{keywordflow}{return} \{valuePair\};}
+\DoxyCodeLine{295 \}}
+\DoxyCodeLine{296 \textcolor{keyword}{inline} \mbox{\hyperlink{a01366}{ConvertLameConstants<BulkModulusAndLamesFirstParameter>}} \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(}
+\DoxyCodeLine{297     \textcolor{keyword}{const} \mbox{\hyperlink{a01358}{BulkModulusAndLamesFirstParameter}}\& valuePair) \{}
+\DoxyCodeLine{298   \textcolor{keywordflow}{return} \{valuePair\};}
+\DoxyCodeLine{299 \}}
+\DoxyCodeLine{300 }
+\DoxyCodeLine{307 \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{a00325_a32940ef922d090491ffcaa9bf2a44aef}{toLamesFirstParameterAndShearModulus}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01342}{YoungsModulusAndPoissonsRatio}}\& matParameter) \{}
+\DoxyCodeLine{308   \textcolor{keyword}{auto} lambda = \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(matParameter).toLamesFirstParameter();}
+\DoxyCodeLine{309   \textcolor{keyword}{auto} mu     = \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(matParameter).toShearModulus();}
+\DoxyCodeLine{310 }
+\DoxyCodeLine{311   \textcolor{keywordflow}{return} \mbox{\hyperlink{a01362}{LamesFirstParameterAndShearModulus}}\{.\mbox{\hyperlink{a01362_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} = lambda, .mu = mu\};}
+\DoxyCodeLine{312 \}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{320 \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{a00325_a4161393d679e5ec44806e6e911e26dee}{toYoungsModulusAndPoissonsRatio}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01362}{LamesFirstParameterAndShearModulus}}\& matParameter) \{}
+\DoxyCodeLine{321   \textcolor{keyword}{auto} emod = \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(matParameter).toYoungsModulus();}
+\DoxyCodeLine{322   \textcolor{keyword}{auto} nu   = \mbox{\hyperlink{a00325_a5e27551f9edaebc557108aa164899b54}{convertLameConstants}}(matParameter).toPoissonsRatio();}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324   \textcolor{keywordflow}{return} \mbox{\hyperlink{a01342}{YoungsModulusAndPoissonsRatio}}\{.\mbox{\hyperlink{a01342_a6c00be8aacc18c845b00748b1e56c83c}{emodul}} = emod, .nu = nu\};}
+\DoxyCodeLine{325 \}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

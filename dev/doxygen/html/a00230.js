@@ -1,4 +1,5 @@
 var a00230 =
 [
-    [ "Ikarus::DefaultMembraneStrain", "a01334.html", "a01334" ]
+    [ "Ikarus::CorrectStrainSize", "a01617.html", null ],
+    [ "hasCorrectSize", "a00230.html#ab6a92f48acd6be62f36b7f499491fc8a", null ]
 ];

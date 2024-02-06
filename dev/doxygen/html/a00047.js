@@ -1,4 +1,5 @@
 var a00047 =
 [
-    [ "findLineSegment", "a00047.html#ga16e7d5f51cc42190c090e727495c1609", null ]
+    [ "Ikarus::IkarusInstance", "a01530.html", "a01530" ],
+    [ "init", "a00047.html#ac8243891c1b961e50a066140ab79a142", null ]
 ];

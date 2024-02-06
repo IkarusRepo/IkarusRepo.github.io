@@ -1,11 +1,9 @@
 var a01262 =
 [
-    [ "MType", "a01262.html#a12c4056812c21e637efec8e60c6a746f", null ],
-    [ "Q1E4", "a01262.html#a8a936241393c34c23fab0e309b31d823", null ],
-    [ "Q1E4", "a01262.html#a1eed27a214142967a158c0d1662a95e5", null ],
-    [ "calcM", "a01262.html#a51a3f1e9a7f90b5724a29ea3086b2221", null ],
-    [ "enhancedStrainSize", "a01262.html#adbfba4b7c0b496a742f6ae4cfe284811", null ],
-    [ "geometry", "a01262.html#a503ba5b1c26a5fd7411a5cea2f4f6111", null ],
-    [ "strainSize", "a01262.html#af629a777529f814b3aeca3a0409bac55", null ],
-    [ "T0InverseTransformed", "a01262.html#af9d5a48936a550de9e53b95f44e553a1", null ]
+    [ "MType", "a01262.html#a9d9bcd6fbf0b5560904dc1ab9b872633", null ],
+    [ "Q1E4", "a01262.html#a68eb22d5d7f45fe8c0fed77de62ad799", null ],
+    [ "Q1E4", "a01262.html#a43ede2403a5e817099bd51ae4f26f8f1", null ],
+    [ "calcM", "a01262.html#a03e4a1b446ffd59d5e15c95fd7291b9f", null ],
+    [ "enhancedStrainSize", "a01262.html#ab1a8b1d505b07f61bc8182de7c65d66a", null ],
+    [ "strainSize", "a01262.html#a31972bc371b0267eb4f04f62f4c88219", null ]
 ];

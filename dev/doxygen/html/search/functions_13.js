@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['tangentmoduli_0',['tangentModuli',['../a01310.html#a00e7bb30244df751617e1e613d382ea0',1,'Ikarus::Material']]],
-  ['tangentmoduliimpl_1',['tangentModuliImpl',['../a01314.html#a7719515b5aba56071a61617a89d6522a',1,'Ikarus::LinearElasticityT::tangentModuliImpl()'],['../a01318.html#aec2dfac0aca87f7998a0f0c2b3b63133',1,'Ikarus::NeoHookeT::tangentModuliImpl()'],['../a01322.html#a7c2e0bf3afe37f104ae311bd9f2391f7',1,'Ikarus::StVenantKirchhoffT::tangentModuliImpl()'],['../a01330.html#a3fb115007e1e4323b8f3d46f2b681ff0',1,'Ikarus::VanishingStress::tangentModuliImpl()']]],
+  ['tangentmoduli_0',['tangentModuli',['../a01310.html#a2d9d9509fa8bbdc909868c8fd0dfe5fd',1,'Ikarus::Material']]],
+  ['tangentmoduliimpl_1',['tangentModuliImpl',['../a01314.html#adbdd31dbe305ef34be6c80c289deef94',1,'Ikarus::LinearElasticityT::tangentModuliImpl()'],['../a01318.html#a4a0fcea9a714d1a6d4cb3aa691f5596d',1,'Ikarus::NeoHookeT::tangentModuliImpl()'],['../a01322.html#a9cad76128962f632ae742e8769b9803e',1,'Ikarus::StVenantKirchhoffT::tangentModuliImpl()'],['../a01330.html#acdd8f1a651ee1e15647ec146f981040d',1,'Ikarus::VanishingStress::tangentModuliImpl()']]],
   ['targetiterations_2',['targetIterations',['../a01186.html#af42dff6b9945230918607a14f159e52e',1,'Ikarus::AdaptiveStepSizing::NoOp::targetIterations()'],['../a01190.html#aabdaad05b950b53e014624271a16fd9c',1,'Ikarus::AdaptiveStepSizing::IterationBased::targetIterations()']]],
   ['tensorproductquadrature_3',['tensorProductQuadrature',['../a00325.html#a839e2d8a648318c584c66024e62ddd91',1,'Ikarus']]],
   ['tensorview_4',['tensorView',['../a00321.html#ga5cfd9d098384fb067d897b3c0499b447',1,'Ikarus']]],
   ['tobulkmodulus_5',['toBulkModulus',['../a01366.html#a4ec6722470a792039687e29c3d3cf4f4',1,'Ikarus::ConvertLameConstants']]],
   ['toc_6',['toC',['../a01574.html#aab78500f06d24b5eb1cd894b68eec03c',1,'Python::Conversion&lt; autodiff::Real&lt; order, T &gt; &gt;']]],
-  ['todune_7',['toDune',['../a00325.html#a93a33caf49e0072f27298b2745e9ae56',1,'Ikarus::toDune(const Eigen::Matrix&lt; ScalarType, rows, 0 &gt; &amp;vec)'],['../a00325.html#a332dc3abf615826c1eeb5e4dba37dfb8',1,'Ikarus::toDune(const Eigen::Matrix&lt; ScalarType, rows, cols &gt; &amp;mat)'],['../a00325.html#ab3afd8732c7518fb5cad5fc85f660ff4',1,'Ikarus::toDune(const Eigen::Vector&lt; ScalarType, size &gt; &amp;vec)']]],
-  ['toeigenmap_8',['toEigenMap',['../a00325.html#a8f500d064c150a65ba93e8a4d5fe6df7',1,'Ikarus::toEigenMap(Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)'],['../a00325.html#ab33f0f88435ac31e2f1230b321fe16db',1,'Ikarus::toEigenMap(const Dune::FieldVector&lt; ScalarType, size &gt; &amp;vec)']]],
+  ['todune_7',['toDune',['../a00325.html#a4e9e21776afdaaa93c4a9d19554976fa',1,'Ikarus::toDune(const Eigen::Matrix&lt; ST, rows, 0 &gt; &amp;vec)'],['../a00325.html#a83633e77ee5a35cb31a7cd2f02aedb7f',1,'Ikarus::toDune(const Eigen::Matrix&lt; ST, rows, cols &gt; &amp;mat)'],['../a00325.html#a0fdba7f3ebe4bf1ada6618f450b50221',1,'Ikarus::toDune(const Eigen::Vector&lt; ST, size &gt; &amp;vec)']]],
+  ['toeigenmap_8',['toEigenMap',['../a00325.html#aaac71220182c301ee8c864f2a507c3db',1,'Ikarus::toEigenMap(Dune::FieldVector&lt; ST, size &gt; &amp;vec)'],['../a00325.html#aaa7e8e9b8bd8247afecc24cdd54ec658',1,'Ikarus::toEigenMap(const Dune::FieldVector&lt; ST, size &gt; &amp;vec)']]],
   ['tolamesfirstparameter_9',['toLamesFirstParameter',['../a01366.html#aa7f98433b434cc9b4a4491448304bbb9',1,'Ikarus::ConvertLameConstants']]],
   ['tolamesfirstparameterandshearmodulus_10',['toLamesFirstParameterAndShearModulus',['../a00325.html#a32940ef922d090491ffcaa9bf2a44aef',1,'Ikarus']]],
   ['topoissonsratio_11',['toPoissonsRatio',['../a01366.html#a7193fdef2358be914614114c45345112',1,'Ikarus::ConvertLameConstants']]],
@@ -20,12 +20,12 @@ var searchData=
   ['tovoigtandmaybereduce_17',['toVoigtAndMaybeReduce',['../a00320.html#ga378c5569b7b899586e7c8006fb776351',1,'Ikarus']]],
   ['toyoungsmodulus_18',['toYoungsModulus',['../a01366.html#a28839b750c79d1c905e8606c4ba8330b',1,'Ikarus::ConvertLameConstants']]],
   ['toyoungsmodulusandpoissonsratio_19',['toYoungsModulusAndPoissonsRatio',['../a00325.html#a4161393d679e5ec44806e6e911e26dee',1,'Ikarus']]],
-  ['traction_20',['Traction',['../a01302.html#ab0350cc85099b73b31b6f337bba45052',1,'Ikarus::Traction']]],
-  ['transformpointerrangetoreferencerange_21',['transformPointerRangeToReferenceRange',['../a00322.html#gaabfee41eeb4843cb2fa37b5f381e9fef',1,'Ikarus::utils']]],
+  ['traction_20',['Traction',['../a01302.html#a3fa13c11a3d654ba3800c233856574a6',1,'Ikarus::Traction']]],
+  ['transformpointerrangetoreferencerange_21',['transformPointerRangeToReferenceRange',['../a00322.html#ga83bd9e4f59f0aa9fadd797efefa751d9',1,'Ikarus::utils']]],
   ['transformstrain_22',['transformStrain',['../a00313.html#gae9c00f19ce473d7183c87aa84b247f88',1,'Ikarus']]],
-  ['transformvaluerangetopointerrange_23',['transformValueRangeToPointerRange',['../a00322.html#ga5f3a9e195a06ac4419ccb479f8819d62',1,'Ikarus::utils']]],
+  ['transformvaluerangetopointerrange_23',['transformValueRangeToPointerRange',['../a00322.html#ga7f597d87c8f2bcbf4afc65ebc929b680',1,'Ikarus::utils']]],
   ['transpose_24',['transpose',['../a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24',1,'Ikarus']]],
   ['truncated_5fconjugate_5fgradient_25',['truncated_conjugate_gradient',['../a00334.html#a38414bb29b6ce1a1d8cc03749acb95f7',1,'Eigen::internal']]],
-  ['truncatedconjugategradient_26',['TruncatedConjugateGradient',['../a01394.html#a6c5ad1eb772b8f2590827647ad6594f2',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(const EigenBase&lt; MatrixDerived &gt; &amp;A)'],['../a01394.html#a02491a65df30cd0cfb68b894f3627a6e',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient()'],['../a01394.html#a424099a1cac74a8684bcd170441f5415',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(TruncatedConjugateGradient &amp;&amp;other) noexcept']]],
-  ['trustregion_27',['TrustRegion',['../a01446.html#af8b7745d1eea75d39e30c5e0a9f37865',1,'Ikarus::TrustRegion']]]
+  ['truncatedconjugategradient_26',['TruncatedConjugateGradient',['../a01394.html#af31547cc01eca8c809bbf1161c251695',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(const EigenBase&lt; MatrixDerived &gt; &amp;A)'],['../a01394.html#a267ee32f0487d9a700b13d6d61b0f000',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient()'],['../a01394.html#a17e36ca6a3756dd75d9740d756ee39c4',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(TruncatedConjugateGradient &amp;&amp;other) noexcept']]],
+  ['trustregion_27',['TrustRegion',['../a01446.html#aca59267eff2ad5358225cc5eafbe21d0',1,'Ikarus::TrustRegion']]]
 ];

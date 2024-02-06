@@ -1,25 +1,52 @@
-\hypertarget{a00272_source}{}\doxysection{matplothelper.\+hh}
-\label{a00272_source}\index{matplothelper.hh@{matplothelper.hh}}
+\hypertarget{a00272_source}{}\doxysection{adaptivestepsizing.\+hh}
+\label{a00272_source}\index{adaptivestepsizing.hh@{adaptivestepsizing.hh}}
 \mbox{\hyperlink{a00272}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <matplot/matplot.h>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00340}{Ikarus::plot}} \{}
-\DoxyCodeLine{23 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00340_a4c07b9ce66d5837a4052977b3dd1eeb0}{draw\_xy}}(\textcolor{keyword}{const} Eigen::VectorXd\& x, \textcolor{keyword}{const} Eigen::VectorXd\& y);}
-\DoxyCodeLine{24 }
-\DoxyCodeLine{35 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FunctionType>}
-\DoxyCodeLine{36 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00340_ae2cefb2db97492f0b6e5987cb95ad40b}{drawFunction}}(FunctionType\&\& f, std::pair<double, double>\&\& xRange, \textcolor{keywordtype}{int} eValuationPoints = 100) \{}
-\DoxyCodeLine{37   std::vector<double> x = matplot::linspace(xRange.first, xRange.second, eValuationPoints);}
-\DoxyCodeLine{38   std::vector<double> y = matplot::transform(x, [\&f](\textcolor{keyword}{auto} x\_) \{ \textcolor{keywordflow}{return} f(x\_); \});}
-\DoxyCodeLine{39   matplot::plot(x, y, \textcolor{stringliteral}{"{}-\/o"{}});}
-\DoxyCodeLine{40   matplot::hold(matplot::on);}
-\DoxyCodeLine{41 \}}
-\DoxyCodeLine{42 }
-\DoxyCodeLine{43 \} \textcolor{comment}{// namespace Ikarus::plot}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00269}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00173}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00326}{Ikarus::AdaptiveStepSizing}} \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01186}{NoOp}}}
+\DoxyCodeLine{25 \{}
+\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{37   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01186_a7e3bcfe2fdfa61730adaccde62fad844}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01430}{NonLinearSolverInformation}}\& solverInfo, \mbox{\hyperlink{a01206}{SubsidiaryArgs}}\& subsidiaryArgs,}
+\DoxyCodeLine{38                   \textcolor{keyword}{const} NLO\& nonLinearOperator) \{\}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{44   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01186_af42dff6b9945230918607a14f159e52e}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{50   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01186_aae9af895e735c2c5f87a9e2eb77aa737}{setTargetIterations}}([[maybe\_unused]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01186_af42dff6b9945230918607a14f159e52e}{targetIterations}}) \{\}}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{63 \textcolor{keyword}{struct }\mbox{\hyperlink{a01190}{IterationBased}}}
+\DoxyCodeLine{64 \{}
+\DoxyCodeLine{75   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{76   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01190_a5869ac09a02a7b2222873ca31a30989e}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01430}{NonLinearSolverInformation}}\& solverInfo, \mbox{\hyperlink{a01206}{SubsidiaryArgs}}\& subsidiaryArgs,}
+\DoxyCodeLine{77                   \textcolor{keyword}{const} NLO\& nonLinearOperator) \{}
+\DoxyCodeLine{78     \textcolor{keywordflow}{if} (subsidiaryArgs.\mbox{\hyperlink{a01206_a217c729e1ae8b05a98c852f19b0d6ae5}{currentStep}} == 0)}
+\DoxyCodeLine{79       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{80     \textcolor{keywordflow}{if} (targetIterations\_ == 0)}
+\DoxyCodeLine{81       DUNE\_THROW(Dune::InvalidStateException,}
+\DoxyCodeLine{82                  \textcolor{stringliteral}{"{}For IterationBased, targetIterations should not be equal to 0. Try calling "{}}}
+\DoxyCodeLine{83                  \textcolor{stringliteral}{"{}setTargetIterations(int) first."{}});}
+\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keyword}{auto} previousIterations = solverInfo.\mbox{\hyperlink{a01430_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}};}
+\DoxyCodeLine{85     \textcolor{keywordflow}{if} (previousIterations > targetIterations\_)}
+\DoxyCodeLine{86       subsidiaryArgs.\mbox{\hyperlink{a01206_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} =}
+\DoxyCodeLine{87           sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(targetIterations\_) / previousIterations) * subsidiaryArgs.\mbox{\hyperlink{a01206_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{88   \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{94   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} targetIterations\_; \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{100   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01190_a52017ebcd89859d5ae214cc8767ef78d}{setTargetIterations}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}) \{ targetIterations\_ = \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}; \}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{private}:}
+\DoxyCodeLine{103   \textcolor{keywordtype}{int} targetIterations\_\{0\};}
+\DoxyCodeLine{104 \};}
+\DoxyCodeLine{105 \} \textcolor{comment}{// namespace Ikarus::AdaptiveStepSizing}}
 
 \end{DoxyCode}

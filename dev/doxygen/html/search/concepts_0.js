@@ -20,7 +20,7 @@ var searchData=
   ['lagrangenode_17',['LagrangeNode',['../a01620.html',1,'Ikarus::Concepts']]],
   ['lagrangenodeoforder_18',['LagrangeNodeOfOrder',['../a01621.html',1,'Ikarus::Concepts']]],
   ['linearsolvercheck_19',['LinearSolverCheck',['../a01631.html',1,'Ikarus::Concepts']]],
-  ['materialparametertuple_20',['MaterialParameterTuple',['../a01618.html',1,'Ikarus']]],
+  ['mptuple_20',['MPTuple',['../a01618.html',1,'Ikarus']]],
   ['multiplyable_21',['MultiplyAble',['../a01633.html',1,'Ikarus::Concepts']]],
   ['multiplyassignable_22',['MultiplyAssignAble',['../a01636.html',1,'Ikarus::Concepts']]],
   ['negateable_23',['NegateAble',['../a01641.html',1,'Ikarus::Concepts']]],

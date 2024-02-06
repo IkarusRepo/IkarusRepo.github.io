@@ -1,19 +1,31 @@
 var a00248 =
 [
-    [ "Ikarus::TrustRegionSettings", "a01434.html", "a01434" ],
-    [ "Ikarus::AlgoInfo", "a01438.html", "a01438" ],
-    [ "Ikarus::Stats", "a01442.html", "a01442" ],
-    [ "PreConditioner", "a00248.html#ace28d4868cfc647491f7938f04ef6c66", [
-      [ "IncompleteCholesky", "a00248.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff", null ],
-      [ "IdentityPreconditioner", "a00248.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608", null ],
-      [ "DiagonalPreconditioner", "a00248.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc", null ]
+    [ "StrainTags", "a00248.html#gacef1e451de1a99845c59d7391064fb8f", [
+      [ "BEGIN", "a00248.html#ggacef1e451de1a99845c59d7391064fb8fa19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "linear", "a00248.html#ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa", null ],
+      [ "deformationGradient", "a00248.html#ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5", null ],
+      [ "displacementGradient", "a00248.html#ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3", null ],
+      [ "greenLagrangian", "a00248.html#ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e", null ],
+      [ "rightCauchyGreenTensor", "a00248.html#ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2", null ],
+      [ "END", "a00248.html#ggacef1e451de1a99845c59d7391064fb8fab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "StopReason", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674", [
-      [ "gradientNormTolReached", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1", null ],
-      [ "correctionNormTolReached", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3", null ],
-      [ "maximumTimeReached", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9", null ],
-      [ "maximumIterationsReached", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe", null ],
-      [ "dontStop", "a00248.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f", null ]
+    [ "StressTags", "a00248.html#ga70b4ce43c53cc5e949d49919f437501e", [
+      [ "BEGIN", "a00248.html#gga70b4ce43c53cc5e949d49919f437501ea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "linear", "a00248.html#gga70b4ce43c53cc5e949d49919f437501ea9a932b3cb396238423eb2f33ec17d6aa", null ],
+      [ "PK2", "a00248.html#gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21", null ],
+      [ "PK1", "a00248.html#gga70b4ce43c53cc5e949d49919f437501eac34dd77ffb9238275b93ea1897664a7e", null ],
+      [ "Cauchy", "a00248.html#gga70b4ce43c53cc5e949d49919f437501ea2ee21c55474972b3e65b31a6b0b57dc8", null ],
+      [ "Kirchhoff", "a00248.html#gga70b4ce43c53cc5e949d49919f437501eadb46969ba633ea08a9181d8eb6218ba9", null ],
+      [ "END", "a00248.html#gga70b4ce43c53cc5e949d49919f437501eab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "makeTrustRegion", "a00248.html#a729c70214792799fb38684febff75e9f", null ]
+    [ "TangentModuliTags", "a00248.html#ga05ac785124262c1e323d2f937d520a1b", [
+      [ "BEGIN", "a00248.html#gga05ac785124262c1e323d2f937d520a1ba19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Material", "a00248.html#gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206", null ],
+      [ "Spatial", "a00248.html#gga05ac785124262c1e323d2f937d520a1ba33d7f1ec5fe18e7ba799474138e71504", null ],
+      [ "TwoPoint", "a00248.html#gga05ac785124262c1e323d2f937d520a1ba331d16a2885c7f82ba949f286f48143d", null ],
+      [ "END", "a00248.html#gga05ac785124262c1e323d2f937d520a1bab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "toString", "a00248.html#aabe2255ec3392fe00a383dd05d7dfe8a", null ],
+    [ "toString", "a00248.html#a31d0fcb0973be69c8c36cc4cbcb70c11", null ],
+    [ "toString", "a00248.html#a1146e010b8f52fa9a883f064b3aa389a", null ]
 ];
