@@ -1,9 +1,9 @@
 var hierarchy =
 [
     [ "Ikarus::AffordanceCollectionImpl", "a01234.html", null ],
-    [ "Ikarus::AlgoInfo", "a01438.html", null ],
+    [ "Ikarus::AlgoInfo", "a01434.html", null ],
     [ "Ikarus::ArcLength", "a01210.html", null ],
-    [ "Ikarus::Basis< PB >", "a01458.html", null ],
+    [ "Ikarus::Basis< PB >", "a01454.html", null ],
     [ "Ikarus::BulkModulusAndLamesFirstParameter", "a01358.html", null ],
     [ "Ikarus::utils::CheckFlags", "a01526.html", null ],
     [ "Ikarus::ControlInformation", "a01194.html", null ],
@@ -15,7 +15,7 @@ var hierarchy =
     ] ],
     [ "Ikarus::DirichletValues< B, FC >", "a01494.html", null ],
     [ "Ikarus::DisplacementControl", "a01218.html", null ],
-    [ "Eigen::EigenBase< Derived >", "a01462.html", null ],
+    [ "Eigen::EigenBase< Derived >", "a01458.html", null ],
     [ "std::false_type", null, [
       [ "Ikarus::traits::hasType< T, Tuple >", "a01582.html", null ]
     ] ],
@@ -27,7 +27,7 @@ var hierarchy =
       [ "Ikarus::FErequirements< SV, PM >", "a01254.html", null ]
     ] ],
     [ "Ikarus::FETraits< B, FER, useRef >", "a01258.html", null ],
-    [ "Dune::FieldVector< ScalarType, size >", "a01370.html", null ],
+    [ "Dune::FieldVector< K, N >", "a01490.html", null ],
     [ "Ikarus::FlatAssemblerBase< FEC, DV >", "a01166.html", [
       [ "Ikarus::ScalarAssembler< FEC, DV >", "a01170.html", [
         [ "Ikarus::VectorFlatAssembler< FEC, DV >", "a01174.html", [
@@ -53,9 +53,9 @@ var hierarchy =
       [ "Ikarus::PathFollowing< NLS, PF, ASS >", "a01202.html", null ]
     ] ],
     [ "Ikarus::IObservable< NonLinearSolverMessages >", "a01570.html", [
-      [ "Ikarus::NewtonRaphson< NLO, LS, UF >", "a01418.html", null ],
-      [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NLO, LS, UF >", "a01426.html", null ],
-      [ "Ikarus::TrustRegion< NLO, preConditioner, UF >", "a01446.html", null ]
+      [ "Ikarus::NewtonRaphson< NLO, LS, UF >", "a01414.html", null ],
+      [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NLO, LS, UF >", "a01422.html", null ],
+      [ "Ikarus::TrustRegion< NLO, preConditioner, UF >", "a01442.html", null ]
     ] ],
     [ "Ikarus::IObserver< MT >", "a01566.html", null ],
     [ "Ikarus::IObserver< ControlMessages >", "a01566.html", [
@@ -70,15 +70,15 @@ var hierarchy =
     ] ],
     [ "Ikarus::AdaptiveStepSizing::IterationBased", "a01190.html", null ],
     [ "IterativeSolverBase", null, [
-      [ "Eigen::TruncatedConjugateGradient< MatrixType, Eigen::Lower|Eigen::Upper, PreConditionerType >", "a01394.html", null ],
-      [ "Eigen::TruncatedConjugateGradient< M, upLo, PC >", "a01394.html", null ]
+      [ "Eigen::TruncatedConjugateGradient< MatrixType, Eigen::Lower|Eigen::Upper, PreConditionerType >", "a01390.html", null ],
+      [ "Eigen::TruncatedConjugateGradient< M, upLo, PC >", "a01390.html", null ]
     ] ],
     [ "Ikarus::KirchhoffLoveShell< B, FER, useEigenRef >::KinematicVariables< ST >", "a01294.html", null ],
     [ "Ikarus::LamesFirstParameterAndShearModulus", "a01362.html", null ],
-    [ "Ikarus::LinearSolverTemplate< ST >", "a01402.html", null ],
-    [ "Ikarus::LinearSolverTemplate< double >", "a01402.html", null ],
+    [ "Ikarus::LinearSolverTemplate< ST >", "a01398.html", null ],
+    [ "Ikarus::LinearSolverTemplate< double >", "a01398.html", null ],
     [ "Ikarus::LoadControlSubsidiaryFunction", "a01214.html", null ],
-    [ "Ikarus::utils::LoadDefault", "a01490.html", null ],
+    [ "Ikarus::utils::LoadDefault", "a01486.html", null ],
     [ "Ikarus::Material< MI >", "a01310.html", null ],
     [ "Ikarus::Material< LinearElasticityT< ST > >", "a01310.html", [
       [ "Ikarus::LinearElasticityT< ST >", "a01314.html", null ]
@@ -95,28 +95,28 @@ var hierarchy =
     [ "Ikarus::Material< VanishingStress< stressIndexPair, MI > >", "a01310.html", [
       [ "Ikarus::VanishingStress< stressIndexPair, MI >", "a01330.html", null ]
     ] ],
-    [ "Ikarus::NewtonRaphsonSettings", "a01414.html", null ],
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01422.html", null ],
+    [ "Ikarus::NewtonRaphsonSettings", "a01410.html", null ],
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01418.html", null ],
     [ "Ikarus::NonLinearOperator< TypeListOne, TypeListTwo >", "a01542.html", null ],
-    [ "Ikarus::NonLinearSolverInformation", "a01430.html", null ],
+    [ "Ikarus::NonLinearSolverInformation", "a01426.html", null ],
     [ "Ikarus::AdaptiveStepSizing::NoOp", "a01186.html", null ],
     [ "Ikarus::PowerBasisFE< B >", "a01226.html", [
       [ "Ikarus::KirchhoffLoveShell< B, FER, useEigenRef >", "a01290.html", null ],
       [ "Ikarus::LinearElastic< B, FER, useEigenRef >", "a01298.html", null ],
       [ "Ikarus::NonLinearElastic< B, MAT, FER, useEigenRef >", "a01338.html", null ]
     ] ],
-    [ "Ikarus::ResultEvaluators::PrincipalStress", "a01378.html", null ],
+    [ "Ikarus::ResultEvaluators::PrincipalStress< dim >", "a01374.html", null ],
     [ "Ikarus::EAS::Q1E4< GEO >", "a01262.html", null ],
     [ "Ikarus::EAS::Q1E5< GEO >", "a01266.html", null ],
     [ "Ikarus::EAS::Q1E7< GEO >", "a01270.html", null ],
     [ "Ikarus::traits::Rebind< Container, NewType >", "a01606.html", null ],
     [ "Ikarus::ScalarFieldFE< B >", "a01230.html", null ],
-    [ "Ikarus::utils::SolverDefault", "a01482.html", null ],
-    [ "Ikarus::Stats", "a01442.html", null ],
+    [ "Ikarus::utils::SolverDefault", "a01478.html", null ],
+    [ "Ikarus::Stats", "a01438.html", null ],
     [ "Ikarus::SubsidiaryArgs", "a01206.html", null ],
-    [ "Eigen::TCGInfo< Scalar >", "a01390.html", null ],
-    [ "Eigen::TCGInfo< double >", "a01390.html", null ],
-    [ "Eigen::TCGInfo< typename M::RealScalar >", "a01390.html", null ],
+    [ "Eigen::TCGInfo< Scalar >", "a01386.html", null ],
+    [ "Eigen::TCGInfo< double >", "a01386.html", null ],
+    [ "Eigen::TCGInfo< typename M::RealScalar >", "a01386.html", null ],
     [ "Ikarus::Traction< DFE, Traits >", "a01302.html", null ],
     [ "Ikarus::Traction< KirchhoffLoveShell< B, FERequirements<>, false >, FETraits< B, FERequirements<>, false > >", "a01302.html", [
       [ "Ikarus::KirchhoffLoveShell< B, FER, useEigenRef >", "a01290.html", null ]
@@ -127,7 +127,7 @@ var hierarchy =
     [ "Ikarus::Traction< NonLinearElastic< B, MAT, FERequirements<>, false >, FETraits< B, FERequirements<>, false > >", "a01302.html", [
       [ "Ikarus::NonLinearElastic< B, MAT, FER, useEigenRef >", "a01338.html", null ]
     ] ],
-    [ "Eigen::internal::traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01398.html", null ],
+    [ "Eigen::internal::traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01394.html", null ],
     [ "std::true_type", null, [
       [ "Ikarus::traits::isSpecialization< U, U< T... > >", "a01586.html", null ],
       [ "Ikarus::traits::isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01590.html", null ],
@@ -135,8 +135,8 @@ var hierarchy =
       [ "Ikarus::traits::isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01594.html", null ],
       [ "Ikarus::traits::is_tuple< std::tuple< T... > >", "a01578.html", null ]
     ] ],
-    [ "Ikarus::TrustRegionSettings", "a01434.html", null ],
-    [ "Ikarus::utils::UpdateDefault", "a01486.html", null ],
+    [ "Ikarus::TrustRegionSettings", "a01430.html", null ],
+    [ "Ikarus::utils::UpdateDefault", "a01482.html", null ],
     [ "ValueWrapper< T >", "a01614.html", null ],
     [ "Ikarus::EAS::Variants< GEO >", "a01282.html", null ],
     [ "Ikarus::EAS::Variants< Geometry >", "a01282.html", null ],
@@ -150,9 +150,9 @@ var hierarchy =
     [ "Ikarus::Volume< NonLinearElastic< B, MAT, FERequirements<>, false >, FETraits< B, FERequirements<>, false > >", "a01306.html", [
       [ "Ikarus::NonLinearElastic< B, MAT, FER, useEigenRef >", "a01338.html", null ]
     ] ],
-    [ "Ikarus::ResultEvaluators::VonMises< dim >", "a01374.html", null ],
+    [ "Ikarus::ResultEvaluators::VonMises< dim >", "a01370.html", null ],
     [ "Dune::VTKFunction", null, [
-      [ "Ikarus::ResultFunction< FE, resType, UserFunction >", "a01386.html", null ]
+      [ "Ikarus::ResultFunction< FE, resType, UserFunction >", "a01382.html", null ]
     ] ],
     [ "Ikarus::YoungsModulusAndBulkModulus", "a01350.html", null ],
     [ "Ikarus::YoungsModulusAndLamesFirstParameter", "a01354.html", null ],

@@ -1,5 +1,4 @@
 var a00047 =
 [
-    [ "Ikarus::IkarusInstance", "a01530.html", "a01530" ],
-    [ "init", "a00047.html#ac8243891c1b961e50a066140ab79a142", null ]
+    [ "ct_sqrt", "a00047.html#ae55d4d0c3478ab3ecf54ce905ddf223b", null ]
 ];

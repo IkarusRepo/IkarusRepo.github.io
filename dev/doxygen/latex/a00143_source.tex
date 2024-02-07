@@ -1,76 +1,123 @@
-\hypertarget{a00143_source}{}\doxysection{flatassembler.\+hh}
-\label{a00143_source}\index{flatassembler.hh@{flatassembler.hh}}
+\hypertarget{a00143_source}{}\doxysection{interface.\+hh}
+\label{a00143_source}\index{interface.hh@{interface.hh}}
 \mbox{\hyperlink{a00143}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00206}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02470}{ikarus/utils/basis.hh}}>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00335}{Ikarus::Python}} \{}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                                                                \(\backslash\)}}
-\DoxyCodeLine{23 \textcolor{preprocessor}{                                                                                                                           \(\backslash\)}}
-\DoxyCodeLine{44 \textcolor{preprocessor}{  template <class Assembler, class... options>                                                                                 \(\backslash\)}}
-\DoxyCodeLine{45 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{                                   \(\backslash\)}}
-\DoxyCodeLine{46 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
-\DoxyCodeLine{47     using FEContainer         = typename Assembler::FEContainer;                                                               \(\backslash\)}
-\DoxyCodeLine{48     using Basis               = typename Assembler::Basis;                                                                     \(\backslash\)}
-\DoxyCodeLine{49     using DirichletValuesType = typename Assembler::DirichletValuesType;                                                       \(\backslash\)}
-\DoxyCodeLine{50     using FERequirementType   = typename Assembler::FERequirementType;                                                         \(\backslash\)}
-\DoxyCodeLine{51     pybind11::module m        = pybind11::module::import("{}ikarus"{});                                                            \(\backslash\)}
-\DoxyCodeLine{52     cls.def(pybind11::init([](const pybind11::list\& fes, const DirichletValuesType\& dirichletValues) \{                         \(\backslash\)}
-\DoxyCodeLine{53               \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that            \(\backslash\)}}
-\DoxyCodeLine{54 \textcolor{comment}{               * the user can pass native python lists here, see                                                               \(\backslash\)}}
-\DoxyCodeLine{55 \textcolor{comment}{               * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}\textcolor{preprocessor}{                                           \(\backslash\)}}
-\DoxyCodeLine{56 \textcolor{preprocessor}{              FEContainer fesV = fes.template cast<FEContainer>();                                                             \(\backslash\)}}
-\DoxyCodeLine{57 \textcolor{preprocessor}{              return new Assembler(std::move(fesV), dirichletValues);                                                          \(\backslash\)}}
-\DoxyCodeLine{58 \textcolor{preprocessor}{            \}),                                                                                                                \(\backslash\)}}
-\DoxyCodeLine{59 \textcolor{preprocessor}{            pybind11::keep\_alive<1, 3>());                                                                                     \(\backslash\)}}
-\DoxyCodeLine{60 \textcolor{preprocessor}{                                                                                                                               \(\backslash\)}}
-\DoxyCodeLine{61 \textcolor{preprocessor}{    }\textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}\textcolor{preprocessor}{                \(\backslash\)}}
-\DoxyCodeLine{62 \textcolor{preprocessor}{    }\textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341 \(\backslash\)}}
-\DoxyCodeLine{63 \textcolor{comment}{     */}\textcolor{preprocessor}{                                                                                                                        \(\backslash\)}}
-\DoxyCodeLine{64 \textcolor{preprocessor}{    cls.def(                                                                                                                   \(\backslash\)}}
-\DoxyCodeLine{65 \textcolor{preprocessor}{        "{}getMatrix"{}},                                                                                                           \(\backslash\)}
-\DoxyCodeLine{66         [](Assembler\& self, const FERequirementType\& req) -\/> std::remove\_cvref\_t<decltype(self.getMatrix(req))> \{              \(\backslash\)}
-\DoxyCodeLine{67           return self.getMatrix(req);                                                                                          \(\backslash\)}
-\DoxyCodeLine{68         \},                                                                                                                     \(\backslash\)}
-\DoxyCodeLine{69         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{70     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{71         "{}getReducedMatrix"{},                                                                                                    \(\backslash\)}
-\DoxyCodeLine{72         [](Assembler\& self, const FERequirementType\& req)                                                                      \(\backslash\)}
-\DoxyCodeLine{73             -\/> std::remove\_cvref\_t<decltype(self.getReducedMatrix(req))> \{ return self.getReducedMatrix(req); \},               \(\backslash\)}
-\DoxyCodeLine{74         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{75     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{76         "{}getVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getVector(req); \},                        \(\backslash\)}
-\DoxyCodeLine{77         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{78     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{79         "{}getScalar"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getScalar(req); \},                        \(\backslash\)}
-\DoxyCodeLine{80         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{81     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{82         "{}getReducedVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getReducedVector(req); \},          \(\backslash\)}
-\DoxyCodeLine{83         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{84     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{85         "{}createFullVector"{},                                                                                                    \(\backslash\)}
-\DoxyCodeLine{86         [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ return self.createFullVector(redVec); \},               \(\backslash\)}
-\DoxyCodeLine{87         pybind11::return\_value\_policy::move);                                                                                  \(\backslash\)}
-\DoxyCodeLine{88     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{89         "{}reducedSize"{}, [](Assembler\& self) \{ return self.reducedSize(); \}, pybind11::return\_value\_policy::copy);               \(\backslash\)}
-\DoxyCodeLine{90   \}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00134}{ikarus/finiteelements/mechanics/materials/strainconversions.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00119}{ikarus/finiteelements/physicshelper.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00035}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00062}{ikarus/utils/linearalgebrahelper.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/traits.hh}}>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{22 \textcolor{keyword}{template} <\textcolor{keyword}{class} MImpl>}
+\DoxyCodeLine{23 \textcolor{keyword}{struct }\mbox{\hyperlink{a00314_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206}{Material}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{template} <auto stressIndexPair, \textcolor{keyword}{typename} MImpl>}
+\DoxyCodeLine{26 \textcolor{keyword}{struct }VanishingStress;}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{37 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MAT, \textcolor{keyword}{typename} S>}
+\DoxyCodeLine{38 \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00325_ab6a92f48acd6be62f36b7f499491fc8a}{hasCorrectSize}}() \{}
+\DoxyCodeLine{39   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector6<S> or Concepts::EigenMatrix33<S>)}
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{41   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MAT::isReduced and \mbox{\hyperlink{a01644}{Concepts::EigenVector<S>}}) \{}
+\DoxyCodeLine{42     \textcolor{keywordflow}{return} S::RowsAtCompileTime == MAT::freeStrains;}
+\DoxyCodeLine{43   \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{44     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{45 \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{53 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MAT, \textcolor{keyword}{typename} S>}
+\DoxyCodeLine{54 \textcolor{keyword}{concept }\mbox{\hyperlink{a01617}{CorrectStrainSize}} = hasCorrectSize<MAT, S>();}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{75 \textcolor{keyword}{template} <\textcolor{keyword}{class} MI>}
+\DoxyCodeLine{76 \textcolor{keyword}{struct }\mbox{\hyperlink{a01310}{Material}}}
+\DoxyCodeLine{77 \{}
+\DoxyCodeLine{78   \textcolor{keyword}{using }\mbox{\hyperlink{a01310_a45254a604fc6a7913aa384cc60fa1422}{MaterialImpl}} = MI; }
+\DoxyCodeLine{79 }
+\DoxyCodeLine{83   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01310_a6e16de35bf2d955d777a8441e939a20b}{isReduced}} = traits::isSpecializationNonTypeAndTypes<VanishingStress, MaterialImpl>::value;}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{90   \textcolor{keyword}{constexpr} \textcolor{keyword}{const} \mbox{\hyperlink{a01310_a45254a604fc6a7913aa384cc60fa1422}{MaterialImpl}}\& \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01310_a45254a604fc6a7913aa384cc60fa1422}{MaterialImpl}}\&\textcolor{keyword}{>}(*this); \}}
 \DoxyCodeLine{91 }
-\DoxyCodeLine{92 \mbox{\hyperlink{a00143_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01178}{SparseFlatAssembler}});}
-\DoxyCodeLine{93 \mbox{\hyperlink{a00143_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01182}{DenseFlatAssembler}});}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{97   \textcolor{keyword}{constexpr} \mbox{\hyperlink{a01310_a45254a604fc6a7913aa384cc60fa1422}{MaterialImpl}}\& \mbox{\hyperlink{a01310_ad3e663912e4700acb1444ce254a2599c}{impl}}() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{a01310_a45254a604fc6a7913aa384cc60fa1422}{MaterialImpl}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{104   [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01310_aaa3ba3c13eef01692e03621abc8f35b5}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().nameImpl(); \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{116   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{117   \textcolor{keyword}{requires} \mbox{\hyperlink{a01617}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{118   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01310_ab2015ecf069d4d5022852d7cfc62c689}{storedEnergy}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{119     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{120     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01644}{Concepts::EigenVector<Derived>}}) \{ \textcolor{comment}{// receiving vector means voigt notation}}
+\DoxyCodeLine{123       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::energyAcceptsVoigt)}
+\DoxyCodeLine{124         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().storedEnergyImpl(\mbox{\hyperlink{a00321_ga4304655095296ce9283e012587817a51}{toVoigt}}(E));}
+\DoxyCodeLine{125       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{126         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().storedEnergyImpl(E);}
+\DoxyCodeLine{127     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{128       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().storedEnergyImpl(E);}
+\DoxyCodeLine{129   \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{140   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{141   \textcolor{keyword}{requires} \mbox{\hyperlink{a01617}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{142   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01310_ae47b0b923d01f3f2abcf5d3fd5ff04bc}{stresses}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{143     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{144     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{145     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt and MaterialImpl::stressToVoigt == \textcolor{keyword}{false})}
+\DoxyCodeLine{146       \textcolor{comment}{// user requests a Voigt shaped return but material is not able to. Therefore, we transform it here.}}
+\DoxyCodeLine{147       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00321_ga4304655095296ce9283e012587817a51}{toVoigt}}(stressesMaybeTransformInputToVoigt<false>(E), \textcolor{keyword}{false});}
+\DoxyCodeLine{148     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{149       \textcolor{keywordflow}{return} stressesMaybeTransformInputToVoigt<voigt>(E);}
+\DoxyCodeLine{150   \}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{161   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{162   \textcolor{keyword}{requires} \mbox{\hyperlink{a01617}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{163   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01310_a2d9d9509fa8bbdc909868c8fd0dfe5fd}{tangentModuli}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{164     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{165     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{166     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt and MaterialImpl::moduliToVoigt == \textcolor{keyword}{false})}
+\DoxyCodeLine{167       \textcolor{comment}{// user request a Voigt shaped return but material is not able to. Therefore, we transform it here.}}
+\DoxyCodeLine{168       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00321_ga4304655095296ce9283e012587817a51}{toVoigt}}(tangentModuliMaybeTransformInputToVoigt<false>(E));}
+\DoxyCodeLine{169     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{170       \textcolor{keywordflow}{return} tangentModuliMaybeTransformInputToVoigt<voigt>(E);}
+\DoxyCodeLine{171   \}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{181   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{182   \textcolor{keyword}{auto} \mbox{\hyperlink{a01310_a2ebc8765eb320eaab532589999fa002a}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{183     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template rebind<STO>();}
+\DoxyCodeLine{184   \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186 \textcolor{keyword}{private}:}
+\DoxyCodeLine{187   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{188   \textcolor{keyword}{auto} stressesMaybeTransformInputToVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{189     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01644}{Concepts::EigenVector<Derived>}}) \{ \textcolor{comment}{// receiving vector means Voigt notation}}
+\DoxyCodeLine{190       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::stressAcceptsVoigt)}
+\DoxyCodeLine{191         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template stressesImpl<voigt>(E);}
+\DoxyCodeLine{192       \textcolor{keywordflow}{else} \textcolor{comment}{// material is not able to accept Voigt shaped Input. Therefore, we transform it before.}}
+\DoxyCodeLine{193         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template stressesImpl<voigt>(\mbox{\hyperlink{a00321_ga106e11a950fe2545890e811d2e9545fd}{fromVoigt}}(E.derived()));}
+\DoxyCodeLine{194     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{195       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template stressesImpl<voigt>(E.derived());}
+\DoxyCodeLine{196   \}}
+\DoxyCodeLine{197 }
+\DoxyCodeLine{198   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{199   \textcolor{keyword}{auto} tangentModuliMaybeTransformInputToVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{200     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>) \{ \textcolor{comment}{// receiving vector means voigt notation}}
+\DoxyCodeLine{201       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::moduliAcceptsVoigt)}
+\DoxyCodeLine{202         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template tangentModuliImpl<voigt>(E);}
+\DoxyCodeLine{203       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{204         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template tangentModuliImpl<voigt>(\mbox{\hyperlink{a00321_ga106e11a950fe2545890e811d2e9545fd}{fromVoigt}}(E.derived()));}
+\DoxyCodeLine{205     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{206       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01310_a1f36564023973d1684bf337b4584f8d6}{impl}}().template tangentModuliImpl<voigt>(E.derived());}
+\DoxyCodeLine{207   \}}
+\DoxyCodeLine{208 \};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

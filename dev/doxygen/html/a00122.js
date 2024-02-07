@@ -1,4 +1,4 @@
 var a00122 =
 [
-    [ "Ikarus::GenericObserver< M >", "a01558.html", "a01558" ]
+    [ "Ikarus::FETraits< B, FER, useRef >", "a01258.html", "a01258" ]
 ];

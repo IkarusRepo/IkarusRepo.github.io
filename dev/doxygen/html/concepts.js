@@ -1,7 +1,7 @@
 var concepts =
 [
     [ "Ikarus", "a00325.html", [
-      [ "Concepts", "a00338.html", [
+      [ "Concepts", "a00337.html", [
         [ "FlatInterLeavedBasis", "a01619.html", null ],
         [ "LagrangeNode", "a01620.html", null ],
         [ "LagrangeNodeOfOrder", "a01621.html", null ],

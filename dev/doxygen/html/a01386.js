@@ -1,13 +1,11 @@
 var a01386 =
 [
-    [ "ctype", "a01386.html#a1b960380b9e520e5c37a552158dcbc9e", null ],
-    [ "Entity", "a01386.html#a51070aab44aa6c0d6399555c3b737542", null ],
-    [ "FERequirementType", "a01386.html#a6c4177e83cfe14cba5d6de0a7ce87283", null ],
-    [ "FiniteElement", "a01386.html#aba444e0afcbef3afab7c7dba660dd39c", null ],
-    [ "GridView", "a01386.html#a2744c437727bc72267b949c121fc912b", null ],
-    [ "ResultFunction", "a01386.html#ab9999ef0144c8caf38883e080ac489a0", null ],
-    [ "evaluate", "a01386.html#a91d31c9d876847fd0e136a03dab6969a", null ],
-    [ "name", "a01386.html#a8be0f4769c4f515b64805b77b0146ae4", null ],
-    [ "ncomps", "a01386.html#a45726779c3ca035c7c4fa700cee30d93", null ],
-    [ "griddim", "a01386.html#ae74f225ad7718b34215ae249c3d235b1", null ]
+    [ "initRuntimeOptions", "a01386.html#a981486cf6f877aab41fa5e4bb660a4e1", null ],
+    [ "Delta", "a01386.html#a8e52ebafb750281e8b3f00cb698bd3dd", null ],
+    [ "kappa", "a01386.html#a2513528ae4acf6f87352c21d231df432", null ],
+    [ "maxinner", "a01386.html#a7afe22dd21170afd03420ab0a2b363df", null ],
+    [ "mininner", "a01386.html#a6d7b2d2804c136db788473b7a36e4fad", null ],
+    [ "numInnerIter", "a01386.html#aea7d60a8e86f8c8a17251b1da948ea68", null ],
+    [ "stop_tCG", "a01386.html#a9c7c8b39cd33322b4ce22154628f4b7e", null ],
+    [ "theta", "a01386.html#abd45d0da5afd14bd4201289fac65db38", null ]
 ];

@@ -1,104 +1,30 @@
-\hypertarget{a00227_source}{}\doxysection{eas3d.\+hh}
-\label{a00227_source}\index{eas3d.hh@{eas3d.hh}}
+\hypertarget{a00227_source}{}\doxysection{nonlinearsolverlogger.\+hh}
+\label{a00227_source}\index{nonlinearsolverlogger.hh@{nonlinearsolverlogger.hh}}
 \mbox{\hyperlink{a00227}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00330}{Ikarus::EAS}} \{}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01274}{H1E9}}}
-\DoxyCodeLine{25 \{}
-\DoxyCodeLine{26   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01274_ae9198131bd07f28e06519c81d22020d1}{strainSize}}         = 6;}
-\DoxyCodeLine{27   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01274_abae7fca7b5ca54582745e3444b1401c3}{enhancedStrainSize}} = 9;}
-\DoxyCodeLine{28   \textcolor{keyword}{using }\mbox{\hyperlink{a01274_a4ebc7570a1a18ca9d2cc77d5d1d4a05f}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00230}{observer.hh}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00233}{observermessages.hh}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01562}{NonLinearSolverLogger}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01566}{IObserver}}<NonLinearSolverMessages>}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22 \textcolor{keyword}{public}:}
+\DoxyCodeLine{28   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a131da094b77cab07c39b4017d5419dac}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message) \textcolor{keyword}{final};}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30   \mbox{\hyperlink{a01274_af2ffc65346e400a7ce3cc5fb0a3be34a}{H1E9}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{31   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01274_a3b14b18f924c0b5000ec609d441239ac}{H1E9}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{32       : geometry\_\{std::make\_shared<GEO>(geometry)\},}
-\DoxyCodeLine{33         T0InverseTransformed\_\{\mbox{\hyperlink{a00325_a95234ab8588ced83708c6e5a30e2368e}{calcTransformationMatrix3D}}(geometry)\} \{\}}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{35   \textcolor{keyword}{auto} \mbox{\hyperlink{a01274_adafa86c9c1ed38a3b165af332dfe2afc}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01370}{Dune::FieldVector<double, 3>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{36     \mbox{\hyperlink{a01274_a4ebc7570a1a18ca9d2cc77d5d1d4a05f}{MType}} M;}
-\DoxyCodeLine{37     M.setZero();}
-\DoxyCodeLine{38     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{40     \textcolor{keyword}{const} \textcolor{keywordtype}{double} zeta = quadPos[2];}
-\DoxyCodeLine{41     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{42     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{43     M(2, 2)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{44     M(3, 3)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{45     M(3, 4)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{46     M(4, 5)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{47     M(4, 6)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{48     M(5, 7)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{49     M(5, 8)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{50     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{51     M                 = T0InverseTransformed\_ / detJ * M;}
-\DoxyCodeLine{52     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{53   \}}
-\DoxyCodeLine{54 }
-\DoxyCodeLine{55 \textcolor{keyword}{private}:}
-\DoxyCodeLine{56   std::shared\_ptr<GEO> geometry\_;}
-\DoxyCodeLine{57   Eigen::Matrix<double, strainSize, strainSize> T0InverseTransformed\_;}
-\DoxyCodeLine{58 \};}
-\DoxyCodeLine{59 }
-\DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
-\DoxyCodeLine{68 \textcolor{keyword}{struct }\mbox{\hyperlink{a01278}{H1E21}}}
-\DoxyCodeLine{69 \{}
-\DoxyCodeLine{70   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01278_a19e3d9c840f9658f89195785a1b0f297}{strainSize}}         = 6;}
-\DoxyCodeLine{71   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01278_a47e656c5d4423d24042884f4e55c69b5}{enhancedStrainSize}} = 21;}
-\DoxyCodeLine{72   \textcolor{keyword}{using }\mbox{\hyperlink{a01278_a8c1fd9df374e95dded0e56da5c2ca5a5}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{74   \mbox{\hyperlink{a01278_a5017b24cf2908ad7c580a81c8c4ad30b}{H1E21}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{75   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01278_aca335ca86d7dab9633f751acac7978bc}{H1E21}}(\textcolor{keyword}{const} Geometry\& geometry\_)}
-\DoxyCodeLine{76       : geometry\{std::make\_shared<Geometry>(geometry\_)\},}
-\DoxyCodeLine{77         T0InverseTransformed\{\mbox{\hyperlink{a00325_a95234ab8588ced83708c6e5a30e2368e}{calcTransformationMatrix3D}}(geometry\_)\} \{\}}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{79   \textcolor{keyword}{auto} \mbox{\hyperlink{a01278_a941f708e558b767c8e5406e82cc40f61}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01370}{Dune::FieldVector<double, 3>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{80     \mbox{\hyperlink{a01278_a8c1fd9df374e95dded0e56da5c2ca5a5}{MType}} M;}
-\DoxyCodeLine{81     M.setZero();}
-\DoxyCodeLine{82     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{83     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keywordtype}{double} zeta = quadPos[2];}
-\DoxyCodeLine{85     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{86     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{87     M(2, 2)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{88     M(3, 3)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{89     M(3, 4)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{90     M(4, 5)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{91     M(4, 6)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{92     M(5, 7)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{93     M(5, 8)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95     M(3, 9)  = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{96     M(3, 10) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{97     M(4, 11) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{98     M(4, 12) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{99     M(5, 13) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{100     M(5, 14) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{102     M(0, 15) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{103     M(0, 16) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{104     M(1, 17) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{105     M(1, 18) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{106     M(2, 19) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{107     M(2, 20) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{108 }
-\DoxyCodeLine{109     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry-\/>integrationElement(quadPos);}
-\DoxyCodeLine{110     M                 = T0InverseTransformed / detJ * M;}
-\DoxyCodeLine{111     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{112   \}}
-\DoxyCodeLine{113 }
-\DoxyCodeLine{114 \textcolor{keyword}{private}:}
-\DoxyCodeLine{115   std::shared\_ptr<Geometry> geometry;}
-\DoxyCodeLine{116   Eigen::Matrix<double, strainSize, strainSize> T0InverseTransformed;}
-\DoxyCodeLine{117 \};}
-\DoxyCodeLine{118 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{36   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a17558ed4ad25de4e80b2bccdbf670e0b}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{double} val) \textcolor{keyword}{final};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{44   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a2a30782a175f8fc1dfb583531718cabf}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{int} intVal) \textcolor{keyword}{final};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{private}:}
+\DoxyCodeLine{47   \textcolor{keywordtype}{int} iters\_\{0\};}
+\DoxyCodeLine{48   \textcolor{keywordtype}{double} dNorm\_\{0\};}
+\DoxyCodeLine{49   \textcolor{keywordtype}{double} rNorm\_\{0\};}
+\DoxyCodeLine{50   \textcolor{keywordtype}{double} lambda\_\{0\};}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

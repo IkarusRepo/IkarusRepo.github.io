@@ -1,52 +1,123 @@
-\hypertarget{a00272_source}{}\doxysection{adaptivestepsizing.\+hh}
-\label{a00272_source}\index{adaptivestepsizing.hh@{adaptivestepsizing.hh}}
+\hypertarget{a00272_source}{}\doxysection{newtonraphson.\+hh}
+\label{a00272_source}\index{newtonraphson.hh@{newtonraphson.hh}}
 \mbox{\hyperlink{a00272}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00269}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00173}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00326}{Ikarus::AdaptiveStepSizing}} \{}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00278}{ikarus/solver/linearsolver/linearsolver.hh}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00266}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00035}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/defaultfunctions.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00062}{ikarus/utils/linearalgebrahelper.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00230}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00233}{ikarus/utils/observer/observermessages.hh}}>}}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01186}{NoOp}}}
-\DoxyCodeLine{25 \{}
-\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
-\DoxyCodeLine{37   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01186_a7e3bcfe2fdfa61730adaccde62fad844}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01430}{NonLinearSolverInformation}}\& solverInfo, \mbox{\hyperlink{a01206}{SubsidiaryArgs}}\& subsidiaryArgs,}
-\DoxyCodeLine{38                   \textcolor{keyword}{const} NLO\& nonLinearOperator) \{\}}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{44   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01186_af42dff6b9945230918607a14f159e52e}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0; \}}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{50   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01186_aae9af895e735c2c5f87a9e2eb77aa737}{setTargetIterations}}([[maybe\_unused]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01186_af42dff6b9945230918607a14f159e52e}{targetIterations}}) \{\}}
-\DoxyCodeLine{51 \};}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{63 \textcolor{keyword}{struct }\mbox{\hyperlink{a01190}{IterationBased}}}
-\DoxyCodeLine{64 \{}
-\DoxyCodeLine{75   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
-\DoxyCodeLine{76   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01190_a5869ac09a02a7b2222873ca31a30989e}{operator()}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01430}{NonLinearSolverInformation}}\& solverInfo, \mbox{\hyperlink{a01206}{SubsidiaryArgs}}\& subsidiaryArgs,}
-\DoxyCodeLine{77                   \textcolor{keyword}{const} NLO\& nonLinearOperator) \{}
-\DoxyCodeLine{78     \textcolor{keywordflow}{if} (subsidiaryArgs.\mbox{\hyperlink{a01206_a217c729e1ae8b05a98c852f19b0d6ae5}{currentStep}} == 0)}
-\DoxyCodeLine{79       \textcolor{keywordflow}{return};}
-\DoxyCodeLine{80     \textcolor{keywordflow}{if} (targetIterations\_ == 0)}
-\DoxyCodeLine{81       DUNE\_THROW(Dune::InvalidStateException,}
-\DoxyCodeLine{82                  \textcolor{stringliteral}{"{}For IterationBased, targetIterations should not be equal to 0. Try calling "{}}}
-\DoxyCodeLine{83                  \textcolor{stringliteral}{"{}setTargetIterations(int) first."{}});}
-\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keyword}{auto} previousIterations = solverInfo.\mbox{\hyperlink{a01430_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}};}
-\DoxyCodeLine{85     \textcolor{keywordflow}{if} (previousIterations > targetIterations\_)}
-\DoxyCodeLine{86       subsidiaryArgs.\mbox{\hyperlink{a01206_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} =}
-\DoxyCodeLine{87           sqrt(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(targetIterations\_) / previousIterations) * subsidiaryArgs.\mbox{\hyperlink{a01206_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
-\DoxyCodeLine{88   \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{94   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} targetIterations\_; \}}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{100   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01190_a52017ebcd89859d5ae214cc8767ef78d}{setTargetIterations}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}) \{ targetIterations\_ = \mbox{\hyperlink{a01190_aabdaad05b950b53e014624271a16fd9c}{targetIterations}}; \}}
-\DoxyCodeLine{101 }
-\DoxyCodeLine{102 \textcolor{keyword}{private}:}
-\DoxyCodeLine{103   \textcolor{keywordtype}{int} targetIterations\_\{0\};}
-\DoxyCodeLine{104 \};}
-\DoxyCodeLine{105 \} \textcolor{comment}{// namespace Ikarus::AdaptiveStepSizing}}
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01410}{NewtonRaphsonSettings}}}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01410_a0018d8586d377ac30eb644d21d22c2a8}{tol}}\{1e-\/8\};}
+\DoxyCodeLine{28   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01410_ae1c1d5ca83049ccad73d69e93535a55a}{maxIter}}\{20\};}
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{40 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO, \textcolor{keyword}{typename} LS = utils::SolverDefault, \textcolor{keyword}{typename} UF = utils::UpdateDefault>}
+\DoxyCodeLine{41 \textcolor{keyword}{class }\mbox{\hyperlink{a01414}{NewtonRaphson}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01570}{IObservable}}<NonLinearSolverMessages>}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01414_ad3561144041515b7c3fd8cf5d8f10a94}{isLinearSolver}} =}
+\DoxyCodeLine{46       \mbox{\hyperlink{a01631}{Ikarus::Concepts::LinearSolverCheck<LinearSolver, typename NLO::DerivativeType, typename NLO::ValueType>}};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01414_aeecb2abbbd2c547db013f45e673b7291}{ValueType}} = \textcolor{keyword}{typename} NLO::template ParameterValue<0>;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \textcolor{keyword}{using }\mbox{\hyperlink{a01414_a3c66f49cc8972a9e93322724be43d6c1}{UpdateFunction}}    = UF;  }
+\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01414_a41064bd40996c2c0a2e5d79dc72543ef}{NonLinearOperator}} = NLO; }
+\DoxyCodeLine{53 }
+\DoxyCodeLine{60   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01414_a385c8e64b095f4136872d7e5a3c0d5eb}{NewtonRaphson}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01414_a41064bd40996c2c0a2e5d79dc72543ef}{NonLinearOperator}}\& \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}, LS\&\& linearSolver = \{\},}
+\DoxyCodeLine{61                          \mbox{\hyperlink{a01414_a3c66f49cc8972a9e93322724be43d6c1}{UpdateFunction}} updateFunction = \{\})}
+\DoxyCodeLine{62       : nonLinearOperator\_\{\mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}\},}
+\DoxyCodeLine{63         linearSolver\_\{std::move(linearSolver)\},}
+\DoxyCodeLine{64         updateFunction\_\{updateFunction\} \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<typename NonLinearOperator::ValueType, Eigen::VectorXd>)}
+\DoxyCodeLine{66       correction\_.setZero(this-\/>nonLinearOperator().value().size());}
+\DoxyCodeLine{67   \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{73   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01414_adba93357667c2e8f36fca7c4c99d3f41}{setup}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01410}{NewtonRaphsonSettings}}\& settings) \{ settings\_ = settings; \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{76   \textcolor{keyword}{struct }NoPredictor}
+\DoxyCodeLine{77   \{}
+\DoxyCodeLine{78   \};}
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{85   \textcolor{keyword}{template} <\textcolor{keyword}{typename} SolutionType = NoPredictor>}
+\DoxyCodeLine{86   \textcolor{keyword}{requires} std::is\_same\_v<SolutionType, NoPredictor> ||}
+\DoxyCodeLine{87            std::is\_convertible\_v<SolutionType, std::remove\_cvref\_t<typename NonLinearOperator::ValueType>>}
+\DoxyCodeLine{88   [[nodiscard(}
+\DoxyCodeLine{89       \textcolor{stringliteral}{"{}The solve method returns information of the solution process. You should store this information and check if "{}}}
+\DoxyCodeLine{90       \textcolor{stringliteral}{"{}it was successful"{}})]] \mbox{\hyperlink{a01426}{Ikarus::NonLinearSolverInformation}}}
+\DoxyCodeLine{91   \mbox{\hyperlink{a01414_a1670320a70ab0d6bd33e320811591bbe}{solve}}(\textcolor{keyword}{const} SolutionType\& dxPredictor = NoPredictor\{\}) \{}
+\DoxyCodeLine{92     this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498}{NonLinearSolverMessages::INIT}});}
+\DoxyCodeLine{93     \mbox{\hyperlink{a01426}{Ikarus::NonLinearSolverInformation}} solverInformation;}
+\DoxyCodeLine{94     solverInformation.\mbox{\hyperlink{a01426_acb65d72d7b2291a9b0d958ce0e4e0887}{success}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{95     \textcolor{keyword}{auto}\& x                   = \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}().firstParameter();}
+\DoxyCodeLine{96     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_same\_v<SolutionType, NoPredictor>)}
+\DoxyCodeLine{97       updateFunction\_(x, dxPredictor);}
+\DoxyCodeLine{98     \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}().updateAll();}
+\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& rx = \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}().value();}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& Ax = \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}().derivative();}
+\DoxyCodeLine{101     \textcolor{keyword}{auto} rNorm     = \mbox{\hyperlink{a00320_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(rx);}
+\DoxyCodeLine{102     \textcolor{keyword}{decltype}(rNorm) dNorm;}
+\DoxyCodeLine{103     \textcolor{keywordtype}{int} iter\{0\};}
+\DoxyCodeLine{104     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01414_ad3561144041515b7c3fd8cf5d8f10a94}{isLinearSolver}})}
+\DoxyCodeLine{105       linearSolver\_.analyzePattern(Ax);}
+\DoxyCodeLine{106     \textcolor{keywordflow}{while} (rNorm > settings\_.\mbox{\hyperlink{a01410_a0018d8586d377ac30eb644d21d22c2a8}{tol}} \&\& iter < settings\_.\mbox{\hyperlink{a01410_ae1c1d5ca83049ccad73d69e93535a55a}{maxIter}}) \{}
+\DoxyCodeLine{107       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4}{NonLinearSolverMessages::ITERATION\_STARTED}});}
+\DoxyCodeLine{108       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01414_ad3561144041515b7c3fd8cf5d8f10a94}{isLinearSolver}}) \{}
+\DoxyCodeLine{109         linearSolver\_.factorize(Ax);}
+\DoxyCodeLine{110         linearSolver\_.solve(correction\_, -\/rx);}
+\DoxyCodeLine{111         dNorm = correction\_.norm();}
+\DoxyCodeLine{112         updateFunction\_(x, correction\_);}
+\DoxyCodeLine{113       \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{114         correction\_ = -\/linearSolver\_(rx, Ax);}
+\DoxyCodeLine{115         dNorm       = \mbox{\hyperlink{a00320_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(correction\_);}
+\DoxyCodeLine{116         updateFunction\_(x, correction\_);}
+\DoxyCodeLine{117       \}}
+\DoxyCodeLine{118       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5a07a63a77745ab72a7e89fb22a8bcfd78}{NonLinearSolverMessages::CORRECTIONNORM\_UPDATED}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(dNorm));}
+\DoxyCodeLine{119       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5a0d30d757bf062e88728ebe7f8e2b2577}{NonLinearSolverMessages::SOLUTION\_CHANGED}});}
+\DoxyCodeLine{120       \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}().updateAll();}
+\DoxyCodeLine{121       rNorm = \mbox{\hyperlink{a00320_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(rx);}
+\DoxyCodeLine{122       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14}{NonLinearSolverMessages::RESIDUALNORM\_UPDATED}}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(rNorm));}
+\DoxyCodeLine{123       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815}{NonLinearSolverMessages::ITERATION\_ENDED}});}
+\DoxyCodeLine{124       ++iter;}
+\DoxyCodeLine{125     \}}
+\DoxyCodeLine{126     \textcolor{keywordflow}{if} (iter == settings\_.\mbox{\hyperlink{a01410_ae1c1d5ca83049ccad73d69e93535a55a}{maxIter}})}
+\DoxyCodeLine{127       solverInformation.\mbox{\hyperlink{a01426_acb65d72d7b2291a9b0d958ce0e4e0887}{success}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{128     solverInformation.\mbox{\hyperlink{a01426_a81570cd3d9f6589a4d1ba81211f41b99}{iterations}}     = iter;}
+\DoxyCodeLine{129     solverInformation.\mbox{\hyperlink{a01426_ab09859737734f97734f20624f9f3c934}{residualNorm}}   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(rNorm);}
+\DoxyCodeLine{130     solverInformation.\mbox{\hyperlink{a01426_a66f51414779f3e563557157fb688f18b}{correctionNorm}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(dNorm);}
+\DoxyCodeLine{131     \textcolor{keywordflow}{if} (solverInformation.\mbox{\hyperlink{a01426_acb65d72d7b2291a9b0d958ce0e4e0887}{success}})}
+\DoxyCodeLine{132       this-\/>\mbox{\hyperlink{a01570_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00319_gga662b2b6a80547adf4b9ce8b30d87fab5a15380ac35d47cdbcbd64aada4bc21931}{NonLinearSolverMessages::FINISHED\_SUCESSFULLY}}, iter);}
+\DoxyCodeLine{133     \textcolor{keywordflow}{return} solverInformation;}
+\DoxyCodeLine{134   \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{140   \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01414_ab5a5c4aafcce50ee9c1050b42d2c6c89}{nonLinearOperator}}() \{ \textcolor{keywordflow}{return} nonLinearOperator\_; \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142 \textcolor{keyword}{private}:}
+\DoxyCodeLine{143   \mbox{\hyperlink{a01542}{NonLinearOperator}} nonLinearOperator\_;}
+\DoxyCodeLine{144   \textcolor{keyword}{typename} NonLinearOperator::ValueType correction\_;}
+\DoxyCodeLine{145   LS linearSolver\_;}
+\DoxyCodeLine{146   \mbox{\hyperlink{a01414_a3c66f49cc8972a9e93322724be43d6c1}{UpdateFunction}} updateFunction\_;}
+\DoxyCodeLine{147   \mbox{\hyperlink{a01410}{NewtonRaphsonSettings}} settings\_;}
+\DoxyCodeLine{148 \};}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{160 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO, \textcolor{keyword}{typename} LS = utils::SolverDefault, \textcolor{keyword}{typename} UF = utils::UpdateDefault>}
+\DoxyCodeLine{161 \textcolor{keyword}{auto} \mbox{\hyperlink{a00325_afa463e708cffd14133ff65ffa366e329}{makeNewtonRaphson}}(\textcolor{keyword}{const} NLO\& nonLinearOperator, LS\&\& linearSolver = \{\}, UF\&\& updateFunction = \{\}) \{}
+\DoxyCodeLine{162   \textcolor{keywordflow}{return} std::make\_shared<NewtonRaphson<NLO, LS, UF>>(nonLinearOperator, std::forward<LS>(linearSolver),}
+\DoxyCodeLine{163                                                       std::move(updateFunction));}
+\DoxyCodeLine{164 \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

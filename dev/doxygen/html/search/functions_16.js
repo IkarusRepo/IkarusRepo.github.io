@@ -2,6 +2,6 @@ var searchData=
 [
   ['_7eiobservable_0',['~IObservable',['../a01570.html#ad1fe15b31cccec8e44c695af550938ed',1,'Ikarus::IObservable']]],
   ['_7eiobserver_1',['~IObserver',['../a01566.html#a39df4c52c73f721bb2ef1c90fe76d74a',1,'Ikarus::IObserver']]],
-  ['_7elinearsolvertemplate_2',['~LinearSolverTemplate',['../a01402.html#a683577ea4ceced6e7e74a6a37180c279',1,'Ikarus::LinearSolverTemplate']]],
-  ['_7etruncatedconjugategradient_3',['~TruncatedConjugateGradient',['../a01394.html#aa60846b7835b8ffc8e26b48be8bd7069',1,'Eigen::TruncatedConjugateGradient']]]
+  ['_7elinearsolvertemplate_2',['~LinearSolverTemplate',['../a01398.html#a683577ea4ceced6e7e74a6a37180c279',1,'Ikarus::LinearSolverTemplate']]],
+  ['_7etruncatedconjugategradient_3',['~TruncatedConjugateGradient',['../a01390.html#aa60846b7835b8ffc8e26b48be8bd7069',1,'Eigen::TruncatedConjugateGradient']]]
 ];

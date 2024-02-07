@@ -1,5 +1,5 @@
-\hypertarget{a00200_source}{}\doxysection{autodifffe.\+hh}
-\label{a00200_source}\index{autodifffe.hh@{autodifffe.hh}}
+\hypertarget{a00200_source}{}\doxysection{material.\+hh}
+\label{a00200_source}\index{material.hh@{material.hh}}
 \mbox{\hyperlink{a00200}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,114 +7,144 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <autodiff/forward/dual/dual.hpp>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <autodiff/forward/dual/eigen.hpp>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00206}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00203}{ikarus/finiteelements/fetraits.hh}}>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00068}{ikarus/utils/traits.hh}}>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/common/classname.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00176}{ikarus/finiteelements/mechanics/materials.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00035}{ikarus/utils/concepts.hh}}>}}
 \DoxyCodeLine{19 }
-\DoxyCodeLine{29 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEImpl, \textcolor{keyword}{typename} FER = FERequirements<>, \textcolor{keywordtype}{bool} useEigenRef = false, \textcolor{keywordtype}{bool} forceAutoDiff = false>}
-\DoxyCodeLine{30 \textcolor{keyword}{class }\mbox{\hyperlink{a01222}{AutoDiffFE}} : \textcolor{keyword}{public} FEImpl}
-\DoxyCodeLine{31 \{}
-\DoxyCodeLine{32 \textcolor{keyword}{public}:}
-\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01222_a55e79f1fd8fa7a9554efd396aa69d03d}{RealFE}}            = FEImpl;                             }
-\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01222_a781385c5016ede8dec178f57e900263c}{Basis}}             = \textcolor{keyword}{typename} RealFE::Basis;             }
-\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01258}{Traits}}            = \mbox{\hyperlink{a01258}{FETraits<Basis, FER, useEigenRef>}};  }
-\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01222_a0b46f142dac2d62833c3198845b39c2d}{LocalView}}         = \textcolor{keyword}{typename} \mbox{\hyperlink{a01258_ab45140c593175ec84e44e41c8681da90}{Traits::LocalView}};         }
-\DoxyCodeLine{37   \textcolor{keyword}{using }\mbox{\hyperlink{a01222_a2e94f1607fc0a1b2be051002a5edbb0c}{Element}}           = \textcolor{keyword}{typename} \mbox{\hyperlink{a01258_a66ef325fde5f1608478498ae6581e33b}{Traits::Element}};           }
-\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01222_a757f3808eea2fa9d03e21ebb1454e8b3}{FERequirementType}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01258_af25ce4c31d34d582828b36c3ab80208f}{Traits::FERequirementType}}; }
-\DoxyCodeLine{39 }
-\DoxyCodeLine{46   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01222_aed0fc753f44d568f4be4861aa62f2159}{calculateMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01222_a757f3808eea2fa9d03e21ebb1454e8b3}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template MatrixType<> h)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{47     \textcolor{comment}{// real element implements calculateMatrix by itself, then we simply forward the call}}
-\DoxyCodeLine{48     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ RealFE::calculateMatrix(req, h); \} and not forceAutoDiff) \{}
-\DoxyCodeLine{49       RealFE::calculateMatrix(req, h);}
-\DoxyCodeLine{50     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
-\DoxyCodeLine{51                            this-\/>\textcolor{keyword}{template} calculateVectorImpl<autodiff::dual>(}
-\DoxyCodeLine{52                                req, std::declval<\textcolor{keyword}{typename} Traits::template VectorType<autodiff::dual>>(),}
-\DoxyCodeLine{53                                std::declval<const Eigen::VectorXdual\&>());}
-\DoxyCodeLine{54                          \}) \{}
-\DoxyCodeLine{55       \textcolor{comment}{// real element implements calculateVector by itself, therefore we only need first order derivatives}}
-\DoxyCodeLine{56       Eigen::VectorXdual dx(this-\/>localView().size());}
-\DoxyCodeLine{57       Eigen::VectorXdual g(this-\/>localView().size());}
-\DoxyCodeLine{58       dx.setZero();}
-\DoxyCodeLine{59       \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\& x) -\/> \textcolor{keyword}{auto}\& \{}
-\DoxyCodeLine{60         g.setZero();}
-\DoxyCodeLine{61         this-\/>\textcolor{keyword}{template} calculateVectorImpl<autodiff::dual>(req, g, x);}
-\DoxyCodeLine{62         \textcolor{keywordflow}{return} g;}
-\DoxyCodeLine{63       \};}
-\DoxyCodeLine{64       jacobian(f, autodiff::wrt(dx), at(dx), g, h);}
-\DoxyCodeLine{65     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
-\DoxyCodeLine{66                            this-\/>\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual2nd>(}
-\DoxyCodeLine{67                                req, std::declval<\textcolor{keyword}{typename} Traits::template VectorType<autodiff::dual2nd>>());}
-\DoxyCodeLine{68                          \}) \{}
-\DoxyCodeLine{69       \textcolor{comment}{// real element implements calculateScalar by itself, therefore we need second order derivatives}}
-\DoxyCodeLine{70       Eigen::VectorXdual2nd dx(this-\/>localView().size());}
-\DoxyCodeLine{71       Eigen::VectorXd g;}
-\DoxyCodeLine{72       autodiff::dual2nd e;}
-\DoxyCodeLine{73       dx.setZero();}
-\DoxyCodeLine{74       \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} this-\/>\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual2nd>(req, x); \};}
-\DoxyCodeLine{75       hessian(f, autodiff::wrt(dx), at(dx), e, g, h);}
-\DoxyCodeLine{76     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{77       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
-\DoxyCodeLine{78                     \textcolor{stringliteral}{"{}Appropriate calculateScalarImpl or calculateVectorImpl functions are not implemented for the "{}}}
-\DoxyCodeLine{79                     \textcolor{stringliteral}{"{}chosen element."{}});}
-\DoxyCodeLine{80   \}}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{88   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01222_aa677eba3f26376fedbf5b45c12dc0e77}{calculateVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01222_a757f3808eea2fa9d03e21ebb1454e8b3}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template VectorType<> g)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{89     \textcolor{comment}{// real element implements calculateVector by itself, then we simply forward the call}}
-\DoxyCodeLine{90     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
-\DoxyCodeLine{91                     this-\/>\textcolor{keyword}{template} calculateVectorImpl<double>(}
-\DoxyCodeLine{92                         req, std::declval<\textcolor{keyword}{typename} Traits::template VectorType<double>>(),}
-\DoxyCodeLine{93                         std::declval<const Eigen::VectorXd\&>());}
-\DoxyCodeLine{94                   \} and not forceAutoDiff) \{}
-\DoxyCodeLine{95       \textcolor{keywordflow}{return} this-\/>\textcolor{keyword}{template} calculateVectorImpl<double>(req, g);}
-\DoxyCodeLine{96     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
-\DoxyCodeLine{97                            this-\/>\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual>(}
-\DoxyCodeLine{98                                req, std::declval<const Eigen::VectorXdual\&>());}
-\DoxyCodeLine{99                          \}) \{}
-\DoxyCodeLine{100       \textcolor{comment}{// real element implements calculateScalar by itself, therefore we need first order derivatives}}
-\DoxyCodeLine{101       Eigen::VectorXdual dx(this-\/>localView().size());}
-\DoxyCodeLine{102       dx.setZero();}
-\DoxyCodeLine{103       autodiff::dual e;}
-\DoxyCodeLine{104       \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} this-\/>\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual>(req, x); \};}
-\DoxyCodeLine{105       gradient(f, autodiff::wrt(dx), at(dx), e, g);}
-\DoxyCodeLine{106     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{107       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
-\DoxyCodeLine{108                     \textcolor{stringliteral}{"{}Appropriate calculateScalarImpl function is not implemented for the "{}}}
-\DoxyCodeLine{109                     \textcolor{stringliteral}{"{}chosen element."{}});}
-\DoxyCodeLine{110   \}}
-\DoxyCodeLine{111 }
-\DoxyCodeLine{119   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01222_ac4a83219a78d90224f288ff2fe339da2}{calculateLocalSystem}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01222_a757f3808eea2fa9d03e21ebb1454e8b3}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template MatrixType<> h,}
-\DoxyCodeLine{120                             \textcolor{keyword}{typename} Traits::template VectorType<> g)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{121     Eigen::VectorXdual2nd dx(this-\/>localView().size());}
-\DoxyCodeLine{122     dx.setZero();}
-\DoxyCodeLine{123     \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} this-\/>calculateScalarImpl(req, x); \};}
-\DoxyCodeLine{124     hessian(f, autodiff::wrt(dx), at(dx), g, h);}
-\DoxyCodeLine{125   \}}
-\DoxyCodeLine{126 }
-\DoxyCodeLine{133   [[nodiscard]] \textcolor{keywordtype}{double} \mbox{\hyperlink{a01222_a467c4ed0b15360441cc5d77b6eb5c591}{calculateScalar}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01222_a757f3808eea2fa9d03e21ebb1454e8b3}{FERequirementType}}\& par)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{134     \textcolor{comment}{// real element implements calculateScalar by itself, then we simply forward the call}}
-\DoxyCodeLine{135     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ RealFE::calculateScalar(par); \}) \{}
-\DoxyCodeLine{136       \textcolor{keywordflow}{return} RealFE::calculateScalar(par);}
-\DoxyCodeLine{137     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ this-\/>calculateScalarImpl(par); \}) \{}
-\DoxyCodeLine{138       \textcolor{comment}{// real element only implements the protected calculateScalarImpl by itself, thus we call that one.}}
-\DoxyCodeLine{139       \textcolor{keywordflow}{return} this-\/>calculateScalarImpl(par);}
-\DoxyCodeLine{140     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{141       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
-\DoxyCodeLine{142                     \textcolor{stringliteral}{"{}Appropriate calculateScalar and calculateScalarImpl functions are not implemented for the "{}}}
-\DoxyCodeLine{143                     \textcolor{stringliteral}{"{}chosen element."{}});}
-\DoxyCodeLine{144     \}}
-\DoxyCodeLine{145   \}}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{152   \textcolor{keyword}{const} \mbox{\hyperlink{a01222_a55e79f1fd8fa7a9554efd396aa69d03d}{RealFE}}\& \mbox{\hyperlink{a01222_ae5b38b906dbe5945d9e1928a7db49fe4}{realFE}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{161   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
-\DoxyCodeLine{162   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01222_a50e737961fa37b8401f57c6f919f0091}{AutoDiffFE}}(Args\&\&... args)}
-\DoxyCodeLine{163       : \mbox{\hyperlink{a01222_a55e79f1fd8fa7a9554efd396aa69d03d}{RealFE}}\{std::forward<Args>(args)...\} \{\}}
-\DoxyCodeLine{164 \};}
-\DoxyCodeLine{165 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define MAKE\_MaterialFunction(clsName, materialName, functionname, vecSize)                                            \(\backslash\)}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{  clsName.def(                                                                                                         \(\backslash\)}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{      \#functionname,                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{      [](materialName\& self, const std::string\& straintag, Eigen::Ref<const Eigen::Vector<double, vecSize>> eVoigt\_) \{ \(\backslash\)}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{        if constexpr (not Concepts::IsMaterial<LinearElasticityT, materialName>) \{                                     \(\backslash\)}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{          Eigen::Vector<double, vecSize> eVoigt = eVoigt\_;                                                             \(\backslash\)}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{          if (straintag == toString(StrainTags::rightCauchyGreenTensor))                                               \(\backslash\)}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{            return self.template functionname<StrainTags::rightCauchyGreenTensor>(eVoigt);                             \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{          else if (straintag == toString(StrainTags::greenLagrangian))                                                 \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{            return self.template functionname<StrainTags::greenLagrangian>(eVoigt);                                    \(\backslash\)}}
+\DoxyCodeLine{30 \textcolor{preprocessor}{          else if (straintag == toString(StrainTags::linear))                                                          \(\backslash\)}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{            DUNE\_THROW(Dune::MathError, "{}Passing linear strain to "{}} + std::string(\#materialName) +                     \(\backslash\)}
+\DoxyCodeLine{32                                             "{} does not makes sense use LinearElastic class"{});                          \(\backslash\)}
+\DoxyCodeLine{33           else if (straintag == toString(StrainTags::displacementGradient))                                            \(\backslash\)}
+\DoxyCodeLine{34             DUNE\_THROW(Dune::MathError,                                                                                \(\backslash\)}
+\DoxyCodeLine{35                        "{}Passing displacementGradient strain in 6d Voigt notation does not make any sense!"{});           \(\backslash\)}
+\DoxyCodeLine{36           else if (straintag == toString(StrainTags::deformationGradient))                                             \(\backslash\)}
+\DoxyCodeLine{37             DUNE\_THROW(Dune::MathError,                                                                                \(\backslash\)}
+\DoxyCodeLine{38                        "{}Passing deformationGradient strain in 6d Voigt notation does not make any sense!"{});            \(\backslash\)}
+\DoxyCodeLine{39           else                                                                                                         \(\backslash\)}
+\DoxyCodeLine{40             DUNE\_THROW(Dune::MathError, straintag + "{}is not a valid strain tag."{});                                     \(\backslash\)}
+\DoxyCodeLine{41         \} else \{                                                                                                       \(\backslash\)}
+\DoxyCodeLine{42           Eigen::Vector<double, vecSize> eVoigt = eVoigt\_; \textcolor{comment}{/* Linear elastic path */}\textcolor{preprocessor}{                                   \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{          if (straintag == toString(StrainTags::linear))                                                               \(\backslash\)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{            return self.template functionname<StrainTags::linear>(eVoigt);                                             \(\backslash\)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{          else                                                                                                         \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{            DUNE\_THROW(Dune::MathError, "{}Linear elastic material only accepts linear strains!"{}});                       \(\backslash\)}
+\DoxyCodeLine{47         \}                                                                                                              \(\backslash\)}
+\DoxyCodeLine{48         \_\_builtin\_unreachable();                                                                                       \(\backslash\)}
+\DoxyCodeLine{49       \},                                                                                                               \(\backslash\)}
+\DoxyCodeLine{50       "{}StrainName"{}\_a, "{}strainVector"{}\_a);}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{preprocessor}{\#define MAKE\_MATERIAL\_REGISTERY\_FUNCTION(Materialname, vecSize)                                                                \(\backslash\)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{  template <class Materialname, class... options>                                                                              \(\backslash\)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{  void register\#\#Materialname(pybind11::handle scope, pybind11::class\_<Materialname, options...> cls\#\#Materialname) \{          \(\backslash\)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
+\DoxyCodeLine{56     namespace py = pybind11;                                                                                                   \(\backslash\)}
+\DoxyCodeLine{57     cls\#\#Materialname.def(pybind11::init([](double emod, double nu) \{                                                          \(\backslash\)}
+\DoxyCodeLine{58                             auto matParameter =                                                                                \(\backslash\)}
+\DoxyCodeLine{59                                 Ikarus::toLamesFirstParameterAndShearModulus(\{.emodul = emod, .nu = nu\});                      \(\backslash\)}
+\DoxyCodeLine{60                             return new Materialname(matParameter);                                                             \(\backslash\)}
+\DoxyCodeLine{61                           \}),                                                                                                  \(\backslash\)}
+\DoxyCodeLine{62                           "{}Material constructor that takes Young's modulus E and Poisson's ratio nu"{}, "{}E"{}\_a, "{}nu"{}\_a);          \(\backslash\)}
+\DoxyCodeLine{63     MAKE\_MaterialFunction(cls\#\#Materialname, Materialname, storedEnergy, vecSize);                                             \(\backslash\)}
+\DoxyCodeLine{64     MAKE\_MaterialFunction(cls\#\#Materialname, Materialname, stresses, vecSize);                                                 \(\backslash\)}
+\DoxyCodeLine{65     MAKE\_MaterialFunction(cls\#\#Materialname, Materialname, tangentModuli, vecSize);                                            \(\backslash\)}
+\DoxyCodeLine{66                                                                                                                                \(\backslash\)}
+\DoxyCodeLine{67     using PlaneStressClass = decltype(planeStress(std::declval<Materialname>()));                                              \(\backslash\)}
+\DoxyCodeLine{68     auto includes          = Dune::Python::IncludeFiles\{"{}ikarus/finiteelements/mechanics/materials.hh"{}\};                       \(\backslash\)}
+\DoxyCodeLine{69     auto pS                = Dune::Python::insertClass<PlaneStressClass>(                                                      \(\backslash\)}
+\DoxyCodeLine{70                   scope, std::string("{}PlaneStress\_"{}) + \#Materialname,                                           \(\backslash\)}
+\DoxyCodeLine{71                   Dune::Python::GenerateTypeName(                                                               \(\backslash\)}
+\DoxyCodeLine{72                       "{}Ikarus::VanishingStress<std::array<Ikarus::Impl::StressIndexPair, "{}                      \(\backslash\)}
+\DoxyCodeLine{73                                      "{}3ul>\{\{Ikarus::Impl::StressIndexPair\{2ul, 1ul\}, Ikarus::Impl::StressIndexPair\{2ul,0ul\}, "{} \(\backslash\)}
+\DoxyCodeLine{74                                      "{}Ikarus::Impl::StressIndexPair\{2ul, 2ul\}\}\},"{} +                                            \(\backslash\)}
+\DoxyCodeLine{75                       Dune::className<Materialname>() + "{}>"{}),                                                   \(\backslash\)}
+\DoxyCodeLine{76                   includes)                                                                                     \(\backslash\)}
+\DoxyCodeLine{77                   .first;                                                                                                      \(\backslash\)}
+\DoxyCodeLine{78     MAKE\_MaterialFunction(pS, PlaneStressClass, storedEnergy, 3);                                                              \(\backslash\)}
+\DoxyCodeLine{79     MAKE\_MaterialFunction(pS, PlaneStressClass, stresses, 3);                                                                  \(\backslash\)}
+\DoxyCodeLine{80     MAKE\_MaterialFunction(pS, PlaneStressClass, tangentModuli, 3);                                                             \(\backslash\)}
+\DoxyCodeLine{81     MAKE\_MaterialFunction(pS, PlaneStressClass, storedEnergy, 6);                                                              \(\backslash\)}
+\DoxyCodeLine{82     MAKE\_MaterialFunction(pS, PlaneStressClass, stresses, 6);                                                                  \(\backslash\)}
+\DoxyCodeLine{83     MAKE\_MaterialFunction(pS, PlaneStressClass, tangentModuli, 6);                                                             \(\backslash\)}
+\DoxyCodeLine{84     cls\#\#Materialname.def("{}asPlaneStress"{}, [](Materialname\& self) \{                                                            \(\backslash\)}
+\DoxyCodeLine{85       return planeStress(self);                                                                                                \(\backslash\)}
+\DoxyCodeLine{86     \}); \textcolor{comment}{/* no keep\_alive since planeStress copies the material */}\textcolor{preprocessor}{                                                              \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{    using shellMaterialClass = decltype(shellMaterial(std::declval<Materialname>()));                                          \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{    auto shellmaterial =                                                                                                       \(\backslash\)}}
+\DoxyCodeLine{89 \textcolor{preprocessor}{        Dune::Python::insertClass<shellMaterialClass>(                                                                         \(\backslash\)}}
+\DoxyCodeLine{90 \textcolor{preprocessor}{            scope, std::string("{}Shell\_"{}}) + \#Materialname,                                                                      \(\backslash\)}
+\DoxyCodeLine{91             Dune::Python::GenerateTypeName("{}Ikarus::VanishingStress<std::array<Ikarus::Impl::StressIndexPair, "{}                \(\backslash\)}
+\DoxyCodeLine{92                                            "{}1ul>\{\{Ikarus::Impl::StressIndexPair\{2ul, 2ul\}\}\},"{} +                                \(\backslash\)}
+\DoxyCodeLine{93                                            Dune::className<Materialname>() + "{}>"{}),                                             \(\backslash\)}
+\DoxyCodeLine{94             includes)                                                                                                          \(\backslash\)}
+\DoxyCodeLine{95             .first;                                                                                                            \(\backslash\)}
+\DoxyCodeLine{96     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, storedEnergy, 5);                                                 \(\backslash\)}
+\DoxyCodeLine{97     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, stresses, 5);                                                     \(\backslash\)}
+\DoxyCodeLine{98     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, tangentModuli, 5);                                                \(\backslash\)}
+\DoxyCodeLine{99     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, storedEnergy, 6);                                                 \(\backslash\)}
+\DoxyCodeLine{100     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, stresses, 6);                                                     \(\backslash\)}
+\DoxyCodeLine{101     MAKE\_MaterialFunction(shellmaterial, shellMaterialClass, tangentModuli, 6);                                                \(\backslash\)}
+\DoxyCodeLine{102     cls\#\#Materialname.def("{}asShellMaterial"{}, [](Materialname\& self) \{                                                          \(\backslash\)}
+\DoxyCodeLine{103       return shellMaterial(self);                                                                                              \(\backslash\)}
+\DoxyCodeLine{104     \}); \textcolor{comment}{/* no keep\_alive since shellMaterial copies the material */}\textcolor{preprocessor}{                                                            \(\backslash\)}}
+\DoxyCodeLine{105 \textcolor{preprocessor}{    using beamMaterialClass = decltype(beamMaterial(std::declval<Materialname>()));                                            \(\backslash\)}}
+\DoxyCodeLine{106 \textcolor{preprocessor}{    auto beammaterial       = Dune::Python::insertClass<beamMaterialClass>(                                                    \(\backslash\)}}
+\DoxyCodeLine{107 \textcolor{preprocessor}{                            scope, std::string("{}Beam\_"{}}) + \#Materialname,                                                 \(\backslash\)}
+\DoxyCodeLine{108                             Dune::Python::GenerateTypeName(                                                              \(\backslash\)}
+\DoxyCodeLine{109                                 "{}Ikarus::VanishingStress<std::array<Ikarus::Impl::StressIndexPair, "{}                     \(\backslash\)}
+\DoxyCodeLine{110                                       "{}2ul>\{\{Impl::StressIndexPair\{1, 1\},Ikarus::Impl::StressIndexPair\{2ul, 2ul\}\}\},"{} +         \(\backslash\)}
+\DoxyCodeLine{111                                 Dune::className<Materialname>() + "{}>"{}),                                                  \(\backslash\)}
+\DoxyCodeLine{112                             includes)                                                                                    \(\backslash\)}
+\DoxyCodeLine{113                             .first;                                                                                            \(\backslash\)}
+\DoxyCodeLine{114     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, storedEnergy, 4);                                                   \(\backslash\)}
+\DoxyCodeLine{115     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, stresses, 4);                                                       \(\backslash\)}
+\DoxyCodeLine{116     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, tangentModuli, 4);                                                  \(\backslash\)}
+\DoxyCodeLine{117     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, storedEnergy, 6);                                                   \(\backslash\)}
+\DoxyCodeLine{118     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, stresses, 6);                                                       \(\backslash\)}
+\DoxyCodeLine{119     MAKE\_MaterialFunction(beammaterial, beamMaterialClass, tangentModuli, 6);                                                  \(\backslash\)}
+\DoxyCodeLine{120     cls\#\#Materialname.def("{}asBeamMaterial"{}, [](Materialname\& self) \{                                                           \(\backslash\)}
+\DoxyCodeLine{121       return beamMaterial(self);                                                                                               \(\backslash\)}
+\DoxyCodeLine{122     \}); \textcolor{comment}{/* no keep\_alive since beamMaterial copies the material */}\textcolor{preprocessor}{                                                             \(\backslash\)}}
+\DoxyCodeLine{123 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#define MAKE\_MATERIAL\_CLASS\_IN\_MODULE(Materialname, args)                                                    \(\backslash\)}}
+\DoxyCodeLine{126 \textcolor{preprocessor}{  auto includes\#\#Materialname = Dune::Python::IncludeFiles\{"{}ikarus/finiteelements/mechanics/materials.hh"{}}\};  \(\backslash\)}
+\DoxyCodeLine{127   auto cls\#\#Materialname =                                                                                   \(\backslash\)}
+\DoxyCodeLine{128       Dune::Python::insertClass<Ikarus::Materialname<args>>(                                                 \(\backslash\)}
+\DoxyCodeLine{129           m, \#Materialname, Dune::Python::GenerateTypeName("{}Ikarus::"{} + std::string(\#Materialname<\#\#args>)), \(\backslash\)}
+\DoxyCodeLine{130           includes\#\#Materialname)                                                                            \(\backslash\)}
+\DoxyCodeLine{131           .first;                                                                                            \(\backslash\)}
+\DoxyCodeLine{132   cls\#\#Materialname.def(pybind11::init([](double emod, double nu) \{                                          \(\backslash\)}
+\DoxyCodeLine{133                           auto matParameter =                                                                \(\backslash\)}
+\DoxyCodeLine{134                               Ikarus::toLamesFirstParameterAndShearModulus(\{.emodul = emod, .nu = nu\});      \(\backslash\)}
+\DoxyCodeLine{135                           return new Materialname(matParameter);                                             \(\backslash\)}
+\DoxyCodeLine{136                         \}),                                                                                  \(\backslash\)}
+\DoxyCodeLine{137                         "{}Material constructor that takes Young's modulus E and Poisson's ratio nu"{}           \(\backslash\)}
+\DoxyCodeLine{138                         "{}E"{}\_a,                                                                               \(\backslash\)}
+\DoxyCodeLine{139                         "{}nu"{}\_a);                                                                             \(\backslash\)}
+\DoxyCodeLine{140   MAKE\_MaterialFunction(Materialname<\#\#args>, storedEnergy);                                                 \(\backslash\)}
+\DoxyCodeLine{141   MAKE\_MaterialFunction(Materialname<\#\#args>, stresses);                                                     \(\backslash\)}
+\DoxyCodeLine{142   MAKE\_MaterialFunction(Materialname<\#\#args>, tangentModuli);}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00334}{Ikarus::Python}} \{}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \mbox{\hyperlink{a00334_a2cdc302115d5d01f08f150303127978d}{MAKE\_MATERIAL\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01314}{LinearElasticity}}, 6);}
+\DoxyCodeLine{147 \mbox{\hyperlink{a00334_a2cdc302115d5d01f08f150303127978d}{MAKE\_MATERIAL\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01322}{StVenantKirchhoff}}, 6);}
+\DoxyCodeLine{148 \mbox{\hyperlink{a00334_a2cdc302115d5d01f08f150303127978d}{MAKE\_MATERIAL\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01318}{NeoHooke}}, 6);}
+\DoxyCodeLine{149 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

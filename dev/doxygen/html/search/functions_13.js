@@ -25,7 +25,7 @@ var searchData=
   ['transformstrain_22',['transformStrain',['../a00313.html#gae9c00f19ce473d7183c87aa84b247f88',1,'Ikarus']]],
   ['transformvaluerangetopointerrange_23',['transformValueRangeToPointerRange',['../a00322.html#ga7f597d87c8f2bcbf4afc65ebc929b680',1,'Ikarus::utils']]],
   ['transpose_24',['transpose',['../a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24',1,'Ikarus']]],
-  ['truncated_5fconjugate_5fgradient_25',['truncated_conjugate_gradient',['../a00334.html#a38414bb29b6ce1a1d8cc03749acb95f7',1,'Eigen::internal']]],
-  ['truncatedconjugategradient_26',['TruncatedConjugateGradient',['../a01394.html#af31547cc01eca8c809bbf1161c251695',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(const EigenBase&lt; MatrixDerived &gt; &amp;A)'],['../a01394.html#a267ee32f0487d9a700b13d6d61b0f000',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient()'],['../a01394.html#a17e36ca6a3756dd75d9740d756ee39c4',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(TruncatedConjugateGradient &amp;&amp;other) noexcept']]],
-  ['trustregion_27',['TrustRegion',['../a01446.html#aca59267eff2ad5358225cc5eafbe21d0',1,'Ikarus::TrustRegion']]]
+  ['truncated_5fconjugate_5fgradient_25',['truncated_conjugate_gradient',['../a00333.html#a38414bb29b6ce1a1d8cc03749acb95f7',1,'Eigen::internal']]],
+  ['truncatedconjugategradient_26',['TruncatedConjugateGradient',['../a01390.html#af31547cc01eca8c809bbf1161c251695',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(const EigenBase&lt; MatrixDerived &gt; &amp;A)'],['../a01390.html#a267ee32f0487d9a700b13d6d61b0f000',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient()'],['../a01390.html#a17e36ca6a3756dd75d9740d756ee39c4',1,'Eigen::TruncatedConjugateGradient::TruncatedConjugateGradient(TruncatedConjugateGradient &amp;&amp;other) noexcept']]],
+  ['trustregion_27',['TrustRegion',['../a01442.html#aca59267eff2ad5358225cc5eafbe21d0',1,'Ikarus::TrustRegion']]]
 ];

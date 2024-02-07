@@ -1,29 +1,51 @@
-\hypertarget{a00254_source}{}\doxysection{easvariants.\+hh}
-\label{a00254_source}\index{easvariants.hh@{easvariants.hh}}
+\hypertarget{a00254_source}{}\doxysection{loadcontrol.\+hh}
+\label{a00254_source}\index{loadcontrol.hh@{loadcontrol.hh}}
 \mbox{\hyperlink{a00254}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00224}{ikarus/finiteelements/mechanics/eas/eas2d.hh}}>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00227}{ikarus/finiteelements/mechanics/eas/eas3d.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00020}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00330}{Ikarus::EAS}} \{}
-\DoxyCodeLine{25 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{26 \textcolor{keyword}{struct }\mbox{\hyperlink{a01282}{Variants}}}
-\DoxyCodeLine{27 \{}
-\DoxyCodeLine{28   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01282_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} = GEO::coorddimension;}
-\DoxyCodeLine{29   \textcolor{keyword}{static\_assert}((\mbox{\hyperlink{a01282_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} == 2) or (\mbox{\hyperlink{a01282_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} == 3), \textcolor{stringliteral}{"{}EAS variants are only available 2D and 3D elements."{}});}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01282_a483700fc4381f83b322c87c503750dff}{EAS2D}} = std::variant<std::monostate, Q1E4<GEO>, \mbox{\hyperlink{a01266}{Q1E5<GEO>}}, \mbox{\hyperlink{a01270}{Q1E7<GEO>}}>;}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01282_a5baebb3a03e231c0608c8f28ff2816c5}{EAS3D}} = std::variant<std::monostate, H1E9<GEO>, \mbox{\hyperlink{a01278}{H1E21<GEO>}}>;}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01282_a4fb2b1a33f08f60be81d8e4783fa3770}{type}} = std::conditional\_t<worldDim == 2, EAS2D, EAS3D>;}
-\DoxyCodeLine{39 \};}
-\DoxyCodeLine{40 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00257}{ikarus/controlroutines/controlinfos.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00230}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00233}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{29 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS>}
+\DoxyCodeLine{30 \textcolor{keyword}{class }\mbox{\hyperlink{a01198}{LoadControl}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01570}{IObservable}}<ControlMessages>}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01198_ab0c5144a3b5d67f3c582772a48271105}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Load Control Method"{}}); \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{43   \mbox{\hyperlink{a01198_a073af96d9cd179a918cf18656be19947}{LoadControl}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nonLinearSolver, \textcolor{keywordtype}{int} loadSteps, \textcolor{keyword}{const} std::array<double, 2>\& tbeginEnd)}
+\DoxyCodeLine{44       : nonLinearSolver\_\{nonLinearSolver\},}
+\DoxyCodeLine{45         loadSteps\_\{loadSteps\},}
+\DoxyCodeLine{46         parameterBegin\_\{tbeginEnd[0]\},}
+\DoxyCodeLine{47         parameterEnd\_\{tbeginEnd[1]\},}
+\DoxyCodeLine{48         stepSize\_\{(parameterEnd\_ -\/ parameterBegin\_) / loadSteps\_\} \{}
+\DoxyCodeLine{49     \textcolor{keyword}{static\_assert}(}
+\DoxyCodeLine{50         \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{51           nonLinearSolver\_-\/>nonLinearOperator().lastParameter() = 0.0;}
+\DoxyCodeLine{52           nonLinearSolver\_-\/>nonLinearOperator().lastParameter() += 0.0;}
+\DoxyCodeLine{53         \}, \textcolor{stringliteral}{"{}The last parameter (load factor) must be assignable and incrementable with a double!"{}});}
+\DoxyCodeLine{54   \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{61   \mbox{\hyperlink{a01194}{ControlInformation}} \mbox{\hyperlink{a01198_aea1be825e746e898092e83a41efaedac}{run}}();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{private}:}
+\DoxyCodeLine{64   std::shared\_ptr<NLS> nonLinearSolver\_;}
+\DoxyCodeLine{65   \textcolor{keywordtype}{int} loadSteps\_;}
+\DoxyCodeLine{66   \textcolor{keywordtype}{double} parameterBegin\_;}
+\DoxyCodeLine{67   \textcolor{keywordtype}{double} parameterEnd\_;}
+\DoxyCodeLine{68   \textcolor{keywordtype}{double} stepSize\_;}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00251}{ikarus/controlroutines/loadcontrol.inl}}>}}
 
 \end{DoxyCode}

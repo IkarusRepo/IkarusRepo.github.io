@@ -1,5 +1,4 @@
 var a00281 =
 [
-    [ "ValueWrapper< T >", "a01614.html", "a01614" ],
-    [ "PYBIND11_MODULE", "a00281.html#a0e4f7cface71bec1c24bbed3aaa798d8", null ]
+    [ "basis", "a00281.html#a0f9f04fa9d98e890cb6d4fe62ff889a4", null ]
 ];

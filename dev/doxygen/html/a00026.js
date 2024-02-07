@@ -1,4 +1,4 @@
 var a00026 =
 [
-    [ "findLineSegment", "a00026.html#ga16e7d5f51cc42190c090e727495c1609", null ]
+    [ "Python::Conversion< autodiff::Real< order, T > >", "a01574.html", "a01574" ]
 ];
