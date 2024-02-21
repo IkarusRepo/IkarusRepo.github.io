@@ -1,0 +1,32 @@
+\hypertarget{a00053_source}{}\doxysection{functionhelper.\+hh}
+\label{a00053_source}\index{functionhelper.hh@{functionhelper.hh}}
+\mbox{\hyperlink{a00053}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00335}{Ikarus::utils}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LV>}
+\DoxyCodeLine{23 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00320_gac0aa110e209c93e655de9df0915c2fcc}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LV\& localView,}
+\DoxyCodeLine{24                                  std::vector<\mbox{\hyperlink{a01490}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
+\DoxyCodeLine{25   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01620}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
+\DoxyCodeLine{26                 \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
+\DoxyCodeLine{27   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
+\DoxyCodeLine{28   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{29   lagrangeNodeCoords.resize(localFE.size());}
+\DoxyCodeLine{30   std::vector<double> out;}
+\DoxyCodeLine{31   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
+\DoxyCodeLine{32     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01490}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
+\DoxyCodeLine{33     localFE.localInterpolation().interpolate(ithCoord, out);}
+\DoxyCodeLine{34     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
+\DoxyCodeLine{35       lagrangeNodeCoords[j][i] = out[j];}
+\DoxyCodeLine{36   \}}
+\DoxyCodeLine{37   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
+\DoxyCodeLine{38     nCoord = localView.element().geometry().global(nCoord);}
+\DoxyCodeLine{39 \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \} \textcolor{comment}{// namespace Ikarus::utils}}
+
+\end{DoxyCode}
