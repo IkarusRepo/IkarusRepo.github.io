@@ -1,5 +1,4 @@
 var a00260 =
 [
-    [ "Ikarus::AdaptiveStepSizing::NoOp", "a01186.html", "a01186" ],
-    [ "Ikarus::AdaptiveStepSizing::IterationBased", "a01190.html", "a01190" ]
+    [ "Ikarus::FETraits< B, FER, useRef >", "a01258.html", "a01258" ]
 ];

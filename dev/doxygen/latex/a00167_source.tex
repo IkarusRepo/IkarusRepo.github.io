@@ -1,89 +1,30 @@
-\hypertarget{a00167_source}{}\doxysection{volume.\+hh}
-\label{a00167_source}\index{volume.hh@{volume.hh}}
+\hypertarget{a00167_source}{}\doxysection{nonlinearsolverlogger.\+hh}
+\label{a00167_source}\index{nonlinearsolverlogger.hh@{nonlinearsolverlogger.hh}}
 \mbox{\hyperlink{a00167}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00116}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/defaultfunctions.hh}}>}}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{typename} DFE, \textcolor{keyword}{typename} Traits>}
-\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01306}{Volume}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00170}{observer.hh}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00158}{observermessages.hh}}"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{class }\mbox{\hyperlink{a01562}{NonLinearSolverLogger}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01566}{IObserver}}<NonLinearSolverMessages>}
 \DoxyCodeLine{21 \{}
 \DoxyCodeLine{22 \textcolor{keyword}{public}:}
-\DoxyCodeLine{23   \textcolor{keyword}{using }\mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}       = \textcolor{keyword}{typename} Traits::FERequirementType;}
-\DoxyCodeLine{24   \textcolor{keyword}{using }\mbox{\hyperlink{a01306_a378f39e30047caf903ac564848edc697}{LocalView}}               = \textcolor{keyword}{typename} Traits::LocalView;}
-\DoxyCodeLine{25   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01306_a073fb2d3afae0bd3e0afe1c2534f9afd}{worldDim}} = Traits::worlddim;}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{34   \textcolor{keyword}{template} <\textcolor{keyword}{typename} VL>}
-\DoxyCodeLine{35   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01306_af67372d55f4036736affad41565639bd}{Volume}}(VL volumeLoad = \{\}) \{}
-\DoxyCodeLine{36     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<VL, utils::LoadDefault>)}
-\DoxyCodeLine{37       volumeLoad\_ = volumeLoad;}
-\DoxyCodeLine{38   \}}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{48   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01306_a57dda3eb802306012e41237636de1ec4}{calculateScalar}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& req)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} calculateScalarImpl<double>(req); \}}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{57   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01306_a60ccd349727ba418dbfb1a3012a1d856}{calculateVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template VectorType<> force)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{58     calculateVectorImpl<double>(req, force);}
-\DoxyCodeLine{59   \}}
-\DoxyCodeLine{67   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01306_a50c6859b6c9a40fbb8ac9cc77d8087db}{calculateMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template MatrixType<> K)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{68     calculateMatrixImpl<double>(req, K);}
-\DoxyCodeLine{69   \}}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{71 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{72   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
-\DoxyCodeLine{73   \textcolor{keyword}{auto} \mbox{\hyperlink{a01306_a7ec1326b708d8c08fee05ca7b601f997}{calculateScalarImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& par,}
-\DoxyCodeLine{74                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ST>>\& dx = std::nullopt) \textcolor{keyword}{const} -\/> ST \{}
-\DoxyCodeLine{75     \textcolor{keywordflow}{if} (not volumeLoad\_)}
-\DoxyCodeLine{76       \textcolor{keywordflow}{return} 0.0;}
-\DoxyCodeLine{77     ST energy            = 0.0;}
-\DoxyCodeLine{78     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = dbElement().displacementFunction(par, dx);}
-\DoxyCodeLine{79     \textcolor{keyword}{const} \textcolor{keyword}{auto} geo       = dbElement().geometry();}
-\DoxyCodeLine{80     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.getParameter(\mbox{\hyperlink{a00312_gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8}{Ikarus::FEParameter::loadfactor}});}
-\DoxyCodeLine{81 }
-\DoxyCodeLine{82     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : uFunction.viewOverIntegrationPoints()) \{}
-\DoxyCodeLine{83       \textcolor{keyword}{const} \textcolor{keyword}{auto} uVal                      = uFunction.evaluate(gpIndex);}
-\DoxyCodeLine{84       Eigen::Vector<double, worldDim> fext = volumeLoad\_(geo.global(gp.position()), lambda);}
-\DoxyCodeLine{85       energy -\/= uVal.dot(fext) * geo.integrationElement(gp.position()) * gp.weight();}
-\DoxyCodeLine{86     \}}
-\DoxyCodeLine{87     \textcolor{keywordflow}{return} energy;}
-\DoxyCodeLine{88   \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{90   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
-\DoxyCodeLine{91   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01306_a9b91a057a51ab4487656d8bd94fdd234}{calculateVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& par, \textcolor{keyword}{typename} Traits::template VectorType<ST> force,}
-\DoxyCodeLine{92                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ST>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{93     \textcolor{keywordflow}{if} (not volumeLoad\_)}
-\DoxyCodeLine{94       \textcolor{keywordflow}{return};}
-\DoxyCodeLine{95     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
-\DoxyCodeLine{96     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00339}{Dune}};}
-\DoxyCodeLine{97     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = dbElement().displacementFunction(par, dx);}
-\DoxyCodeLine{98     \textcolor{keyword}{const} \textcolor{keyword}{auto} geo       = dbElement().geometry();}
-\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.getParameter(\mbox{\hyperlink{a00312_gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8}{Ikarus::FEParameter::loadfactor}});}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : uFunction.viewOverIntegrationPoints()) \{}
-\DoxyCodeLine{102       \textcolor{keyword}{const} Eigen::Vector<double, worldDim> fext = volumeLoad\_(geo.global(gp.position()), lambda);}
-\DoxyCodeLine{103       \textcolor{keyword}{const} \textcolor{keywordtype}{double} intElement                    = geo.integrationElement(gp.position()) * gp.weight();}
-\DoxyCodeLine{104       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < dbElement().numberOfNodes(); ++i) \{}
-\DoxyCodeLine{105         \textcolor{keyword}{const} \textcolor{keyword}{auto} udCi = uFunction.evaluateDerivative(gpIndex, wrt(coeff(i)));}
-\DoxyCodeLine{106         force.template segment<worldDim>(\mbox{\hyperlink{a01306_a073fb2d3afae0bd3e0afe1c2534f9afd}{worldDim}} * i) -\/= udCi * fext * intElement;}
-\DoxyCodeLine{107       \}}
-\DoxyCodeLine{108     \}}
-\DoxyCodeLine{109   \}}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{111   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
-\DoxyCodeLine{112   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01306_aaed2462e36f9d119ff5c60867ebcaf62}{calculateMatrixImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01306_a3095dc94e0800007d462004657c1371a}{FERequirementType}}\& par, \textcolor{keyword}{typename} Traits::template MatrixType<> K,}
-\DoxyCodeLine{113                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ST>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{\}}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{115 \textcolor{keyword}{private}:}
-\DoxyCodeLine{116   std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01490}{Dune::FieldVector<double, worldDim>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)> volumeLoad\_;}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{123   \textcolor{keyword}{constexpr} \textcolor{keyword}{const} DFE\& dbElement()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }DFE\&\textcolor{keyword}{>}(*this); \}}
-\DoxyCodeLine{124 \};}
-\DoxyCodeLine{125 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{28   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a131da094b77cab07c39b4017d5419dac}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message) \textcolor{keyword}{final};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{36   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a17558ed4ad25de4e80b2bccdbf670e0b}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{double} val) \textcolor{keyword}{final};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{44   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01562_a2a30782a175f8fc1dfb583531718cabf}{updateImpl}}(\mbox{\hyperlink{a00319_ga662b2b6a80547adf4b9ce8b30d87fab5}{NonLinearSolverMessages}} message, \textcolor{keywordtype}{int} intVal) \textcolor{keyword}{final};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \textcolor{keyword}{private}:}
+\DoxyCodeLine{47   \textcolor{keywordtype}{int} iters\_\{0\};}
+\DoxyCodeLine{48   \textcolor{keywordtype}{double} dNorm\_\{0\};}
+\DoxyCodeLine{49   \textcolor{keywordtype}{double} rNorm\_\{0\};}
+\DoxyCodeLine{50   \textcolor{keywordtype}{double} lambda\_\{0\};}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

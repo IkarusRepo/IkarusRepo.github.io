@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: concepts.hh Source File</title>
+    <title>ikarus: flatprebasis.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,296 +152,119 @@ $(document).ready(function(){initNavTree('a00035_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">concepts.hh</div></div>
+  <div class="headertitle"><div class="title">flatprebasis.hh</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="a00035.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;concepts&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;type_traits&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/basistags.hh&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/lagrangebasis.hh&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;Eigen/Sparse&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="a00065.html">ikarus/utils/traits.hh</a>&gt;</span></div>
+<a href="a00035.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Original File: https://gitlab.mn.tu-dresden.de/amdis/amdis-core/-/blob/master/amdis/functions/FlatPreBasis.hpp</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-FileCopyrightText: 2023 Copyright (c)  AMDiS</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// SPDX-License-Identifier: MIT</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Modifications:</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;utility&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;dune/common/indices.hh&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/basistags.hh&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/compositebasis.hh&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/powerbasis.hh&gt;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00332.html">Eigen</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="a01458.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01458.html">EigenBase</a>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>}</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00325.html">Ikarus</a> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;auto stressIndexPair, <span class="keyword">typename</span> MaterialImpl&gt;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">struct </span>VanishingStress;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24">   33</a></span><span class="keyword">auto</span> <a class="code hl_function" href="a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24">transpose</a>(<span class="keyword">const</span> <a class="code hl_struct" href="a01458.html">Eigen::EigenBase&lt;Derived&gt;</a>&amp; A);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="a00337.html">   34</a></span><span class="keyword">namespace </span>Concepts {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Basis&gt;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="a01619.html">   45</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01619.html">FlatInterLeavedBasis</a> = <span class="keyword">requires</span> {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::is_same_v&lt;typename Basis::PreBasis::IndexMergingStrategy, Dune::Functions::BasisFactory::FlatInterleaved&gt;;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  };</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keywordtype">int</span>, <span class="keyword">typename</span>&gt; <span class="keyword">class </span>U, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">struct </span>LagrangeNodeHelper : std::false_type</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keywordtype">int</span>, <span class="keyword">typename</span>&gt; <span class="keyword">class </span>U, <span class="keyword">typename</span> GV, <span class="keywordtype">int</span> k, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">struct </span>LagrangeNodeHelper&lt;U, U&lt;GV, k, R&gt;&gt; : std::true_type</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    };</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keywordtype">int</span>, <span class="keyword">typename</span>&gt; <span class="keyword">class </span>U, <span class="keyword">typename</span> T, <span class="keywordtype">int</span> k&gt;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">struct </span>LagrangeNodeHelperOfOrder : std::false_type</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    };</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>, <span class="keywordtype">int</span>, <span class="keyword">typename</span>&gt; <span class="keyword">class </span>U, <span class="keyword">typename</span> GV, <span class="keywordtype">int</span> k, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">struct </span>LagrangeNodeHelperOfOrder&lt;U, U&lt;GV, k, R&gt;, k&gt; : std::true_type</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    };</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  } <span class="comment">// namespace Impl</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00325.html">Ikarus</a> {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> PreBasis&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="a01502.html">   37</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01502.html">FlatPreBasis</a></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="a01502.html#a448426468de3637416804f6ef6f8ce90">   39</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01502.html#a448426468de3637416804f6ef6f8ce90">type</a> = PreBasis;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">template</span> &lt;<span class="keyword">class</span> PB&gt;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">   43</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="a01502.html#a448426468de3637416804f6ef6f8ce90">type</a> <a class="code hl_function" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">create</a>(PB <span class="keyword">const</span>&amp; preBasis) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordflow">return</span> {preBasis.gridView()};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="a01502.html#af5414357864c26a827136edac1a085f4">   48</a></span>  <span class="keyword">static</span> <span class="keyword">const</span> PreBasis&amp; <a class="code hl_function" href="a01502.html#af5414357864c26a827136edac1a085f4">create</a>(<span class="keyword">const</span> PreBasis&amp; preBasis) { <span class="keywordflow">return</span> preBasis; }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> PreBasis&gt;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="a00325.html#a98cbe3aef4b3238ea7de77ee9c4c19ac">   53</a></span><span class="keyword">using </span><a class="code hl_typedef" href="a00325.html#a98cbe3aef4b3238ea7de77ee9c4c19ac">FlatPreBasis_t</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01502.html#a448426468de3637416804f6ef6f8ce90">FlatPreBasis&lt;PreBasis&gt;::type</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> IMS&gt;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="a01506.html">   57</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01506.html">FlatIndexMergingStrategy</a></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="a01506.html#aa18699c386a7d8e60d0f53cbc4a83261">   59</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01506.html#aa18699c386a7d8e60d0f53cbc4a83261">type</a> = IMS;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// specialization for BlockedInterleaved</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="a01510.html">   64</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01506.html">FlatIndexMergingStrategy</a>&lt;<a class="code hl_namespace" href="a00339.html">Dune</a>::Functions::BasisFactory::BlockedInterleaved&gt;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="a01510.html#a0a464466ec348e17886e7c49c03964d6">   66</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01510.html#a0a464466ec348e17886e7c49c03964d6">type</a> = Dune::Functions::BasisFactory::FlatInterleaved;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>};</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N&gt;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="a01620.html">   77</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01620.html">LagrangeNode</a> = Impl::LagrangeNodeHelper&lt;Dune::Functions::LagrangeNode, N&gt;::value;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> N, <span class="keywordtype">int</span> order&gt;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="a01621.html">   87</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01621.html">LagrangeNodeOfOrder</a> = Impl::LagrangeNodeHelperOfOrder&lt;Dune::Functions::LagrangeNode, N, order&gt;::value;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> B&gt;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="a01622.html">   98</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01622.html">FlatLexicographicBasis</a> = <span class="keyword">requires</span> {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    std::is_same_v&lt;typename B::PreBasis::IndexMergingStrategy, Dune::Functions::BasisFactory::FlatLexicographic&gt;;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  };</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> B&gt;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="a01623.html">  111</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01623.html">FlatIndexBasis</a> = <a class="code hl_concept" href="a01622.html">FlatLexicographicBasis&lt;B&gt;</a> or <a class="code hl_concept" href="a01619.html">FlatInterLeavedBasis&lt;B&gt;</a>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Basis&gt;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="a01624.html">  122</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01624.html">BlockedInterLeavedBasis</a> = <span class="keyword">requires</span> {</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    std::is_same_v&lt;typename Basis::PreBasis::IndexMergingStrategy, Dune::Functions::BasisFactory::BlockedInterleaved&gt;;</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>  };</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> B&gt;</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="a01625.html">  135</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01625.html">BlockedLexicographicBasis</a> = <span class="keyword">requires</span> {</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    std::is_same_v&lt;typename B::PreBasis::IndexMergingStrategy, Dune::Functions::BasisFactory::BlockedLexicographic&gt;;</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  };</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> DLB&gt;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="a01626.html">  145</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01626.html">DuneLocalBasis</a> = <span class="keyword">requires</span>(DLB&amp; duneLocalBasis) {</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keyword">typename</span> DLB::Traits::RangeType;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keyword">typename</span> DLB::Traits::JacobianType;</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    DLB::Traits::dimDomain;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <span class="keyword">typename</span> DLB::Traits::DomainType;</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">typename</span> DLB::Traits::DomainFieldType;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keyword">typename</span> DLB::Traits::RangeFieldType;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    duneLocalBasis.evaluateFunction(std::declval&lt;typename DLB::Traits::DomainType&gt;(),</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                                    std::declval&lt;std::vector&lt;typename DLB::Traits::RangeType&gt;&amp;&gt;());</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    duneLocalBasis.evaluateJacobian(std::declval&lt;typename DLB::Traits::DomainType&gt;(),</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>                                    std::declval&lt;std::vector&lt;typename DLB::Traits::JacobianType&gt;&amp;&gt;());</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  };</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> B&gt;</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="a01627.html">  170</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01627.html">BlockedIndexBasis</a> = <a class="code hl_concept" href="a01625.html">BlockedLexicographicBasis&lt;B&gt;</a> or <a class="code hl_concept" href="a01624.html">BlockedInterLeavedBasis&lt;B&gt;</a>;</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> B&gt;</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="a01628.html">  181</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01628.html">PowerBasis</a> = <span class="keyword">requires</span> { B::PreBasis::Node::isPower == <span class="keyword">true</span>; };</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PF, <span class="keyword">typename</span> NLO, <span class="keyword">typename</span> SA&gt;</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="a01629.html">  191</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01629.html">PathFollowingStrategy</a> = <span class="keyword">requires</span>(PF pft, NLO nop, SA args) {</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    { pft(args) } -&gt; std::same_as&lt;void&gt;;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    { pft.initialPrediction(nop, args) } -&gt; std::same_as&lt;void&gt;;</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    { pft.intermediatePrediction(nop, args) } -&gt; std::same_as&lt;void&gt;;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  };</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> ASS, <span class="keyword">typename</span> NLSI, <span class="keyword">typename</span> SA, <span class="keyword">typename</span> NonLinearOperator&gt;</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno"><a class="line" href="a01630.html">  206</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01630.html">AdaptiveStepSizingStrategy</a> = <span class="keyword">requires</span>(ASS adaptiveStepSizing, NLSI info, SA args, NonLinearOperator nop) {</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    { adaptiveStepSizing(info, args, nop) } -&gt; std::same_as&lt;void&gt;;</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    { adaptiveStepSizing.targetIterations() } -&gt; std::same_as&lt;int&gt;;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    { adaptiveStepSizing.setTargetIterations(std::declval&lt;int&gt;()) } -&gt; std::same_as&lt;void&gt;;</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  };</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LS, <span class="keyword">typename</span> M, <span class="keyword">typename</span> V&gt;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="a01631.html">  221</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01631.html">LinearSolverCheck</a> = <span class="keyword">requires</span>(LS&amp; linearSolver, M&amp; A, V&amp; vec) {</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>    linearSolver.analyzePattern(A);</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    linearSolver.factorize(A);</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    linearSolver.solve(vec, vec);</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>  };</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NLS&gt;</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="a01632.html">  235</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01632.html">NonLinearSolverCheckForPathFollowing</a> = <span class="keyword">requires</span> {</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    std::tuple_size&lt;typename NLS::NonLinearOperator::ParameterValues&gt;::value == 2;</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    not(std::is_same_v&lt;typename NLS::NonLinearOperator::ValueType, double&gt; and</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        ((traits::isSpecializationTypeAndNonTypes&lt;Eigen::Matrix,</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                                                  <span class="keyword">typename</span> NLS::NonLinearOperator::DerivativeType&gt;::value) or</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>         (traits::isSpecializationTypeNonTypeAndType&lt;Eigen::SparseMatrix,</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                                                     <span class="keyword">typename</span> NLS::NonLinearOperator::DerivativeType&gt;::value)));</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  };</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="a01633.html">  252</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01633.html">MultiplyAble</a> = <span class="keyword">requires</span>(L x, R y) { x* y; };</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno"><a class="line" href="a01634.html">  262</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01634.html">AddAble</a> = <span class="keyword">requires</span>(L x, R y) { x + y; };</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="a01635.html">  272</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01635.html">SubstractAble</a> = <span class="keyword">requires</span>(L x, R y) { x - y; };</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="a01636.html">  283</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01636.html">MultiplyAssignAble</a> = <span class="keyword">requires</span>(L x, R y) { x *= y; };</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="a01637.html">  294</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01637.html">DivideAssignAble</a> = <span class="keyword">requires</span>(L x, R y) { x /= y; };</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="a01638.html">  305</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01638.html">AddAssignAble</a> = <span class="keyword">requires</span>(L x, R y) { x += y; };</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno"><a class="line" href="a01639.html">  316</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01639.html">SubstractAssignAble</a> = <span class="keyword">requires</span>(L x, R y) { x -= y; };</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L, <span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="a01640.html">  326</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01640.html">DivideAble</a> = <span class="keyword">requires</span>(L x, R y) { x / y; };</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L&gt;</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="a01641.html">  335</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01641.html">NegateAble</a> = <span class="keyword">requires</span>(L x) { -x; };</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> L&gt;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="a01642.html">  344</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01642.html">TransposeAble</a> = <span class="keyword">requires</span>(L x) { <a class="code hl_function" href="a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24">transpose</a>(x); };</div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Op, <span class="keyword">typename</span>... Args&gt;</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno"><a class="line" href="a01643.html">  354</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01643.html">IsFunctorWithArgs</a> = <span class="keyword">requires</span>(Op op, Args... args) { op(args...); };</div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> V&gt;</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno"><a class="line" href="a01644.html">  364</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01644.html">EigenVector</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">bool</span><span class="keyword">&gt;</span>(V::IsVectorAtCompileTime);</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">  366</a></span><span class="preprocessor">#define MAKE_EIGEN_FIXED_VECTOR_CONCEPT(Size) \</span></div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">  template &lt;typename V&gt;                       \</span></div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">  concept EigenVector##Size =                 \</span></div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span><span class="preprocessor">      static_cast&lt;bool&gt;(V::IsVectorAtCompileTime) and static_cast&lt;bool&gt;(V::SizeAtCompileTime == Size);</span></div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(1)</div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(2)</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(3)</div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(4)</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(5)</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  <a class="code hl_define" href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a>(6)</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">  378</a></span><span class="preprocessor">#define MAKE_EIGEN_FIXED_MATRIX_CONCEPT(Size1, Size2)                                                           \</span></div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="preprocessor">  template &lt;typename M&gt;                                                                                         \</span></div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">  concept EigenMatrix##Size1##Size2 = static_cast&lt;bool&gt;(std::remove_cvref_t&lt;M&gt;::RowsAtCompileTime == Size1) and \</span></div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="preprocessor">                                      static_cast&lt;bool&gt;(std::remove_cvref_t&lt;M&gt;::ColsAtCompileTime == Size2);</span></div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> </div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 1)</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
-<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 2)</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(2, 2)</div>
-<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span> </div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 3)</div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(2, 3)</div>
-<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(3, 2)</div>
-<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(3, 3)</div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
-<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 4)</div>
-<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(2, 4)</div>
-<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(3, 4)</div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(4, 2)</div>
-<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(4, 3)</div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(4, 4)</div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span> </div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 5)</div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(2, 5)</div>
-<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(3, 5)</div>
-<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(4, 5)</div>
-<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(5, 2)</div>
-<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(5, 3)</div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(5, 4)</div>
-<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(5, 5)</div>
-<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
-<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(1, 6)</div>
-<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(2, 6)</div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(3, 6)</div>
-<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(4, 6)</div>
-<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(5, 6)</div>
-<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(6, 2)</div>
-<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(6, 3)</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(6, 4)</div>
-<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(6, 5)</div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>  <a class="code hl_define" href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a>(6, 6)</div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span> </div>
-<div class="line"><a id="l00420" name="l00420"></a><span class="lineno"><a class="line" href="a00035.html#aba360f830591dbc713b7fa692d614101">  420</a></span><span class="preprocessor">#define MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT(Size1, Size2) \</span></div>
-<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="preprocessor">  template &lt;typename M&gt;                                        \</span></div>
-<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="preprocessor">  concept EigenMatrixOrVoigtNotation##Size1 = EigenMatrix##Size1##Size1&lt;M&gt; or EigenVector##Size2&lt;M&gt;;</span></div>
-<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
-<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  <a class="code hl_define" href="a00035.html#aba360f830591dbc713b7fa692d614101">MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT</a>(1, 1)</div>
-<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  <a class="code hl_define" href="a00035.html#aba360f830591dbc713b7fa692d614101">MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT</a>(2, 3)</div>
-<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  <a class="code hl_define" href="a00035.html#aba360f830591dbc713b7fa692d614101">MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT</a>(3, 6)</div>
-<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span> </div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>  namespace Impl {</div>
-<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>    <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>MaterialToCheck, <span class="keyword">typename</span> Material&gt;</div>
-<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>    <span class="keyword">consteval</span> <span class="keywordtype">bool</span> isMaterial() {</div>
-<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (traits::isSpecialization&lt;MaterialToCheck, Material&gt;::value)</div>
-<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
-<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>      <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (traits::isSpecializationNonTypeAndTypes&lt;VanishingStress, Material&gt;::value) {</div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (traits::isSpecialization&lt;MaterialToCheck, typename Material::Underlying&gt;::value) {</div>
-<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>          <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>          <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        }</div>
-<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>      } <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>    }</div>
-<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>  } <span class="comment">// namespace Impl</span></div>
-<div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment"></span>  <span class="keyword">template</span> &lt;<span class="keyword">template</span> &lt;<span class="keyword">typename</span>...&gt; <span class="keyword">class </span>MaterialToCheck, <span class="keyword">typename</span> <a class="code hl_enumvalue" href="a00314.html#gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206">Material</a>&gt;</div>
-<div class="line"><a id="l00457" name="l00457"></a><span class="lineno"><a class="line" href="a01645.html">  457</a></span>  <span class="keyword">concept </span><a class="code hl_concept" href="a01645.html">IsMaterial</a> = Impl::isMaterial&lt;MaterialToCheck, Material&gt;();</div>
-<div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span> </div>
-<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span>} <span class="comment">// namespace Concepts</span></div>
-<div class="line"><a id="l00460" name="l00460"></a><span class="lineno">  460</span>} <span class="comment">// namespace Ikarus</span></div>
-<div class="ttc" id="aa00035_html_a5556bdb5e6cc63333c07f9ef487fb478"><div class="ttname"><a href="a00035.html#a5556bdb5e6cc63333c07f9ef487fb478">MAKE_EIGEN_FIXED_MATRIX_CONCEPT</a></div><div class="ttdeci">#define MAKE_EIGEN_FIXED_MATRIX_CONCEPT(Size1, Size2)</div><div class="ttdef"><b>Definition:</b> concepts.hh:378</div></div>
-<div class="ttc" id="aa00035_html_aba360f830591dbc713b7fa692d614101"><div class="ttname"><a href="a00035.html#aba360f830591dbc713b7fa692d614101">MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT</a></div><div class="ttdeci">#define MAKE_EIGEN_FIXED_MATRIX_OR_VOIGT_CONCEPT(Size1, Size2)</div><div class="ttdef"><b>Definition:</b> concepts.hh:420</div></div>
-<div class="ttc" id="aa00035_html_ac8757039febcebb4741b376dc8258d6d"><div class="ttname"><a href="a00035.html#ac8757039febcebb4741b376dc8258d6d">MAKE_EIGEN_FIXED_VECTOR_CONCEPT</a></div><div class="ttdeci">#define MAKE_EIGEN_FIXED_VECTOR_CONCEPT(Size)</div><div class="ttdef"><b>Definition:</b> concepts.hh:366</div></div>
-<div class="ttc" id="aa00065_html"><div class="ttname"><a href="a00065.html">traits.hh</a></div><div class="ttdoc">Contains stl-like type traits.</div></div>
-<div class="ttc" id="aa00314_html_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206"><div class="ttname"><a href="a00314.html#gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206">Ikarus::TangentModuliTags::Material</a></div><div class="ttdeci">@ Material</div></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// specialization for BlockedLexicographic</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="a01514.html">   71</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01506.html">FlatIndexMergingStrategy</a>&lt;<a class="code hl_namespace" href="a00339.html">Dune</a>::Functions::BasisFactory::BlockedLexicographic&gt;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="a01514.html#add1dc46010d8b320cd215e331a3f1fa4">   73</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01514.html#add1dc46010d8b320cd215e331a3f1fa4">type</a> = Dune::Functions::BasisFactory::FlatLexicographic;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// specialization for composite bases</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">class </span>IMS, <span class="keyword">class</span>... SPB&gt;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="a01518.html">   78</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01502.html">FlatPreBasis</a>&lt;<a class="code hl_namespace" href="a00339.html">Dune</a>::Functions::CompositePreBasis&lt;IMS, SPB...&gt;&gt;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="a01518.html#a2387375090283dac7ebbfb8bc58e1994">   80</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01518.html#a2387375090283dac7ebbfb8bc58e1994">FIMS</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01506.html#aa18699c386a7d8e60d0f53cbc4a83261">FlatIndexMergingStrategy&lt;IMS&gt;::type</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="a01518.html#a5b93764f4d9fd3897ad37658526e37fd">   81</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01518.html#a5b93764f4d9fd3897ad37658526e37fd">type</a> = Dune::Functions::CompositePreBasis&lt;FIMS, FlatPreBasis_t&lt;SPB&gt;...&gt;;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">template</span> &lt;<span class="keyword">class</span> PreBasis&gt;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="a01518.html#aaaf91aed22e7c32c6f2c26ff961ae3e1">   84</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="a01518.html#a5b93764f4d9fd3897ad37658526e37fd">type</a> <a class="code hl_function" href="a01518.html#aaaf91aed22e7c32c6f2c26ff961ae3e1">create</a>(<span class="keyword">const</span> PreBasis&amp; preBasis) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">create</a>(preBasis, std::index_sequence_for&lt;SPB...&gt;{});</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">template</span> &lt;<span class="keyword">class </span>PreBasis, std::size_t... I&gt;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="a01518.html#aab16d08ac65576f292078b2c4f135645">   89</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="a01518.html#a5b93764f4d9fd3897ad37658526e37fd">type</a> <a class="code hl_function" href="a01518.html#aab16d08ac65576f292078b2c4f135645">create</a>(<span class="keyword">const</span> PreBasis&amp; preBasis, std::index_sequence&lt;I...&gt;) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">return</span> {<a class="code hl_function" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">FlatPreBasis&lt;SPB&gt;::create</a>(preBasis.subPreBasis(Dune::index_constant&lt;I&gt;{}))...};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  }</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// specialization for power bases</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> IMS, <span class="keyword">class</span> SPB, std::<span class="keywordtype">size_t</span> C&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="a01522.html">   96</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01502.html">FlatPreBasis</a>&lt;<a class="code hl_namespace" href="a00339.html">Dune</a>::Functions::PowerPreBasis&lt;IMS, SPB, C&gt;&gt;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="a01522.html#aef8f8b43a63a4bf4c7c3bc193c4ee1f0">   98</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01522.html#aef8f8b43a63a4bf4c7c3bc193c4ee1f0">FIMS</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01506.html#aa18699c386a7d8e60d0f53cbc4a83261">FlatIndexMergingStrategy&lt;IMS&gt;::type</a>;</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="a01522.html#ae56d4cd604948715e51d517f27d7f0c9">   99</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01522.html#ae56d4cd604948715e51d517f27d7f0c9">type</a> = Dune::Functions::PowerPreBasis&lt;FIMS, FlatPreBasis_t&lt;SPB&gt;, C&gt;;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <span class="keyword">template</span> &lt;<span class="keyword">class</span> PreBasis&gt;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="a01522.html#ad2ce954f09e165f4440f6e4139ed0b85">  102</a></span>  <span class="keyword">static</span> <a class="code hl_typedef" href="a01522.html#ae56d4cd604948715e51d517f27d7f0c9">type</a> <a class="code hl_function" href="a01522.html#ad2ce954f09e165f4440f6e4139ed0b85">create</a>(<span class="keyword">const</span> PreBasis&amp; preBasis) {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordflow">return</span> {<a class="code hl_function" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">FlatPreBasis&lt;SPB&gt;::create</a>(preBasis.subPreBasis())};</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> PreBasis&gt;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="a00320.html#ga0728039472747184e9eb2ec0992a4a2b">  110</a></span><span class="keyword">decltype</span>(<span class="keyword">auto</span>) <a class="code hl_function" href="a00320.html#ga0728039472747184e9eb2ec0992a4a2b">flatPreBasis</a>(<span class="keyword">const</span> PreBasis&amp; preBasis) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">FlatPreBasis&lt;PreBasis&gt;::create</a>(preBasis);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>}</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>} <span class="comment">// end namespace Ikarus</span></div>
+<div class="ttc" id="aa00320_html_ga0728039472747184e9eb2ec0992a4a2b"><div class="ttname"><a href="a00320.html#ga0728039472747184e9eb2ec0992a4a2b">Ikarus::flatPreBasis</a></div><div class="ttdeci">decltype(auto) flatPreBasis(const PreBasis &amp;preBasis)</div><div class="ttdoc">Generator function for a flatted PreBasis.</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:110</div></div>
 <div class="ttc" id="aa00325_html"><div class="ttname"><a href="a00325.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:21</div></div>
-<div class="ttc" id="aa00325_html_ac2c6469be19ce4ef2e630bfa1c5a5e24"><div class="ttname"><a href="a00325.html#ac2c6469be19ce4ef2e630bfa1c5a5e24">Ikarus::transpose</a></div><div class="ttdeci">auto transpose(const Eigen::EigenBase&lt; Derived &gt; &amp;A)</div></div>
-<div class="ttc" id="aa00332_html"><div class="ttname"><a href="a00332.html">Eigen</a></div><div class="ttdef"><b>Definition:</b> truncatedconjugategradient.hh:24</div></div>
-<div class="ttc" id="aa01458_html"><div class="ttname"><a href="a01458.html">Eigen::EigenBase</a></div><div class="ttdef"><b>Definition:</b> concepts.hh:25</div></div>
-<div class="ttc" id="aa01619_html"><div class="ttname"><a href="a01619.html">Ikarus::Concepts::FlatInterLeavedBasis</a></div><div class="ttdoc">Concept to check if a basis uses FlatInterleaved indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:45</div></div>
-<div class="ttc" id="aa01620_html"><div class="ttname"><a href="a01620.html">Ikarus::Concepts::LagrangeNode</a></div><div class="ttdoc">Concept to check if a node in a basis tree is a Lagrangian node.</div><div class="ttdef"><b>Definition:</b> concepts.hh:77</div></div>
-<div class="ttc" id="aa01621_html"><div class="ttname"><a href="a01621.html">Ikarus::Concepts::LagrangeNodeOfOrder</a></div><div class="ttdef"><b>Definition:</b> concepts.hh:87</div></div>
-<div class="ttc" id="aa01622_html"><div class="ttname"><a href="a01622.html">Ikarus::Concepts::FlatLexicographicBasis</a></div><div class="ttdoc">Concept to check if a basis uses FlatLexicographic indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:98</div></div>
-<div class="ttc" id="aa01623_html"><div class="ttname"><a href="a01623.html">Ikarus::Concepts::FlatIndexBasis</a></div><div class="ttdoc">Concept to check if a basis uses FlatIndex indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:111</div></div>
-<div class="ttc" id="aa01624_html"><div class="ttname"><a href="a01624.html">Ikarus::Concepts::BlockedInterLeavedBasis</a></div><div class="ttdoc">Concept to check if a basis uses BlockedInterleaved indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:122</div></div>
-<div class="ttc" id="aa01625_html"><div class="ttname"><a href="a01625.html">Ikarus::Concepts::BlockedLexicographicBasis</a></div><div class="ttdoc">Concept to check if a basis uses BlockedLexicographic indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:135</div></div>
-<div class="ttc" id="aa01626_html"><div class="ttname"><a href="a01626.html">Ikarus::Concepts::DuneLocalBasis</a></div><div class="ttdoc">Concept to check if a local basis is a duneLocalBasis.</div><div class="ttdef"><b>Definition:</b> concepts.hh:145</div></div>
-<div class="ttc" id="aa01627_html"><div class="ttname"><a href="a01627.html">Ikarus::Concepts::BlockedIndexBasis</a></div><div class="ttdoc">Concept to check if a basis uses either BlockedLexicographic or BlockedInterleaved indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:170</div></div>
-<div class="ttc" id="aa01628_html"><div class="ttname"><a href="a01628.html">Ikarus::Concepts::PowerBasis</a></div><div class="ttdoc">Concept to check if a basis uses power indexing strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:181</div></div>
-<div class="ttc" id="aa01629_html"><div class="ttname"><a href="a01629.html">Ikarus::Concepts::PathFollowingStrategy</a></div><div class="ttdoc">Concept defining the requirements for a path-following strategy.</div><div class="ttdef"><b>Definition:</b> concepts.hh:191</div></div>
-<div class="ttc" id="aa01630_html"><div class="ttname"><a href="a01630.html">Ikarus::Concepts::AdaptiveStepSizingStrategy</a></div><div class="ttdoc">Concept to check if a type implements all the needed functions to be an adaptive step sizing method.</div><div class="ttdef"><b>Definition:</b> concepts.hh:206</div></div>
-<div class="ttc" id="aa01631_html"><div class="ttname"><a href="a01631.html">Ikarus::Concepts::LinearSolverCheck</a></div><div class="ttdoc">Concept to check if a linear solver implements all the needed functions for given vector and matrix t...</div><div class="ttdef"><b>Definition:</b> concepts.hh:221</div></div>
-<div class="ttc" id="aa01632_html"><div class="ttname"><a href="a01632.html">Ikarus::Concepts::NonLinearSolverCheckForPathFollowing</a></div><div class="ttdoc">Concept to check if a non-linear solver with its non-linear operator satisfies requirements for path ...</div><div class="ttdef"><b>Definition:</b> concepts.hh:235</div></div>
-<div class="ttc" id="aa01633_html"><div class="ttname"><a href="a01633.html">Ikarus::Concepts::MultiplyAble</a></div><div class="ttdoc">Concept defining the requirements for types that support multiplication.</div><div class="ttdef"><b>Definition:</b> concepts.hh:252</div></div>
-<div class="ttc" id="aa01634_html"><div class="ttname"><a href="a01634.html">Ikarus::Concepts::AddAble</a></div><div class="ttdoc">Concept defining the requirements for types that support addition.</div><div class="ttdef"><b>Definition:</b> concepts.hh:262</div></div>
-<div class="ttc" id="aa01635_html"><div class="ttname"><a href="a01635.html">Ikarus::Concepts::SubstractAble</a></div><div class="ttdoc">Concept defining the requirements for types that support subtraction.</div><div class="ttdef"><b>Definition:</b> concepts.hh:272</div></div>
-<div class="ttc" id="aa01636_html"><div class="ttname"><a href="a01636.html">Ikarus::Concepts::MultiplyAssignAble</a></div><div class="ttdoc">Concept defining the requirements for types that support in-place multiplication.</div><div class="ttdef"><b>Definition:</b> concepts.hh:283</div></div>
-<div class="ttc" id="aa01637_html"><div class="ttname"><a href="a01637.html">Ikarus::Concepts::DivideAssignAble</a></div><div class="ttdoc">Concept defining the requirements for types that support in-place division.</div><div class="ttdef"><b>Definition:</b> concepts.hh:294</div></div>
-<div class="ttc" id="aa01638_html"><div class="ttname"><a href="a01638.html">Ikarus::Concepts::AddAssignAble</a></div><div class="ttdoc">Concept defining the requirements for types that support in-place addition.</div><div class="ttdef"><b>Definition:</b> concepts.hh:305</div></div>
-<div class="ttc" id="aa01639_html"><div class="ttname"><a href="a01639.html">Ikarus::Concepts::SubstractAssignAble</a></div><div class="ttdoc">Concept defining the requirements for types that support in-place subtraction.</div><div class="ttdef"><b>Definition:</b> concepts.hh:316</div></div>
-<div class="ttc" id="aa01640_html"><div class="ttname"><a href="a01640.html">Ikarus::Concepts::DivideAble</a></div><div class="ttdoc">Concept defining the requirements for types that support division.</div><div class="ttdef"><b>Definition:</b> concepts.hh:326</div></div>
-<div class="ttc" id="aa01641_html"><div class="ttname"><a href="a01641.html">Ikarus::Concepts::NegateAble</a></div><div class="ttdoc">Concept defining the requirements for types that support negation.</div><div class="ttdef"><b>Definition:</b> concepts.hh:335</div></div>
-<div class="ttc" id="aa01642_html"><div class="ttname"><a href="a01642.html">Ikarus::Concepts::TransposeAble</a></div><div class="ttdoc">Concept defining the requirements for types that support transposition.</div><div class="ttdef"><b>Definition:</b> concepts.hh:344</div></div>
-<div class="ttc" id="aa01643_html"><div class="ttname"><a href="a01643.html">Ikarus::Concepts::IsFunctorWithArgs</a></div><div class="ttdoc">Concept defining the requirements for functors with arguments.</div><div class="ttdef"><b>Definition:</b> concepts.hh:354</div></div>
-<div class="ttc" id="aa01644_html"><div class="ttname"><a href="a01644.html">Ikarus::Concepts::EigenVector</a></div><div class="ttdoc">Concept defining the requirements for Eigen vectors.</div><div class="ttdef"><b>Definition:</b> concepts.hh:364</div></div>
-<div class="ttc" id="aa01645_html"><div class="ttname"><a href="a01645.html">Ikarus::Concepts::IsMaterial</a></div><div class="ttdoc">Concept defining the requirements for a material type.</div><div class="ttdef"><b>Definition:</b> concepts.hh:457</div></div>
+<div class="ttc" id="aa00325_html_a98cbe3aef4b3238ea7de77ee9c4c19ac"><div class="ttname"><a href="a00325.html#a98cbe3aef4b3238ea7de77ee9c4c19ac">Ikarus::FlatPreBasis_t</a></div><div class="ttdeci">typename FlatPreBasis&lt; PreBasis &gt;::type FlatPreBasis_t</div><div class="ttdoc">Type alias for flatted PreBasis.</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:53</div></div>
+<div class="ttc" id="aa00339_html"><div class="ttname"><a href="a00339.html">Dune</a></div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:28</div></div>
+<div class="ttc" id="aa01502_html"><div class="ttname"><a href="a01502.html">Ikarus::FlatPreBasis</a></div><div class="ttdoc">Transform a PreBasis into one with flat index-merging strategyThis utility takes a pre-basis and conv...</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:38</div></div>
+<div class="ttc" id="aa01502_html_a448426468de3637416804f6ef6f8ce90"><div class="ttname"><a href="a01502.html#a448426468de3637416804f6ef6f8ce90">Ikarus::FlatPreBasis::type</a></div><div class="ttdeci">PreBasis type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:39</div></div>
+<div class="ttc" id="aa01502_html_a9c133ba014522aa8c8d90f2a3835c7e1"><div class="ttname"><a href="a01502.html#a9c133ba014522aa8c8d90f2a3835c7e1">Ikarus::FlatPreBasis::create</a></div><div class="ttdeci">static type create(PB const &amp;preBasis)</div><div class="ttdoc">Try to construct the pre-basis using a gridView.</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:43</div></div>
+<div class="ttc" id="aa01502_html_af5414357864c26a827136edac1a085f4"><div class="ttname"><a href="a01502.html#af5414357864c26a827136edac1a085f4">Ikarus::FlatPreBasis::create</a></div><div class="ttdeci">static const PreBasis &amp; create(const PreBasis &amp;preBasis)</div><div class="ttdoc">Do not transform the preBasis if already flat.</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:48</div></div>
+<div class="ttc" id="aa01506_html"><div class="ttname"><a href="a01506.html">Ikarus::FlatIndexMergingStrategy</a></div><div class="ttdoc">Define the flat index-merging strategy for a given strategy IMS</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:58</div></div>
+<div class="ttc" id="aa01506_html_aa18699c386a7d8e60d0f53cbc4a83261"><div class="ttname"><a href="a01506.html#aa18699c386a7d8e60d0f53cbc4a83261">Ikarus::FlatIndexMergingStrategy::type</a></div><div class="ttdeci">IMS type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:59</div></div>
+<div class="ttc" id="aa01510_html_a0a464466ec348e17886e7c49c03964d6"><div class="ttname"><a href="a01510.html#a0a464466ec348e17886e7c49c03964d6">Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedInterleaved &gt;::type</a></div><div class="ttdeci">Dune::Functions::BasisFactory::FlatInterleaved type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:66</div></div>
+<div class="ttc" id="aa01514_html_add1dc46010d8b320cd215e331a3f1fa4"><div class="ttname"><a href="a01514.html#add1dc46010d8b320cd215e331a3f1fa4">Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedLexicographic &gt;::type</a></div><div class="ttdeci">Dune::Functions::BasisFactory::FlatLexicographic type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:73</div></div>
+<div class="ttc" id="aa01518_html_a2387375090283dac7ebbfb8bc58e1994"><div class="ttname"><a href="a01518.html#a2387375090283dac7ebbfb8bc58e1994">Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;::FIMS</a></div><div class="ttdeci">typename FlatIndexMergingStrategy&lt; IMS &gt;::type FIMS</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:80</div></div>
+<div class="ttc" id="aa01518_html_a5b93764f4d9fd3897ad37658526e37fd"><div class="ttname"><a href="a01518.html#a5b93764f4d9fd3897ad37658526e37fd">Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;::type</a></div><div class="ttdeci">Dune::Functions::CompositePreBasis&lt; FIMS, FlatPreBasis_t&lt; SPB &gt;... &gt; type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:81</div></div>
+<div class="ttc" id="aa01518_html_aaaf91aed22e7c32c6f2c26ff961ae3e1"><div class="ttname"><a href="a01518.html#aaaf91aed22e7c32c6f2c26ff961ae3e1">Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;::create</a></div><div class="ttdeci">static type create(const PreBasis &amp;preBasis)</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:84</div></div>
+<div class="ttc" id="aa01518_html_aab16d08ac65576f292078b2c4f135645"><div class="ttname"><a href="a01518.html#aab16d08ac65576f292078b2c4f135645">Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;::create</a></div><div class="ttdeci">static type create(const PreBasis &amp;preBasis, std::index_sequence&lt; I... &gt;)</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:89</div></div>
+<div class="ttc" id="aa01522_html_ad2ce954f09e165f4440f6e4139ed0b85"><div class="ttname"><a href="a01522.html#ad2ce954f09e165f4440f6e4139ed0b85">Ikarus::FlatPreBasis&lt; Dune::Functions::PowerPreBasis&lt; IMS, SPB, C &gt; &gt;::create</a></div><div class="ttdeci">static type create(const PreBasis &amp;preBasis)</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:102</div></div>
+<div class="ttc" id="aa01522_html_ae56d4cd604948715e51d517f27d7f0c9"><div class="ttname"><a href="a01522.html#ae56d4cd604948715e51d517f27d7f0c9">Ikarus::FlatPreBasis&lt; Dune::Functions::PowerPreBasis&lt; IMS, SPB, C &gt; &gt;::type</a></div><div class="ttdeci">Dune::Functions::PowerPreBasis&lt; FIMS, FlatPreBasis_t&lt; SPB &gt;, C &gt; type</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:99</div></div>
+<div class="ttc" id="aa01522_html_aef8f8b43a63a4bf4c7c3bc193c4ee1f0"><div class="ttname"><a href="a01522.html#aef8f8b43a63a4bf4c7c3bc193c4ee1f0">Ikarus::FlatPreBasis&lt; Dune::Functions::PowerPreBasis&lt; IMS, SPB, C &gt; &gt;::FIMS</a></div><div class="ttdeci">typename FlatIndexMergingStrategy&lt; IMS &gt;::type FIMS</div><div class="ttdef"><b>Definition:</b> flatprebasis.hh:98</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -452,7 +275,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00035.html">concepts.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00035.html">flatprebasis.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

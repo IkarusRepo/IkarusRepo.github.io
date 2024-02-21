@@ -1,4 +1,4 @@
 var a00188 =
 [
-    [ "Ikarus::PowerBasisFE< B >", "a01226.html", "a01226" ]
+    [ "Ikarus::EAS::Variants< GEO >", "a01282.html", "a01282" ]
 ];

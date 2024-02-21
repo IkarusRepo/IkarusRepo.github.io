@@ -1,5 +1,5 @@
-\hypertarget{a00122_source}{}\doxysection{fetraits.\+hh}
-\label{a00122_source}\index{fetraits.hh@{fetraits.hh}}
+\hypertarget{a00122_source}{}\doxysection{pathfollowing.\+hh}
+\label{a00122_source}\index{pathfollowing.hh@{pathfollowing.hh}}
 \mbox{\hyperlink{a00122}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,49 +7,56 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00116}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00035}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keyword}{typename} B, \textcolor{keyword}{typename} FER = FERequirements<>, \textcolor{keywordtype}{bool} useRef = false>}
-\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01258}{FETraits}}}
-\DoxyCodeLine{25 \{}
-\DoxyCodeLine{27   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_ac38b6d826a6105100cb178a8e896e4bc}{Basis}} = B;}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{30   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_af25ce4c31d34d582828b36c3ab80208f}{FERequirementType}} = FER;}
-\DoxyCodeLine{31 }
-\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_aa7a2eee69d868c1ca3bee04cf862d099}{FlatBasis}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01454_ac3a602884975d46137f29afd143286b3}{Basis::FlatBasis}};}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_ab45140c593175ec84e44e41c8681da90}{LocalView}} = \textcolor{keyword}{typename} FlatBasis::LocalView;}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{39   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_aba50215af089c1b5508527fe4bc1b936}{GridView}} = \textcolor{keyword}{typename} FlatBasis::GridView;}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{42   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_a66ef325fde5f1608478498ae6581e33b}{Element}} = \textcolor{keyword}{typename} LocalView::Element;}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00140}{ikarus/controlroutines/adaptivestepsizing.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/controlroutines/controlinfos.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00137}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00152}{ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00170}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00158}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS>}
+\DoxyCodeLine{37   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} checkPathFollowingTemplates() \{}
+\DoxyCodeLine{38     \textcolor{keywordflow}{return} Concepts::PathFollowingStrategy<PF, typename NLS::NonLinearOperator, SubsidiaryArgs> and}
+\DoxyCodeLine{39            Concepts::AdaptiveStepSizingStrategy<ASS, NonLinearSolverInformation, SubsidiaryArgs,}
+\DoxyCodeLine{40                                                 std::remove\_cvref\_t<typename NLS::NonLinearOperator>> and}
+\DoxyCodeLine{41            Concepts::NonLinearSolverCheckForPathFollowing<NLS>;}
+\DoxyCodeLine{42   \}}
 \DoxyCodeLine{43 }
-\DoxyCodeLine{45   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_a740ef7b268cb90f85febb9f0b0504993}{Geometry}} = \textcolor{keyword}{typename} Element::Geometry;}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_aafbad167b59d1204a948e4aed9e7c8ea}{GlobalIndex}} = \textcolor{keyword}{typename} LocalView::MultiIndex;}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{51   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_a36abe84d9f27e4d736c9258376af3e92}{ctype}} = double;}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{54   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01258_a08a1b1ba4b59e1ef870eafd058033539}{worlddim}} = Geometry::coorddimension;}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{57   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01258_a172046f544deb556462c3a2eb84aa479}{mydim}} = Element::mydimension;}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{60   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01258_ae55aa30c35fc52075e57b0b6306c3f11}{dimension}} = Element::dimension;}
-\DoxyCodeLine{61 }
-\DoxyCodeLine{63   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_aa000fb869fe6497eb60fa781fd2803f9}{GlobalCoordinates}} = Eigen::Matrix<ctype, worlddim, 1>;}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{66   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_aaed5b4e85d4b1b24cadf5d8c7909d37f}{ParameterSpaceType}} = Eigen::Matrix<ctype, mydim, 1>;}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{69   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{70   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_a4f3ec489fc4c4f20e0bf7a50910a4544}{VectorType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::VectorX<ScalarType>>, Eigen::VectorX<ScalarType>\&>;}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{73   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{74   \textcolor{keyword}{using }\mbox{\hyperlink{a01258_ad99d04cb5571e4707da08fc58a679f58}{MatrixType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::MatrixX<ScalarType>>, Eigen::MatrixX<ScalarType>\&>;}
-\DoxyCodeLine{75 \};}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{44 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{75 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS = AdaptiveStepSizing::NoOp>}
+\DoxyCodeLine{76 \textcolor{keyword}{requires}(Impl::checkPathFollowingTemplates<NLS, PF, ASS>())}
+\DoxyCodeLine{77 \textcolor{keyword}{class} \mbox{\hyperlink{a01202}{PathFollowing}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01570}{IObservable<ControlMessages>}}}
+\DoxyCodeLine{78 \{}
+\DoxyCodeLine{79 \textcolor{keyword}{public}:}
+\DoxyCodeLine{81   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01202_a31b9c556cef2540c66676589b230ef5d}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Path following with "{}} + pathFollowingType\_.name()); \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{92   \mbox{\hyperlink{a01202_afa8baf4eca6f6dd442165592c7fe3871}{PathFollowing}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nonLinearSolver, \textcolor{keywordtype}{int} steps, \textcolor{keywordtype}{double} stepSize,}
+\DoxyCodeLine{93                 PF pathFollowingType = \mbox{\hyperlink{a01210}{ArcLength}}\{\}, ASS adaptiveStepSizing = \{\})}
+\DoxyCodeLine{94       : nonLinearSolver\_\{nonLinearSolver\},}
+\DoxyCodeLine{95         steps\_\{steps\},}
+\DoxyCodeLine{96         stepSize\_\{stepSize\},}
+\DoxyCodeLine{97         pathFollowingType\_\{pathFollowingType\},}
+\DoxyCodeLine{98         adaptiveStepSizing\_\{adaptiveStepSizing\} \{\}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105   ControlInformation run();}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{keyword}{private}:}
+\DoxyCodeLine{108   std::shared\_ptr<NLS> nonLinearSolver\_;}
+\DoxyCodeLine{109   \textcolor{keywordtype}{int} steps\_;}
+\DoxyCodeLine{110   \textcolor{keywordtype}{double} stepSize\_;}
+\DoxyCodeLine{111   PF pathFollowingType\_;}
+\DoxyCodeLine{112   ASS adaptiveStepSizing\_;}
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/controlroutines/pathfollowing.inl}}>}}
 
 \end{DoxyCode}

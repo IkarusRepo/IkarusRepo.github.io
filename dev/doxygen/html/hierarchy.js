@@ -150,7 +150,7 @@ var hierarchy =
     [ "Ikarus::Volume< NonLinearElastic< B, MAT, FERequirements<>, false >, FETraits< B, FERequirements<>, false > >", "a01306.html", [
       [ "Ikarus::NonLinearElastic< B, MAT, FER, useEigenRef >", "a01338.html", null ]
     ] ],
-    [ "Ikarus::ResultEvaluators::VonMises< dim >", "a01370.html", null ],
+    [ "Ikarus::ResultEvaluators::VonMises", "a01370.html", null ],
     [ "Dune::VTKFunction", null, [
       [ "Ikarus::ResultFunction< FE, resType, UserFunction >", "a01382.html", null ]
     ] ],

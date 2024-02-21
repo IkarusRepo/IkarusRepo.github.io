@@ -1,6 +1,4 @@
 var a00275 =
 [
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01418.html", "a01418" ],
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NLO, LS, UF >", "a01422.html", "a01422" ],
-    [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00275.html#ade2a979ee79a657c6ab7530ee203056f", null ]
+    [ "registerElement", "a00275.html#ga40f83e4d7b90006b1019add3b1b218b5", null ]
 ];

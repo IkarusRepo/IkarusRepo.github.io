@@ -1,4 +1,5 @@
 var a00140 =
 [
-    [ "LinearElasticity", "a00140.html#a5b06e456a4b64c291dedbcf428026ba7", null ]
+    [ "Ikarus::AdaptiveStepSizing::NoOp", "a01186.html", "a01186" ],
+    [ "Ikarus::AdaptiveStepSizing::IterationBased", "a01190.html", "a01190" ]
 ];
