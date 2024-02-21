@@ -162,7 +162,7 @@ docs/website/doxygen/Doxyfile.in: /dune/dune-common/doc/doxygen/Doxystyle
 docs/website/doxygen/Doxyfile.in: /dune/dune-common/doc/doxygen/doxygen-macros
 docs/website/doxygen/Doxyfile.in: /__w/ikarus/ikarus/repo/docs/website/doxygen/Doxylocal
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/__w/ikarus/ikarus/repo/build_docs/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Creating Doxyfile.in"
-	cd /__w/ikarus/ikarus/repo/build_docs/docs/website/doxygen && /usr/bin/cmake -D DOT_TRUE= -D DUNE_MOD_NAME=ikarus -D DUNE_MOD_VERSION=0.4.1 -D DOXYSTYLE=/dune/dune-common/doc/doxygen/Doxystyle -D DOXYGENMACROS=/dune/dune-common/doc/doxygen/doxygen-macros -D DOXYLOCAL=/__w/ikarus/ikarus/repo/docs/website/doxygen/Doxylocal -D abs_top_srcdir=/__w/ikarus/ikarus/repo -D srcdir=/__w/ikarus/ikarus/repo/docs/website/doxygen -D top_srcdir=/__w/ikarus/ikarus/repo -P /dune/dune-common/cmake/scripts/CreateDoxyFile.cmake
+	cd /__w/ikarus/ikarus/repo/build_docs/docs/website/doxygen && /usr/bin/cmake -D DOT_TRUE= -D DUNE_MOD_NAME=ikarus -D DUNE_MOD_VERSION=0.4 -D DOXYSTYLE=/dune/dune-common/doc/doxygen/Doxystyle -D DOXYGENMACROS=/dune/dune-common/doc/doxygen/doxygen-macros -D DOXYLOCAL=/__w/ikarus/ikarus/repo/docs/website/doxygen/Doxylocal -D abs_top_srcdir=/__w/ikarus/ikarus/repo -D srcdir=/__w/ikarus/ikarus/repo/docs/website/doxygen -D top_srcdir=/__w/ikarus/ikarus/repo -P /dune/dune-common/cmake/scripts/CreateDoxyFile.cmake
 
 docs/website/doxygen/Doxyfile: docs/website/doxygen/Doxyfile.in
 	@$(CMAKE_COMMAND) -E touch_nocreate docs/website/doxygen/Doxyfile
