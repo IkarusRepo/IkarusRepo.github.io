@@ -1,20 +1,76 @@
 var a00254 =
 [
-    [ "Ikarus::YoungsModulusAndPoissonsRatio", "a01342.html", "a01342" ],
-    [ "Ikarus::YoungsModulusAndShearModulus", "a01346.html", "a01346" ],
-    [ "Ikarus::YoungsModulusAndBulkModulus", "a01350.html", "a01350" ],
-    [ "Ikarus::YoungsModulusAndLamesFirstParameter", "a01354.html", "a01354" ],
-    [ "Ikarus::BulkModulusAndLamesFirstParameter", "a01358.html", "a01358" ],
-    [ "Ikarus::LamesFirstParameterAndShearModulus", "a01362.html", "a01362" ],
-    [ "Ikarus::ConvertLameConstants< ValuePair >", "a01366.html", "a01366" ],
-    [ "Ikarus::MPTuple", "a01618.html", null ],
-    [ "convertLameConstants", "a00254.html#a8c72e37743694391da18e64618a7c799", null ],
-    [ "convertLameConstants", "a00254.html#aec5648541007a5e5bb89c1f64ec2da92", null ],
-    [ "convertLameConstants", "a00254.html#ad80fc80be73cb847542e1b7c5bde5af6", null ],
-    [ "convertLameConstants", "a00254.html#a5e27551f9edaebc557108aa164899b54", null ],
-    [ "convertLameConstants", "a00254.html#a6a85c01d9e8f0e2adff8035087485109", null ],
-    [ "linearElasticMaterialTangent3D", "a00254.html#ab859759a8309b785e7872d8360171030", null ],
-    [ "planeStressLinearElasticMaterialTangent", "a00254.html#a90678a80e6b2b4849072623df02dae58", null ],
-    [ "toLamesFirstParameterAndShearModulus", "a00254.html#a32940ef922d090491ffcaa9bf2a44aef", null ],
-    [ "toYoungsModulusAndPoissonsRatio", "a00254.html#a4161393d679e5ec44806e6e911e26dee", null ]
+    [ "Ikarus::AffordanceCollectionImpl", "a01231.html", "a01231" ],
+    [ "Ikarus::FERequirements< SV, PM >", "a01247.html", "a01247" ],
+    [ "Ikarus::FErequirements< SV, PM >", "a01251.html", "a01251" ],
+    [ "Ikarus::FEAffordance", "a01612.html", null ],
+    [ "Ikarus::ResultTypeConcept", "a01613.html", null ],
+    [ "FEParameter", "a00254.html#ga0c1577fd05efee8475b0f7fef795bbbe", [
+      [ "BEGIN", "a00254.html#gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noParameter", "a00254.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe", null ],
+      [ "loadfactor", "a00254.html#gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8", null ],
+      [ "time", "a00254.html#gga0c1577fd05efee8475b0f7fef795bbbea07cc694b9b3fc636710fa08b6922c42b", null ],
+      [ "END", "a00254.html#gga0c1577fd05efee8475b0f7fef795bbbeab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "FESolutions", "a00254.html#gaea763c94a1cecbeefc4f8661debcc5a3", [
+      [ "BEGIN", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3a19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noSolution", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3a2100a151ce2773b3467509ae085aa505", null ],
+      [ "displacement", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3a0c2d35f5f278a229db5ba41d40120f1c", null ],
+      [ "velocity", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3aac1a453d0cdc1f19d9479ccfaa8b082c", null ],
+      [ "director", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3a3d4e992d8d8a7d848724aa26ed7f4176", null ],
+      [ "magnetizationAndVectorPotential", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff", null ],
+      [ "END", "a00254.html#ggaea763c94a1cecbeefc4f8661debcc5a3ab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "MatrixAffordances", "a00254.html#ga52cb89165daabb500f6e2eb68ddd76ee", [
+      [ "BEGIN", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noAffordance", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eea9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "stiffness", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1", null ],
+      [ "materialstiffness", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62", null ],
+      [ "geometricstiffness", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eeae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
+      [ "stiffnessdiffBucklingVector", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532", null ],
+      [ "microMagneticHessian", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9", null ],
+      [ "mass", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f", null ],
+      [ "END", "a00254.html#gga52cb89165daabb500f6e2eb68ddd76eeab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "ResultType", "a00254.html#ga531be167e924b749eb8b4ccc7f1c18c9", [
+      [ "BEGIN", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noType", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9ad2859ebb97e0012ad38b47dca4f85713", null ],
+      [ "magnetization", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9ae32847e757c83ed980680fa215e356f7", null ],
+      [ "gradientNormOfMagnetization", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a92145c4b71bfe6ec078933e495fccd77", null ],
+      [ "vectorPotential", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a0b3e1fbd405fc1a6535e5514b0ba70a7", null ],
+      [ "divergenceOfVectorPotential", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a8475b505cc04610acbb7381506b3e65d", null ],
+      [ "BField", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a4c7528492cfffa1e4a34304fe5710566", null ],
+      [ "HField", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a1183c16939e5fc77a54cda60df89ec2f", null ],
+      [ "cauchyStress", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a823b6a2b943cfaf747fe3b45bd1a5f02", null ],
+      [ "PK2Stress", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241", null ],
+      [ "linearStress", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9ad8cbb8fe32024cc3f1376a24d27aeae7", null ],
+      [ "director", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9a3d4e992d8d8a7d848724aa26ed7f4176", null ],
+      [ "END", "a00254.html#gga531be167e924b749eb8b4ccc7f1c18c9ab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "ScalarAffordances", "a00254.html#ga8a33210894e12be4feb3d96fdfde215c", [
+      [ "BEGIN", "a00254.html#gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noAffordance", "a00254.html#gga8a33210894e12be4feb3d96fdfde215ca9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "mechanicalPotentialEnergy", "a00254.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6", null ],
+      [ "microMagneticPotentialEnergy", "a00254.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a", null ],
+      [ "END", "a00254.html#gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "VectorAffordances", "a00254.html#ga122268ff4d2c0beee58799d85ba5e52a", [
+      [ "BEGIN", "a00254.html#gga122268ff4d2c0beee58799d85ba5e52aa19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "noAffordance", "a00254.html#gga122268ff4d2c0beee58799d85ba5e52aa9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "forces", "a00254.html#gga122268ff4d2c0beee58799d85ba5e52aa2c05161a7e67e946ddc889571aac4e89", null ],
+      [ "microMagneticForces", "a00254.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
+      [ "END", "a00254.html#gga122268ff4d2c0beee58799d85ba5e52aab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "toString", "a00254.html#a2b95b51e82bcb7c8990ff20bd8273ebf", null ],
+    [ "toString", "a00254.html#ad313676e121358d0076db4f79fbce4be", null ],
+    [ "toString", "a00254.html#a6f0494a69387bbaac5cef6eb94ce5e60", null ],
+    [ "toString", "a00254.html#a3c879db4909a24c05893eaf7da23bae1", null ],
+    [ "toString", "a00254.html#a0853622412d4cedc078b81ba454eb250", null ],
+    [ "toString", "a00254.html#aea6d8dd57847aa02cfe354d03fb33873", null ],
+    [ "elastoStatics", "a00254.html#a74c1342e9b6a556e6b1276b7fde137e1", null ],
+    [ "forces", "a00254.html#a8d0ca59930b7ae15351497bd14319d1d", null ],
+    [ "mass", "a00254.html#a7e05e861b25ca636c1ccba4b8d2a3831", null ],
+    [ "potentialEnergy", "a00254.html#a64dfa264a039267932c6c99eb66ae98e", null ],
+    [ "stiffness", "a00254.html#a5185740b975fb7539a6e07553a061b26", null ],
+    [ "stiffnessdiffBucklingVector", "a00254.html#a8191d0e317e1bea2a35d6c8a8f20750f", null ]
 ];

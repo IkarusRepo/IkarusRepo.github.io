@@ -1,4 +1,4 @@
 var a00008 =
 [
-    [ "polyfit", "a00008.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
+    [ "tensorProductQuadrature", "a00008.html#a839e2d8a648318c584c66024e62ddd91", null ]
 ];

@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: autodiffhelper.hh Source File</title>
+    <title>ikarus: eigensparseaddon.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -95,7 +95,7 @@ window.MathJax = {
                 <td id="projectlogo"><a href="index.html"><img alt="Logo" src="BigLogo_transparent.png" width="150px"/></a></td>
                 <td id="projectalign" style="padding-left: 0.5em;">
                     <div id="projectname">
-                        &#160;<span id="projectnumber">version 0.4.1</span>
+                        &#160;<span id="projectnumber">version 0.4</span>
                     </div>
                 </td>
             </tr>
@@ -152,31 +152,28 @@ $(document).ready(function(){initNavTree('a00026_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">autodiffhelper.hh</div></div>
+  <div class="headertitle"><div class="title">eigensparseaddon.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00026.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;autodiff/forward/dual.hpp&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;autodiff/forward/dual/eigen.hpp&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00335.html">Ikarus::utils</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Fun, <span class="keyword">typename</span>... Vars, <span class="keyword">typename</span>... Args, <span class="keyword">typename</span> U, <span class="keyword">typename</span> G, <span class="keyword">typename</span> H&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="a00320.html#ga2a6c26beeb8d52283e82939ca585dc20">   35</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00320.html#ga2a6c26beeb8d52283e82939ca585dc20">hessianN</a>(<span class="keyword">const</span> Fun&amp; f, <span class="keyword">const</span> autodiff::Wrt&lt;Vars...&gt;&amp; wrt, <span class="keyword">const</span> autodiff::At&lt;Args...&gt;&amp; at, U&amp; u,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>              std::array&lt;G, U::RowsAtCompileTime&gt;&amp; g, std::array&lt;H, U::RowsAtCompileTime&gt;&amp; h) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Vars) &gt;= 1);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Args) &gt;= 1);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">auto</span> fEntry = [&amp;](<span class="keyword">auto</span>&amp; I) { <span class="keywordflow">return</span> [&amp;](<span class="keyword">const</span> <span class="keyword">auto</span>&amp;) { <span class="keywordflow">return</span> std::apply(f, at.args)[I]; }; };</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; U::RowsAtCompileTime; ++i)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    hessian(fEntry(i), wrt, at, u[i], g[i], h[i]);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <span class="comment">// namespace Ikarus::utils</span></div>
-<div class="ttc" id="aa00320_html_ga2a6c26beeb8d52283e82939ca585dc20"><div class="ttname"><a href="a00320.html#ga2a6c26beeb8d52283e82939ca585dc20">Ikarus::utils::hessianN</a></div><div class="ttdeci">void hessianN(const Fun &amp;f, const autodiff::Wrt&lt; Vars... &gt; &amp;wrt, const autodiff::At&lt; Args... &gt; &amp;at, U &amp;u, std::array&lt; G, U::RowsAtCompileTime &gt; &amp;g, std::array&lt; H, U::RowsAtCompileTime &gt; &amp;h)</div><div class="ttdoc">Computes the Hessian matrix for each parameter of a given function.The Hessian matrix represents the ...</div><div class="ttdef"><b>Definition:</b> autodiffhelper.hh:35</div></div>
-<div class="ttc" id="aa00335_html"><div class="ttname"><a href="a00335.html">Ikarus::utils</a></div><div class="ttdef"><b>Definition:</b> algorithms.hh:17</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="a00026.html#a6cfefe8fc3c51b09b7633cf8397a67e9">   19</a></span><span class="keyword">inline</span> Index <a class="code hl_function" href="a00026.html#a6cfefe8fc3c51b09b7633cf8397a67e9">getLinearIndex</a>(Index row, Index col)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  eigen_assert(row &gt;= 0 &amp;&amp; row &lt; rows() &amp;&amp; col &gt;= 0 &amp;&amp; col &lt; cols());</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">const</span> Index outer = IsRowMajor ? row : col;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">const</span> Index inner = IsRowMajor ? col : row;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  Index start = m_outerIndex[outer];</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  Index end   = m_innerNonZeros ? m_outerIndex[outer] + m_innerNonZeros[outer] : m_outerIndex[outer + 1];</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  eigen_assert(end &gt;= start &amp;&amp; <span class="stringliteral">&quot;you probably called coeffRef on a non finalized matrix&quot;</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  Index p = m_data.searchLowerIndex(start, end - 1, StorageIndex(inner));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">return</span> p;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="ttc" id="aa00026_html_a6cfefe8fc3c51b09b7633cf8397a67e9"><div class="ttname"><a href="a00026.html#a6cfefe8fc3c51b09b7633cf8397a67e9">getLinearIndex</a></div><div class="ttdeci">Index getLinearIndex(Index row, Index col) const</div><div class="ttdoc">Get the linear index corresponding to the given row and column indices.</div><div class="ttdef"><b>Definition:</b> eigensparseaddon.hh:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -187,12 +184,12 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00026.html">autodiffhelper.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00026.html">eigensparseaddon.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /
             code examples: <a href="https://www.gnu.org/licenses/gpl-3.0.en.html">LGPLv3 or later</a>) &#160;
-            <img class="footer" alt="Ikarus" src="BigLogo_transparent.png" height="15"/> 0.4.1
+            <img class="footer" alt="Ikarus" src="BigLogo_transparent.png" height="15"/> 0.4
             &#160; Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
     </ul>
 </div>

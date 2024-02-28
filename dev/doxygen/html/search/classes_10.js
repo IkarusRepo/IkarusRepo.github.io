@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['scalarassembler_0',['ScalarAssembler',['../a01170.html',1,'Ikarus']]],
-  ['scalarfieldfe_1',['ScalarFieldFE',['../a01230.html',1,'Ikarus']]],
-  ['solverdefault_2',['SolverDefault',['../a01478.html',1,'Ikarus::utils']]],
-  ['sparseflatassembler_3',['SparseFlatAssembler',['../a01178.html',1,'Ikarus']]],
-  ['stats_4',['Stats',['../a01438.html',1,'Ikarus']]],
-  ['stvenantkirchhofft_5',['StVenantKirchhoffT',['../a01322.html',1,'Ikarus']]],
-  ['stvenantkirchhofft_3c_20scalartype_20_3e_6',['StVenantKirchhoffT&lt; ScalarType &gt;',['../a01322.html',1,'Ikarus']]],
-  ['subsidiaryargs_7',['SubsidiaryArgs',['../a01206.html',1,'Ikarus']]]
+  ['scalarassembler_0',['ScalarAssembler',['../a01171.html',1,'Ikarus']]],
+  ['solverdefault_1',['SolverDefault',['../a01475.html',1,'Ikarus::utils']]],
+  ['sparseflatassembler_2',['SparseFlatAssembler',['../a01179.html',1,'Ikarus']]],
+  ['stats_3',['Stats',['../a01435.html',1,'Ikarus']]],
+  ['stvenantkirchhofft_4',['StVenantKirchhoffT',['../a01319.html',1,'Ikarus']]],
+  ['stvenantkirchhofft_3c_20scalartype_20_3e_5',['StVenantKirchhoffT&lt; ScalarType &gt;',['../a01319.html',1,'Ikarus']]],
+  ['subsidiaryargs_6',['SubsidiaryArgs',['../a01207.html',1,'Ikarus']]]
 ];

@@ -1,5 +1,4 @@
 var a00011 =
 [
-    [ "Ikarus::IkarusInstance", "a01530.html", "a01530" ],
-    [ "init", "a00011.html#ac8243891c1b961e50a066140ab79a142", null ]
+    [ "polyfit", "a00011.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
 ];

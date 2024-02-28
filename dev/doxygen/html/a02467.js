@@ -1,4 +1,4 @@
 var a02467 =
 [
-    [ "registerBasis", "a02467.html#ga3792308fbe7fa149d290329ed46c5bb9", null ]
+    [ "registerBasisHandler", "a02467.html#ga2f6146bb687ad25cfb413fbcfd470788", null ]
 ];

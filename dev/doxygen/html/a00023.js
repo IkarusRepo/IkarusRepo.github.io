@@ -1,4 +1,5 @@
 var a00023 =
 [
-    [ "getLinearIndex", "a00023.html#a6cfefe8fc3c51b09b7633cf8397a67e9", null ]
+    [ "ReturnType", "a00023.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
+    [ "countType", "a00023.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
 ];
