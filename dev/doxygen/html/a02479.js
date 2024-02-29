@@ -1,5 +1,5 @@
 var a02479 =
 [
-    [ "denseFlatAssembler", "a02479.html#a399ac3379f23173543d4fee0cd87573d", null ],
-    [ "sparseFlatAssembler", "a02479.html#a0631eaaf96eefe3765279943c9c003e4", null ]
+    [ "makeBasis", "a02479.html#aa8350697b25edf5034483b28fb0c3f76", null ],
+    [ "makeBasis", "a02479.html#a9acabb8291c86afe74e8617830e033de", null ]
 ];

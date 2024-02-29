@@ -12,18 +12,79 @@
 \DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{15 }
 \DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00331}{Ikarus::EAS}} \{}
-\DoxyCodeLine{25 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{26 \textcolor{keyword}{struct }\mbox{\hyperlink{a01279}{Variants}}}
-\DoxyCodeLine{27 \{}
-\DoxyCodeLine{28   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01279_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} = GEO::coorddimension;}
-\DoxyCodeLine{29   \textcolor{keyword}{static\_assert}((\mbox{\hyperlink{a01279_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} == 2) or (\mbox{\hyperlink{a01279_aa41ab53fac3359535fed9cf7f856e4ea}{worldDim}} == 3), \textcolor{stringliteral}{"{}EAS variants are only available 2D and 3D elements."{}});}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01279_a483700fc4381f83b322c87c503750dff}{EAS2D}} = std::variant<std::monostate, Q1E4<GEO>, \mbox{\hyperlink{a01263}{Q1E5<GEO>}}, \mbox{\hyperlink{a01267}{Q1E7<GEO>}}>;}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01279_a5baebb3a03e231c0608c8f28ff2816c5}{EAS3D}} = std::variant<std::monostate, H1E9<GEO>, \mbox{\hyperlink{a01275}{H1E21<GEO>}}>;}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01279_a4fb2b1a33f08f60be81d8e4783fa3770}{type}} = std::conditional\_t<worldDim == 2, EAS2D, EAS3D>;}
-\DoxyCodeLine{39 \};}
-\DoxyCodeLine{40 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{26   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{27   \textcolor{keyword}{struct }Variants}
+\DoxyCodeLine{28   \{}
+\DoxyCodeLine{29     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} worldDim = GEO::coorddimension;}
+\DoxyCodeLine{30     \textcolor{keyword}{static\_assert}((worldDim == 2) or (worldDim == 3), \textcolor{stringliteral}{"{}EAS variants are only available 2D and 3D elements."{}});}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33     \textcolor{keyword}{using }EAS2D = std::variant<E0<GEO>, Q1E4<GEO>, Q1E5<GEO>, Q1E7<GEO>>;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{36     \textcolor{keyword}{using }EAS3D = std::variant<E0<GEO>, H1E9<GEO>, H1E21<GEO>>;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{39     \textcolor{keyword}{using }type = std::conditional\_t<worldDim == 2, EAS2D, EAS3D>;}
+\DoxyCodeLine{40   \};}
+\DoxyCodeLine{41 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{47 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
+\DoxyCodeLine{48 \textcolor{keyword}{struct }\mbox{\hyperlink{a01288}{EASVariant}}}
+\DoxyCodeLine{49 \{}
+\DoxyCodeLine{50   \textcolor{keyword}{using }\mbox{\hyperlink{a01288_a653fb870d396bedf5cb343718e0d2f22}{Variant}} = Impl::Variants<Geometry>::type;}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{57   \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{58   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01288_a24b73487c2b8bf51917fa716b88228a5}{operator()}}(F\&\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{59     std::visit(}
+\DoxyCodeLine{60         [\&]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\& easFunction) \{}
+\DoxyCodeLine{61           \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (EAST::enhancedStrainSize != 0)}
+\DoxyCodeLine{62             f(easFunction);}
+\DoxyCodeLine{63         \},}
+\DoxyCodeLine{64         var\_);}
+\DoxyCodeLine{65   \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67   \textcolor{keyword}{auto} \mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{68     \textcolor{keywordflow}{return} std::visit([]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\&) -\/> \textcolor{keywordtype}{int} \{ \textcolor{keywordflow}{return} EAST::enhancedStrainSize; \}, var\_);}
+\DoxyCodeLine{69   \}}
+\DoxyCodeLine{70   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01288_a369beef91e40752831e9bbdd474fa47c}{isDisplacmentBased}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}}() == 0; \}}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01288_ad79c7a0f56ac5fe3c2ec5550ead5f109}{setEASType}}(\textcolor{keywordtype}{int} \mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}}, \textcolor{keyword}{const} Geometry\& geometry) \{}
+\DoxyCodeLine{73     \textcolor{keywordflow}{if} (\mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}} == 0) \{}
+\DoxyCodeLine{74       var\_ = \mbox{\hyperlink{a01260}{E0}}(geometry);}
+\DoxyCodeLine{75       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 2) \{}
+\DoxyCodeLine{79       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}}) \{}
+\DoxyCodeLine{80         \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{81           var\_ = \mbox{\hyperlink{a01264}{Q1E4}}(geometry);}
+\DoxyCodeLine{82           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{83         \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{84           var\_ = \mbox{\hyperlink{a01268}{Q1E5}}(geometry);}
+\DoxyCodeLine{85           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{86         \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{87           var\_ = \mbox{\hyperlink{a01272}{Q1E7}}(geometry);}
+\DoxyCodeLine{88           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{89         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{90           DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 2D case."{}});}
+\DoxyCodeLine{91       \}}
+\DoxyCodeLine{92     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 3) \{}
+\DoxyCodeLine{93       \textcolor{keywordflow}{switch} (\mbox{\hyperlink{a01288_a99fe5ff4475e15efda214032c3eb6b90}{numberOfEASParameters}}) \{}
+\DoxyCodeLine{94         \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{95           var\_ = \mbox{\hyperlink{a01276}{H1E9}}(geometry);}
+\DoxyCodeLine{96           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{97         \textcolor{keywordflow}{case} 21:}
+\DoxyCodeLine{98           var\_ = \mbox{\hyperlink{a01280}{H1E21}}(geometry);}
+\DoxyCodeLine{99           \textcolor{keywordflow}{break};}
+\DoxyCodeLine{100         \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{101           DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 3D case."{}});}
+\DoxyCodeLine{102       \}}
+\DoxyCodeLine{103     \}}
+\DoxyCodeLine{104   \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keyword}{private}:}
+\DoxyCodeLine{107   \mbox{\hyperlink{a01288_a653fb870d396bedf5cb343718e0d2f22}{Variant}} var\_;}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \} \textcolor{comment}{// namespace Ikarus::EAS}}
 
 \end{DoxyCode}

@@ -1,4 +1,4 @@
 var a02467 =
 [
-    [ "registerBasisHandler", "a02467.html#ga2f6146bb687ad25cfb413fbcfd470788", null ]
+    [ "registerLinearElastic", "a02467.html#ga23554c3ebe7088b79af73584b202eff5", null ]
 ];

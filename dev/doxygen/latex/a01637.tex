@@ -1,8 +1,8 @@
-\hypertarget{a01637}{}\doxysection{Ikarus\+::Concepts\+::Negate\+Able Concept Reference}
-\label{a01637}\index{Ikarus::Concepts::NegateAble@{Ikarus::Concepts::NegateAble}}
+\hypertarget{a01637}{}\doxysection{Ikarus\+::Concepts\+::Non\+Linear\+Solver\+Check\+For\+Path\+Following Concept Reference}
+\label{a01637}\index{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing@{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}}
 
 
-Concept defining the requirements for types that support negation.  
+Concept to check if a non-\/linear solver with its non-\/linear operator satisfies requirements for path following.  
 
 
 
@@ -12,8 +12,15 @@ Concept defining the requirements for types that support negation.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} L>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01637}{Ikarus::Concepts::NegateAble}} =  \textcolor{keyword}{requires}(L x) \{ -\/x; \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} NLS>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01637}{Ikarus::Concepts::NonLinearSolverCheckForPathFollowing}} =  \textcolor{keyword}{requires} \{}
+\DoxyCodeLine{    std::tuple\_size<typename NLS::NonLinearOperator::ParameterValues>::value == 2;}
+\DoxyCodeLine{    not(std::is\_same\_v<typename NLS::NonLinearOperator::ValueType, double> and}
+\DoxyCodeLine{        ((traits::isSpecializationTypeAndNonTypes<Eigen::Matrix,}
+\DoxyCodeLine{                                                  \textcolor{keyword}{typename} NLS::NonLinearOperator::DerivativeType>::value) or}
+\DoxyCodeLine{         (traits::isSpecializationTypeNonTypeAndType<Eigen::SparseMatrix,}
+\DoxyCodeLine{                                                     \textcolor{keyword}{typename} NLS::NonLinearOperator::DerivativeType>::value)));}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,7 +28,6 @@ Concept defining the requirements for types that support negation.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em L} & Type of the operand.\\
+{\em NLS} & The non-\/linear solver type. \\
 \hline
 \end{DoxyTemplParams}
-The concept specifies that instances of type {\ttfamily L} can be negated using the unary {\ttfamily -\/} operator. 
