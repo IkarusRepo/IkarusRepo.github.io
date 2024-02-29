@@ -267,6 +267,7 @@ var a00325 =
     [ "fromVoigt", "a00321.html#ga518e0394f7c90dbe798b6cb8d757b822", null ],
     [ "functions", "a00325.html#ab787b670f0d338c870988f417cf85f76", null ],
     [ "hasCorrectSize", "a00325.html#ab6a92f48acd6be62f36b7f499491fc8a", null ],
+    [ "hessianN", "a00320.html#ga6f989f1293d56b1ad9b32557e28a968d", null ],
     [ "identityFourthOrder", "a00321.html#gadb08b6f9cc40847b70286dc314a23000", null ],
     [ "increment", "a00320.html#ga5db6e8f04892e85e6b17e276cdbd0e54", null ],
     [ "init", "a00325.html#ac8243891c1b961e50a066140ab79a142", null ],

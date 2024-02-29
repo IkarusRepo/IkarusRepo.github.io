@@ -18,7 +18,6 @@ var a00336 =
     [ "forEachLeafOrPowerLeafNode", "a00336.html#a63742d75d099b93da7ddf6e78a3c1f56", null ],
     [ "getSpecialization", "a00322.html#ga05a5ccea0f87d41fc69956f55a2c1dbd", null ],
     [ "hasTypeSpecialization", "a00322.html#gaec2a5de0482441ef1e1c68fb7ff8a0bc", null ],
-    [ "hessianN", "a00320.html#ga2a6c26beeb8d52283e82939ca585dc20", null ],
     [ "makeNestedTupleFlat", "a00336.html#a4c617d2458cc6d792f5ba3e6c64a0c7f", null ],
     [ "makeNestedTupleFlatAndStoreReferences", "a00336.html#a162c64656f5917b717a6b44ebf4c9ebf", null ],
     [ "makeTupleFromTupleIndices", "a00322.html#gaef801f15c9f18ae16e4241a497c33e96", null ],

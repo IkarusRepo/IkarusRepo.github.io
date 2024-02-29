@@ -1,4 +1,5 @@
 var a00179 =
 [
-    [ "draw", "a00179.html#a65b25c4ffa5a9d9f808da12703e79cb2", null ]
+    [ "draw_xy", "a00179.html#a4c07b9ce66d5837a4052977b3dd1eeb0", null ],
+    [ "drawFunction", "a00179.html#ae2cefb2db97492f0b6e5987cb95ad40b", null ]
 ];

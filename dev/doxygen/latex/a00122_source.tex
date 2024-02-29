@@ -1,95 +1,62 @@
-\hypertarget{a00122_source}{}\doxysection{resultfunction.\+hh}
-\label{a00122_source}\index{resultfunction.hh@{resultfunction.hh}}
+\hypertarget{a00122_source}{}\doxysection{pathfollowing.\+hh}
+\label{a00122_source}\index{pathfollowing.hh@{pathfollowing.hh}}
 \mbox{\hyperlink{a00122}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/vtk/function.hh>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00254}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00140}{ikarus/controlroutines/adaptivestepsizing.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/controlroutines/controlinfos.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00137}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00152}{ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00170}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00158}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{21 }
 \DoxyCodeLine{22 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{23   \textcolor{keyword}{struct }DefaultUserFunction}
-\DoxyCodeLine{24   \{}
-\DoxyCodeLine{25   \};}
-\DoxyCodeLine{26 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{48 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE, ResultType resType, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
-\DoxyCodeLine{49 \textcolor{keyword}{class }\mbox{\hyperlink{a01379}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename FE::GridView>}
-\DoxyCodeLine{50 \{}
-\DoxyCodeLine{51 \textcolor{keyword}{public}:}
-\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01379_aba444e0afcbef3afab7c7dba660dd39c}{FiniteElement}}          = FE;}
-\DoxyCodeLine{53   \textcolor{keyword}{using }\mbox{\hyperlink{a01379_a6c4177e83cfe14cba5d6de0a7ce87283}{FERequirementType}}      = \textcolor{keyword}{typename} FiniteElement::FERequirementType;}
-\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01379_a2744c437727bc72267b949c121fc912b}{GridView}}               = \textcolor{keyword}{typename} FiniteElement::GridView;}
-\DoxyCodeLine{55   \textcolor{keyword}{using }\mbox{\hyperlink{a01379_a1b960380b9e520e5c37a552158dcbc9e}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
-\DoxyCodeLine{56   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01379_ae74f225ad7718b34215ae249c3d235b1}{griddim}} = GridView::dimension;}
-\DoxyCodeLine{57   \textcolor{keyword}{using }\mbox{\hyperlink{a01379_a51070aab44aa6c0d6399555c3b737542}{Entity}}                 = \textcolor{keyword}{typename} GridView::template Codim<0>::Entity;}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{69   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01379_a91d31c9d876847fd0e136a03dab6969a}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01379_a51070aab44aa6c0d6399555c3b737542}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01487}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{70     \textcolor{keyword}{auto} index = gridView\_.indexSet().index(e);}
-\DoxyCodeLine{71     \textcolor{keywordflow}{return} evaluateComponent(index, local, comp);}
-\DoxyCodeLine{72   \}}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{81   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01379_a45726779c3ca035c7c4fa700cee30d93}{ncomps}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{82     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
-\DoxyCodeLine{83       \mbox{\hyperlink{a01487}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
-\DoxyCodeLine{84 }
-\DoxyCodeLine{85       \textcolor{keyword}{auto} sigma = fes\_-\/>at(0).template calculateAt<resType>(feRequirements\_, val);}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{87       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.rows() * sigma.cols());}
-\DoxyCodeLine{88     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{89       \textcolor{keywordflow}{return} userFunction\_.ncomps();}
-\DoxyCodeLine{90   \}}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{99   [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01379_a8be0f4769c4f515b64805b77b0146ae4}{name}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{100     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{101       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00325_a0853622412d4cedc078b81ba454eb250}{toString}}(resType);}
-\DoxyCodeLine{102     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{103       \textcolor{keywordflow}{return} userFunction\_.name();}
-\DoxyCodeLine{104   \}}
-\DoxyCodeLine{105 }
-\DoxyCodeLine{114   \mbox{\hyperlink{a01379_ab9999ef0144c8caf38883e080ac489a0}{ResultFunction}}(std::vector<FiniteElement>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01379_a6c4177e83cfe14cba5d6de0a7ce87283}{FERequirementType}}\& req)}
-\DoxyCodeLine{115       : gridView\_\{fes-\/>at(0).localView().globalBasis().gridView()\},}
-\DoxyCodeLine{116         feRequirements\_\{req\},}
-\DoxyCodeLine{117         fes\_\{fes\},}
-\DoxyCodeLine{118         userFunction\_\{UserFunction\{\}\} \{\}}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{120 \textcolor{keyword}{private}:}
-\DoxyCodeLine{121   \textcolor{keywordtype}{double} evaluateComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01487}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{122     \textcolor{keyword}{auto} result = fes\_-\/>at(eleID).template calculateAt<resType>(feRequirements\_, local);}
-\DoxyCodeLine{123 }
-\DoxyCodeLine{124     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{125       \textcolor{keywordflow}{return} userFunction\_(result, comp);}
-\DoxyCodeLine{126     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{127       \textcolor{keywordflow}{return} result(comp);}
-\DoxyCodeLine{128   \}}
-\DoxyCodeLine{129 }
-\DoxyCodeLine{130   \mbox{\hyperlink{a01379_a2744c437727bc72267b949c121fc912b}{GridView}} gridView\_;}
-\DoxyCodeLine{131   \mbox{\hyperlink{a01379_a6c4177e83cfe14cba5d6de0a7ce87283}{FERequirementType}} feRequirements\_;}
-\DoxyCodeLine{132   std::vector<FiniteElement>* fes\_;}
-\DoxyCodeLine{133   [[no\_unique\_address]] std::string name\_\{\};}
-\DoxyCodeLine{134   UserFunction userFunction\_;}
-\DoxyCodeLine{135 \};}
-\DoxyCodeLine{136 }
-\DoxyCodeLine{149 \textcolor{keyword}{template} <ResultType resType, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
-\DoxyCodeLine{150 \textcolor{keyword}{auto} \mbox{\hyperlink{a00325_a5ee77b303105a35f65ea2acdde85773b}{makeResultFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} FE::FERequirementType\& req) \{}
-\DoxyCodeLine{151   \textcolor{keywordflow}{return} std::make\_shared<ResultFunction<FE, resType, UserFunction>>(fes, req);}
-\DoxyCodeLine{152 \}}
-\DoxyCodeLine{153 }
-\DoxyCodeLine{170 \textcolor{keyword}{template} <ResultType resType, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
-\DoxyCodeLine{171 \textcolor{keyword}{auto} \mbox{\hyperlink{a00325_a353cbf06276ae094d8f5590507279e06}{makeResultVtkFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} FE::FERequirementType\& req) \{}
-\DoxyCodeLine{172   \textcolor{keywordflow}{return} Dune::Vtk::Function<typename FE::GridView>(}
-\DoxyCodeLine{173       std::make\_shared<\mbox{\hyperlink{a01379}{ResultFunction<FE, resType, UserFunction>}}>(fes, req));}
-\DoxyCodeLine{174 \}}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{176 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS>}
+\DoxyCodeLine{37   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} checkPathFollowingTemplates() \{}
+\DoxyCodeLine{38     \textcolor{keywordflow}{return} Concepts::PathFollowingStrategy<PF, typename NLS::NonLinearOperator, SubsidiaryArgs> and}
+\DoxyCodeLine{39            Concepts::AdaptiveStepSizingStrategy<ASS, NonLinearSolverInformation, SubsidiaryArgs,}
+\DoxyCodeLine{40                                                 std::remove\_cvref\_t<typename NLS::NonLinearOperator>> and}
+\DoxyCodeLine{41            Concepts::NonLinearSolverCheckForPathFollowing<NLS>;}
+\DoxyCodeLine{42   \}}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{75 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS = AdaptiveStepSizing::NoOp>}
+\DoxyCodeLine{76 \textcolor{keyword}{requires}(Impl::checkPathFollowingTemplates<NLS, PF, ASS>())}
+\DoxyCodeLine{77 \textcolor{keyword}{class} \mbox{\hyperlink{a01203}{PathFollowing}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01567}{IObservable<ControlMessages>}}}
+\DoxyCodeLine{78 \{}
+\DoxyCodeLine{79 \textcolor{keyword}{public}:}
+\DoxyCodeLine{81   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01203_a31b9c556cef2540c66676589b230ef5d}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Path following with "{}} + pathFollowingType\_.name()); \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{92   \mbox{\hyperlink{a01203_afa8baf4eca6f6dd442165592c7fe3871}{PathFollowing}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nonLinearSolver, \textcolor{keywordtype}{int} steps, \textcolor{keywordtype}{double} stepSize,}
+\DoxyCodeLine{93                 PF pathFollowingType = \mbox{\hyperlink{a01211}{ArcLength}}\{\}, ASS adaptiveStepSizing = \{\})}
+\DoxyCodeLine{94       : nonLinearSolver\_\{nonLinearSolver\},}
+\DoxyCodeLine{95         steps\_\{steps\},}
+\DoxyCodeLine{96         stepSize\_\{stepSize\},}
+\DoxyCodeLine{97         pathFollowingType\_\{pathFollowingType\},}
+\DoxyCodeLine{98         adaptiveStepSizing\_\{adaptiveStepSizing\} \{\}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105   ControlInformation run();}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{keyword}{private}:}
+\DoxyCodeLine{108   std::shared\_ptr<NLS> nonLinearSolver\_;}
+\DoxyCodeLine{109   \textcolor{keywordtype}{int} steps\_;}
+\DoxyCodeLine{110   \textcolor{keywordtype}{double} stepSize\_;}
+\DoxyCodeLine{111   PF pathFollowingType\_;}
+\DoxyCodeLine{112   ASS adaptiveStepSizing\_;}
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/controlroutines/pathfollowing.inl}}>}}
 
 \end{DoxyCode}

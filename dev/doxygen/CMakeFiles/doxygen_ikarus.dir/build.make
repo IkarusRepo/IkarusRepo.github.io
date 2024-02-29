@@ -79,6 +79,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfo
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfollowing.inl
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfollowingfunctions.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/autodiff/autodifffe.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/autodiff/autodiffhelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febase.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fehelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/ferequirements.hh
@@ -121,7 +122,6 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/solverinfos.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/trustregion.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/algorithms.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/autodiffhelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/basis.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/concepts.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/defaultfunctions.hh

@@ -1,6 +1,5 @@
 var a00155 =
 [
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01415.html", "a01415" ],
-    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NLO, LS, UF >", "a01419.html", "a01419" ],
-    [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00155.html#ade2a979ee79a657c6ab7530ee203056f", null ]
+    [ "Ikarus::NewtonRaphsonSettings", "a01407.html", "a01407" ],
+    [ "makeNewtonRaphson", "a00155.html#afa463e708cffd14133ff65ffa366e329", null ]
 ];
