@@ -2773,13 +2773,6 @@
       <arglist></arglist>
     </member>
     <member kind="typedef">
-      <type>typename RealFE::GridView</type>
-      <name>GridView</name>
-      <anchorfile>a01228.html</anchorfile>
-      <anchor>a0bc5262861d062ae77847d8920f110b2</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="typedef">
       <type>typename Traits::Element</type>
       <name>Element</name>
       <anchorfile>a01228.html</anchorfile>
