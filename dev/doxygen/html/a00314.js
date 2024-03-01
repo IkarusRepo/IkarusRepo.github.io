@@ -1,28 +1,28 @@
 var a00314 =
 [
-    [ "Ikarus::StrainTags", "a00314.html#gacef1e451de1a99845c59d7391064fb8f", [
-      [ "Ikarus::StrainTags::BEGIN", "a00314.html#ggacef1e451de1a99845c59d7391064fb8fa19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::StrainTags::linear", "a00314.html#ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa", null ],
-      [ "Ikarus::StrainTags::deformationGradient", "a00314.html#ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5", null ],
-      [ "Ikarus::StrainTags::displacementGradient", "a00314.html#ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3", null ],
-      [ "Ikarus::StrainTags::greenLagrangian", "a00314.html#ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e", null ],
-      [ "Ikarus::StrainTags::rightCauchyGreenTensor", "a00314.html#ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2", null ],
-      [ "Ikarus::StrainTags::END", "a00314.html#ggacef1e451de1a99845c59d7391064fb8fab1a326c06d88bf042f73d70f50197905", null ]
+    [ "Ikarus::MatrixAffordances", "a00314.html#ga52cb89165daabb500f6e2eb68ddd76ee", [
+      [ "Ikarus::MatrixAffordances::BEGIN", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::MatrixAffordances::noAffordance", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::MatrixAffordances::stiffness", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1", null ],
+      [ "Ikarus::MatrixAffordances::materialstiffness", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62", null ],
+      [ "Ikarus::MatrixAffordances::geometricstiffness", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eeae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
+      [ "Ikarus::MatrixAffordances::stiffnessdiffBucklingVector", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532", null ],
+      [ "Ikarus::MatrixAffordances::microMagneticHessian", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9", null ],
+      [ "Ikarus::MatrixAffordances::mass", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f", null ],
+      [ "Ikarus::MatrixAffordances::END", "a00314.html#gga52cb89165daabb500f6e2eb68ddd76eeab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "Ikarus::StressTags", "a00314.html#ga70b4ce43c53cc5e949d49919f437501e", [
-      [ "Ikarus::StressTags::BEGIN", "a00314.html#gga70b4ce43c53cc5e949d49919f437501ea19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::StressTags::linear", "a00314.html#gga70b4ce43c53cc5e949d49919f437501ea9a932b3cb396238423eb2f33ec17d6aa", null ],
-      [ "Ikarus::StressTags::PK2", "a00314.html#gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21", null ],
-      [ "Ikarus::StressTags::PK1", "a00314.html#gga70b4ce43c53cc5e949d49919f437501eac34dd77ffb9238275b93ea1897664a7e", null ],
-      [ "Ikarus::StressTags::Cauchy", "a00314.html#gga70b4ce43c53cc5e949d49919f437501ea2ee21c55474972b3e65b31a6b0b57dc8", null ],
-      [ "Ikarus::StressTags::Kirchhoff", "a00314.html#gga70b4ce43c53cc5e949d49919f437501eadb46969ba633ea08a9181d8eb6218ba9", null ],
-      [ "Ikarus::StressTags::END", "a00314.html#gga70b4ce43c53cc5e949d49919f437501eab1a326c06d88bf042f73d70f50197905", null ]
+    [ "Ikarus::ScalarAffordances", "a00314.html#ga8a33210894e12be4feb3d96fdfde215c", [
+      [ "Ikarus::ScalarAffordances::BEGIN", "a00314.html#gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::ScalarAffordances::noAffordance", "a00314.html#gga8a33210894e12be4feb3d96fdfde215ca9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::ScalarAffordances::mechanicalPotentialEnergy", "a00314.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6", null ],
+      [ "Ikarus::ScalarAffordances::microMagneticPotentialEnergy", "a00314.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a", null ],
+      [ "Ikarus::ScalarAffordances::END", "a00314.html#gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "Ikarus::TangentModuliTags", "a00314.html#ga05ac785124262c1e323d2f937d520a1b", [
-      [ "Ikarus::TangentModuliTags::BEGIN", "a00314.html#gga05ac785124262c1e323d2f937d520a1ba19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Ikarus::TangentModuliTags::Material", "a00314.html#gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206", null ],
-      [ "Ikarus::TangentModuliTags::Spatial", "a00314.html#gga05ac785124262c1e323d2f937d520a1ba33d7f1ec5fe18e7ba799474138e71504", null ],
-      [ "Ikarus::TangentModuliTags::TwoPoint", "a00314.html#gga05ac785124262c1e323d2f937d520a1ba331d16a2885c7f82ba949f286f48143d", null ],
-      [ "Ikarus::TangentModuliTags::END", "a00314.html#gga05ac785124262c1e323d2f937d520a1bab1a326c06d88bf042f73d70f50197905", null ]
+    [ "Ikarus::VectorAffordances", "a00314.html#ga122268ff4d2c0beee58799d85ba5e52a", [
+      [ "Ikarus::VectorAffordances::BEGIN", "a00314.html#gga122268ff4d2c0beee58799d85ba5e52aa19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::VectorAffordances::noAffordance", "a00314.html#gga122268ff4d2c0beee58799d85ba5e52aa9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::VectorAffordances::forces", "a00314.html#gga122268ff4d2c0beee58799d85ba5e52aa2c05161a7e67e946ddc889571aac4e89", null ],
+      [ "Ikarus::VectorAffordances::microMagneticForces", "a00314.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
+      [ "Ikarus::VectorAffordances::END", "a00314.html#gga122268ff4d2c0beee58799d85ba5e52aab1a326c06d88bf042f73d70f50197905", null ]
     ] ]
 ];

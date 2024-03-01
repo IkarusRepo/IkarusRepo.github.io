@@ -7,26 +7,43 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus::utils}} \{}
-\DoxyCodeLine{22 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LV>}
-\DoxyCodeLine{23 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00320_gac0aa110e209c93e655de9df0915c2fcc}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LV\& localView,}
-\DoxyCodeLine{24                                  std::vector<\mbox{\hyperlink{a01496}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
-\DoxyCodeLine{25   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01626}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
-\DoxyCodeLine{26                 \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
-\DoxyCodeLine{27   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
-\DoxyCodeLine{28   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
-\DoxyCodeLine{29   lagrangeNodeCoords.resize(localFE.size());}
-\DoxyCodeLine{30   std::vector<double> out;}
-\DoxyCodeLine{31   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
-\DoxyCodeLine{32     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01496}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
-\DoxyCodeLine{33     localFE.localInterpolation().interpolate(ithCoord, out);}
-\DoxyCodeLine{34     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
-\DoxyCodeLine{35       lagrangeNodeCoords[j][i] = out[j];}
-\DoxyCodeLine{36   \}}
-\DoxyCodeLine{37   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
-\DoxyCodeLine{38     nCoord = localView.element().geometry().global(nCoord);}
-\DoxyCodeLine{39 \}}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41 \} \textcolor{comment}{// namespace Ikarus::utils}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00341}{Ikarus::utils}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LV>}
+\DoxyCodeLine{25 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00323_gac0aa110e209c93e655de9df0915c2fcc}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LV\& localView,}
+\DoxyCodeLine{26                                  std::vector<\mbox{\hyperlink{a01520}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
+\DoxyCodeLine{27   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01649}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
+\DoxyCodeLine{28                 \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
+\DoxyCodeLine{29   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
+\DoxyCodeLine{30   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{31   lagrangeNodeCoords.resize(localFE.size());}
+\DoxyCodeLine{32   std::vector<double> out;}
+\DoxyCodeLine{33   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
+\DoxyCodeLine{34     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01520}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
+\DoxyCodeLine{35     localFE.localInterpolation().interpolate(ithCoord, out);}
+\DoxyCodeLine{36     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
+\DoxyCodeLine{37       lagrangeNodeCoords[j][i] = out[j];}
+\DoxyCodeLine{38   \}}
+\DoxyCodeLine{39   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
+\DoxyCodeLine{40     nCoord = localView.element().geometry().global(nCoord);}
+\DoxyCodeLine{41 \}}
+\DoxyCodeLine{50 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{51 \textcolor{keyword}{auto} \mbox{\hyperlink{a00323_ga30df35336d19b00bc5db2a0b52ce650e}{referenceElementSubEntityPositions}}(FE\& fe, \textcolor{keywordtype}{int} codim) \{}
+\DoxyCodeLine{52   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} dim            = FE::Traits::mydim;}
+\DoxyCodeLine{53   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& element          = fe.gridElement();}
+\DoxyCodeLine{54   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& referenceElement = Dune::referenceElement<double, dim>(element.type());}
+\DoxyCodeLine{55   \textcolor{keyword}{const} \textcolor{keywordtype}{int} numberOfVertices   = referenceElement.size(codim);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \textcolor{keyword}{auto} getPosition = [=](\textcolor{keyword}{const} \textcolor{keywordtype}{int} i) \{ \textcolor{keywordflow}{return} referenceElement.position(i, codim); \};}
+\DoxyCodeLine{58   \textcolor{keywordflow}{return} std::views::transform(std::views::iota(0, numberOfVertices), getPosition);}
+\DoxyCodeLine{59 \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{68 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{69 \textcolor{keyword}{auto} \mbox{\hyperlink{a00323_ga8c05dce8a66fc4efbe31674b87d18298}{referenceElementVertexPositions}}(FE\& fe) \{}
+\DoxyCodeLine{70   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00323_ga30df35336d19b00bc5db2a0b52ce650e}{referenceElementSubEntityPositions}}(fe, FE::Traits::mydim);}
+\DoxyCodeLine{71 \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \} \textcolor{comment}{// namespace Ikarus::utils}}
 
 \end{DoxyCode}

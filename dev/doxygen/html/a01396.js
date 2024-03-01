@@ -1,15 +1,14 @@
 var a01396 =
 [
-    [ "Base", "a01396.html#a00557d5a1f590b6d27849f0e37f825c6", null ],
-    [ "MatrixType", "a01396.html#abdf94f4787b8d10c2d86a64e00f34188", null ],
-    [ "Preconditioner", "a01396.html#a636d30963f7a7261054092337269076b", null ],
-    [ "RealScalar", "a01396.html#a2dd6b779327fad07144e6a121b12afbf", null ],
-    [ "Scalar", "a01396.html#a8ea747fce5e24c366f34da3c3ba3c8dd", null ],
-    [ "TruncatedConjugateGradient", "a01396.html#a17e36ca6a3756dd75d9740d756ee39c4", null ],
-    [ "TruncatedConjugateGradient", "a01396.html#a267ee32f0487d9a700b13d6d61b0f000", null ],
-    [ "TruncatedConjugateGradient", "a01396.html#af31547cc01eca8c809bbf1161c251695", null ],
-    [ "~TruncatedConjugateGradient", "a01396.html#aa60846b7835b8ffc8e26b48be8bd7069", null ],
-    [ "_solve_vector_with_guess_impl", "a01396.html#a6430f6e2355dc7e9eb7410d4353cb7ed", null ],
-    [ "getInfo", "a01396.html#a81a7f70d30cfbf103d6ac946ebc2a598", null ],
-    [ "setInfo", "a01396.html#abca8364ed9fadd6e08510b46395dbf22", null ]
+    [ "toBulkModulus", "a01396.html#a4ec6722470a792039687e29c3d3cf4f4", null ],
+    [ "toLamesFirstParameter", "a01396.html#aa7f98433b434cc9b4a4491448304bbb9", null ],
+    [ "toPoissonsRatio", "a01396.html#a7193fdef2358be914614114c45345112", null ],
+    [ "toPWaveModulus", "a01396.html#abf0e01900bfaeacf08cc9af500f42c05", null ],
+    [ "toShearModulus", "a01396.html#ae3b5ba75758a910d01a576dfeabdbe6e", null ],
+    [ "toYoungsModulus", "a01396.html#a28839b750c79d1c905e8606c4ba8330b", null ],
+    [ "convertLameConstants", "a01396.html#ac2255a654c3a7d80c01113b68dc712a6", null ],
+    [ "convertLameConstants", "a01396.html#ab07833cf0c324d05f0b984cba3ccd946", null ],
+    [ "convertLameConstants", "a01396.html#a97a57e9e0e18185b0f0c4237649e00a7", null ],
+    [ "convertLameConstants", "a01396.html#a9bba84cf58912269ed839cb4d6dd7996", null ],
+    [ "convertLameConstants", "a01396.html#a910b0eb5805503f2629a58ac565d5493", null ]
 ];

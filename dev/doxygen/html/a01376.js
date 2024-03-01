@@ -1,6 +1,5 @@
 var a01376 =
 [
-    [ "name", "a01376.html#a60952d65a227074bcb68af8ed78d4129", null ],
-    [ "ncomps", "a01376.html#acdfd2226b12f3819350f4ea231e337bf", null ],
-    [ "operator()", "a01376.html#a041bead382beb38c3d0f128d729e9e5d", null ]
+    [ "emodul", "a01376.html#ab9d965c2a2c0409682aaea9ca45be83b", null ],
+    [ "mu", "a01376.html#a12468705489862b9e7470f197b499d0f", null ]
 ];

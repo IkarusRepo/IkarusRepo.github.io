@@ -1,6 +1,5 @@
 var a01380 =
 [
-    [ "name", "a01380.html#aab635f940c3d1785f4bafe281b575500", null ],
-    [ "ncomps", "a01380.html#abc08f088b44639b38ce5fb4b7b3ce7c6", null ],
-    [ "operator()", "a01380.html#a5b1a1b6fc619e80943b5b54912371cef", null ]
+    [ "emodul", "a01380.html#a218a7076cb5434dd30811ffe50b39964", null ],
+    [ "K", "a01380.html#a996ac473697809e0e44551037cf6d4f0", null ]
 ];

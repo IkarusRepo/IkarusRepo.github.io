@@ -1,10 +1,14 @@
 var a01276 =
 [
-    [ "DType", "a01276.html#a8b6d59f0d800bd906c8cedccc42226aa", null ],
-    [ "MType", "a01276.html#a4ebc7570a1a18ca9d2cc77d5d1d4a05f", null ],
-    [ "H1E9", "a01276.html#af2ffc65346e400a7ce3cc5fb0a3be34a", null ],
-    [ "H1E9", "a01276.html#a3b14b18f924c0b5000ec609d441239ac", null ],
-    [ "calcM", "a01276.html#adafa86c9c1ed38a3b165af332dfe2afc", null ],
-    [ "enhancedStrainSize", "a01276.html#abae7fca7b5ca54582745e3444b1401c3", null ],
-    [ "strainSize", "a01276.html#ae9198131bd07f28e06519c81d22020d1", null ]
+    [ "MatType", "a01276.html#a3be8a4f7e4b67bc2bb90a826c1ed7c85", null ],
+    [ "ResultType", "a01276.html#aef0efc55342d144366f8eddbc6fe00f9", null ],
+    [ "StoredType", "a01276.html#a1baf31b4a8525d6b81860c8f0a0b6a84", null ],
+    [ "VecType", "a01276.html#ad2e94e390a1a328d7abd8006f29dbbd2", null ],
+    [ "ResultWrapper", "a01276.html#a826dcccf70e97474b01126970e2839ac", null ],
+    [ "ResultWrapper", "a01276.html#a623510c28007eb075ed7719de10562b2", null ],
+    [ "ResultWrapper", "a01276.html#ae3ec0250a8cce10dae2b6eacec3ffe11", null ],
+    [ "asMat", "a01276.html#ae5c30a9c8da8fe6bb01b1cee0fc43155", null ],
+    [ "asVec", "a01276.html#ae1be56ef0981f28e1dfa4f77453251d3", null ],
+    [ "operator=", "a01276.html#adbc957bfc9a97390ce57d778dd7c91a1", null ],
+    [ "operator=", "a01276.html#a6a1deb7c814879d79eaa5fe467666b2f", null ]
 ];

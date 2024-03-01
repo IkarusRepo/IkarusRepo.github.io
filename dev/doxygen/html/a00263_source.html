@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: fehelper.hh Source File</title>
+    <title>ikarus: febase.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,86 +152,66 @@ $(document).ready(function(){initNavTree('a00263_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">fehelper.hh</div></div>
+  <div class="headertitle"><div class="title">febase.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00263.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;dune/localfefunctions/manifolds/realTuple.hh&gt;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="a00005.html">ikarus/utils/traversal.hh</a>&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="a00328.html">   10</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00328.html">Ikarus::FEHelper</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Traits, <span class="keyword">typename</span> ST&gt;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="a00328.html#a98c9e3d7c5cc47d0c177684a18a41bd5">   24</a></span><span class="keyword">auto</span> <a class="code hl_function" href="a00328.html#a98c9e3d7c5cc47d0c177684a18a41bd5">localSolutionBlockVector</a>(<span class="keyword">const</span> <span class="keyword">typename</span> Traits::FERequirementType::SolutionVectorTypeRaw&amp; x,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                              <span class="keyword">const</span> <span class="keyword">typename</span> Traits::LocalView&amp; localView,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                              <span class="keyword">const</span> std::optional&lt;<span class="keyword">const</span> Eigen::VectorX&lt;ST&gt;&gt;&amp; dx = std::nullopt) {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">constexpr</span> <span class="keywordtype">int</span> worldDim = Traits::worlddim;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">const</span> <span class="keyword">auto</span>&amp; fe         = localView.tree().child(0).finiteElement();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  Dune::BlockVector&lt;Dune::RealTuple&lt;ST, worldDim&gt;&gt; localX(fe.size());</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> (dx)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0U; i &lt; localX.size(); ++i)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> j = 0U; j &lt; worldDim; ++j)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        localX[i][j] = dx.value()[i * worldDim + j] + x[localView.index(localView.tree().child(j).localIndex(i))[0]];</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> i = 0U; i &lt; localX.size(); ++i)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> j = 0U; j &lt; worldDim; ++j)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        localX[i][j] = x[localView.index(localView.tree().child(j).localIndex(i))[0]];</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordflow">return</span> localX;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LocalView, <span class="keyword">typename</span> Node&gt;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordtype">void</span> leafNodeIndices(<span class="keyword">const</span> LocalView&amp; localView, <span class="keyword">const</span> Node&amp; node,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                       std::vector&lt;typename LocalView::MultiIndex&gt;&amp; <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; fe = node.finiteElement();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; fe.size(); ++i)</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>.push_back(localView.index(node.localIndex(i)));</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LocalView, <span class="keyword">typename</span> Node&gt;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">void</span> powerNodeIndices(<span class="keyword">const</span> LocalView&amp; localView, <span class="keyword">const</span> Node&amp; node,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                        std::vector&lt;typename LocalView::MultiIndex&gt;&amp; <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; fe         = node.child(0).finiteElement();</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> childrenSize = node.degree();</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; fe.size(); ++i)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; childrenSize; ++j)</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>.push_back(localView.index(node.child(j).localIndex(i)));</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>} <span class="comment">// namespace Impl</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> LocalView&gt;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="a00328.html#a2a4ac5503d4288b339457aae427ff661">   90</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00328.html#a2a4ac5503d4288b339457aae427ff661">globalIndicesFromLocalView</a>(<span class="keyword">const</span> LocalView&amp; localView,</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                std::vector&lt;typename LocalView::MultiIndex&gt;&amp; <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>) {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>.clear();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keyword">using namespace </span>Dune::Indices;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keyword">using namespace </span>FEHelper::Impl;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  <span class="keyword">auto</span> leafOpFunc = [&amp;](<span class="keyword">auto</span>&amp;&amp; node, [[maybe_unused]] <span class="keyword">auto</span>&amp;&amp; treePath) {</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    leafNodeIndices(localView, node, <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  };</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keyword">auto</span> powerOpFunc = [&amp;](<span class="keyword">auto</span>&amp;&amp; node, [[maybe_unused]] <span class="keyword">auto</span>&amp;&amp; treePath) {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    powerNodeIndices(localView, node, <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  };</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <a class="code hl_function" href="a00337.html#a63742d75d099b93da7ddf6e78a3c1f56">utils::forEachLeafOrPowerLeafNode</a>(localView.tree(), Dune::TypeTree::hybridTreePath(), powerOpFunc, leafOpFunc);</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FiniteElement&gt;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="a00328.html#a44e16df41148f7e4538be224814a3423">  119</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>(<span class="keyword">const</span> FiniteElement&amp; fe, std::vector&lt;typename FiniteElement::LocalView::MultiIndex&gt;&amp; <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>) {</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <a class="code hl_function" href="a00328.html#a2a4ac5503d4288b339457aae427ff661">globalIndicesFromLocalView</a>(fe.localView(), <a class="code hl_function" href="a00328.html#a44e16df41148f7e4538be224814a3423">globalIndices</a>);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>} <span class="comment">// namespace Ikarus::FEHelper</span></div>
-<div class="ttc" id="aa00005_html"><div class="ttname"><a href="a00005.html">traversal.hh</a></div><div class="ttdoc">Contains functions to traverse through a tree to its different nodes.</div></div>
-<div class="ttc" id="aa00328_html"><div class="ttname"><a href="a00328.html">Ikarus::FEHelper</a></div><div class="ttdef"><b>Definition:</b> fehelper.hh:10</div></div>
-<div class="ttc" id="aa00328_html_a2a4ac5503d4288b339457aae427ff661"><div class="ttname"><a href="a00328.html#a2a4ac5503d4288b339457aae427ff661">Ikarus::FEHelper::globalIndicesFromLocalView</a></div><div class="ttdeci">void globalIndicesFromLocalView(const LocalView &amp;localView, std::vector&lt; typename LocalView::MultiIndex &gt; &amp;globalIndices)</div><div class="ttdoc">Get the global indices for the provided local view of an element.</div><div class="ttdef"><b>Definition:</b> fehelper.hh:90</div></div>
-<div class="ttc" id="aa00328_html_a44e16df41148f7e4538be224814a3423"><div class="ttname"><a href="a00328.html#a44e16df41148f7e4538be224814a3423">Ikarus::FEHelper::globalIndices</a></div><div class="ttdeci">void globalIndices(const FiniteElement &amp;fe, std::vector&lt; typename FiniteElement::LocalView::MultiIndex &gt; &amp;globalIndices)</div><div class="ttdoc">Get the global indices for the provided finite element.</div><div class="ttdef"><b>Definition:</b> fehelper.hh:119</div></div>
-<div class="ttc" id="aa00328_html_a98c9e3d7c5cc47d0c177684a18a41bd5"><div class="ttname"><a href="a00328.html#a98c9e3d7c5cc47d0c177684a18a41bd5">Ikarus::FEHelper::localSolutionBlockVector</a></div><div class="ttdeci">auto localSolutionBlockVector(const typename Traits::FERequirementType::SolutionVectorTypeRaw &amp;x, const typename Traits::LocalView &amp;localView, const std::optional&lt; const Eigen::VectorX&lt; ST &gt; &gt; &amp;dx=std::nullopt)</div><div class="ttdoc">Gets the local solution Dune block vector.</div><div class="ttdef"><b>Definition:</b> fehelper.hh:24</div></div>
-<div class="ttc" id="aa00337_html_a63742d75d099b93da7ddf6e78a3c1f56"><div class="ttname"><a href="a00337.html#a63742d75d099b93da7ddf6e78a3c1f56">Ikarus::utils::forEachLeafOrPowerLeafNode</a></div><div class="ttdeci">void forEachLeafOrPowerLeafNode(T &amp;&amp;tree, TreePath &amp;&amp;treePath, PowerFunc &amp;&amp;powerFunc, LeafFunc &amp;&amp;leafFunc)</div><div class="ttdoc">A function which loops over all the nodes of a tree and performs different actions for a power node (...</div><div class="ttdef"><b>Definition:</b> traversal.hh:30</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;<a class="code" href="a00257.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="a00260.html">ikarus/finiteelements/fetraits.hh</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00328.html">Ikarus</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> BH, <span class="keywordtype">bool</span> useFlat = true, <span class="keyword">typename</span> FER = FERequirements&lt;&gt;, <span class="keywordtype">bool</span> useEigenRef = false&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="a01232.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="a01232.html">FEBase</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="a01232.html#ac5fdc9a8e9d4a7d670df89d397129588">   32</a></span>  <span class="keyword">using </span><a class="code hl_struct" href="a01280.html">Traits</a>      = <a class="code hl_struct" href="a01280.html">FETraits&lt;BH, useFlat, FER, useEigenRef&gt;</a>; </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="a01232.html#abf3a4eab861d3b431dfb7506040fc0ad">   33</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01232.html#abf3a4eab861d3b431dfb7506040fc0ad">LocalView</a>   = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01280.html#a149738c2035391cf29091db89531da54">Traits::LocalView</a>;              </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="a01232.html#a0475c47f864b7ac2a19c69c679e565ff">   34</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01232.html#a0475c47f864b7ac2a19c69c679e565ff">GlobalIndex</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01280.html#ab388cb79bd6e4509990dfccf553925bf">Traits::GlobalIndex</a>;            </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="a01232.html#ae72a95377bf3b1c256d5429f37b0f504">   35</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01232.html#ae72a95377bf3b1c256d5429f37b0f504">GridElement</a> = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01280.html#ac6c597c5761e0d2933e18b6d5cae0b42">Traits::Element</a>;                </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="a01232.html#a713a999716e92ec0f07a17e2cc6fc2af">   43</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="a01232.html#a713a999716e92ec0f07a17e2cc6fc2af">FEBase</a>(<span class="keyword">const</span> BH&amp; basisHandler, <span class="keyword">const</span> <span class="keyword">typename</span> LocalView::Element&amp; element)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      : localView_{[&amp;]() -&gt; decltype(auto) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>          <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (useFlat)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">return</span> basisHandler.flat().localView();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>          <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> basisHandler.untouched().localView();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        }()} {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    localView_.bind(element);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  }</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="a01232.html#a61ccfd550c88670bb02528e2ef00d6fd">   57</a></span>  [[nodiscard]] <span class="keyword">constexpr</span> <span class="keywordtype">size_t</span> <a class="code hl_function" href="a01232.html#a61ccfd550c88670bb02528e2ef00d6fd">size</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> localView_.size(); }</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="a01232.html#a986d3b0d39a10f702bddff51023d38ef">   63</a></span>  <span class="keyword">const</span> <a class="code hl_typedef" href="a01232.html#ae72a95377bf3b1c256d5429f37b0f504">GridElement</a>&amp; <a class="code hl_function" href="a01232.html#a986d3b0d39a10f702bddff51023d38ef">gridElement</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> localView_.element(); }</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="a01232.html#a53a30773e643a5bc8709ae74a2ba68d3">   69</a></span>  <span class="keyword">const</span> <a class="code hl_typedef" href="a01232.html#abf3a4eab861d3b431dfb7506040fc0ad">LocalView</a>&amp; <a class="code hl_function" href="a01232.html#a53a30773e643a5bc8709ae74a2ba68d3">localView</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> localView_; }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="a01232.html#acdf2172a6e355e863baacd9fbc757f8a">   75</a></span>  <a class="code hl_typedef" href="a01232.html#abf3a4eab861d3b431dfb7506040fc0ad">LocalView</a>&amp; <a class="code hl_function" href="a01232.html#acdf2172a6e355e863baacd9fbc757f8a">localView</a>() { <span class="keywordflow">return</span> localView_; }</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  LocalView localView_;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>} <span class="comment">// namespace Ikarus</span></div>
+<div class="ttc" id="aa00257_html"><div class="ttname"><a href="a00257.html">ferequirements.hh</a></div><div class="ttdoc">Definition of the LinearElastic class for finite element mechanics computations.</div></div>
+<div class="ttc" id="aa00260_html"><div class="ttname"><a href="a00260.html">fetraits.hh</a></div><div class="ttdoc">FETraits template structure for finite element traits.</div></div>
+<div class="ttc" id="aa00328_html"><div class="ttname"><a href="a00328.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:22</div></div>
+<div class="ttc" id="aa01232_html"><div class="ttname"><a href="a01232.html">Ikarus::FEBase</a></div><div class="ttdoc">FEBase class is a base class for all finite elements.</div><div class="ttdef"><b>Definition:</b> febase.hh:30</div></div>
+<div class="ttc" id="aa01232_html_a0475c47f864b7ac2a19c69c679e565ff"><div class="ttname"><a href="a01232.html#a0475c47f864b7ac2a19c69c679e565ff">Ikarus::FEBase::GlobalIndex</a></div><div class="ttdeci">typename Traits::GlobalIndex GlobalIndex</div><div class="ttdoc">Type of the global index.</div><div class="ttdef"><b>Definition:</b> febase.hh:34</div></div>
+<div class="ttc" id="aa01232_html_a53a30773e643a5bc8709ae74a2ba68d3"><div class="ttname"><a href="a01232.html#a53a30773e643a5bc8709ae74a2ba68d3">Ikarus::FEBase::localView</a></div><div class="ttdeci">const LocalView &amp; localView() const</div><div class="ttdoc">Get the const reference to the local view.</div><div class="ttdef"><b>Definition:</b> febase.hh:69</div></div>
+<div class="ttc" id="aa01232_html_a61ccfd550c88670bb02528e2ef00d6fd"><div class="ttname"><a href="a01232.html#a61ccfd550c88670bb02528e2ef00d6fd">Ikarus::FEBase::size</a></div><div class="ttdeci">constexpr size_t size() const</div><div class="ttdoc">Get the size of the local view.</div><div class="ttdef"><b>Definition:</b> febase.hh:57</div></div>
+<div class="ttc" id="aa01232_html_a713a999716e92ec0f07a17e2cc6fc2af"><div class="ttname"><a href="a01232.html#a713a999716e92ec0f07a17e2cc6fc2af">Ikarus::FEBase::FEBase</a></div><div class="ttdeci">FEBase(const BH &amp;basisHandler, const typename LocalView::Element &amp;element)</div><div class="ttdoc">Constructor for the FEBase class.</div><div class="ttdef"><b>Definition:</b> febase.hh:43</div></div>
+<div class="ttc" id="aa01232_html_a986d3b0d39a10f702bddff51023d38ef"><div class="ttname"><a href="a01232.html#a986d3b0d39a10f702bddff51023d38ef">Ikarus::FEBase::gridElement</a></div><div class="ttdeci">const GridElement &amp; gridElement() const</div><div class="ttdoc">Get the grid element associated with the local view.</div><div class="ttdef"><b>Definition:</b> febase.hh:63</div></div>
+<div class="ttc" id="aa01232_html_abf3a4eab861d3b431dfb7506040fc0ad"><div class="ttname"><a href="a01232.html#abf3a4eab861d3b431dfb7506040fc0ad">Ikarus::FEBase::LocalView</a></div><div class="ttdeci">typename Traits::LocalView LocalView</div><div class="ttdoc">Type of the local view.</div><div class="ttdef"><b>Definition:</b> febase.hh:33</div></div>
+<div class="ttc" id="aa01232_html_acdf2172a6e355e863baacd9fbc757f8a"><div class="ttname"><a href="a01232.html#acdf2172a6e355e863baacd9fbc757f8a">Ikarus::FEBase::localView</a></div><div class="ttdeci">LocalView &amp; localView()</div><div class="ttdoc">Get the reference to the local view.</div><div class="ttdef"><b>Definition:</b> febase.hh:75</div></div>
+<div class="ttc" id="aa01232_html_ae72a95377bf3b1c256d5429f37b0f504"><div class="ttname"><a href="a01232.html#ae72a95377bf3b1c256d5429f37b0f504">Ikarus::FEBase::GridElement</a></div><div class="ttdeci">typename Traits::Element GridElement</div><div class="ttdoc">Type of the grid element.</div><div class="ttdef"><b>Definition:</b> febase.hh:35</div></div>
+<div class="ttc" id="aa01280_html"><div class="ttname"><a href="a01280.html">Ikarus::FETraits</a></div><div class="ttdoc">Traits for handling finite elements.</div><div class="ttdef"><b>Definition:</b> fetraits.hh:26</div></div>
+<div class="ttc" id="aa01280_html_a149738c2035391cf29091db89531da54"><div class="ttname"><a href="a01280.html#a149738c2035391cf29091db89531da54">Ikarus::FETraits::LocalView</a></div><div class="ttdeci">typename Basis::LocalView LocalView</div><div class="ttdoc">Type of the local view.</div><div class="ttdef"><b>Definition:</b> fetraits.hh:43</div></div>
+<div class="ttc" id="aa01280_html_ab388cb79bd6e4509990dfccf553925bf"><div class="ttname"><a href="a01280.html#ab388cb79bd6e4509990dfccf553925bf">Ikarus::FETraits::GlobalIndex</a></div><div class="ttdeci">typename LocalView::MultiIndex GlobalIndex</div><div class="ttdoc">Type of the global index.</div><div class="ttdef"><b>Definition:</b> fetraits.hh:55</div></div>
+<div class="ttc" id="aa01280_html_ac6c597c5761e0d2933e18b6d5cae0b42"><div class="ttname"><a href="a01280.html#ac6c597c5761e0d2933e18b6d5cae0b42">Ikarus::FETraits::Element</a></div><div class="ttdeci">typename LocalView::Element Element</div><div class="ttdoc">Type of the grid element.</div><div class="ttdef"><b>Definition:</b> fetraits.hh:49</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -242,7 +222,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00263.html">fehelper.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00263.html">febase.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

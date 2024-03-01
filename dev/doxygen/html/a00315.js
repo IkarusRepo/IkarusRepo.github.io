@@ -1,19 +1,19 @@
 var a00315 =
 [
-    [ "Result Evaluator", "a00316.html", "a00316" ],
-    [ "resultfunction.hh", "a00119.html", null ],
-    [ "griddrawer.hh", "a00176.html", null ],
-    [ "matplothelper.hh", "a00179.html", null ],
-    [ "Ikarus::ResultFunction< FE, resType, UserFunction >", "a01388.html", [
-      [ "ctype", "a01388.html#a1b960380b9e520e5c37a552158dcbc9e", null ],
-      [ "Entity", "a01388.html#a51070aab44aa6c0d6399555c3b737542", null ],
-      [ "FERequirementType", "a01388.html#a6c4177e83cfe14cba5d6de0a7ce87283", null ],
-      [ "FiniteElement", "a01388.html#aba444e0afcbef3afab7c7dba660dd39c", null ],
-      [ "GridView", "a01388.html#a2744c437727bc72267b949c121fc912b", null ],
-      [ "ResultFunction", "a01388.html#ab9999ef0144c8caf38883e080ac489a0", null ],
-      [ "evaluate", "a01388.html#a91d31c9d876847fd0e136a03dab6969a", null ],
-      [ "name", "a01388.html#a8be0f4769c4f515b64805b77b0146ae4", null ],
-      [ "ncomps", "a01388.html#a45726779c3ca035c7c4fa700cee30d93", null ],
-      [ "griddim", "a01388.html#ae74f225ad7718b34215ae249c3d235b1", null ]
+    [ "Ikarus::FEParameter", "a00315.html#ga0c1577fd05efee8475b0f7fef795bbbe", [
+      [ "Ikarus::FEParameter::BEGIN", "a00315.html#gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::FEParameter::noParameter", "a00315.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe", null ],
+      [ "Ikarus::FEParameter::loadfactor", "a00315.html#gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8", null ],
+      [ "Ikarus::FEParameter::time", "a00315.html#gga0c1577fd05efee8475b0f7fef795bbbea07cc694b9b3fc636710fa08b6922c42b", null ],
+      [ "Ikarus::FEParameter::END", "a00315.html#gga0c1577fd05efee8475b0f7fef795bbbeab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "Ikarus::FESolutions", "a00315.html#gaea763c94a1cecbeefc4f8661debcc5a3", [
+      [ "Ikarus::FESolutions::BEGIN", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3a19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::FESolutions::noSolution", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3a2100a151ce2773b3467509ae085aa505", null ],
+      [ "Ikarus::FESolutions::displacement", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3a0c2d35f5f278a229db5ba41d40120f1c", null ],
+      [ "Ikarus::FESolutions::velocity", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3aac1a453d0cdc1f19d9479ccfaa8b082c", null ],
+      [ "Ikarus::FESolutions::director", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3a3d4e992d8d8a7d848724aa26ed7f4176", null ],
+      [ "Ikarus::FESolutions::magnetizationAndVectorPotential", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff", null ],
+      [ "Ikarus::FESolutions::END", "a00315.html#ggaea763c94a1cecbeefc4f8661debcc5a3ab1a326c06d88bf042f73d70f50197905", null ]
     ] ]
 ];

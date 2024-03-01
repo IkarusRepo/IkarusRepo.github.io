@@ -1,5 +1,6 @@
 var a01364 =
 [
-    [ "K", "a01364.html#a4f5868738c5673adf557e914123d0c8e", null ],
-    [ "lambda", "a01364.html#a82f624b8171315c48c0bb5d39ef2f5d8", null ]
+    [ "derivative", "a01364.html#af2e92a20898c224f6fe6968f766404b3", null ],
+    [ "secondDerivative", "a01364.html#a3a4c92723db3bf34028b55d9d9ac8d7a", null ],
+    [ "value", "a01364.html#ab4ddaa746b858e45fe37237baba4a797", null ]
 ];

@@ -1,6 +1,6 @@
 var a01196 =
 [
-    [ "solverInfos", "a01196.html#aedbd5de28f127726884cb99b067313bf", null ],
-    [ "success", "a01196.html#aaeccd3cd24ed5d809397ab055da1b695", null ],
-    [ "totalIterations", "a01196.html#a4712b189651e59cd46fd43b2e6a326bf", null ]
+    [ "operator()", "a01196.html#a5869ac09a02a7b2222873ca31a30989e", null ],
+    [ "setTargetIterations", "a01196.html#a52017ebcd89859d5ae214cc8767ef78d", null ],
+    [ "targetIterations", "a01196.html#aabdaad05b950b53e014624271a16fd9c", null ]
 ];

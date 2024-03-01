@@ -1,5 +1,5 @@
 var a01424 =
 [
-    [ "maxIter", "a01424.html#a7ef35a86ec4e9a39bcc54182c5dc17b7", null ],
-    [ "tol", "a01424.html#a7e8e3668e5eca2b115ec77fcaabc8899", null ]
+    [ "MatrixType", "a01424.html#a830b9c5b03ee1316e9e571a7ba05b2f2", null ],
+    [ "Preconditioner", "a01424.html#a6854c22e7816c75ad6495977616aab71", null ]
 ];

@@ -1,14 +1,15 @@
 var a01460 =
 [
-    [ "FlatBasis", "a01460.html#a7252e605123456ef454c811cfb364bba", null ],
-    [ "GridView", "a01460.html#adcbd72244406be4bb8ad7b547dd856cc", null ],
-    [ "PreBasis", "a01460.html#af1f06693a1efdf8ecdc58d9d52493a28", null ],
-    [ "UntouchedBasis", "a01460.html#a27e6a76ae18f154cc833c1b4ecafd35b", null ],
-    [ "BasisHandler", "a01460.html#a5283dfd83bb82dfc11a99dc714da154b", null ],
-    [ "flat", "a01460.html#a259a6b38e59d58970716c03ac511d3c5", null ],
-    [ "flat", "a01460.html#a4169a22c9428da3b0b4bfee9b7bb2161", null ],
-    [ "gridView", "a01460.html#a910531e784c0bd209849ab4a863d9fbb", null ],
-    [ "gridView", "a01460.html#aa90fabae9f9e0474ea5ecef99553d6c5", null ],
-    [ "untouched", "a01460.html#aa3e286f5563f510fc4b0eaa005eb0a2b", null ],
-    [ "untouched", "a01460.html#ae0b732f8499254cce741cb6f36f36e9f", null ]
+    [ "corr_tol", "a01460.html#af8eb8f7712201c0cf01336a92d704892", null ],
+    [ "debug", "a01460.html#a72e069d6cb3b98ec116172ec886a4986", null ],
+    [ "Delta0", "a01460.html#a6c171df067c667d9c5257d12b85a9e6d", null ],
+    [ "Delta_bar", "a01460.html#a8d52f35057ed50714fb0d3f6f94588ec", null ],
+    [ "grad_tol", "a01460.html#a64868ebbbe9e92ac762a411882399fc9", null ],
+    [ "maxiter", "a01460.html#ad17916490e9c02177566877df2af606c", null ],
+    [ "maxtime", "a01460.html#ae255ad8f1baddf2e46981bc017da6d26", null ],
+    [ "miniter", "a01460.html#a074d2f0fd5ba3fab047d60e9a94b817d", null ],
+    [ "rho_prime", "a01460.html#ade6e855ba3b6c9bb3e0b54264f1a10eb", null ],
+    [ "rho_reg", "a01460.html#a10ae2ded9785759dbca6a18136baf5ed", null ],
+    [ "useRand", "a01460.html#ac9338497c49d411382bf56863298f916", null ],
+    [ "verbosity", "a01460.html#a5c041eabf13458ca696bcf25a4e043b2", null ]
 ];

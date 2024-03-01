@@ -1,5 +1,10 @@
 var a00335 =
 [
-    [ "traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01400.html", "a01400" ],
-    [ "truncated_conjugate_gradient", "a00335.html#a38414bb29b6ce1a1d8cc03749acb95f7", null ]
+    [ "E0", "a01284.html", "a01284" ],
+    [ "EASVariant", "a01312.html", "a01312" ],
+    [ "H1E21", "a01304.html", "a01304" ],
+    [ "H1E9", "a01300.html", "a01300" ],
+    [ "Q1E4", "a01288.html", "a01288" ],
+    [ "Q1E5", "a01292.html", "a01292" ],
+    [ "Q1E7", "a01296.html", "a01296" ]
 ];

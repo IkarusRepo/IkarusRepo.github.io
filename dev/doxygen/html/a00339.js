@@ -1,29 +1,5 @@
 var a00339 =
 [
-    [ "FlatInterLeavedBasis", "a01625.html", null ],
-    [ "LagrangeNode", "a01626.html", null ],
-    [ "LagrangeNodeOfOrder", "a01627.html", null ],
-    [ "FlatLexicographicBasis", "a01628.html", null ],
-    [ "FlatIndexBasis", "a01629.html", null ],
-    [ "BlockedInterLeavedBasis", "a01630.html", null ],
-    [ "BlockedLexicographicBasis", "a01631.html", null ],
-    [ "DuneLocalBasis", "a01632.html", null ],
-    [ "BlockedIndexBasis", "a01633.html", null ],
-    [ "PathFollowingStrategy", "a01634.html", null ],
-    [ "AdaptiveStepSizingStrategy", "a01635.html", null ],
-    [ "LinearSolverCheck", "a01636.html", null ],
-    [ "NonLinearSolverCheckForPathFollowing", "a01637.html", null ],
-    [ "MultiplyAble", "a01638.html", null ],
-    [ "AddAble", "a01639.html", null ],
-    [ "SubstractAble", "a01640.html", null ],
-    [ "MultiplyAssignAble", "a01641.html", null ],
-    [ "DivideAssignAble", "a01642.html", null ],
-    [ "AddAssignAble", "a01643.html", null ],
-    [ "SubstractAssignAble", "a01644.html", null ],
-    [ "DivideAble", "a01645.html", null ],
-    [ "NegateAble", "a01646.html", null ],
-    [ "TransposeAble", "a01647.html", null ],
-    [ "IsFunctorWithArgs", "a01648.html", null ],
-    [ "EigenVector", "a01649.html", null ],
-    [ "IsMaterial", "a01650.html", null ]
+    [ "traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01424.html", "a01424" ],
+    [ "truncated_conjugate_gradient", "a00339.html#a38414bb29b6ce1a1d8cc03749acb95f7", null ]
 ];

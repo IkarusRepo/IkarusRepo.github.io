@@ -1,8 +1,10 @@
 var a01288 =
 [
-    [ "Variant", "a01288.html#a653fb870d396bedf5cb343718e0d2f22", null ],
-    [ "isDisplacmentBased", "a01288.html#a369beef91e40752831e9bbdd474fa47c", null ],
-    [ "numberOfEASParameters", "a01288.html#a99fe5ff4475e15efda214032c3eb6b90", null ],
-    [ "operator()", "a01288.html#a24b73487c2b8bf51917fa716b88228a5", null ],
-    [ "setEASType", "a01288.html#ad79c7a0f56ac5fe3c2ec5550ead5f109", null ]
+    [ "DType", "a01288.html#a1c7282dcb16d89f3f99b761ce4cda63c", null ],
+    [ "MType", "a01288.html#a9d9bcd6fbf0b5560904dc1ab9b872633", null ],
+    [ "Q1E4", "a01288.html#a68eb22d5d7f45fe8c0fed77de62ad799", null ],
+    [ "Q1E4", "a01288.html#a43ede2403a5e817099bd51ae4f26f8f1", null ],
+    [ "calcM", "a01288.html#a03e4a1b446ffd59d5e15c95fd7291b9f", null ],
+    [ "enhancedStrainSize", "a01288.html#ab1a8b1d505b07f61bc8182de7c65d66a", null ],
+    [ "strainSize", "a01288.html#a31972bc371b0267eb4f04f62f4c88219", null ]
 ];

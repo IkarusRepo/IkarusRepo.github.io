@@ -1,5 +1,6 @@
 var a01400 =
 [
-    [ "MatrixType", "a01400.html#a830b9c5b03ee1316e9e571a7ba05b2f2", null ],
-    [ "Preconditioner", "a01400.html#a6854c22e7816c75ad6495977616aab71", null ]
+    [ "name", "a01400.html#a60952d65a227074bcb68af8ed78d4129", null ],
+    [ "ncomps", "a01400.html#acdfd2226b12f3819350f4ea231e337bf", null ],
+    [ "operator()", "a01400.html#a041bead382beb38c3d0f128d729e9e5d", null ]
 ];

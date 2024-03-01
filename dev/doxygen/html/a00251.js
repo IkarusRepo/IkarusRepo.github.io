@@ -1,20 +1,26 @@
 var a00251 =
 [
-    [ "Ikarus::YoungsModulusAndPoissonsRatio", "a01348.html", "a01348" ],
-    [ "Ikarus::YoungsModulusAndShearModulus", "a01352.html", "a01352" ],
-    [ "Ikarus::YoungsModulusAndBulkModulus", "a01356.html", "a01356" ],
-    [ "Ikarus::YoungsModulusAndLamesFirstParameter", "a01360.html", "a01360" ],
-    [ "Ikarus::BulkModulusAndLamesFirstParameter", "a01364.html", "a01364" ],
-    [ "Ikarus::LamesFirstParameterAndShearModulus", "a01368.html", "a01368" ],
-    [ "Ikarus::ConvertLameConstants< ValuePair >", "a01372.html", "a01372" ],
-    [ "Ikarus::MPTuple", "a01624.html", null ],
-    [ "convertLameConstants", "a00251.html#a8c72e37743694391da18e64618a7c799", null ],
-    [ "convertLameConstants", "a00251.html#aec5648541007a5e5bb89c1f64ec2da92", null ],
-    [ "convertLameConstants", "a00251.html#ad80fc80be73cb847542e1b7c5bde5af6", null ],
-    [ "convertLameConstants", "a00251.html#a5e27551f9edaebc557108aa164899b54", null ],
-    [ "convertLameConstants", "a00251.html#a6a85c01d9e8f0e2adff8035087485109", null ],
-    [ "linearElasticMaterialTangent3D", "a00251.html#ab859759a8309b785e7872d8360171030", null ],
-    [ "planeStressLinearElasticMaterialTangent", "a00251.html#a90678a80e6b2b4849072623df02dae58", null ],
-    [ "toLamesFirstParameterAndShearModulus", "a00251.html#a32940ef922d090491ffcaa9bf2a44aef", null ],
-    [ "toYoungsModulusAndPoissonsRatio", "a00251.html#a4161393d679e5ec44806e6e911e26dee", null ]
+    [ "Ikarus::ResultWrapper< RT, storedResultShape >", "a01276.html", "a01276" ],
+    [ "REGISTER_RESERVED_RESULTTYPE", "a00251.html#a7ce39a7837a7febc8ecb05eac58b2d7d", null ],
+    [ "REGISTER_RESULTTYPE", "a00251.html#a60e89b24a05f9724eb4cf2a3683aafeb", null ],
+    [ "REGISTER_RESULTTYPE_IMPL", "a00251.html#a8b1463ebff118e1d2513007fb0395a7c", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a52814b58e3f14abb3b98a238cb51d3b8", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00251.html#ac8f258db238456d188b270d139fd21e5", null ],
+    [ "ResultShape", "a00251.html#acfb09bb7db104db62d3d1d2dc3e009b2", [
+      [ "Vector", "a00251.html#acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110", null ],
+      [ "Matrix", "a00251.html#acfb09bb7db104db62d3d1d2dc3e009b2af53df0293e169f562bc1d9a20e1d2589", null ]
+    ] ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a0e4b482f7dfe8a1df7001a3f71735ebb", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#afeed102d068411803417f68cf19f3082", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a375aac447f75294b272ffe18d56a6ee7", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a02b15969a4c7f19e2be77b40ac71a5bf", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a2840a2b5bcbcb047424f9412dc284231", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a32c6776061b8fd22c543c257ed8254fc", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#ad73ec27e53ac2c45f5c3ac36ac71257b", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00251.html#a8b069a75ed314c55882d8b4af88b8aa4", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00251.html#ac8b84094652594d68543cb18439a33f6", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00251.html#aac8ac85aa33c94bb4b1350b323e39544", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00251.html#a40610eafec23fe9775828ec3a1959627", null ],
+    [ "toString", "a00251.html#ae9c1868f27f4754a448edbbc97b9a2f2", null ],
+    [ "isSameResultType", "a00251.html#aae9d6a05f2ca4f54c0524404e27e7ed1", null ]
 ];

@@ -1,12 +1,16 @@
 var a01228 =
 [
-    [ "GlobalIndex", "a01228.html#a0475c47f864b7ac2a19c69c679e565ff", null ],
-    [ "GridElement", "a01228.html#ae72a95377bf3b1c256d5429f37b0f504", null ],
-    [ "LocalView", "a01228.html#abf3a4eab861d3b431dfb7506040fc0ad", null ],
-    [ "Traits", "a01228.html#ac5fdc9a8e9d4a7d670df89d397129588", null ],
-    [ "FEBase", "a01228.html#a713a999716e92ec0f07a17e2cc6fc2af", null ],
-    [ "gridElement", "a01228.html#a986d3b0d39a10f702bddff51023d38ef", null ],
-    [ "localView", "a01228.html#acdf2172a6e355e863baacd9fbc757f8a", null ],
-    [ "localView", "a01228.html#a53a30773e643a5bc8709ae74a2ba68d3", null ],
-    [ "size", "a01228.html#a61ccfd550c88670bb02528e2ef00d6fd", null ]
+    [ "Base", "a01228.html#acb52d8adef8b40aabec280ecd1db60f6", null ],
+    [ "BasisHandler", "a01228.html#ace1636b5cd13f380d0865682480e81b2", null ],
+    [ "Element", "a01228.html#af1d3fa6b651ee728bd39a33c3c3da250", null ],
+    [ "FERequirementType", "a01228.html#a4d0caa6dbe1dea19b8a265e7074cc45f", null ],
+    [ "LocalView", "a01228.html#ae985fb2fdb86d514700c4d57f03e97d5", null ],
+    [ "RealFE", "a01228.html#ac6509944238101aef666b1614df1d443", null ],
+    [ "Traits", "a01228.html#a25b17a1ebebcf86b4994f735ae7b5281", null ],
+    [ "AutoDiffFE", "a01228.html#a26248faa29dc3165140f3647f94c5d4a", null ],
+    [ "calculateLocalSystem", "a01228.html#a26b7180649b487ae56f5c31e53276cd4", null ],
+    [ "calculateMatrix", "a01228.html#a374cdfcdf85fcaba0114571ee4ef95d0", null ],
+    [ "calculateScalar", "a01228.html#a4092c3249a569470e2d9dfbd0af72749", null ],
+    [ "calculateVector", "a01228.html#ae2d3a5600747957c5dfb84455c1e1648", null ],
+    [ "realFE", "a01228.html#a8bd5af319955bc66a08c074858df2303", null ]
 ];

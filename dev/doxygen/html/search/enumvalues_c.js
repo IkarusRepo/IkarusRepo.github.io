@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['pk1_0',['PK1',['../a00314.html#gga70b4ce43c53cc5e949d49919f437501eac34dd77ffb9238275b93ea1897664a7e',1,'Ikarus']]],
-  ['pk2_1',['PK2',['../a00314.html#gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21',1,'Ikarus']]],
-  ['pk2stress_2',['PK2Stress',['../a00312.html#gga531be167e924b749eb8b4ccc7f1c18c9afa06a140291f2b4bc25c81e5e6bac241',1,'Ikarus']]]
+  ['reachedtargetresidualkappalinear_0',['reachedTargetResidualKappaLinear',['../a00338.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c',1,'Eigen']]],
+  ['reachedtargetresidualthetasuperlinear_1',['reachedTargetResidualThetaSuperLinear',['../a00338.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27',1,'Eigen']]],
+  ['residualnorm_5fupdated_2',['RESIDUALNORM_UPDATED',['../a00322.html#gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14',1,'Ikarus']]],
+  ['rightcauchygreentensor_3',['rightCauchyGreenTensor',['../a00317.html#ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2',1,'Ikarus']]]
 ];

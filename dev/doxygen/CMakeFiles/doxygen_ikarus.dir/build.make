@@ -83,6 +83,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/autodif
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febase.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fehelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/ferequirements.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/feresulttypes.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fetraits.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/eas2d.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/eas3d.hh

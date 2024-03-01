@@ -1,13 +1,8 @@
 var a01312 =
 [
-    [ "FERequirementType", "a01312.html#a3095dc94e0800007d462004657c1371a", null ],
-    [ "LocalView", "a01312.html#a378f39e30047caf903ac564848edc697", null ],
-    [ "Volume", "a01312.html#af67372d55f4036736affad41565639bd", null ],
-    [ "calculateMatrix", "a01312.html#a50c6859b6c9a40fbb8ac9cc77d8087db", null ],
-    [ "calculateMatrixImpl", "a01312.html#aaed2462e36f9d119ff5c60867ebcaf62", null ],
-    [ "calculateScalar", "a01312.html#a57dda3eb802306012e41237636de1ec4", null ],
-    [ "calculateScalarImpl", "a01312.html#a7ec1326b708d8c08fee05ca7b601f997", null ],
-    [ "calculateVector", "a01312.html#a60ccd349727ba418dbfb1a3012a1d856", null ],
-    [ "calculateVectorImpl", "a01312.html#a9b91a057a51ab4487656d8bd94fdd234", null ],
-    [ "worldDim", "a01312.html#a073fb2d3afae0bd3e0afe1c2534f9afd", null ]
+    [ "Variant", "a01312.html#a653fb870d396bedf5cb343718e0d2f22", null ],
+    [ "isDisplacmentBased", "a01312.html#a369beef91e40752831e9bbdd474fa47c", null ],
+    [ "numberOfEASParameters", "a01312.html#a99fe5ff4475e15efda214032c3eb6b90", null ],
+    [ "operator()", "a01312.html#a24b73487c2b8bf51917fa716b88228a5", null ],
+    [ "setEASType", "a01312.html#ad79c7a0f56ac5fe3c2ec5550ead5f109", null ]
 ];

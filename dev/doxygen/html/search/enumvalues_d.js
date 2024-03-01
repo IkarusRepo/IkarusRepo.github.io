@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['reachedtargetresidualkappalinear_0',['reachedTargetResidualKappaLinear',['../a00334.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c',1,'Eigen']]],
-  ['reachedtargetresidualthetasuperlinear_1',['reachedTargetResidualThetaSuperLinear',['../a00334.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27',1,'Eigen']]],
-  ['residualnorm_5fupdated_2',['RESIDUALNORM_UPDATED',['../a00319.html#gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14',1,'Ikarus']]],
-  ['rightcauchygreentensor_3',['rightCauchyGreenTensor',['../a00314.html#ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2',1,'Ikarus']]]
+  ['sd_5fcholmodsupernodalllt_0',['sd_CholmodSupernodalLLT',['../a00328.html#a731a9ee6621f91193c15f31b9a399906a286dc99776bcd1ea313e669aa17b3236',1,'Ikarus']]],
+  ['sd_5fsimplicialldlt_1',['sd_SimplicialLDLT',['../a00328.html#a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c',1,'Ikarus']]],
+  ['sd_5fsimplicialllt_2',['sd_SimplicialLLT',['../a00328.html#a731a9ee6621f91193c15f31b9a399906acd4c06ca3bfe2246c9ec45bee84b5852',1,'Ikarus']]],
+  ['sd_5fsparselu_3',['sd_SparseLU',['../a00328.html#a731a9ee6621f91193c15f31b9a399906ae7cfd15be408672026faa788c0c112e5',1,'Ikarus']]],
+  ['sd_5fsparseqr_4',['sd_SparseQR',['../a00328.html#a731a9ee6621f91193c15f31b9a399906a259246f1b3299da36945e32f5660bebd',1,'Ikarus']]],
+  ['sd_5fsuperlu_5',['sd_SuperLU',['../a00328.html#a731a9ee6621f91193c15f31b9a399906aa8fe11042608f12d110c154033361fcc',1,'Ikarus']]],
+  ['sd_5fumfpacklu_6',['sd_UmfPackLU',['../a00328.html#a731a9ee6621f91193c15f31b9a399906afe6a46ed15566813699daa9c9cbf85d5',1,'Ikarus']]],
+  ['si_5fbicgstab_7',['si_BiCGSTAB',['../a00328.html#a731a9ee6621f91193c15f31b9a399906a3ba09bd833aa666cbeca9bfd4a33be6f',1,'Ikarus']]],
+  ['si_5fconjugategradient_8',['si_ConjugateGradient',['../a00328.html#a731a9ee6621f91193c15f31b9a399906a43e7ad1498548ecfbe9359418877c793',1,'Ikarus']]],
+  ['si_5fleastsquaresconjugategradient_9',['si_LeastSquaresConjugateGradient',['../a00328.html#a731a9ee6621f91193c15f31b9a399906a64a3b585d23ed07479c1452d49f397bb',1,'Ikarus']]],
+  ['solution_5fchanged_10',['SOLUTION_CHANGED',['../a00322.html#gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577',1,'Ikarus::SOLUTION_CHANGED()'],['../a00322.html#gga662b2b6a80547adf4b9ce8b30d87fab5a0d30d757bf062e88728ebe7f8e2b2577',1,'Ikarus::SOLUTION_CHANGED()']]],
+  ['sparse_11',['Sparse',['../a00328.html#a4763ca5888a027ed9b8d965d67cbb9aba7407fb7e6a4df6392aaabd2368157312',1,'Ikarus']]],
+  ['spatial_12',['Spatial',['../a00317.html#gga05ac785124262c1e323d2f937d520a1ba33d7f1ec5fe18e7ba799474138e71504',1,'Ikarus']]],
+  ['step_5fended_13',['STEP_ENDED',['../a00322.html#gga35fa62fd2d4186a9750af3d0692f2893ae2b2386af3d7379bd2ddde735d5867b2',1,'Ikarus']]],
+  ['step_5fstarted_14',['STEP_STARTED',['../a00322.html#gga35fa62fd2d4186a9750af3d0692f2893a18e0c9ecde68d13f1d2608dd1a180945',1,'Ikarus']]],
+  ['stiffness_15',['stiffness',['../a00314.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1',1,'Ikarus']]],
+  ['stiffnessdiffbucklingvector_16',['stiffnessdiffBucklingVector',['../a00314.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532',1,'Ikarus']]]
 ];

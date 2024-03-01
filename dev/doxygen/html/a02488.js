@@ -1,5 +1,4 @@
 var a02488 =
 [
-    [ "denseFlatAssembler", "a02488.html#a399ac3379f23173543d4fee0cd87573d", null ],
-    [ "sparseFlatAssembler", "a02488.html#a0631eaaf96eefe3765279943c9c003e4", null ]
+    [ "registerKirchhoffLoveShell", "a02488.html#ga31d84874c3995448666f6a1e070647d2", null ]
 ];
