@@ -163,61 +163,60 @@
 \DoxyCodeLine{247 }
 \DoxyCodeLine{248 \textcolor{keyword}{protected}:}
 \DoxyCodeLine{249   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType>}
-\DoxyCodeLine{250   \textcolor{keyword}{auto} \mbox{\hyperlink{a01328_a2bd57b0020bc5144908df7d582533cc7}{calculateScalarImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01328_a68a72cb2746c3c4cac9ee3878d5d548e}{FERequirementType}}\& par,}
-\DoxyCodeLine{251                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ScalarType>>\& dx = std::nullopt) \textcolor{keyword}{const}}
-\DoxyCodeLine{252       -\/> ScalarType \{}
-\DoxyCodeLine{253     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = \mbox{\hyperlink{a01328_a6526cbcd08616598920cf2286ff041bf}{displacementFunction}}(par, dx);}
-\DoxyCodeLine{254     \textcolor{keyword}{const} \textcolor{keyword}{auto} eps       = \mbox{\hyperlink{a01328_a950067ec358a96fdff38c38ac6ac6ca4}{strainFunction}}(par, dx);}
-\DoxyCodeLine{255     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.getParameter(\mbox{\hyperlink{a00315_gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8}{Ikarus::FEParameter::loadfactor}});}
-\DoxyCodeLine{256     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
-\DoxyCodeLine{257     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00345}{Dune}};}
-\DoxyCodeLine{258 }
-\DoxyCodeLine{259     \textcolor{keyword}{const} \textcolor{keyword}{auto} C = \mbox{\hyperlink{a01328_a9b8a8b22100c74f236bc974262db042a}{materialTangent}}();}
-\DoxyCodeLine{260 }
-\DoxyCodeLine{261     ScalarType energy = 0.0;}
-\DoxyCodeLine{262     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : eps.viewOverIntegrationPoints()) \{}
-\DoxyCodeLine{263       \textcolor{keyword}{const} \textcolor{keyword}{auto} EVoigt = eps.evaluate(gpIndex, on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}));}
-\DoxyCodeLine{264       energy += (0.5 * EVoigt.dot(C * EVoigt)) * geo\_-\/>integrationElement(gp.position()) * gp.weight();}
-\DoxyCodeLine{265     \}}
-\DoxyCodeLine{266 }
-\DoxyCodeLine{267     \textcolor{comment}{// External forces volume forces over the domain}}
-\DoxyCodeLine{268     energy += \mbox{\hyperlink{a01336_a7ec1326b708d8c08fee05ca7b601f997}{VolumeType::calculateScalarImpl}}(par, dx);}
-\DoxyCodeLine{269 }
-\DoxyCodeLine{270     \textcolor{comment}{// line or surface loads, i.e., neumann boundary}}
-\DoxyCodeLine{271     energy += \mbox{\hyperlink{a01332_a2576d38cb79bb0b5bf59f433fa7c1633}{TractionType::calculateScalarImpl}}(par, dx);}
-\DoxyCodeLine{272     \textcolor{keywordflow}{return} energy;}
-\DoxyCodeLine{273   \}}
-\DoxyCodeLine{274 }
-\DoxyCodeLine{275   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType>}
-\DoxyCodeLine{276   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01328_af75f290aad4b52072053aa027d4b2f0d}{calculateVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01328_a68a72cb2746c3c4cac9ee3878d5d548e}{FERequirementType}}\& par, \textcolor{keyword}{typename} Traits::template VectorType<ScalarType> force,}
-\DoxyCodeLine{277                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ScalarType>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{278     \textcolor{keyword}{const} \textcolor{keyword}{auto} eps = \mbox{\hyperlink{a01328_a950067ec358a96fdff38c38ac6ac6ca4}{strainFunction}}(par, dx);}
-\DoxyCodeLine{279     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
-\DoxyCodeLine{280     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00345}{Dune}};}
-\DoxyCodeLine{281 }
-\DoxyCodeLine{282     \textcolor{keyword}{const} \textcolor{keyword}{auto} C = \mbox{\hyperlink{a01328_a9b8a8b22100c74f236bc974262db042a}{materialTangent}}();}
-\DoxyCodeLine{283 }
-\DoxyCodeLine{284     \textcolor{comment}{// Internal forces}}
-\DoxyCodeLine{285     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : eps.viewOverIntegrationPoints()) \{}
-\DoxyCodeLine{286       \textcolor{keyword}{const} \textcolor{keywordtype}{double} intElement = geo\_-\/>integrationElement(gp.position()) * gp.weight();}
-\DoxyCodeLine{287       \textcolor{keyword}{auto} stresses           = (C * eps.evaluate(gpIndex, on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}))).eval();}
-\DoxyCodeLine{288       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < numberOfNodes\_; ++i) \{}
-\DoxyCodeLine{289         \textcolor{keyword}{const} \textcolor{keyword}{auto} bopI = eps.evaluateDerivative(gpIndex, wrt(coeff(i)), on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}));}
-\DoxyCodeLine{290         force.template segment<myDim>(\mbox{\hyperlink{a01328_abdafebbb8089d2c0a9ec5ff9ec30e87e}{myDim}} * i) += bopI.transpose() * stresses * intElement;}
-\DoxyCodeLine{291       \}}
-\DoxyCodeLine{292     \}}
-\DoxyCodeLine{293 }
-\DoxyCodeLine{294     \textcolor{comment}{// External forces volume forces over the domain}}
-\DoxyCodeLine{295     \mbox{\hyperlink{a01336_a9b91a057a51ab4487656d8bd94fdd234}{VolumeType::calculateVectorImpl}}(par, force, dx);}
-\DoxyCodeLine{296 }
-\DoxyCodeLine{297     \textcolor{comment}{// External forces, boundary forces, i.e., at the Neumann boundary}}
-\DoxyCodeLine{298     \mbox{\hyperlink{a01332_aabcfd5d855e2230fe90abb12a1ba8d2b}{TractionType::calculateVectorImpl}}(par, force, dx);}
-\DoxyCodeLine{299   \}}
-\DoxyCodeLine{300 \};}
-\DoxyCodeLine{301 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{302 }
-\DoxyCodeLine{303 \textcolor{preprocessor}{\#else}}
-\DoxyCodeLine{304 \textcolor{preprocessor}{  \#error LinearElastic depends on dune-\/localfefunctions, which is not included}}
-\DoxyCodeLine{305 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{250   \textcolor{keyword}{auto} \mbox{\hyperlink{a01328_a2bd57b0020bc5144908df7d582533cc7}{calculateScalarImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01328_a68a72cb2746c3c4cac9ee3878d5d548e}{FERequirementType}}\& par, \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ScalarType>>\& dx =}
+\DoxyCodeLine{251                                                              std::nullopt) \textcolor{keyword}{const} -\/> ScalarType \{}
+\DoxyCodeLine{252     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = \mbox{\hyperlink{a01328_a6526cbcd08616598920cf2286ff041bf}{displacementFunction}}(par, dx);}
+\DoxyCodeLine{253     \textcolor{keyword}{const} \textcolor{keyword}{auto} eps       = \mbox{\hyperlink{a01328_a950067ec358a96fdff38c38ac6ac6ca4}{strainFunction}}(par, dx);}
+\DoxyCodeLine{254     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.getParameter(\mbox{\hyperlink{a00315_gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8}{Ikarus::FEParameter::loadfactor}});}
+\DoxyCodeLine{255     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{256     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00345}{Dune}};}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{258     \textcolor{keyword}{const} \textcolor{keyword}{auto} C = \mbox{\hyperlink{a01328_a9b8a8b22100c74f236bc974262db042a}{materialTangent}}();}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260     ScalarType energy = 0.0;}
+\DoxyCodeLine{261     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : eps.viewOverIntegrationPoints()) \{}
+\DoxyCodeLine{262       \textcolor{keyword}{const} \textcolor{keyword}{auto} EVoigt = eps.evaluate(gpIndex, on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}));}
+\DoxyCodeLine{263       energy += (0.5 * EVoigt.dot(C * EVoigt)) * geo\_-\/>integrationElement(gp.position()) * gp.weight();}
+\DoxyCodeLine{264     \}}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266     \textcolor{comment}{// External forces volume forces over the domain}}
+\DoxyCodeLine{267     energy += \mbox{\hyperlink{a01336_a7ec1326b708d8c08fee05ca7b601f997}{VolumeType::calculateScalarImpl}}(par, dx);}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269     \textcolor{comment}{// line or surface loads, i.e., neumann boundary}}
+\DoxyCodeLine{270     energy += \mbox{\hyperlink{a01332_a2576d38cb79bb0b5bf59f433fa7c1633}{TractionType::calculateScalarImpl}}(par, dx);}
+\DoxyCodeLine{271     \textcolor{keywordflow}{return} energy;}
+\DoxyCodeLine{272   \}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{275   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01328_af75f290aad4b52072053aa027d4b2f0d}{calculateVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01328_a68a72cb2746c3c4cac9ee3878d5d548e}{FERequirementType}}\& par, \textcolor{keyword}{typename} Traits::template VectorType<ScalarType> force,}
+\DoxyCodeLine{276                            \textcolor{keyword}{const} std::optional<\textcolor{keyword}{const} Eigen::VectorX<ScalarType>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{277     \textcolor{keyword}{const} \textcolor{keyword}{auto} eps = \mbox{\hyperlink{a01328_a950067ec358a96fdff38c38ac6ac6ca4}{strainFunction}}(par, dx);}
+\DoxyCodeLine{278     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{279     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00345}{Dune}};}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281     \textcolor{keyword}{const} \textcolor{keyword}{auto} C = \mbox{\hyperlink{a01328_a9b8a8b22100c74f236bc974262db042a}{materialTangent}}();}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283     \textcolor{comment}{// Internal forces}}
+\DoxyCodeLine{284     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : eps.viewOverIntegrationPoints()) \{}
+\DoxyCodeLine{285       \textcolor{keyword}{const} \textcolor{keywordtype}{double} intElement = geo\_-\/>integrationElement(gp.position()) * gp.weight();}
+\DoxyCodeLine{286       \textcolor{keyword}{auto} stresses           = (C * eps.evaluate(gpIndex, on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}))).eval();}
+\DoxyCodeLine{287       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < numberOfNodes\_; ++i) \{}
+\DoxyCodeLine{288         \textcolor{keyword}{const} \textcolor{keyword}{auto} bopI = eps.evaluateDerivative(gpIndex, wrt(coeff(i)), on(\mbox{\hyperlink{a01232_a986d3b0d39a10f702bddff51023d38ef}{gridElement}}));}
+\DoxyCodeLine{289         force.template segment<myDim>(\mbox{\hyperlink{a01328_abdafebbb8089d2c0a9ec5ff9ec30e87e}{myDim}} * i) += bopI.transpose() * stresses * intElement;}
+\DoxyCodeLine{290       \}}
+\DoxyCodeLine{291     \}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293     \textcolor{comment}{// External forces volume forces over the domain}}
+\DoxyCodeLine{294     \mbox{\hyperlink{a01336_a9b91a057a51ab4487656d8bd94fdd234}{VolumeType::calculateVectorImpl}}(par, force, dx);}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{296     \textcolor{comment}{// External forces, boundary forces, i.e., at the Neumann boundary}}
+\DoxyCodeLine{297     \mbox{\hyperlink{a01332_aabcfd5d855e2230fe90abb12a1ba8d2b}{TractionType::calculateVectorImpl}}(par, force, dx);}
+\DoxyCodeLine{298   \}}
+\DoxyCodeLine{299 \};}
+\DoxyCodeLine{300 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{302 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{303 \textcolor{preprocessor}{  \#error LinearElastic depends on dune-\/localfefunctions, which is not included}}
+\DoxyCodeLine{304 \textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCode}
