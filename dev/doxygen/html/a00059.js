@@ -1,4 +1,4 @@
 var a00059 =
 [
-    [ "ct_sqrt", "a00059.html#ae55d4d0c3478ab3ecf54ce905ddf223b", null ]
+    [ "forEachLeafOrPowerLeafNode", "a00059.html#a63742d75d099b93da7ddf6e78a3c1f56", null ]
 ];

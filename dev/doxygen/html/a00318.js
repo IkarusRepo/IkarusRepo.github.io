@@ -1,9 +1,9 @@
 var a00318 =
 [
     [ "Result Evaluator", "a00319.html", "a00319" ],
-    [ "resultfunction.hh", "a00119.html", null ],
-    [ "griddrawer.hh", "a00176.html", null ],
-    [ "matplothelper.hh", "a00179.html", null ],
+    [ "resultfunction.hh", "a00281.html", null ],
+    [ "griddrawer.hh", "a00236.html", null ],
+    [ "matplothelper.hh", "a00239.html", null ],
     [ "Ikarus::ResultFunction< FE, RT, UserFunction >", "a01412.html", [
       [ "ctype", "a01412.html#a4e651e2b6ae31a5d8f7ffc7d2ea60cc2", null ],
       [ "Entity", "a01412.html#ad99a2516a5afbec772508d574bc0d445", null ],

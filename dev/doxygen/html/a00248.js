@@ -1,4 +1,5 @@
 var a00248 =
 [
-    [ "Ikarus::AutoDiffFE< FEImpl, forceAutoDiff >", "a01228.html", "a01228" ]
+    [ "Ikarus::NewtonRaphsonSettings", "a01440.html", "a01440" ],
+    [ "makeNewtonRaphson", "a00248.html#afa463e708cffd14133ff65ffa366e329", null ]
 ];

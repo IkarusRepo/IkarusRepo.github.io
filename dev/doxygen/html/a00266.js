@@ -1,6 +1,6 @@
 var a00266 =
 [
-    [ "globalIndices", "a00266.html#a44e16df41148f7e4538be224814a3423", null ],
-    [ "globalIndicesFromLocalView", "a00266.html#a2a4ac5503d4288b339457aae427ff661", null ],
-    [ "localSolutionBlockVector", "a00266.html#a98c9e3d7c5cc47d0c177684a18a41bd5", null ]
+    [ "makeRT", "a00266.html#a0c4929e934cac15273062246c33ee83b", null ],
+    [ "registerCalculateAt", "a00266.html#a2dff353f014f93e29c1bdfc0ae239483", null ],
+    [ "registerElement", "a00266.html#ga40f83e4d7b90006b1019add3b1b218b5", null ]
 ];
