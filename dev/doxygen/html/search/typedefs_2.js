@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['densematrixtype_0',['DenseMatrixType',['../a01428.html#a9f52825b9226c080976fa759fc0f5a1b',1,'Ikarus::LinearSolverTemplate']]],
-  ['dirichletvaluestype_1',['DirichletValuesType',['../a01172.html#abf6599ec65ab1574a3282a553584f9e9',1,'Ikarus::FlatAssemblerBase::DirichletValuesType()'],['../a01176.html#abf6599ec65ab1574a3282a553584f9e9',1,'Ikarus::ScalarAssembler::DirichletValuesType()'],['../a01180.html#abf6599ec65ab1574a3282a553584f9e9',1,'Ikarus::VectorFlatAssembler::DirichletValuesType()'],['../a01184.html#abf6599ec65ab1574a3282a553584f9e9',1,'Ikarus::SparseFlatAssembler::DirichletValuesType()'],['../a01188.html#abf6599ec65ab1574a3282a553584f9e9',1,'Ikarus::DenseFlatAssembler::DirichletValuesType()']]],
-  ['displacementbasedelement_2',['DisplacementBasedElement',['../a01316.html#aa4d918d0864a183347834f9861174790',1,'Ikarus::EnhancedAssumedStrains']]],
-  ['dtype_3',['DType',['../a01284.html#a79fdb2f95c2bbb280d4eb9a9b7c67853',1,'Ikarus::EAS::E0::DType()'],['../a01288.html#a1c7282dcb16d89f3f99b761ce4cda63c',1,'Ikarus::EAS::Q1E4::DType()'],['../a01292.html#a266e586d6789650b99c28a51b71bfbcd',1,'Ikarus::EAS::Q1E5::DType()'],['../a01296.html#ac2ba07352f98839cbce9e189d413aadb',1,'Ikarus::EAS::Q1E7::DType()'],['../a01300.html#a8b6d59f0d800bd906c8cedccc42226aa',1,'Ikarus::EAS::H1E9::DType()'],['../a01304.html#aeaaa49260e562a79e3114a2003f7af7d',1,'Ikarus::EAS::H1E21::DType()']]]
+  ['correctiontype_0',['CorrectionType',['../a01529.html#a1071054a0b75f9fbe27832ea672792b0',1,'Ikarus::TrustRegion']]],
+  ['ctype_1',['ctype',['../a01301.html#ae482c12278849bd5663fe3fbb6c07369',1,'Ikarus::FETraits::ctype()'],['../a01469.html#a4e651e2b6ae31a5d8f7ffc7d2ea60cc2',1,'Ikarus::ResultFunction::ctype()']]]
 ];

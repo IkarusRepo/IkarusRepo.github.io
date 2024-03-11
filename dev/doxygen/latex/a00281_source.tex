@@ -1,92 +1,75 @@
-\hypertarget{a00281_source}{}\doxysection{resultfunction.\+hh}
-\label{a00281_source}\index{resultfunction.hh@{resultfunction.hh}}
+\hypertarget{a00281_source}{}\doxysection{flatassembler.\+hh}
+\label{a00281_source}\index{flatassembler.hh@{flatassembler.hh}}
 \mbox{\hyperlink{a00281}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/vtk/function.hh>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00122}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00328}{Ikarus}} \{}
-\DoxyCodeLine{22 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{23   \textcolor{keyword}{struct }DefaultUserFunction}
-\DoxyCodeLine{24   \{}
-\DoxyCodeLine{25   \};}
-\DoxyCodeLine{26 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{48 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
-\DoxyCodeLine{49 \textcolor{keyword}{class }\mbox{\hyperlink{a01412}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename FE::GridView>}
-\DoxyCodeLine{50 \{}
-\DoxyCodeLine{51 \textcolor{keyword}{public}:}
-\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a462849088db04badf789b2ae6a25de24}{FiniteElement}}          = FE;}
-\DoxyCodeLine{53   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a043d48848bdb6a0ca7a7697ee34f2e66}{FERequirementType}}      = \textcolor{keyword}{typename} FiniteElement::FERequirementType;}
-\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a6d7963f63478595dabdcc5c82c8e8b7a}{GridView}}               = \textcolor{keyword}{typename} FiniteElement::GridView;}
-\DoxyCodeLine{55   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a4e651e2b6ae31a5d8f7ffc7d2ea60cc2}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
-\DoxyCodeLine{56   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01412_a538071ba82449437844f32b713dd8c63}{griddim}} = GridView::dimension;}
-\DoxyCodeLine{57   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_ad99a2516a5afbec772508d574bc0d445}{Entity}}                 = \textcolor{keyword}{typename} GridView::template Codim<0>::Entity;}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{69   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01412_ad57b905d776716fc3f95db9eb4ebc3df}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01412_ad99a2516a5afbec772508d574bc0d445}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01520}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{70     \textcolor{keyword}{auto} index = gridView\_.indexSet().index(e);}
-\DoxyCodeLine{71     \textcolor{keywordflow}{return} evaluateComponent(index, local, comp);}
-\DoxyCodeLine{72   \}}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{81   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01412_a27adc5ad8cd9204d76c96725c0c73f97}{ncomps}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{82     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
-\DoxyCodeLine{83       \mbox{\hyperlink{a01520}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
-\DoxyCodeLine{84       \textcolor{keyword}{auto} sigma = fes\_-\/>at(0).template calculateAt<RT>(feRequirements\_, val).asVec();}
-\DoxyCodeLine{85       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.size());}
-\DoxyCodeLine{86     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{87       \textcolor{keywordflow}{return} userFunction\_.ncomps();}
-\DoxyCodeLine{88   \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{97   [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01412_a0e3cdc77b411175c6c49cd6376a2ce4d}{name}}()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{98     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ userFunction\_.name(); \})}
-\DoxyCodeLine{99       \textcolor{keywordflow}{return} userFunction\_.name();}
-\DoxyCodeLine{100     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{101       \textcolor{keywordflow}{return} toString<RT>();}
-\DoxyCodeLine{102   \}}
-\DoxyCodeLine{103 }
-\DoxyCodeLine{112   \mbox{\hyperlink{a01412_acab2c08cf57c047768019b1843d8d1b7}{ResultFunction}}(std::vector<FiniteElement>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01412_a043d48848bdb6a0ca7a7697ee34f2e66}{FERequirementType}}\& req)}
-\DoxyCodeLine{113       : gridView\_\{fes-\/>at(0).localView().globalBasis().gridView()\},}
-\DoxyCodeLine{114         feRequirements\_\{req\},}
-\DoxyCodeLine{115         fes\_\{fes\},}
-\DoxyCodeLine{116         userFunction\_\{UserFunction\{\}\} \{\}}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{118 \textcolor{keyword}{private}:}
-\DoxyCodeLine{119   \textcolor{keywordtype}{double} evaluateComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01520}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{120     \textcolor{keyword}{auto} result = fes\_-\/>at(eleID).template calculateAt<RT>(feRequirements\_, local).asVec();}
-\DoxyCodeLine{121 }
-\DoxyCodeLine{122     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
-\DoxyCodeLine{123       \textcolor{keywordflow}{return} userFunction\_(result, comp);}
-\DoxyCodeLine{124     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{125       \textcolor{keywordflow}{return} result(comp);}
-\DoxyCodeLine{126   \}}
-\DoxyCodeLine{127 }
-\DoxyCodeLine{128   \mbox{\hyperlink{a01412_a6d7963f63478595dabdcc5c82c8e8b7a}{GridView}} gridView\_;}
-\DoxyCodeLine{129   \mbox{\hyperlink{a01412_a043d48848bdb6a0ca7a7697ee34f2e66}{FERequirementType}} feRequirements\_;}
-\DoxyCodeLine{130   std::vector<FiniteElement>* fes\_;}
-\DoxyCodeLine{131   [[no\_unique\_address]] std::string name\_\{\};}
-\DoxyCodeLine{132   UserFunction userFunction\_;}
-\DoxyCodeLine{133 \};}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{147 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
-\DoxyCodeLine{148 \textcolor{keyword}{auto} \mbox{\hyperlink{a00328_a5ee77b303105a35f65ea2acdde85773b}{makeResultFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} FE::FERequirementType\& req) \{}
-\DoxyCodeLine{149   \textcolor{keywordflow}{return} std::make\_shared<ResultFunction<FE, RT, UserFunction>>(fes, req);}
-\DoxyCodeLine{150 \}}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{168 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
-\DoxyCodeLine{169 \textcolor{keyword}{auto} \mbox{\hyperlink{a00328_a353cbf06276ae094d8f5590507279e06}{makeResultVtkFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} FE::FERequirementType\& req) \{}
-\DoxyCodeLine{170   \textcolor{keywordflow}{return} Dune::Vtk::Function<typename FE::GridView>(std::make\_shared<\mbox{\hyperlink{a01412}{ResultFunction<FE, RT, UserFunction>}}>(fes, req));}
-\DoxyCodeLine{171 \}}
-\DoxyCodeLine{172 }
-\DoxyCodeLine{173 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02527}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00349}{Ikarus::Python}} \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                                                                \(\backslash\)}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{                                                                                                                           \(\backslash\)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{  template <class Assembler, class... options>                                                                                 \(\backslash\)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{                                   \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
+\DoxyCodeLine{47     using FEContainer         = typename Assembler::FEContainer;                                                               \(\backslash\)}
+\DoxyCodeLine{48     using Basis               = typename Assembler::Basis;                                                                     \(\backslash\)}
+\DoxyCodeLine{49     using DirichletValuesType = typename Assembler::DirichletValuesType;                                                       \(\backslash\)}
+\DoxyCodeLine{50     using FERequirementType   = typename Assembler::FERequirementType;                                                         \(\backslash\)}
+\DoxyCodeLine{51     pybind11::module m        = pybind11::module::import("{}ikarus"{});                                                            \(\backslash\)}
+\DoxyCodeLine{52     cls.def(pybind11::init([](const pybind11::list\& fes, const DirichletValuesType\& dirichletValues) \{                         \(\backslash\)}
+\DoxyCodeLine{53               \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that            \(\backslash\)}}
+\DoxyCodeLine{54 \textcolor{comment}{               * the user can pass native python lists here, see                                                               \(\backslash\)}}
+\DoxyCodeLine{55 \textcolor{comment}{               * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}\textcolor{preprocessor}{                                           \(\backslash\)}}
+\DoxyCodeLine{56 \textcolor{preprocessor}{              FEContainer fesV = fes.template cast<FEContainer>();                                                             \(\backslash\)}}
+\DoxyCodeLine{57 \textcolor{preprocessor}{              return new Assembler(std::move(fesV), dirichletValues);                                                          \(\backslash\)}}
+\DoxyCodeLine{58 \textcolor{preprocessor}{            \}),                                                                                                                \(\backslash\)}}
+\DoxyCodeLine{59 \textcolor{preprocessor}{            pybind11::keep\_alive<1, 3>());                                                                                     \(\backslash\)}}
+\DoxyCodeLine{60 \textcolor{preprocessor}{                                                                                                                               \(\backslash\)}}
+\DoxyCodeLine{61 \textcolor{preprocessor}{    }\textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}\textcolor{preprocessor}{                \(\backslash\)}}
+\DoxyCodeLine{62 \textcolor{preprocessor}{    }\textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341 \(\backslash\)}}
+\DoxyCodeLine{63 \textcolor{comment}{     */}\textcolor{preprocessor}{                                                                                                                        \(\backslash\)}}
+\DoxyCodeLine{64 \textcolor{preprocessor}{    cls.def(                                                                                                                   \(\backslash\)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{        "{}getMatrix"{}},                                                                                                           \(\backslash\)}
+\DoxyCodeLine{66         [](Assembler\& self, const FERequirementType\& req) -\/> std::remove\_cvref\_t<decltype(self.getMatrix(req))> \{              \(\backslash\)}
+\DoxyCodeLine{67           return self.getMatrix(req);                                                                                          \(\backslash\)}
+\DoxyCodeLine{68         \},                                                                                                                     \(\backslash\)}
+\DoxyCodeLine{69         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{70     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{71         "{}getReducedMatrix"{},                                                                                                    \(\backslash\)}
+\DoxyCodeLine{72         [](Assembler\& self, const FERequirementType\& req)                                                                      \(\backslash\)}
+\DoxyCodeLine{73             -\/> std::remove\_cvref\_t<decltype(self.getReducedMatrix(req))> \{ return self.getReducedMatrix(req); \},               \(\backslash\)}
+\DoxyCodeLine{74         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{75     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{76         "{}getVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getVector(req); \},                        \(\backslash\)}
+\DoxyCodeLine{77         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
+\DoxyCodeLine{78     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{79         "{}getScalar"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getScalar(req); \},                        \(\backslash\)}
+\DoxyCodeLine{80         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
+\DoxyCodeLine{81     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{82         "{}getReducedVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getReducedVector(req); \},          \(\backslash\)}
+\DoxyCodeLine{83         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
+\DoxyCodeLine{84     cls.def(                                                                                                                   \(\backslash\)}
+\DoxyCodeLine{85         "{}createFullVector"{},                                                                                                    \(\backslash\)}
+\DoxyCodeLine{86         [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ return self.createFullVector(redVec); \},               \(\backslash\)}
+\DoxyCodeLine{87         pybind11::return\_value\_policy::move);                                                                                  \(\backslash\)}
+\DoxyCodeLine{88     cls.def("{}reducedSize"{}, [](Assembler\& self) \{ return self.reducedSize(); \}, pybind11::return\_value\_policy::copy);           \(\backslash\)}
+\DoxyCodeLine{89   \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \mbox{\hyperlink{a00281_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01193}{SparseFlatAssembler}});}
+\DoxyCodeLine{92 \mbox{\hyperlink{a00281_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01197}{DenseFlatAssembler}});}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

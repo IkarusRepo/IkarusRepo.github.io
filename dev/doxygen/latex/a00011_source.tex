@@ -1,35 +1,26 @@
-\hypertarget{a00011_source}{}\doxysection{defaultfunctions.\+hh}
-\label{a00011_source}\index{defaultfunctions.hh@{defaultfunctions.hh}}
+\hypertarget{a00011_source}{}\doxysection{autodiffhelper.\+hh}
+\label{a00011_source}\index{autodiffhelper.hh@{autodiffhelper.hh}}
 \mbox{\hyperlink{a00011}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00065}{linearalgebrahelper.hh}}"{}}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00341}{Ikarus::utils}} \{}
-\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01508}{SolverDefault}}}
-\DoxyCodeLine{26 \{}
-\DoxyCodeLine{27   \textcolor{keyword}{template} <\textcolor{keyword}{typename} A, \textcolor{keyword}{typename} B>}
-\DoxyCodeLine{28   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01508_a4797d17bf96aa9e387567878a9591d7a}{operator()}}(A\&\& a, B\&\& b)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{29     \textcolor{keywordflow}{return} a / b;}
-\DoxyCodeLine{30   \}}
-\DoxyCodeLine{31 \};}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{45 \textcolor{keyword}{struct }\mbox{\hyperlink{a01512}{UpdateDefault}}}
-\DoxyCodeLine{46 \{}
-\DoxyCodeLine{47   \textcolor{keyword}{template} <\textcolor{keyword}{typename} A, \textcolor{keyword}{typename} B>}
-\DoxyCodeLine{48   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01512_a23b7d9d2df3caa179c9fbc353efaed36}{operator()}}(A\&\& a, B\&\& b)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{49     \textcolor{keyword}{using }Ikarus::operator+=;}
-\DoxyCodeLine{50     a += b;}
-\DoxyCodeLine{51   \}}
-\DoxyCodeLine{52 \};}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{61 \textcolor{keyword}{struct }\mbox{\hyperlink{a01516}{LoadDefault}}}
-\DoxyCodeLine{62 \{}
-\DoxyCodeLine{63 \};}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65 \} \textcolor{comment}{// namespace Ikarus::utils}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <autodiff/forward/dual.hpp>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <autodiff/forward/dual/eigen.hpp>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00350}{Ikarus::utils}} \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{34 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Fun, \textcolor{keyword}{typename}... Vars, \textcolor{keyword}{typename}... Args, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename} G, \textcolor{keyword}{typename} H>}
+\DoxyCodeLine{35 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00332_ga2a6c26beeb8d52283e82939ca585dc20}{hessianN}}(\textcolor{keyword}{const} Fun\& f, \textcolor{keyword}{const} autodiff::Wrt<Vars...>\& wrt, \textcolor{keyword}{const} autodiff::At<Args...>\& at, U\& u,}
+\DoxyCodeLine{36               std::array<G, U::RowsAtCompileTime>\& g, std::array<H, U::RowsAtCompileTime>\& h) \{}
+\DoxyCodeLine{37   \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}...(Vars) >= 1);}
+\DoxyCodeLine{38   \textcolor{keyword}{static\_assert}(\textcolor{keyword}{sizeof}...(Args) >= 1);}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keyword}{auto} fEntry = [\&](\textcolor{keyword}{auto}\& I) \{ \textcolor{keywordflow}{return} [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto}\&) \{ \textcolor{keywordflow}{return} std::apply(f, at.args)[I]; \}; \};}
+\DoxyCodeLine{41   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < U::RowsAtCompileTime; ++i)}
+\DoxyCodeLine{42     hessian(fEntry(i), wrt, at, u[i], g[i], h[i]);}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 \} \textcolor{comment}{// namespace Ikarus::utils}}
 
 \end{DoxyCode}

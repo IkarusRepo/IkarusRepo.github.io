@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['valuetype_0',['ValueType',['../a01444.html#aeecb2abbbd2c547db013f45e673b7291',1,'Ikarus::NewtonRaphson::ValueType()'],['../a01452.html#a2bfe4785b1216911ef967fea45a4b9e8',1,'Ikarus::NewtonRaphsonWithSubsidiaryFunction::ValueType()'],['../a01472.html#a44fa96b7ca63e50d8ed3707b4129369b',1,'Ikarus::TrustRegion::ValueType()']]],
-  ['variant_1',['Variant',['../a01312.html#a653fb870d396bedf5cb343718e0d2f22',1,'Ikarus::EAS::EASVariant']]],
-  ['vectortype_2',['VectorType',['../a01280.html#a73fa47f80d3754292d0e40fa045e8c3f',1,'Ikarus::FETraits']]],
-  ['vectype_3',['VecType',['../a01276.html#ad2e94e390a1a328d7abd8006f29dbbd2',1,'Ikarus::ResultWrapper']]],
-  ['volumetype_4',['VolumeType',['../a01320.html#a03bfb93b3d71a2de4d7d398796187435',1,'Ikarus::KirchhoffLoveShell::VolumeType()'],['../a01328.html#a827cb2b8d4b745e07db3955c25c35f4b',1,'Ikarus::LinearElastic::VolumeType()'],['../a01368.html#ac482d71948b655196ad06dc23d57a467',1,'Ikarus::NonLinearElastic::VolumeType()']]]
+  ['underlying_0',['Underlying',['../a01405.html#aafb996e2bc6468edcb8cb5db451eb8d8',1,'Ikarus::VanishingStress']]],
+  ['untouchedbasis_1',['UntouchedBasis',['../a01301.html#a4719264338fcac373cb39a44a5ffc7d3',1,'Ikarus::FETraits::UntouchedBasis()'],['../a01541.html#a27e6a76ae18f154cc833c1b4ecafd35b',1,'Ikarus::BasisHandler::UntouchedBasis()']]],
+  ['updatefunction_2',['UpdateFunction',['../a01501.html#a3c66f49cc8972a9e93322724be43d6c1',1,'Ikarus::NewtonRaphson::UpdateFunction()'],['../a01529.html#a7f187a825b0a65e7d9ab1c21578da1cf',1,'Ikarus::TrustRegion::UpdateFunction()']]],
+  ['updatefunctiontype_3',['UpdateFunctionType',['../a01509.html#a129397c33f072adf0a119868280ae165',1,'Ikarus::NewtonRaphsonWithSubsidiaryFunction']]]
 ];

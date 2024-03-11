@@ -1,4 +1,5 @@
 var a00191 =
 [
-    [ "Ikarus::EAS::EASVariant< Geometry >", "a01312.html", "a01312" ]
+    [ "Ikarus::EnhancedAssumedStrainsPre", "a01341.html", "a01341" ],
+    [ "eas", "a00191.html#a95d330fd032b3ed38354e893a814d33a", null ]
 ];

@@ -1,5 +1,5 @@
 var a00161 =
 [
-    [ "Ikarus::CorrectStrainSize", "a01646.html", null ],
-    [ "hasCorrectSize", "a00161.html#ab6a92f48acd6be62f36b7f499491fc8a", null ]
+    [ "Ikarus::NonLinearElasticPre< MAT >", "a01417.html", "a01417" ],
+    [ "nonLinearElastic", "a00161.html#a6f028adf5a1a78301381fe92b241d550", null ]
 ];

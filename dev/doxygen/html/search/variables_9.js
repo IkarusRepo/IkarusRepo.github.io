@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['j_0',['j',['../a01324.html#ac3e1caec6ac3f5e9d02b8586442b1c45',1,'Ikarus::KirchhoffLoveShell::KinematicVariables']]],
-  ['j_1',['J',['../a01324.html#a9e450cf385c85e1b5fd668e9c537d714',1,'Ikarus::KirchhoffLoveShell::KinematicVariables']]]
+  ['j_0',['J',['../a01353.html#af58b37d5448b1e9ddd2148992f57006e',1,'Ikarus::KirchhoffLoveShell::KinematicVariables']]],
+  ['j_1',['j',['../a01353.html#a7d632741a1be67d3d2228ef97c1caedb',1,'Ikarus::KirchhoffLoveShell::KinematicVariables']]]
 ];

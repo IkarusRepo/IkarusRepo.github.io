@@ -1,4 +1,4 @@
 var a00023 =
 [
-    [ "polyfit", "a00023.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
+    [ "findLineSegment", "a00023.html#ga16e7d5f51cc42190c090e727495c1609", null ]
 ];

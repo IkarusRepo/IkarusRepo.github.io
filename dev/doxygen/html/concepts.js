@@ -1,39 +1,40 @@
 var concepts =
 [
-    [ "Ikarus", "a00328.html", [
-      [ "Concepts", "a00343.html", [
-        [ "FlatInterLeavedBasis", "a01648.html", null ],
-        [ "LagrangeNode", "a01649.html", null ],
-        [ "LagrangeNodeOfOrder", "a01650.html", null ],
-        [ "FlatLexicographicBasis", "a01651.html", null ],
-        [ "FlatIndexBasis", "a01652.html", null ],
-        [ "BlockedInterLeavedBasis", "a01653.html", null ],
-        [ "BlockedLexicographicBasis", "a01654.html", null ],
-        [ "DuneLocalBasis", "a01655.html", null ],
-        [ "BlockedIndexBasis", "a01656.html", null ],
-        [ "PathFollowingStrategy", "a01657.html", null ],
-        [ "AdaptiveStepSizingStrategy", "a01658.html", null ],
-        [ "LinearSolverCheck", "a01659.html", null ],
-        [ "NonLinearSolverCheckForPathFollowing", "a01660.html", null ],
-        [ "MultiplyAble", "a01661.html", null ],
-        [ "AddAble", "a01662.html", null ],
-        [ "SubstractAble", "a01663.html", null ],
-        [ "MultiplyAssignAble", "a01664.html", null ],
-        [ "DivideAssignAble", "a01665.html", null ],
-        [ "AddAssignAble", "a01666.html", null ],
-        [ "SubstractAssignAble", "a01667.html", null ],
-        [ "DivideAble", "a01668.html", null ],
-        [ "NegateAble", "a01669.html", null ],
-        [ "TransposeAble", "a01670.html", null ],
-        [ "IsFunctorWithArgs", "a01671.html", null ],
-        [ "EigenVector", "a01672.html", null ],
-        [ "IsMaterial", "a01673.html", null ]
+    [ "Ikarus", "a00337.html", [
+      [ "Concepts", "a00352.html", [
+        [ "FlatInterLeavedBasis", "a01701.html", null ],
+        [ "LagrangeNode", "a01702.html", null ],
+        [ "LagrangeNodeOfOrder", "a01703.html", null ],
+        [ "FlatLexicographicBasis", "a01704.html", null ],
+        [ "FlatIndexBasis", "a01705.html", null ],
+        [ "BlockedInterLeavedBasis", "a01706.html", null ],
+        [ "BlockedLexicographicBasis", "a01707.html", null ],
+        [ "DuneLocalBasis", "a01708.html", null ],
+        [ "BlockedIndexBasis", "a01709.html", null ],
+        [ "PathFollowingStrategy", "a01710.html", null ],
+        [ "AdaptiveStepSizingStrategy", "a01711.html", null ],
+        [ "LinearSolverCheck", "a01712.html", null ],
+        [ "NonLinearSolverCheckForPathFollowing", "a01713.html", null ],
+        [ "MultiplyAble", "a01714.html", null ],
+        [ "AddAble", "a01715.html", null ],
+        [ "SubstractAble", "a01716.html", null ],
+        [ "MultiplyAssignAble", "a01717.html", null ],
+        [ "DivideAssignAble", "a01718.html", null ],
+        [ "AddAssignAble", "a01719.html", null ],
+        [ "SubstractAssignAble", "a01720.html", null ],
+        [ "DivideAble", "a01721.html", null ],
+        [ "NegateAble", "a01722.html", null ],
+        [ "TransposeAble", "a01723.html", null ],
+        [ "IsFunctorWithArgs", "a01724.html", null ],
+        [ "EigenVector", "a01725.html", null ],
+        [ "IsMaterial", "a01726.html", null ],
+        [ "ResultType", "a01728.html", null ]
       ] ],
-      [ "traits", "a00348.html", [
-        [ "Pointer", "a01674.html", null ]
+      [ "traits", "a00357.html", [
+        [ "Pointer", "a01729.html", null ]
       ] ],
-      [ "FEAffordance", "a01645.html", null ],
-      [ "CorrectStrainSize", "a01646.html", null ],
-      [ "MPTuple", "a01647.html", null ]
+      [ "FEAffordance", "a01698.html", null ],
+      [ "CorrectStrainSize", "a01699.html", null ],
+      [ "MPTuple", "a01700.html", null ]
     ] ]
 ];

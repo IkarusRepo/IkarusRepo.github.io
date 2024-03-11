@@ -1,5 +1,5 @@
-\hypertarget{a00137_source}{}\doxysection{fetraits.\+hh}
-\label{a00137_source}\index{fetraits.hh@{fetraits.hh}}
+\hypertarget{a00137_source}{}\doxysection{autodifffe.\+hh}
+\label{a00137_source}\index{autodifffe.hh@{autodifffe.hh}}
 \mbox{\hyperlink{a00137}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,53 +7,148 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00122}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00026}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <autodiff/forward/dual/dual.hpp>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <autodiff/forward/dual/eigen.hpp>}}
 \DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00328}{Ikarus}} \{}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{24 \textcolor{keyword}{template} <\textcolor{keyword}{typename} BH, \textcolor{keywordtype}{bool} useFlat, \textcolor{keyword}{typename} FER = FERequirements<>, \textcolor{keywordtype}{bool} useRef = false>}
-\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01280}{FETraits}}}
-\DoxyCodeLine{26 \{}
-\DoxyCodeLine{28   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a51a9844eab6c795a32f43ccf1517f12c}{BasisHandler}} = BH;}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{31   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ad3bc71ff926094723d444a24507f2fe9}{FERequirementType}} = FER;}
-\DoxyCodeLine{32 }
-\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ac8e79137a3b4013a60a16c33ec79851f}{FlatBasis}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01484_a7252e605123456ef454c811cfb364bba}{BasisHandler::FlatBasis}};}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{37   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ab1d3b11a994172fb7afd78054b63d359}{UntouchedBasis}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01484_a27e6a76ae18f154cc833c1b4ecafd35b}{BasisHandler::UntouchedBasis}};}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00008}{ikarus/utils/traits.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus}} \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{26 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEImpl, \textcolor{keywordtype}{bool} forceAutoDiff = false>}
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{a01237}{AutoDiffFE}} : \textcolor{keyword}{public} FEImpl}
+\DoxyCodeLine{28 \{}
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_ac6509944238101aef666b1614df1d443}{RealFE}}            = FEImpl;                             }
+\DoxyCodeLine{31   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_ace1636b5cd13f380d0865682480e81b2}{BasisHandler}}      = \textcolor{keyword}{typename} RealFE::BasisHandler;      }
+\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_a4e63c92eb684ddda330b4cd3cb5b769e}{Traits}}            = \textcolor{keyword}{typename} RealFE::Traits;            }
+\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_ae985fb2fdb86d514700c4d57f03e97d5}{LocalView}}         = \textcolor{keyword}{typename} Traits::LocalView;         }
+\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_af1d3fa6b651ee728bd39a33c3c3da250}{Element}}           = \textcolor{keyword}{typename} Traits::Element;           }
+\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}} = \textcolor{keyword}{typename} Traits::FERequirementType; }
+\DoxyCodeLine{36 \textcolor{keyword}{private}:}
+\DoxyCodeLine{37   \textcolor{keyword}{using }Mixin = FEImpl::Mixin;}
 \DoxyCodeLine{38 }
-\DoxyCodeLine{40   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a6b63aa2dd2deb67d1ba0b43cf26e5479}{Basis}} = std::conditional\_t<useFlat, FlatBasis, UntouchedBasis>;}
-\DoxyCodeLine{41 }
-\DoxyCodeLine{43   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a149738c2035391cf29091db89531da54}{LocalView}} = \textcolor{keyword}{typename} Basis::LocalView;}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{46   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ae450a802ed92484644ca704e14cd2e10}{GridView}} = \textcolor{keyword}{typename} Basis::GridView;}
-\DoxyCodeLine{47 }
-\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ac6c597c5761e0d2933e18b6d5cae0b42}{Element}} = \textcolor{keyword}{typename} LocalView::Element;}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_aaeb925e7ad128cc0098ef2bf4d333aff}{Geometry}} = \textcolor{keyword}{typename} Element::Geometry;}
-\DoxyCodeLine{53 }
-\DoxyCodeLine{55   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_ab388cb79bd6e4509990dfccf553925bf}{GlobalIndex}} = \textcolor{keyword}{typename} LocalView::MultiIndex;}
-\DoxyCodeLine{56 }
-\DoxyCodeLine{58   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a4efa341b4c479869d663563c67ba3bcf}{ctype}} = double;}
-\DoxyCodeLine{59 }
-\DoxyCodeLine{61   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01280_af8979bc1bbd279960680ffb5b0b97af0}{worlddim}} = Geometry::coorddimension;}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{64   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01280_aa6e0a7723a33988224741c53a016971b}{mydim}} = Element::mydimension;}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{67   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01280_a2674e0530a174e7aad8adb78601e9717}{dimension}} = Element::dimension;}
-\DoxyCodeLine{68 }
-\DoxyCodeLine{70   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a51367b4efc959d2ea3c1c28c7fe4467b}{GlobalCoordinates}} = Eigen::Matrix<ctype, worlddim, 1>;}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{73   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a8bc1332eea6879dba1835830b5d4936b}{ParameterSpaceType}} = Eigen::Matrix<ctype, mydim, 1>;}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{76   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{77   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a73fa47f80d3754292d0e40fa045e8c3f}{VectorType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::VectorX<ScalarType>>, Eigen::VectorX<ScalarType>\&>;}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{80   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{81   \textcolor{keyword}{using }\mbox{\hyperlink{a01280_a91d126e148ad8d213a701e6a6982ec27}{MatrixType}} = std::conditional\_t<useRef, Eigen::Ref<Eigen::MatrixX<ScalarType>>, Eigen::MatrixX<ScalarType>\&>;}
-\DoxyCodeLine{82 \};}
-\DoxyCodeLine{83 }
-\DoxyCodeLine{84 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{39 \textcolor{keyword}{public}:}
+\DoxyCodeLine{47   \textcolor{keyword}{friend} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_a5a0cc9bfd5d14100d57c3f86cdc8ded0}{calculateMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237}{AutoDiffFE}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& par,}
+\DoxyCodeLine{48                               \textcolor{keyword}{typename} Traits::template MatrixType<> h) \{}
+\DoxyCodeLine{49     self.\mbox{\hyperlink{a01237_a5a0cc9bfd5d14100d57c3f86cdc8ded0}{calculateMatrix}}(par, h);}
+\DoxyCodeLine{50   \}}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{59   \textcolor{keyword}{friend} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ad77a73a181e9421c4fdeb5c519a7b732}{calculateVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237}{AutoDiffFE}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& par,}
+\DoxyCodeLine{60                               \textcolor{keyword}{typename} Traits::template VectorType<double> g) \{}
+\DoxyCodeLine{61     self.\mbox{\hyperlink{a01237_ad77a73a181e9421c4fdeb5c519a7b732}{calculateVector}}(par, g);}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{72   \textcolor{keyword}{friend} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_aa116bf7acf598c55b5107f20960d072d}{calculateLocalSystem}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237}{AutoDiffFE}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& par,}
+\DoxyCodeLine{73                                    \textcolor{keyword}{typename} Traits::template MatrixType<> h, \textcolor{keyword}{typename} Traits::template VectorType<> g) \{}
+\DoxyCodeLine{74     self.\mbox{\hyperlink{a01237_aa116bf7acf598c55b5107f20960d072d}{calculateLocalSystem}}(par, h, g);}
+\DoxyCodeLine{75   \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{84   \textcolor{keyword}{friend} \textcolor{keyword}{auto} \mbox{\hyperlink{a01237_a7609cd353b952119de2ea33bc39b96bb}{calculateScalar}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237}{AutoDiffFE}}\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& par) \{}
+\DoxyCodeLine{85     \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01237_a7609cd353b952119de2ea33bc39b96bb}{calculateScalar}}(par);}
+\DoxyCodeLine{86   \}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{93   \textcolor{keyword}{const} \mbox{\hyperlink{a01237_ac6509944238101aef666b1614df1d443}{RealFE}}\& \mbox{\hyperlink{a01237_a8bd5af319955bc66a08c074858df2303}{realFE}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} *\textcolor{keyword}{this}; \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{102   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{103   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01237_a26248faa29dc3165140f3647f94c5d4a}{AutoDiffFE}}(Args\&\&... args)}
+\DoxyCodeLine{104       : \mbox{\hyperlink{a01237_ac6509944238101aef666b1614df1d443}{RealFE}}\{std::forward<Args>(args)...\} \{\}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106 \textcolor{keyword}{private}:}
+\DoxyCodeLine{107   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_a5a0cc9bfd5d14100d57c3f86cdc8ded0}{calculateMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template MatrixType<> h)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{108     \textcolor{comment}{// real element implements calculateMatrix by itself, then we simply forward the call}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Eigen::VectorXd v) \{}
+\DoxyCodeLine{111                     \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>())}
+\DoxyCodeLine{112                         .\textcolor{keyword}{template} calculateMatrixImpl<double>(req, h, v);}
+\DoxyCodeLine{113                   \} and not forceAutoDiff) \{}
+\DoxyCodeLine{114       \textcolor{keywordflow}{return} Mixin::template calculateMatrixImpl<double>(req, h);}
+\DoxyCodeLine{115     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Eigen::VectorXdual v) \{}
+\DoxyCodeLine{116                            \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>())}
+\DoxyCodeLine{117                                .\textcolor{keyword}{template} calculateVectorImpl<autodiff::dual>(}
+\DoxyCodeLine{118                                    req, std::declval<\textcolor{keyword}{typename} Traits::template VectorType<autodiff::dual>>(), v);}
+\DoxyCodeLine{119                          \}) \{}
+\DoxyCodeLine{120       \textcolor{comment}{// real element implements calculateVector by itself, therefore we only need first order derivatives}}
+\DoxyCodeLine{121       Eigen::VectorXdual dx(this-\/>localView().size());}
+\DoxyCodeLine{122       Eigen::VectorXdual g(this-\/>localView().size());}
+\DoxyCodeLine{123       dx.setZero();}
+\DoxyCodeLine{124       \textcolor{keyword}{auto} f = [\textcolor{keyword}{this}, \&req, \&g](\textcolor{keyword}{auto}\& x) -\/> \textcolor{keyword}{auto}\& \{}
+\DoxyCodeLine{125         \textcolor{comment}{// Since req is const as a function argument, we can not make this lambda capture by mutable reference}}
+\DoxyCodeLine{126         \textcolor{comment}{// But we have to do this since for efficiency reason we reuse the g vector}}
+\DoxyCodeLine{127         \textcolor{comment}{// therefore, the only remaining option is to cast the const away from g}}
+\DoxyCodeLine{128         Eigen::VectorXdual\& gref = \textcolor{keyword}{const\_cast<}Eigen::VectorXdual\&\textcolor{keyword}{>}(g);}
+\DoxyCodeLine{129         gref.setZero();}
+\DoxyCodeLine{130         Mixin::template calculateVectorImpl<autodiff::dual>(req, gref, x);}
+\DoxyCodeLine{131         \textcolor{keywordflow}{return} g;}
+\DoxyCodeLine{132       \};}
+\DoxyCodeLine{133       jacobian(f, autodiff::wrt(dx), at(dx), g, h);}
+\DoxyCodeLine{134     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(\textcolor{keyword}{typename} Traits::template VectorType<autodiff::dual2nd> v) \{}
+\DoxyCodeLine{135                            \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>())}
+\DoxyCodeLine{136                                .\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual2nd>(req, v);}
+\DoxyCodeLine{137                          \}) \{}
+\DoxyCodeLine{138       \textcolor{comment}{// real element implements calculateScalar by itself, therefore we need second order derivatives}}
+\DoxyCodeLine{139       Eigen::VectorXdual2nd dx(this-\/>localView().size());}
+\DoxyCodeLine{140       Eigen::VectorXd g;}
+\DoxyCodeLine{141       autodiff::dual2nd e;}
+\DoxyCodeLine{142       dx.setZero();}
+\DoxyCodeLine{143       \textcolor{keyword}{auto} f = [\textcolor{keyword}{this}, \&req](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} Mixin::template calculateScalarImpl<autodiff::dual2nd>(req, x); \};}
+\DoxyCodeLine{144       hessian(f, autodiff::wrt(dx), at(dx), e, g, h);}
+\DoxyCodeLine{145     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{146       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
+\DoxyCodeLine{147                     \textcolor{stringliteral}{"{}Appropriate calculateScalarImpl or calculateVectorImpl functions are not implemented for the "{}}}
+\DoxyCodeLine{148                     \textcolor{stringliteral}{"{}chosen element."{}});}
+\DoxyCodeLine{149   \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_ad77a73a181e9421c4fdeb5c519a7b732}{calculateVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template VectorType<> g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{152     \textcolor{comment}{// real element implements calculateVector by itself, then we simply forward the call}}
+\DoxyCodeLine{153     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
+\DoxyCodeLine{154                     \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>())}
+\DoxyCodeLine{155                         .\textcolor{keyword}{template} calculateVectorImpl<double>(}
+\DoxyCodeLine{156                             req, std::declval<\textcolor{keyword}{typename} Traits::template VectorType<double>>(),}
+\DoxyCodeLine{157                             std::declval<const Eigen::VectorXd\&>());}
+\DoxyCodeLine{158                   \} and not forceAutoDiff) \{}
+\DoxyCodeLine{159       \textcolor{keywordflow}{return} Mixin::template calculateVectorImpl<double>(req, g);}
+\DoxyCodeLine{160     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
+\DoxyCodeLine{161                            \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>())}
+\DoxyCodeLine{162                                .\textcolor{keyword}{template} calculateScalarImpl<autodiff::dual>(req,}
+\DoxyCodeLine{163                                                                              std::declval<const Eigen::VectorXdual\&>());}
+\DoxyCodeLine{164                          \}) \{}
+\DoxyCodeLine{165       \textcolor{comment}{// real element implements calculateScalar by itself but no calculateVectorImpl, therefore we need first order}}
+\DoxyCodeLine{166       \textcolor{comment}{// derivatives}}
+\DoxyCodeLine{167       Eigen::VectorXdual dx(this-\/>localView().size());}
+\DoxyCodeLine{168       dx.setZero();}
+\DoxyCodeLine{169       autodiff::dual e;}
+\DoxyCodeLine{170       \textcolor{keyword}{auto} f = [\textcolor{keyword}{this}, \&req](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} Mixin::template calculateScalarImpl<autodiff::dual>(req, x); \};}
+\DoxyCodeLine{171       gradient(f, autodiff::wrt(dx), at(dx), e, g);}
+\DoxyCodeLine{172     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{173       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
+\DoxyCodeLine{174                     \textcolor{stringliteral}{"{}Appropriate calculateScalarImpl function is not implemented for the "{}}}
+\DoxyCodeLine{175                     \textcolor{stringliteral}{"{}chosen element."{}});}
+\DoxyCodeLine{176   \}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   [[nodiscard]] \textcolor{keywordtype}{double} \mbox{\hyperlink{a01237_a7609cd353b952119de2ea33bc39b96bb}{calculateScalar}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& par)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{179     \textcolor{comment}{// real element implements calculateScalar by itself, then we simply forward the call}}
+\DoxyCodeLine{180     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{}
+\DoxyCodeLine{181                     \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }Mixin\&\textcolor{keyword}{>}(std::declval<AutoDiffFE>()).\textcolor{keyword}{template} calculateScalarImpl<double>(par);}
+\DoxyCodeLine{182                   \}) \{}
+\DoxyCodeLine{183       Mixin::template calculateScalarImpl<double>(par);}
+\DoxyCodeLine{184       \textcolor{comment}{// real element only implements the protected calculateScalarImpl by itself, thus we call that one.}}
+\DoxyCodeLine{185       \textcolor{keywordflow}{return} Mixin::template calculateScalarImpl<double>(par);}
+\DoxyCodeLine{186     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{187       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<AutoDiffFE>::value,}
+\DoxyCodeLine{188                     \textcolor{stringliteral}{"{}Appropriate calculateScalar and calculateScalarImpl functions are not implemented for the "{}}}
+\DoxyCodeLine{189                     \textcolor{stringliteral}{"{}chosen element."{}});}
+\DoxyCodeLine{190     \}}
+\DoxyCodeLine{191   \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01237_aa116bf7acf598c55b5107f20960d072d}{calculateLocalSystem}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01237_a4d0caa6dbe1dea19b8a265e7074cc45f}{FERequirementType}}\& req, \textcolor{keyword}{typename} Traits::template MatrixType<> h,}
+\DoxyCodeLine{194                             \textcolor{keyword}{typename} Traits::template VectorType<> g)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{195     Eigen::VectorXdual2nd dx(this-\/>localView().size());}
+\DoxyCodeLine{196     dx.setZero();}
+\DoxyCodeLine{197     \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\& x) \{ \textcolor{keywordflow}{return} Mixin::calculateScalarImpl(req, x); \};}
+\DoxyCodeLine{198     hessian(f, autodiff::wrt(dx), at(dx), g, h);}
+\DoxyCodeLine{199   \}}
+\DoxyCodeLine{200 \};}
+\DoxyCodeLine{201 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

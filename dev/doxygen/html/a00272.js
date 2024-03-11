@@ -1,6 +1,5 @@
 var a00272 =
 [
-    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "a00272.html#adda74d8564a01c0a9851a4379308a8b2", null ],
-    [ "registerDenseFlatAssembler", "a00272.html#ga2b0faffde20690631657489c79ec809b", null ],
-    [ "registerSparseFlatAssembler", "a00272.html#gaeab1c5f959a22f95b40b0a7576f9c896", null ]
+    [ "registerCalculateAt", "a00272.html#a1d7678520951cad4a5227d685fa8c326", null ],
+    [ "registerFE", "a00272.html#gac8bb4a818dee7342efbc5e174e35b840", null ]
 ];

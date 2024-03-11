@@ -1,5 +1,5 @@
 var dir_31d7c48772b4fae367539a6092b906a8 =
 [
-    [ "traction.hh", "a00143.html", null ],
-    [ "volume.hh", "a00146.html", null ]
+    [ "finiteelements/mechanics/loads/traction.hh", "a02512.html", "a02512" ],
+    [ "finiteelements/mechanics/loads/volume.hh", "a02518.html", "a02518" ]
 ];
