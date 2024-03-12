@@ -1,75 +1,82 @@
-\hypertarget{a00281_source}{}\doxysection{flatassembler.\+hh}
-\label{a00281_source}\index{flatassembler.hh@{flatassembler.hh}}
+\hypertarget{a00281_source}{}\doxysection{fehelper.\+hh}
+\label{a00281_source}\index{fehelper.hh@{fehelper.hh}}
 \mbox{\hyperlink{a00281}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <optional>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <dune/localfefunctions/manifolds/realTuple.hh>}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02527}{ikarus/utils/basis.hh}}>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00349}{Ikarus::Python}} \{}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                                                                \(\backslash\)}}
-\DoxyCodeLine{23 \textcolor{preprocessor}{                                                                                                                           \(\backslash\)}}
-\DoxyCodeLine{44 \textcolor{preprocessor}{  template <class Assembler, class... options>                                                                                 \(\backslash\)}}
-\DoxyCodeLine{45 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{                                   \(\backslash\)}}
-\DoxyCodeLine{46 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
-\DoxyCodeLine{47     using FEContainer         = typename Assembler::FEContainer;                                                               \(\backslash\)}
-\DoxyCodeLine{48     using Basis               = typename Assembler::Basis;                                                                     \(\backslash\)}
-\DoxyCodeLine{49     using DirichletValuesType = typename Assembler::DirichletValuesType;                                                       \(\backslash\)}
-\DoxyCodeLine{50     using FERequirementType   = typename Assembler::FERequirementType;                                                         \(\backslash\)}
-\DoxyCodeLine{51     pybind11::module m        = pybind11::module::import("{}ikarus"{});                                                            \(\backslash\)}
-\DoxyCodeLine{52     cls.def(pybind11::init([](const pybind11::list\& fes, const DirichletValuesType\& dirichletValues) \{                         \(\backslash\)}
-\DoxyCodeLine{53               \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that            \(\backslash\)}}
-\DoxyCodeLine{54 \textcolor{comment}{               * the user can pass native python lists here, see                                                               \(\backslash\)}}
-\DoxyCodeLine{55 \textcolor{comment}{               * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}\textcolor{preprocessor}{                                           \(\backslash\)}}
-\DoxyCodeLine{56 \textcolor{preprocessor}{              FEContainer fesV = fes.template cast<FEContainer>();                                                             \(\backslash\)}}
-\DoxyCodeLine{57 \textcolor{preprocessor}{              return new Assembler(std::move(fesV), dirichletValues);                                                          \(\backslash\)}}
-\DoxyCodeLine{58 \textcolor{preprocessor}{            \}),                                                                                                                \(\backslash\)}}
-\DoxyCodeLine{59 \textcolor{preprocessor}{            pybind11::keep\_alive<1, 3>());                                                                                     \(\backslash\)}}
-\DoxyCodeLine{60 \textcolor{preprocessor}{                                                                                                                               \(\backslash\)}}
-\DoxyCodeLine{61 \textcolor{preprocessor}{    }\textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}\textcolor{preprocessor}{                \(\backslash\)}}
-\DoxyCodeLine{62 \textcolor{preprocessor}{    }\textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341 \(\backslash\)}}
-\DoxyCodeLine{63 \textcolor{comment}{     */}\textcolor{preprocessor}{                                                                                                                        \(\backslash\)}}
-\DoxyCodeLine{64 \textcolor{preprocessor}{    cls.def(                                                                                                                   \(\backslash\)}}
-\DoxyCodeLine{65 \textcolor{preprocessor}{        "{}getMatrix"{}},                                                                                                           \(\backslash\)}
-\DoxyCodeLine{66         [](Assembler\& self, const FERequirementType\& req) -\/> std::remove\_cvref\_t<decltype(self.getMatrix(req))> \{              \(\backslash\)}
-\DoxyCodeLine{67           return self.getMatrix(req);                                                                                          \(\backslash\)}
-\DoxyCodeLine{68         \},                                                                                                                     \(\backslash\)}
-\DoxyCodeLine{69         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{70     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{71         "{}getReducedMatrix"{},                                                                                                    \(\backslash\)}
-\DoxyCodeLine{72         [](Assembler\& self, const FERequirementType\& req)                                                                      \(\backslash\)}
-\DoxyCodeLine{73             -\/> std::remove\_cvref\_t<decltype(self.getReducedMatrix(req))> \{ return self.getReducedMatrix(req); \},               \(\backslash\)}
-\DoxyCodeLine{74         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{75     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{76         "{}getVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getVector(req); \},                        \(\backslash\)}
-\DoxyCodeLine{77         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{78     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{79         "{}getScalar"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getScalar(req); \},                        \(\backslash\)}
-\DoxyCodeLine{80         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{81     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{82         "{}getReducedVector"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.getReducedVector(req); \},          \(\backslash\)}
-\DoxyCodeLine{83         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{84     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{85         "{}createFullVector"{},                                                                                                    \(\backslash\)}
-\DoxyCodeLine{86         [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ return self.createFullVector(redVec); \},               \(\backslash\)}
-\DoxyCodeLine{87         pybind11::return\_value\_policy::move);                                                                                  \(\backslash\)}
-\DoxyCodeLine{88     cls.def("{}reducedSize"{}, [](Assembler\& self) \{ return self.reducedSize(); \}, pybind11::return\_value\_policy::copy);           \(\backslash\)}
-\DoxyCodeLine{89   \}}
-\DoxyCodeLine{90 }
-\DoxyCodeLine{91 \mbox{\hyperlink{a00281_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01193}{SparseFlatAssembler}});}
-\DoxyCodeLine{92 \mbox{\hyperlink{a00281_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01197}{DenseFlatAssembler}});}
-\DoxyCodeLine{93 }
-\DoxyCodeLine{94 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00005}{ikarus/utils/traversal.hh}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00340}{Ikarus::FEHelper}} \{}
+\DoxyCodeLine{26 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Traits, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{27 \textcolor{keyword}{auto} \mbox{\hyperlink{a00340_abefb582caeb6d7f2ae68579e460540a9}{localSolutionBlockVector}}(}
+\DoxyCodeLine{28     \textcolor{keyword}{const} \textcolor{keyword}{typename} Traits::FERequirementType::SolutionVectorTypeRaw\& x, \textcolor{keyword}{const} \textcolor{keyword}{typename} Traits::LocalView\& localView,}
+\DoxyCodeLine{29     \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt) \{}
+\DoxyCodeLine{30   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} worldDim = Traits::worlddim;}
+\DoxyCodeLine{31   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe         = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{32   Dune::BlockVector<Dune::RealTuple<ST, worldDim>> localX(fe.size());}
+\DoxyCodeLine{33   \textcolor{keywordflow}{if} (dx)}
+\DoxyCodeLine{34     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < localX.size(); ++i)}
+\DoxyCodeLine{35       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0U; j < worldDim; ++j)}
+\DoxyCodeLine{36         localX[i][j] =}
+\DoxyCodeLine{37             dx.value().get()[i * worldDim + j] + x[localView.index(localView.tree().child(j).localIndex(i))[0]];}
+\DoxyCodeLine{38   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{39     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} i = 0U; i < localX.size(); ++i)}
+\DoxyCodeLine{40       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} j = 0U; j < worldDim; ++j)}
+\DoxyCodeLine{41         localX[i][j] = x[localView.index(localView.tree().child(j).localIndex(i))[0]];}
+\DoxyCodeLine{42   \textcolor{keywordflow}{return} localX;}
+\DoxyCodeLine{43 \}}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{56   \textcolor{keyword}{template} <\textcolor{keyword}{typename} LocalView, \textcolor{keyword}{typename} Node>}
+\DoxyCodeLine{57   \textcolor{keywordtype}{void} leafNodeIndices(\textcolor{keyword}{const} LocalView\& localView, \textcolor{keyword}{const} Node\& node,}
+\DoxyCodeLine{58                        std::vector<typename LocalView::MultiIndex>\& \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}) \{}
+\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe = node.finiteElement();}
+\DoxyCodeLine{60     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < fe.size(); ++i)}
+\DoxyCodeLine{61       \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}.push\_back(localView.index(node.localIndex(i)));}
+\DoxyCodeLine{62   \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{74   \textcolor{keyword}{template} <\textcolor{keyword}{typename} LocalView, \textcolor{keyword}{typename} Node>}
+\DoxyCodeLine{75   \textcolor{keywordtype}{void} powerNodeIndices(\textcolor{keyword}{const} LocalView\& localView, \textcolor{keyword}{const} Node\& node,}
+\DoxyCodeLine{76                         std::vector<typename LocalView::MultiIndex>\& \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}) \{}
+\DoxyCodeLine{77     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe         = node.child(0).finiteElement();}
+\DoxyCodeLine{78     \textcolor{keyword}{const} \textcolor{keywordtype}{int} childrenSize = node.degree();}
+\DoxyCodeLine{79     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < fe.size(); ++i)}
+\DoxyCodeLine{80       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < childrenSize; ++j)}
+\DoxyCodeLine{81         \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}.push\_back(localView.index(node.child(j).localIndex(i)));}
+\DoxyCodeLine{82   \}}
+\DoxyCodeLine{83 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{93 \textcolor{keyword}{template} <\textcolor{keyword}{typename} LocalView>}
+\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00340_a2a4ac5503d4288b339457aae427ff661}{globalIndicesFromLocalView}}(\textcolor{keyword}{const} LocalView\& localView,}
+\DoxyCodeLine{95                                 std::vector<typename LocalView::MultiIndex>\& \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}) \{}
+\DoxyCodeLine{96   assert(localView.bound());}
+\DoxyCodeLine{97   \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}.clear();}
+\DoxyCodeLine{98   \textcolor{keyword}{using namespace }Dune::Indices;}
+\DoxyCodeLine{99   \textcolor{keyword}{using namespace }FEHelper::Impl;}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101   \textcolor{keyword}{auto} leafOpFunc = [\&](\textcolor{keyword}{auto}\&\& node, [[maybe\_unused]] \textcolor{keyword}{auto}\&\& treePath) \{}
+\DoxyCodeLine{102     leafNodeIndices(localView, node, \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}});}
+\DoxyCodeLine{103   \};}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105   \textcolor{keyword}{auto} powerOpFunc = [\&](\textcolor{keyword}{auto}\&\& node, [[maybe\_unused]] \textcolor{keyword}{auto}\&\& treePath) \{}
+\DoxyCodeLine{106     powerNodeIndices(localView, node, \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}});}
+\DoxyCodeLine{107   \};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \mbox{\hyperlink{a00350_a63742d75d099b93da7ddf6e78a3c1f56}{utils::forEachLeafOrPowerLeafNode}}(localView.tree(), Dune::TypeTree::hybridTreePath(), powerOpFunc, leafOpFunc);}
+\DoxyCodeLine{110 \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{123 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FiniteElement>}
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}(\textcolor{keyword}{const} FiniteElement\& fe, std::vector<typename FiniteElement::LocalView::MultiIndex>\& \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}}) \{}
+\DoxyCodeLine{125   \mbox{\hyperlink{a00340_a2a4ac5503d4288b339457aae427ff661}{globalIndicesFromLocalView}}(fe.localView(), \mbox{\hyperlink{a00340_a44e16df41148f7e4538be224814a3423}{globalIndices}});}
+\DoxyCodeLine{126 \}}
+\DoxyCodeLine{127 \} \textcolor{comment}{// namespace Ikarus::FEHelper}}
 
 \end{DoxyCode}

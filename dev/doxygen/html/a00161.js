@@ -1,5 +1,5 @@
 var a00161 =
 [
-    [ "Ikarus::NonLinearElasticPre< MAT >", "a01417.html", "a01417" ],
-    [ "nonLinearElastic", "a00161.html#a6f028adf5a1a78301381fe92b241d550", null ]
+    [ "makeResultFunction", "a00161.html#a5ee77b303105a35f65ea2acdde85773b", null ],
+    [ "makeResultVtkFunction", "a00161.html#a353cbf06276ae094d8f5590507279e06", null ]
 ];

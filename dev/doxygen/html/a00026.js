@@ -1,4 +1,4 @@
 var a00026 =
 [
-    [ "polyfit", "a00026.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
+    [ "Python::Conversion< autodiff::Real< order, T > >", "a01657.html", "a01657" ]
 ];

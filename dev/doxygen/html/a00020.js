@@ -1,6 +1,7 @@
 var a00020 =
 [
-    [ "obtainLagrangeNodePositions", "a00020.html#gac0aa110e209c93e655de9df0915c2fcc", null ],
-    [ "referenceElementSubEntityPositions", "a00020.html#ga30df35336d19b00bc5db2a0b52ce650e", null ],
-    [ "referenceElementVertexPositions", "a00020.html#ga8c05dce8a66fc4efbe31674b87d18298", null ]
+    [ "Ikarus::utils::CheckFlags", "a01609.html", "a01609" ],
+    [ "checkGradient", "a00020.html#gacb9e813539bfd84df99ad097cabc9de9", null ],
+    [ "checkHessian", "a00020.html#ga5d1a87964a3d6b6ddc994532e93b6798", null ],
+    [ "checkJacobian", "a00020.html#ga553465359c199ef676945832587d2869", null ]
 ];

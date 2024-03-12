@@ -1,428 +1,64 @@
-\hypertarget{a00257_source}{}\doxysection{trustregion.\+hh}
-\label{a00257_source}\index{trustregion.hh@{trustregion.hh}}
+\hypertarget{a00257_source}{}\doxysection{membranestrains.\+hh}
+\label{a00257_source}\index{membranestrains.hh@{membranestrains.hh}}
 \mbox{\hyperlink{a00257}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iosfwd>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/common/fvector.hh>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus}} \{}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Eigen/Sparse>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00284}{ikarus/linearalgebra/truncatedconjugategradient.hh}}>}}
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00251}{ikarus/solver/nonlinearsolver/solverinfos.hh}}>}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00014}{ikarus/utils/defaultfunctions.hh}}>}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00068}{ikarus/utils/linearalgebrahelper.hh}}>}}
-\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00233}{ikarus/utils/observer/observer.hh}}>}}
-\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00236}{ikarus/utils/observer/observermessages.hh}}>}}
-\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00008}{ikarus/utils/traits.hh}}>}}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus}} \{}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{33 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66}{PreConditioner}}}
-\DoxyCodeLine{34 \{}
-\DoxyCodeLine{35   \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{IncompleteCholesky}},}
-\DoxyCodeLine{36   \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608}{IdentityPreconditioner}},}
-\DoxyCodeLine{37   \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc}{DiagonalPreconditioner}}}
-\DoxyCodeLine{38 \};}
-\DoxyCodeLine{43 \textcolor{keyword}{struct }\mbox{\hyperlink{a01517}{TrustRegionSettings}}}
-\DoxyCodeLine{44 \{}
-\DoxyCodeLine{45   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01517_a5c041eabf13458ca696bcf25a4e043b2}{verbosity}}    = 5;                                       }
-\DoxyCodeLine{46   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_ae255ad8f1baddf2e46981bc017da6d26}{maxtime}}   = std::numeric\_limits<double>::infinity(); }
-\DoxyCodeLine{47   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01517_a14360035514e2735b5836f1a90426913}{minIter}}      = 3;                                       }
-\DoxyCodeLine{48   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01517_a617723aafef7a09e5259eb7e5bdbd6ae}{maxIter}}      = 1000;                                    }
-\DoxyCodeLine{49   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01517_a72e069d6cb3b98ec116172ec886a4986}{debug}}        = 0;                                       }
-\DoxyCodeLine{50   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_a64868ebbbe9e92ac762a411882399fc9}{grad\_tol}}  = 1e-\/6;                                    }
-\DoxyCodeLine{51   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_af8eb8f7712201c0cf01336a92d704892}{corr\_tol}}  = 1e-\/6;                                    }
-\DoxyCodeLine{52   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_ade6e855ba3b6c9bb3e0b54264f1a10eb}{rho\_prime}} = 0.01;                                    }
-\DoxyCodeLine{53   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01517_ac9338497c49d411382bf56863298f916}{useRand}}     = \textcolor{keyword}{false};                                   }
-\DoxyCodeLine{54   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_a10ae2ded9785759dbca6a18136baf5ed}{rho\_reg}}   = 1e6;                                     }
-\DoxyCodeLine{55   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_a8d52f35057ed50714fb0d3f6f94588ec}{Delta\_bar}} = std::numeric\_limits<double>::infinity(); }
-\DoxyCodeLine{56   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01517_a6c171df067c667d9c5257d12b85a9e6d}{Delta0}}    = 10;                                      }
-\DoxyCodeLine{57 \};}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{63 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674}{StopReason}}}
-\DoxyCodeLine{64 \{}
-\DoxyCodeLine{65   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1}{gradientNormTolReached}},}
-\DoxyCodeLine{66   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3}{correctionNormTolReached}},}
-\DoxyCodeLine{67   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9}{maximumTimeReached}},}
-\DoxyCodeLine{68   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe}{maximumIterationsReached}},}
-\DoxyCodeLine{69   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f}{dontStop}}}
-\DoxyCodeLine{70 \};}
-\DoxyCodeLine{71 }
-\DoxyCodeLine{76 \textcolor{keyword}{struct }\mbox{\hyperlink{a01521}{AlgoInfo}}}
-\DoxyCodeLine{77 \{}
-\DoxyCodeLine{78   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}}   = 0;                 }
-\DoxyCodeLine{79   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}}  = 0;                 }
-\DoxyCodeLine{80   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01521_ae1f58001cb449db18bdbd98740dd143d}{consecutive\_Rejected}} = 0;                 }
-\DoxyCodeLine{81   std::string \mbox{\hyperlink{a01521_af34cb5bb79e983db99b959d871afd353}{stopReasonString}};                 }
-\DoxyCodeLine{82   std::string \mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}};                            }
-\DoxyCodeLine{83   std::string \mbox{\hyperlink{a01521_af3d423f3f05e0bdd445e2b9de7dc9daf}{accstr}};                           }
-\DoxyCodeLine{84   std::string \mbox{\hyperlink{a01521_a84be03aa6ebbd80ab2e6fac5a78aacd3}{randomPredictionString}};           }
-\DoxyCodeLine{85   std::string \mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}} = \textcolor{stringliteral}{"{}                  "{}}; }
-\DoxyCodeLine{86   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01521_a8c3abc0958c354cc92394dfd12a0317b}{acceptProposal}};                          }
-\DoxyCodeLine{87   \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01521_ac6037dd6d1303ded090d9da71dea06b9}{used\_cauchy}} = \textcolor{keyword}{false};                     }
-\DoxyCodeLine{88   \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674}{StopReason}} \mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}}\{\mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f}{StopReason::dontStop}}\};        }
-\DoxyCodeLine{89   std::string \mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}};                     }
-\DoxyCodeLine{90 \};}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{96 \textcolor{keyword}{struct }\mbox{\hyperlink{a01525}{Stats}}}
-\DoxyCodeLine{97 \{}
-\DoxyCodeLine{98   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}}\{1\};}
-\DoxyCodeLine{99   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}}\{1\};}
-\DoxyCodeLine{100   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_ab3cab6865c16d06ec81b5db14b0dc5e2}{time}}\{0\};}
-\DoxyCodeLine{101   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}}\{0\};}
-\DoxyCodeLine{102   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}}\{0\};}
-\DoxyCodeLine{103   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}}\{0\};}
-\DoxyCodeLine{104   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}}\{0\};}
-\DoxyCodeLine{105   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01525_ac5053b65db9ceae8340aaebe952c7792}{innerIterSum}}\{0\};}
-\DoxyCodeLine{106 \};}
-\DoxyCodeLine{107 }
-\DoxyCodeLine{120 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO, \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66}{PreConditioner}} preConditioner = \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{PreConditioner::IncompleteCholesky}},}
-\DoxyCodeLine{121           \textcolor{keyword}{typename} UF = utils::UpdateDefault>}
-\DoxyCodeLine{122 \textcolor{keyword}{class }\mbox{\hyperlink{a01529}{TrustRegion}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01653}{IObservable}}<NonLinearSolverMessages>}
-\DoxyCodeLine{123 \{}
-\DoxyCodeLine{124 \textcolor{keyword}{public}:}
-\DoxyCodeLine{125   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a44fa96b7ca63e50d8ed3707b4129369b}{ValueType}} = \textcolor{keyword}{typename} NLO::template ParameterValue<0>; }
-\DoxyCodeLine{127   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a1071054a0b75f9fbe27832ea672792b0}{CorrectionType}} = \textcolor{keyword}{typename} NLO::DerivativeType;        }
-\DoxyCodeLine{128   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a7f187a825b0a65e7d9ab1c21578da1cf}{UpdateFunction}} = UF;                                  }
-\DoxyCodeLine{129 }
-\DoxyCodeLine{130   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a7334271a9133e2503f142decf6ecebb7}{NonLinearOperator}} = NLO; }
-\DoxyCodeLine{131 }
-\DoxyCodeLine{132   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a34bb35f72b19375a57329d3fec82515c}{ScalarType}} = std::remove\_cvref\_t<typename NLO::template FunctionReturnType<0>>; }
-\DoxyCodeLine{134 }
-\DoxyCodeLine{135   \textcolor{keyword}{using }\mbox{\hyperlink{a01529_a631486c0b90c8a1a0bfc9d80694f6a4f}{MatrixType}} = std::remove\_cvref\_t<typename NLO::template FunctionReturnType<2>>; }
-\DoxyCodeLine{136 }
-\DoxyCodeLine{142   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01529_aca59267eff2ad5358225cc5eafbe21d0}{TrustRegion}}(\textcolor{keyword}{const} NLO\& \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}, UF updateFunction = \{\})}
-\DoxyCodeLine{143       : nonLinearOperator\_\{\mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}\},}
-\DoxyCodeLine{144         updateFunction\_\{updateFunction\},}
-\DoxyCodeLine{145         xOld\_\{this-\/>\mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().firstParameter()\} \{}
-\DoxyCodeLine{146     eta\_.setZero(gradient().size());}
-\DoxyCodeLine{147     Heta\_.setZero(gradient().size());}
-\DoxyCodeLine{148     truncatedConjugateGradient\_.analyzePattern(hessian());}
-\DoxyCodeLine{149   \}}
-\DoxyCodeLine{150 }
-\DoxyCodeLine{155   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01529_a504a0eb127e772c205775a6545fbdb98}{setup}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01517}{TrustRegionSettings}}\& settings) \{}
-\DoxyCodeLine{156     options\_ = settings;}
-\DoxyCodeLine{157     assert(options\_.\mbox{\hyperlink{a01517_ade6e855ba3b6c9bb3e0b54264f1a10eb}{rho\_prime}} < 0.25 \&\& \textcolor{stringliteral}{"{}options.rho\_prime must be strictly smaller than 1/4."{}});}
-\DoxyCodeLine{158     assert(options\_.\mbox{\hyperlink{a01517_a8d52f35057ed50714fb0d3f6f94588ec}{Delta\_bar}} > 0 \&\& \textcolor{stringliteral}{"{}options.Delta\_bar must be positive."{}});}
-\DoxyCodeLine{159     assert(options\_.\mbox{\hyperlink{a01517_a6c171df067c667d9c5257d12b85a9e6d}{Delta0}} > 0 \&\& options\_.\mbox{\hyperlink{a01517_a6c171df067c667d9c5257d12b85a9e6d}{Delta0}} < options\_.\mbox{\hyperlink{a01517_a8d52f35057ed50714fb0d3f6f94588ec}{Delta\_bar}} \&\&}
-\DoxyCodeLine{160            \textcolor{stringliteral}{"{}options.Delta0 must be positive and smaller than Delta\_bar."{}});}
-\DoxyCodeLine{161   \}}
-\DoxyCodeLine{162 }
-\DoxyCodeLine{163 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
-\DoxyCodeLine{164   \textcolor{keyword}{struct }NoPredictor}
-\DoxyCodeLine{165   \{}
-\DoxyCodeLine{166   \};}
-\DoxyCodeLine{167 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{174   \textcolor{keyword}{template} <\textcolor{keyword}{typename} SolutionType = NoPredictor>}
-\DoxyCodeLine{175   \textcolor{keyword}{requires} std::is\_same\_v<SolutionType, NoPredictor> || std::is\_convertible\_v<SolutionType, CorrectionType>}
-\DoxyCodeLine{176   \mbox{\hyperlink{a01513}{NonLinearSolverInformation}} \mbox{\hyperlink{a01529_af244b67329c3aab4aa81f37c9eabae8f}{solve}}(\textcolor{keyword}{const} SolutionType\& dxPredictor = NoPredictor\{\}) \{}
-\DoxyCodeLine{177     this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498}{NonLinearSolverMessages::INIT}});}
-\DoxyCodeLine{178     stats\_ = \mbox{\hyperlink{a01525}{Stats}}\{\};}
-\DoxyCodeLine{179     info\_  = AlgoInfo\{\};}
-\DoxyCodeLine{180 }
-\DoxyCodeLine{181     NonLinearSolverInformation solverInformation;}
-\DoxyCodeLine{182     \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().updateAll();}
-\DoxyCodeLine{183     stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}}   = energy();}
-\DoxyCodeLine{184     \textcolor{keyword}{auto}\& x         = \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().firstParameter();}
-\DoxyCodeLine{185     xOld\_           = x;}
-\DoxyCodeLine{186     stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}} = \mbox{\hyperlink{a00332_ga0ffc0c74dbd9aeee3e53b199a21b828c}{norm}}(gradient());}
-\DoxyCodeLine{187     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not std::is\_same\_v<SolutionType, NoPredictor>)}
-\DoxyCodeLine{188       updateFunction(x, dxPredictor);}
-\DoxyCodeLine{189     truncatedConjugateGradient\_.analyzePattern(hessian());}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{191     innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} = options\_.\mbox{\hyperlink{a01517_a6c171df067c667d9c5257d12b85a9e6d}{Delta0}};}
-\DoxyCodeLine{192     spdlog::info(}
-\DoxyCodeLine{193         \textcolor{stringliteral}{"{}        | iter | inner\_i |   rho |   energy | energy\_p | energy\_inc |  norm(g) |    Delta | norm(corr) | "{}}}
-\DoxyCodeLine{194         \textcolor{stringliteral}{"{}InnerBreakReason"{}});}
-\DoxyCodeLine{195     spdlog::info(\textcolor{stringliteral}{"{}\{:-\/\string^143\}"{}}, \textcolor{stringliteral}{"{}-\/"{}});}
-\DoxyCodeLine{196     \textcolor{keywordflow}{while} (not stoppingCriterion()) \{}
-\DoxyCodeLine{197       this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4}{NonLinearSolverMessages::ITERATION\_STARTED}});}
-\DoxyCodeLine{198       \textcolor{keywordflow}{if} (options\_.\mbox{\hyperlink{a01517_ac9338497c49d411382bf56863298f916}{useRand}}) \{}
-\DoxyCodeLine{199         \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} == 0) \{}
-\DoxyCodeLine{200           eta\_.setRandom();}
-\DoxyCodeLine{201           \textcolor{keywordflow}{while} (eta\_.dot(hessian() * eta\_) > innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} * innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}})}
-\DoxyCodeLine{202             eta\_ *= eps\_; \textcolor{comment}{// eps is sqrt(sqrt(maschine-\/precision))}}
-\DoxyCodeLine{203         \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{204           eta\_.setZero();}
-\DoxyCodeLine{205       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{206         eta\_.setZero();}
-\DoxyCodeLine{207 }
-\DoxyCodeLine{208       solveInnerProblem();}
-\DoxyCodeLine{209       stats\_.\mbox{\hyperlink{a01525_ac5053b65db9ceae8340aaebe952c7792}{innerIterSum}} += innerInfo\_.\mbox{\hyperlink{a01473_aea7d60a8e86f8c8a17251b1da948ea68}{numInnerIter}};}
-\DoxyCodeLine{210 }
-\DoxyCodeLine{211       info\_.\mbox{\hyperlink{a01521_af34cb5bb79e983db99b959d871afd353}{stopReasonString}} = tcg\_stop\_reason\_[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(innerInfo\_.\mbox{\hyperlink{a01473_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}})];}
-\DoxyCodeLine{212       Heta\_                  = hessian() * eta\_;}
-\DoxyCodeLine{213       \textcolor{keywordflow}{if} (options\_.\mbox{\hyperlink{a01517_ac9338497c49d411382bf56863298f916}{useRand}} and stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} == 0) \{}
-\DoxyCodeLine{214         info\_.\mbox{\hyperlink{a01521_ac6037dd6d1303ded090d9da71dea06b9}{used\_cauchy}}            = \textcolor{keyword}{false};}
-\DoxyCodeLine{215         info\_.\mbox{\hyperlink{a01521_a84be03aa6ebbd80ab2e6fac5a78aacd3}{randomPredictionString}} = \textcolor{stringliteral}{"{} Used Random correction predictor"{}};}
-\DoxyCodeLine{216         info\_.\mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}}              = \textcolor{stringliteral}{"{}                  "{}};}
-\DoxyCodeLine{217         \textcolor{keywordtype}{double} tauC;}
-\DoxyCodeLine{218         \textcolor{comment}{// Check the curvature}}
-\DoxyCodeLine{219         \textcolor{keyword}{const} Eigen::VectorXd Hg = hessian() * gradient();}
-\DoxyCodeLine{220         \textcolor{keyword}{const} \textcolor{keyword}{auto} g\_Hg          = (gradient().dot(Hg));}
-\DoxyCodeLine{221         \textcolor{keywordflow}{if} (g\_Hg <= 0)}
-\DoxyCodeLine{222           tauC = 1;}
-\DoxyCodeLine{223         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{224           tauC = std::min(Dune::power(stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}}, 3) / (innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} * g\_Hg), 1.0);}
-\DoxyCodeLine{225 }
-\DoxyCodeLine{226         \textcolor{comment}{// generate the Cauchy point.}}
-\DoxyCodeLine{227         \textcolor{keyword}{const} Eigen::VectorXd etaC  = -\/tauC * innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} / stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}} * gradient();}
-\DoxyCodeLine{228         \textcolor{keyword}{const} Eigen::VectorXd HetaC = -\/tauC * innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} / stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}} * Hg;}
-\DoxyCodeLine{229 }
-\DoxyCodeLine{230         \textcolor{keyword}{const} \textcolor{keywordtype}{double} mdle  = stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}} + gradient().dot(eta\_) + .5 * Heta\_.dot(eta\_);}
-\DoxyCodeLine{231         \textcolor{keyword}{const} \textcolor{keywordtype}{double} mdlec = stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}} + gradient().dot(etaC) + .5 * HetaC.dot(etaC);}
-\DoxyCodeLine{232         \textcolor{keywordflow}{if} (mdlec < mdle \&\& stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} == 0) \{}
-\DoxyCodeLine{233           eta\_              = etaC;}
-\DoxyCodeLine{234           Heta\_             = HetaC;}
-\DoxyCodeLine{235           info\_.\mbox{\hyperlink{a01521_ac6037dd6d1303ded090d9da71dea06b9}{used\_cauchy}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{236 }
-\DoxyCodeLine{237           info\_.\mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}} = \textcolor{stringliteral}{"{} USED CAUCHY POINT!"{}};}
-\DoxyCodeLine{238         \}}
-\DoxyCodeLine{239       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{240         info\_.\mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}} = \textcolor{stringliteral}{"{}                  "{}};}
-\DoxyCodeLine{241 }
-\DoxyCodeLine{242       stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}} = eta\_.norm();}
-\DoxyCodeLine{243 }
-\DoxyCodeLine{244       updateFunction\_(x, eta\_);}
-\DoxyCodeLine{245 }
-\DoxyCodeLine{246       \textcolor{comment}{// Calculate energy of our proposed update step}}
-\DoxyCodeLine{247       \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().template update<0>();}
-\DoxyCodeLine{248       stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}} = energy();}
-\DoxyCodeLine{249 }
-\DoxyCodeLine{250       \textcolor{comment}{// Will we accept the proposal or not?}}
-\DoxyCodeLine{251       \textcolor{comment}{// Check the performance of the quadratic model against the actual energy.}}
-\DoxyCodeLine{252       \textcolor{keyword}{auto} rhonum = stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}} -\/ stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}};}
-\DoxyCodeLine{253       \textcolor{keyword}{auto} rhoden = -\/eta\_.dot(gradient() + 0.5 * Heta\_);}
-\DoxyCodeLine{254 }
-\DoxyCodeLine{255       \textcolor{comment}{/*  Close to convergence the proposed energy and the real energy almost coincide.}}
-\DoxyCodeLine{256 \textcolor{comment}{       *  Therefore, the performance check of our model becomes ill-\/conditioned}}
-\DoxyCodeLine{257 \textcolor{comment}{       *  The regularisation fixes this */}}
-\DoxyCodeLine{258       \textcolor{keyword}{const} \textcolor{keyword}{auto} rhoReg = std::max(1.0, abs(stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}})) * eps\_ * options\_.\mbox{\hyperlink{a01517_a10ae2ded9785759dbca6a18136baf5ed}{rho\_reg}};}
-\DoxyCodeLine{259       rhonum            = rhonum + rhoReg;}
-\DoxyCodeLine{260       rhoden            = rhoden + rhoReg;}
-\DoxyCodeLine{261 }
-\DoxyCodeLine{262       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} modelDecreased = rhoden > 0.0;}
-\DoxyCodeLine{263 }
-\DoxyCodeLine{264       \textcolor{keywordflow}{if} (!modelDecreased)}
-\DoxyCodeLine{265         info\_.\mbox{\hyperlink{a01521_af34cb5bb79e983db99b959d871afd353}{stopReasonString}}.append(\textcolor{stringliteral}{"{}, model did not decrease"{}});}
-\DoxyCodeLine{266 }
-\DoxyCodeLine{267       stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} = rhonum / rhoden;}
-\DoxyCodeLine{268       stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} = stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} < 0.0 ? -\/1.0 : stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}}; \textcolor{comment}{// move rho to the domain [-\/1.0,inf]}}
-\DoxyCodeLine{269 }
-\DoxyCodeLine{270       info\_.\mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}} = \textcolor{stringliteral}{"{}   "{}};}
-\DoxyCodeLine{271 }
-\DoxyCodeLine{272       \textcolor{comment}{// measure if energy decreased}}
-\DoxyCodeLine{273       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} energyDecreased = Dune::FloatCmp::ge(stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}} -\/ stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}}, -\/1e-\/12);}
-\DoxyCodeLine{274 }
-\DoxyCodeLine{275       \textcolor{comment}{// If the model behaves badly or if the energy increased we reduce the trust region size}}
-\DoxyCodeLine{276       \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} < 1e-\/4 || not modelDecreased || std::isnan(stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}}) || not energyDecreased) \{}
-\DoxyCodeLine{277         info\_.\mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}} = \textcolor{stringliteral}{"{}TR-\/"{}};}
-\DoxyCodeLine{278         innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} /= 4.0;}
-\DoxyCodeLine{279         info\_.\mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}} = 0;}
-\DoxyCodeLine{280         info\_.\mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}}++;}
-\DoxyCodeLine{281         \textcolor{keywordflow}{if} (info\_.\mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}} >= 5 \&\& options\_.\mbox{\hyperlink{a01517_a5c041eabf13458ca696bcf25a4e043b2}{verbosity}} >= 1) \{}
-\DoxyCodeLine{282           info\_.\mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}} = -\/std::numeric\_limits<int>::infinity();}
-\DoxyCodeLine{283           spdlog::info(\textcolor{stringliteral}{"{} +++ Detected many consecutive TR-\/ (radius decreases)."{}});}
-\DoxyCodeLine{284           spdlog::info(\textcolor{stringliteral}{"{} +++ Consider decreasing options.Delta\_bar by an order of magnitude."{}});}
-\DoxyCodeLine{285         \}}
-\DoxyCodeLine{286 }
-\DoxyCodeLine{287       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} > 0.99 \&\& (innerInfo\_.\mbox{\hyperlink{a01473_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} == \mbox{\hyperlink{a00347_a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba}{Eigen::TCGStopReason::negativeCurvature}} ||}
-\DoxyCodeLine{288                                        innerInfo\_.\mbox{\hyperlink{a01473_a9c7c8b39cd33322b4ce22154628f4b7e}{stop\_tCG}} == \mbox{\hyperlink{a00347_a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed}{Eigen::TCGStopReason::exceededTrustRegion}})) \{}
-\DoxyCodeLine{289         info\_.\mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}}               = \textcolor{stringliteral}{"{}TR+"{}};}
-\DoxyCodeLine{290         innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}          = std::min(3.5 * innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}, options\_.\mbox{\hyperlink{a01517_a8d52f35057ed50714fb0d3f6f94588ec}{Delta\_bar}});}
-\DoxyCodeLine{291         info\_.\mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}} = 0;}
-\DoxyCodeLine{292         info\_.\mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}}++;}
-\DoxyCodeLine{293         \textcolor{keywordflow}{if} (info\_.\mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}} >= 5 \&\& options\_.\mbox{\hyperlink{a01517_a5c041eabf13458ca696bcf25a4e043b2}{verbosity}} >= 1) \{}
-\DoxyCodeLine{294           info\_.\mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}} = -\/std::numeric\_limits<int>::infinity();}
-\DoxyCodeLine{295           spdlog::info(\textcolor{stringliteral}{"{} +++ Detected many consecutive TR+ (radius increases)"{}});}
-\DoxyCodeLine{296           spdlog::info(\textcolor{stringliteral}{"{} +++ Consider increasing options.Delta\_bar by an order of magnitude"{}});}
-\DoxyCodeLine{297 }
-\DoxyCodeLine{298         \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{299           info\_.\mbox{\hyperlink{a01521_afc288b38be6c8627cf079d9bffc3cda9}{consecutive\_TRplus}}  = 0;}
-\DoxyCodeLine{300           info\_.\mbox{\hyperlink{a01521_aab1636ca718e535e09e61cdefc348084}{consecutive\_TRminus}} = 0;}
-\DoxyCodeLine{301         \}}
-\DoxyCodeLine{302       \}}
-\DoxyCodeLine{303 }
-\DoxyCodeLine{304       \textcolor{keywordflow}{if} (modelDecreased \&\& stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}} > options\_.\mbox{\hyperlink{a01517_ade6e855ba3b6c9bb3e0b54264f1a10eb}{rho\_prime}} \&\& energyDecreased) \{}
-\DoxyCodeLine{305         \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}} > stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}})}
-\DoxyCodeLine{306           spdlog::info(}
-\DoxyCodeLine{307               \textcolor{stringliteral}{"{}Energy function increased by \{\} (step size: \{\}). Since this is small we accept the step and hope for "{}}}
-\DoxyCodeLine{308               \textcolor{stringliteral}{"{}convergence of the gradient norm."{}},}
-\DoxyCodeLine{309               stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}} -\/ stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}}, stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}});}
-\DoxyCodeLine{310 }
-\DoxyCodeLine{311         info\_.\mbox{\hyperlink{a01521_a8c3abc0958c354cc92394dfd12a0317b}{acceptProposal}}       = \textcolor{keyword}{true};}
-\DoxyCodeLine{312         info\_.\mbox{\hyperlink{a01521_af3d423f3f05e0bdd445e2b9de7dc9daf}{accstr}}               = \textcolor{stringliteral}{"{}acc"{}};}
-\DoxyCodeLine{313         info\_.\mbox{\hyperlink{a01521_ae1f58001cb449db18bdbd98740dd143d}{consecutive\_Rejected}} = 0;}
-\DoxyCodeLine{314       \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{315         info\_.\mbox{\hyperlink{a01521_a8c3abc0958c354cc92394dfd12a0317b}{acceptProposal}} = \textcolor{keyword}{false};}
-\DoxyCodeLine{316         info\_.\mbox{\hyperlink{a01521_af3d423f3f05e0bdd445e2b9de7dc9daf}{accstr}}         = \textcolor{stringliteral}{"{}REJ"{}};}
-\DoxyCodeLine{317 }
-\DoxyCodeLine{318         \textcolor{keywordflow}{if} (info\_.\mbox{\hyperlink{a01521_ae1f58001cb449db18bdbd98740dd143d}{consecutive\_Rejected}} >= 5)}
-\DoxyCodeLine{319           innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} /= 2;}
-\DoxyCodeLine{320         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{321           innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}} = std::min(innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}, stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}} / 2.0);}
-\DoxyCodeLine{322         ++info\_.\mbox{\hyperlink{a01521_ae1f58001cb449db18bdbd98740dd143d}{consecutive\_Rejected}};}
-\DoxyCodeLine{323       \}}
-\DoxyCodeLine{324 }
-\DoxyCodeLine{325       stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}}++;}
-\DoxyCodeLine{326 }
-\DoxyCodeLine{327       \textcolor{keywordflow}{if} (options\_.\mbox{\hyperlink{a01517_a5c041eabf13458ca696bcf25a4e043b2}{verbosity}} == 1)}
-\DoxyCodeLine{328         logState();}
-\DoxyCodeLine{329 }
-\DoxyCodeLine{330       info\_.\mbox{\hyperlink{a01521_a84be03aa6ebbd80ab2e6fac5a78aacd3}{randomPredictionString}} = \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{331 }
-\DoxyCodeLine{332       \textcolor{keywordflow}{if} (info\_.\mbox{\hyperlink{a01521_a8c3abc0958c354cc92394dfd12a0317b}{acceptProposal}}) \{}
-\DoxyCodeLine{333         stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}} = stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}};}
-\DoxyCodeLine{334         nonLinearOperator\_.updateAll();}
-\DoxyCodeLine{335         xOld\_ = x;}
-\DoxyCodeLine{336         this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5a07a63a77745ab72a7e89fb22a8bcfd78}{NonLinearSolverMessages::CORRECTIONNORM\_UPDATED}}, stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}});}
-\DoxyCodeLine{337         this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5a721c68980ba6c47122945477a56d7a14}{NonLinearSolverMessages::RESIDUALNORM\_UPDATED}}, stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}});}
-\DoxyCodeLine{338         this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5a0d30d757bf062e88728ebe7f8e2b2577}{NonLinearSolverMessages::SOLUTION\_CHANGED}});}
-\DoxyCodeLine{339       \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{340         x = xOld\_;}
-\DoxyCodeLine{341         eta\_.setZero();}
-\DoxyCodeLine{342       \}}
-\DoxyCodeLine{343       nonLinearOperator\_.updateAll();}
-\DoxyCodeLine{344       stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}} = gradient().norm();}
-\DoxyCodeLine{345       this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815}{NonLinearSolverMessages::ITERATION\_ENDED}});}
-\DoxyCodeLine{346     \}}
-\DoxyCodeLine{347     spdlog::info(\textcolor{stringliteral}{"{}\{\}"{}}, info\_.\mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}});}
-\DoxyCodeLine{348     spdlog::info(\textcolor{stringliteral}{"{}Total iterations: \{\} Total CG Iterations: \{\}"{}}, stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}}, stats\_.\mbox{\hyperlink{a01525_ac5053b65db9ceae8340aaebe952c7792}{innerIterSum}});}
-\DoxyCodeLine{349 }
-\DoxyCodeLine{350     solverInformation.success =}
-\DoxyCodeLine{351         (info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}} == \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3}{StopReason::correctionNormTolReached}}) or (info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}} == \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1}{StopReason::gradientNormTolReached}});}
-\DoxyCodeLine{352 }
-\DoxyCodeLine{353     solverInformation.iterations   = stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}};}
-\DoxyCodeLine{354     solverInformation.residualNorm = stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}};}
-\DoxyCodeLine{355     \textcolor{keywordflow}{if} (solverInformation.success)}
-\DoxyCodeLine{356       this-\/>\mbox{\hyperlink{a01653_a4bce3750aa7d52aff9baf122a54e16b5}{notify}}(\mbox{\hyperlink{a00331_gga662b2b6a80547adf4b9ce8b30d87fab5a15380ac35d47cdbcbd64aada4bc21931}{NonLinearSolverMessages::FINISHED\_SUCESSFULLY}}, solverInformation.iterations);}
-\DoxyCodeLine{357     \textcolor{keywordflow}{return} solverInformation;}
-\DoxyCodeLine{358   \}}
-\DoxyCodeLine{363   \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}() \{ \textcolor{keywordflow}{return} nonLinearOperator\_; \}}
-\DoxyCodeLine{364 }
-\DoxyCodeLine{365 \textcolor{keyword}{private}:}
-\DoxyCodeLine{366   \textcolor{keywordtype}{void} logState()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{367     spdlog::info(}
-\DoxyCodeLine{368         \textcolor{stringliteral}{"{}\{:>3s\} \{:>3s\} \{:>6d\} \{:>9d\}  \{:>6.2f\}  \{:>9.2e\}  \{:>9.2e\}  \{:>11.2e\}  \{:>9.2e\}  \{:>9.2e\}  \{:>11.2e\}   "{}}}
-\DoxyCodeLine{369         \textcolor{stringliteral}{"{}\{:<73\}"{}},}
-\DoxyCodeLine{370         info\_.\mbox{\hyperlink{a01521_af3d423f3f05e0bdd445e2b9de7dc9daf}{accstr}}, info\_.\mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}}, stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}}, innerInfo\_.\mbox{\hyperlink{a01473_aea7d60a8e86f8c8a17251b1da948ea68}{numInnerIter}}, stats\_.\mbox{\hyperlink{a01525_a1111f89e925a512bd145b50a8f25c2be}{rho}}, stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}},}
-\DoxyCodeLine{371         stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}}, stats\_.\mbox{\hyperlink{a01525_a3a03ce164638213312bece9e8b54fdcd}{energyProposal}} -\/ stats\_.\mbox{\hyperlink{a01525_a43b868b19908b5435f1e2f18fb1d7625}{energy}}, stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}}, innerInfo\_.\mbox{\hyperlink{a01473_a8e52ebafb750281e8b3f00cb698bd3dd}{Delta}}, stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}},}
-\DoxyCodeLine{372         info\_.\mbox{\hyperlink{a01521_af34cb5bb79e983db99b959d871afd353}{stopReasonString}} + info\_.\mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}} + info\_.\mbox{\hyperlink{a01521_a84be03aa6ebbd80ab2e6fac5a78aacd3}{randomPredictionString}});}
-\DoxyCodeLine{373   \}}
-\DoxyCodeLine{374 }
-\DoxyCodeLine{375   \textcolor{keywordtype}{void} logFinalState() \{}
-\DoxyCodeLine{376     spdlog::info(\textcolor{stringliteral}{"{}\{:>3s\} \{:>3s\} \{:>6d\} \{:>9d\}  \{: \string^6\}  \{: \string^9\}  \{: \string^9\}  \{: \string^11\}  \{:>9.2e\}  \{: \string^9\}  \{: \string^11\}   \{:<73\}"{}},}
-\DoxyCodeLine{377                  info\_.\mbox{\hyperlink{a01521_af3d423f3f05e0bdd445e2b9de7dc9daf}{accstr}}, info\_.\mbox{\hyperlink{a01521_ae987404091035ade31e839e9f00b7cbd}{trstr}}, stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}}, innerInfo\_.\mbox{\hyperlink{a01473_aea7d60a8e86f8c8a17251b1da948ea68}{numInnerIter}}, \textcolor{stringliteral}{"{} "{}}, \textcolor{stringliteral}{"{} "{}}, \textcolor{stringliteral}{"{} "{}}, \textcolor{stringliteral}{"{} "{}},}
-\DoxyCodeLine{378                  stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}}, \textcolor{stringliteral}{"{} "{}}, \textcolor{stringliteral}{"{} "{}}, info\_.\mbox{\hyperlink{a01521_af34cb5bb79e983db99b959d871afd353}{stopReasonString}} + info\_.\mbox{\hyperlink{a01521_a3947b27f29bf44beb7f3f19e91c344f9}{cauchystr}} + info\_.\mbox{\hyperlink{a01521_a84be03aa6ebbd80ab2e6fac5a78aacd3}{randomPredictionString}});}
-\DoxyCodeLine{379   \}}
-\DoxyCodeLine{380 }
-\DoxyCodeLine{381   \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keyword}{auto}\& energy() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().value(); \}}
-\DoxyCodeLine{382   \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keyword}{auto}\& gradient() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().derivative(); \}}
-\DoxyCodeLine{383   \textcolor{keyword}{inline} \textcolor{keyword}{const} \textcolor{keyword}{auto}\& hessian() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().secondDerivative(); \}}
-\DoxyCodeLine{384 }
-\DoxyCodeLine{385   \textcolor{keywordtype}{bool} stoppingCriterion() \{}
-\DoxyCodeLine{386     std::ostringstream stream;}
-\DoxyCodeLine{388     \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}} < options\_.\mbox{\hyperlink{a01517_a64868ebbbe9e92ac762a411882399fc9}{grad\_tol}} \&\& stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} != 0) \{}
-\DoxyCodeLine{389       logFinalState();}
-\DoxyCodeLine{390       spdlog::info(\textcolor{stringliteral}{"{}CONVERGENCE:  Energy: \{:1.16e\}    norm(gradient): \{:1.16e\}"{}}, \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().value(),}
-\DoxyCodeLine{391                    stats\_.\mbox{\hyperlink{a01525_a58ec024d2233720f0bf164b8b21a6626}{gradNorm}});}
-\DoxyCodeLine{392       stream << \textcolor{stringliteral}{"{}Gradient norm tolerance reached; options.tolerance = "{}} << options\_.\mbox{\hyperlink{a01517_a64868ebbbe9e92ac762a411882399fc9}{grad\_tol}};}
-\DoxyCodeLine{393 }
-\DoxyCodeLine{394       info\_.\mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}} = stream.str();}
-\DoxyCodeLine{395 }
-\DoxyCodeLine{396       info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}} = \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1}{StopReason::gradientNormTolReached}};}
-\DoxyCodeLine{397       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{398     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}} < options\_.\mbox{\hyperlink{a01517_af8eb8f7712201c0cf01336a92d704892}{corr\_tol}} \&\& stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} != 0) \{}
-\DoxyCodeLine{399       logFinalState();}
-\DoxyCodeLine{400       spdlog::info(\textcolor{stringliteral}{"{}CONVERGENCE:  Energy: \{:1.16e\}    norm(correction): \{:1.16e\}"{}}, \mbox{\hyperlink{a01529_a58d156c1eb6c5ac3abee28d14beadc2a}{nonLinearOperator}}().value(),}
-\DoxyCodeLine{401                    stats\_.\mbox{\hyperlink{a01525_a178607b87a8d27eb7b02bb22dc0d2c63}{etaNorm}});}
-\DoxyCodeLine{402       stream << \textcolor{stringliteral}{"{}Displacement norm tolerance reached;  = "{}} << options\_.\mbox{\hyperlink{a01517_af8eb8f7712201c0cf01336a92d704892}{corr\_tol}} << \textcolor{stringliteral}{"{}."{}} << std::endl;}
-\DoxyCodeLine{403 }
-\DoxyCodeLine{404       info\_.\mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}} = stream.str();}
-\DoxyCodeLine{405       info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}}         = \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3}{StopReason::correctionNormTolReached}};}
-\DoxyCodeLine{406       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{407     \}}
-\DoxyCodeLine{408 }
-\DoxyCodeLine{410     \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_ab3cab6865c16d06ec81b5db14b0dc5e2}{time}} >= options\_.\mbox{\hyperlink{a01517_ae255ad8f1baddf2e46981bc017da6d26}{maxtime}}) \{}
-\DoxyCodeLine{411       logFinalState();}
-\DoxyCodeLine{412       stream << \textcolor{stringliteral}{"{}Max time exceeded; options.maxtime = "{}} << options\_.\mbox{\hyperlink{a01517_ae255ad8f1baddf2e46981bc017da6d26}{maxtime}} << \textcolor{stringliteral}{"{}."{}};}
-\DoxyCodeLine{413       info\_.\mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}} = stream.str();}
-\DoxyCodeLine{414       info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}}         = \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9}{StopReason::maximumTimeReached}};}
-\DoxyCodeLine{415       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{416     \}}
-\DoxyCodeLine{417 }
-\DoxyCodeLine{419     \textcolor{keywordflow}{if} (stats\_.\mbox{\hyperlink{a01525_a79ff262003d1f3ff65ef2877aca8df0f}{outerIter}} >= options\_.\mbox{\hyperlink{a01517_a617723aafef7a09e5259eb7e5bdbd6ae}{maxIter}}) \{}
-\DoxyCodeLine{420       logFinalState();}
-\DoxyCodeLine{421       stream << \textcolor{stringliteral}{"{}Max iteration count reached; options.maxiter = "{}} << options\_.\mbox{\hyperlink{a01517_a617723aafef7a09e5259eb7e5bdbd6ae}{maxIter}} << \textcolor{stringliteral}{"{}."{}};}
-\DoxyCodeLine{422       info\_.\mbox{\hyperlink{a01521_a8df37485a1fdbbce8d153a8fadd537bf}{reasonString}} = stream.str();}
-\DoxyCodeLine{423       info\_.\mbox{\hyperlink{a01521_a68f203529fcd8a947fd49330a83d42b2}{stop}}         = \mbox{\hyperlink{a00337_abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe}{StopReason::maximumIterationsReached}};}
-\DoxyCodeLine{424       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{425     \}}
-\DoxyCodeLine{426     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{427   \}}
-\DoxyCodeLine{428 }
-\DoxyCodeLine{429   \textcolor{keywordtype}{void} solveInnerProblem() \{}
-\DoxyCodeLine{430     truncatedConjugateGradient\_.\mbox{\hyperlink{a01477_abca8364ed9fadd6e08510b46395dbf22}{setInfo}}(innerInfo\_);}
-\DoxyCodeLine{431     \textcolor{keywordtype}{int} attempts = 0;}
-\DoxyCodeLine{432     truncatedConjugateGradient\_.factorize(hessian());}
-\DoxyCodeLine{433     \textcolor{comment}{// If the preconditioner is IncompleteCholesky the factorization may fail if we have negative diagonal entries and}}
-\DoxyCodeLine{434     \textcolor{comment}{// the initial shift is too small. Therefore, if the factorization fails we increase the initial shift by a factor}}
-\DoxyCodeLine{435     \textcolor{comment}{// of 5.}}
-\DoxyCodeLine{436     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (preConditioner == \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{PreConditioner::IncompleteCholesky}}) \{}
-\DoxyCodeLine{437       \textcolor{keywordflow}{while} (truncatedConjugateGradient\_.info() != Eigen::Success) \{}
-\DoxyCodeLine{438         choleskyInitialShift\_ *= 5;}
-\DoxyCodeLine{439         truncatedConjugateGradient\_.preconditioner().setInitialShift(choleskyInitialShift\_);}
-\DoxyCodeLine{440         truncatedConjugateGradient\_.factorize(hessian());}
-\DoxyCodeLine{441         \textcolor{keywordflow}{if} (attempts > 5)}
-\DoxyCodeLine{442           DUNE\_THROW(Dune::MathError, \textcolor{stringliteral}{"{}Factorization of preconditioner failed!"{}});}
-\DoxyCodeLine{443         ++attempts;}
-\DoxyCodeLine{444       \}}
-\DoxyCodeLine{445       \textcolor{keywordflow}{if} (truncatedConjugateGradient\_.info() == Eigen::Success)}
-\DoxyCodeLine{446         choleskyInitialShift\_ = 1e-\/3;}
-\DoxyCodeLine{447     \}}
-\DoxyCodeLine{448     eta\_       = truncatedConjugateGradient\_.solveWithGuess(-\/gradient(), eta\_);}
-\DoxyCodeLine{449     innerInfo\_ = truncatedConjugateGradient\_.\mbox{\hyperlink{a01477_a81a7f70d30cfbf103d6ac946ebc2a598}{getInfo}}();}
-\DoxyCodeLine{450   \}}
-\DoxyCodeLine{451 }
-\DoxyCodeLine{452   NLO nonLinearOperator\_;}
-\DoxyCodeLine{453   \mbox{\hyperlink{a01529_a7f187a825b0a65e7d9ab1c21578da1cf}{UpdateFunction}} updateFunction\_;}
-\DoxyCodeLine{454   \textcolor{keyword}{typename} NLO::template ParameterValue<0> xOld\_;}
-\DoxyCodeLine{455   \mbox{\hyperlink{a01529_a1071054a0b75f9fbe27832ea672792b0}{CorrectionType}} eta\_;}
-\DoxyCodeLine{456   \mbox{\hyperlink{a01529_a1071054a0b75f9fbe27832ea672792b0}{CorrectionType}} Heta\_;}
-\DoxyCodeLine{457   TrustRegionSettings options\_;}
-\DoxyCodeLine{458   AlgoInfo info\_;}
-\DoxyCodeLine{459   \textcolor{keywordtype}{double} choleskyInitialShift\_ = 1e-\/3;}
-\DoxyCodeLine{460   \mbox{\hyperlink{a01473}{Eigen::TCGInfo<double>}} innerInfo\_;}
-\DoxyCodeLine{461   Stats stats\_;}
-\DoxyCodeLine{462   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} eps\_ = 0.0001220703125; \textcolor{comment}{// 0.0001220703125 is sqrt(sqrt(maschine-\/precision))}}
-\DoxyCodeLine{463   std::array<std::string, 6> tcg\_stop\_reason\_\{}
-\DoxyCodeLine{464       \{\textcolor{stringliteral}{"{}negative curvature"{}}, \textcolor{stringliteral}{"{}exceeded trust region"{}}, \textcolor{stringliteral}{"{}reached target residual-\/kappa (linear)"{}},}
-\DoxyCodeLine{465        \textcolor{stringliteral}{"{}reached target residual-\/theta (superlinear)"{}}, \textcolor{stringliteral}{"{}maximum inner iterations"{}}, \textcolor{stringliteral}{"{}model increased"{}}\}}
-\DoxyCodeLine{466   \};}
-\DoxyCodeLine{467 }
-\DoxyCodeLine{468   \textcolor{keyword}{using }PreConditionerType =}
-\DoxyCodeLine{469       std::conditional\_t<preConditioner == \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608}{PreConditioner::IdentityPreconditioner}}, Eigen::IdentityPreconditioner,}
-\DoxyCodeLine{470                          std::conditional\_t<preConditioner == \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc}{PreConditioner::DiagonalPreconditioner}},}
-\DoxyCodeLine{471                                             \textcolor{keyword}{typename} Eigen::DiagonalPreconditioner<ScalarType>,}
-\DoxyCodeLine{472                                             \textcolor{keyword}{typename} Eigen::IncompleteCholesky<ScalarType>>>;}
-\DoxyCodeLine{473   \mbox{\hyperlink{a01477}{Eigen::TruncatedConjugateGradient<MatrixType, Eigen::Lower | Eigen::Upper, PreConditionerType>}}}
-\DoxyCodeLine{474       truncatedConjugateGradient\_;}
-\DoxyCodeLine{475 \};}
-\DoxyCodeLine{476 }
-\DoxyCodeLine{487 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO, \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66}{PreConditioner}} preConditioner = \mbox{\hyperlink{a00337_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{PreConditioner::IncompleteCholesky}},}
-\DoxyCodeLine{488           \textcolor{keyword}{typename} UF = utils::UpdateDefault>}
-\DoxyCodeLine{489 \textcolor{keyword}{auto} \mbox{\hyperlink{a00337_a547326eb09552d3d1fed0830d0e2d269}{makeTrustRegion}}(\textcolor{keyword}{const} NLO\& nonLinearOperator, UF\&\& updateFunction = \{\}) \{}
-\DoxyCodeLine{490   \textcolor{keywordflow}{return} std::make\_shared<TrustRegion<NLO, preConditioner, UF>>(nonLinearOperator, updateFunction);}
-\DoxyCodeLine{491 \}}
-\DoxyCodeLine{492 }
-\DoxyCodeLine{493 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{17 \textcolor{keyword}{struct }\mbox{\hyperlink{a01409}{DefaultMembraneStrain}}}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{30   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{31   \textcolor{keyword}{static} \textcolor{keyword}{auto} \mbox{\hyperlink{a01409_a7c65ab77e1e42865fc4d0b04a5cb288a}{value}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01573}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} GEO\& geo,}
+\DoxyCodeLine{32                     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction) -\/> Eigen::Vector3<\textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype> \{}
+\DoxyCodeLine{33     \textcolor{keyword}{using }ScalarType = \textcolor{keyword}{typename} std::remove\_cvref\_t<\textcolor{keyword}{decltype}(uFunction)>::ctype;}
+\DoxyCodeLine{34     Eigen::Vector3<ScalarType> epsV;}
+\DoxyCodeLine{35     \textcolor{keyword}{const} \textcolor{keyword}{auto} J = Dune::toEigen(geo.jacobianTransposed(gpPos));}
+\DoxyCodeLine{36     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00354}{Dune}};}
+\DoxyCodeLine{37     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{38     \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 3, 2> gradu = toEigen(}
+\DoxyCodeLine{39         uFunction.evaluateDerivative(gpPos, \textcolor{comment}{// Here the gpIndex could be passed}}
+\DoxyCodeLine{40                                      Dune::wrt(spatialAll), Dune::on(Dune::DerivativeDirections::referenceElement)));}
+\DoxyCodeLine{41     \textcolor{keyword}{const} Eigen::Matrix<ScalarType, 2, 3> j = J + gradu.transpose();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43     epsV << J.row(0).dot(gradu.col(0)) + 0.5 * gradu.col(0).squaredNorm(),}
+\DoxyCodeLine{44         J.row(1).dot(gradu.col(1)) + 0.5 * gradu.col(1).squaredNorm(), j.row(0).dot(j.row(1)) -\/ J.row(0).dot(J.row(1));}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} epsV;}
+\DoxyCodeLine{46   \}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{64   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{65   \textcolor{keyword}{static} \textcolor{keyword}{auto} \mbox{\hyperlink{a01409_a0e9910984eae86b868f317f0a26a132e}{derivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01573}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} Eigen::Matrix<ST, 2, 3>\& jcur,}
+\DoxyCodeLine{66                          \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} GEO\& geo, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis,}
+\DoxyCodeLine{67                          \textcolor{keyword}{const} \textcolor{keywordtype}{int} node) \{}
+\DoxyCodeLine{68     Eigen::Matrix<ST, 3, 3> bop;}
+\DoxyCodeLine{69     bop.row(0) = jcur.row(0) * dNAtGp(node, 0);}
+\DoxyCodeLine{70     bop.row(1) = jcur.row(1) * dNAtGp(node, 1);}
+\DoxyCodeLine{71     bop.row(2) = jcur.row(0) * dNAtGp(node, 1) + jcur.row(1) * dNAtGp(node, 0);}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73     \textcolor{keywordflow}{return} bop;}
+\DoxyCodeLine{74   \}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{95   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{96   \textcolor{keyword}{static} \textcolor{keyword}{auto} \mbox{\hyperlink{a01409_a28a06b4e89e7e526e8b09b020d6adfcf}{secondDerivative}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01573}{Dune::FieldVector<double, 2>}}\& gpPos, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dNAtGp, \textcolor{keyword}{const} GEO\& geo,}
+\DoxyCodeLine{97                                \textcolor{keyword}{const} \textcolor{keyword}{auto}\& uFunction, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localBasis, \textcolor{keyword}{const} Eigen::Vector3<ST>\& S, \textcolor{keywordtype}{int} I,}
+\DoxyCodeLine{98                                \textcolor{keywordtype}{int} J) \{}
+\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1i           = dNAtGp(I, 0);}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN1j           = dNAtGp(J, 0);}
+\DoxyCodeLine{101     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2i           = dNAtGp(I, 1);}
+\DoxyCodeLine{102     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dN2j           = dNAtGp(J, 1);}
+\DoxyCodeLine{103     \textcolor{keyword}{const} ST NS                = dN1i * dN1j * S[0] + dN2i * dN2j * S[1] + (dN1i * dN2j + dN2i * dN1j) * S[2];}
+\DoxyCodeLine{104     Eigen::Matrix<ST, 3, 3> kg = Eigen::Matrix<double, 3, 3>::Identity() * NS;}
+\DoxyCodeLine{105     \textcolor{keywordflow}{return} kg;}
+\DoxyCodeLine{106   \}}
+\DoxyCodeLine{107 \};}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

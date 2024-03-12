@@ -113,9 +113,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flata
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/basis/basis.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/dirichletvalues.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/fe.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/loads/traction.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/loads/volume.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/materials/material.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/material.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerpreelement.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/utils/boundarypatch.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/linearsolver.hh

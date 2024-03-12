@@ -1,6 +1,6 @@
 var a00281 =
 [
-    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "a00281.html#adda74d8564a01c0a9851a4379308a8b2", null ],
-    [ "registerDenseFlatAssembler", "a00281.html#ga2b0faffde20690631657489c79ec809b", null ],
-    [ "registerSparseFlatAssembler", "a00281.html#gaeab1c5f959a22f95b40b0a7576f9c896", null ]
+    [ "globalIndices", "a00281.html#a44e16df41148f7e4538be224814a3423", null ],
+    [ "globalIndicesFromLocalView", "a00281.html#a2a4ac5503d4288b339457aae427ff661", null ],
+    [ "localSolutionBlockVector", "a00281.html#abefb582caeb6d7f2ae68579e460540a9", null ]
 ];

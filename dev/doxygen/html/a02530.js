@@ -1,4 +1,4 @@
 var a02530 =
 [
-    [ "registerDirichletValues", "a02530.html#ga39b6df6adfe4858b13ac71f5830f29f6", null ]
+    [ "boundaryPatch", "a02530.html#a7340cb604093dba2860368264f055a76", null ]
 ];

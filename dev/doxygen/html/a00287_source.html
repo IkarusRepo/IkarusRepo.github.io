@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: resultevaluators.hh Source File</title>
+    <title>ikarus: fefactory.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,72 +152,70 @@ $(document).ready(function(){initNavTree('a00287_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">resultevaluators.hh</div></div>
+  <div class="headertitle"><div class="title">fefactory.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00287.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;dune/common/math.hh&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="a00053.html">ikarus/utils/tensorutils.hh</a>&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="a00346.html">   17</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00346.html">Ikarus::ResultEvaluators</a> {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="a01457.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01457.html">VonMises</a></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> R&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="a01457.html#a041bead382beb38c3d0f128d729e9e5d">   35</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="a01457.html#a041bead382beb38c3d0f128d729e9e5d">operator()</a>(<span class="keyword">const</span> R&amp; resultArray, [[maybe_unused]] <span class="keyword">const</span> <span class="keywordtype">int</span> comp)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> <span class="keyword">auto</span> s_x = resultArray(0, 0);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">const</span> <span class="keyword">auto</span> s_y = resultArray(1, 0);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (R::CompileTimeTraits::RowsAtCompileTime == 3) {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      <span class="keyword">const</span> <span class="keyword">auto</span> s_xy = resultArray(2, 0);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>      <span class="keywordflow">return</span> std::sqrt(Dune::power(s_x, 2) + Dune::power(s_y, 2) - s_x * s_y + 3 * Dune::power(s_xy, 2));</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <span class="keyword">const</span> <span class="keyword">auto</span> s_z  = resultArray(2, 0);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      <span class="keyword">const</span> <span class="keyword">auto</span> s_yz = resultArray(3, 0);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <span class="keyword">const</span> <span class="keyword">auto</span> s_xz = resultArray(4, 0);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keyword">const</span> <span class="keyword">auto</span> s_xy = resultArray(5, 0);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keywordflow">return</span> std::sqrt(Dune::power(s_x, 2) + Dune::power(s_y, 2) + Dune::power(s_z, 2) - s_x * s_y - s_x * s_z -</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                       s_y * s_z + 3 * (Dune::power(s_xy, 2) + Dune::power(s_xz, 2) + Dune::power(s_yz, 2)));</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  }</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="a01457.html#a60952d65a227074bcb68af8ed78d4129">   56</a></span>  <span class="keyword">static</span> std::string <a class="code hl_function" href="a01457.html#a60952d65a227074bcb68af8ed78d4129">name</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;VonMises&quot;</span>; }</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="a01457.html#acdfd2226b12f3819350f4ea231e337bf">   62</a></span>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="a01457.html#acdfd2226b12f3819350f4ea231e337bf">ncomps</a>() { <span class="keywordflow">return</span> 1; }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>};</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">template</span> &lt;<span class="keywordtype">int</span> dim&gt;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">requires</span>(dim == 2 or dim == 3)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="a01461.html">   74</a></span><span class="keyword">struct</span> <a class="code hl_struct" href="a01461.html">PrincipalStress</a></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>{</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="a01461.html#a5b1a1b6fc619e80943b5b54912371cef">   82</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="a01461.html#a5b1a1b6fc619e80943b5b54912371cef">operator()</a>(<span class="keyword">const</span> <span class="keyword">auto</span>&amp; resultArray, <span class="keyword">const</span> <span class="keywordtype">int</span> comp)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="keyword">auto</span> mat = <a class="code hl_function" href="a00333.html#ga106e11a950fe2545890e811d2e9545fd">fromVoigt</a>(resultArray, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    Eigen::SelfAdjointEigenSolver&lt;<span class="keyword">decltype</span>(mat)&gt; eigensolver(mat, Eigen::EigenvaluesOnly);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">return</span> eigensolver.eigenvalues()[dim - 1 - comp];</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="a01461.html#aab635f940c3d1785f4bafe281b575500">   92</a></span>  <span class="keyword">static</span> std::string <a class="code hl_function" href="a01461.html#aab635f940c3d1785f4bafe281b575500">name</a>() { <span class="keywordflow">return</span> <span class="stringliteral">&quot;PrincipalStress&quot;</span>; }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="a01461.html#abc08f088b44639b38ce5fb4b7b3ce7c6">   98</a></span>  <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="a01461.html#abc08f088b44639b38ce5fb4b7b3ce7c6">ncomps</a>() { <span class="keywordflow">return</span> dim; }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>};</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>} <span class="comment">// namespace Ikarus::ResultEvaluators</span></div>
-<div class="ttc" id="aa00053_html"><div class="ttname"><a href="a00053.html">tensorutils.hh</a></div><div class="ttdoc">Helper for the Eigen::Tensor types.</div></div>
-<div class="ttc" id="aa00333_html_ga106e11a950fe2545890e811d2e9545fd"><div class="ttname"><a href="a00333.html#ga106e11a950fe2545890e811d2e9545fd">Ikarus::fromVoigt</a></div><div class="ttdeci">auto fromVoigt(const Eigen::Vector&lt; ST, size &gt; &amp;EVoigt, bool isStrain=true)</div><div class="ttdoc">Converts a vector given in Voigt notation to a matrix.</div><div class="ttdef"><b>Definition:</b> tensorutils.hh:256</div></div>
-<div class="ttc" id="aa00346_html"><div class="ttname"><a href="a00346.html">Ikarus::ResultEvaluators</a></div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:17</div></div>
-<div class="ttc" id="aa01457_html"><div class="ttname"><a href="a01457.html">Ikarus::ResultEvaluators::VonMises</a></div><div class="ttdoc">Struct for calculating von Mises stress.</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:26</div></div>
-<div class="ttc" id="aa01457_html_a041bead382beb38c3d0f128d729e9e5d"><div class="ttname"><a href="a01457.html#a041bead382beb38c3d0f128d729e9e5d">Ikarus::ResultEvaluators::VonMises::operator()</a></div><div class="ttdeci">double operator()(const R &amp;resultArray, const int comp) const</div><div class="ttdoc">Calculate the result quantity (von Mises stress)</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:35</div></div>
-<div class="ttc" id="aa01457_html_a60952d65a227074bcb68af8ed78d4129"><div class="ttname"><a href="a01457.html#a60952d65a227074bcb68af8ed78d4129">Ikarus::ResultEvaluators::VonMises::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdoc">Get the name of the result type (VonMises)</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:56</div></div>
-<div class="ttc" id="aa01457_html_acdfd2226b12f3819350f4ea231e337bf"><div class="ttname"><a href="a01457.html#acdfd2226b12f3819350f4ea231e337bf">Ikarus::ResultEvaluators::VonMises::ncomps</a></div><div class="ttdeci">static int ncomps()</div><div class="ttdoc">Get the number of components in the result (always 1 for VonMises)</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:62</div></div>
-<div class="ttc" id="aa01461_html"><div class="ttname"><a href="a01461.html">Ikarus::ResultEvaluators::PrincipalStress</a></div><div class="ttdoc">Struct for calculating principal stresses.</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:75</div></div>
-<div class="ttc" id="aa01461_html_a5b1a1b6fc619e80943b5b54912371cef"><div class="ttname"><a href="a01461.html#a5b1a1b6fc619e80943b5b54912371cef">Ikarus::ResultEvaluators::PrincipalStress::operator()</a></div><div class="ttdeci">double operator()(const auto &amp;resultArray, const int comp) const</div><div class="ttdoc">Calculate the result quantity (principal stress)</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:82</div></div>
-<div class="ttc" id="aa01461_html_aab635f940c3d1785f4bafe281b575500"><div class="ttname"><a href="a01461.html#aab635f940c3d1785f4bafe281b575500">Ikarus::ResultEvaluators::PrincipalStress::name</a></div><div class="ttdeci">static std::string name()</div><div class="ttdoc">Get the name of the result type (PrincipalStress)</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:92</div></div>
-<div class="ttc" id="aa01461_html_abc08f088b44639b38ce5fb4b7b3ce7c6"><div class="ttname"><a href="a01461.html#abc08f088b44639b38ce5fb4b7b3ce7c6">Ikarus::ResultEvaluators::PrincipalStress::ncomps</a></div><div class="ttdeci">static int ncomps()</div><div class="ttdoc">Get the number of components in the result.</div><div class="ttdef"><b>Definition:</b> resultevaluators.hh:98</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;<a class="code" href="a00212.html">ikarus/finiteelements/febase.hh</a>&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00337.html">Ikarus</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> BH, <span class="keyword">typename</span> SK, <span class="keyword">typename</span> FER = FERequirements&lt;&gt;, <span class="keywordtype">bool</span> useFlat = true, <span class="keywordtype">bool</span> useEigenRef = false&gt;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="a01253.html">   23</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01253.html">FEFactory</a></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="a01253.html#a0c3bf54c651915223d6bd033fb1af80e">   25</a></span>  <span class="keyword">using </span><a class="code hl_typedef" href="a01253.html#a0c3bf54c651915223d6bd033fb1af80e">Skills</a> = SK;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">const</span> BH* basisHandler_;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  SK skills_;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> SK2 = SK&gt;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="a01253.html#abf5673965ef9a4eb42ee618e1e312453">   38</a></span>  <a class="code hl_function" href="a01253.html#abf5673965ef9a4eb42ee618e1e312453">FEFactory</a>(<span class="keyword">const</span> BH&amp; basisHandler, <span class="keyword">const</span> SK2&amp; sk)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      : basisHandler_{&amp;basisHandler},</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        skills_{sk} {}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="a01253.html#a524dd23511e0b34898482211b48ca370">   42</a></span>  <span class="keyword">auto</span> <a class="code hl_function" href="a01253.html#a524dd23511e0b34898482211b48ca370">operator()</a>() {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> std::apply(</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        [&amp;]&lt;<span class="keyword">typename</span>... Args&gt;(Args&amp;&amp;... args) {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>          <span class="comment">// the template would not be needed,</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>          <span class="comment">// when https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1814r0.html</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>          <span class="comment">// will be implemented in clang. It is already implemented in gcc 12.2</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>          <span class="keyword">typename</span> <a class="code hl_struct" href="a01245.html">PreFE&lt;BH, FER, useFlat, useEigenRef&gt;::template</a> <a class="code hl_class" href="a01241.html">FE&lt;std::decay_t&lt;Args&gt;::template</a> Skill...&gt; fe(</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>              *basisHandler_, std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>          <span class="keywordflow">return</span> fe;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        },</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        skills_.args);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  }</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FER = FERequirements&lt;&gt;, <span class="keywordtype">bool</span> useFlat = true, <span class="keywordtype">bool</span> useEigenRef = false, <span class="keyword">typename</span> BH, <span class="keyword">typename</span> SK&gt;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="a00337.html#add8c4206f22324ecc5c13ec49b62083e">   67</a></span><span class="keyword">auto</span> <a class="code hl_function" href="a00337.html#add8c4206f22324ecc5c13ec49b62083e">makeFE</a>(<span class="keyword">const</span> BH&amp; basisHandler, <span class="keyword">const</span> SK&amp; sk) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <a class="code hl_struct" href="a01253.html">FEFactory&lt;BH, SK, FER, useFlat, useEigenRef&gt;</a> factory(basisHandler, sk);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordflow">return</span> factory();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> FER = FERequirements&lt;&gt;, <span class="keywordtype">bool</span> useEigenRef = false, <span class="keyword">typename</span> BH, <span class="keyword">typename</span> SK&gt;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="a00337.html#acd59b021110c6321df400b8c8bc9c7c7">   84</a></span><span class="keyword">auto</span> <a class="code hl_function" href="a00337.html#acd59b021110c6321df400b8c8bc9c7c7">makeFEWithUnTouchedBasis</a>(<span class="keyword">const</span> BH&amp; basisHandler, SK&amp;&amp; sk) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <a class="code hl_struct" href="a01253.html">FEFactory&lt;BH, SK, FER, false, useEigenRef&gt;</a> factory(basisHandler, std::forward&lt;SK&gt;(sk));</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordflow">return</span> factory();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>} <span class="comment">// namespace Ikarus</span></div>
+<div class="ttc" id="aa00212_html"><div class="ttname"><a href="a00212.html">febase.hh</a></div><div class="ttdoc">Contains the FE class, which is used as a base class for all finite elements. It provides information...</div></div>
+<div class="ttc" id="aa00337_html"><div class="ttname"><a href="a00337.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> simpleassemblers.hh:22</div></div>
+<div class="ttc" id="aa00337_html_acd59b021110c6321df400b8c8bc9c7c7"><div class="ttname"><a href="a00337.html#acd59b021110c6321df400b8c8bc9c7c7">Ikarus::makeFEWithUnTouchedBasis</a></div><div class="ttdeci">auto makeFEWithUnTouchedBasis(const BH &amp;basisHandler, SK &amp;&amp;sk)</div><div class="ttdoc">A function to create a finite element using the untouched version of the basis.</div><div class="ttdef"><b>Definition:</b> fefactory.hh:84</div></div>
+<div class="ttc" id="aa00337_html_add8c4206f22324ecc5c13ec49b62083e"><div class="ttname"><a href="a00337.html#add8c4206f22324ecc5c13ec49b62083e">Ikarus::makeFE</a></div><div class="ttdeci">auto makeFE(const BH &amp;basisHandler, const SK &amp;sk)</div><div class="ttdoc">A function to create a finite element using the flat version of the basis.</div><div class="ttdef"><b>Definition:</b> fefactory.hh:67</div></div>
+<div class="ttc" id="aa01241_html"><div class="ttname"><a href="a01241.html">Ikarus::FE</a></div><div class="ttdoc">FE class is a base class for all finite elements.</div><div class="ttdef"><b>Definition:</b> febase.hh:81</div></div>
+<div class="ttc" id="aa01245_html"><div class="ttname"><a href="a01245.html">Ikarus::PreFE</a></div><div class="ttdoc">PreFE struct acts as a convenient wrapper for the FE class to access different type traits.</div><div class="ttdef"><b>Definition:</b> febase.hh:34</div></div>
+<div class="ttc" id="aa01253_html"><div class="ttname"><a href="a01253.html">Ikarus::FEFactory</a></div><div class="ttdoc">FEFactory is a convenient wrapper to forward arguments to PreFE and create and construct a factory of...</div><div class="ttdef"><b>Definition:</b> fefactory.hh:24</div></div>
+<div class="ttc" id="aa01253_html_a0c3bf54c651915223d6bd033fb1af80e"><div class="ttname"><a href="a01253.html#a0c3bf54c651915223d6bd033fb1af80e">Ikarus::FEFactory::Skills</a></div><div class="ttdeci">SK Skills</div><div class="ttdef"><b>Definition:</b> fefactory.hh:25</div></div>
+<div class="ttc" id="aa01253_html_a524dd23511e0b34898482211b48ca370"><div class="ttname"><a href="a01253.html#a524dd23511e0b34898482211b48ca370">Ikarus::FEFactory::operator()</a></div><div class="ttdeci">auto operator()()</div><div class="ttdef"><b>Definition:</b> fefactory.hh:42</div></div>
+<div class="ttc" id="aa01253_html_abf5673965ef9a4eb42ee618e1e312453"><div class="ttname"><a href="a01253.html#abf5673965ef9a4eb42ee618e1e312453">Ikarus::FEFactory::FEFactory</a></div><div class="ttdeci">FEFactory(const BH &amp;basisHandler, const SK2 &amp;sk)</div><div class="ttdoc">constructor for FEFactory</div><div class="ttdef"><b>Definition:</b> fefactory.hh:38</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -228,7 +226,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_cd0257e5a0a5e21e0bd17a30fdd07a18.html">io</a></li><li class="navelem"><a class="el" href="a00287.html">resultevaluators.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00287.html">fefactory.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /
