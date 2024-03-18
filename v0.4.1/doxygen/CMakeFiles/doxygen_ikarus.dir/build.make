@@ -78,11 +78,12 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/loadco
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfollowing.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfollowing.inl
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/pathfollowingfunctions.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/autodifffe.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/powerbasisfe.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febases/scalarfe.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/autodifffe.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/febase.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fefactory.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fehelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/ferequirements.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/feresulttypes.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/fetraits.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/eas2d.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/eas/eas3d.hh
@@ -103,6 +104,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechani
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/vanishingstress.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/membranestrains.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/nonlinearelastic.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mixin.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/physicshelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultevaluators.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultfunction.hh
@@ -110,11 +112,9 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/linearalgebra/truncate
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flatassembler.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/basis/basis.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/dirichletvalues.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/kirchhoffloveshell.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/linearelastic.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/materials/material.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/nonlinearelastic.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerelement.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/fe.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/material.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerpreelement.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/utils/boundarypatch.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/linearsolver.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/newtonraphson.hh
@@ -151,6 +151,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/pythonautodiffde
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/tensorproductquadrule.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/tensorutils.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/traits.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/traversal.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/docs/website/doxygen/modules.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/docs/website/doxygen/mainpage.md
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/docs/website/doxygen/Doxylocal

@@ -1,62 +1,265 @@
-\hypertarget{a00122_source}{}\doxysection{pathfollowing.\+hh}
-\label{a00122_source}\index{pathfollowing.hh@{pathfollowing.hh}}
+\hypertarget{a00122_source}{}\doxysection{simpleassemblers.\+hh}
+\label{a00122_source}\index{simpleassemblers.hh@{simpleassemblers.hh}}
 \mbox{\hyperlink{a00122}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00140}{ikarus/controlroutines/adaptivestepsizing.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/controlroutines/controlinfos.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00137}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00152}{ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh}}>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00170}{ikarus/utils/observer/observer.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00158}{ikarus/utils/observer/observermessages.hh}}>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00325}{Ikarus}} \{}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <mutex>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/functions/backends/istlvectorbackend.hh>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Eigen/Sparse>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00281}{ikarus/finiteelements/fehelper.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02521}{ikarus/utils/dirichletvalues.hh}}>}}
 \DoxyCodeLine{21 }
-\DoxyCodeLine{22 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{23 }
-\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS>}
-\DoxyCodeLine{37   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} checkPathFollowingTemplates() \{}
-\DoxyCodeLine{38     \textcolor{keywordflow}{return} Concepts::PathFollowingStrategy<PF, typename NLS::NonLinearOperator, SubsidiaryArgs> and}
-\DoxyCodeLine{39            Concepts::AdaptiveStepSizingStrategy<ASS, NonLinearSolverInformation, SubsidiaryArgs,}
-\DoxyCodeLine{40                                                 std::remove\_cvref\_t<typename NLS::NonLinearOperator>> and}
-\DoxyCodeLine{41            Concepts::NonLinearSolverCheckForPathFollowing<NLS>;}
-\DoxyCodeLine{42   \}}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{44 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus}} \{}
+\DoxyCodeLine{31 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEC, \textcolor{keyword}{typename} DV>}
+\DoxyCodeLine{32 \textcolor{keyword}{class }\mbox{\hyperlink{a01181}{FlatAssemblerBase}}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34 \textcolor{keyword}{public}:}
+\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a05cbe5a00c2847e75eb7beb544f136ec}{FEContainerRaw}}    = std::remove\_cvref\_t<FEC>; }
+\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}} = \textcolor{keyword}{typename} FEContainerRaw::value\_type::FERequirementType;}
+\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a9cd6c79d6625adb9767a14ba5c1ff283}{GlobalIndex}}     = \textcolor{keyword}{typename} FEContainerRaw::value\_type::GlobalIndex; }
+\DoxyCodeLine{39   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_affbdfc67b017b9304f2dfd519509a8fb}{Basis}}           = \textcolor{keyword}{typename} DV::Basis;                               }
+\DoxyCodeLine{40   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_acee7beef45351811911847086414709e}{GridView}}        = \textcolor{keyword}{typename} Basis::GridView;                         }
+\DoxyCodeLine{41   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}     = FEC;                                              }
+\DoxyCodeLine{42   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_ad65c9d93766e445ec688411634e9bce6}{FEContainerType}} = std::conditional\_t<std::is\_reference\_v<FEContainer>, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}, \mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>;}
+\DoxyCodeLine{44   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}} = DV; }
 \DoxyCodeLine{45 }
-\DoxyCodeLine{75 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS = AdaptiveStepSizing::NoOp>}
-\DoxyCodeLine{76 \textcolor{keyword}{requires}(Impl::checkPathFollowingTemplates<NLS, PF, ASS>())}
-\DoxyCodeLine{77 \textcolor{keyword}{class} \mbox{\hyperlink{a01202}{PathFollowing}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01570}{IObservable<ControlMessages>}}}
-\DoxyCodeLine{78 \{}
-\DoxyCodeLine{79 \textcolor{keyword}{public}:}
-\DoxyCodeLine{81   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01202_a31b9c556cef2540c66676589b230ef5d}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Path following with "{}} + pathFollowingType\_.name()); \}}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{92   \mbox{\hyperlink{a01202_afa8baf4eca6f6dd442165592c7fe3871}{PathFollowing}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nonLinearSolver, \textcolor{keywordtype}{int} steps, \textcolor{keywordtype}{double} stepSize,}
-\DoxyCodeLine{93                 PF pathFollowingType = \mbox{\hyperlink{a01210}{ArcLength}}\{\}, ASS adaptiveStepSizing = \{\})}
-\DoxyCodeLine{94       : nonLinearSolver\_\{nonLinearSolver\},}
-\DoxyCodeLine{95         steps\_\{steps\},}
-\DoxyCodeLine{96         stepSize\_\{stepSize\},}
-\DoxyCodeLine{97         pathFollowingType\_\{pathFollowingType\},}
-\DoxyCodeLine{98         adaptiveStepSizing\_\{adaptiveStepSizing\} \{\}}
+\DoxyCodeLine{52   \mbox{\hyperlink{a01181_a09b56d7e0fd2161b781450e89a8a32d6}{FlatAssemblerBase}}(\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}\&\& fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}})}
+\DoxyCodeLine{53       : feContainer\_\{std::forward<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>(fes)\},}
+\DoxyCodeLine{54         dirichletValues\_\{\&\mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}\} \{}
+\DoxyCodeLine{55     constraintsBelow\_.reserve(dirichletValues\_-\/>size());}
+\DoxyCodeLine{56     \textcolor{keywordtype}{size\_t} counter = 0;}
+\DoxyCodeLine{57     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} iv : std::ranges::iota\_view\{\textcolor{keyword}{decltype}(dirichletValues\_-\/>size())(0), dirichletValues\_-\/>size()\}) \{}
+\DoxyCodeLine{58       constraintsBelow\_.emplace\_back(counter);}
+\DoxyCodeLine{59       \textcolor{keywordflow}{if} (dirichletValues\_-\/>isConstrained(iv))}
+\DoxyCodeLine{60         ++counter;}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{62     fixedDofs\_ = dirichletValues\_-\/>fixedDOFsize();}
+\DoxyCodeLine{63   \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{69   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01181_a8b47f036b83e4e712b791d9cfe910f2b}{reducedSize}}() \{ \textcolor{keywordflow}{return} dirichletValues\_-\/>size() -\/ fixedDofs\_; \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{75   \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01181_ae3fed93b367a8d5eb4e369132a7cc355}{size}}() \{ \textcolor{keywordflow}{return} dirichletValues\_-\/>size(); \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{84   Eigen::VectorXd \mbox{\hyperlink{a01181_a5ca172ae99902193abf31ab542ff4aaf}{createFullVector}}(Eigen::Ref<const Eigen::VectorXd> reducedVector);}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{90   \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01181_aa8da4086d468797668b6d551129e96dd}{finiteElements}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} feContainer\_; \}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{98   [[nodiscard]] \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01181_aa1a20226eacfb65d0f2b09b397578cab}{constraintsBelow}}(\textcolor{keywordtype}{size\_t} i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} constraintsBelow\_[i]; \}}
 \DoxyCodeLine{99 }
-\DoxyCodeLine{105   ControlInformation run();}
-\DoxyCodeLine{106 }
-\DoxyCodeLine{107 \textcolor{keyword}{private}:}
-\DoxyCodeLine{108   std::shared\_ptr<NLS> nonLinearSolver\_;}
-\DoxyCodeLine{109   \textcolor{keywordtype}{int} steps\_;}
-\DoxyCodeLine{110   \textcolor{keywordtype}{double} stepSize\_;}
-\DoxyCodeLine{111   PF pathFollowingType\_;}
-\DoxyCodeLine{112   ASS adaptiveStepSizing\_;}
-\DoxyCodeLine{113 \};}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{115 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{116 }
-\DoxyCodeLine{117 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/controlroutines/pathfollowing.inl}}>}}
+\DoxyCodeLine{106   [[nodiscard]] \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01181_a75a1882ad41715632ebeb6a13ed14d69}{isConstrained}}(\textcolor{keywordtype}{size\_t} i)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dirichletValues\_-\/>isConstrained(i); \}}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{114   [[nodiscard]] \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01181_adf77b0e3c1dab4782a2da06fc712b9c5}{estimateOfConnectivity}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{115     \textcolor{keywordflow}{return} dirichletValues\_-\/>basis().gridView().size(GridView::dimension) * 8;}
+\DoxyCodeLine{116   \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118 \textcolor{keyword}{private}:}
+\DoxyCodeLine{119   \mbox{\hyperlink{a01181_ad65c9d93766e445ec688411634e9bce6}{FEContainerType}} feContainer\_;}
+\DoxyCodeLine{120   \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}* dirichletValues\_;}
+\DoxyCodeLine{121   std::vector<size\_t> constraintsBelow\_\{\};}
+\DoxyCodeLine{122   \textcolor{keywordtype}{size\_t} fixedDofs\_\{\};}
+\DoxyCodeLine{123 \};}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{126 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} DirichletValuesType>}
+\DoxyCodeLine{127 FlatAssemblerBase(T\&\& fes, \textcolor{keyword}{const} DirichletValuesType\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) -\/> FlatAssemblerBase<T, DirichletValuesType>;}
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{137 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEC, \textcolor{keyword}{typename} DV>}
+\DoxyCodeLine{138 \textcolor{keyword}{class }\mbox{\hyperlink{a01185}{ScalarAssembler}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01181}{FlatAssemblerBase}}<FEC, DV>}
+\DoxyCodeLine{139 \{}
+\DoxyCodeLine{140   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a05cbe5a00c2847e75eb7beb544f136ec}{FEContainerRaw}} = std::remove\_cvref\_t<FEC>; }
+\DoxyCodeLine{141   \textcolor{keyword}{using }\mbox{\hyperlink{a01181}{Base}}           = \mbox{\hyperlink{a01181}{FlatAssemblerBase<FEC, DV>}};}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{keyword}{public}:}
+\DoxyCodeLine{144   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01181_affbdfc67b017b9304f2dfd519509a8fb}{Base::Basis}};}
+\DoxyCodeLine{145   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{Base::DirichletValuesType}};}
+\DoxyCodeLine{146   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{Base::FEContainer}};}
+\DoxyCodeLine{147   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{Base::FERequirementType}};}
+\DoxyCodeLine{148   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01181_a9cd6c79d6625adb9767a14ba5c1ff283}{Base::GlobalIndex}};}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{156   \mbox{\hyperlink{a01185_aea70457453f4efbf67bf9541c43afff2}{ScalarAssembler}}(\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}\&\& fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}})}
+\DoxyCodeLine{157       : \mbox{\hyperlink{a01181}{FlatAssemblerBase}}<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}, \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}>(std::forward<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>(fes), \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) \{\}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{165   \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{a01185_a0bf594865140bd900a6f31807dfc6f7e}{getScalar}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{ \textcolor{keywordflow}{return} getScalarImpl(feRequirements); \}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{keyword}{private}:}
+\DoxyCodeLine{174   \textcolor{keywordtype}{double}\& getScalarImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01185_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{175     scal\_ = 0.0;}
+\DoxyCodeLine{176     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& fe : this-\/>\mbox{\hyperlink{a01181_aa8da4086d468797668b6d551129e96dd}{finiteElements}}()) \{}
+\DoxyCodeLine{177       scal\_ += calculateScalar(fe, feRequirements);}
+\DoxyCodeLine{178     \}}
+\DoxyCodeLine{179     \textcolor{keywordflow}{return} scal\_;}
+\DoxyCodeLine{180   \}}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182   \textcolor{keywordtype}{double} scal\_\{0.0\};}
+\DoxyCodeLine{183 \};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{186 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} DirichletValuesType>}
+\DoxyCodeLine{187 ScalarAssembler(T\&\& fes, \textcolor{keyword}{const} DirichletValuesType\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) -\/> ScalarAssembler<T, DirichletValuesType>;}
+\DoxyCodeLine{188 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{189 }
+\DoxyCodeLine{197 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEC, \textcolor{keyword}{typename} DV>}
+\DoxyCodeLine{198 \textcolor{keyword}{class }\mbox{\hyperlink{a01189}{VectorFlatAssembler}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01185}{ScalarAssembler}}<FEC, DV>}
+\DoxyCodeLine{199 \{}
+\DoxyCodeLine{200   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a05cbe5a00c2847e75eb7beb544f136ec}{FEContainerRaw}} = std::remove\_cvref\_t<FEC>; }
+\DoxyCodeLine{201   \textcolor{keyword}{using }\mbox{\hyperlink{a01181}{Base}}           = \mbox{\hyperlink{a01185}{ScalarAssembler<FEC, DV>}};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 \textcolor{keyword}{public}:}
+\DoxyCodeLine{204   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01185_affbdfc67b017b9304f2dfd519509a8fb}{Base::Basis}};}
+\DoxyCodeLine{205   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01185_abf6599ec65ab1574a3282a553584f9e9}{Base::DirichletValuesType}};}
+\DoxyCodeLine{206   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01185_a4bb11a213bcf6c6f18e731bf4281edcb}{Base::FEContainer}};}
+\DoxyCodeLine{207   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01185_a69ef7a0291ed086199b2f5b4b1173bfc}{Base::FERequirementType}};}
+\DoxyCodeLine{208   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01185_a9cd6c79d6625adb9767a14ba5c1ff283}{Base::GlobalIndex}};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210 \textcolor{keyword}{public}:}
+\DoxyCodeLine{217   \mbox{\hyperlink{a01189_ae1d7d3cba6d1c1ab4373fff67e1a300c}{VectorFlatAssembler}}(\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}\&\& fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}})}
+\DoxyCodeLine{218       : \mbox{\hyperlink{a01185}{ScalarAssembler}}<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}, \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}>(std::forward<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>(fes), \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) \{\}}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{226   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{a01189_a15da22b282305962bc6498a1451694de}{getRawVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{227     \textcolor{keywordflow}{return} getRawVectorImpl(feRequirements);}
+\DoxyCodeLine{228   \}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{237   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{a01189_a027ac8d2135f675df889fdf80a678081}{getVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{ \textcolor{keywordflow}{return} getVectorImpl(feRequirements); \}}
+\DoxyCodeLine{238 }
+\DoxyCodeLine{246   \textcolor{keyword}{const} Eigen::VectorXd\& \mbox{\hyperlink{a01189_a51fc1c4a8302dd955bd27dfa6e81bc6f}{getReducedVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{247     \textcolor{keywordflow}{return} getReducedVectorImpl(feRequirements);}
+\DoxyCodeLine{248   \}}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 \textcolor{keyword}{private}:}
+\DoxyCodeLine{251   \textcolor{keywordtype}{void} assembleRawVectorImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements, Eigen::VectorXd\& assemblyVec);}
+\DoxyCodeLine{252   Eigen::VectorXd\& getRawVectorImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{253   Eigen::VectorXd\& getVectorImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255   Eigen::VectorXd\& getReducedVectorImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257   Eigen::VectorXd vecRaw\_\{\}; }
+\DoxyCodeLine{258   Eigen::VectorXd vec\_\{\};    }
+\DoxyCodeLine{259   Eigen::VectorXd vecRed\_\{\}; }
+\DoxyCodeLine{260 \};}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{263 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} DirichletValuesType>}
+\DoxyCodeLine{264 VectorFlatAssembler(T\&\& fes, \textcolor{keyword}{const} DirichletValuesType\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) -\/> VectorFlatAssembler<T, DirichletValuesType>;}
+\DoxyCodeLine{265 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{275 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEC, \textcolor{keyword}{typename} DV>}
+\DoxyCodeLine{276 \textcolor{keyword}{class }\mbox{\hyperlink{a01193}{SparseFlatAssembler}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01189}{VectorFlatAssembler}}<FEC, DV>}
+\DoxyCodeLine{277 \{}
+\DoxyCodeLine{278 \textcolor{keyword}{public}:}
+\DoxyCodeLine{279   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a05cbe5a00c2847e75eb7beb544f136ec}{FEContainerRaw}} = std::remove\_cvref\_t<FEC>; }
+\DoxyCodeLine{280   \textcolor{keyword}{using }\mbox{\hyperlink{a01181}{Base}}           = \mbox{\hyperlink{a01189}{VectorFlatAssembler<FEC, DV>}};}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_affbdfc67b017b9304f2dfd519509a8fb}{Base::Basis}};}
+\DoxyCodeLine{283   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_abf6599ec65ab1574a3282a553584f9e9}{Base::DirichletValuesType}};}
+\DoxyCodeLine{284   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a4bb11a213bcf6c6f18e731bf4281edcb}{Base::FEContainer}};}
+\DoxyCodeLine{285   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{Base::FERequirementType}};}
+\DoxyCodeLine{286   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a9cd6c79d6625adb9767a14ba5c1ff283}{Base::GlobalIndex}};}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{294   \mbox{\hyperlink{a01193_acc0799517783d8b8b055afe0e11734db}{SparseFlatAssembler}}(\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}\&\& fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}})}
+\DoxyCodeLine{295       : \mbox{\hyperlink{a01189}{VectorFlatAssembler}}<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}, \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}>(std::forward<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>(fes), \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) \{\}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_acee7beef45351811911847086414709e}{GridView}} = \textcolor{keyword}{typename} Basis::GridView; }
+\DoxyCodeLine{298 }
+\DoxyCodeLine{305   \textcolor{keyword}{const} Eigen::SparseMatrix<double>\& \mbox{\hyperlink{a01193_ab3f0321d5506c724e811b6fbb491af11}{getRawMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{306     \textcolor{keywordflow}{return} getRawMatrixImpl(feRequirements);}
+\DoxyCodeLine{307   \}}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{316   \textcolor{keyword}{const} Eigen::SparseMatrix<double>\& \mbox{\hyperlink{a01193_ace023f955094720794257593607b80f9}{getMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{317     \textcolor{keywordflow}{return} getMatrixImpl(feRequirements);}
+\DoxyCodeLine{318   \}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{327   \textcolor{keyword}{const} Eigen::SparseMatrix<double>\& \mbox{\hyperlink{a01193_ab9732b32498a6852a4e0447cf193722b}{getReducedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{328     \textcolor{keywordflow}{return} getReducedMatrixImpl(feRequirements);}
+\DoxyCodeLine{329   \}}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{331 \textcolor{keyword}{private}:}
+\DoxyCodeLine{332   \textcolor{keywordtype}{void} assembleRawMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01193_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements, Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{333   Eigen::SparseMatrix<double>\& getRawMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01193_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{334   Eigen::SparseMatrix<double>\& getMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01193_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{335   Eigen::SparseMatrix<double>\& getReducedMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01193_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{336 }
+\DoxyCodeLine{339   \textcolor{keywordtype}{void} createOccupationPattern(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{340 }
+\DoxyCodeLine{343   \textcolor{keywordtype}{void} createReducedOccupationPattern(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{346   \textcolor{keywordtype}{void} createLinearDOFsPerElement(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{350   \textcolor{keywordtype}{void} createLinearDOFsPerElementReduced(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{351 }
+\DoxyCodeLine{353   \textcolor{keywordtype}{void} preProcessSparseMatrix(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{356   \textcolor{keywordtype}{void} preProcessSparseMatrixReduced(Eigen::SparseMatrix<double>\& assemblyMat);}
+\DoxyCodeLine{357 }
+\DoxyCodeLine{358   Eigen::SparseMatrix<double> spMatRaw\_;     }
+\DoxyCodeLine{359   Eigen::SparseMatrix<double> spMat\_;        }
+\DoxyCodeLine{360   Eigen::SparseMatrix<double> spMatReduced\_; }
+\DoxyCodeLine{361   std::vector<std::vector<Eigen::Index>>}
+\DoxyCodeLine{362       elementLinearIndices\_; }
+\DoxyCodeLine{363   std::vector<std::vector<Eigen::Index>>}
+\DoxyCodeLine{364       elementLinearReducedIndices\_; }
+\DoxyCodeLine{365   std::once\_flag sparsePreProcessorRaw\_, sparsePreProcessor\_,}
+\DoxyCodeLine{366       sparsePreProcessorReduced\_; }
+\DoxyCodeLine{367 \};}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{370 \textcolor{keyword}{template} <\textcolor{keyword}{class} FEC, \textcolor{keyword}{class} DV>}
+\DoxyCodeLine{371 SparseFlatAssembler(FEC\&\& fes, \textcolor{keyword}{const} DV\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) -\/> SparseFlatAssembler<FEC, DV>;}
+\DoxyCodeLine{372 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{373 }
+\DoxyCodeLine{383 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FEC, \textcolor{keyword}{typename} DV>}
+\DoxyCodeLine{384 \textcolor{keyword}{class }\mbox{\hyperlink{a01197}{DenseFlatAssembler}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01189}{VectorFlatAssembler}}<FEC, DV>}
+\DoxyCodeLine{385 \{}
+\DoxyCodeLine{386 \textcolor{keyword}{public}:}
+\DoxyCodeLine{387   \textcolor{keyword}{using }\mbox{\hyperlink{a01181_a05cbe5a00c2847e75eb7beb544f136ec}{FEContainerRaw}} = std::remove\_cvref\_t<FEC>;     }
+\DoxyCodeLine{388   \textcolor{keyword}{using }\mbox{\hyperlink{a01181}{Base}}           = \mbox{\hyperlink{a01189}{VectorFlatAssembler<FEC, DV>}}; }
+\DoxyCodeLine{389 }
+\DoxyCodeLine{390   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_affbdfc67b017b9304f2dfd519509a8fb}{Base::Basis}};               }
+\DoxyCodeLine{391   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_abf6599ec65ab1574a3282a553584f9e9}{Base::DirichletValuesType}}; }
+\DoxyCodeLine{392   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a4bb11a213bcf6c6f18e731bf4281edcb}{Base::FEContainer}};         }
+\DoxyCodeLine{393   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a69ef7a0291ed086199b2f5b4b1173bfc}{Base::FERequirementType}};   }
+\DoxyCodeLine{394   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01189_a9cd6c79d6625adb9767a14ba5c1ff283}{Base::GlobalIndex}};         }
+\DoxyCodeLine{395 }
+\DoxyCodeLine{402   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01197_ad225386e9ac269916f38107030c5508d}{DenseFlatAssembler}}(\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}\&\& fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}})}
+\DoxyCodeLine{403       : \mbox{\hyperlink{a01189}{VectorFlatAssembler}}<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}, \mbox{\hyperlink{a01181_abf6599ec65ab1574a3282a553584f9e9}{DirichletValuesType}}>(std::forward<\mbox{\hyperlink{a01181_a4bb11a213bcf6c6f18e731bf4281edcb}{FEContainer}}>(fes), \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) \{\}}
+\DoxyCodeLine{404 }
+\DoxyCodeLine{411   \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{a01197_a1b25b3be5126355ae0a06b08a204ffc6}{getRawMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{412     \textcolor{keywordflow}{return} getRawMatrixImpl(feRequirements);}
+\DoxyCodeLine{413   \}}
+\DoxyCodeLine{414 }
+\DoxyCodeLine{422   \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{a01197_a3baaec4dae68ca424102650fd660871b}{getMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{ \textcolor{keywordflow}{return} getMatrixImpl(feRequirements); \}}
+\DoxyCodeLine{423 }
+\DoxyCodeLine{431   \textcolor{keyword}{const} Eigen::MatrixXd\& \mbox{\hyperlink{a01197_a58efbb96e88836e88b8352d1bd605e0b}{getReducedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01181_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements) \{}
+\DoxyCodeLine{432     \textcolor{keywordflow}{return} getReducedMatrixImpl(feRequirements);}
+\DoxyCodeLine{433   \}}
+\DoxyCodeLine{434 }
+\DoxyCodeLine{435 \textcolor{keyword}{private}:}
+\DoxyCodeLine{436   \textcolor{keywordtype}{void} assembleRawMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01197_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements, Eigen::MatrixXd\& assemblyMat);}
+\DoxyCodeLine{437   Eigen::MatrixXd\& getRawMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01197_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{438   Eigen::MatrixXd\& getMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01197_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{439   Eigen::MatrixXd\& getReducedMatrixImpl(\textcolor{keyword}{const} \mbox{\hyperlink{a01197_a69ef7a0291ed086199b2f5b4b1173bfc}{FERequirementType}}\& feRequirements);}
+\DoxyCodeLine{440 }
+\DoxyCodeLine{441   Eigen::MatrixXd matRaw\_\{\}; }
+\DoxyCodeLine{442   Eigen::MatrixXd mat\_\{\};    }
+\DoxyCodeLine{443   Eigen::MatrixXd matRed\_\{\}; }
+\DoxyCodeLine{444 \};}
+\DoxyCodeLine{445 }
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{447 \textcolor{comment}{// https://en.cppreference.com/w/cpp/language/class\_template\_argument\_deduction}}
+\DoxyCodeLine{448 \textcolor{keyword}{template} <\textcolor{keyword}{class} FEC, \textcolor{keyword}{class} DV>}
+\DoxyCodeLine{449 DenseFlatAssembler(FEC\&\& fes, \textcolor{keyword}{const} DV\& \mbox{\hyperlink{a00361_a453691a9a22118c4736e30240481a281}{dirichletValues}}) -\/> DenseFlatAssembler<FEC, DV>;}
+\DoxyCodeLine{450 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{451 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{453 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00119}{simpleassemblers.inl}}"{}}}
 
 \end{DoxyCode}

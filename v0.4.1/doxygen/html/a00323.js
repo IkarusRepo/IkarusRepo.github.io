@@ -1,14 +1,28 @@
 var a00323 =
 [
-    [ "Ikarus::traits::Pointer", "a01646.html", null ],
-    [ "Ikarus::traits::is_tuple< std::tuple< T... > >", "a01578.html", null ],
-    [ "Ikarus::traits::hasType< T, Tuple >", "a01582.html", null ],
-    [ "Ikarus::traits::isSpecialization< U, U< T... > >", "a01586.html", null ],
-    [ "Ikarus::traits::isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01590.html", null ],
-    [ "Ikarus::traits::isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01594.html", null ],
-    [ "Ikarus::traits::isSpecializationNonTypes< Type, Type< N... > >", "a01598.html", null ],
-    [ "Ikarus::traits::Index< T, Tuple >", "a01602.html", null ],
-    [ "Ikarus::traits::FunctionTraits< T, typename >", "a01610.html", null ],
-    [ "Ikarus::traits::ReturnType", "a00323.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
-    [ "Ikarus::traits::countType", "a00323.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
+    [ "Ikarus::MatrixAffordances", "a00323.html#ga52cb89165daabb500f6e2eb68ddd76ee", [
+      [ "Ikarus::MatrixAffordances::BEGIN", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::MatrixAffordances::noAffordance", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eea9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::MatrixAffordances::stiffness", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eea086e8b527490b8abe606a8dd76586ab1", null ],
+      [ "Ikarus::MatrixAffordances::materialstiffness", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eea3a130b44dd6ff9351e7734ac33096b62", null ],
+      [ "Ikarus::MatrixAffordances::geometricstiffness", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eeae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
+      [ "Ikarus::MatrixAffordances::stiffnessdiffBucklingVector", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eeadaa7ff7d704732b763943e3355764532", null ],
+      [ "Ikarus::MatrixAffordances::microMagneticHessian", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eea1b0fce0a361af9d6e59694b4c51524f9", null ],
+      [ "Ikarus::MatrixAffordances::mass", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eead90ccffa01275a7a7795fb6d1274e75f", null ],
+      [ "Ikarus::MatrixAffordances::END", "a00323.html#gga52cb89165daabb500f6e2eb68ddd76eeab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "Ikarus::ScalarAffordances", "a00323.html#ga8a33210894e12be4feb3d96fdfde215c", [
+      [ "Ikarus::ScalarAffordances::BEGIN", "a00323.html#gga8a33210894e12be4feb3d96fdfde215ca19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::ScalarAffordances::noAffordance", "a00323.html#gga8a33210894e12be4feb3d96fdfde215ca9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::ScalarAffordances::mechanicalPotentialEnergy", "a00323.html#gga8a33210894e12be4feb3d96fdfde215ca814f34f472acef493e9ecf0ffccdcae6", null ],
+      [ "Ikarus::ScalarAffordances::microMagneticPotentialEnergy", "a00323.html#gga8a33210894e12be4feb3d96fdfde215cae45c0886135e58c01a313bda2d69e29a", null ],
+      [ "Ikarus::ScalarAffordances::END", "a00323.html#gga8a33210894e12be4feb3d96fdfde215cab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "Ikarus::VectorAffordances", "a00323.html#ga122268ff4d2c0beee58799d85ba5e52a", [
+      [ "Ikarus::VectorAffordances::BEGIN", "a00323.html#gga122268ff4d2c0beee58799d85ba5e52aa19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::VectorAffordances::noAffordance", "a00323.html#gga122268ff4d2c0beee58799d85ba5e52aa9a280b29988e2eac8c0767e0fcefb49c", null ],
+      [ "Ikarus::VectorAffordances::forces", "a00323.html#gga122268ff4d2c0beee58799d85ba5e52aa2c05161a7e67e946ddc889571aac4e89", null ],
+      [ "Ikarus::VectorAffordances::microMagneticForces", "a00323.html#gga122268ff4d2c0beee58799d85ba5e52aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
+      [ "Ikarus::VectorAffordances::END", "a00323.html#gga122268ff4d2c0beee58799d85ba5e52aab1a326c06d88bf042f73d70f50197905", null ]
+    ] ]
 ];

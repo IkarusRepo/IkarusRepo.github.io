@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../auxiliaryImages/logo_blue.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11+insiders-4.53.0">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14+insiders-4.53.2">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.458d28d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.003a5498.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2290,18 +2290,20 @@ independent degrees of freedom to simulate the deformation of an incompressible 
 for such a system is defined in the <code>Solid struct</code> by the function
 <code>calculateScalarImpl(const FERequirementType &amp;par, const Eigen::VectorX&lt;ScalarType&gt; &amp;dx)</code>.
 This function uses the principles of automatic differentiation to provide the stiffness matrix and
-other necessary quantities to perform a static structural analysis.</p>
+other necessary quantities to perform a static structural analysis.
+It inherits from <code>FEBase</code> which provides information about the <code>localView</code> of the element.</p>
 <h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">&para;</a></h2>
-<p>The <code>struct</code> named <code>Solid</code> is created which is not inherited from any class. It is constructed as shown below:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Solid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Basis</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">LocalView</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">emod</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">nu</span><span class="p">)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">localView_</span><span class="p">{</span><span class="n">basis</span><span class="p">.</span><span class="n">localView</span><span class="p">()},</span><span class="w"> </span><span class="n">emod_</span><span class="p">{</span><span class="n">emod</span><span class="p">},</span><span class="w"> </span><span class="n">nu_</span><span class="p">{</span><span class="n">nu</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="n">localView_</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">mu_</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">emod_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nu_</span><span class="p">));</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="n">lambdaMat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertLameConstants</span><span class="p">({.</span><span class="n">emodul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emod_</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">nu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nu_</span><span class="p">}).</span><span class="n">toLamesFirstParameter</span><span class="p">();</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+<p>The <code>struct</code> named <code>Solid</code> is created. It is constructed as shown below:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Solid</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">BasisHandler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basisHandler</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">LocalView</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">emod</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">nu</span><span class="p">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">Base</span><span class="p">(</span><span class="n">basisHandler</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">),</span><span class="w"> </span><span class="n">emod_</span><span class="p">{</span><span class="n">emod</span><span class="p">},</span><span class="w"> </span><span class="n">nu_</span><span class="p">{</span><span class="n">nu</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">mu_</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">emod_</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nu_</span><span class="p">));</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">lambdaMat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">convertLameConstants</span><span class="p">({.</span><span class="n">emodul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emod_</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">nu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nu_</span><span class="p">}).</span><span class="n">toLamesFirstParameter</span><span class="p">();</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </code></pre></div>
-<p>It takes a reference to the basis function (<code>&amp;basis</code>), the element (<code>&amp;element</code>), and the material parameters, namely Young's modulus
-(<code>emod</code>) and Poisson's ratio (<code>nu</code>), as arguments during construction. The function <code>convertLameConstants()</code> is a helper function
+<p>It takes a reference to the basis handler (<code>&amp;basisHandler</code>),
+the element (<code>&amp;element</code>), and the material parameters, namely Young's modulus
+(<code>emod</code>) and Poisson's ratio (<code>nu</code>), as arguments during construction.
+The function <code>convertLameConstants()</code> is a helper function
 to switch between the Lame parameters.</p>
 <p><code>ScalarType calculateScalarImpl(const FERequirementType &amp;par, const Eigen::VectorX&lt;ScalarType&gt; &amp;dx)</code> is
 then defined, returning a scalar value, in this case the energy.
@@ -2513,7 +2515,7 @@ the <code>*.vtu</code> files. The results can then be plotted, for example, usin
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "content.code.annotate", "navigation.tabs", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.82b033e4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a255a381.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

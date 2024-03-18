@@ -1,7 +1,7 @@
 var a00221 =
 [
-    [ "createDeformationGradient", "a00221.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
-    [ "createGreenLagrangianStrains", "a00221.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
-    [ "createRightCauchyGreen", "a00221.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
-    [ "transformStrain", "a00221.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
+    [ "beamMaterial", "a00221.html#a9b582bcc3c887a57428b25984bc6f7ac", null ],
+    [ "makeVanishingStress", "a00221.html#a317c0a50c0a7d482e2a20d8146e08df8", null ],
+    [ "planeStress", "a00221.html#ad43f50b1b1c3410c4a0c547be7ada4a0", null ],
+    [ "shellMaterial", "a00221.html#a9a1d1c81201b4c4c8cbee139df43b5d6", null ]
 ];

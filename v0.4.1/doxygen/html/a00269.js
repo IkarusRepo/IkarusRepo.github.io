@@ -1,4 +1,5 @@
 var a00269 =
 [
-    [ "registerBoundaryPatch", "a00269.html#a331fd78be5a4155963abe5829282c8f1", null ]
+    [ "Ikarus::LinearElasticPre", "a01365.html", "a01365" ],
+    [ "linearElastic", "a00269.html#ac2c1a18c9acb1e1a2256e3c0066b5dde", null ]
 ];

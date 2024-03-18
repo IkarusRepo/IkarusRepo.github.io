@@ -1,5 +1,5 @@
-\hypertarget{a00008_source}{}\doxysection{polyfit.\+hh}
-\label{a00008_source}\index{polyfit.hh@{polyfit.hh}}
+\hypertarget{a00008_source}{}\doxysection{eigensparseaddon.\+hh}
+\label{a00008_source}\index{eigensparseaddon.hh@{eigensparseaddon.hh}}
 \mbox{\hyperlink{a00008}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,12 +7,18 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/functions/analyticfunctions/polynomial.hh>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00335}{Ikarus::utils}} \{}
-\DoxyCodeLine{24 std::tuple<Dune::Functions::Polynomial<double>, \textcolor{keywordtype}{double}> \mbox{\hyperlink{a00320_ga0d3a38551806e4de3ff44f311847ba51}{polyfit}}(\textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& x,}
-\DoxyCodeLine{25                                                                 \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& y, \textcolor{keywordtype}{int} deg);}
-\DoxyCodeLine{26 \} \textcolor{comment}{// namespace Ikarus::utils}}
+\DoxyCodeLine{19 \textcolor{keyword}{inline} Index \mbox{\hyperlink{a00008_a6cfefe8fc3c51b09b7633cf8397a67e9}{getLinearIndex}}(Index row, Index col)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{20   eigen\_assert(row >= 0 \&\& row < rows() \&\& col >= 0 \&\& col < cols());}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{keyword}{const} Index outer = IsRowMajor ? row : col;}
+\DoxyCodeLine{23   \textcolor{keyword}{const} Index inner = IsRowMajor ? col : row;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25   Index start = m\_outerIndex[outer];}
+\DoxyCodeLine{26   Index end   = m\_innerNonZeros ? m\_outerIndex[outer] + m\_innerNonZeros[outer] : m\_outerIndex[outer + 1];}
+\DoxyCodeLine{27   eigen\_assert(end >= start \&\& \textcolor{stringliteral}{"{}you probably called coeffRef on a non finalized matrix"{}});}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29   Index p = m\_data.searchLowerIndex(start, end -\/ 1, StorageIndex(inner));}
+\DoxyCodeLine{30   \textcolor{keywordflow}{return} p;}
+\DoxyCodeLine{31 \}}
 
 \end{DoxyCode}

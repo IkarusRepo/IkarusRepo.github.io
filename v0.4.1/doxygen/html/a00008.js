@@ -1,4 +1,4 @@
 var a00008 =
 [
-    [ "polyfit", "a00008.html#ga0d3a38551806e4de3ff44f311847ba51", null ]
+    [ "getLinearIndex", "a00008.html#a6cfefe8fc3c51b09b7633cf8397a67e9", null ]
 ];

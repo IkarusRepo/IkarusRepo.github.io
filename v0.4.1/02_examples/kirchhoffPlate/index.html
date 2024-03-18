@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../auxiliaryImages/logo_blue.png">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.11+insiders-4.53.0">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14+insiders-4.53.2">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.458d28d0.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.003a5498.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -2291,17 +2291,16 @@ The problem is solved, and convergence plots are created by comparing the soluti
 simply supported case.</p>
 <h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">&para;</a></h2>
 <p>Similar to the <code>struct</code> named <code>Solid</code> in <code>iks003_incompressible_LinearElasticity.cpp</code>, here a <code>struct</code> named <code>KirchhoffPlate</code> is created.
-It inherits from <code>ScalarFieldFE</code> and it must be decorated with <code>AutoDiffFE</code> as well to compute the required matrices and vectors.
+It inherits from <code>FEBase</code> and it must be decorated with <code>AutoDiffFE</code> as well to compute the required matrices and vectors.
 It is constructed as shown below:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">KirchhoffPlate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Basis</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">LocalView</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_Emodul</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_nu</span><span class="p">,</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">               </span><span class="kt">double</span><span class="w"> </span><span class="n">p_thickness</span><span class="p">)</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">BaseDisp</span><span class="p">(</span><span class="n">basis</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">),</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">KirchhoffPlate</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">BasisHandler</span><span class="w"> </span><span class="o">&amp;</span><span class="n">basisHandler</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">LocalView</span><span class="o">::</span><span class="n">Element</span><span class="w"> </span><span class="o">&amp;</span><span class="n">element</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_Emodul</span><span class="p">,</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">               </span><span class="kt">double</span><span class="w"> </span><span class="n">p_nu</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">p_thickness</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">Base</span><span class="p">(</span><span class="n">basisHandler</span><span class="p">,</span><span class="w"> </span><span class="n">element</span><span class="p">),</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="n">Emodul</span><span class="p">{</span><span class="n">p_Emodul</span><span class="p">},</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="n">nu</span><span class="p">{</span><span class="n">p_nu</span><span class="p">},</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">      </span><span class="n">thickness</span><span class="p">{</span><span class="n">p_thickness</span><span class="p">}</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">localView</span><span class="p">().</span><span class="n">bind</span><span class="p">(</span><span class="n">element</span><span class="p">);</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="n">geometry_</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">localView</span><span class="p">().</span><span class="n">element</span><span class="p">().</span><span class="n">geometry</span><span class="p">());</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="n">geometry_</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">localView</span><span class="p">().</span><span class="n">element</span><span class="p">().</span><span class="n">geometry</span><span class="p">());</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
 </code></pre></div>
 <p>It takes in the <code>p_thickness</code> parameter in addition to the ones in <code>Solid</code>. Here, the energy is calculated as:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">energy</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kappa</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">D</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">kappa</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">geometry_</span><span class="o">-&gt;</span><span class="n">integrationElement</span><span class="p">(</span><span class="n">gp</span><span class="p">.</span><span class="n">position</span><span class="p">())</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">gp</span><span class="p">.</span><span class="n">weight</span><span class="p">();</span>
@@ -2533,7 +2532,7 @@ can be later used to create plots using the features from Matlab.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "content.code.annotate", "navigation.tabs", "navigation.tracking", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "navigation.top"], "search": "../../assets/javascripts/workers/search.1e90e0fb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.82b033e4.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a255a381.min.js"></script>
       
         <script src="../../javascripts/mathjax.js"></script>
       

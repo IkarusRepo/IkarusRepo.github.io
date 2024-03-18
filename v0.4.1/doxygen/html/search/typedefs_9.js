@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['parameterspacetype_0',['ParameterSpaceType',['../a01258.html#aaed5b4e85d4b1b24cadf5d8c7909d37f',1,'Ikarus::FETraits']]],
-  ['parametertype_1',['ParameterType',['../a01250.html#ab71870a060195b870bf050577e1493a0',1,'Ikarus::FERequirements']]],
-  ['parametertyperaw_2',['ParameterTypeRaw',['../a01250.html#af80d75a0b1418035a1b5e9658a3a56d9',1,'Ikarus::FERequirements']]],
-  ['prebasis_3',['PreBasis',['../a01454.html#abc71a37f00569d6e252c2a6d8b27e6a8',1,'Ikarus::Basis']]],
-  ['preconditioner_4',['Preconditioner',['../a01394.html#a6854c22e7816c75ad6495977616aab71',1,'Eigen::internal::traits&lt; TruncatedConjugateGradient&lt; MatrixType_, UpLo, Preconditioner_ &gt; &gt;::Preconditioner()'],['../a01390.html#a636d30963f7a7261054092337269076b',1,'Eigen::TruncatedConjugateGradient::Preconditioner()']]]
+  ['neohooke_0',['NeoHooke',['../a00337.html#ab764233e8704d8d4462d202a362892c8',1,'Ikarus']]],
+  ['nonlinearoperator_1',['NonLinearOperator',['../a01501.html#a41064bd40996c2c0a2e5d79dc72543ef',1,'Ikarus::NewtonRaphson::NonLinearOperator()'],['../a01509.html#aef79b0fa82503669e86d848d842cf5d8',1,'Ikarus::NewtonRaphsonWithSubsidiaryFunction::NonLinearOperator()'],['../a01529.html#a7334271a9133e2503f142decf6ecebb7',1,'Ikarus::TrustRegion::NonLinearOperator()']]]
 ];

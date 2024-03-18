@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['resulttype_0',['ResultType',['../a00312.html#ga531be167e924b749eb8b4ccc7f1c18c9',1,'Ikarus']]]
+  ['resultshape_0',['ResultShape',['../a00337.html#acfb09bb7db104db62d3d1d2dc3e009b2',1,'Ikarus']]]
 ];

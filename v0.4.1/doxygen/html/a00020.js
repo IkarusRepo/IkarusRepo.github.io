@@ -1,5 +1,7 @@
 var a00020 =
 [
-    [ "ReturnType", "a00020.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
-    [ "countType", "a00020.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
+    [ "Ikarus::utils::CheckFlags", "a01609.html", "a01609" ],
+    [ "checkGradient", "a00020.html#gacb9e813539bfd84df99ad097cabc9de9", null ],
+    [ "checkHessian", "a00020.html#ga5d1a87964a3d6b6ddc994532e93b6798", null ],
+    [ "checkJacobian", "a00020.html#ga553465359c199ef676945832587d2869", null ]
 ];
