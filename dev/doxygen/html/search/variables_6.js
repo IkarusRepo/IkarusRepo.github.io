@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['grad_5ftol_0',['grad_tol',['../a01517.html#a64868ebbbe9e92ac762a411882399fc9',1,'Ikarus::TrustRegionSettings']]],
-  ['gradnorm_1',['gradNorm',['../a01525.html#a58ec024d2233720f0bf164b8b21a6626',1,'Ikarus::Stats']]],
-  ['griddim_2',['griddim',['../a01469.html#a538071ba82449437844f32b713dd8c63',1,'Ikarus::ResultFunction']]]
+  ['globalsolutiontag_0',['globalSolutionTag',['../a01287.html#ae48f408b98e9eca509c0c344699d53c3',1,'Ikarus::FERequirements']]],
+  ['grad_5ftol_1',['grad_tol',['../a01559.html#a1cc69f38c3569c63cb4bf86a39a16050',1,'Ikarus::TRSettings']]],
+  ['gradnorm_2',['gradNorm',['../a01575.html#a58ec024d2233720f0bf164b8b21a6626',1,'Ikarus::Stats']]],
+  ['griddim_3',['griddim',['../a01495.html#a538071ba82449437844f32b713dd8c63',1,'Ikarus::ResultFunction']]]
 ];

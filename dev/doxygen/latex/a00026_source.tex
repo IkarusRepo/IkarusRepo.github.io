@@ -1,56 +1,244 @@
-\hypertarget{a00026_source}{}\doxysection{pythonautodiffdefinitions.\+hh}
-\label{a00026_source}\index{pythonautodiffdefinitions.hh@{pythonautodiffdefinitions.hh}}
+\hypertarget{a00026_source}{}\doxysection{traits.\+hh}
+\label{a00026_source}\index{traits.hh@{traits.hh}}
 \mbox{\hyperlink{a00026}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <cstddef>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <Python.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <type\_traits>}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/fufem/dunepython.hh>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <autodiff/forward/real/real.hpp>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00356}{Python}} \{}
-\DoxyCodeLine{18 \textcolor{comment}{// *****************************************************************************}}
-\DoxyCodeLine{19 \textcolor{comment}{// specializations of Conversion that do the PyObject* <-\/> C++-\/type conversion}}
-\DoxyCodeLine{20 \textcolor{comment}{// *****************************************************************************}}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{27 \textcolor{keyword}{template} <std::\textcolor{keywordtype}{size\_t} order, \textcolor{keyword}{class} T>}
-\DoxyCodeLine{28 \textcolor{keyword}{struct }Conversion<autodiff::Real<order, T>>}
-\DoxyCodeLine{29 \{}
-\DoxyCodeLine{30   \textcolor{keyword}{enum}}
-\DoxyCodeLine{31   \{}
-\DoxyCodeLine{32     useDefaultConstructorConversion = \textcolor{keyword}{true}}
-\DoxyCodeLine{33   \};}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{40   \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01657_aab78500f06d24b5eb1cd894b68eec03c}{toC}}(PyObject* list, autodiff::Real<order, T>\& v) \{}
-\DoxyCodeLine{41     \textcolor{keyword}{auto} rlist = Reference(Imp::inc(list));}
-\DoxyCodeLine{42     \textcolor{comment}{// Reference is needed to enable the "{}.get()"{} function and "{}Imp::inc"{} is}}
-\DoxyCodeLine{43     \textcolor{comment}{// needed since Reference owns the PyObject pointer and decrements it at the end of the scope}}
-\DoxyCodeLine{44     \textcolor{comment}{// Imp::inc artificially increases the reference counter by one.}}
-\DoxyCodeLine{45     \textcolor{comment}{// When we return from this function, these two cancel out and the PyObject* is as before}}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47     \textcolor{keyword}{auto} wF = Callable(rlist.get(\textcolor{stringliteral}{"{}\_\_getitem\_\_"{}}));}
-\DoxyCodeLine{48     \textcolor{keywordflow}{for} (std::size\_t i = 0; i < order + 1; ++i)}
-\DoxyCodeLine{49       v[i] = PyFloat\_AsDouble(wF(i));}
-\DoxyCodeLine{50   \}}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{57   \textcolor{keyword}{static} PyObject* \mbox{\hyperlink{a01657_ae7c12c134c747ccf36ff0bf9c453f69e}{toPy}}(\textcolor{keyword}{const} autodiff::Real<order, T>\& v) \{}
-\DoxyCodeLine{58     \textcolor{keyword}{auto} pyMain           = Python::main();}
-\DoxyCodeLine{59     Python::Module module = pyMain.import(\textcolor{stringliteral}{"{}autodiff"{}});}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61     \textcolor{keyword}{auto} real1stClass = module.get(\textcolor{stringliteral}{"{}real1st"{}});}
-\DoxyCodeLine{62     \textcolor{keyword}{auto} real1st      = Callable(Imp::inc(real1stClass))();}
-\DoxyCodeLine{63     \textcolor{keyword}{auto} wF           = Callable(Imp::inc(real1st).get(\textcolor{stringliteral}{"{}\_\_setitem\_\_"{}}));}
-\DoxyCodeLine{64     \textcolor{keywordflow}{for} (std::size\_t i = 0; i < order + 1; ++i)}
-\DoxyCodeLine{65       wF(i, v[i]); \textcolor{comment}{// real1st.\_\_setitem\_\_(i,v[i]);}}
-\DoxyCodeLine{66 }
-\DoxyCodeLine{67     \textcolor{keywordflow}{return} real1st;}
-\DoxyCodeLine{68   \}}
-\DoxyCodeLine{69 \};}
-\DoxyCodeLine{70 \} \textcolor{comment}{// namespace Python}}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00350}{std}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{15 \textcolor{keyword}{class }shared\_ptr;}
+\DoxyCodeLine{16 \}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <dune/common/hybridutilities.hh>}}
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00371}{Ikarus::traits}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{26 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{27 \textcolor{keyword}{concept }\mbox{\hyperlink{a01785}{Pointer}} = std::is\_pointer\_v<T> || std::is\_same\_v<T, std::nullptr\_t>;}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename}>}
+\DoxyCodeLine{31 \textcolor{keyword}{struct }is\_tuple : std::false\_type}
+\DoxyCodeLine{32 \{}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{40 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... T>}
+\DoxyCodeLine{41 \textcolor{keyword}{struct }is\_tuple<\mbox{\hyperlink{a00350}{std}}::tuple<T...>> : std::true\_type}
+\DoxyCodeLine{42 \{}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{52 \textcolor{keyword}{template} <\textcolor{keyword}{class} Tuple, \textcolor{keyword}{class} Type>}
+\DoxyCodeLine{53 \textcolor{keyword}{requires} is\_tuple<Tuple>::value}
+\DoxyCodeLine{54 \textcolor{keyword}{consteval} \textcolor{keywordtype}{int} \mbox{\hyperlink{a00349_ga45ac3fa7e384aa760181de7a1377dc14}{countType}}() \{}
+\DoxyCodeLine{55   \textcolor{keywordtype}{int} count = 0;}
+\DoxyCodeLine{56   Dune::Hybrid::forEach(Dune::Hybrid::integralRange(Dune::index\_constant<std::tuple\_size\_v<Tuple>>()), [\&](\textcolor{keyword}{auto} i) \{}
+\DoxyCodeLine{57     \textcolor{keyword}{using }currentType = std::remove\_cvref\_t<std::tuple\_element\_t<i, Tuple>>;}
+\DoxyCodeLine{58     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<currentType, Type>)}
+\DoxyCodeLine{59       ++count;}
+\DoxyCodeLine{60   \});}
+\DoxyCodeLine{61   \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{62 \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{72 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Fun, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{73 \textcolor{keyword}{using }\mbox{\hyperlink{a00349_ga0ba1bf25ee478b1b1d9e96c1dcd831a0}{ReturnType}} = std::invoke\_result\_t<Fun, Args...>;}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{83 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{84 \textcolor{keyword}{struct }\mbox{\hyperlink{a01715}{hasType}} : std::false\_type}
+\DoxyCodeLine{85 \{}
+\DoxyCodeLine{86 \};}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{89 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{90 \textcolor{keyword}{struct }\mbox{\hyperlink{a01715}{hasType}}<T, \mbox{\hyperlink{a00350}{std}}::tuple<>> : std::false\_type}
+\DoxyCodeLine{91 \{}
+\DoxyCodeLine{92 \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{95 \textcolor{keyword}{struct }hasType<T, T> : std::true\_type}
+\DoxyCodeLine{96 \{}
+\DoxyCodeLine{97 \};}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{106 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} U, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{107 \textcolor{keyword}{struct }hasType<T, \mbox{\hyperlink{a00350}{std}}::tuple<U, Ts...>> : hasType<T, std::tuple<Ts...>>}
+\DoxyCodeLine{108 \{}
+\DoxyCodeLine{109 \};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Ts>}
+\DoxyCodeLine{112 \textcolor{keyword}{struct }hasType<T, \mbox{\hyperlink{a00350}{std}}::tuple<T, Ts...>> : std::true\_type}
+\DoxyCodeLine{113 \{}
+\DoxyCodeLine{114 \};}
+\DoxyCodeLine{115 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{118 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}...> \textcolor{keyword}{class}, \textcolor{keyword}{typename}...>}
+\DoxyCodeLine{119 \textcolor{keyword}{struct }isSpecialization : std::false\_type}
+\DoxyCodeLine{120 \{}
+\DoxyCodeLine{121 \};}
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{131 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{132 \textcolor{keyword}{struct }\mbox{\hyperlink{a01719}{isSharedPtr}} : std::false\_type}
+\DoxyCodeLine{133 \{}
+\DoxyCodeLine{134 \};}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{137 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{138 \textcolor{keyword}{struct }\mbox{\hyperlink{a01719}{isSharedPtr<std::shared\_ptr<T>}}> : std::true\_type}
+\DoxyCodeLine{139 \{}
+\DoxyCodeLine{140 \};}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{144 \textcolor{keyword}{class }\mbox{\hyperlink{a01723}{remove\_pointer}}}
+\DoxyCodeLine{145 \{}
+\DoxyCodeLine{146   \textcolor{keyword}{template} <\textcolor{keyword}{typename} U = T>}
+\DoxyCodeLine{147   \textcolor{keyword}{static} \textcolor{keyword}{auto} test(\textcolor{keywordtype}{int}) -\/> std::remove\_reference<decltype(*std::declval<U>())>;}
+\DoxyCodeLine{148   \textcolor{keyword}{static} \textcolor{keyword}{auto} test(...) -\/> std::remove\_cv<T>;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150 \textcolor{keyword}{public}:}
+\DoxyCodeLine{151   \textcolor{keyword}{using }\mbox{\hyperlink{a01723_aeb039b36424f998cbf10801e5609eb8c}{type}} = \textcolor{keyword}{typename} \textcolor{keyword}{decltype}(test(0))\mbox{\hyperlink{a01723_aeb039b36424f998cbf10801e5609eb8c}{::type}};}
+\DoxyCodeLine{152 \};}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{155 \textcolor{keyword}{using }\mbox{\hyperlink{a00371_a472256748675b3006507836bd8034a0e}{remove\_pointer\_t}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01723_aeb039b36424f998cbf10801e5609eb8c}{remove\_pointer<T>::type}};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{163 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}...> \textcolor{keyword}{class }U, \textcolor{keyword}{typename}... T>}
+\DoxyCodeLine{164 \textcolor{keyword}{struct }isSpecialization<U, U<T...>> : std::true\_type}
+\DoxyCodeLine{165 \{}
+\DoxyCodeLine{166 \};}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{169 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{170 \textcolor{keyword}{struct }isSpecializationTypeAndNonTypes : std::false\_type}
+\DoxyCodeLine{171 \{}
+\DoxyCodeLine{172 \};}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} T, \textcolor{keyword}{auto}... N>}
+\DoxyCodeLine{175 \textcolor{keyword}{struct }isSpecializationTypeAndNonTypes<Type, Type<T, N...>> : std::true\_type}
+\DoxyCodeLine{176 \{}
+\DoxyCodeLine{177 \};}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}, \textcolor{keyword}{typename}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{180 \textcolor{keyword}{struct }isSpecializationNonTypeAndTypes : std::false\_type}
+\DoxyCodeLine{181 \{}
+\DoxyCodeLine{182 \};}
+\DoxyCodeLine{183 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{194 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}, \textcolor{keyword}{typename}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{auto} T, \textcolor{keyword}{typename}... N>}
+\DoxyCodeLine{195 \textcolor{keyword}{struct }isSpecializationNonTypeAndTypes<Type, Type<T, N...>> : std::true\_type}
+\DoxyCodeLine{196 \{}
+\DoxyCodeLine{197 \};}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{200 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, auto, \textcolor{keyword}{typename}> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{201 \textcolor{keyword}{struct }isSpecializationTypeNonTypeAndType : std::false\_type}
+\DoxyCodeLine{202 \{}
+\DoxyCodeLine{203 \};}
+\DoxyCodeLine{204 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{215 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, auto, \textcolor{keyword}{typename}> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename} T, \textcolor{keyword}{auto} M, \textcolor{keyword}{typename} N>}
+\DoxyCodeLine{216 \textcolor{keyword}{struct }isSpecializationTypeNonTypeAndType<Type, Type<T, M, N>> : std::true\_type}
+\DoxyCodeLine{217 \{}
+\DoxyCodeLine{218 \};}
+\DoxyCodeLine{219 }
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{221 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{typename}>}
+\DoxyCodeLine{222 \textcolor{keyword}{struct }isSpecializationNonTypes : std::false\_type}
+\DoxyCodeLine{223 \{}
+\DoxyCodeLine{224 \};}
+\DoxyCodeLine{225 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{235 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{auto}...> \textcolor{keyword}{class }Type, \textcolor{keyword}{auto}... N>}
+\DoxyCodeLine{236 \textcolor{keyword}{struct }isSpecializationNonTypes<Type, Type<N...>> : std::true\_type}
+\DoxyCodeLine{237 \{}
+\DoxyCodeLine{238 \};}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{257 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} Tuple>}
+\DoxyCodeLine{258 \textcolor{keyword}{struct }\mbox{\hyperlink{a01743}{Index}};}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{260 \textcolor{keyword}{template} <\textcolor{keyword}{class} T>}
+\DoxyCodeLine{261 \textcolor{keyword}{struct }\mbox{\hyperlink{a01743}{Index}}<T, \mbox{\hyperlink{a00350}{std}}::tuple<>>}
+\DoxyCodeLine{262 \{}
+\DoxyCodeLine{263   \textcolor{keyword}{static} \textcolor{keyword}{const} std::size\_t value = 0;}
+\DoxyCodeLine{264 \};}
+\DoxyCodeLine{265 }
+\DoxyCodeLine{266 \textcolor{keyword}{template} <\textcolor{keyword}{class }T, \textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{267 \textcolor{keyword}{struct }\mbox{\hyperlink{a01743}{Index}}<T, \mbox{\hyperlink{a00350}{std}}::tuple<T, Types...>>}
+\DoxyCodeLine{268 \{}
+\DoxyCodeLine{269   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} std::size\_t value = 0;}
+\DoxyCodeLine{270 \};}
+\DoxyCodeLine{271 }
+\DoxyCodeLine{272 \textcolor{keyword}{template} <\textcolor{keyword}{class }T, \textcolor{keyword}{class }U, \textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{273 \textcolor{keyword}{struct }Index<T, \mbox{\hyperlink{a00350}{std}}::tuple<U, Types...>>}
+\DoxyCodeLine{274 \{}
+\DoxyCodeLine{275   \textcolor{keyword}{static} \textcolor{keyword}{const} std::size\_t value = 1 + Index<T, std::tuple<Types...>>::value;}
+\DoxyCodeLine{276 \};}
+\DoxyCodeLine{277 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{296 \textcolor{keyword}{template} <\textcolor{keyword}{class} Container, \textcolor{keyword}{class} NewType>}
+\DoxyCodeLine{297 \textcolor{keyword}{struct }\mbox{\hyperlink{a01747}{Rebind}};}
+\DoxyCodeLine{298 }
+\DoxyCodeLine{299 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{300 \textcolor{comment}{/*}}
+\DoxyCodeLine{301 \textcolor{comment}{ * Specialization for types like std::vector<...> and nested std::vector<std::vector>}}
+\DoxyCodeLine{302 \textcolor{comment}{ */}}
+\DoxyCodeLine{303 \textcolor{keyword}{template} <\textcolor{keyword}{class }OldType, \textcolor{keyword}{class}... Args, \textcolor{keyword}{template} <\textcolor{keyword}{class}...> \textcolor{keyword}{class }Container, \textcolor{keyword}{class }NewType>}
+\DoxyCodeLine{304 \textcolor{keyword}{struct }\mbox{\hyperlink{a01747}{Rebind}}<Container<OldType, Args...>, NewType>}
+\DoxyCodeLine{305 \{}
+\DoxyCodeLine{306   \textcolor{keyword}{using }other = Container<NewType, typename Rebind<Args, NewType>::other...>;}
+\DoxyCodeLine{307 \};}
+\DoxyCodeLine{308 }
+\DoxyCodeLine{309 \textcolor{comment}{/*}}
+\DoxyCodeLine{310 \textcolor{comment}{ * Specialization for types like std::array<...,N>}}
+\DoxyCodeLine{311 \textcolor{comment}{ */}}
+\DoxyCodeLine{312 \textcolor{keyword}{template} <\textcolor{keyword}{class} OldType, std::\textcolor{keywordtype}{size\_t} N, \textcolor{keyword}{template} <\textcolor{keyword}{class}, std::\textcolor{keywordtype}{size\_t}> \textcolor{keyword}{class }Container, \textcolor{keyword}{class }NewType>}
+\DoxyCodeLine{313 \textcolor{keyword}{struct }\mbox{\hyperlink{a01747}{Rebind}}<Container<OldType, N>, NewType>}
+\DoxyCodeLine{314 \{}
+\DoxyCodeLine{315   \textcolor{keyword}{using }other = Container<NewType, N>;}
+\DoxyCodeLine{316 \};}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{318 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{329 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} = \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{330 \textcolor{keyword}{struct }\mbox{\hyperlink{a01751}{FunctionTraits}};}
+\DoxyCodeLine{331 }
+\DoxyCodeLine{332 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{336 \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{337 \textcolor{keyword}{struct }\mbox{\hyperlink{a01751}{FunctionTraits}}<R (*)(Args...)>}
+\DoxyCodeLine{338 \{}
+\DoxyCodeLine{339   \textcolor{keyword}{using }return\_type = R;}
+\DoxyCodeLine{340   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{341   \textcolor{keyword}{using }args\_type                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{342   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{343 \};}
+\DoxyCodeLine{344 }
+\DoxyCodeLine{348 \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename} C, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{349 \textcolor{keyword}{struct }\mbox{\hyperlink{a01751}{FunctionTraits}}<R (C::*)(Args...) const>}
+\DoxyCodeLine{350 \{}
+\DoxyCodeLine{351   \textcolor{keyword}{using }return\_type = R;}
+\DoxyCodeLine{352   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{353   \textcolor{keyword}{using }args\_type                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{354   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{355 \};}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{360 \textcolor{keyword}{template} <\textcolor{keyword}{typename} R, \textcolor{keyword}{typename} C, \textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{361 \textcolor{keyword}{struct }FunctionTraits<R (C::*)(Args...)>}
+\DoxyCodeLine{362 \{}
+\DoxyCodeLine{363   \textcolor{keyword}{using }return\_type = R;}
+\DoxyCodeLine{364   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} i>}
+\DoxyCodeLine{365   \textcolor{keyword}{using }args\_type                        = \textcolor{keyword}{typename} std::tuple\_element<i, std::tuple<Args...>>::type;}
+\DoxyCodeLine{366   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfArguments = \textcolor{keyword}{sizeof}...(Args);}
+\DoxyCodeLine{367 \};}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{373 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{374 \textcolor{keyword}{struct }FunctionTraits<T, \mbox{\hyperlink{a00368}{Dune}}::void\_t<decltype(\&T::operator())>> : \textcolor{keyword}{public} FunctionTraits<decltype(\&T::operator())>}
+\DoxyCodeLine{375 \{}
+\DoxyCodeLine{376 \};}
+\DoxyCodeLine{377 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{378 }
+\DoxyCodeLine{379 \} \textcolor{comment}{// namespace Ikarus::traits}}
 
 \end{DoxyCode}

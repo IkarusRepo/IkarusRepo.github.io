@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['feparameter_0',['FEParameter',['../a00324.html#ga0c1577fd05efee8475b0f7fef795bbbe',1,'Ikarus']]],
-  ['fesolutions_1',['FESolutions',['../a00324.html#gaea763c94a1cecbeefc4f8661debcc5a3',1,'Ikarus']]]
+  ['dbcoption_0',['DBCOption',['../a00351.html#a9f83fad9f4c149f249165a13f2370eec',1,'Ikarus']]]
 ];

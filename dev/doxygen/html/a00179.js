@@ -1,4 +1,4 @@
 var a00179 =
 [
-    [ "Ikarus::ControlInformation", "a01209.html", "a01209" ]
+    [ "Ikarus::ControlLogger", "a01683.html", "a01683" ]
 ];

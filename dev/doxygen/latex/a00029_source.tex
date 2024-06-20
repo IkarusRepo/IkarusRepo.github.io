@@ -1,5 +1,5 @@
-\hypertarget{a00029_source}{}\doxysection{polyfit.\+hh}
-\label{a00029_source}\index{polyfit.hh@{polyfit.hh}}
+\hypertarget{a00029_source}{}\doxysection{functionhelper.\+hh}
+\label{a00029_source}\index{functionhelper.hh@{functionhelper.hh}}
 \mbox{\hyperlink{a00029}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,12 +7,43 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/functions/analyticfunctions/polynomial.hh>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <ranges>}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00350}{Ikarus::utils}} \{}
-\DoxyCodeLine{24 std::tuple<Dune::Functions::Polynomial<double>, \textcolor{keywordtype}{double}> \mbox{\hyperlink{a00332_ga0d3a38551806e4de3ff44f311847ba51}{polyfit}}(\textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& x,}
-\DoxyCodeLine{25                                                                 \textcolor{keyword}{const} Eigen::Ref<const Eigen::VectorXd>\& y, \textcolor{keywordtype}{int} deg);}
-\DoxyCodeLine{26 \} \textcolor{comment}{// namespace Ikarus::utils}}
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00364}{Ikarus::utils}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} size, \textcolor{keyword}{typename} LV>}
+\DoxyCodeLine{25 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00346_gac0aa110e209c93e655de9df0915c2fcc}{obtainLagrangeNodePositions}}(\textcolor{keyword}{const} LV\& localView,}
+\DoxyCodeLine{26                                  std::vector<\mbox{\hyperlink{a01619}{Dune::FieldVector<double, size>}}>\& lagrangeNodeCoords) \{}
+\DoxyCodeLine{27   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01756}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
+\DoxyCodeLine{28                 \textcolor{stringliteral}{"{}This function is only supported for Lagrange basis"{}});}
+\DoxyCodeLine{29   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
+\DoxyCodeLine{30   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
+\DoxyCodeLine{31   lagrangeNodeCoords.resize(localFE.size());}
+\DoxyCodeLine{32   std::vector<double> out;}
+\DoxyCodeLine{33   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
+\DoxyCodeLine{34     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01619}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
+\DoxyCodeLine{35     localFE.localInterpolation().interpolate(ithCoord, out);}
+\DoxyCodeLine{36     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
+\DoxyCodeLine{37       lagrangeNodeCoords[j][i] = out[j];}
+\DoxyCodeLine{38   \}}
+\DoxyCodeLine{39   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
+\DoxyCodeLine{40     nCoord = localView.element().geometry().global(nCoord);}
+\DoxyCodeLine{41 \}}
+\DoxyCodeLine{50 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{51 \textcolor{keyword}{auto} \mbox{\hyperlink{a00346_ga30df35336d19b00bc5db2a0b52ce650e}{referenceElementSubEntityPositions}}(\mbox{\hyperlink{a01255}{FE}}\& fe, \textcolor{keywordtype}{int} codim) \{}
+\DoxyCodeLine{52   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} dim            = \mbox{\hyperlink{a01315_ae15b8efa9f66a3caee81d99dd5c648de}{FE::Traits::mydim}};}
+\DoxyCodeLine{53   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& element          = fe.\mbox{\hyperlink{a01255_ae84fc54bd26077a2edb0ec07361d0716}{gridElement}}();}
+\DoxyCodeLine{54   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& referenceElement = Dune::referenceElement<double, dim>(element.type());}
+\DoxyCodeLine{55   \textcolor{keyword}{const} \textcolor{keywordtype}{int} numberOfVertices   = referenceElement.size(codim);}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \textcolor{keyword}{auto} getPosition = [=](\textcolor{keyword}{const} \textcolor{keywordtype}{int} i) \{ \textcolor{keywordflow}{return} referenceElement.position(i, codim); \};}
+\DoxyCodeLine{58   \textcolor{keywordflow}{return} std::views::transform(std::views::iota(0, numberOfVertices), getPosition);}
+\DoxyCodeLine{59 \}}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{68 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{69 \textcolor{keyword}{auto} \mbox{\hyperlink{a00346_ga8c05dce8a66fc4efbe31674b87d18298}{referenceElementVertexPositions}}(\mbox{\hyperlink{a01255}{FE}}\& fe) \{}
+\DoxyCodeLine{70   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00346_ga30df35336d19b00bc5db2a0b52ce650e}{referenceElementSubEntityPositions}}(fe, \mbox{\hyperlink{a01315_ae15b8efa9f66a3caee81d99dd5c648de}{FE::Traits::mydim}});}
+\DoxyCodeLine{71 \}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 \} \textcolor{comment}{// namespace Ikarus::utils}}
 
 \end{DoxyCode}

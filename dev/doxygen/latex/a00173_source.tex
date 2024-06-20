@@ -1,51 +1,25 @@
-\hypertarget{a00173_source}{}\doxysection{loadcontrol.\+hh}
-\label{a00173_source}\index{loadcontrol.hh@{loadcontrol.hh}}
+\hypertarget{a00173_source}{}\doxysection{matplothelper.\+hh}
+\label{a00173_source}\index{matplothelper.hh@{matplothelper.hh}}
 \mbox{\hyperlink{a00173}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <matplot/matplot.h>}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00179}{ikarus/controlroutines/controlinfos.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00197}{ikarus/utils/observer/observer.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00185}{ikarus/utils/observer/observermessages.hh}}>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00337}{Ikarus}} \{}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{29 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS>}
-\DoxyCodeLine{30 \textcolor{keyword}{class }\mbox{\hyperlink{a01213}{LoadControl}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01653}{IObservable}}<ControlMessages>}
-\DoxyCodeLine{31 \{}
-\DoxyCodeLine{32 \textcolor{keyword}{public}:}
-\DoxyCodeLine{34   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01213_ab0c5144a3b5d67f3c582772a48271105}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Load Control Method"{}}); \}}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{43   \mbox{\hyperlink{a01213_a073af96d9cd179a918cf18656be19947}{LoadControl}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nonLinearSolver, \textcolor{keywordtype}{int} loadSteps, \textcolor{keyword}{const} std::array<double, 2>\& tbeginEnd)}
-\DoxyCodeLine{44       : nonLinearSolver\_\{nonLinearSolver\},}
-\DoxyCodeLine{45         loadSteps\_\{loadSteps\},}
-\DoxyCodeLine{46         parameterBegin\_\{tbeginEnd[0]\},}
-\DoxyCodeLine{47         parameterEnd\_\{tbeginEnd[1]\},}
-\DoxyCodeLine{48         stepSize\_\{(parameterEnd\_ -\/ parameterBegin\_) / loadSteps\_\} \{}
-\DoxyCodeLine{49     \textcolor{keyword}{static\_assert}(}
-\DoxyCodeLine{50         \textcolor{keyword}{requires} \{}
-\DoxyCodeLine{51           nonLinearSolver\_-\/>nonLinearOperator().lastParameter() = 0.0;}
-\DoxyCodeLine{52           nonLinearSolver\_-\/>nonLinearOperator().lastParameter() += 0.0;}
-\DoxyCodeLine{53         \}, \textcolor{stringliteral}{"{}The last parameter (load factor) must be assignable and incrementable with a double!"{}});}
-\DoxyCodeLine{54   \}}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{61   \mbox{\hyperlink{a01209}{ControlInformation}} \mbox{\hyperlink{a01213_aea1be825e746e898092e83a41efaedac}{run}}();}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{63 \textcolor{keyword}{private}:}
-\DoxyCodeLine{64   std::shared\_ptr<NLS> nonLinearSolver\_;}
-\DoxyCodeLine{65   \textcolor{keywordtype}{int} loadSteps\_;}
-\DoxyCodeLine{66   \textcolor{keywordtype}{double} parameterBegin\_;}
-\DoxyCodeLine{67   \textcolor{keywordtype}{double} parameterEnd\_;}
-\DoxyCodeLine{68   \textcolor{keywordtype}{double} stepSize\_;}
-\DoxyCodeLine{69 \};}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{71 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00167}{ikarus/controlroutines/loadcontrol.inl}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00369}{Ikarus::plot}} \{}
+\DoxyCodeLine{23 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00369_a4c07b9ce66d5837a4052977b3dd1eeb0}{draw\_xy}}(\textcolor{keyword}{const} Eigen::VectorXd\& x, \textcolor{keyword}{const} Eigen::VectorXd\& y);}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{35 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FunctionType>}
+\DoxyCodeLine{36 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00369_ae2cefb2db97492f0b6e5987cb95ad40b}{drawFunction}}(FunctionType\&\& f, std::pair<double, double>\&\& xRange, \textcolor{keywordtype}{int} eValuationPoints = 100) \{}
+\DoxyCodeLine{37   std::vector<double> x = matplot::linspace(xRange.first, xRange.second, eValuationPoints);}
+\DoxyCodeLine{38   std::vector<double> y = matplot::transform(x, [\&f](\textcolor{keyword}{auto} xL) \{ \textcolor{keywordflow}{return} f(xL); \});}
+\DoxyCodeLine{39   matplot::plot(x, y, \textcolor{stringliteral}{"{}-\/o"{}});}
+\DoxyCodeLine{40   matplot::hold(matplot::on);}
+\DoxyCodeLine{41 \}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \} \textcolor{comment}{// namespace Ikarus::plot}}
 
 \end{DoxyCode}

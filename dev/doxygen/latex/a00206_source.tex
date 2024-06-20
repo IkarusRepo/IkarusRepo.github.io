@@ -1,25 +1,30 @@
-\hypertarget{a00206_source}{}\doxysection{matplothelper.\+hh}
-\label{a00206_source}\index{matplothelper.hh@{matplothelper.hh}}
+\hypertarget{a00206_source}{}\doxysection{valuewrapper.\+hh}
+\label{a00206_source}\index{valuewrapper.hh@{valuewrapper.hh}}
 \mbox{\hyperlink{a00206}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
-\DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <matplot/matplot.h>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00355}{Ikarus::plot}} \{}
-\DoxyCodeLine{23 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00355_a4c07b9ce66d5837a4052977b3dd1eeb0}{draw\_xy}}(\textcolor{keyword}{const} Eigen::VectorXd\& x, \textcolor{keyword}{const} Eigen::VectorXd\& y);}
-\DoxyCodeLine{24 }
-\DoxyCodeLine{35 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FunctionType>}
-\DoxyCodeLine{36 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00355_ae2cefb2db97492f0b6e5987cb95ad40b}{drawFunction}}(FunctionType\&\& f, std::pair<double, double>\&\& xRange, \textcolor{keywordtype}{int} eValuationPoints = 100) \{}
-\DoxyCodeLine{37   std::vector<double> x = matplot::linspace(xRange.first, xRange.second, eValuationPoints);}
-\DoxyCodeLine{38   std::vector<double> y = matplot::transform(x, [\&f](\textcolor{keyword}{auto} xL) \{ \textcolor{keywordflow}{return} f(xL); \});}
-\DoxyCodeLine{39   matplot::plot(x, y, \textcolor{stringliteral}{"{}-\/o"{}});}
-\DoxyCodeLine{40   matplot::hold(matplot::on);}
-\DoxyCodeLine{41 \}}
-\DoxyCodeLine{42 }
-\DoxyCodeLine{43 \} \textcolor{comment}{// namespace Ikarus::plot}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{4 \textcolor{comment}{// since python does not support passing python float by reference to a double\&, we have to wrap everything}}
+\DoxyCodeLine{5 \textcolor{comment}{// see also https://pybind11.readthedocs.io/en/stable/faq.html\#limitations-\/involving-\/reference-\/arguments}}
+\DoxyCodeLine{6 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{7 \textcolor{keyword}{struct }\mbox{\hyperlink{a01511}{ValueWrapper}}}
+\DoxyCodeLine{8 \{}
+\DoxyCodeLine{9   T \mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}};}
+\DoxyCodeLine{10   \mbox{\hyperlink{a01511}{ValueWrapper}} \mbox{\hyperlink{a01511_a840cbb7a2fa7a70861260c860b2c0f1c}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01511}{ValueWrapper}}\& v)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01511}{ValueWrapper}}\{\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}} + v.\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}}\}; \}}
+\DoxyCodeLine{11   \mbox{\hyperlink{a01511}{ValueWrapper}} \mbox{\hyperlink{a01511_a62fc0039be5a1f0ea0400b5304adbc5b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01511}{ValueWrapper}}\& v)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01511}{ValueWrapper}}\{\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}} -\/ v.\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}}\}; \}}
+\DoxyCodeLine{12   \mbox{\hyperlink{a01511}{ValueWrapper}} \mbox{\hyperlink{a01511_a629052781251a1175f8f4b1ed06450c7}{operator-\/}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01511}{ValueWrapper}}\{-\/\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}}\}; \}}
+\DoxyCodeLine{13   \mbox{\hyperlink{a01511}{ValueWrapper}} \mbox{\hyperlink{a01511_a2037771be99237c1bd6e4f0a5a6f2bcd}{operator*}}(T value)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01511}{ValueWrapper}}\{\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}} * value\}; \}}
+\DoxyCodeLine{14   \mbox{\hyperlink{a01511}{ValueWrapper}}\& \mbox{\hyperlink{a01511_a05a02467be4d07a44de78537554ac857}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01511}{ValueWrapper}}\& v) \{}
+\DoxyCodeLine{15     \mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}} += v.\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}};}
+\DoxyCodeLine{16     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{17   \}}
+\DoxyCodeLine{18   \mbox{\hyperlink{a01511}{ValueWrapper}}\& \mbox{\hyperlink{a01511_a88e341a6b09b7e508b5c108c3f9bab73}{operator*=}}(T v) \{}
+\DoxyCodeLine{19     \mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}} *= v;}
+\DoxyCodeLine{20     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{21   \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23   \textcolor{keyword}{friend} \mbox{\hyperlink{a01511}{ValueWrapper}} \mbox{\hyperlink{a01511_af5de129784d0aad83c2d7c1d0a6effaa}{operator*}}(T f, \textcolor{keyword}{const} \mbox{\hyperlink{a01511}{ValueWrapper}}\& v) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01511}{ValueWrapper}}\{f * v.\mbox{\hyperlink{a01511_a3e1a112127fa4c7b3cf7569ebd04251f}{val}}\}; \}}
+\DoxyCodeLine{24 \};}
 
 \end{DoxyCode}

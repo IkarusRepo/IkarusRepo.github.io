@@ -1,4 +1,5 @@
 var a00239 =
 [
-    [ "StVenantKirchhoff", "a00239.html#a965823ec0538ab6b5bdf7f69c33f3910", null ]
+    [ "Ikarus::EAS::H1E9< GEO >", "a01335.html", "a01335" ],
+    [ "Ikarus::EAS::H1E21< GEO >", "a01339.html", "a01339" ]
 ];

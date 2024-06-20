@@ -1,7 +1,11 @@
 var a00221 =
 [
-    [ "beamMaterial", "a00221.html#a9b582bcc3c887a57428b25984bc6f7ac", null ],
-    [ "makeVanishingStress", "a00221.html#a317c0a50c0a7d482e2a20d8146e08df8", null ],
-    [ "planeStress", "a00221.html#ad43f50b1b1c3410c4a0c547be7ada4a0", null ],
-    [ "shellMaterial", "a00221.html#a9a1d1c81201b4c4c8cbee139df43b5d6", null ]
+    [ "DBCOption", "a00221.html#a9f83fad9f4c149f249165a13f2370eec", [
+      [ "BEGIN", "a00221.html#a9f83fad9f4c149f249165a13f2370eeca19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Raw", "a00221.html#a9f83fad9f4c149f249165a13f2370eeca65e65c8ab0d8609ce12fc68a03cb8e00", null ],
+      [ "Reduced", "a00221.html#a9f83fad9f4c149f249165a13f2370eeca4335949a935758ca1b570689c3c6750b", null ],
+      [ "Full", "a00221.html#a9f83fad9f4c149f249165a13f2370eecabbd47109890259c0127154db1af26c75", null ],
+      [ "END", "a00221.html#a9f83fad9f4c149f249165a13f2370eecab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "toString", "a00221.html#aef80b6b5b45dcfbea4f722f51a84f53f", null ]
 ];

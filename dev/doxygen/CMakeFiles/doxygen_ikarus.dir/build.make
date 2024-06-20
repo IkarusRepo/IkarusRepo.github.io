@@ -69,6 +69,7 @@ include docs/website/doxygen/CMakeFiles/doxygen_ikarus.dir/progress.make
 docs/website/doxygen/CMakeFiles/doxygen_ikarus: docs/website/doxygen/html
 
 docs/website/doxygen/html: docs/website/doxygen/Doxyfile.in
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/dirichletbcenforcement.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/simpleassemblers.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/simpleassemblers.inl
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/adaptivestepsizing.hh
@@ -114,11 +115,14 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/basis/basis.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/dirichletvalues.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/fe.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/material.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerferequirements.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerpreelement.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/valuewrapper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/utils/boundarypatch.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/linearsolver.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/newtonraphson.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/solverinfos.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/trustregion.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/algorithms.hh
@@ -140,6 +144,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/linearalgebrahel
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/makeenum.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/math.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/nonlinearoperator.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/nonlinopfactory.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/observer/controllogger.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/observer/controlvtkwriter.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/utils/observer/genericobserver.hh

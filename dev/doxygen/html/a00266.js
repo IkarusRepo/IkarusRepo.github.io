@@ -1,5 +1,4 @@
 var a00266 =
 [
-    [ "Ikarus::EnhancedAssumedStrainsPre", "a01341.html", "a01341" ],
-    [ "eas", "a00266.html#a95d330fd032b3ed38354e893a814d33a", null ]
+    [ "StVenantKirchhoff", "a00266.html#a965823ec0538ab6b5bdf7f69c33f3910", null ]
 ];

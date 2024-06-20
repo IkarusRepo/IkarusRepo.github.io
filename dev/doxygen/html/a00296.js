@@ -1,5 +1,6 @@
 var a00296 =
 [
-    [ "moduleName", "a00296.html#accab2501ce940db483da0b3ebe2cf723", null ],
-    [ "modulePath", "a00296.html#a9ebab9199168d32a8ab347a990044552", null ]
+    [ "Ikarus::FEFactory< BH, SK, useFlat, useEigenRef >", "a01267.html", "a01267" ],
+    [ "makeFE", "a00296.html#a59639a9a20f036a4f1c0794f65595662", null ],
+    [ "makeFEWithUnTouchedBasis", "a00296.html#aa80712fed165a22f02670f195488fe5f", null ]
 ];

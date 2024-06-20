@@ -1,7 +1,5 @@
 var a00245 =
 [
-    [ "Ikarus::EAS::E0< GEO >", "a01305.html", "a01305" ],
-    [ "Ikarus::EAS::Q1E4< GEO >", "a01309.html", "a01309" ],
-    [ "Ikarus::EAS::Q1E5< GEO >", "a01313.html", "a01313" ],
-    [ "Ikarus::EAS::Q1E7< GEO >", "a01317.html", "a01317" ]
+    [ "Ikarus::EnhancedAssumedStrainsPre", "a01355.html", "a01355" ],
+    [ "eas", "a00245.html#a95d330fd032b3ed38354e893a814d33a", null ]
 ];

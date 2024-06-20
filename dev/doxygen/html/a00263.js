@@ -1,7 +1,4 @@
 var a00263 =
 [
-    [ "Ikarus::KirchhoffLoveShellPre", "a01349.html", "a01349" ],
-    [ "Ikarus::KirchhoffLoveShell< PreFE, FE >::KinematicVariables< ST >", "a01353.html", "a01353" ],
-    [ "Ikarus::KlArgs", "a01357.html", "a01357" ],
-    [ "kirchhoffLoveShell", "a00263.html#aecb794f40bd585f77e094976751ba41e", null ]
+    [ "LinearElasticity", "a00263.html#a5b06e456a4b64c291dedbcf428026ba7", null ]
 ];
