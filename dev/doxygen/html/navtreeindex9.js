@@ -1,5 +1,6 @@
 var NAVTREEINDEX9 =
 {
+"a01687.html#aafa35019b0bd7577d9e5b2c209c785bd":[4,0,2,19,4],
 "a01687.html#aafa35019b0bd7577d9e5b2c209c785bd":[6,0,2,13,4],
 "a01687.html#adc6a89c0396fc98e0c095cd8df17b075":[4,0,2,19,0],
 "a01687.html#adc6a89c0396fc98e0c095cd8df17b075":[6,0,2,13,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX9 =
 "files.html":[7,0],
 "functions.html":[6,3,0],
 "functions.html":[6,3,0,0],
-"functions_a.html":[6,3,0,1],
-"functions_b.html":[6,3,0,2]
+"functions_a.html":[6,3,0,1]
 };

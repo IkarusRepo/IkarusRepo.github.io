@@ -317,7 +317,7 @@ var a00351 =
     [ "makeFEWithUnTouchedBasis", "a00351.html#aa80712fed165a22f02670f195488fe5f", null ],
     [ "makeNewtonRaphson", "a00351.html#afa463e708cffd14133ff65ffa366e329", null ],
     [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00351.html#ade2a979ee79a657c6ab7530ee203056f", null ],
-    [ "makeResultFunction", "a00351.html#a99689d8e0c6a5c804ff6ef1dc5aed1e8", null ],
+    [ "makeResultFunction", "a00351.html#a5ad885bbd85519a4b64ad78fa43d0916", null ],
     [ "makeResultVtkFunction", "a00351.html#a8e219f42670ea0f6eaf22f8164ac89cb", null ],
     [ "makeRT", "a00351.html#a38629395c2d43ba44328b01ce0c0daf3", null ],
     [ "makeSparseFlatAssembler", "a00351.html#a7b31ad9106d0c3d4052413bcbf5ea596", null ],

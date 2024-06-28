@@ -1083,8 +1083,8 @@
       <type>auto</type>
       <name>makeResultFunction</name>
       <anchorfile>a00351.html</anchorfile>
-      <anchor>a99689d8e0c6a5c804ff6ef1dc5aed1e8</anchor>
-      <arglist>(std::vector&lt; FE &gt; *fes, const typename FE::Requirement &amp;req)</arglist>
+      <anchor>a5ad885bbd85519a4b64ad78fa43d0916</anchor>
+      <arglist>(std::vector&lt; FE &gt; *fes, const typename FE::Requirement &amp;req, Dune::VTK::Precision prec=Dune::VTK::Precision::float64)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
@@ -8927,11 +8927,18 @@
       <arglist>() const override</arglist>
     </member>
     <member kind="function">
+      <type>Dune::VTK::Precision</type>
+      <name>precision</name>
+      <anchorfile>a01495.html</anchorfile>
+      <anchor>ab9e28cd4cd0bc79ab808c4ef6fe59635</anchor>
+      <arglist>() const override</arglist>
+    </member>
+    <member kind="function">
       <type></type>
       <name>ResultFunction</name>
       <anchorfile>a01495.html</anchorfile>
-      <anchor>acab2c08cf57c047768019b1843d8d1b7</anchor>
-      <arglist>(std::vector&lt; FiniteElement &gt; *fes, const FERequirementType &amp;req)</arglist>
+      <anchor>ab1268cbd3d4ff4d2fa70dac608c6daac</anchor>
+      <arglist>(std::vector&lt; FiniteElement &gt; *fes, const FERequirementType &amp;req, Dune::VTK::Precision prec=Dune::VTK::Precision::float64)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
@@ -12021,8 +12028,8 @@
       <type>auto</type>
       <name>makeResultFunction</name>
       <anchorfile>a00351.html</anchorfile>
-      <anchor>a99689d8e0c6a5c804ff6ef1dc5aed1e8</anchor>
-      <arglist>(std::vector&lt; FE &gt; *fes, const typename FE::Requirement &amp;req)</arglist>
+      <anchor>a5ad885bbd85519a4b64ad78fa43d0916</anchor>
+      <arglist>(std::vector&lt; FE &gt; *fes, const typename FE::Requirement &amp;req, Dune::VTK::Precision prec=Dune::VTK::Precision::float64)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
