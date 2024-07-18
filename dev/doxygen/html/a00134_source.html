@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: pathfollowing.hh Source File</title>
+    <title>ikarus: registerferequirements.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,87 +152,70 @@ $(document).ready(function(){initNavTree('a00134_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">pathfollowing.hh</div></div>
+  <div class="headertitle"><div class="title">registerferequirements.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00134.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="a00143.html">ikarus/controlroutines/adaptivestepsizing.hh</a>&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="a00146.html">ikarus/controlroutines/controlinfos.hh</a>&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="a00149.html">ikarus/controlroutines/pathfollowingfunctions.hh</a>&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="a00152.html">ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh</a>&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="a00158.html">ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh</a>&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="a00038.html">ikarus/utils/nonlinopfactory.hh</a>&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="a00188.html">ikarus/utils/observer/observer.hh</a>&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="a00185.html">ikarus/utils/observer/observermessages.hh</a>&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00351.html">Ikarus</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NLS, <span class="keyword">typename</span> PF = ArcLength, <span class="keyword">typename</span> ASS&gt;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">consteval</span> <span class="keywordtype">bool</span> checkPathFollowingTemplates() {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">return</span> Concepts::PathFollowingStrategy&lt;PF, typename NLS::NonLinearOperator, SubsidiaryArgs&gt; and</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>           Concepts::AdaptiveStepSizingStrategy&lt;ASS, NonLinearSolverInformation, SubsidiaryArgs,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                                                std::remove_cvref_t&lt;typename NLS::NonLinearOperator&gt;&gt; and</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>           Concepts::NonLinearSolverCheckForPathFollowing&lt;NLS&gt;;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  }</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace Impl</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> NLS, <span class="keyword">typename</span> PF = ArcLength, <span class="keyword">typename</span> ASS = AdaptiveStepSizing::NoOp&gt;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">requires</span>(Impl::checkPathFollowingTemplates&lt;NLS, PF, ASS&gt;())</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="a01231.html">   79</a></span><span class="keyword">class</span> <a class="code hl_class" href="a01231.html">PathFollowing</a> : <span class="keyword">public</span> <a class="code hl_class" href="a01703.html">IObservable&lt;ControlMessages&gt;</a></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>{</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="a01231.html#a31b9c556cef2540c66676589b230ef5d">   83</a></span>  <span class="keyword">constexpr</span> <span class="keyword">auto</span> <a class="code hl_function" href="a01231.html#a31b9c556cef2540c66676589b230ef5d">name</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> std::string(<span class="stringliteral">&quot;Path following with &quot;</span> + pathFollowingType_.name()); }</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="a01231.html#af73474b0eccdddd65e046ebe813566f9">   93</a></span>  <a class="code hl_function" href="a01231.html#af73474b0eccdddd65e046ebe813566f9">PathFollowing</a>(<span class="keyword">const</span> std::shared_ptr&lt;NLS&gt;&amp; nls, <span class="keywordtype">int</span> steps, <span class="keywordtype">double</span> stepSize, PF pathFollowingType = <a class="code hl_struct" href="a01239.html">ArcLength</a>{},</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                ASS adaptiveStepSizing = {})</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      : nonLinearSolver_{nls},</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        steps_{steps},</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        stepSize_{stepSize},</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        pathFollowingType_{pathFollowingType},</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        adaptiveStepSizing_{adaptiveStepSizing} {}</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  ControlInformation run();</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="comment">/* \brief returns the nonlinear solver */</span></div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="a01231.html#a2328797dde819d93175e4552880d8d3e">  109</a></span>  NLS&amp; <a class="code hl_function" href="a01231.html#a2328797dde819d93175e4552880d8d3e">nonlinearSolver</a>() { <span class="keywordflow">return</span> *nonLinearSolver_; }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  std::shared_ptr&lt;NLS&gt; nonLinearSolver_;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keywordtype">int</span> steps_;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordtype">double</span> stepSize_;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  PF pathFollowingType_;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  ASS adaptiveStepSizing_;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>};</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>} <span class="comment">// namespace Ikarus</span></div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#include &lt;<a class="code" href="a00140.html">ikarus/controlroutines/pathfollowing.inl</a>&gt;</span></div>
-<div class="ttc" id="aa00038_html"><div class="ttname"><a href="a00038.html">nonlinopfactory.hh</a></div><div class="ttdoc">Contains the generic NonLinearOperatorFactory class.</div></div>
-<div class="ttc" id="aa00140_html"><div class="ttname"><a href="a00140.html">pathfollowing.inl</a></div><div class="ttdoc">Implementation of the run function.</div></div>
-<div class="ttc" id="aa00143_html"><div class="ttname"><a href="a00143.html">adaptivestepsizing.hh</a></div><div class="ttdoc">Contains the AdaptiveStepSizing namespace with strategies for adaptive step sizing.</div></div>
-<div class="ttc" id="aa00146_html"><div class="ttname"><a href="a00146.html">controlinfos.hh</a></div><div class="ttdoc">Defines the ControlInformation structure for storing control results.</div></div>
-<div class="ttc" id="aa00149_html"><div class="ttname"><a href="a00149.html">pathfollowingfunctions.hh</a></div><div class="ttdoc">Defines structures and methods related to subsidiary functions for control routines.</div></div>
-<div class="ttc" id="aa00152_html"><div class="ttname"><a href="a00152.html">newtonraphsonwithscalarsubsidiaryfunction.hh</a></div></div>
-<div class="ttc" id="aa00158_html"><div class="ttname"><a href="a00158.html">nonlinearsolverfactory.hh</a></div><div class="ttdoc">Contains the generic NonlinearSolverFactory class.</div></div>
-<div class="ttc" id="aa00185_html"><div class="ttname"><a href="a00185.html">observermessages.hh</a></div><div class="ttdoc">Enums for observer messages.</div></div>
-<div class="ttc" id="aa00188_html"><div class="ttname"><a href="a00188.html">observer.hh</a></div><div class="ttdoc">Implementation of the observer design pattern.</div></div>
-<div class="ttc" id="aa00351_html"><div class="ttname"><a href="a00351.html">Ikarus</a></div><div class="ttdef"><b>Definition:</b> dirichletbcenforcement.hh:6</div></div>
-<div class="ttc" id="aa01231_html"><div class="ttname"><a href="a01231.html">Ikarus::PathFollowing</a></div><div class="ttdoc">The PathFollowing control routine for path-following analysis.</div><div class="ttdef"><b>Definition:</b> pathfollowing.hh:80</div></div>
-<div class="ttc" id="aa01231_html_a2328797dde819d93175e4552880d8d3e"><div class="ttname"><a href="a01231.html#a2328797dde819d93175e4552880d8d3e">Ikarus::PathFollowing::nonlinearSolver</a></div><div class="ttdeci">NLS &amp; nonlinearSolver()</div><div class="ttdef"><b>Definition:</b> pathfollowing.hh:109</div></div>
-<div class="ttc" id="aa01231_html_a31b9c556cef2540c66676589b230ef5d"><div class="ttname"><a href="a01231.html#a31b9c556cef2540c66676589b230ef5d">Ikarus::PathFollowing::name</a></div><div class="ttdeci">constexpr auto name() const</div><div class="ttdoc">The name of the PathFollowing method.</div><div class="ttdef"><b>Definition:</b> pathfollowing.hh:83</div></div>
-<div class="ttc" id="aa01231_html_af73474b0eccdddd65e046ebe813566f9"><div class="ttname"><a href="a01231.html#af73474b0eccdddd65e046ebe813566f9">Ikarus::PathFollowing::PathFollowing</a></div><div class="ttdeci">PathFollowing(const std::shared_ptr&lt; NLS &gt; &amp;nls, int steps, double stepSize, PF pathFollowingType=ArcLength{}, ASS adaptiveStepSizing={})</div><div class="ttdoc">Constructor for PathFollowing.</div><div class="ttdef"><b>Definition:</b> pathfollowing.hh:93</div></div>
-<div class="ttc" id="aa01239_html"><div class="ttname"><a href="a01239.html">Ikarus::ArcLength</a></div><div class="ttdoc">Structure representing the subsidiary function for the standard arc-length method.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:67</div></div>
-<div class="ttc" id="aa01703_html"><div class="ttname"><a href="a01703.html">Ikarus::IObservable&lt; ControlMessages &gt;</a></div></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;dune/python/pybind11/pybind11.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;<a class="code" href="a00137.html">ikarus/python/finiteelements/scalarwrapper.hh</a>&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00372.html">Ikarus::Python</a> {</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">template</span> &lt;<span class="keyword">class </span>FE, <span class="keyword">class</span>... options&gt;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="a00372.html#a32c3989a8ef1dbc581313ef17a0c6f5b">   13</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00372.html#a32c3989a8ef1dbc581313ef17a0c6f5b">registerFERequirement</a>(pybind11::handle scope, pybind11::class_&lt;FE, options...&gt; cls) {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keyword">using </span><a class="code hl_class" href="a01341.html">FERequirements</a>     = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01489.html#a86c0fea1b37e487f3c78cde6facca9c3">FE::Requirement</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keyword">using </span>SolutionVectorType = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01341.html#a438e8f848c50755740ef8ee17620a284">FERequirements::SolutionVectorType</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keyword">using </span>ParameterType      = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01341.html#a50a1c42fc0b05811dfc370217fb70169">FERequirements::ParameterType</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keyword">using </span>ParameterType = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01341.html#a50a1c42fc0b05811dfc370217fb70169">FERequirements::ParameterType</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keyword">using namespace </span>pybind11::literals;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  cls.def(</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>      <span class="stringliteral">&quot;createRequirement&quot;</span>, [](pybind11::object <span class="comment">/* self */</span>) { <span class="keywordflow">return</span> <a class="code hl_class" href="a01341.html">FERequirements</a>(); },</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>      pybind11::return_value_policy::copy);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">auto</span> includes              = Dune::Python::IncludeFiles{<span class="stringliteral">&quot;ikarus/finiteelements/ferequirements.hh&quot;</span>};</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keyword">auto</span> [lv, isNotRegistered] = Dune::Python::insertClass&lt;FERequirements&gt;(</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>      scope, <span class="stringliteral">&quot;FERequirements&quot;</span>, Dune::Python::GenerateTypeName(Dune::className&lt;FERequirements&gt;()), includes);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">if</span> (isNotRegistered) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    lv.def(<a class="code hl_function" href="a00360.html#ac8243891c1b961e50a066140ab79a142">pybind11::init</a>());</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    lv.def(pybind11::init&lt;SolutionVectorType&amp;, ParameterType&amp;&gt;());</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    lv.def(</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="stringliteral">&quot;insertGlobalSolution&quot;</span>,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        [](<a class="code hl_class" href="a01341.html">FERequirements</a>&amp; self, SolutionVectorType solVec) { self.<a class="code hl_function" href="a01341.html#ada341483ec62ec030c03d43ab4bd86c9">insertGlobalSolution</a>(solVec); },</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="stringliteral">&quot;solutionVector&quot;</span>_a.noconvert());</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    lv.def(</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="stringliteral">&quot;globalSolution&quot;</span>, [](<a class="code hl_class" href="a01341.html">FERequirements</a>&amp; self) { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01341.html#a523ed390dfea00379b5b638e523ddb74">globalSolution</a>(); },</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        pybind11::return_value_policy::reference_internal);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    lv.def(</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="stringliteral">&quot;insertParameter&quot;</span>,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        [](<a class="code hl_class" href="a01341.html">FERequirements</a>&amp; self, <a class="code hl_class" href="a01569.html">ScalarWrapper&lt;double&gt;</a>&amp; parVal) { self.<a class="code hl_function" href="a01341.html#aafb4ad2fa6c16a3845596f76e6cdeb16">insertParameter</a>(parVal.<a class="code hl_function" href="a01569.html#a0f885d047f898e549e8ece9cac3adea8">value</a>()); },</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        pybind11::keep_alive&lt;1, 2&gt;(), <span class="stringliteral">&quot;parameterValue&quot;</span>_a.noconvert());</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    lv.def(<span class="stringliteral">&quot;parameter&quot;</span>, [](<span class="keyword">const</span> <a class="code hl_class" href="a01341.html">FERequirements</a>&amp; self) { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01341.html#af11316c1f0fca6982a2d7497bc71a10c">parameter</a>(); });</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <span class="comment">// namespace Ikarus::Python</span></div>
+<div class="ttc" id="aa00137_html"><div class="ttname"><a href="a00137.html">scalarwrapper.hh</a></div><div class="ttdoc">Provides a wrapper for scalar types to support passing by reference in Python bindings.</div></div>
+<div class="ttc" id="aa00360_html_ac8243891c1b961e50a066140ab79a142"><div class="ttname"><a href="a00360.html#ac8243891c1b961e50a066140ab79a142">Ikarus::init</a></div><div class="ttdeci">void init(int argc, char **argv, bool enableFileLogger=true)</div><div class="ttdoc">Initializes the Ikarus framework.</div><div class="ttdef"><b>Definition:</b> init.hh:82</div></div>
+<div class="ttc" id="aa00372_html"><div class="ttname"><a href="a00372.html">Ikarus::Python</a></div><div class="ttdef"><b>Definition:</b> flatassembler.hh:21</div></div>
+<div class="ttc" id="aa00372_html_a32c3989a8ef1dbc581313ef17a0c6f5b"><div class="ttname"><a href="a00372.html#a32c3989a8ef1dbc581313ef17a0c6f5b">Ikarus::Python::registerFERequirement</a></div><div class="ttdeci">void registerFERequirement(pybind11::handle scope, pybind11::class_&lt; FE, options... &gt; cls)</div><div class="ttdef"><b>Definition:</b> registerferequirements.hh:13</div></div>
+<div class="ttc" id="aa01341_html"><div class="ttname"><a href="a01341.html">Ikarus::FERequirements</a></div><div class="ttdoc">Class representing the requirements for finite element calculations.</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:252</div></div>
+<div class="ttc" id="aa01341_html_a438e8f848c50755740ef8ee17620a284"><div class="ttname"><a href="a01341.html#a438e8f848c50755740ef8ee17620a284">Ikarus::FERequirements::SolutionVectorType</a></div><div class="ttdeci">SV SolutionVectorType</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:268</div></div>
+<div class="ttc" id="aa01341_html_a50a1c42fc0b05811dfc370217fb70169"><div class="ttname"><a href="a01341.html#a50a1c42fc0b05811dfc370217fb70169">Ikarus::FERequirements::ParameterType</a></div><div class="ttdeci">PM ParameterType</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:269</div></div>
+<div class="ttc" id="aa01341_html_a523ed390dfea00379b5b638e523ddb74"><div class="ttname"><a href="a01341.html#a523ed390dfea00379b5b638e523ddb74">Ikarus::FERequirements::globalSolution</a></div><div class="ttdeci">SolutionVectorReturnType globalSolution()</div><div class="ttdoc">Get the global solution vector.</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:308</div></div>
+<div class="ttc" id="aa01341_html_aafb4ad2fa6c16a3845596f76e6cdeb16"><div class="ttname"><a href="a01341.html#aafb4ad2fa6c16a3845596f76e6cdeb16">Ikarus::FERequirements::insertParameter</a></div><div class="ttdeci">FERequirements &amp; insertParameter(ParameterInputType val)</div><div class="ttdoc">Insert a parameter into the requirements.</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:284</div></div>
+<div class="ttc" id="aa01341_html_ada341483ec62ec030c03d43ab4bd86c9"><div class="ttname"><a href="a01341.html#ada341483ec62ec030c03d43ab4bd86c9">Ikarus::FERequirements::insertGlobalSolution</a></div><div class="ttdeci">FERequirements &amp; insertGlobalSolution(SolutionVectorInputType solVec)</div><div class="ttdoc">Insert a global solution vector into the requirements.</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:297</div></div>
+<div class="ttc" id="aa01341_html_af11316c1f0fca6982a2d7497bc71a10c"><div class="ttname"><a href="a01341.html#af11316c1f0fca6982a2d7497bc71a10c">Ikarus::FERequirements::parameter</a></div><div class="ttdeci">PMHelper::ConstReturnType parameter() const</div><div class="ttdoc">Get the parameter value.</div><div class="ttdef"><b>Definition:</b> ferequirements.hh:325</div></div>
+<div class="ttc" id="aa01489_html_a86c0fea1b37e487f3c78cde6facca9c3"><div class="ttname"><a href="a01489.html#a86c0fea1b37e487f3c78cde6facca9c3">Ikarus::FEMixin&lt; PreFE, Skills... &gt;::Requirement</a></div><div class="ttdeci">RequirementType&lt; requirementDetected &gt;::type Requirement</div><div class="ttdef"><b>Definition:</b> mixin.hh:89</div></div>
+<div class="ttc" id="aa01569_html"><div class="ttname"><a href="a01569.html">ScalarWrapper</a></div><div class="ttdoc">A wrapper class for scalar types to facilitate reference passing in Python bindings.</div><div class="ttdef"><b>Definition:</b> scalarwrapper.hh:27</div></div>
+<div class="ttc" id="aa01569_html_a0f885d047f898e549e8ece9cac3adea8"><div class="ttname"><a href="a01569.html#a0f885d047f898e549e8ece9cac3adea8">ScalarWrapper::value</a></div><div class="ttdeci">const RawScalarType &amp; value() const</div><div class="ttdoc">Gets the wrapped scalar value as a constant reference.</div><div class="ttdef"><b>Definition:</b> scalarwrapper.hh:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -243,7 +226,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_a97b071c9c6f7bcc51f4d0bc7519f177.html">controlroutines</a></li><li class="navelem"><a class="el" href="a00134.html">pathfollowing.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_6063e92d97cad5a47908d6a96069b24d.html">python</a></li><li class="navelem"><a class="el" href="dir_3f77d910b8992c2715464d60b82eb4e5.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00134.html">registerferequirements.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

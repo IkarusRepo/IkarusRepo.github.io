@@ -1,5 +1,6 @@
 var a00143 =
 [
-    [ "Ikarus::AdaptiveStepSizing::NoOp", "a01215.html", "a01215" ],
-    [ "Ikarus::AdaptiveStepSizing::IterationBased", "a01219.html", "a01219" ]
+    [ "Ikarus::Python::SparseMatrixWrapper< T >", "a01565.html", "a01565" ],
+    [ "registerAssemblerManipulator", "a00143.html#aad35f78683b64303a28d3b8b4f83aa37", null ],
+    [ "registerSparseMatrixWrapper", "a00143.html#a09b4a81e2d6d0619406854f6dc3fc8f7", null ]
 ];

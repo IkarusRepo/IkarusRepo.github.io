@@ -1,20 +1,15 @@
 var a00341 =
 [
-    [ "Result Evaluator", "a00342.html", "a00342" ],
-    [ "resultfunction.hh", "a00125.html", null ],
-    [ "griddrawer.hh", "a00170.html", null ],
-    [ "matplothelper.hh", "a00173.html", null ],
-    [ "Ikarus::ResultFunction< FE, RT, UserFunction >", "a01495.html", [
-      [ "ctype", "a01495.html#a4e651e2b6ae31a5d8f7ffc7d2ea60cc2", null ],
-      [ "Entity", "a01495.html#ad99a2516a5afbec772508d574bc0d445", null ],
-      [ "FERequirementType", "a01495.html#a18155bd0f8ff92d6a92babb0033f6a52", null ],
-      [ "FiniteElement", "a01495.html#a462849088db04badf789b2ae6a25de24", null ],
-      [ "GridView", "a01495.html#a6d7963f63478595dabdcc5c82c8e8b7a", null ],
-      [ "ResultFunction", "a01495.html#ab1268cbd3d4ff4d2fa70dac608c6daac", null ],
-      [ "evaluate", "a01495.html#ad57b905d776716fc3f95db9eb4ebc3df", null ],
-      [ "name", "a01495.html#a0e3cdc77b411175c6c49cd6376a2ce4d", null ],
-      [ "ncomps", "a01495.html#a27adc5ad8cd9204d76c96725c0c73f97", null ],
-      [ "precision", "a01495.html#ab9e28cd4cd0bc79ab808c4ef6fe59635", null ],
-      [ "griddim", "a01495.html#a538071ba82449437844f32b713dd8c63", null ]
-    ] ]
+    [ "Assembler", "a00342.html", "a00342" ],
+    [ "Control Routines", "a00343.html", "a00343" ],
+    [ "Finite Elements", "a00344.html", "a00344" ],
+    [ "Materials", "a00348.html", "a00348" ],
+    [ "IO", "a00350.html", "a00350" ],
+    [ "Python bindings", "a00352.html", "a00352" ],
+    [ "Solver", "a00353.html", "a00353" ],
+    [ "Observer", "a00354.html", "a00354" ],
+    [ "Utilities", "a00355.html", "a00355" ],
+    [ "Tensor Utilities", "a00356.html", "a00356" ],
+    [ "Algorithms", "a00357.html", "a00357" ],
+    [ "Type traits", "a00358.html", "a00358" ]
 ];

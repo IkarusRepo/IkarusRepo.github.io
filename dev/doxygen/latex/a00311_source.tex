@@ -1,0 +1,161 @@
+\hypertarget{a00311_source}{}\doxysection{assemblermanipulatorbuildingblocks.\+hh}
+\label{a00311_source}\index{assemblermanipulatorbuildingblocks.hh@{assemblermanipulatorbuildingblocks.hh}}
+\mbox{\hyperlink{a00311}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/functions/backends/istlvectorbackend.hh>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00305}{ikarus/assembler/dirichletbcenforcement.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02704}{ikarus/assembler/interface.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00167}{ikarus/finiteelements/fehelper.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00227}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02719}{ikarus/utils/dirichletvalues.hh}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00360}{Ikarus}} \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{29 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Wrapper, \textcolor{keyword}{typename} Assembler>}
+\DoxyCodeLine{30 \textcolor{keyword}{struct }\mbox{\hyperlink{a01205}{ScalarManipulator}}}
+\DoxyCodeLine{31 \{}
+\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_ae6d1ae2d4630e6aefcece21ae861969d}{WrappedAssembler}} = Wrapper;}
+\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_aef57ffcaac072a4b0e6ba4c8fd2da511}{FEC}}              = \textcolor{keyword}{typename} Assembler::FEContainer;}
+\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_a8a0ded758481b53136e2972ee60b7325}{DV}}               = \textcolor{keyword}{typename} Assembler::DirichletValuesType;}
+\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_a4c75930c7ccea42b2ac91f23e2a35361}{FERequirement}}    = \textcolor{keyword}{typename} Assembler::FERequirement;}
+\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_a814c920d1c56e4581e8abf753d9786cc}{ScalarType}}       = \textcolor{keyword}{typename} Assembler::ScalarType;}
+\DoxyCodeLine{37   \textcolor{keyword}{using }\mbox{\hyperlink{a01241}{Interface}}        = \mbox{\hyperlink{a01241}{ScalarAssembler<WrappedAssembler, FEC, DV, ScalarType>}};}
+\DoxyCodeLine{38   \textcolor{keyword}{friend} \mbox{\hyperlink{a01205_abe3c798ea90c0aaef3e4d4c6577dcfd5}{Interface}};}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40   \textcolor{keyword}{using }\mbox{\hyperlink{a01205_a82dd99b0e222c3c99d56569ca235957b}{FunctionType}} = std::function<void(\textcolor{keyword}{const} Assembler\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01205_a4c75930c7ccea42b2ac91f23e2a35361}{FERequirement}}\&, \mbox{\hyperlink{a00360_af6f894084edd9109762b86222995ef2a}{ScalarAffordance}}, \mbox{\hyperlink{a01205_a814c920d1c56e4581e8abf753d9786cc}{ScalarType}}\&)>;}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{47   \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{48   \textcolor{keyword}{requires} \mbox{\hyperlink{a01860}{Concepts::IsFunctorWithArgs<F, const Assembler\&, const FERequirement\&, ScalarAffordance, ScalarType\&>}}}
+\DoxyCodeLine{49   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01205_a4252146eeb5356107efe7bad29510d7c}{bind}}(F\&\& f) \{}
+\DoxyCodeLine{50     \mbox{\hyperlink{a01205_a287ad7034f7039a4c8710993381448da}{sfs}}.emplace\_back(std::forward<F>(f));}
+\DoxyCodeLine{51   \}}
+\DoxyCodeLine{52   std::vector<FunctionType> \mbox{\hyperlink{a01205_a287ad7034f7039a4c8710993381448da}{sfs}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{55   \mbox{\hyperlink{a01205_a814c920d1c56e4581e8abf753d9786cc}{ScalarType}}\& \mbox{\hyperlink{a01205_aba335c4956a927a322c511e523c7b6fe}{getScalarImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01205_a4c75930c7ccea42b2ac91f23e2a35361}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_af6f894084edd9109762b86222995ef2a}{ScalarAffordance}} affordance) \{}
+\DoxyCodeLine{56     \mbox{\hyperlink{a01205_a814c920d1c56e4581e8abf753d9786cc}{ScalarType}}\& sca = underlying().base\_getScalarImpl(feRequirements, affordance);}
+\DoxyCodeLine{57     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& sf : \mbox{\hyperlink{a01205_a287ad7034f7039a4c8710993381448da}{sfs}})}
+\DoxyCodeLine{58       sf(underlying().base(), feRequirements, affordance, sca);}
+\DoxyCodeLine{59     \textcolor{keywordflow}{return} sca;}
+\DoxyCodeLine{60   \}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keyword}{private}:}
+\DoxyCodeLine{63   \textcolor{comment}{//> CRTP}}
+\DoxyCodeLine{64   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& underlying()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01205_ae6d1ae2d4630e6aefcece21ae861969d}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{65   \textcolor{keyword}{auto}\& underlying() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{a01205_ae6d1ae2d4630e6aefcece21ae861969d}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{66 \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{73 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Wrapper, \textcolor{keyword}{typename} Assembler>}
+\DoxyCodeLine{74 \textcolor{keyword}{struct }\mbox{\hyperlink{a01209}{VectorManipulator}}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 \{}
+\DoxyCodeLine{77   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_a2d8c9a426f380fe70943af167d85c7b5}{WrappedAssembler}} = Wrapper;}
+\DoxyCodeLine{78   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_a55f751f7faf5cdecfa2a606b417062c2}{FEC}}              = \textcolor{keyword}{typename} Assembler::FEContainer;}
+\DoxyCodeLine{79   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_a146ff182f11fe9d1cffd58ab85a47b3a}{DV}}               = \textcolor{keyword}{typename} Assembler::DirichletValuesType;}
+\DoxyCodeLine{80   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}    = \textcolor{keyword}{typename} Assembler::FERequirement;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}} = \textcolor{keyword}{typename} Assembler::VectorType;}
+\DoxyCodeLine{83   \textcolor{keyword}{using }\mbox{\hyperlink{a01245}{Interface}}  = \mbox{\hyperlink{a01245}{VectorAssembler}}<\mbox{\hyperlink{a01209_a2d8c9a426f380fe70943af167d85c7b5}{WrappedAssembler}}, \textcolor{keyword}{typename} Assembler::FEContainer,}
+\DoxyCodeLine{84                                      \textcolor{keyword}{typename} Assembler::DirichletValuesType, \textcolor{keyword}{typename} Assembler::VectorType>;}
+\DoxyCodeLine{85   \textcolor{keyword}{friend} \mbox{\hyperlink{a01209_af662a37217e36619561eadb8ec9293c8}{Interface}};}
+\DoxyCodeLine{86   \textcolor{keyword}{using }\mbox{\hyperlink{a01209_a74d10a3b0be70aa688a8ca4190b4ce67}{FunctionType}} =}
+\DoxyCodeLine{87       std::function<void(\textcolor{keyword}{const} Assembler\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}\&, \mbox{\hyperlink{a00360_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}}, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}}, \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\&)>;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{94   \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{95   \textcolor{keyword}{requires} \mbox{\hyperlink{a01860}{Concepts::IsFunctorWithArgs}}<F, \textcolor{keyword}{const} Assembler\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}\&, \mbox{\hyperlink{a00360_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}}, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}},}
+\DoxyCodeLine{96                                        \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\&>}
+\DoxyCodeLine{97   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01209_af05d967af052072fb2e8b52fc1ac73b6}{bind}}(F\&\& f) \{}
+\DoxyCodeLine{98     \mbox{\hyperlink{a01209_aa72e5bc1ba5078c8d9537bdb6fd9d019}{vfs}}.emplace\_back(std::forward<F>(f));}
+\DoxyCodeLine{99   \}}
+\DoxyCodeLine{100   std::vector<FunctionType> \mbox{\hyperlink{a01209_aa72e5bc1ba5078c8d9537bdb6fd9d019}{vfs}};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{103   \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& \mbox{\hyperlink{a01209_ae7ad13e87a07efbafafe71d255c57eab}{getRawVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}} affordance) \{}
+\DoxyCodeLine{104     \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& vec = underlying().base\_getRawVectorImpl(feRequirements, affordance);}
+\DoxyCodeLine{105     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& vf : \mbox{\hyperlink{a01209_aa72e5bc1ba5078c8d9537bdb6fd9d019}{vfs}})}
+\DoxyCodeLine{106       vf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eeca65e65c8ab0d8609ce12fc68a03cb8e00}{DBCOption::Raw}}, vec);}
+\DoxyCodeLine{107     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{108   \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110   \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& \mbox{\hyperlink{a01209_aef64c6065be1268a73cefc38614c3901}{getVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}} affordance) \{}
+\DoxyCodeLine{111     \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& vec = underlying().base\_getVectorImpl(feRequirements, affordance);}
+\DoxyCodeLine{112     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& vf : \mbox{\hyperlink{a01209_aa72e5bc1ba5078c8d9537bdb6fd9d019}{vfs}})}
+\DoxyCodeLine{113       vf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eecabbd47109890259c0127154db1af26c75}{DBCOption::Full}}, vec);}
+\DoxyCodeLine{114     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{115   \}}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& \mbox{\hyperlink{a01209_aeeb7199a1691ace31afccc9a01f8a597}{getReducedVectorImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01209_aac10b03a2da5ccd19d9a4714c5fe07bb}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}} affordance) \{}
+\DoxyCodeLine{118     \mbox{\hyperlink{a01209_a665286449182c8ba5d881b5e4447ad40}{VectorType}}\& vec = underlying().base\_getReducedVectorImpl(feRequirements, affordance);}
+\DoxyCodeLine{119     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& vf : \mbox{\hyperlink{a01209_aa72e5bc1ba5078c8d9537bdb6fd9d019}{vfs}})}
+\DoxyCodeLine{120       vf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eeca4335949a935758ca1b570689c3c6750b}{DBCOption::Reduced}}, vec);}
+\DoxyCodeLine{121     \textcolor{keywordflow}{return} vec;}
+\DoxyCodeLine{122   \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124 \textcolor{keyword}{private}:}
+\DoxyCodeLine{125   \textcolor{comment}{//> CRTP}}
+\DoxyCodeLine{126   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& underlying()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01209_a2d8c9a426f380fe70943af167d85c7b5}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{127   \textcolor{keyword}{auto}\& underlying() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{a01209_a2d8c9a426f380fe70943af167d85c7b5}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{128 \};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{135 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Wrapper, \textcolor{keyword}{typename} Assembler>}
+\DoxyCodeLine{136 \textcolor{keyword}{struct }\mbox{\hyperlink{a01213}{MatrixManipulator}}}
+\DoxyCodeLine{137 \{}
+\DoxyCodeLine{138   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_af19cf555db737547d9c5b7109a3a310e}{WrappedAssembler}} = Wrapper;}
+\DoxyCodeLine{139   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_a3e9b53e7ba85dc4038add4c8bcca484b}{FEC}}              = \textcolor{keyword}{typename} Assembler::FEContainer;}
+\DoxyCodeLine{140   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_af51e0f694d08350f629586121bc6686c}{DV}}               = \textcolor{keyword}{typename} Assembler::DirichletValuesType;}
+\DoxyCodeLine{141   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}    = \textcolor{keyword}{typename} Assembler::FERequirement;}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}} = \textcolor{keyword}{typename} Assembler::MatrixType;}
+\DoxyCodeLine{144   \textcolor{keyword}{using }\mbox{\hyperlink{a01249}{Interface}}  = \mbox{\hyperlink{a01249}{MatrixAssembler}}<\mbox{\hyperlink{a01213_af19cf555db737547d9c5b7109a3a310e}{WrappedAssembler}}, \textcolor{keyword}{typename} Assembler::FEContainer,}
+\DoxyCodeLine{145                                      \textcolor{keyword}{typename} Assembler::DirichletValuesType, \textcolor{keyword}{typename} Assembler::MatrixType>;}
+\DoxyCodeLine{146   \textcolor{keyword}{friend} \mbox{\hyperlink{a01213_a78f5646e7f35964e7422824b5fe0c0da}{Interface}};}
+\DoxyCodeLine{147   \textcolor{keyword}{using }\mbox{\hyperlink{a01213_a384a0d84d5f932fc0c4a101497c684f6}{FunctionType}} =}
+\DoxyCodeLine{148       std::function<void(\textcolor{keyword}{const} Assembler\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}\&, \mbox{\hyperlink{a00360_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}}, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}}, \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\&)>;}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{155   \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{156   \textcolor{keyword}{requires} \mbox{\hyperlink{a01860}{Concepts::IsFunctorWithArgs}}<F, \textcolor{keyword}{const} Assembler\&, \textcolor{keyword}{const} \mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}\&, \mbox{\hyperlink{a00360_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}}, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}},}
+\DoxyCodeLine{157                                        \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\&>}
+\DoxyCodeLine{158   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01213_aed9e3a220a16898c97ad60ea8fdff04f}{bind}}(F\&\& f) \{}
+\DoxyCodeLine{159     \mbox{\hyperlink{a01213_a2a466b533b5e6a3d6f85b1d2fb5bc69d}{mfs}}.emplace\_back(std::forward<F>(f));}
+\DoxyCodeLine{160   \}}
+\DoxyCodeLine{161   std::vector<FunctionType> \mbox{\hyperlink{a01213_a2a466b533b5e6a3d6f85b1d2fb5bc69d}{mfs}};}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{164   \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& \mbox{\hyperlink{a01213_ae89cb40188e56cacfee05970493a73fb}{getRawMatrixImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}} affordance) \{}
+\DoxyCodeLine{165     \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& mat = underlying().base\_getRawMatrixImpl(feRequirements, affordance);}
+\DoxyCodeLine{166     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& mf : \mbox{\hyperlink{a01213_a2a466b533b5e6a3d6f85b1d2fb5bc69d}{mfs}})}
+\DoxyCodeLine{167       mf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eeca65e65c8ab0d8609ce12fc68a03cb8e00}{DBCOption::Raw}}, mat);}
+\DoxyCodeLine{168     \textcolor{keywordflow}{return} mat;}
+\DoxyCodeLine{169   \}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171   \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& \mbox{\hyperlink{a01213_a4cf4b84bd66546c938e14d893178983e}{getMatrixImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}} affordance) \{}
+\DoxyCodeLine{172     \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& mat = underlying().base\_getMatrixImpl(feRequirements, affordance);}
+\DoxyCodeLine{173     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& mf : \mbox{\hyperlink{a01213_a2a466b533b5e6a3d6f85b1d2fb5bc69d}{mfs}})}
+\DoxyCodeLine{174       mf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eecabbd47109890259c0127154db1af26c75}{DBCOption::Full}}, mat);}
+\DoxyCodeLine{175     \textcolor{keywordflow}{return} mat;}
+\DoxyCodeLine{176   \}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178   \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& \mbox{\hyperlink{a01213_a6bdeb28d985b88241c3f1011d07b53e1}{getReducedMatrixImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01213_aec33ee46b0c589052d7339812e517f67}{FERequirement}}\& feRequirements, \mbox{\hyperlink{a00360_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}} affordance) \{}
+\DoxyCodeLine{179     \mbox{\hyperlink{a01213_ad1e4697bbb8e0d089a7382912f3fa9d9}{MatrixType}}\& mat = underlying().base\_getReducedMatrixImpl(feRequirements, affordance);}
+\DoxyCodeLine{180     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& mf : \mbox{\hyperlink{a01213_a2a466b533b5e6a3d6f85b1d2fb5bc69d}{mfs}})}
+\DoxyCodeLine{181       mf(underlying().base(), feRequirements, affordance, \mbox{\hyperlink{a00360_a9f83fad9f4c149f249165a13f2370eeca4335949a935758ca1b570689c3c6750b}{DBCOption::Reduced}}, mat);}
+\DoxyCodeLine{182     \textcolor{keywordflow}{return} mat;}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \textcolor{keyword}{private}:}
+\DoxyCodeLine{186   \textcolor{comment}{//> CRTP}}
+\DoxyCodeLine{187   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& underlying()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01213_af19cf555db737547d9c5b7109a3a310e}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{188   \textcolor{keyword}{auto}\& underlying() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{a01213_af19cf555db737547d9c5b7109a3a310e}{WrappedAssembler}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{189 \};}
+\DoxyCodeLine{190 \} \textcolor{comment}{// namespace Ikarus}}
+
+\end{DoxyCode}

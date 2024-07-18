@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: pathfollowingfunctions.hh File Reference</title>
+    <title>ikarus: trustregion.hh File Reference</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -154,50 +154,86 @@ $(document).ready(function(){initNavTree('a00149.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">pathfollowingfunctions.hh File Reference</div></div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">trustregion.hh File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Defines structures and methods related to subsidiary functions for control routines.  
+<p>Implementation of the Trust-region method for solving nonlinear equations.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;cmath&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &lt;string&gt;</code><br />
-<code>#include &lt;utility&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;dune/common/exceptions.hh&gt;</code><br />
-<code>#include &lt;Eigen/Core&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00167_source.html">ikarus/solver/linearsolver/linearsolver.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00062_source.html">ikarus/utils/concepts.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00041_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00026_source.html">ikarus/utils/traits.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;iosfwd&gt;</code><br />
+<code>#include &lt;dune/common/float_cmp.hh&gt;</code><br />
+<code>#include &lt;spdlog/spdlog.h&gt;</code><br />
+<code>#include &lt;Eigen/Sparse&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00122_source.html">ikarus/linearalgebra/truncatedconjugategradient.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00155_source.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00071_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00005_source.html">ikarus/utils/linearalgebrahelper.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00257_source.html">ikarus/utils/observer/observer.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00263_source.html">ikarus/utils/observer/observermessages.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00074_source.html">ikarus/utils/traits.hh</a>&gt;</code><br />
 </div>
 <p><a href="a00149_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01235.html">Ikarus::SubsidiaryArgs</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure containing arguments for subsidiary functions.  <a href="a01235.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01617.html">Ikarus::TRSettings</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01239.html">Ikarus::ArcLength</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing the subsidiary function for the standard arc-length method.  <a href="a01239.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01621.html">Ikarus::TrustRegionConfig&lt; preConditioner, UF &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01243.html">Ikarus::LoadControlSubsidiaryFunction</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing the subsidiary function for the load control method.  <a href="a01243.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01629.html">Ikarus::AlgoInfo</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Additional information about the <a class="el" href="a01625.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> algorithm.  <a href="a01629.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01247.html">Ikarus::DisplacementControl</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing the subsidiary function for the displacement control method.  <a href="a01247.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01633.html">Ikarus::Stats</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information about the <a class="el" href="a01625.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="a01633.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01625.html">Ikarus::TrustRegion&lt; NLO, preConditioner, UF &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trust Region solver for non-linear optimization problems.  <a href="a01625.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:a00351"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00351.html">Ikarus</a></td></tr>
+<tr class="memitem:a00360"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00360.html">Ikarus</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ace28d4868cfc647491f7938f04ef6c66"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00360.html#ace28d4868cfc647491f7938f04ef6c66">Ikarus::PreConditioner</a> { <a class="el" href="a00360.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff">Ikarus::IncompleteCholesky</a>
+, <a class="el" href="a00360.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608">Ikarus::IdentityPreconditioner</a>
+, <a class="el" href="a00360.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc">Ikarus::DiagonalPreconditioner</a>
+ }</td></tr>
+<tr class="memdesc:ace28d4868cfc647491f7938f04ef6c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of available preconditioners for the trust region solver.  <a href="a00360.html#ace28d4868cfc647491f7938f04ef6c66">More...</a><br /></td></tr>
+<tr class="separator:ace28d4868cfc647491f7938f04ef6c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674">Ikarus::StopReason</a> { <br />
+&#160;&#160;<a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1">Ikarus::gradientNormTolReached</a>
+, <a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3">Ikarus::correctionNormTolReached</a>
+, <a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9">Ikarus::maximumTimeReached</a>
+, <a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe">Ikarus::maximumIterationsReached</a>
+, <br />
+&#160;&#160;<a class="el" href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f">Ikarus::dontStop</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumeration of reasons for stopping the TrustRegion solver.  <a href="a00360.html#abd5d0cf356d1ae81f6ee827b0f47c674">More...</a><br /></td></tr>
+<tr class="separator:abd5d0cf356d1ae81f6ee827b0f47c674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a8785899121b52f1b6ffe3a43b1a5df61"><td class="memTemplParams" colspan="2">template&lt;typename NLO , typename TRConfig &gt; <br />
+requires traits::isSpecializationNonTypeAndTypes&lt;TrustRegionConfig, std::remove_cvref_t&lt;TRConfig&gt;&gt;</td></tr>
+<tr class="memitem:a8785899121b52f1b6ffe3a43b1a5df61"><td class="memTemplItemLeft" align="right" valign="top">::value auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00360.html#a8785899121b52f1b6ffe3a43b1a5df61">Ikarus::createNonlinearSolver</a> (TRConfig &amp;&amp;config, NLO &amp;&amp;nonLinearOperator)</td></tr>
+<tr class="memdesc:a8785899121b52f1b6ffe3a43b1a5df61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to create a trust region non-linear solver.  <a href="a00360.html#a8785899121b52f1b6ffe3a43b1a5df61">More...</a><br /></td></tr>
+<tr class="separator:a8785899121b52f1b6ffe3a43b1a5df61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547326eb09552d3d1fed0830d0e2d269"><td class="memTemplParams" colspan="2">template&lt;typename NLO , PreConditioner preConditioner = PreConditioner::IncompleteCholesky, typename UF  = utils::UpdateDefault&gt; </td></tr>
+<tr class="memitem:a547326eb09552d3d1fed0830d0e2d269"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00360.html#a547326eb09552d3d1fed0830d0e2d269">Ikarus::makeTrustRegion</a> (const NLO &amp;nonLinearOperator, UF &amp;&amp;updateFunction={})</td></tr>
+<tr class="memdesc:a547326eb09552d3d1fed0830d0e2d269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an instance of the <a class="el" href="a01625.html" title="Trust Region solver for non-linear optimization problems.">TrustRegion</a> solver.  <a href="a00360.html#a547326eb09552d3d1fed0830d0e2d269">More...</a><br /></td></tr>
+<tr class="separator:a547326eb09552d3d1fed0830d0e2d269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d76e20d6a74e339f85d98c9854ee89c"><td class="memTemplParams" colspan="2">template&lt;typename NLO , PreConditioner preConditioner = PreConditioner::IncompleteCholesky, typename UF2  = utils::UpdateDefault&gt; </td></tr>
+<tr class="memitem:a8d76e20d6a74e339f85d98c9854ee89c"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00360.html#a8d76e20d6a74e339f85d98c9854ee89c">Ikarus::TrustRegion</a> (const NLO &amp;nonLinearOperator, UF2 &amp;&amp;updateFunction={}) -&gt; TrustRegion&lt; NLO, preConditioner, std::remove_cvref_t&lt; UF2 &gt; &gt;</td></tr>
+<tr class="separator:a8d76e20d6a74e339f85d98c9854ee89c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This file contains the declarations of the StandardArcLength, LoadControlWithSubsidiaryFunction, and DisplacementControl structs, which represent subsidiary functions for arc-length, load control, and displacement control methods, respectively. These functions are used in path-following control routines. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!--
 SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de
@@ -207,7 +243,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_a97b071c9c6f7bcc51f4d0bc7519f177.html">controlroutines</a></li><li class="navelem"><a class="el" href="a00149.html">pathfollowingfunctions.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_26588bed129c997bc132e8888f2113fa.html">solver</a></li><li class="navelem"><a class="el" href="dir_bf30182dc97724dc8c2a6cdd4c321688.html">nonlinearsolver</a></li><li class="navelem"><a class="el" href="a00149.html">trustregion.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: autodiffhelper.hh Source File</title>
+    <title>ikarus: polyfit.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,31 +152,23 @@ $(document).ready(function(){initNavTree('a00020_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">autodiffhelper.hh</div></div>
+  <div class="headertitle"><div class="title">polyfit.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00020.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;autodiff/forward/dual.hpp&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;autodiff/forward/dual/eigen.hpp&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;dune/functions/analyticfunctions/polynomial.hh&gt;</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00364.html">Ikarus::utils</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Fun, <span class="keyword">typename</span>... Vars, <span class="keyword">typename</span>... Args, <span class="keyword">typename</span> U, <span class="keyword">typename</span> G, <span class="keyword">typename</span> H&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="a00346.html#ga2a6c26beeb8d52283e82939ca585dc20">   35</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00346.html#ga2a6c26beeb8d52283e82939ca585dc20">hessianN</a>(<span class="keyword">const</span> Fun&amp; f, <span class="keyword">const</span> autodiff::Wrt&lt;Vars...&gt;&amp; wrt, <span class="keyword">const</span> autodiff::At&lt;Args...&gt;&amp; at, U&amp; u,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>              std::array&lt;G, U::RowsAtCompileTime&gt;&amp; g, std::array&lt;H, U::RowsAtCompileTime&gt;&amp; h) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Vars) &gt;= 1);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">static_assert</span>(<span class="keyword">sizeof</span>...(Args) &gt;= 1);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">auto</span> fEntry = [&amp;](<span class="keyword">auto</span>&amp; I) { <span class="keywordflow">return</span> [&amp;](<span class="keyword">const</span> <span class="keyword">auto</span>&amp;) { <span class="keywordflow">return</span> std::apply(f, at.args)[I]; }; };</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; U::RowsAtCompileTime; ++i)</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    hessian(fEntry(i), wrt, at, u[i], g[i], h[i]);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>} <span class="comment">// namespace Ikarus::utils</span></div>
-<div class="ttc" id="aa00346_html_ga2a6c26beeb8d52283e82939ca585dc20"><div class="ttname"><a href="a00346.html#ga2a6c26beeb8d52283e82939ca585dc20">Ikarus::utils::hessianN</a></div><div class="ttdeci">void hessianN(const Fun &amp;f, const autodiff::Wrt&lt; Vars... &gt; &amp;wrt, const autodiff::At&lt; Args... &gt; &amp;at, U &amp;u, std::array&lt; G, U::RowsAtCompileTime &gt; &amp;g, std::array&lt; H, U::RowsAtCompileTime &gt; &amp;h)</div><div class="ttdoc">Computes the Hessian matrix for each parameter of a given function.The Hessian matrix represents the ...</div><div class="ttdef"><b>Definition:</b> autodiffhelper.hh:35</div></div>
-<div class="ttc" id="aa00364_html"><div class="ttname"><a href="a00364.html">Ikarus::utils</a></div><div class="ttdef"><b>Definition:</b> algorithms.hh:17</div></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;Eigen/Dense&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00374.html">Ikarus::utils</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="a00355.html#ga0d3a38551806e4de3ff44f311847ba51">   24</a></span>std::tuple&lt;Dune::Functions::Polynomial&lt;double&gt;, <span class="keywordtype">double</span>&gt; <a class="code hl_function" href="a00355.html#ga0d3a38551806e4de3ff44f311847ba51">polyfit</a>(<span class="keyword">const</span> Eigen::Ref&lt;const Eigen::VectorXd&gt;&amp; x,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                                                                <span class="keyword">const</span> Eigen::Ref&lt;const Eigen::VectorXd&gt;&amp; y, <span class="keywordtype">int</span> deg);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <span class="comment">// namespace Ikarus::utils</span></div>
+<div class="ttc" id="aa00355_html_ga0d3a38551806e4de3ff44f311847ba51"><div class="ttname"><a href="a00355.html#ga0d3a38551806e4de3ff44f311847ba51">Ikarus::utils::polyfit</a></div><div class="ttdeci">std::tuple&lt; Dune::Functions::Polynomial&lt; double &gt;, double &gt; polyfit(const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;x, const Eigen::Ref&lt; const Eigen::VectorXd &gt; &amp;y, int deg)</div><div class="ttdoc">Fits a polynomial of a given degree to the given data points.</div></div>
+<div class="ttc" id="aa00374_html"><div class="ttname"><a href="a00374.html">Ikarus::utils</a></div><div class="ttdef"><b>Definition:</b> algorithms.hh:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -187,7 +179,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00020.html">autodiffhelper.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_36505a9bfb81f81ed7a4e794d4cf597e.html">utils</a></li><li class="navelem"><a class="el" href="a00020.html">polyfit.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

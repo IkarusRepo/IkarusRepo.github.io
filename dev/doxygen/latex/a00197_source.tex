@@ -1,109 +1,100 @@
-\hypertarget{a00197_source}{}\doxysection{flatassembler.\+hh}
-\label{a00197_source}\index{flatassembler.hh@{flatassembler.hh}}
+\hypertarget{a00197_source}{}\doxysection{strainconversions.\+hh}
+\label{a00197_source}\index{strainconversions.hh@{strainconversions.hh}}
 \mbox{\hyperlink{a00197}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00179}{tags.hh}}"{}}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00221}{ikarus/assembler/dirichletbcenforcement.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00230}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02535}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <unsupported/Eigen/MatrixFunctions>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <Eigen/Core>}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00363}{Ikarus::Python}} \{}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00053}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                                                                \(\backslash\)}}
-\DoxyCodeLine{24 \textcolor{preprocessor}{                                                                                                                           \(\backslash\)}}
-\DoxyCodeLine{43 \textcolor{preprocessor}{  template <class Assembler, class... options>                                                                                 \(\backslash\)}}
-\DoxyCodeLine{44 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{                                   \(\backslash\)}}
-\DoxyCodeLine{45 \textcolor{preprocessor}{    using pybind11::operator"{}"{}}\_a;                                                                                              \(\backslash\)}
-\DoxyCodeLine{46     using FEContainer              = typename Assembler::FEContainer;                                                          \(\backslash\)}
-\DoxyCodeLine{47     using Basis                    = typename Assembler::Basis;                                                                \(\backslash\)}
-\DoxyCodeLine{48     using DirichletValuesType      = typename Assembler::DirichletValuesType;                                                  \(\backslash\)}
-\DoxyCodeLine{49     using AffordanceCollectionType = typename Assembler::AffordanceCollectionType;                                             \(\backslash\)}
-\DoxyCodeLine{50     using FERequirementType        = typename Assembler::FERequirement;                                                        \(\backslash\)}
-\DoxyCodeLine{51     pybind11::module m             = pybind11::module::import("{}ikarus"{});                                                       \(\backslash\)}
-\DoxyCodeLine{52     cls.def(pybind11::init([](const pybind11::list\& fes, const DirichletValuesType\& dirichletValues) \{                         \(\backslash\)}
-\DoxyCodeLine{53               \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that            \(\backslash\)}}
-\DoxyCodeLine{54 \textcolor{comment}{               * the user can pass native python lists here, see                                                               \(\backslash\)}}
-\DoxyCodeLine{55 \textcolor{comment}{               * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}\textcolor{preprocessor}{                                           \(\backslash\)}}
-\DoxyCodeLine{56 \textcolor{preprocessor}{              FEContainer fesV = fes.template cast<FEContainer>();                                                             \(\backslash\)}}
-\DoxyCodeLine{57 \textcolor{preprocessor}{              return new Assembler(std::move(fesV), dirichletValues);                                                          \(\backslash\)}}
-\DoxyCodeLine{58 \textcolor{preprocessor}{            \}),                                                                                                                \(\backslash\)}}
-\DoxyCodeLine{59 \textcolor{preprocessor}{            pybind11::keep\_alive<1, 3>());                                                                                     \(\backslash\)}}
-\DoxyCodeLine{60 \textcolor{preprocessor}{                                                                                                                               \(\backslash\)}}
-\DoxyCodeLine{61 \textcolor{preprocessor}{    }\textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}\textcolor{preprocessor}{                \(\backslash\)}}
-\DoxyCodeLine{62 \textcolor{preprocessor}{    }\textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341 \(\backslash\)}}
-\DoxyCodeLine{63 \textcolor{comment}{     */}\textcolor{preprocessor}{                                                                                                                        \(\backslash\)}}
-\DoxyCodeLine{64 \textcolor{preprocessor}{    cls.def(                                                                                                                   \(\backslash\)}}
-\DoxyCodeLine{65 \textcolor{preprocessor}{        "{}matrix"{}},                                                                                                              \(\backslash\)}
-\DoxyCodeLine{66         [](Assembler\& self, const FERequirementType\& req, Ikarus::MatrixAffordance affordance,                                 \(\backslash\)}
-\DoxyCodeLine{67            Ikarus::DBCOption dbcOption) -\/> std::remove\_cvref\_t<decltype(self.matrix(req, affordance))> \{                       \(\backslash\)}
-\DoxyCodeLine{68           return self.matrix(req, affordance, dbcOption);                                                                      \(\backslash\)}
-\DoxyCodeLine{69         \},                                                                                                                     \(\backslash\)}
-\DoxyCodeLine{70         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{71                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{72     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{73         "{}matrix"{}, [](Assembler\& self) -\/> std::remove\_cvref\_t<decltype(self.matrix())> \{ return self.matrix(); \},               \(\backslash\)}
-\DoxyCodeLine{74         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{75                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{76     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{77         "{}matrix"{},                                                                                                              \(\backslash\)}
-\DoxyCodeLine{78         [](Assembler\& self, Ikarus::DBCOption dbcOption) -\/> std::remove\_cvref\_t<decltype(self.matrix(dbcOption))> \{            \(\backslash\)}
-\DoxyCodeLine{79           return self.matrix(dbcOption);                                                                                       \(\backslash\)}
-\DoxyCodeLine{80         \},                                                                                                                     \(\backslash\)}
-\DoxyCodeLine{81         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{82                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{83     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{84         "{}vector"{},                                                                                                              \(\backslash\)}
-\DoxyCodeLine{85         [](Assembler\& self, const FERequirementType\& req, Ikarus::VectorAffordance affordance,                                 \(\backslash\)}
-\DoxyCodeLine{86            Ikarus::DBCOption dbcOption) \{ return self.vector(req, affordance, dbcOption); \},                                   \(\backslash\)}
-\DoxyCodeLine{87         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{88                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{89     cls.def("{}vector"{}, [](Assembler\& self) \{ return self.vector(); \}, pybind11::return\_value\_policy::reference);                \(\backslash\)}
-\DoxyCodeLine{90                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{91     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{92         "{}vector"{}, [](Assembler\& self, Ikarus::DBCOption dbcOption) \{ return self.vector(dbcOption); \},                         \(\backslash\)}
-\DoxyCodeLine{93         pybind11::return\_value\_policy::reference);                                                                             \(\backslash\)}
-\DoxyCodeLine{94                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{95     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{96         "{}scalar"{},                                                                                                              \(\backslash\)}
-\DoxyCodeLine{97         [](Assembler\& self, const FERequirementType\& req, Ikarus::ScalarAffordance affordance) \{                               \(\backslash\)}
-\DoxyCodeLine{98           return self.scalar(req, affordance);                                                                                 \(\backslash\)}
-\DoxyCodeLine{99         \},                                                                                                                     \(\backslash\)}
-\DoxyCodeLine{100         pybind11::return\_value\_policy::copy);                                                                                  \(\backslash\)}
-\DoxyCodeLine{101                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{102     cls.def("{}scalar"{}, [](Assembler\& self) \{ return self.scalar(); \}, pybind11::return\_value\_policy::copy);                     \(\backslash\)}
-\DoxyCodeLine{103                                                                                                                                \(\backslash\)}
-\DoxyCodeLine{104     cls.def(                                                                                                                   \(\backslash\)}
-\DoxyCodeLine{105         "{}createFullVector"{},                                                                                                    \(\backslash\)}
-\DoxyCodeLine{106         [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ return self.createFullVector(redVec); \},               \(\backslash\)}
-\DoxyCodeLine{107         pybind11::return\_value\_policy::move);                                                                                  \(\backslash\)}
-\DoxyCodeLine{108     cls.def("{}reducedSize"{}, [](Assembler\& self) \{ return self.reducedSize(); \}, pybind11::return\_value\_policy::copy);           \(\backslash\)}
-\DoxyCodeLine{109     cls.def("{}bind"{}, [](Assembler\& self, const FERequirementType\& req, AffordanceCollectionType affordance,                     \(\backslash\)}
-\DoxyCodeLine{110                        DBCOption dbcOption = DBCOption::Full) \{ return self.bind(req, affordance, dbcOption); \});              \(\backslash\)}
-\DoxyCodeLine{111     cls.def("{}bind"{}, [](Assembler\& self, const FERequirementType\& req) \{ return self.bind(req); \});                             \(\backslash\)}
-\DoxyCodeLine{112     cls.def("{}bind"{}, [](Assembler\& self, const AffordanceCollectionType affordance) \{ return self.bind(affordance); \});         \(\backslash\)}
-\DoxyCodeLine{113     cls.def("{}bind"{}, [](Assembler\& self, const DBCOption dbcOption) \{ return self.bind(dbcOption); \});                          \(\backslash\)}
-\DoxyCodeLine{114     cls.def("{}bound"{}, \&Assembler::bound);                                                                                       \(\backslash\)}
-\DoxyCodeLine{115     cls.def("{}boundToRequirement"{}, \&Assembler::boundToRequirement);                                                             \(\backslash\)}
-\DoxyCodeLine{116     cls.def("{}boundToAffordanceCollection"{}, \&Assembler::boundToAffordanceCollection);                                           \(\backslash\)}
-\DoxyCodeLine{117     cls.def("{}boundToDBCOption"{}, \&Assembler::boundToDBCOption);                                                                 \(\backslash\)}
-\DoxyCodeLine{118     cls.def("{}requirement"{}, \&Assembler::requirement);                                                                           \(\backslash\)}
-\DoxyCodeLine{119     cls.def("{}affordanceCollection"{}, \&Assembler::affordanceCollection);                                                         \(\backslash\)}
-\DoxyCodeLine{120     cls.def("{}dBCOption"{}, \&Assembler::dBCOption);                                                                               \(\backslash\)}
-\DoxyCodeLine{121   \}}
-\DoxyCodeLine{122 \textcolor{comment}{// TODO Alex add binding functions}}
-\DoxyCodeLine{123 \mbox{\hyperlink{a00197_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01207}{SparseFlatAssembler}});}
-\DoxyCodeLine{124 \mbox{\hyperlink{a00197_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01211}{DenseFlatAssembler}});}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{126 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00360}{Ikarus}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{25   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{26   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) mayTransformFromVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& e, \textcolor{keywordtype}{bool} isStrain = \textcolor{keyword}{true}) \{}
+\DoxyCodeLine{27     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>)}
+\DoxyCodeLine{28       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00356_ga106e11a950fe2545890e811d2e9545fd}{fromVoigt}}(e.derived(), isStrain);}
+\DoxyCodeLine{29     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{30       \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{31   \}}
+\DoxyCodeLine{32 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{45 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{46 \textcolor{keyword}{auto} \mbox{\hyperlink{a00348_gad5aa30fe829c7316a0a744b3438609f5}{createGreenLagrangianStrains}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
+\DoxyCodeLine{47   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
+\DoxyCodeLine{48   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
+\DoxyCodeLine{49   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
+\DoxyCodeLine{50     \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{51   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
+\DoxyCodeLine{52     \textcolor{keywordflow}{return} (0.5 * (e.transpose() * e -\/ Derived::Identity())).eval();}
+\DoxyCodeLine{53   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
+\DoxyCodeLine{54     \textcolor{keywordflow}{return} (0.5 * (e + e.transpose() + e.transpose() * e)).eval();}
+\DoxyCodeLine{55   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}})}
+\DoxyCodeLine{56     \textcolor{keywordflow}{return} (0.5 * (e -\/ Derived::Identity())).eval();}
+\DoxyCodeLine{57 \}}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{70 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{71 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00348_ga5293eb09f12e4a45a7aa19a3403a73d1}{createDeformationGradient}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
+\DoxyCodeLine{72   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
+\DoxyCodeLine{75   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
+\DoxyCodeLine{76     \textcolor{comment}{// E = 0.5 * (F \string^ 2 -\/ I);}}
+\DoxyCodeLine{77     \textcolor{comment}{// 2*E = F \string^ 2 -\/ I;}}
+\DoxyCodeLine{78     \textcolor{comment}{// 2*E+I = F \string^ 2;}}
+\DoxyCodeLine{79     \textcolor{comment}{// sqrt(2*E+I) = F;}}
+\DoxyCodeLine{80     \textcolor{keywordflow}{return} ((2 * e + Derived::Identity()).sqrt()).eval();}
+\DoxyCodeLine{81   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
+\DoxyCodeLine{82     \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{83   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
+\DoxyCodeLine{84     \textcolor{keywordflow}{return} (e + Derived::Identity()).eval();}
+\DoxyCodeLine{85   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
+\DoxyCodeLine{86     \textcolor{keywordflow}{return} (e.sqrt()).eval(); \textcolor{comment}{// this looses information, since the rotation information from an original F is lost!}}
+\DoxyCodeLine{87   \}}
+\DoxyCodeLine{88 \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{101 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{102 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00348_gae53e0e7999f565fc94610d1c4ede0d16}{createRightCauchyGreen}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
+\DoxyCodeLine{103   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
+\DoxyCodeLine{104   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
+\DoxyCodeLine{105   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
+\DoxyCodeLine{106     \textcolor{comment}{// E = 0.5 * (C -\/ I);}}
+\DoxyCodeLine{107     \textcolor{comment}{// 2*E = C -\/ I;}}
+\DoxyCodeLine{108     \textcolor{comment}{// 2*E+I = C;}}
+\DoxyCodeLine{109     \textcolor{keywordflow}{return} (2 * e + Derived::Identity()).eval();}
+\DoxyCodeLine{110   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
+\DoxyCodeLine{111     \textcolor{keywordflow}{return} (e.transpose() * e).eval();}
+\DoxyCodeLine{112   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}}) \{}
+\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{auto} F = e + Derived::Identity();}
+\DoxyCodeLine{114     \textcolor{keywordflow}{return} (F.transpose() * F).eval();}
+\DoxyCodeLine{115   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
+\DoxyCodeLine{116     \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{117   \}}
+\DoxyCodeLine{118 \}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{131 \textcolor{keyword}{template} <StrainTags from, StrainTags to, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{132 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00348_gae9c00f19ce473d7183c87aa84b247f88}{transformStrain}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eRaw) \{}
+\DoxyCodeLine{133   \textcolor{keyword}{static\_assert}((from == to) or (from != \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}} and to != \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}}),}
+\DoxyCodeLine{134                 \textcolor{stringliteral}{"{}No useful transformation available for linear strains."{}});}
+\DoxyCodeLine{135   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) e = Impl::mayTransformFromVoigt(eRaw, \textcolor{keyword}{true});}
+\DoxyCodeLine{136   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (from == to)}
+\DoxyCodeLine{137     \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{138   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
+\DoxyCodeLine{139     \textcolor{keywordflow}{return} createGreenLagrangianStrains<from>(e);}
+\DoxyCodeLine{140   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
+\DoxyCodeLine{141     \textcolor{keywordflow}{return} createDeformationGradient<from>(e);}
+\DoxyCodeLine{142   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
+\DoxyCodeLine{143     \textcolor{keywordflow}{return} createRightCauchyGreen<from>(e);}
+\DoxyCodeLine{144   \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{145     \textcolor{keyword}{static\_assert}(to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}} or to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}} or}
+\DoxyCodeLine{146                   to == \mbox{\hyperlink{a00349_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}});}
+\DoxyCodeLine{147 \}}
+\DoxyCodeLine{148 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

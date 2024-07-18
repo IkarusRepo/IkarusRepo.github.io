@@ -1,6 +1,7 @@
 var a00197 =
 [
-    [ "MAKE_ASSEMBLER_REGISTERY_FUNCTION", "a00197.html#adda74d8564a01c0a9851a4379308a8b2", null ],
-    [ "registerDenseFlatAssembler", "a00197.html#ga2b0faffde20690631657489c79ec809b", null ],
-    [ "registerSparseFlatAssembler", "a00197.html#gaeab1c5f959a22f95b40b0a7576f9c896", null ]
+    [ "createDeformationGradient", "a00197.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
+    [ "createGreenLagrangianStrains", "a00197.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
+    [ "createRightCauchyGreen", "a00197.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
+    [ "transformStrain", "a00197.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
 ];

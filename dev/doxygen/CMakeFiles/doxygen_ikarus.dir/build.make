@@ -69,7 +69,10 @@ include docs/website/doxygen/CMakeFiles/doxygen_ikarus.dir/progress.make
 docs/website/doxygen/CMakeFiles/doxygen_ikarus: docs/website/doxygen/html
 
 docs/website/doxygen/html: docs/website/doxygen/Doxyfile.in
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/assemblermanipulatorbuildingblocks.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/assemblermanipulatorfuser.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/dirichletbcenforcement.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/interface.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/simpleassemblers.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/assembler/simpleassemblers.inl
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/controlroutines/adaptivestepsizing.hh
@@ -111,13 +114,14 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultevaluators.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultfunction.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/linearalgebra/truncatedconjugategradient.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flatassembler.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flatassemblermanipulator.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/basis/basis.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/dirichletvalues.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/fe.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/material.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerferequirements.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerpreelement.hh
-docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/valuewrapper.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/scalarwrapper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/utils/boundarypatch.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/linearsolver.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/newtonraphson.hh
