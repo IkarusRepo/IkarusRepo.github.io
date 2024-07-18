@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['basis_2ehh_0',['basis.hh',['../a02710.html',1,'']]],
-  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02716.html',1,'']]],
+  ['basis_2ehh_0',['basis.hh',['../a02714.html',1,'']]],
+  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02720.html',1,'']]],
   ['parameter_2',['parameter',['../a00360.html#ac00abda505aa8ccc73ce59afd165ce49',1,'Ikarus::parameter()'],['../a01341.html#ad23d77e15365c85e02538358a1803e04',1,'Ikarus::FERequirements::parameter()'],['../a01341.html#af11316c1f0fca6982a2d7497bc71a10c',1,'Ikarus::FERequirements::parameter() const']]],
   ['parameters_3',['parameters',['../a01621.html#a96af86c9e501d6f3c679f6e97cbec00f',1,'Ikarus::TrustRegionConfig::parameters()'],['../a01605.html#a8625a8ad969b934191cb643123dd09b0',1,'Ikarus::NewtonRaphsonWithSubsidiaryFunctionConfig::parameters()'],['../a01593.html#a2abf5470e100045df3fb0fab74efbc25',1,'Ikarus::NewtonRaphsonConfig::parameters()']]],
   ['parameterspacetype_4',['ParameterSpaceType',['../a01369.html#ac221dbf16d284b783228c103773a6939',1,'Ikarus::FETraits']]],

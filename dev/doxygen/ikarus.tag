@@ -15,11 +15,11 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
     <filename>a00311.html</filename>
     <includes id="a00305" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
-    <includes id="a02704" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
+    <includes id="a02708" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
     <includes id="a00167" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00065" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a02719" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
+    <includes id="a02723" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
     <class kind="struct">Ikarus::ScalarManipulator</class>
     <class kind="struct">Ikarus::VectorManipulator</class>
     <class kind="struct">Ikarus::MatrixManipulator</class>
@@ -79,7 +79,7 @@
     <name>simpleassemblers.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
     <filename>a00302.html</filename>
-    <includes id="a02704" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
+    <includes id="a02708" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00308" name="simpleassemblers.inl" local="yes" imported="no">simpleassemblers.inl</includes>
     <class kind="class">Ikarus::ScalarFlatAssembler</class>
@@ -756,11 +756,11 @@
   <compound kind="file">
     <name>assembler/interface.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
-    <filename>a02704.html</filename>
+    <filename>a02708.html</filename>
     <includes id="a00305" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
     <includes id="a00167" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02719" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
+    <includes id="a02723" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
     <class kind="class">Ikarus::FlatAssemblerBase</class>
     <class kind="class">Ikarus::ScalarAssembler</class>
     <class kind="class">Ikarus::VectorAssembler</class>
@@ -770,7 +770,7 @@
   <compound kind="file">
     <name>finiteelements/mechanics/materials/interface.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a02707.html</filename>
+    <filename>a02711.html</filename>
     <includes id="a00197" name="strainconversions.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/strainconversions.hh</includes>
     <includes id="a00179" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
     <includes id="a00236" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
@@ -793,7 +793,7 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00188.html</filename>
     <includes id="a00194" name="svk.hh" local="yes" imported="no">svk.hh</includes>
-    <includes id="a02707" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02711" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <class kind="struct">Ikarus::LinearElasticityT</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
@@ -808,7 +808,7 @@
     <name>neohooke.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00182.html</filename>
-    <includes id="a02707" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02711" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00053" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::NeoHookeT</class>
     <namespace>Ikarus</namespace>
@@ -860,7 +860,7 @@
     <name>svk.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00194.html</filename>
-    <includes id="a02707" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02711" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00053" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::StVenantKirchhoffT</class>
     <namespace>Ikarus</namespace>
@@ -944,7 +944,7 @@
     <name>vanishingstress.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00191.html</filename>
-    <includes id="a02707" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02711" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00161" name="newtonraphson.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphson.hh</includes>
     <includes id="a00152" name="nonlinearsolverfactory.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh</includes>
     <includes id="a00026" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
@@ -1180,7 +1180,7 @@
     <filename>a00146.html</filename>
     <includes id="a00305" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02713" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02717" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="define">
@@ -1220,7 +1220,7 @@
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00146" name="flatassembler.hh" local="no" imported="no">ikarus/python/assembler/flatassembler.hh</includes>
     <includes id="a00137" name="scalarwrapper.hh" local="no" imported="no">ikarus/python/finiteelements/scalarwrapper.hh</includes>
-    <includes id="a02713" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02717" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <includes id="a00074" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="struct">Ikarus::Python::SparseMatrixWrapper</class>
     <namespace>Ikarus</namespace>
@@ -1243,9 +1243,9 @@
   <compound kind="file">
     <name>python/basis/basis.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/basis/</path>
-    <filename>a02710.html</filename>
+    <filename>a02714.html</filename>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02713" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02717" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -1259,7 +1259,7 @@
   <compound kind="file">
     <name>utils/basis.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02713.html</filename>
+    <filename>a02717.html</filename>
     <includes id="a00032" name="flatprebasis.hh" local="no" imported="no">ikarus/utils/flatprebasis.hh</includes>
     <class kind="class">Ikarus::BasisHandler</class>
     <namespace>Ikarus</namespace>
@@ -1281,10 +1281,17 @@
   <compound kind="file">
     <name>python/dirichletvalues/dirichletvalues.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/</path>
-    <filename>a02716.html</filename>
+    <filename>a02720.html</filename>
     <includes id="a00227" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
+    <member kind="function">
+      <type>void</type>
+      <name>forwardCorrectFunction</name>
+      <anchorfile>a00372.html</anchorfile>
+      <anchor>a7f83fd37212b1411d1dbae8f7064882c</anchor>
+      <arglist>(DirichletValues &amp;dirichletValues, const pybind11::function &amp;functor, auto &amp;&amp;cppFunction)</arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>registerDirichletValues</name>
@@ -1296,7 +1303,7 @@
   <compound kind="file">
     <name>utils/dirichletvalues.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02719.html</filename>
+    <filename>a02723.html</filename>
     <includes id="a00065" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <class kind="struct">Ikarus::DeriveSizeType&lt; T &gt;</class>
     <class kind="struct">Ikarus::DeriveSizeType&lt; std::vector&lt; bool &gt; &gt;</class>
@@ -1316,8 +1323,8 @@
       <type>void</type>
       <name>registerCalculateAt</name>
       <anchorfile>a00372.html</anchorfile>
-      <anchor>a1d7678520951cad4a5227d685fa8c326</anchor>
-      <arglist>(pybind11::handle scope, pybind11::class_&lt; FE, options... &gt; cls, auto restultTypesTuple)</arglist>
+      <anchor>a0c58c17676c73945cb11eff8a80309ae</anchor>
+      <arglist>(pybind11::handle scope, pybind11::class_&lt; FE, options... &gt; cls, auto resultTypesTuple)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2862,7 +2869,7 @@
   <compound kind="file">
     <name>assembler/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/assembler/</path>
-    <filename>a02722.html</filename>
+    <filename>a02726.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::assembler</namespace>
     <member kind="function">
@@ -2890,7 +2897,7 @@
   <compound kind="file">
     <name>finite_elements/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/finite_elements/</path>
-    <filename>a02725.html</filename>
+    <filename>a02729.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::finite_elements</namespace>
     <member kind="function">
@@ -2974,7 +2981,7 @@
   <compound kind="file">
     <name>utils/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/utils/</path>
-    <filename>a02728.html</filename>
+    <filename>a02732.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::utils</namespace>
     <member kind="function">
@@ -4654,8 +4661,8 @@
       <type>void</type>
       <name>fixBoundaryDOFs</name>
       <anchorfile>a01693.html</anchorfile>
-      <anchor>a57486778cd8e2e42be337b5d1ff0d564</anchor>
-      <arglist>(F &amp;&amp;f)</arglist>
+      <anchor>a3b40113e1bf44f2e269242d677afcc55</anchor>
+      <arglist>(F &amp;&amp;f, TreePath &amp;&amp;treePath={})</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -4666,10 +4673,24 @@
     </member>
     <member kind="function">
       <type>void</type>
-      <name>fixIthDOF</name>
+      <name>setSingleDOF</name>
       <anchorfile>a01693.html</anchorfile>
-      <anchor>a3ccd03313f8c6837b077e14ac9f50d16</anchor>
-      <arglist>(typename Basis::MultiIndex i)</arglist>
+      <anchor>a179a4b05a361fc9ea0a3e935dcf0e45a</anchor>
+      <arglist>(const MultiIndex i, bool flag)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setSingleDOF</name>
+      <anchorfile>a01693.html</anchorfile>
+      <anchor>a2c8ce98339eddd3f3bf1cdbf4e07a45f</anchor>
+      <arglist>(std::size_t i, bool flag)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>a01693.html</anchorfile>
+      <anchor>ab8ae184ec5c0c79a893a8111d7315442</anchor>
+      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
@@ -4689,7 +4710,7 @@
       <type>bool</type>
       <name>isConstrained</name>
       <anchorfile>a01693.html</anchorfile>
-      <anchor>a7c30706789441e0dce7a7c3f80cb6d2e</anchor>
+      <anchor>a1cdd766b0feb7e85ac3d3df10704e659</anchor>
       <arglist>(std::size_t i) const</arglist>
     </member>
     <member kind="function">
@@ -14497,6 +14518,13 @@
     </member>
     <member kind="function">
       <type>void</type>
+      <name>forwardCorrectFunction</name>
+      <anchorfile>a00372.html</anchorfile>
+      <anchor>a7f83fd37212b1411d1dbae8f7064882c</anchor>
+      <arglist>(DirichletValues &amp;dirichletValues, const pybind11::function &amp;functor, auto &amp;&amp;cppFunction)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
       <name>registerDirichletValues</name>
       <anchorfile>a00352.html</anchorfile>
       <anchor>ga39b6df6adfe4858b13ac71f5830f29f6</anchor>
@@ -14506,8 +14534,8 @@
       <type>void</type>
       <name>registerCalculateAt</name>
       <anchorfile>a00372.html</anchorfile>
-      <anchor>a1d7678520951cad4a5227d685fa8c326</anchor>
-      <arglist>(pybind11::handle scope, pybind11::class_&lt; FE, options... &gt; cls, auto restultTypesTuple)</arglist>
+      <anchor>a0c58c17676c73945cb11eff8a80309ae</anchor>
+      <arglist>(pybind11::handle scope, pybind11::class_&lt; FE, options... &gt; cls, auto resultTypesTuple)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -15896,7 +15924,7 @@
   <compound kind="page">
     <name>md____w_ikarus_ikarus_repo_LICENSE</name>
     <title>Copyright holders</title>
-    <filename>a02702.html</filename>
+    <filename>a02706.html</filename>
   </compound>
   <compound kind="page">
     <name>index</name>

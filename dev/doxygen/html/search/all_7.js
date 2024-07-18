@@ -33,8 +33,8 @@ var searchData=
   ['greenlagrangian_30',['greenLagrangian',['../a00349.html#ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e',1,'Ikarus']]],
   ['griddim_31',['griddim',['../a01549.html#a538071ba82449437844f32b713dd8c63',1,'Ikarus::ResultFunction']]],
   ['griddrawer_2ehh_32',['griddrawer.hh',['../a00251.html',1,'']]],
-  ['gridelement_33',['GridElement',['../a01309.html#ae329d665e853b0286679e97418d3acad',1,'Ikarus::FE']]],
-  ['gridelement_34',['gridElement',['../a01309.html#ae84fc54bd26077a2edb0ec07361d0716',1,'Ikarus::FE']]],
+  ['gridelement_33',['gridElement',['../a01309.html#ae84fc54bd26077a2edb0ec07361d0716',1,'Ikarus::FE']]],
+  ['gridelement_34',['GridElement',['../a01309.html#ae329d665e853b0286679e97418d3acad',1,'Ikarus::FE']]],
   ['gridview_35',['GridView',['../a01369.html#a3ec0294824df467074f5070cb58f5a91',1,'Ikarus::FETraits']]],
   ['gridview_36',['gridView',['../a01645.html#aa90fabae9f9e0474ea5ecef99553d6c5',1,'Ikarus::BasisHandler::gridView() const'],['../a01645.html#a910531e784c0bd209849ab4a863d9fbb',1,'Ikarus::BasisHandler::gridView()']]],
   ['gridview_37',['GridView',['../a01237.html#acee7beef45351811911847086414709e',1,'Ikarus::FlatAssemblerBase::GridView()'],['../a01309.html#a636f6e2bb1a51cd89f190d3744cdb7dd',1,'Ikarus::FE::GridView()'],['../a01405.html#a3ffd06f997ccccf1b5d2625372760279',1,'Ikarus::EnhancedAssumedStrains::GridView()'],['../a01645.html#adcbd72244406be4bb8ad7b547dd856cc',1,'Ikarus::BasisHandler::GridView()'],['../a01549.html#a6d7963f63478595dabdcc5c82c8e8b7a',1,'Ikarus::ResultFunction::GridView()'],['../a01481.html#a4e116f42a26bae100cd0cc80e8229662',1,'Ikarus::NonLinearElastic::GridView()'],['../a01437.html#a1ad8822c3690b4d9b7fa07998d581551',1,'Ikarus::Traction::GridView()'],['../a01441.html#a57f15a0941a7f2f5cd9be9365b07cc62',1,'Ikarus::NeumannBoundaryLoadPre::GridView()'],['../a01429.html#a4cdca055a28144fb6580b8882e8221b6',1,'Ikarus::LinearElastic::GridView()'],['../a01413.html#a3ab68ba8bee36b87fb522e9649dfdb4c',1,'Ikarus::KirchhoffLoveShell::GridView()']]]

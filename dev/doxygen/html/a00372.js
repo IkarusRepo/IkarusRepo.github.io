@@ -1,13 +1,14 @@
 var a00372 =
 [
     [ "SparseMatrixWrapper", "a01565.html", "a01565" ],
+    [ "forwardCorrectFunction", "a00372.html#a7f83fd37212b1411d1dbae8f7064882c", null ],
     [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00372.html#a2cdc302115d5d01f08f150303127978d", null ],
     [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00372.html#a20c0ab75a990e72f965df8d8172c99b6", null ],
     [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00372.html#a3d042e3d4c085fd281a2d263ece077ee", null ],
     [ "registerAssemblerManipulator", "a00372.html#aad35f78683b64303a28d3b8b4f83aa37", null ],
     [ "registerBasisHandler", "a00352.html#ga2f6146bb687ad25cfb413fbcfd470788", null ],
     [ "registerBoundaryPatch", "a00372.html#a331fd78be5a4155963abe5829282c8f1", null ],
-    [ "registerCalculateAt", "a00372.html#a1d7678520951cad4a5227d685fa8c326", null ],
+    [ "registerCalculateAt", "a00372.html#a0c58c17676c73945cb11eff8a80309ae", null ],
     [ "registerDenseFlatAssembler", "a00372.html#a2b0faffde20690631657489c79ec809b", null ],
     [ "registerDirichletValues", "a00352.html#ga39b6df6adfe4858b13ac71f5830f29f6", null ],
     [ "registerEnhancedAssumedStrainsPre", "a00372.html#a79dfab8379c15a5c5da0d3e5a415f0a3", null ],
