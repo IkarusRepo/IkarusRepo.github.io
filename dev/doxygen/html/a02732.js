@@ -1,5 +1,5 @@
 var a02732 =
 [
-    [ "boundaryPatch", "a02732.html#a7340cb604093dba2860368264f055a76", null ],
-    [ "globalIndexFromGlobalPosition", "a02732.html#adb191bde0042adbfd48bc16a3a661353", null ]
+    [ "makeBasis", "a02732.html#aa8350697b25edf5034483b28fb0c3f76", null ],
+    [ "makeBasis", "a02732.html#a9acabb8291c86afe74e8617830e033de", null ]
 ];

@@ -1,9 +1,9 @@
 var a00149 =
 [
-    [ "Ikarus::TRSettings", "a01617.html", "a01617" ],
-    [ "Ikarus::TrustRegionConfig< preConditioner, UF >", "a01621.html", "a01621" ],
-    [ "Ikarus::AlgoInfo", "a01629.html", "a01629" ],
-    [ "Ikarus::Stats", "a01633.html", "a01633" ],
+    [ "Ikarus::TRSettings", "a01632.html", "a01632" ],
+    [ "Ikarus::TrustRegionConfig< preConditioner, UF >", "a01636.html", "a01636" ],
+    [ "Ikarus::AlgoInfo", "a01644.html", "a01644" ],
+    [ "Ikarus::Stats", "a01648.html", "a01648" ],
     [ "PreConditioner", "a00149.html#ace28d4868cfc647491f7938f04ef6c66", [
       [ "IncompleteCholesky", "a00149.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff", null ],
       [ "IdentityPreconditioner", "a00149.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608", null ],

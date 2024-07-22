@@ -7,5 +7,6 @@ var searchData=
   ['traits_2ehh_4',['traits.hh',['../a00074.html',1,'']]],
   ['traversal_2ehh_5',['traversal.hh',['../a00062.html',1,'']]],
   ['truncatedconjugategradient_2ehh_6',['truncatedconjugategradient.hh',['../a00122.html',1,'']]],
-  ['trustregion_2ehh_7',['trustregion.hh',['../a00149.html',1,'']]]
+  ['truss_2ehh_7',['truss.hh',['../a00218.html',1,'']]],
+  ['trustregion_2ehh_8',['trustregion.hh',['../a00149.html',1,'']]]
 ];

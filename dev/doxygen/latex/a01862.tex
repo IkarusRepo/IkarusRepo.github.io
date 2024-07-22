@@ -1,8 +1,8 @@
-\hypertarget{a01862}{}\doxysection{Ikarus\+::Concepts\+::Eigen\+Matrix Concept Reference}
-\label{a01862}\index{Ikarus::Concepts::EigenMatrix@{Ikarus::Concepts::EigenMatrix}}
+\hypertarget{a01862}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01862}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept defining the requirements for \mbox{\hyperlink{a00370}{Eigen}} matrices. This also includes \mbox{\hyperlink{a00370}{Eigen}} vectors.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,8 +12,12 @@ Concept defining the requirements for \mbox{\hyperlink{a00370}{Eigen}} matrices.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} M>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01862}{Ikarus::Concepts::EigenMatrix}} =  traits::isSpecializationTypeAndNonTypes<Eigen::Matrix, M>::value}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ASS, \textcolor{keyword}{typename} NLSI, \textcolor{keyword}{typename} SA, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01862}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(ASS adaptiveStepSizing, NLSI info, SA args, \mbox{\hyperlink{a00363_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}} nop) \{}
+\DoxyCodeLine{    \{ adaptiveStepSizing(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,6 +25,10 @@ Concept defining the requirements for \mbox{\hyperlink{a00370}{Eigen}} matrices.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em M} & Type representing an \mbox{\hyperlink{a00370}{Eigen}} vector. \\
+{\em ASS} & The adaptive step sizing type. \\
+\hline
+{\em NLSI} & The non-\/linear solver information type. \\
+\hline
+{\em SA} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}
