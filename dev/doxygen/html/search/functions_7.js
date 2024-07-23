@@ -5,7 +5,7 @@ var searchData=
   ['getinfo_2',['getInfo',['../a01572.html#a81a7f70d30cfbf103d6ac946ebc2a598',1,'Eigen::TruncatedConjugateGradient']]],
   ['getinstance_3',['getInstance',['../a01744.html#a76a31b1d9f5b1fba7180451b1edddf0a',1,'Ikarus::IkarusInstance']]],
   ['getinternalenergy_4',['getInternalEnergy',['../a01484.html#a01ea8b2e688566c391df267a040298ee',1,'Ikarus::NonLinearElastic']]],
-  ['getlinearindex_5',['getLinearIndex',['../a00017.html#a6cfefe8fc3c51b09b7633cf8397a67e9',1,'eigensparseaddon.hh']]],
+  ['getlinearindex_5',['getLinearIndex',['../a00020.html#a6cfefe8fc3c51b09b7633cf8397a67e9',1,'eigensparseaddon.hh']]],
   ['getmatriximpl_6',['getMatrixImpl',['../a01264.html#a5fdc2ec49f6fdb8c9024d0e1e5da12f4',1,'Ikarus::SparseFlatAssembler::getMatrixImpl()'],['../a01268.html#aa6c8f8c9b75adac4d0f388f110663b9a',1,'Ikarus::DenseFlatAssembler::getMatrixImpl()'],['../a01216.html#a4cf4b84bd66546c938e14d893178983e',1,'Ikarus::MatrixManipulator::getMatrixImpl(const FERequirement &amp;feRequirements, MatrixAffordance affordance)']]],
   ['getrawmatriximpl_7',['getRawMatrixImpl',['../a01216.html#ae89cb40188e56cacfee05970493a73fb',1,'Ikarus::MatrixManipulator::getRawMatrixImpl()'],['../a01264.html#ad58d88f03072e6771149a6502e82fc42',1,'Ikarus::SparseFlatAssembler::getRawMatrixImpl()'],['../a01268.html#a1f58e32be40c7fe0a6a422d3eb22485c',1,'Ikarus::DenseFlatAssembler::getRawMatrixImpl()']]],
   ['getrawvectorimpl_8',['getRawVectorImpl',['../a01212.html#ae7ad13e87a07efbafafe71d255c57eab',1,'Ikarus::VectorManipulator::getRawVectorImpl()'],['../a01260.html#a8aa822f1fcf516063591144081692e5f',1,'Ikarus::VectorFlatAssembler::getRawVectorImpl()']]],

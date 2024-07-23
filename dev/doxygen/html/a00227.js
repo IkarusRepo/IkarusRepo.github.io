@@ -1,5 +1,6 @@
 var a00227 =
 [
-    [ "Ikarus::LinearElasticPre", "a01436.html", "a01436" ],
-    [ "linearElastic", "a00227.html#ac2c1a18c9acb1e1a2256e3c0066b5dde", null ]
+    [ "Ikarus::Python::SparseMatrixWrapper< T >", "a01580.html", "a01580" ],
+    [ "registerAssemblerManipulator", "a00227.html#aad35f78683b64303a28d3b8b4f83aa37", null ],
+    [ "registerSparseMatrixWrapper", "a00227.html#a09b4a81e2d6d0619406854f6dc3fc8f7", null ]
 ];

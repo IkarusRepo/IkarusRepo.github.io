@@ -1,68 +1,98 @@
-\hypertarget{a00269_source}{}\doxysection{controlvtkwriter.\+hh}
-\label{a00269_source}\index{controlvtkwriter.hh@{controlvtkwriter.hh}}
+\hypertarget{a00269_source}{}\doxysection{resultfunction.\+hh}
+\label{a00269_source}\index{resultfunction.hh@{resultfunction.hh}}
 \mbox{\hyperlink{a00269}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00260}{observer.hh}}"{}}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00266}{observermessages.hh}}"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/functions/gridfunctions/discreteglobalbasisfunction.hh>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/grid/io/file/vtk/subsamplingvtkwriter.hh>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#pragma GCC diagnostic push}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma GCC diagnostic ignored "{}-\/Wswitch-\/enum"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <type\_traits>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/vtk/function.hh>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/finiteelements/ferequirements.hh}}>}}
 \DoxyCodeLine{20 }
 \DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00363}{Ikarus}} \{}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename} B>}
-\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{a01772}{ControlSubsamplingVertexVTKWriter}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01784}{IObserver}}<ControlMessages>}
-\DoxyCodeLine{32 \{}
-\DoxyCodeLine{33   \textcolor{keyword}{using }Basis                     = B;}
-\DoxyCodeLine{34   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} components = Basis::LocalView::Tree::degree() == 0 ? 1 : Basis::LocalView::Tree::degree();}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36 \textcolor{keyword}{public}:}
-\DoxyCodeLine{46   \mbox{\hyperlink{a01772_a1e07865751a32e0a1dd29e8f001babc3}{ControlSubsamplingVertexVTKWriter}}(\textcolor{keyword}{const} Basis\& \mbox{\hyperlink{a00387_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Eigen::VectorXd\& sol, \textcolor{keywordtype}{int} refinementLevels = 0)}
-\DoxyCodeLine{47       : basis\_\{\&\mbox{\hyperlink{a00387_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}\},}
-\DoxyCodeLine{48         vtkWriter\_(\mbox{\hyperlink{a00387_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}.gridView(), \mbox{\hyperlink{a00381}{Dune}}::refinementLevels(refinementLevels)),}
-\DoxyCodeLine{49         solution\_\{\&sol\} \{\}}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{60   \textcolor{keyword}{auto} \mbox{\hyperlink{a01772_afec0c3fe2aa8cac3e9970d8c9720c219}{setFieldInfo}}(std::string\&\& name, Dune::VTK::FieldInfo::Type type, std::size\_t size,}
-\DoxyCodeLine{61                     Dune::VTK::Precision prec = Dune::VTK::Precision::float32) \{}
-\DoxyCodeLine{62     fieldInfo\_      = Dune::VTK::FieldInfo(std::move(name), type, size, prec);}
-\DoxyCodeLine{63     isFieldInfoSet\_ = \textcolor{keyword}{true};}
-\DoxyCodeLine{64   \}}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{71   \textcolor{keyword}{auto} \mbox{\hyperlink{a01772_a8061e516e4c6626a2f6ea160e692e4e1}{setFileNamePrefix}}(std::string\&\& name) \{ prefixString\_ = std::move(name); \}}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{81   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01772_a72b675b3fb4b0b2989b315e2a0337e44}{updateImpl}}(\mbox{\hyperlink{a00357_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{82     assert(isFieldInfoSet\_ \&\& \textcolor{stringliteral}{"{}You need to call setFieldInfo first!"{}});}
-\DoxyCodeLine{83     \textcolor{keywordflow}{switch} (message) \{}
-\DoxyCodeLine{84       \textcolor{keywordflow}{case} \mbox{\hyperlink{a00357_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}}: \{}
-\DoxyCodeLine{85         \textcolor{keyword}{auto} disp = Dune::Functions::makeDiscreteGlobalBasisFunction<Dune::FieldVector<double, components>>(*basis\_,}
-\DoxyCodeLine{86                                                                                                             *solution\_);}
-\DoxyCodeLine{87         vtkWriter\_.addVertexData(disp, fieldInfo\_);}
-\DoxyCodeLine{88         vtkWriter\_.write(prefixString\_ + std::to\_string(step\_++));}
-\DoxyCodeLine{89       \} \textcolor{keywordflow}{break};}
-\DoxyCodeLine{90       \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{91         \textcolor{keywordflow}{break}; \textcolor{comment}{// default: do nothing when notified}}
-\DoxyCodeLine{92     \}}
-\DoxyCodeLine{93   \}}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95 \textcolor{keyword}{private}:}
-\DoxyCodeLine{96   \textcolor{keyword}{const} Basis* basis\_;}
-\DoxyCodeLine{97   Dune::SubsamplingVTKWriter<typename Basis::GridView> vtkWriter\_;}
-\DoxyCodeLine{98   \textcolor{keyword}{const} Eigen::VectorXd* solution\_;}
-\DoxyCodeLine{99   \textcolor{keywordtype}{int} step\_\{0\};}
-\DoxyCodeLine{100   Dune::VTK::FieldInfo fieldInfo\_\{\textcolor{stringliteral}{"{}Default"{}}, Dune::VTK::FieldInfo::Type::scalar, 1\};}
-\DoxyCodeLine{101   std::string prefixString\_\{\};}
-\DoxyCodeLine{102   \textcolor{keywordtype}{bool} isFieldInfoSet\_\{\textcolor{keyword}{false}\};}
-\DoxyCodeLine{103 \};}
-\DoxyCodeLine{104 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{105 \textcolor{preprocessor}{\#pragma GCC diagnostic pop}}
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{23   \textcolor{keyword}{struct }DefaultUserFunction}
+\DoxyCodeLine{24   \{}
+\DoxyCodeLine{25   \};}
+\DoxyCodeLine{26 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{48 \textcolor{keyword}{template} <\textcolor{keyword}{typename} FE, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction>}
+\DoxyCodeLine{49 \textcolor{keyword}{class }\mbox{\hyperlink{a01564}{ResultFunction}} : \textcolor{keyword}{public} Dune::VTKFunction<typename FE::GridView>}
+\DoxyCodeLine{50 \{}
+\DoxyCodeLine{51 \textcolor{keyword}{public}:}
+\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01312}{FiniteElement}}          = \mbox{\hyperlink{a01312}{FE}};}
+\DoxyCodeLine{53   \textcolor{keyword}{using }\mbox{\hyperlink{a01564_a18155bd0f8ff92d6a92babb0033f6a52}{FERequirementType}}      = \textcolor{keyword}{typename} \mbox{\hyperlink{a01504_a86c0fea1b37e487f3c78cde6facca9c3}{FiniteElement::Requirement}};}
+\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01564_a6d7963f63478595dabdcc5c82c8e8b7a}{GridView}}               = \textcolor{keyword}{typename} \mbox{\hyperlink{a01312_a636f6e2bb1a51cd89f190d3744cdb7dd}{FiniteElement::GridView}};}
+\DoxyCodeLine{55   \textcolor{keyword}{using }\mbox{\hyperlink{a01564_a4e651e2b6ae31a5d8f7ffc7d2ea60cc2}{ctype}}                  = \textcolor{keyword}{typename} GridView::ctype;}
+\DoxyCodeLine{56   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01564_a538071ba82449437844f32b713dd8c63}{griddim}} = GridView::dimension;}
+\DoxyCodeLine{57   \textcolor{keyword}{using }\mbox{\hyperlink{a01564_ad99a2516a5afbec772508d574bc0d445}{Entity}}                 = \textcolor{keyword}{typename} GridView::template Codim<0>::Entity;}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{69   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01564_ad57b905d776716fc3f95db9eb4ebc3df}{evaluate}}(\textcolor{keywordtype}{int} comp, \textcolor{keyword}{const} \mbox{\hyperlink{a01564_ad99a2516a5afbec772508d574bc0d445}{Entity}}\& e, \textcolor{keyword}{const} \mbox{\hyperlink{a01692}{Dune::FieldVector<ctype, griddim>}}\& local)\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{70     \textcolor{keyword}{auto} index = gridView\_.indexSet().index(e);}
+\DoxyCodeLine{71     \textcolor{keywordflow}{return} evaluateComponent(index, local, comp);}
+\DoxyCodeLine{72   \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{81   [[nodiscard]] \textcolor{keywordtype}{int} \mbox{\hyperlink{a01564_a27adc5ad8cd9204d76c96725c0c73f97}{ncomps}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{82     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>) \{}
+\DoxyCodeLine{83       \mbox{\hyperlink{a01692}{Dune::FieldVector<ctype, griddim>}} val(0.0);}
+\DoxyCodeLine{84       \textcolor{keyword}{auto} sigma = fes\_-\/>at(0).template calculateAt<RT>(feRequirements\_, val).asVec();}
+\DoxyCodeLine{85       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sigma.size());}
+\DoxyCodeLine{86     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{87       \textcolor{keywordflow}{return} userFunction\_.ncomps();}
+\DoxyCodeLine{88   \}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{97   [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01564_a0e3cdc77b411175c6c49cd6376a2ce4d}{name}}()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ userFunction\_.name(); \})}
+\DoxyCodeLine{99       \textcolor{keywordflow}{return} userFunction\_.name();}
+\DoxyCodeLine{100     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{101       \textcolor{keywordflow}{return} toString<RT>();}
+\DoxyCodeLine{102   \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{112   Dune::VTK::Precision \mbox{\hyperlink{a01564_ab9e28cd4cd0bc79ab808c4ef6fe59635}{precision}}()\textcolor{keyword}{ const override }\{ \textcolor{keywordflow}{return} prec\_; \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{122   \mbox{\hyperlink{a01564_ab1268cbd3d4ff4d2fa70dac608c6daac}{ResultFunction}}(std::vector<FiniteElement>* fes, \textcolor{keyword}{const} \mbox{\hyperlink{a01564_a18155bd0f8ff92d6a92babb0033f6a52}{FERequirementType}}\& req,}
+\DoxyCodeLine{123                  Dune::VTK::Precision prec = Dune::VTK::Precision::float64)}
+\DoxyCodeLine{124       : gridView\_\{fes-\/>at(0).localView().globalBasis().gridView()\},}
+\DoxyCodeLine{125         feRequirements\_\{req\},}
+\DoxyCodeLine{126         fes\_\{fes\},}
+\DoxyCodeLine{127         prec\_\{prec\},}
+\DoxyCodeLine{128         userFunction\_\{UserFunction\{\}\} \{\}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{keyword}{private}:}
+\DoxyCodeLine{131   \textcolor{keywordtype}{double} evaluateComponent(\textcolor{keywordtype}{int} eleID, \textcolor{keyword}{const} \mbox{\hyperlink{a01692}{Dune::FieldVector<ctype, griddim>}}\& local, \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{132     \textcolor{keyword}{auto} result = fes\_-\/>at(eleID).template calculateAt<RT>(feRequirements\_, local).asVec();}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!std::is\_same\_v<UserFunction, Impl::DefaultUserFunction>)}
+\DoxyCodeLine{135       \textcolor{keywordflow}{return} userFunction\_(result, comp);}
+\DoxyCodeLine{136     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{137       \textcolor{keywordflow}{return} result(comp);}
+\DoxyCodeLine{138   \}}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140   \mbox{\hyperlink{a01564_a6d7963f63478595dabdcc5c82c8e8b7a}{GridView}} gridView\_;}
+\DoxyCodeLine{141   \mbox{\hyperlink{a01564_a18155bd0f8ff92d6a92babb0033f6a52}{FERequirementType}} feRequirements\_;}
+\DoxyCodeLine{142   std::vector<FiniteElement>* fes\_;}
+\DoxyCodeLine{143   Dune::VTK::Precision prec\_;}
+\DoxyCodeLine{144   [[no\_unique\_address]] std::string name\_\{\};}
+\DoxyCodeLine{145   UserFunction userFunction\_;}
+\DoxyCodeLine{146 \};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{160 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{161 \textcolor{keyword}{auto} \mbox{\hyperlink{a00363_a5ad885bbd85519a4b64ad78fa43d0916}{makeResultFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} \mbox{\hyperlink{a01504_a86c0fea1b37e487f3c78cde6facca9c3}{FE::Requirement}}\& req,}
+\DoxyCodeLine{162                         Dune::VTK::Precision prec = Dune::VTK::Precision::float64) \{}
+\DoxyCodeLine{163   \textcolor{keywordflow}{return} std::make\_shared<ResultFunction<FE, RT, UserFunction>>(fes, req, prec);}
+\DoxyCodeLine{164 \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{182 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Impl::DefaultUserFunction, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{183 \textcolor{keyword}{auto} \mbox{\hyperlink{a00363_a8e219f42670ea0f6eaf22f8164ac89cb}{makeResultVtkFunction}}(std::vector<FE>* fes, \textcolor{keyword}{const} \textcolor{keyword}{typename} \mbox{\hyperlink{a01504_a86c0fea1b37e487f3c78cde6facca9c3}{FE::Requirement}}\& req) \{}
+\DoxyCodeLine{184   \textcolor{keywordflow}{return} Dune::Vtk::Function<typename FE::GridView>(std::make\_shared<\mbox{\hyperlink{a01564}{ResultFunction<FE, RT, UserFunction>}}>(fes, req));}
+\DoxyCodeLine{185 \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

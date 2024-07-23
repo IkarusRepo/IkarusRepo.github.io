@@ -1,7 +1,6 @@
 var a00191 =
 [
-    [ "beamMaterial", "a00191.html#a9b582bcc3c887a57428b25984bc6f7ac", null ],
-    [ "makeVanishingStress", "a00191.html#a317c0a50c0a7d482e2a20d8146e08df8", null ],
-    [ "planeStress", "a00191.html#ad43f50b1b1c3410c4a0c547be7ada4a0", null ],
-    [ "shellMaterial", "a00191.html#a9a1d1c81201b4c4c8cbee139df43b5d6", null ]
+    [ "Ikarus::TrussPre", "a01496.html", "a01496" ],
+    [ "Ikarus::Truss< PreFE, FE >::KinematicVariables< ST >", "a01500.html", "a01500" ],
+    [ "truss", "a00191.html#a1936b02a190200901c54cc8b1004506e", null ]
 ];

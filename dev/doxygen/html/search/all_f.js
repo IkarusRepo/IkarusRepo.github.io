@@ -1,8 +1,8 @@
 var searchData=
 [
   ['observer_0',['Observer',['../a00357.html',1,'']]],
-  ['observer_2ehh_1',['observer.hh',['../a00260.html',1,'']]],
-  ['observermessages_2ehh_2',['observermessages.hh',['../a00266.html',1,'']]],
+  ['observer_2ehh_1',['observer.hh',['../a00284.html',1,'']]],
+  ['observermessages_2ehh_2',['observermessages.hh',['../a00287.html',1,'']]],
   ['obtainlagrangeglobalnodepositions_3',['obtainLagrangeGlobalNodePositions',['../a00358.html#gae9098182120929a0d21cff1c38f5ca84',1,'Ikarus::utils']]],
   ['op_4',['op',['../a01764.html#a282e4a255bb96ec4b79a09d0330540a2',1,'Ikarus::NonLinearOperatorFactory::op(Assembler &amp;&amp;as)'],['../a01764.html#a644858005534ab498b1802bb633bb37b',1,'Ikarus::NonLinearOperatorFactory::op(Assembler &amp;&amp;as, typename traits::remove_pointer_t&lt; std::remove_cvref_t&lt; Assembler &gt; &gt;::FERequirement &amp;req, AffordanceCollection&lt; Affordances... &gt; affordances, DBCOption dbcOption)'],['../a01764.html#a592390e33bc94dcdea8d94aeb79750dc',1,'Ikarus::NonLinearOperatorFactory::op(Assembler &amp;&amp;as, typename traits::remove_pointer_t&lt; std::remove_cvref_t&lt; Assembler &gt; &gt;::FERequirement &amp;req, DBCOption dbcOption)'],['../a01764.html#a3ad02994461a0e0948ea1e8ef557e562',1,'Ikarus::NonLinearOperatorFactory::op(Assembler &amp;&amp;as, DBCOption dbcOption)'],['../a01764.html#ad34cdaf0aa639fc495660c5e70ec34c6',1,'Ikarus::NonLinearOperatorFactory::op(Assembler &amp;&amp;as, AffordanceCollection&lt; Affordances... &gt; affordances, DBCOption dbcOption=DBCOption::Full)']]],
   ['operator_20bool_5',['operator bool',['../a01628.html#a7aaa0619f5238daab90db07d9e29d0d8',1,'Ikarus::NonLinearSolverInformation']]],

@@ -1,58 +1,59 @@
-\hypertarget{a00062_source}{}\doxysection{traversal.\+hh}
-\label{a00062_source}\index{traversal.hh@{traversal.hh}}
+\hypertarget{a00062_source}{}\doxysection{makeenum.\+hh}
+\label{a00062_source}\index{makeenum.hh@{makeenum.hh}}
 \mbox{\hyperlink{a00062}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{10 \textcolor{comment}{// https://www.scs.stanford.edu/\string~dm/blog/va-\/opt.html}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00377}{Ikarus::utils}} \{}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{class} T, \textcolor{keyword}{class} TreePath, \textcolor{keyword}{class} PowerFunc, \textcolor{keyword}{class} LeafFunc>}
-\DoxyCodeLine{31 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00377_a63742d75d099b93da7ddf6e78a3c1f56}{forEachLeafOrPowerLeafNode}}(T\&\& tree, TreePath\&\& treePath, PowerFunc\&\& powerFunc, LeafFunc\&\& leafFunc) \{}
-\DoxyCodeLine{32   \textcolor{keyword}{using }Tree = std::decay\_t<T>;}
-\DoxyCodeLine{33   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Tree::isLeaf) \{}
-\DoxyCodeLine{34     leafFunc(tree, treePath);}
-\DoxyCodeLine{35   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Tree::isPower) \{}
-\DoxyCodeLine{36     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Tree::template Child<Dune::Indices::\_0>::Type::isLeaf) \{}
-\DoxyCodeLine{37       powerFunc(tree, treePath);}
-\DoxyCodeLine{38     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{39       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < tree.degree(); ++i) \{}
-\DoxyCodeLine{40         \textcolor{keyword}{auto} childTreePath = Dune::TypeTree::push\_back(treePath, i);}
-\DoxyCodeLine{41         \mbox{\hyperlink{a00377_a63742d75d099b93da7ddf6e78a3c1f56}{forEachLeafOrPowerLeafNode}}(tree.child(i), childTreePath, powerFunc, leafFunc);}
-\DoxyCodeLine{42       \}}
-\DoxyCodeLine{43     \}}
-\DoxyCodeLine{44   \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{45     \textcolor{keyword}{auto} indices = std::make\_index\_sequence<Tree::degree()>\{\};}
-\DoxyCodeLine{46     Dune::Hybrid::forEach(indices, [\&](\textcolor{keyword}{auto} i) \{}
-\DoxyCodeLine{47       \textcolor{keyword}{auto} childTreePath = Dune::TypeTree::push\_back(treePath, i);}
-\DoxyCodeLine{48       \mbox{\hyperlink{a00377_a63742d75d099b93da7ddf6e78a3c1f56}{forEachLeafOrPowerLeafNode}}(tree.child(i), childTreePath, powerFunc, leafFunc);}
-\DoxyCodeLine{49     \});}
-\DoxyCodeLine{50   \}}
-\DoxyCodeLine{51 \}}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{63 \textcolor{keyword}{template} <\textcolor{keyword}{typename} LV, \textcolor{keyword}{typename} F, \textcolor{keywordtype}{int} size = LV::Element::Geometry::coorddimension>}
-\DoxyCodeLine{64 \textcolor{keyword}{requires}(std::convertible\_to<F, std::function<bool(\textcolor{keywordtype}{int}, \mbox{\hyperlink{a01692}{Dune::FieldVector<double, size>}} \&\&)>>)}
-\DoxyCodeLine{65 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00377_a9bfdb235951b98b7a214704baf9c6f95}{forEachLagrangeNodePosition}}(\textcolor{keyword}{const} LV\& localView, F\&\& f) \{}
-\DoxyCodeLine{66   \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{a01853}{Concepts::LagrangeNode}}<std::remove\_cvref\_t<\textcolor{keyword}{decltype}(localView.tree().child(0))>>,}
-\DoxyCodeLine{67                 \textcolor{stringliteral}{"{}forEachLagrangeNodePosition is only supported for Lagrange power basis"{}});}
-\DoxyCodeLine{68   assert(localView.bound() \&\& \textcolor{stringliteral}{"{}The local view must be bound to an element"{}});}
-\DoxyCodeLine{69   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& localFE = localView.tree().child(0).finiteElement();}
-\DoxyCodeLine{70   std::vector<Dune::FieldVector<double, size>> lagrangeNodeCoords;}
-\DoxyCodeLine{71   lagrangeNodeCoords.resize(localFE.size());}
-\DoxyCodeLine{72   std::vector<double> out;}
-\DoxyCodeLine{73   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size; i++) \{}
-\DoxyCodeLine{74     \textcolor{keyword}{auto} ithCoord = [\&i](\textcolor{keyword}{const} \mbox{\hyperlink{a01692}{Dune::FieldVector<double, size>}}\& x) \{ \textcolor{keywordflow}{return} x[i]; \};}
-\DoxyCodeLine{75     localFE.localInterpolation().interpolate(ithCoord, out);}
-\DoxyCodeLine{76     \textcolor{keywordflow}{for} (std::size\_t j = 0; j < out.size(); j++)}
-\DoxyCodeLine{77       lagrangeNodeCoords[j][i] = out[j];}
-\DoxyCodeLine{78   \}}
-\DoxyCodeLine{79   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} nodeNumber = 0; \textcolor{keyword}{auto}\& nCoord : lagrangeNodeCoords)}
-\DoxyCodeLine{80     \textcolor{keywordflow}{if} (f(nodeNumber++, std::move(nCoord)))}
-\DoxyCodeLine{81       \textcolor{keywordflow}{break};}
-\DoxyCodeLine{82 \}}
-\DoxyCodeLine{83 \} \textcolor{comment}{// namespace Ikarus::utils}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#define PARENS ()}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#define ENUM\_CASE(name) \(\backslash\)}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{  case name:            \(\backslash\)}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{    return \#name;}}
+\DoxyCodeLine{16 \textcolor{comment}{// Limits to 256 items}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#define EXPAND(arg) EXPAND1(EXPAND1(EXPAND1(EXPAND1(arg))))}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#define EXPAND1(arg) EXPAND2(EXPAND2(EXPAND2(EXPAND2(arg))))}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define EXPAND2(arg) EXPAND3(EXPAND3(EXPAND3(EXPAND3(arg))))}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#define EXPAND3(arg) EXPAND4(EXPAND4(EXPAND4(EXPAND4(arg))))}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#define EXPAND4(arg) arg}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#define FOR\_EACH(macro, ...) \_\_VA\_OPT\_\_(EXPAND(FOR\_EACH\_HELPER(macro, \_\_VA\_ARGS\_\_)))}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define FOR\_EACH\_HELPER(macro, a1, ...) macro(a1) \_\_VA\_OPT\_\_(FOR\_EACH\_AGAIN PARENS(macro, \_\_VA\_ARGS\_\_))}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#define FOR\_EACH\_AGAIN() FOR\_EACH\_HELPER}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#define ENUM\_CASE(name) \(\backslash\)}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{  case name:            \(\backslash\)}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{    return \#name;}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#define MAKE\_ENUM(type, ...)                \(\backslash\)}}
+\DoxyCodeLine{41 \textcolor{preprocessor}{  enum class type                           \(\backslash\)}}
+\DoxyCodeLine{42 \textcolor{preprocessor}{  \{                                         \(\backslash\)}}
+\DoxyCodeLine{43 \textcolor{preprocessor}{    BEGIN,                                  \(\backslash\)}}
+\DoxyCodeLine{44 \textcolor{preprocessor}{    \_\_VA\_ARGS\_\_,                            \(\backslash\)}}
+\DoxyCodeLine{45 \textcolor{preprocessor}{    END                                     \(\backslash\)}}
+\DoxyCodeLine{46 \textcolor{preprocessor}{  \};                                        \(\backslash\)}}
+\DoxyCodeLine{47 \textcolor{preprocessor}{  constexpr std::string toString(type \_e) \{ \(\backslash\)}}
+\DoxyCodeLine{48 \textcolor{preprocessor}{    using enum type;                        \(\backslash\)}}
+\DoxyCodeLine{49 \textcolor{preprocessor}{    switch (\_e) \{                           \(\backslash\)}}
+\DoxyCodeLine{50 \textcolor{preprocessor}{      ENUM\_CASE(BEGIN)                      \(\backslash\)}}
+\DoxyCodeLine{51 \textcolor{preprocessor}{      FOR\_EACH(ENUM\_CASE, \_\_VA\_ARGS\_\_)      \(\backslash\)}}
+\DoxyCodeLine{52 \textcolor{preprocessor}{      ENUM\_CASE(END)                        \(\backslash\)}}
+\DoxyCodeLine{53 \textcolor{preprocessor}{    \}                                       \(\backslash\)}}
+\DoxyCodeLine{54 \textcolor{preprocessor}{    \_\_builtin\_unreachable();                \(\backslash\)}}
+\DoxyCodeLine{55 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
+\DoxyCodeLine{58 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00363}{Ikarus}} \{}
+\DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MessageType>}
+\DoxyCodeLine{68 MessageType\& \mbox{\hyperlink{a00358_ga5db6e8f04892e85e6b17e276cdbd0e54}{increment}}(MessageType\& e) \{}
+\DoxyCodeLine{69   \textcolor{keywordflow}{if} (e == MessageType::END) \{}
+\DoxyCodeLine{70     DUNE\_THROW(Dune::RangeError, \textcolor{stringliteral}{"{}for MessageType\& operator ++ (MessageType\&)"{}});}
+\DoxyCodeLine{71   \}}
+\DoxyCodeLine{72   e = MessageType(\textcolor{keyword}{static\_cast<}typename std::underlying\_type<MessageType>::type\textcolor{keyword}{>}(e) + 1);}
+\DoxyCodeLine{73   \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{74 \}}
+\DoxyCodeLine{75 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

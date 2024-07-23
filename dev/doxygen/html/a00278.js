@@ -1,5 +1,4 @@
 var a00278 =
 [
-    [ "makeResultFunction", "a00278.html#a5ad885bbd85519a4b64ad78fa43d0916", null ],
-    [ "makeResultVtkFunction", "a00278.html#a8e219f42670ea0f6eaf22f8164ac89cb", null ]
+    [ "draw", "a00278.html#a65b25c4ffa5a9d9f808da12703e79cb2", null ]
 ];

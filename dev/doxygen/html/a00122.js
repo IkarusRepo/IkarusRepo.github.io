@@ -1,15 +1,6 @@
 var a00122 =
 [
-    [ "Eigen::TCGInfo< Scalar >", "a01568.html", "a01568" ],
-    [ "Eigen::internal::traits< TruncatedConjugateGradient< MatrixType_, UpLo, Preconditioner_ > >", "a01576.html", "a01576" ],
-    [ "Eigen::TruncatedConjugateGradient< M, upLo, PC >", "a01572.html", "a01572" ],
-    [ "TCGStopReason", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5a", [
-      [ "negativeCurvature", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aa09116173dd03279374ae42ad40f940ba", null ],
-      [ "exceededTrustRegion", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aa9e095c14131d90a6c10c08cd802c8aed", null ],
-      [ "reachedTargetResidualKappaLinear", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aa99766ccb237cb85dab3d8b55752fca4c", null ],
-      [ "reachedTargetResidualThetaSuperLinear", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aa8ebf8c1ac80d383a21087b596c1efb27", null ],
-      [ "maximumInnerIterations", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aa5b3d41a901032695340cf4c031e95f30", null ],
-      [ "modelIncreased", "a00122.html#a99c0436bed03f4dd4168a21f6b69ad5aab00445941a90cf4c363702645ca67bab", null ]
-    ] ],
-    [ "truncated_conjugate_gradient", "a00122.html#a38414bb29b6ce1a1d8cc03749acb95f7", null ]
+    [ "Ikarus::FEFactory< BH, SK, useFlat, useEigenRef >", "a01324.html", "a01324" ],
+    [ "makeFE", "a00122.html#a59639a9a20f036a4f1c0794f65595662", null ],
+    [ "makeFEWithUnTouchedBasis", "a00122.html#aa80712fed165a22f02670f195488fe5f", null ]
 ];
