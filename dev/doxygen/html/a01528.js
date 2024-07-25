@@ -1,5 +1,4 @@
 var a01528 =
 [
-    [ "emodul", "a01528.html#ab9d965c2a2c0409682aaea9ca45be83b", null ],
-    [ "mu", "a01528.html#a12468705489862b9e7470f197b499d0f", null ]
+    [ "type", "a01528.html#a2d4fc47d2a6bddddf07b74f415a2bd09", null ]
 ];

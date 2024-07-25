@@ -1,5 +1,5 @@
 var a01616 =
 [
-    [ "maxIter", "a01616.html#a7ef35a86ec4e9a39bcc54182c5dc17b7", null ],
-    [ "tol", "a01616.html#a7e8e3668e5eca2b115ec77fcaabc8899", null ]
+    [ "maxIter", "a01616.html#a341fe979201497d2422addde8b9b39c7", null ],
+    [ "tol", "a01616.html#a9b1748ca776438b94dd3ed113d3ee934", null ]
 ];

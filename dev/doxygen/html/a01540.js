@@ -1,5 +1,5 @@
 var a01540 =
 [
-    [ "K", "a01540.html#a4f5868738c5673adf557e914123d0c8e", null ],
-    [ "lambda", "a01540.html#a82f624b8171315c48c0bb5d39ef2f5d8", null ]
+    [ "emodul", "a01540.html#ab9d965c2a2c0409682aaea9ca45be83b", null ],
+    [ "mu", "a01540.html#a12468705489862b9e7470f197b499d0f", null ]
 ];

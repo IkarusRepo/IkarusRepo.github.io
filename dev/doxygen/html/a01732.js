@@ -1,7 +1,4 @@
 var a01732 =
 [
-    [ "FIMS", "a01732.html#a2387375090283dac7ebbfb8bc58e1994", null ],
-    [ "type", "a01732.html#a5b93764f4d9fd3897ad37658526e37fd", null ],
-    [ "create", "a01732.html#aaaf91aed22e7c32c6f2c26ff961ae3e1", null ],
-    [ "create", "a01732.html#aab16d08ac65576f292078b2c4f135645", null ]
+    [ "type", "a01732.html#aa18699c386a7d8e60d0f53cbc4a83261", null ]
 ];

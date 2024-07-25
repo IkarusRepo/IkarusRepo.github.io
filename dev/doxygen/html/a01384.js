@@ -1,10 +1,22 @@
 var a01384 =
 [
-    [ "DType", "a01384.html#a266e586d6789650b99c28a51b71bfbcd", null ],
-    [ "MType", "a01384.html#aa19cdd636627ea0efc74bb2c380d6836", null ],
-    [ "Q1E5", "a01384.html#a7bedf208a422c415e0037f898c8ec85a", null ],
-    [ "Q1E5", "a01384.html#a7a4921dd86b88f516f34cd55accf0629", null ],
-    [ "calcM", "a01384.html#a2f5b495d9eabc2e3fcccfee1595e61eb", null ],
-    [ "enhancedStrainSize", "a01384.html#ab1a680222be27a73de9204c3881f7ec8", null ],
-    [ "strainSize", "a01384.html#a70978fa46b16e2d6210cf77d76bead62", null ]
+    [ "Basis", "a01384.html#a3385bd97c39ebfede2dc6eac609022c8", null ],
+    [ "BasisHandler", "a01384.html#a129085c175bca28f94c71699b734ba04", null ],
+    [ "ctype", "a01384.html#a1b3bb63050509bf769c72be3c790db69", null ],
+    [ "Element", "a01384.html#ac4668b9c9142defdf3b70cca8eeb30c4", null ],
+    [ "FlatBasis", "a01384.html#a81feef959fedef62b2e1daabbd52b5f2", null ],
+    [ "Geometry", "a01384.html#a0b7be1104fba2d190e3fed46f291a851", null ],
+    [ "GlobalCoordinates", "a01384.html#a9fc56e9b61d9ea686b35ab02965ec420", null ],
+    [ "GlobalIndex", "a01384.html#a77e825e03f2fae2bb4272c7888e478b6", null ],
+    [ "GridView", "a01384.html#a3ec0294824df467074f5070cb58f5a91", null ],
+    [ "LocalView", "a01384.html#a06bdad066f621e46875af45a22677a3c", null ],
+    [ "MatrixType", "a01384.html#af0626da4b6948f96196835d27625e40b", null ],
+    [ "ParameterSpaceType", "a01384.html#ac221dbf16d284b783228c103773a6939", null ],
+    [ "UntouchedBasis", "a01384.html#a611fbe0482ea04da92b3d8007d230a70", null ],
+    [ "VectorType", "a01384.html#abf498c1b5501c612bc73a28f93087ac6", null ],
+    [ "dimension", "a01384.html#ab8a4dc345d034cfd8f3a60000f9647d0", null ],
+    [ "mydim", "a01384.html#ae15b8efa9f66a3caee81d99dd5c648de", null ],
+    [ "useEigenRef", "a01384.html#a60456621f63d34ff66c1d6b861a3b91e", null ],
+    [ "useFlatBasis", "a01384.html#ac93d8ec6254e0ca3668966e7a56886ac", null ],
+    [ "worlddim", "a01384.html#a5d611e1d48285bac5c5ebd6fda9c7cc7", null ]
 ];

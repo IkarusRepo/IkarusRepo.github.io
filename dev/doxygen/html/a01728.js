@@ -1,4 +1,6 @@
 var a01728 =
 [
-    [ "type", "a01728.html#add1dc46010d8b320cd215e331a3f1fa4", null ]
+    [ "type", "a01728.html#a448426468de3637416804f6ef6f8ce90", null ],
+    [ "create", "a01728.html#af5414357864c26a827136edac1a085f4", null ],
+    [ "create", "a01728.html#a9c133ba014522aa8c8d90f2a3835c7e1", null ]
 ];

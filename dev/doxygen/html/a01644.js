@@ -1,15 +1,15 @@
 var a01644 =
 [
-    [ "acceptProposal", "a01644.html#a8c3abc0958c354cc92394dfd12a0317b", null ],
-    [ "accstr", "a01644.html#af3d423f3f05e0bdd445e2b9de7dc9daf", null ],
-    [ "cauchystr", "a01644.html#a3947b27f29bf44beb7f3f19e91c344f9", null ],
-    [ "consecutive_Rejected", "a01644.html#ae1f58001cb449db18bdbd98740dd143d", null ],
-    [ "consecutive_TRminus", "a01644.html#aab1636ca718e535e09e61cdefc348084", null ],
-    [ "consecutive_TRplus", "a01644.html#afc288b38be6c8627cf079d9bffc3cda9", null ],
-    [ "randomPredictionString", "a01644.html#a84be03aa6ebbd80ab2e6fac5a78aacd3", null ],
-    [ "reasonString", "a01644.html#a8df37485a1fdbbce8d153a8fadd537bf", null ],
-    [ "stop", "a01644.html#a68f203529fcd8a947fd49330a83d42b2", null ],
-    [ "stopReasonString", "a01644.html#af34cb5bb79e983db99b959d871afd353", null ],
-    [ "trstr", "a01644.html#ae987404091035ade31e839e9f00b7cbd", null ],
-    [ "used_cauchy", "a01644.html#ac6037dd6d1303ded090d9da71dea06b9", null ]
+    [ "corr_tol", "a01644.html#ab598fd07116bda4ec7ff4ec10ad771bb", null ],
+    [ "debug", "a01644.html#a509efb6f34d183fdff88f95fe21a97ea", null ],
+    [ "Delta0", "a01644.html#a2c36a30b640ce11ec533bd259d439bd5", null ],
+    [ "Delta_bar", "a01644.html#a275deb9273559ec6b6bae0e1a0650bd8", null ],
+    [ "grad_tol", "a01644.html#a1cc69f38c3569c63cb4bf86a39a16050", null ],
+    [ "maxIter", "a01644.html#ac496e08f6fc420b641d2e838d4adbb53", null ],
+    [ "maxtime", "a01644.html#a65731eb979e7677f54722743edebc4c7", null ],
+    [ "minIter", "a01644.html#a58ec4234ba537f77ccf56ef6ec5db526", null ],
+    [ "rho_prime", "a01644.html#acf36d2743732832643df20a287a9ca91", null ],
+    [ "rho_reg", "a01644.html#a29358b818a3eabe94a0d75218225de0d", null ],
+    [ "useRand", "a01644.html#a3943cb103ad51f2c407c867672dd3b1f", null ],
+    [ "verbosity", "a01644.html#a3b6b5fd328830b37cf47a8c3b485eb3e", null ]
 ];

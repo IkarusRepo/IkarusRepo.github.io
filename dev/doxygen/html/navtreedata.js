@@ -30,8 +30,8 @@ var NAVTREE =
       [ "Modules", "index.html#mods", null ],
       [ "How to cite", "index.html#autotoc_md3", null ]
     ] ],
-    [ "Copyright holders", "a02721.html", null ],
-    [ "Bibliography", "a02750.html", null ],
+    [ "Copyright holders", "a02753.html", null ],
+    [ "Bibliography", "a02782.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -76,13 +76,13 @@ var NAVTREEINDEX =
 "a01212.html#a146ff182f11fe9d1cffd58ab85a47b3a",
 "a01256.html#adf77b0e3c1dab4782a2da06fc712b9c5",
 "a01292.html#a0cd5cc302f164ea614b9edfadd7c82c9",
-"a01376.html#a6f35028ba221cd0eaf6859bbf2b5f77c",
-"a01452.html#a6c900d07d0cb27b738441b06452be5d1",
-"a01504.html#af20e97c72e6f0bcec8e156aa367f126c",
-"a01612.html#a2bfe4785b1216911ef967fea45a4b9e8",
-"a01708.html#aeb81ceb2617369a584dd12f4574ab1dc",
-"a01840.html",
-"index.html#autotoc_md2"
+"a01384.html#af0626da4b6948f96196835d27625e40b",
+"a01464.html",
+"a01516.html#ad037d914bd0a3933ebe3fc11caa84e39",
+"a01624.html#a03d4668b7111180f0427e8382359f3bf",
+"a01720.html#aa71c2b94b37f2b4e83f9f1e059e6fe4c",
+"a01828.html",
+"functions_~.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

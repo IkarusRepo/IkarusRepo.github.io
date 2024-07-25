@@ -1,5 +1,5 @@
 var a01536 =
 [
-    [ "emodul", "a01536.html#ac0163a851cf3f135906c79a95cca835f", null ],
-    [ "lambda", "a01536.html#ab38e15b12e0e703652627c73b8639ee8", null ]
+    [ "emodul", "a01536.html#a6c00be8aacc18c845b00748b1e56c83c", null ],
+    [ "nu", "a01536.html#acb99903e7b1b13967a0757d284e014ed", null ]
 ];

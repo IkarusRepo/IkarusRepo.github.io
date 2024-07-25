@@ -1,14 +1,11 @@
 var a01660 =
 [
-    [ "FlatBasis", "a01660.html#a7252e605123456ef454c811cfb364bba", null ],
-    [ "GridView", "a01660.html#adcbd72244406be4bb8ad7b547dd856cc", null ],
-    [ "PreBasis", "a01660.html#af1f06693a1efdf8ecdc58d9d52493a28", null ],
-    [ "UntouchedBasis", "a01660.html#a27e6a76ae18f154cc833c1b4ecafd35b", null ],
-    [ "BasisHandler", "a01660.html#a5283dfd83bb82dfc11a99dc714da154b", null ],
-    [ "flat", "a01660.html#a259a6b38e59d58970716c03ac511d3c5", null ],
-    [ "flat", "a01660.html#a4169a22c9428da3b0b4bfee9b7bb2161", null ],
-    [ "gridView", "a01660.html#a910531e784c0bd209849ab4a863d9fbb", null ],
-    [ "gridView", "a01660.html#aa90fabae9f9e0474ea5ecef99553d6c5", null ],
-    [ "untouched", "a01660.html#aa3e286f5563f510fc4b0eaa005eb0a2b", null ],
-    [ "untouched", "a01660.html#ae0b732f8499254cce741cb6f36f36e9f", null ]
+    [ "energy", "a01660.html#a43b868b19908b5435f1e2f18fb1d7625", null ],
+    [ "energyProposal", "a01660.html#a3a03ce164638213312bece9e8b54fdcd", null ],
+    [ "etaNorm", "a01660.html#a178607b87a8d27eb7b02bb22dc0d2c63", null ],
+    [ "gradNorm", "a01660.html#a58ec024d2233720f0bf164b8b21a6626", null ],
+    [ "innerIterSum", "a01660.html#ac5053b65db9ceae8340aaebe952c7792", null ],
+    [ "outerIter", "a01660.html#a79ff262003d1f3ff65ef2877aca8df0f", null ],
+    [ "rho", "a01660.html#a1111f89e925a512bd145b50a8f25c2be", null ],
+    [ "time", "a01660.html#ab3cab6865c16d06ec81b5db14b0dc5e2", null ]
 ];

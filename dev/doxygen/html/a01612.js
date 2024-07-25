@@ -1,11 +1,11 @@
 var a01612 =
 [
-    [ "NonLinearOperator", "a01612.html#aef79b0fa82503669e86d848d842cf5d8", null ],
-    [ "Settings", "a01612.html#abb87e0f395f9f6377c50c90fc0dcb24e", null ],
-    [ "UpdateFunctionType", "a01612.html#a129397c33f072adf0a119868280ae165", null ],
-    [ "ValueType", "a01612.html#a2bfe4785b1216911ef967fea45a4b9e8", null ],
-    [ "NewtonRaphsonWithSubsidiaryFunction", "a01612.html#a36b08b1c18739fe005626ca32b4fe04d", null ],
-    [ "nonLinearOperator", "a01612.html#ad1e2d29e41b8596d709effc804bc8718", null ],
+    [ "NonLinearOperator", "a01612.html#a41064bd40996c2c0a2e5d79dc72543ef", null ],
+    [ "Settings", "a01612.html#a36870dfdc815e9efb1edf170829d6345", null ],
+    [ "UpdateFunction", "a01612.html#a3c66f49cc8972a9e93322724be43d6c1", null ],
+    [ "ValueType", "a01612.html#aeecb2abbbd2c547db013f45e673b7291", null ],
+    [ "NewtonRaphson", "a01612.html#a64906c2d67d927744c382ce422d69dfa", null ],
+    [ "nonLinearOperator", "a01612.html#ab5a5c4aafcce50ee9c1050b42d2c6c89", null ],
     [ "notify", "a01612.html#a19047649c66f704c2ba2f1276c1a0e8b", null ],
     [ "notify", "a01612.html#acf19e220bc71c046619dd21b3f50e8bb", null ],
     [ "notify", "a01612.html#aa5a60c5b81bb92de527c49ea8fce147d", null ],
@@ -20,12 +20,12 @@ var a01612 =
     [ "notify", "a01612.html#a72e3156874ce81a1c7548b9f74db522c", null ],
     [ "notify", "a01612.html#ae0c6cec757e540f22b65fce1f782e380", null ],
     [ "notify", "a01612.html#ac035ba934c33e090c4a45128ac13f190", null ],
-    [ "setup", "a01612.html#aedb80f72d99faad89b81e21ba7956a19", null ],
-    [ "solve", "a01612.html#ad5287b7971ef03771d6e267eebb6d9d8", null ],
+    [ "setup", "a01612.html#a7f4fa90ee5e8e0eb1122e150d4bcadbb", null ],
+    [ "solve", "a01612.html#a1670320a70ab0d6bd33e320811591bbe", null ],
     [ "subscribe", "a01612.html#ad67c98f02c195b788f78a229e1898006", null ],
     [ "subscribeAll", "a01612.html#a026462a1a050728e37bc24e33d2edd9c", null ],
     [ "subscribeAll", "a01612.html#a13bd8d73b485186680f640786e2682e5", null ],
     [ "unSubscribe", "a01612.html#a3eb718b8fa1ecc373371a6751a316b24", null ],
     [ "unSubscribeAll", "a01612.html#a378a520833df0d6e27dbb35b621c838d", null ],
-    [ "isLinearSolver", "a01612.html#a371ae6b37b18c88c4e2c0f14e52eada5", null ]
+    [ "isLinearSolver", "a01612.html#ad3561144041515b7c3fd8cf5d8f10a94", null ]
 ];

@@ -1,5 +1,5 @@
 var a01532 =
 [
-    [ "emodul", "a01532.html#a218a7076cb5434dd30811ffe50b39964", null ],
-    [ "K", "a01532.html#a996ac473697809e0e44551037cf6d4f0", null ]
+    [ "Args", "a01532.html#a2ad44dcb1253eaebcbc976a2725b9d02", null ],
+    [ "args", "a01532.html#a2e8750088bcaddd3fba36e24ab06b099", null ]
 ];

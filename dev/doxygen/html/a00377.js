@@ -1,8 +1,8 @@
 var a00377 =
 [
-    [ "CheckFlags", "a01740.html", "a01740" ],
-    [ "SolverDefault", "a01684.html", "a01684" ],
-    [ "UpdateDefault", "a01688.html", "a01688" ],
+    [ "CheckFlags", "a01752.html", "a01752" ],
+    [ "SolverDefault", "a01696.html", "a01696" ],
+    [ "UpdateDefault", "a01700.html", "a01700" ],
     [ "any_of", "a00360.html#gab6d955a70ec9215ae9a8f3841582ab49", null ],
     [ "appendUnique", "a00360.html#ga0ccbb016e46741bd00c69436dc11e2d0", null ],
     [ "checkGradient", "a00358.html#gacb9e813539bfd84df99ad097cabc9de9", null ],

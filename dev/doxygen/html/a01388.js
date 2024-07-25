@@ -1,10 +1,10 @@
 var a01388 =
 [
-    [ "DType", "a01388.html#ac2ba07352f98839cbce9e189d413aadb", null ],
-    [ "MType", "a01388.html#a3936fb3159e8887532007a2df1cc3915", null ],
-    [ "Q1E7", "a01388.html#ac320a2701922ade2a114460221fd8897", null ],
-    [ "Q1E7", "a01388.html#a8db7bc977482fbd9cc783ef8515b3aba", null ],
-    [ "calcM", "a01388.html#adee00ef1f4bd1c7db877fb39626b4ed8", null ],
-    [ "enhancedStrainSize", "a01388.html#a3373c7120dffedafda0be40fa6647c46", null ],
-    [ "strainSize", "a01388.html#a79a495f2932fe90867b44e1f4e92bfd3", null ]
+    [ "DType", "a01388.html#a79fdb2f95c2bbb280d4eb9a9b7c67853", null ],
+    [ "MType", "a01388.html#a6f35028ba221cd0eaf6859bbf2b5f77c", null ],
+    [ "E0", "a01388.html#ab913a61e292285b10c634a3675acd39a", null ],
+    [ "E0", "a01388.html#a8aaffc90bc6e256385336414f7756007", null ],
+    [ "calcM", "a01388.html#a833af01a064166c8d39b1fa1b8d8c19a", null ],
+    [ "enhancedStrainSize", "a01388.html#ab535d80fb5d76e7571a2af6f2d99ba05", null ],
+    [ "strainSize", "a01388.html#a6652c22405d933b6c3c881a1ce097e8a", null ]
 ];

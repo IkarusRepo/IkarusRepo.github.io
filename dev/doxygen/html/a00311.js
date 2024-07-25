@@ -1,4 +1,4 @@
 var a00311 =
 [
-    [ "Ikarus::NonLinearSolverInformation", "a01628.html", "a01628" ]
+    [ "Ikarus::NonLinearSolverInformation", "a01640.html", "a01640" ]
 ];

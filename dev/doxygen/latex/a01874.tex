@@ -1,8 +1,8 @@
-\hypertarget{a01874}{}\doxysection{Ikarus\+::Concepts\+::Transpose\+Able Concept Reference}
-\label{a01874}\index{Ikarus::Concepts::TransposeAble@{Ikarus::Concepts::TransposeAble}}
+\hypertarget{a01874}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01874}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept defining the requirements for types that support transposition.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,8 +12,12 @@ Concept defining the requirements for types that support transposition.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} L>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01874}{Ikarus::Concepts::TransposeAble}} =  \textcolor{keyword}{requires}(L x) \{ \mbox{\hyperlink{a00363_ac2c6469be19ce4ef2e630bfa1c5a5e24}{transpose}}(x); \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ASS, \textcolor{keyword}{typename} NLSI, \textcolor{keyword}{typename} SA, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01874}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(ASS adaptiveStepSizing, NLSI info, SA args, \mbox{\hyperlink{a00363_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}} nop) \{}
+\DoxyCodeLine{    \{ adaptiveStepSizing(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,7 +25,10 @@ Concept defining the requirements for types that support transposition.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em L} & Type of the operand.\\
+{\em ASS} & The adaptive step sizing type. \\
+\hline
+{\em NLSI} & The non-\/linear solver information type. \\
+\hline
+{\em SA} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}
-The concept specifies that instances of type {\ttfamily L} can be transposed using the {\ttfamily transpose} function. 

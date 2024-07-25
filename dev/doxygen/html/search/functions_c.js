@@ -19,8 +19,8 @@ var searchData=
   ['maketuplesubset_16',['makeTupleSubset',['../a00360.html#ga32de94604b9d1a7423134f33f49d613f',1,'Ikarus::utils']]],
   ['makeuniqueandsort_17',['makeUniqueAndSort',['../a00360.html#ga6e36d8f5163f232e3142ecbd0575e8b4',1,'Ikarus::utils']]],
   ['makevanishingstress_18',['makeVanishingStress',['../a00363.html#a317c0a50c0a7d482e2a20d8146e08df8',1,'Ikarus']]],
-  ['materialtangent_19',['materialTangent',['../a01432.html#a32bc355c27cc2b9c45bbb04240e3a7d6',1,'Ikarus::LinearElastic::materialTangent()'],['../a01484.html#aaf1eac20d733fcd9f2c7ac68dbbddc5c',1,'Ikarus::NonLinearElastic::materialTangent()'],['../a01416.html#a0a02eda2ec4b244354d313e8c98568f6',1,'Ikarus::KirchhoffLoveShell::materialTangent()']]],
-  ['materialtangentfunction_20',['materialTangentFunction',['../a01432.html#a361f115e45db4e44f03b88b5df14264a',1,'Ikarus::LinearElastic']]],
+  ['materialtangent_19',['materialTangent',['../a01444.html#a32bc355c27cc2b9c45bbb04240e3a7d6',1,'Ikarus::LinearElastic::materialTangent()'],['../a01496.html#aaf1eac20d733fcd9f2c7ac68dbbddc5c',1,'Ikarus::NonLinearElastic::materialTangent()'],['../a01428.html#a0a02eda2ec4b244354d313e8c98568f6',1,'Ikarus::KirchhoffLoveShell::materialTangent()']]],
+  ['materialtangentfunction_20',['materialTangentFunction',['../a01444.html#a361f115e45db4e44f03b88b5df14264a',1,'Ikarus::LinearElastic']]],
   ['matrix_21',['matrix',['../a01252.html#af2636790d3aa57222e75b586157373f3',1,'Ikarus::MatrixAssembler::matrix()'],['../a01252.html#a1415b36d65afa6ca4354638fe5bb43fc',1,'Ikarus::MatrixAssembler::matrix(DBCOption dbcOption)'],['../a01252.html#a22617ea8cbaffaab397375f4e7c6fe52',1,'Ikarus::MatrixAssembler::matrix(const FERequirement &amp;feRequirements, MatrixAffordance affordance, DBCOption dbcOption=DBCOption::Full)']]],
   ['matrixaffordance_22',['matrixAffordance',['../a01328.html#af7b6303f0ef9cc6677744559786d8966',1,'Ikarus::AffordanceCollection']]],
   ['merge_23',['merge',['../a00363.html#a4f5729471c2a5801482188e6d42009ea',1,'Ikarus']]]
