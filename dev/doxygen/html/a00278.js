@@ -1,4 +1,5 @@
 var a00278 =
 [
-    [ "draw", "a00278.html#a65b25c4ffa5a9d9f808da12703e79cb2", null ]
+    [ "Ikarus::AdaptiveStepSizing::NoOp", "a01287.html", "a01287" ],
+    [ "Ikarus::AdaptiveStepSizing::IterationBased", "a01291.html", "a01291" ]
 ];

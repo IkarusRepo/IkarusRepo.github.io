@@ -1,25 +1,63 @@
-\hypertarget{a00122}{}\doxysection{fefactory.\+hh File Reference}
-\label{a00122}\index{fefactory.hh@{fefactory.hh}}
+\hypertarget{a00122}{}\doxysection{trustregion.\+hh File Reference}
+\label{a00122}\index{trustregion.hh@{trustregion.hh}}
 
 
-Contains the definition of the FEFactory class.  
+Implementation of the Trust-\/region method for solving nonlinear equations.  
 
 
-{\ttfamily \#include $<$ikarus/finiteelements/febase.\+hh$>$}\newline
+{\ttfamily \#include $<$iosfwd$>$}\newline
+{\ttfamily \#include $<$dune/common/float\+\_\+cmp.\+hh$>$}\newline
+{\ttfamily \#include $<$spdlog/spdlog.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Sparse$>$}\newline
+{\ttfamily \#include $<$ikarus/linearalgebra/truncatedconjugategradient.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/solver/nonlinearsolver/solverinfos.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/defaultfunctions.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/linearalgebrahelper.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/observer/observer.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/observer/observermessages.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/traits.\+hh$>$}\newline
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{a01324}{Ikarus\+::\+FEFactory$<$ BH, SK, use\+Flat, use\+Eigen\+Ref $>$}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{a01324}{FEFactory}} is a convenient wrapper to forward arguments to \mbox{\hyperlink{a01316}{Pre\+FE}} and create and construct a factory of finite elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{a01691}{Ikarus\+::\+TRSettings}}
+\item 
+struct \mbox{\hyperlink{a01695}{Ikarus\+::\+Trust\+Region\+Config$<$ pre\+Conditioner, UF $>$}}
+\item 
+struct \mbox{\hyperlink{a01703}{Ikarus\+::\+Algo\+Info}}
+\begin{DoxyCompactList}\small\item\em Additional information about the \mbox{\hyperlink{a01699}{Trust\+Region}} algorithm. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{a01707}{Ikarus\+::\+Stats}}
+\begin{DoxyCompactList}\small\item\em Information about the \mbox{\hyperlink{a01699}{Trust\+Region}} solver. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{a01699}{Ikarus\+::\+Trust\+Region$<$ NLO, pre\+Conditioner, UF $>$}}
+\begin{DoxyCompactList}\small\item\em Trust Region solver for non-\/linear optimization problems. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \mbox{\hyperlink{a00363}{Ikarus}}
+namespace \mbox{\hyperlink{a00375}{Ikarus}}
 \end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{a00375_ace28d4868cfc647491f7938f04ef6c66}{Ikarus\+::\+Pre\+Conditioner}} \{ \mbox{\hyperlink{a00375_ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff}{Ikarus\+::\+Incomplete\+Cholesky}}
+, \mbox{\hyperlink{a00375_ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608}{Ikarus\+::\+Identity\+Preconditioner}}
+, \mbox{\hyperlink{a00375_ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc}{Ikarus\+::\+Diagonal\+Preconditioner}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of available preconditioners for the trust region solver. \end{DoxyCompactList}\item 
+enum class \mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674}{Ikarus\+::\+Stop\+Reason}} \{ \newline
+\mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1}{Ikarus\+::gradient\+Norm\+Tol\+Reached}}
+, \mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3}{Ikarus\+::correction\+Norm\+Tol\+Reached}}
+, \mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9}{Ikarus\+::maximum\+Time\+Reached}}
+, \mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe}{Ikarus\+::maximum\+Iterations\+Reached}}
+, \newline
+\mbox{\hyperlink{a00375_abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f}{Ikarus\+::dont\+Stop}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration of reasons for stopping the Trust\+Region solver. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$bool use\+Flat = true, bool use\+Eigen\+Ref = false, typename BH , typename SK $>$ }\\auto \mbox{\hyperlink{a00363_a59639a9a20f036a4f1c0794f65595662}{Ikarus\+::make\+FE}} (const BH \&basis\+Handler, const SK \&sk)
-\begin{DoxyCompactList}\small\item\em A function to create a finite element using the flat version of the basis. \end{DoxyCompactList}\item 
-{\footnotesize template$<$bool use\+Eigen\+Ref = false, typename BH , typename SK $>$ }\\auto \mbox{\hyperlink{a00363_aa80712fed165a22f02670f195488fe5f}{Ikarus\+::make\+FEWith\+Un\+Touched\+Basis}} (const BH \&basis\+Handler, SK \&\&sk)
-\begin{DoxyCompactList}\small\item\em A function to create a finite element using the untouched version of the basis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename NLO , typename TRConfig $>$ \newline
+requires traits\+::is\+Specialization\+Non\+Type\+And\+Types$<$Trust\+Region\+Config, std\+::remove\+\_\+cvref\+\_\+t$<$TRConfig$>$$>$}\\\+::value auto \mbox{\hyperlink{a00375_a8785899121b52f1b6ffe3a43b1a5df61}{Ikarus\+::create\+Nonlinear\+Solver}} (TRConfig \&\&config, NLO \&\&non\+Linear\+Operator)
+\begin{DoxyCompactList}\small\item\em Function to create a trust region non-\/linear solver. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename NLO , Pre\+Conditioner pre\+Conditioner = Pre\+Conditioner\+::\+Incomplete\+Cholesky, typename UF  = utils\+::\+Update\+Default$>$ }\\auto \mbox{\hyperlink{a00375_a547326eb09552d3d1fed0830d0e2d269}{Ikarus\+::make\+Trust\+Region}} (const NLO \&non\+Linear\+Operator, UF \&\&update\+Function=\{\})
+\begin{DoxyCompactList}\small\item\em Creates an instance of the \mbox{\hyperlink{a01699}{Trust\+Region}} solver. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename NLO , Pre\+Conditioner pre\+Conditioner = Pre\+Conditioner\+::\+Incomplete\+Cholesky, typename UF2  = utils\+::\+Update\+Default$>$ }\\\mbox{\hyperlink{a00375_a8d76e20d6a74e339f85d98c9854ee89c}{Ikarus\+::\+Trust\+Region}} (const NLO \&non\+Linear\+Operator, UF2 \&\&update\+Function=\{\}) -\/$>$ Trust\+Region$<$ NLO, pre\+Conditioner, std\+::remove\+\_\+cvref\+\_\+t$<$ UF2 $>$ $>$
+\end{DoxyCompactItemize}

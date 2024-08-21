@@ -113,6 +113,8 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mixin.h
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/physicshelper.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultevaluators.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/resultfunction.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/vtkdatatag.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/io/vtkwriter.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/linearalgebra/truncatedconjugategradient.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flatassembler.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/assembler/flatassemblermanipulator.hh
@@ -123,6 +125,7 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerferequirements.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/registerpreelement.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/finiteelements/scalarwrapper.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/io/vtkwriter.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/python/utils/boundarypatch.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/linearsolver/linearsolver.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/solver/nonlinearsolver/newtonraphson.hh

@@ -1,8 +1,10 @@
 var a00308 =
 [
-    [ "Ikarus::NRSettings", "a01616.html", "a01616" ],
-    [ "Ikarus::NewtonRaphsonConfig< LS, UF >", "a01620.html", "a01620" ],
-    [ "createNonlinearSolver", "a00308.html#a66b45c139b5d57965ada53d92d8f93ce", null ],
-    [ "makeNewtonRaphson", "a00308.html#afa463e708cffd14133ff65ffa366e329", null ],
-    [ "NewtonRaphson", "a00308.html#acff40d61279eba58e16c3889d8c0a5f1", null ]
+    [ "registerEnhancedAssumedStrainsPre", "a00308.html#a79dfab8379c15a5c5da0d3e5a415f0a3", null ],
+    [ "registerKirchhoffLoveShellPre", "a00308.html#a0ef1ab14030985bd8af2551f51ceeeb6", null ],
+    [ "registerLinearElasticPre", "a00308.html#a04d0c82e615a65a1ba027cb77bbf784d", null ],
+    [ "registerNeumannBoundaryLoadPre", "a00308.html#a813121e686b5d64d6ef1e11bd4bfc59b", null ],
+    [ "registerNonLinearElasticPre", "a00308.html#ab45b29a3ca18f1c8bf87263c60d14711", null ],
+    [ "registerTrussPre", "a00308.html#a5004d72f594d4ceecaebb33ee71f80cf", null ],
+    [ "registerVolumeLoadPre", "a00308.html#a1f597ae7aac82dc24a8a2669f86fc12b", null ]
 ];

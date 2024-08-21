@@ -1,6 +1,6 @@
 var a00320 =
 [
-    [ "ValueWrapper", "a00320.html#adae188e7353a8e6fcaf3c178c96d6416", null ],
-    [ "moduleName", "a00320.html#accab2501ce940db483da0b3ebe2cf723", null ],
-    [ "modulePath", "a00320.html#a9ebab9199168d32a8ab347a990044552", null ]
+    [ "Ikarus::Python::SparseMatrixWrapper< T >", "a01639.html", "a01639" ],
+    [ "registerAssemblerManipulator", "a00320.html#aad35f78683b64303a28d3b8b4f83aa37", null ],
+    [ "registerSparseMatrixWrapper", "a00320.html#a09b4a81e2d6d0619406854f6dc3fc8f7", null ]
 ];

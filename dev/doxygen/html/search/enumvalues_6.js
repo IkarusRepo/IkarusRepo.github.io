@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['identitypreconditioner_0',['IdentityPreconditioner',['../a00363.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608',1,'Ikarus']]],
-  ['incompletecholesky_1',['IncompleteCholesky',['../a00363.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff',1,'Ikarus']]],
-  ['init_2',['INIT',['../a00357.html#gga662b2b6a80547adf4b9ce8b30d87fab5afaee4ca3c30ee18148ce3ada37466498',1,'Ikarus']]],
-  ['iteration_5fended_3',['ITERATION_ENDED',['../a00357.html#gga662b2b6a80547adf4b9ce8b30d87fab5a073d71a89cce6d4b9775987fdbb22815',1,'Ikarus']]],
-  ['iteration_5fstarted_4',['ITERATION_STARTED',['../a00357.html#gga662b2b6a80547adf4b9ce8b30d87fab5afdb2cb9832d112cd92fb2cda8879c3b4',1,'Ikarus']]]
+  ['geometricstiffness_0',['geometricstiffness',['../a00375.html#a390d5311179ec61d163a29c943b3d1a0ae15aaa3bcdfc63653ecc7de3f1d4794b',1,'Ikarus']]],
+  ['gradientnormtolreached_1',['gradientNormTolReached',['../a00375.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1',1,'Ikarus']]],
+  ['greenlagrangian_2',['greenLagrangian',['../a00364.html#ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e',1,'Ikarus']]]
 ];

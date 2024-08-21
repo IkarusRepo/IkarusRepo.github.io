@@ -1,63 +1,99 @@
-\hypertarget{a00206_source}{}\doxysection{fetraits.\+hh}
-\label{a00206_source}\index{fetraits.hh@{fetraits.hh}}
+\hypertarget{a00206_source}{}\doxysection{easvariants.\+hh}
+\label{a00206_source}\index{easvariants.hh@{easvariants.hh}}
 \mbox{\hyperlink{a00206}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00071}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00363}{Ikarus}} \{}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00152}{ikarus/finiteelements/mechanics/eas/eas2d.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00155}{ikarus/finiteelements/mechanics/eas/eas3d.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{15 }
-\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keyword}{typename} BH, \textcolor{keywordtype}{bool} useRef = false, \textcolor{keywordtype}{bool} useFlat = true>}
-\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01384}{FETraits}}}
-\DoxyCodeLine{25 \{}
-\DoxyCodeLine{27   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a129085c175bca28f94c71699b734ba04}{BasisHandler}} = BH;}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{30   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01384_ac93d8ec6254e0ca3668966e7a56886ac}{useFlatBasis}} = useFlat;}
+\DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00382}{Ikarus::EAS}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{26   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{27   \textcolor{keyword}{struct }Variants}
+\DoxyCodeLine{28   \{}
+\DoxyCodeLine{29     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} worldDim = GEO::coorddimension;}
+\DoxyCodeLine{30     \textcolor{keyword}{static\_assert}((worldDim == 2) or (worldDim == 3), \textcolor{stringliteral}{"{}EAS variants are only available 2D and 3D elements."{}});}
 \DoxyCodeLine{31 }
-\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a81feef959fedef62b2e1daabbd52b5f2}{FlatBasis}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01672_a7252e605123456ef454c811cfb364bba}{BasisHandler::FlatBasis}};}
+\DoxyCodeLine{33     \textcolor{keyword}{using }EAS2D = std::variant<E0<GEO>, Q1E4<GEO>, Q1E5<GEO>, Q1E7<GEO>>;}
 \DoxyCodeLine{34 }
-\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a611fbe0482ea04da92b3d8007d230a70}{UntouchedBasis}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01672_a27e6a76ae18f154cc833c1b4ecafd35b}{BasisHandler::UntouchedBasis}};}
+\DoxyCodeLine{36     \textcolor{keyword}{using }EAS3D = std::variant<E0<GEO>, H1E9<GEO>, H1E21<GEO>>;}
 \DoxyCodeLine{37 }
-\DoxyCodeLine{39   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a3385bd97c39ebfede2dc6eac609022c8}{Basis}} = std::conditional\_t<useFlat, FlatBasis, UntouchedBasis>;}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{42   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a06bdad066f621e46875af45a22677a3c}{LocalView}} = \textcolor{keyword}{typename} Basis::LocalView;}
-\DoxyCodeLine{43 }
-\DoxyCodeLine{45   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a3ec0294824df467074f5070cb58f5a91}{GridView}} = \textcolor{keyword}{typename} Basis::GridView;}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_ac4668b9c9142defdf3b70cca8eeb30c4}{Element}} = \textcolor{keyword}{typename} LocalView::Element;}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{51   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a0b7be1104fba2d190e3fed46f291a851}{Geometry}} = \textcolor{keyword}{typename} Element::Geometry;}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a77e825e03f2fae2bb4272c7888e478b6}{GlobalIndex}} = \textcolor{keyword}{typename} LocalView::MultiIndex;}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{57   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a1b3bb63050509bf769c72be3c790db69}{ctype}} = double;}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{60   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01384_a5d611e1d48285bac5c5ebd6fda9c7cc7}{worlddim}} = Geometry::coorddimension;}
-\DoxyCodeLine{61 }
-\DoxyCodeLine{63   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01384_ae15b8efa9f66a3caee81d99dd5c648de}{mydim}} = Element::mydimension;}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{66   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01384_ab8a4dc345d034cfd8f3a60000f9647d0}{dimension}} = Element::dimension;}
-\DoxyCodeLine{67 }
-\DoxyCodeLine{69   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_a9fc56e9b61d9ea686b35ab02965ec420}{GlobalCoordinates}} = Eigen::Matrix<ctype, worlddim, 1>;}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{72   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_ac221dbf16d284b783228c103773a6939}{ParameterSpaceType}} = Eigen::Matrix<ctype, mydim, 1>;}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{76   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01384_a60456621f63d34ff66c1d6b861a3b91e}{useEigenRef}} = useRef;}
-\DoxyCodeLine{77 }
-\DoxyCodeLine{79   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{80   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_abf498c1b5501c612bc73a28f93087ac6}{VectorType}} =}
-\DoxyCodeLine{81       std::conditional\_t<useEigenRef, Eigen::Ref<Eigen::VectorX<ScalarType>>, Eigen::VectorX<ScalarType>\&>;}
-\DoxyCodeLine{82 }
-\DoxyCodeLine{84   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = ctype>}
-\DoxyCodeLine{85   \textcolor{keyword}{using }\mbox{\hyperlink{a01384_af0626da4b6948f96196835d27625e40b}{MatrixType}} =}
-\DoxyCodeLine{86       std::conditional\_t<useEigenRef, Eigen::Ref<Eigen::MatrixX<ScalarType>>, Eigen::MatrixX<ScalarType>\&>;}
-\DoxyCodeLine{87 \};}
-\DoxyCodeLine{88 }
-\DoxyCodeLine{89 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{39     \textcolor{keyword}{using }type = std::conditional\_t<worldDim == 2, EAS2D, EAS3D>;}
+\DoxyCodeLine{40   \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{46   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
+\DoxyCodeLine{47   \textcolor{keyword}{struct }EASVariant}
+\DoxyCodeLine{48   \{}
+\DoxyCodeLine{49     \textcolor{keyword}{using }Variant = Impl::Variants<Geometry>::type;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{56     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} operator()(F\&\& f)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{58       std::visit(}
+\DoxyCodeLine{59           [\&]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\& easFunction) \{}
+\DoxyCodeLine{60             \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (EAST::enhancedStrainSize != 0)}
+\DoxyCodeLine{61               f(easFunction);}
+\DoxyCodeLine{62           \},}
+\DoxyCodeLine{63           var\_);}
+\DoxyCodeLine{64     \}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{keyword}{auto} numberOfEASParameters()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{67       \textcolor{keywordflow}{return} std::visit([]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\&) -\/> \textcolor{keywordtype}{int} \{ \textcolor{keywordflow}{return} EAST::enhancedStrainSize; \}, var\_);}
+\DoxyCodeLine{68     \}}
+\DoxyCodeLine{69     \textcolor{keywordtype}{bool} isDisplacmentBased()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} numberOfEASParameters() == 0; \}}
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} setEASType(\textcolor{keywordtype}{int} numberOfEASParameters) \{}
+\DoxyCodeLine{71       numberOfEASParameters\_ = numberOfEASParameters;}
+\DoxyCodeLine{72       \textcolor{keywordflow}{if} (geometry\_)}
+\DoxyCodeLine{73         createEASType();}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} bind(\textcolor{keyword}{const} Geometry\& geometry) \{}
+\DoxyCodeLine{76       geometry\_ = std::make\_optional<Geometry>(geometry);}
+\DoxyCodeLine{77       createEASType();}
+\DoxyCodeLine{78     \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{keyword}{private}:}
+\DoxyCodeLine{81     \textcolor{keywordtype}{void} createEASType() \{}
+\DoxyCodeLine{82       \textcolor{keywordflow}{if} (numberOfEASParameters\_ == 0) \{}
+\DoxyCodeLine{83         var\_ = E0(geometry\_.value());}
+\DoxyCodeLine{84         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{85       \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 2) \{}
+\DoxyCodeLine{88         \textcolor{keywordflow}{switch} (numberOfEASParameters\_) \{}
+\DoxyCodeLine{89           \textcolor{keywordflow}{case} 4:}
+\DoxyCodeLine{90             var\_ = Q1E4(geometry\_.value());}
+\DoxyCodeLine{91             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{92           \textcolor{keywordflow}{case} 5:}
+\DoxyCodeLine{93             var\_ = Q1E5(geometry\_.value());}
+\DoxyCodeLine{94             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{95           \textcolor{keywordflow}{case} 7:}
+\DoxyCodeLine{96             var\_ = Q1E7(geometry\_.value());}
+\DoxyCodeLine{97             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{98           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{99             DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 2D case."{}});}
+\DoxyCodeLine{100         \}}
+\DoxyCodeLine{101       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 3) \{}
+\DoxyCodeLine{102         \textcolor{keywordflow}{switch} (numberOfEASParameters\_) \{}
+\DoxyCodeLine{103           \textcolor{keywordflow}{case} 9:}
+\DoxyCodeLine{104             var\_ = H1E9(geometry\_.value());}
+\DoxyCodeLine{105             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{106           \textcolor{keywordflow}{case} 21:}
+\DoxyCodeLine{107             var\_ = H1E21(geometry\_.value());}
+\DoxyCodeLine{108             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{109           \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{110             DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 3D case."{}});}
+\DoxyCodeLine{111         \}}
+\DoxyCodeLine{112       \}}
+\DoxyCodeLine{113     \}}
+\DoxyCodeLine{114     std::optional<Geometry> geometry\_;}
+\DoxyCodeLine{115     Variant var\_;}
+\DoxyCodeLine{116     \textcolor{keywordtype}{int} numberOfEASParameters\_;}
+\DoxyCodeLine{117   \};}
+\DoxyCodeLine{118 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{119 \} \textcolor{comment}{// namespace Ikarus::EAS}}
 
 \end{DoxyCode}

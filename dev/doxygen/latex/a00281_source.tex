@@ -1,31 +1,68 @@
-\hypertarget{a00281_source}{}\doxysection{controllogger.\+hh}
-\label{a00281_source}\index{controllogger.hh@{controllogger.hh}}
+\hypertarget{a00281_source}{}\doxysection{pathfollowing.\+hh}
+\label{a00281_source}\index{pathfollowing.hh@{pathfollowing.hh}}
 \mbox{\hyperlink{a00281}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00284}{observer.hh}}"{}}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00287}{observermessages.hh}}"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
 \DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <chrono>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00363}{Ikarus}} \{}
-\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{a01780}{ControlLogger}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01796}{IObserver}}<ControlMessages>}
-\DoxyCodeLine{23 \{}
-\DoxyCodeLine{24 \textcolor{keyword}{public}:}
-\DoxyCodeLine{30   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01780_a10ad975b5a99ce217fd1d122963f46e8}{updateImpl}}(\mbox{\hyperlink{a00357_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message) \textcolor{keyword}{final};}
-\DoxyCodeLine{37   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01780_a9c8c660297d060779e05303c63c1b4be}{updateImpl}}(\mbox{\hyperlink{a00357_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message, \textcolor{keyword}{const} std::string\& val) \textcolor{keyword}{final};}
-\DoxyCodeLine{45   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01780_a78f7ab50c3ad889e9dafe84ecc59bb9f}{updateImpl}}(\mbox{\hyperlink{a00357_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message, \textcolor{keywordtype}{int} val1, \textcolor{keyword}{const} std::string\& val2) \textcolor{keyword}{final};}
-\DoxyCodeLine{53   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01780_aca92cd9bf83a7575260a015a646aca8c}{updateImpl}}(\mbox{\hyperlink{a00357_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message, \textcolor{keywordtype}{int} val1, \textcolor{keywordtype}{double} val2) \textcolor{keyword}{final};}
-\DoxyCodeLine{54 }
-\DoxyCodeLine{55 \textcolor{keyword}{private}:}
-\DoxyCodeLine{56   \textcolor{keyword}{using }TimePoint = std::chrono::time\_point<std::chrono::high\_resolution\_clock>;}
-\DoxyCodeLine{57   TimePoint start\_\{\};}
-\DoxyCodeLine{58   TimePoint stop\_\{\};}
-\DoxyCodeLine{59   std::chrono::milliseconds duration\_\{\};}
-\DoxyCodeLine{60 \};}
-\DoxyCodeLine{61 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00278}{ikarus/controlroutines/adaptivestepsizing.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00275}{ikarus/controlroutines/controlinfos.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00284}{ikarus/controlroutines/pathfollowingfunctions.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00128}{ikarus/solver/nonlinearsolver/newtonraphsonwithscalarsubsidiaryfunction.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00125}{ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/nonlinopfactory.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00245}{ikarus/utils/observer/observer.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00239}{ikarus/utils/observer/observermessages.hh}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00375}{Ikarus}} \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{38   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS>}
+\DoxyCodeLine{39   \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} checkPathFollowingTemplates() \{}
+\DoxyCodeLine{40     \textcolor{keywordflow}{return} Concepts::PathFollowingStrategy<PF, typename NLS::NonLinearOperator, SubsidiaryArgs> and}
+\DoxyCodeLine{41            Concepts::AdaptiveStepSizingStrategy<ASS, NonLinearSolverInformation, SubsidiaryArgs,}
+\DoxyCodeLine{42                                                 std::remove\_cvref\_t<typename NLS::NonLinearOperator>> and}
+\DoxyCodeLine{43            Concepts::NonLinearSolverCheckForPathFollowing<NLS>;}
+\DoxyCodeLine{44   \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{77 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLS, \textcolor{keyword}{typename} PF = ArcLength, \textcolor{keyword}{typename} ASS = AdaptiveStepSizing::NoOp>}
+\DoxyCodeLine{78 \textcolor{keyword}{requires}(Impl::checkPathFollowingTemplates<NLS, PF, ASS>())}
+\DoxyCodeLine{79 \textcolor{keyword}{class} \mbox{\hyperlink{a01303}{PathFollowing}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01847}{IObservable<ControlMessages>}}}
+\DoxyCodeLine{80 \{}
+\DoxyCodeLine{81 \textcolor{keyword}{public}:}
+\DoxyCodeLine{83   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01303_a31b9c556cef2540c66676589b230ef5d}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Path following with "{}} + pathFollowingType\_.name()); \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{93   \mbox{\hyperlink{a01303_af73474b0eccdddd65e046ebe813566f9}{PathFollowing}}(\textcolor{keyword}{const} std::shared\_ptr<NLS>\& nls, \textcolor{keywordtype}{int} steps, \textcolor{keywordtype}{double} stepSize, PF pathFollowingType = \mbox{\hyperlink{a01311}{ArcLength}}\{\},}
+\DoxyCodeLine{94                 ASS adaptiveStepSizing = \{\})}
+\DoxyCodeLine{95       : nonLinearSolver\_\{nls\},}
+\DoxyCodeLine{96         steps\_\{steps\},}
+\DoxyCodeLine{97         stepSize\_\{stepSize\},}
+\DoxyCodeLine{98         pathFollowingType\_\{pathFollowingType\},}
+\DoxyCodeLine{99         adaptiveStepSizing\_\{adaptiveStepSizing\} \{\}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{106   ControlInformation run();}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108   \textcolor{comment}{/* \(\backslash\)brief returns the nonlinear solver */}}
+\DoxyCodeLine{109   NLS\& \mbox{\hyperlink{a01303_a2328797dde819d93175e4552880d8d3e}{nonlinearSolver}}() \{ \textcolor{keywordflow}{return} *nonLinearSolver\_; \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{keyword}{private}:}
+\DoxyCodeLine{112   std::shared\_ptr<NLS> nonLinearSolver\_;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114   \textcolor{keywordtype}{int} steps\_;}
+\DoxyCodeLine{115   \textcolor{keywordtype}{double} stepSize\_;}
+\DoxyCodeLine{116   PF pathFollowingType\_;}
+\DoxyCodeLine{117   ASS adaptiveStepSizing\_;}
+\DoxyCodeLine{118 \};}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00269}{ikarus/controlroutines/pathfollowing.inl}}>}}
 
 \end{DoxyCode}

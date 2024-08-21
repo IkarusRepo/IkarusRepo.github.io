@@ -1,5 +1,5 @@
-\hypertarget{a00221_source}{}\doxysection{registerferequirements.\+hh}
-\label{a00221_source}\index{registerferequirements.hh@{registerferequirements.hh}}
+\hypertarget{a00221_source}{}\doxysection{feresulttypes.\+hh}
+\label{a00221_source}\index{feresulttypes.hh@{feresulttypes.hh}}
 \mbox{\hyperlink{a00221}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,49 +7,207 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00209}{ikarus/python/finiteelements/scalarwrapper.hh}}>}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00375}{Ikarus::Python}} \{}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{keyword}{template} <\textcolor{keyword}{class }FE, \textcolor{keyword}{class}... options>}
-\DoxyCodeLine{14 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00375_a32c3989a8ef1dbc581313ef17a0c6f5b}{registerFERequirement}}(pybind11::handle scope, pybind11::class\_<FE, options...> cls) \{}
-\DoxyCodeLine{15   \textcolor{keyword}{using }\mbox{\hyperlink{a01344}{FERequirements}}     = \textcolor{keyword}{typename} \mbox{\hyperlink{a01516_a86c0fea1b37e487f3c78cde6facca9c3}{FE::Requirement}};}
-\DoxyCodeLine{16   \textcolor{keyword}{using }SolutionVectorType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01344_a438e8f848c50755740ef8ee17620a284}{FERequirements::SolutionVectorType}};}
-\DoxyCodeLine{17   \textcolor{keyword}{using }ParameterType      = \textcolor{keyword}{typename} \mbox{\hyperlink{a01344_a50a1c42fc0b05811dfc370217fb70169}{FERequirements::ParameterType}};}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19   \textcolor{keyword}{using }ParameterType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01344_a50a1c42fc0b05811dfc370217fb70169}{FERequirements::ParameterType}};}
-\DoxyCodeLine{20   \textcolor{keyword}{using namespace }pybind11::literals;}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22   cls.def(}
-\DoxyCodeLine{23       \textcolor{stringliteral}{"{}createRequirement"{}}, [](pybind11::object \textcolor{comment}{/* self */}) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01344}{FERequirements}}(); \},}
-\DoxyCodeLine{24       pybind11::return\_value\_policy::copy);}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26   \textcolor{keyword}{auto} includes     = Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}ikarus/finiteelements/ferequirements.hh"{}}\};}
-\DoxyCodeLine{27   \textcolor{keyword}{auto} [req, isNew] = Dune::Python::insertClass<FERequirements>(}
-\DoxyCodeLine{28       scope, \textcolor{stringliteral}{"{}FERequirements"{}}, Dune::Python::GenerateTypeName(Dune::className<FERequirements>()), includes);}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <type\_traits>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00375}{Ikarus}} \{}
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} strainlike = false>}
+\DoxyCodeLine{22   \textcolor{keyword}{struct }VectorizeWithVoigt}
+\DoxyCodeLine{23   \{}
+\DoxyCodeLine{24     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{25     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& mat) \{}
+\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00371_ga4304655095296ce9283e012587817a51}{toVoigt}}(mat.derived(), strainlike);}
+\DoxyCodeLine{27     \}}
+\DoxyCodeLine{28   \};}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30   \textcolor{keywordflow}{if} (isNew) \{}
-\DoxyCodeLine{31     req.def(\mbox{\hyperlink{a00363_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}());}
-\DoxyCodeLine{32     req.def(pybind11::init<SolutionVectorType\&, ParameterType\&>());}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34     req.def(}
-\DoxyCodeLine{35         \textcolor{stringliteral}{"{}insertGlobalSolution"{}},}
-\DoxyCodeLine{36         [](\mbox{\hyperlink{a01344}{FERequirements}}\& self, SolutionVectorType solVec) \{ self.\mbox{\hyperlink{a01344_ada341483ec62ec030c03d43ab4bd86c9}{insertGlobalSolution}}(solVec); \},}
-\DoxyCodeLine{37         \textcolor{stringliteral}{"{}solutionVector"{}}\_a.noconvert());}
-\DoxyCodeLine{38     req.def(}
-\DoxyCodeLine{39         \textcolor{stringliteral}{"{}globalSolution"{}}, [](\mbox{\hyperlink{a01344}{FERequirements}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01344_a523ed390dfea00379b5b638e523ddb74}{globalSolution}}(); \},}
-\DoxyCodeLine{40         pybind11::return\_value\_policy::reference\_internal);}
-\DoxyCodeLine{41     req.def(}
-\DoxyCodeLine{42         \textcolor{stringliteral}{"{}insertParameter"{}},}
-\DoxyCodeLine{43         [](\mbox{\hyperlink{a01344}{FERequirements}}\& self, \mbox{\hyperlink{a01596}{ScalarWrapper<double>}}\& parVal) \{ self.\mbox{\hyperlink{a01344_aafb4ad2fa6c16a3845596f76e6cdeb16}{insertParameter}}(parVal.\mbox{\hyperlink{a01596_a0f885d047f898e549e8ece9cac3adea8}{value}}()); \},}
-\DoxyCodeLine{44         pybind11::keep\_alive<1, 2>(), \textcolor{stringliteral}{"{}parameterValue"{}}\_a.noconvert());}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     req.def(\textcolor{stringliteral}{"{}parameter"{}}, [](\textcolor{keyword}{const} \mbox{\hyperlink{a01344}{FERequirements}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01344_af11316c1f0fca6982a2d7497bc71a10c}{parameter}}(); \});}
-\DoxyCodeLine{47   \}}
-\DoxyCodeLine{48 \}}
-\DoxyCodeLine{49 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{30   \textcolor{keyword}{struct }VectorizeGeneric}
+\DoxyCodeLine{31   \{}
+\DoxyCodeLine{32     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{33     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& mat) \{}
+\DoxyCodeLine{34       \textcolor{keywordflow}{return} mat.derived().reshaped().eval();}
+\DoxyCodeLine{35     \}}
+\DoxyCodeLine{36   \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} strainlike = false>}
+\DoxyCodeLine{39   \textcolor{keyword}{struct }MatricizeWithVoigt}
+\DoxyCodeLine{40   \{}
+\DoxyCodeLine{41     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keywordtype}{int} RowsAtCompileTime, \textcolor{keywordtype}{int} ColsAtCompileTime>}
+\DoxyCodeLine{42     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& vec, \textcolor{keywordtype}{int} rows = RowsAtCompileTime,}
+\DoxyCodeLine{43                           \textcolor{keywordtype}{int} cols = ColsAtCompileTime) \{}
+\DoxyCodeLine{44       assert(rows == RowsAtCompileTime \&\& cols == ColsAtCompileTime \&\&}
+\DoxyCodeLine{45              \textcolor{stringliteral}{"{}Only the fixed size values work for voigt matrices and vectors"{}});}
+\DoxyCodeLine{46       \textcolor{keyword}{static\_assert}(RowsAtCompileTime != Eigen::Dynamic and ColsAtCompileTime != Eigen::Dynamic,}
+\DoxyCodeLine{47                     \textcolor{stringliteral}{"{}Voigt notation only available for fixed size vectors and matrices"{}});}
+\DoxyCodeLine{48       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00371_ga106e11a950fe2545890e811d2e9545fd}{fromVoigt}}(vec.derived(), strainlike);}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50   \};}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52   \textcolor{keyword}{struct }MatricizeGeneric}
+\DoxyCodeLine{53   \{}
+\DoxyCodeLine{54     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keywordtype}{int} RowsAtCompileTime, \textcolor{keywordtype}{int} ColsAtCompileTime>}
+\DoxyCodeLine{55     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& vec, \textcolor{keywordtype}{int} rows = RowsAtCompileTime,}
+\DoxyCodeLine{56                           \textcolor{keywordtype}{int} cols = ColsAtCompileTime) \{}
+\DoxyCodeLine{57       \textcolor{keywordflow}{return} vec.derived().reshaped(Eigen::fix<RowsAtCompileTime>(rows), Eigen::fix<ColsAtCompileTime>(cols)).eval();}
+\DoxyCodeLine{58     \}}
+\DoxyCodeLine{59   \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{namespace }ResultTypes \{}
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#define REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr, VectorizeStruct, \(\backslash\)}}
+\DoxyCodeLine{65 \textcolor{preprocessor}{                                 MatricizeStruct)                                                               \(\backslash\)}}
+\DoxyCodeLine{66 \textcolor{preprocessor}{  template <typename ScalarType, int gridDim, int worldDim>                                                     \(\backslash\)}}
+\DoxyCodeLine{67 \textcolor{preprocessor}{  struct resultTypeName                                                                                         \(\backslash\)}}
+\DoxyCodeLine{68 \textcolor{preprocessor}{  \{                                                                                                             \(\backslash\)}}
+\DoxyCodeLine{69 \textcolor{preprocessor}{    friend std::string toString(resultTypeName) \{ return \#resultTypeName; \}                                     \(\backslash\)}}
+\DoxyCodeLine{70 \textcolor{preprocessor}{                                                                                                                \(\backslash\)}}
+\DoxyCodeLine{71 \textcolor{preprocessor}{    using type       = Eigen::Matrix<ScalarType, rowsExpr, colsExpr, 0, MaxRowsExpr, MaxColsExpr>;              \(\backslash\)}}
+\DoxyCodeLine{72 \textcolor{preprocessor}{    using Vectorizer = VectorizeStruct;                                                                         \(\backslash\)}}
+\DoxyCodeLine{73 \textcolor{preprocessor}{    using Matricizer = MatricizeStruct;                                                                         \(\backslash\)}}
+\DoxyCodeLine{74 \textcolor{preprocessor}{                                                                                                                \(\backslash\)}}
+\DoxyCodeLine{75 \textcolor{preprocessor}{    template <typename ScalarType\_, int gridDim\_, int worldDim\_>                                                \(\backslash\)}}
+\DoxyCodeLine{76 \textcolor{preprocessor}{    using Rebind = resultTypeName<ScalarType\_, gridDim\_, worldDim\_>;                                            \(\backslash\)}}
+\DoxyCodeLine{77 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{86 \textcolor{preprocessor}{\#define REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, strainlike) \(\backslash\)}}
+\DoxyCodeLine{87 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, rowsExpr, colsExpr,           \(\backslash\)}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{                           Ikarus::Impl::VectorizeWithVoigt<strainlike>, Ikarus::Impl::MatricizeWithVoigt<strainlike>)}}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#define REGISTER\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr)                                \(\backslash\)}}
+\DoxyCodeLine{98 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, Ikarus::Impl::VectorizeGeneric, \(\backslash\)}}
+\DoxyCodeLine{99 \textcolor{preprocessor}{                           Ikarus::Impl::MatricizeGeneric)}}
+\DoxyCodeLine{109 \textcolor{preprocessor}{\#define REGISTER\_RESERVED\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr) \(\backslash\)}}
+\DoxyCodeLine{110 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr,           \(\backslash\)}}
+\DoxyCodeLine{111 \textcolor{preprocessor}{                           Ikarus::Impl::VectorizeGeneric, Ikarus::Impl::MatricizeGeneric)}}
+\DoxyCodeLine{119 \textcolor{preprocessor}{\#define REGISTER\_SIMPLE\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr) \(\backslash\)}}
+\DoxyCodeLine{120 \textcolor{preprocessor}{  REGISTER\_RESERVED\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, rowsExpr, colsExpr)}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125   \mbox{\hyperlink{a00381_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(linearStress, worldDim, worldDim, \textcolor{keyword}{false});}
+\DoxyCodeLine{126   \mbox{\hyperlink{a00381_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(PK2Stress, worldDim, worldDim, \textcolor{keyword}{false});}
+\DoxyCodeLine{127   \mbox{\hyperlink{a00381_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(cauchyStress, worldDim, worldDim, \textcolor{keyword}{false});}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(director, worldDim, 1);}
+\DoxyCodeLine{130   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(magnetization, worldDim, 1);}
+\DoxyCodeLine{131   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(gradientNormOfMagnetization, 1, 1);}
+\DoxyCodeLine{132   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(vectorPotential, worldDim, 1);}
+\DoxyCodeLine{133   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(divergenceOfVectorPotential, 1, 1);}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(BField, worldDim, 1);}
+\DoxyCodeLine{136   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(HField, worldDim, 1);}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(cauchyAxialForce, 1, 1);}
+\DoxyCodeLine{139   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(PK2AxialForce, 1, 1);}
+\DoxyCodeLine{140   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(linearAxialForce, 1, 1);}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142   \mbox{\hyperlink{a00381_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(customType, Eigen::Dynamic, Eigen::Dynamic);}
+\DoxyCodeLine{143 \} \textcolor{comment}{// namespace ResultTypes}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00375_acfb09bb7db104db62d3d1d2dc3e009b2}{ResultShape}}}
+\DoxyCodeLine{146 \{}
+\DoxyCodeLine{147   \mbox{\hyperlink{a00375_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{Vector}},}
+\DoxyCodeLine{148   \mbox{\hyperlink{a00375_acfb09bb7db104db62d3d1d2dc3e009b2af53df0293e169f562bc1d9a20e1d2589}{Matrix}}}
+\DoxyCodeLine{149 \};}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{157 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RT, ResultShape storedResultShape = ResultShape::Vector>}
+\DoxyCodeLine{158 \textcolor{keyword}{struct }\mbox{\hyperlink{a01383}{ResultWrapper}} : RT}
+\DoxyCodeLine{159 \{}
+\DoxyCodeLine{160 \textcolor{keyword}{private}:}
+\DoxyCodeLine{161   \textcolor{keyword}{using }ResultTypeValueType                       = \textcolor{keyword}{typename} RT::type;}
+\DoxyCodeLine{162   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} Eigen::Index rowsAtCompileTime = ResultTypeValueType::RowsAtCompileTime;}
+\DoxyCodeLine{163   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} Eigen::Index colsAtCompileTime = ResultTypeValueType::ColsAtCompileTime;}
+\DoxyCodeLine{164   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} storedValueIsVector       = storedResultShape == \mbox{\hyperlink{a00375_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{ResultShape::Vector}};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 \textcolor{keyword}{public}:}
+\DoxyCodeLine{167   \textcolor{keyword}{using }\mbox{\hyperlink{a01383_ad2e94e390a1a328d7abd8006f29dbbd2}{VecType}} = std::invoke\_result\_t<\textcolor{keyword}{decltype}(\&RT::Vectorizer::template transform<ResultTypeValueType>),}
+\DoxyCodeLine{168                                        \textcolor{keyword}{const} ResultTypeValueType\&>;}
+\DoxyCodeLine{169   \textcolor{keyword}{using }\mbox{\hyperlink{a01383_a3be8a4f7e4b67bc2bb90a826c1ed7c85}{MatType}} =}
+\DoxyCodeLine{170       std::invoke\_result\_t<\textcolor{keyword}{decltype}(\&RT::Matricizer::template transform<VecType, rowsAtCompileTime, colsAtCompileTime>),}
+\DoxyCodeLine{171                            \textcolor{keyword}{const} \mbox{\hyperlink{a01383_ad2e94e390a1a328d7abd8006f29dbbd2}{VecType}}\&, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}>;}
+\DoxyCodeLine{172   \textcolor{keyword}{using }\mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}} = std::conditional\_t<storedValueIsVector, VecType, MatType>;}
+\DoxyCodeLine{173   \textcolor{keyword}{using }\mbox{\hyperlink{a01383_aef0efc55342d144366f8eddbc6fe00f9}{ResultType}} = RT;}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{179   \textcolor{keyword}{auto} \mbox{\hyperlink{a01383_ae1be56ef0981f28e1dfa4f77453251d3}{asVec}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{180     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (storedValueIsVector)}
+\DoxyCodeLine{181       \textcolor{keywordflow}{return} value\_;}
+\DoxyCodeLine{182     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{183       \textcolor{keywordflow}{return} RT::Vectorizer::transform(value\_);}
+\DoxyCodeLine{184   \}}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{192   \textcolor{keyword}{auto} \mbox{\hyperlink{a01383_ae5c30a9c8da8fe6bb01b1cee0fc43155}{asMat}}(Eigen::Index rows = rowsAtCompileTime, Eigen::Index cols = colsAtCompileTime)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{193     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (storedValueIsVector) \{}
+\DoxyCodeLine{194       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (rowsAtCompileTime == Eigen::Dynamic)}
+\DoxyCodeLine{195         assert(rows != rowsAtCompileTime \&\&}
+\DoxyCodeLine{196                \textcolor{stringliteral}{"{}For dynamic size result types you have to pass rows by hand, since it is not clear how the result "{}}}
+\DoxyCodeLine{197                \textcolor{stringliteral}{"{}should be reshaped"{}});}
+\DoxyCodeLine{198       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (colsAtCompileTime == Eigen::Dynamic)}
+\DoxyCodeLine{199         assert(cols != colsAtCompileTime \&\&}
+\DoxyCodeLine{200                \textcolor{stringliteral}{"{}For dynamic size result types you have to pass cols by hand, since it is not clear how the result "{}}}
+\DoxyCodeLine{201                \textcolor{stringliteral}{"{}should be reshaped"{}});}
+\DoxyCodeLine{202       \textcolor{keywordflow}{return} RT::Matricizer::template transform<VecType, rowsAtCompileTime, colsAtCompileTime>(value\_, rows, cols);}
+\DoxyCodeLine{203     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{204       \textcolor{keywordflow}{return} value\_;}
+\DoxyCodeLine{205   \}}
+\DoxyCodeLine{206   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01383_a826dcccf70e97474b01126970e2839ac}{ResultWrapper}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{207   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01383_a623510c28007eb075ed7719de10562b2}{ResultWrapper}}(\mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\&\& value) \{ this-\/>value\_ = std::move(value); \}}
+\DoxyCodeLine{208   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01383_ae3ec0250a8cce10dae2b6eacec3ffe11}{ResultWrapper}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\& value) \{ this-\/>value\_ = value; \}}
+\DoxyCodeLine{209   \mbox{\hyperlink{a01383}{ResultWrapper}}\& \mbox{\hyperlink{a01383_adbc957bfc9a97390ce57d778dd7c91a1}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\& value) \{}
+\DoxyCodeLine{210     this-\/>value\_ = value;}
+\DoxyCodeLine{211     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{212   \}}
+\DoxyCodeLine{213   \mbox{\hyperlink{a01383}{ResultWrapper}}\& \mbox{\hyperlink{a01383_a6a1deb7c814879d79eaa5fe467666b2f}{operator=}}(\mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\&\& value) \{}
+\DoxyCodeLine{214     this-\/>value\_ = std::move(value);}
+\DoxyCodeLine{215     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{216   \}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{218 \textcolor{keyword}{private}:}
+\DoxyCodeLine{219   \mbox{\hyperlink{a01383_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}} value\_\{\};}
+\DoxyCodeLine{220 \};}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{223   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
+\DoxyCodeLine{224   \textcolor{keyword}{using }DummyRT = RT<double, 1, 1>;}
+\DoxyCodeLine{225 \}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{232 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
+\DoxyCodeLine{233 \textcolor{keyword}{auto} \mbox{\hyperlink{a00375_a38629395c2d43ba44328b01ce0c0daf3}{makeRT}}() \{}
+\DoxyCodeLine{234   \textcolor{keywordflow}{return} Impl::DummyRT<RT>\{\};}
+\DoxyCodeLine{235 \}}
+\DoxyCodeLine{236 }
+\DoxyCodeLine{242 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
+\DoxyCodeLine{243 \textcolor{keyword}{auto} \mbox{\hyperlink{a00375_aef80b6b5b45dcfbea4f722f51a84f53f}{toString}}() \{}
+\DoxyCodeLine{244   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00375_aef80b6b5b45dcfbea4f722f51a84f53f}{toString}}(Impl::DummyRT<RT>\{\});}
+\DoxyCodeLine{245 \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{252 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT1, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT2>}
+\DoxyCodeLine{253 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00375_aae9d6a05f2ca4f54c0524404e27e7ed1}{isSameResultType}} = std::is\_same\_v<Impl::DummyRT<RT1>, Impl::DummyRT<RT2>>;}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{256   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Tuple>}
+\DoxyCodeLine{257   \textcolor{keyword}{struct }hasType;}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Us>}
+\DoxyCodeLine{260   \textcolor{keyword}{struct }hasType<T, \mbox{\hyperlink{a00374}{std}}::tuple<Us...>> : std::disjunction<std::is\_same<T, Us>...>}
+\DoxyCodeLine{261   \{}
+\DoxyCodeLine{262   \};}
+\DoxyCodeLine{263 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{270 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{typename}... ResultTypes>}
+\DoxyCodeLine{271 \textcolor{keyword}{struct }\mbox{\hyperlink{a01395}{ResultTypeBase}}}
+\DoxyCodeLine{272 \{}
+\DoxyCodeLine{277   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{typename} RT>}
+\DoxyCodeLine{278   \textcolor{keyword}{static} \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01395_af33553a01e6940265639d561c31b7746}{supportsResultType}}() \{}
+\DoxyCodeLine{279     \textcolor{keywordflow}{return} Impl::hasType<decltype(makeRT<RT>()), \mbox{\hyperlink{a01395_ac43d0000154d9bd08d7fdce3c279ccbb}{SupportedResultTypes}}>::value;}
+\DoxyCodeLine{280   \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282   \textcolor{keyword}{using }\mbox{\hyperlink{a01395_ac43d0000154d9bd08d7fdce3c279ccbb}{SupportedResultTypes}} = std::tuple<decltype(makeRT<ResultTypes>())...>;}
+\DoxyCodeLine{283 \};}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

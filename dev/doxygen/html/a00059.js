@@ -1,4 +1,4 @@
 var a00059 =
 [
-    [ "findLineSegment", "a00059.html#ga16e7d5f51cc42190c090e727495c1609", null ]
+    [ "getLinearIndex", "a00059.html#a6cfefe8fc3c51b09b7633cf8397a67e9", null ]
 ];
