@@ -9,5 +9,5 @@ var searchData=
   ['precision_6',['precision',['../a01591.html#aa2ce1b66145ac6962be8189061f42d45',1,'Ikarus::ResultFunction']]],
   ['printcontent_7',['printContent',['../a00372.html#ga2b7954c72a2393ab7494fa0b66d828cd',1,'Ikarus::utils']]],
   ['printformaple_8',['printForMaple',['../a00370.html#ga40c08050aff1e3e49e58c7823ecbcc77',1,'Ikarus']]],
-  ['pybind11_5fmodule_9',['PYBIND11_MODULE',['../a00338.html#a0e4f7cface71bec1c24bbed3aaa798d8',1,'PYBIND11_MODULE(_ikarus, m):&#160;_ikarus.cc'],['../a00341.html#aeae996450d718aa6de0ec99fdf1eb18c',1,'PYBIND11_MODULE(_io, m):&#160;_io.cc']]]
+  ['pybind11_5fmodule_9',['PYBIND11_MODULE',['../a00338.html#a0e4f7cface71bec1c24bbed3aaa798d8',1,'_ikarus.cc']]]
 ];
