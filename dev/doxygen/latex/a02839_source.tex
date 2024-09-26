@@ -1,0 +1,113 @@
+\hypertarget{a02839_source}{}\doxysection{python/ikarus/materials/materials.hh}
+\label{a02839_source}\index{materials.hh@{materials.hh}}
+\mbox{\hyperlink{a02839}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}../pythonhelpers.hh"{}}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/python/pybind11/operators.h>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02836}{ikarus/finiteelements/mechanics/materials.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00224}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00131}{ikarus/python/finiteelements/material.hh}}>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00372_ga2c5ed0e112e5ea2865689ad21282c5e6}{addMaterialsSubModule}}(pybind11::module\& m) \{}
+\DoxyCodeLine{17   \textcolor{keyword}{namespace }py = pybind11;}
+\DoxyCodeLine{18   \textcolor{keyword}{using namespace }pybind11::literals;}
+\DoxyCodeLine{19   \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00384}{Ikarus}};}
+\DoxyCodeLine{20   \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00396}{Eigen}};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22   \textcolor{keyword}{auto} materials = m.def\_submodule(\textcolor{stringliteral}{"{}materials"{}}, \textcolor{stringliteral}{"{}This is the submodule for materials in Ikarus"{}});}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24   \mbox{\hyperlink{a00344_a4f679b27b8832c36acea41eab8e0d0bc}{ENUM\_BINDINGS\_WITH\_MODULE}}(\mbox{\hyperlink{a00373_gacef1e451de1a99845c59d7391064fb8f}{StrainTags}}, materials);}
+\DoxyCodeLine{25   \mbox{\hyperlink{a00344_a4f679b27b8832c36acea41eab8e0d0bc}{ENUM\_BINDINGS\_WITH\_MODULE}}(\mbox{\hyperlink{a00373_ga70b4ce43c53cc5e949d49919f437501e}{StressTags}}, materials);}
+\DoxyCodeLine{26   \mbox{\hyperlink{a00344_a4f679b27b8832c36acea41eab8e0d0bc}{ENUM\_BINDINGS\_WITH\_MODULE}}(\mbox{\hyperlink{a00373_ga05ac785124262c1e323d2f937d520a1b}{TangentModuliTags}}, materials);}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   pybind11::class\_<LinearElasticity> linElastic(materials, \textcolor{stringliteral}{"{}LinearElasticity"{}});}
+\DoxyCodeLine{29   Ikarus::Python::registerLinearElasticity(materials, linElastic);}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   pybind11::class\_<StVenantKirchhoff> svk(materials, \textcolor{stringliteral}{"{}StVenantKirchhoff"{}});}
+\DoxyCodeLine{32   Ikarus::Python::registerStVenantKirchhoff(materials, svk);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   pybind11::class\_<NeoHooke> nh(materials, \textcolor{stringliteral}{"{}NeoHooke"{}});}
+\DoxyCodeLine{35   Ikarus::Python::registerNeoHooke(materials, nh);}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{47   materials.def(}
+\DoxyCodeLine{48       \textcolor{stringliteral}{"{}transformStrain"{}},}
+\DoxyCodeLine{49       [](\mbox{\hyperlink{a00373_gacef1e451de1a99845c59d7391064fb8f}{StrainTags}} from, \mbox{\hyperlink{a00373_gacef1e451de1a99845c59d7391064fb8f}{StrainTags}} to, Eigen::MatrixXd E) -\/> Eigen::MatrixXd \{}
+\DoxyCodeLine{50         \textcolor{keyword}{auto} callTransformStrain =}
+\DoxyCodeLine{51             []<\mbox{\hyperlink{a00373_gacef1e451de1a99845c59d7391064fb8f}{StrainTags}} from\_, \mbox{\hyperlink{a00373_gacef1e451de1a99845c59d7391064fb8f}{StrainTags}} to\_>(\textcolor{keyword}{const} Eigen::MatrixXd\& eRaw) -\/> Eigen::MatrixXd \{}
+\DoxyCodeLine{52           \textcolor{keywordflow}{if} (eRaw.cols() == 1) \{}
+\DoxyCodeLine{53             Eigen::Vector<double, 6> E = eRaw;}
+\DoxyCodeLine{54             \textcolor{keywordflow}{return} transformStrain<from\_, to\_>(E);}
+\DoxyCodeLine{55           \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{56             Eigen::Matrix<double, 3, 3> E = eRaw;}
+\DoxyCodeLine{57             \textcolor{keywordflow}{return} transformStrain<from\_, to\_>(E);}
+\DoxyCodeLine{58           \}}
+\DoxyCodeLine{59         \};}
+\DoxyCodeLine{60         \textcolor{keywordflow}{if} (!((E.rows() == 3 \&\& E.cols() == 3) || (E.rows() == 6 \&\& E.cols() == 1)))}
+\DoxyCodeLine{61           DUNE\_THROW(Dune::IOError,}
+\DoxyCodeLine{62                      \textcolor{stringliteral}{"{}Strain conversions are only implemented for matrices of dimension 3 or Voigt vectors of size 6"{}});}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64         \textcolor{keywordflow}{if} (from == StrainTags::linear) \{}
+\DoxyCodeLine{65           spdlog::warn(\textcolor{stringliteral}{"{}No useful transformation available for linear strains"{}});}
+\DoxyCodeLine{66           \textcolor{keywordflow}{return} E;}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68         \textcolor{keywordflow}{if} (from == to)}
+\DoxyCodeLine{69           \textcolor{keywordflow}{return} E;}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71         \textcolor{keywordflow}{if} (to == StrainTags::greenLagrangian) \{}
+\DoxyCodeLine{72           \textcolor{keywordflow}{switch} (from) \{}
+\DoxyCodeLine{73             \textcolor{keywordflow}{case} StrainTags::deformationGradient:}
+\DoxyCodeLine{74               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{75                   .template operator()<StrainTags::deformationGradient, StrainTags::greenLagrangian>(E);}
+\DoxyCodeLine{76             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{Ikarus::StrainTags::displacementGradient}}:}
+\DoxyCodeLine{77               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{78                   .template operator()<StrainTags::displacementGradient, StrainTags::greenLagrangian>(E);}
+\DoxyCodeLine{79             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{Ikarus::StrainTags::rightCauchyGreenTensor}}:}
+\DoxyCodeLine{80               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{81                   .template operator()<StrainTags::rightCauchyGreenTensor, StrainTags::greenLagrangian>(E);}
+\DoxyCodeLine{82             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{83               \_\_builtin\_unreachable();}
+\DoxyCodeLine{84           \}}
+\DoxyCodeLine{85         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (to == StrainTags::deformationGradient) \{}
+\DoxyCodeLine{86           \textcolor{keywordflow}{switch} (from) \{}
+\DoxyCodeLine{87             \textcolor{keywordflow}{case} StrainTags::greenLagrangian:}
+\DoxyCodeLine{88               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{89                   .template operator()<StrainTags::greenLagrangian, StrainTags::deformationGradient>(E);}
+\DoxyCodeLine{90             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{Ikarus::StrainTags::displacementGradient}}:}
+\DoxyCodeLine{91               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{92                   .template operator()<StrainTags::displacementGradient, StrainTags::deformationGradient>(E);}
+\DoxyCodeLine{93             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{Ikarus::StrainTags::rightCauchyGreenTensor}}:}
+\DoxyCodeLine{94               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{95                   .template operator()<StrainTags::rightCauchyGreenTensor, StrainTags::deformationGradient>(E);}
+\DoxyCodeLine{96             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{97               \_\_builtin\_unreachable();}
+\DoxyCodeLine{98           \}}
+\DoxyCodeLine{99         \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (to == StrainTags::rightCauchyGreenTensor) \{}
+\DoxyCodeLine{100           \textcolor{keywordflow}{switch} (from) \{}
+\DoxyCodeLine{101             \textcolor{keywordflow}{case} StrainTags::greenLagrangian:}
+\DoxyCodeLine{102               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{103                   .template operator()<StrainTags::greenLagrangian, StrainTags::rightCauchyGreenTensor>(E);}
+\DoxyCodeLine{104             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{Ikarus::StrainTags::displacementGradient}}:}
+\DoxyCodeLine{105               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{106                   .template operator()<StrainTags::displacementGradient, StrainTags::rightCauchyGreenTensor>(E);}
+\DoxyCodeLine{107             \textcolor{keywordflow}{case} \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{Ikarus::StrainTags::deformationGradient}}:}
+\DoxyCodeLine{108               \textcolor{keywordflow}{return} callTransformStrain}
+\DoxyCodeLine{109                   .template operator()<StrainTags::deformationGradient, StrainTags::rightCauchyGreenTensor>(E);}
+\DoxyCodeLine{110             \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{111               \_\_builtin\_unreachable();}
+\DoxyCodeLine{112           \}}
+\DoxyCodeLine{113         \}}
+\DoxyCodeLine{114         \_\_builtin\_unreachable();}
+\DoxyCodeLine{115       \},}
+\DoxyCodeLine{116       py::arg(\textcolor{stringliteral}{"{}to"{}}), py::arg(\textcolor{stringliteral}{"{}from"{}}), py::arg(\textcolor{stringliteral}{"{}strain"{}}));}
+\DoxyCodeLine{117 \}}
+
+\end{DoxyCode}

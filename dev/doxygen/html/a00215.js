@@ -1,5 +1,5 @@
 var a00215 =
 [
-    [ "Ikarus::PreFE< BH, useFlat, useEigenRef >", "a01331.html", "a01331" ],
-    [ "Ikarus::FE< PreFE, Skills >", "a01327.html", "a01327" ]
+    [ "makeVanishingStrain", "a00215.html#af0e4adcb39849a06f5bb268ccb157768", null ],
+    [ "planeStrain", "a00215.html#a7eab44c25129e4c2dfdf111fdef25a43", null ]
 ];

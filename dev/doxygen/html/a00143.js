@@ -1,6 +1,5 @@
 var a00143 =
 [
-    [ "globalIndices", "a00143.html#a44e16df41148f7e4538be224814a3423", null ],
-    [ "globalIndicesFromLocalView", "a00143.html#a2a4ac5503d4288b339457aae427ff661", null ],
-    [ "localSolutionBlockVector", "a00143.html#a899043a23720a93e6ce9be9025c3a4bb", null ]
+    [ "registerCalculateAt", "a00143.html#a0c58c17676c73945cb11eff8a80309ae", null ],
+    [ "registerFE", "a00143.html#gac8bb4a818dee7342efbc5e174e35b840", null ]
 ];

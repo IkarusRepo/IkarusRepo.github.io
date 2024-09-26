@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: nonlinearelastic.hh File Reference</title>
+    <title>ikarus: physicshelper.hh File Reference</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -155,54 +155,77 @@ $(document).ready(function(){initNavTree('a00200.html',''); initResizable(); });
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#concepts">Concepts</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">nonlinearelastic.hh File Reference<div class="ingroups"><a class="el" href="a00356.html">Ikarus Modules</a> &raquo; <a class="el" href="a00359.html">Finite Elements</a> &raquo; <a class="el" href="a00360.html">Mechanics</a></div></div></div>
+  <div class="headertitle"><div class="title">physicshelper.hh File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Definition of the NonLinearElastic class for finite element mechanics computations.  
+<p>Material property functions and conversion utilities.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;dune/fufem/boundarypatch.hh&gt;</code><br />
-<code>#include &lt;dune/geometry/quadraturerules.hh&gt;</code><br />
-<code>#include &lt;dune/geometry/type.hh&gt;</code><br />
-<code>#include &lt;dune/localfefunctions/cachedlocalBasis/cachedlocalBasis.hh&gt;</code><br />
-<code>#include &lt;dune/localfefunctions/expressions/greenLagrangeStrains.hh&gt;</code><br />
-<code>#include &lt;dune/localfefunctions/impl/standardLocalFunction.hh&gt;</code><br />
-<code>#include &lt;dune/localfefunctions/manifolds/realTuple.hh&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00215_source.html">ikarus/finiteelements/febase.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00143_source.html">ikarus/finiteelements/fehelper.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00218_source.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00161_source.html">ikarus/finiteelements/mechanics/loads.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00176_source.html">ikarus/finiteelements/mechanics/materials/tags.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00212_source.html">ikarus/finiteelements/physicshelper.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00005_source.html">ikarus/utils/defaultfunctions.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00062_source.html">ikarus/utils/eigendunetransformations.hh</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="a00038_source.html">ikarus/utils/linearalgebrahelper.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;dune/common/float_cmp.hh&gt;</code><br />
+<code>#include &lt;Eigen/Core&gt;</code><br />
 </div>
 <p><a href="a00200_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01515.html">Ikarus::NonLinearElasticPre&lt; MAT &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="a01331.html" title="PreFE struct acts as a convenient wrapper for the FE class to access different type traits.">PreFE</a> struct for non-linear elastic elements.  <a href="a01515.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01564.html">Ikarus::YoungsModulusAndPoissonsRatio</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">see <a href="https://en.wikipedia.org/wiki/Lam%C3%A9_parameters">https://en.wikipedia.org/wiki/Lam%C3%A9_parameters</a> Structure representing Young's modulus and shear modulus.  <a href="a01564.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01511.html">Ikarus::NonLinearElastic&lt; PreFE, FE, PRE &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="a01511.html" title="NonLinearElastic class represents a non-linear elastic finite element.">NonLinearElastic</a> class represents a non-linear elastic finite element.  <a href="a01511.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01568.html">Ikarus::YoungsModulusAndShearModulus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing Young's modulus and bulk modulus.  <a href="a01568.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01572.html">Ikarus::YoungsModulusAndBulkModulus</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing Young's modulus and Lame's first parameter.  <a href="a01572.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01576.html">Ikarus::YoungsModulusAndLamesFirstParameter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing bulk modulus and Lame's first parameter.  <a href="a01576.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01580.html">Ikarus::BulkModulusAndLamesFirstParameter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure representing Lame's first parameter and shear modulus.  <a href="a01580.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01584.html">Ikarus::LamesFirstParameterAndShearModulus</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01588.html">Ikarus::ConvertLameConstants&lt; ValuePair &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversion utility for Lame's constants.  <a href="a01588.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:a00375"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00375.html">Ikarus</a></td></tr>
+<tr class="memitem:a00384"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html">Ikarus</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01923.html">Ikarus::MPTuple</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Concept for checking if a type is a valid material parameter tuple. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6f028adf5a1a78301381fe92b241d550"><td class="memTemplParams" colspan="2">template&lt;typename MAT &gt; </td></tr>
-<tr class="memitem:a6f028adf5a1a78301381fe92b241d550"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00375.html#a6f028adf5a1a78301381fe92b241d550">Ikarus::nonLinearElastic</a> (const MAT &amp;mat)</td></tr>
-<tr class="memdesc:a6f028adf5a1a78301381fe92b241d550"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper function to create a non-linear elastic pre finite element.  <a href="a00375.html#a6f028adf5a1a78301381fe92b241d550">More...</a><br /></td></tr>
-<tr class="separator:a6f028adf5a1a78301381fe92b241d550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e27551f9edaebc557108aa164899b54"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; YoungsModulusAndPoissonsRatio &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a5e27551f9edaebc557108aa164899b54">Ikarus::convertLameConstants</a> (const YoungsModulusAndPoissonsRatio &amp;valuePair)</td></tr>
+<tr class="separator:a5e27551f9edaebc557108aa164899b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a85c01d9e8f0e2adff8035087485109"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; YoungsModulusAndShearModulus &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a6a85c01d9e8f0e2adff8035087485109">Ikarus::convertLameConstants</a> (const YoungsModulusAndShearModulus &amp;valuePair)</td></tr>
+<tr class="separator:a6a85c01d9e8f0e2adff8035087485109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80fc80be73cb847542e1b7c5bde5af6"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; YoungsModulusAndBulkModulus &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#ad80fc80be73cb847542e1b7c5bde5af6">Ikarus::convertLameConstants</a> (const YoungsModulusAndBulkModulus &amp;valuePair)</td></tr>
+<tr class="separator:ad80fc80be73cb847542e1b7c5bde5af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5648541007a5e5bb89c1f64ec2da92"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; LamesFirstParameterAndShearModulus &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#aec5648541007a5e5bb89c1f64ec2da92">Ikarus::convertLameConstants</a> (const LamesFirstParameterAndShearModulus &amp;valuePair)</td></tr>
+<tr class="separator:aec5648541007a5e5bb89c1f64ec2da92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c72e37743694391da18e64618a7c799"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; BulkModulusAndLamesFirstParameter &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a8c72e37743694391da18e64618a7c799">Ikarus::convertLameConstants</a> (const BulkModulusAndLamesFirstParameter &amp;valuePair)</td></tr>
+<tr class="separator:a8c72e37743694391da18e64618a7c799"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e7b46d2ddcd68dfe864489ffb003ca3"><td class="memItemLeft" align="right" valign="top">ConvertLameConstants&lt; YoungsModulusAndLamesFirstParameter &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a4e7b46d2ddcd68dfe864489ffb003ca3">Ikarus::convertLameConstants</a> (const YoungsModulusAndLamesFirstParameter &amp;valuePair)</td></tr>
+<tr class="separator:a4e7b46d2ddcd68dfe864489ffb003ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32940ef922d090491ffcaa9bf2a44aef"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a32940ef922d090491ffcaa9bf2a44aef">Ikarus::toLamesFirstParameterAndShearModulus</a> (const YoungsModulusAndPoissonsRatio &amp;matParameter)</td></tr>
+<tr class="memdesc:a32940ef922d090491ffcaa9bf2a44aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Young's modulus and Poisson's ratio to Lame's first parameter and shear modulus.  <a href="a00384.html#a32940ef922d090491ffcaa9bf2a44aef">More...</a><br /></td></tr>
+<tr class="separator:a32940ef922d090491ffcaa9bf2a44aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4161393d679e5ec44806e6e911e26dee"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00384.html#a4161393d679e5ec44806e6e911e26dee">Ikarus::toYoungsModulusAndPoissonsRatio</a> (const LamesFirstParameterAndShearModulus &amp;matParameter)</td></tr>
+<tr class="memdesc:a4161393d679e5ec44806e6e911e26dee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts Lame's first parameter and shear modulus to Young's modulus and Poisson's ratio.  <a href="a00384.html#a4161393d679e5ec44806e6e911e26dee">More...</a><br /></td></tr>
+<tr class="separator:a4161393d679e5ec44806e6e911e26dee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >This file contains material property functions and conversion utilities related to linear elasticity. </p>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
 SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de
@@ -212,7 +235,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="dir_d9d7fab038fcca5270fe0241ec433d4d.html">mechanics</a></li><li class="navelem"><a class="el" href="a00200.html">nonlinearelastic.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00200.html">physicshelper.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

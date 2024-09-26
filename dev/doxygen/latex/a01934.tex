@@ -1,8 +1,8 @@
-\hypertarget{a01934}{}\doxysection{Ikarus\+::Concepts\+::Is\+Functor\+With\+Args Concept Reference}
-\label{a01934}\index{Ikarus::Concepts::IsFunctorWithArgs@{Ikarus::Concepts::IsFunctorWithArgs}}
+\hypertarget{a01934}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01934}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept defining the requirements for functors with arguments.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,8 +12,12 @@ Concept defining the requirements for functors with arguments.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} Op, \textcolor{keyword}{typename}... Args>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01934}{Ikarus::Concepts::IsFunctorWithArgs}} =  \textcolor{keyword}{requires}(Op op, Args... args) \{ op(args...); \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ASS, \textcolor{keyword}{typename} NLSI, \textcolor{keyword}{typename} SA, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01934}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(ASS adaptiveStepSizing, NLSI info, SA args, \mbox{\hyperlink{a00384_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}} nop) \{}
+\DoxyCodeLine{    \{ adaptiveStepSizing(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,8 +25,10 @@ Concept defining the requirements for functors with arguments.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Op} & Type of the functor. \\
+{\em ASS} & The adaptive step sizing type. \\
 \hline
-{\em Args} & Types of the arguments. \\
+{\em NLSI} & The non-\/linear solver information type. \\
+\hline
+{\em SA} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}

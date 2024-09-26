@@ -1,8 +1,9 @@
 var a00131 =
 [
-    [ "Ikarus::NRSettings", "a01663.html", "a01663" ],
-    [ "Ikarus::NewtonRaphsonConfig< LS, UF >", "a01667.html", "a01667" ],
-    [ "createNonlinearSolver", "a00131.html#a66b45c139b5d57965ada53d92d8f93ce", null ],
-    [ "makeNewtonRaphson", "a00131.html#afa463e708cffd14133ff65ffa366e329", null ],
-    [ "NewtonRaphson", "a00131.html#acff40d61279eba58e16c3889d8c0a5f1", null ]
+    [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00131.html#a3b167811a24da0f84173e9309cb1fdb9", null ],
+    [ "MAKE_MaterialFunction", "a00131.html#a52604789ad84df5cf20d4571f90af39e", null ],
+    [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00131.html#a2cdc302115d5d01f08f150303127978d", null ],
+    [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00131.html#a20c0ab75a990e72f965df8d8172c99b6", null ],
+    [ "MAKE_MATERIAL_REGISTERY_FUNCTION", "a00131.html#a3d042e3d4c085fd281a2d263ece077ee", null ],
+    [ "registerMaterial", "a00131.html#a3a4831265d4a775b43c50c25242a2910", null ]
 ];

@@ -1,4 +1,4 @@
 var a00032 =
 [
-    [ "Ikarus::NonLinearOperatorFactory", "a01823.html", "a01823" ]
+    [ "getLinearIndex", "a00032.html#a6cfefe8fc3c51b09b7633cf8397a67e9", null ]
 ];

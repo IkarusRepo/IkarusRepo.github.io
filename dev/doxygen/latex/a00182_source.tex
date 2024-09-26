@@ -1,131 +1,97 @@
-\hypertarget{a00182_source}{}\doxysection{svk.\+hh}
-\label{a00182_source}\index{svk.hh@{svk.hh}}
+\hypertarget{a00182_source}{}\doxysection{febase.\+hh}
+\label{a00182_source}\index{febase.hh@{febase.hh}}
 \mbox{\hyperlink{a00182}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02811}{ikarus/finiteelements/mechanics/materials/interface.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00375}{Ikarus}} \{}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00191}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00185}{ikarus/finiteelements/fetraits.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00188}{ikarus/finiteelements/mixin.hh}}>}}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{35 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
-\DoxyCodeLine{36 \textcolor{keyword}{struct }\mbox{\hyperlink{a01495}{StVenantKirchhoffT}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01483}{Material}}<StVenantKirchhoffT<ST>>}
-\DoxyCodeLine{37 \{}
-\DoxyCodeLine{38   [[nodiscard]] \textcolor{keyword}{constexpr} std::string \mbox{\hyperlink{a01495_a751de98a1d8205842a910e1737fe8625}{nameImpl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}StVenantKirchhoff"{}}; \}}
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{typename}> \textcolor{keyword}{class}... Skills>}
+\DoxyCodeLine{22 \textcolor{keyword}{class }FE;}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{31 \textcolor{keyword}{template} <\textcolor{keyword}{typename} BH, \textcolor{keywordtype}{bool} useFlat = true, \textcolor{keywordtype}{bool} useEigenRef = false>}
+\DoxyCodeLine{32 \textcolor{keyword}{struct }\mbox{\hyperlink{a01340}{PreFE}}}
+\DoxyCodeLine{33 \{}
+\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01340_a96f8fe069706faeb6233e8ad31588b66}{BasisHandler}}                      = BH;}
+\DoxyCodeLine{35   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01340_ac62b5b022663d48416e0560803590259}{worldDim}}           = BasisHandler::Basis::worlddim;}
+\DoxyCodeLine{36   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01340_a4227356aa324e40ecd1c09da5e56cb00}{useEigenReference}} = useEigenRef;}
+\DoxyCodeLine{37   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01340_a67f4db661ba63b8be2f15903c52f3ffd}{useFlatBasis}}      = useFlat;}
+\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01408}{Traits}}                            = \mbox{\hyperlink{a01408}{FETraits<BH, useEigenRef, useFlat>}};}
 \DoxyCodeLine{39 }
-\DoxyCodeLine{44   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01495_ad06ba0f1373af1e3752b339934b69956}{StVenantKirchhoffT}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01571}{LamesFirstParameterAndShearModulus}}\& mpt)}
-\DoxyCodeLine{45       : materialParameter\_\{mpt\} \{\}}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47   \textcolor{keyword}{using }\mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}}                    = ST;}
-\DoxyCodeLine{48   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01495_a27cdc2b4a8003b052ba251302d378dec}{worldDimension}} = 3;}
-\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01495_a42c1563dfce8b0de48b2e5362e2f29d9}{StrainMatrix}}                  = Eigen::Matrix<ScalarType, worldDimension, worldDimension>;}
-\DoxyCodeLine{50   \textcolor{keyword}{using }\mbox{\hyperlink{a01495_ae797d6a15d39782d110db78dde63a927}{StressMatrix}}                  = \mbox{\hyperlink{a01495_a42c1563dfce8b0de48b2e5362e2f29d9}{StrainMatrix}};}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{52   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_a6b936df1cd8db75a9c526663adfc1235}{strainTag}}          = \mbox{\hyperlink{a00364_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}};}
-\DoxyCodeLine{53   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_abb8aa05d14e025ae5030f11255e19bd1}{stressTag}}          = \mbox{\hyperlink{a00364_gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21}{StressTags::PK2}};}
-\DoxyCodeLine{54   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_adc79568930df223ccc520f5522f3ace6}{tangentModuliTag}}   = \mbox{\hyperlink{a00364_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206}{TangentModuliTags::Material}};}
-\DoxyCodeLine{55   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01495_ae416f653e4acd68f9f11a5144027f391}{energyAcceptsVoigt}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{56   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01495_aa4740919dc11418d8ac0b69107065302}{stressToVoigt}}      = \textcolor{keyword}{true};}
-\DoxyCodeLine{57   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01495_a405931c9031f904bdbc8e92df983aa30}{stressAcceptsVoigt}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{58   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01495_a5d027dc6338b0b3a476e69502a93acb8}{moduliToVoigt}}      = \textcolor{keyword}{true};}
-\DoxyCodeLine{59   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01495_a320453d35c1b9aec5c40ea828f2073f0}{moduliAcceptsVoigt}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{60   \textcolor{comment}{// this factor denotes the differences between the returned stresses and moduli and the passed strain}}
-\DoxyCodeLine{61   \textcolor{comment}{// for neoHooke the inserted quantity is C the Green-\/Lagrangian strain tensor,}}
-\DoxyCodeLine{62   \textcolor{comment}{// the function relation between the energy and the stresses is S = 1\(\backslash\)partial \(\backslash\)psi(E)/ \(\backslash\)partial E.}}
-\DoxyCodeLine{63   \textcolor{comment}{// This factor is pre factor, which is the difference to the actual derivative is written here}}
-\DoxyCodeLine{64   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01495_abda8b09bd3b511c1e44004e291241124}{derivativeFactor}} = 1;}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{72   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{73   \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}} \mbox{\hyperlink{a01495_a12718b6f404b7ab246986018bd2c50f9}{storedEnergyImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{74     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
-\DoxyCodeLine{75     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01935}{Concepts::EigenVector<Derived>}}) \{}
-\DoxyCodeLine{76       \textcolor{keyword}{const} \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}} traceE = E.template segment<3>(0).sum();}
-\DoxyCodeLine{77       \textcolor{keyword}{const} \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}} squaredNorm =}
-\DoxyCodeLine{78           E.template segment<3>(0).squaredNorm() + E.template segment<3>(3).squaredNorm() / \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}}(2.0);}
-\DoxyCodeLine{79       \textcolor{keywordflow}{return} materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} / \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}}(2.0) * traceE * traceE + materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * squaredNorm;}
-\DoxyCodeLine{80     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{81       \textcolor{keyword}{const} \textcolor{keyword}{auto} traceE = E.trace();}
-\DoxyCodeLine{82       \textcolor{keywordflow}{return} materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} / \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}}(2.0) * traceE * traceE + materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * E.squaredNorm();}
-\DoxyCodeLine{83     \}}
-\DoxyCodeLine{84   \}}
+\DoxyCodeLine{40   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{typename}> \textcolor{keyword}{class}... \mbox{\hyperlink{a01560}{Skills}}>}
+\DoxyCodeLine{41   \textcolor{keyword}{using }\mbox{\hyperlink{a01340_ac7266f723a312adbd690b47d5cd06a60}{FE}} = \mbox{\hyperlink{a01340_ac7266f723a312adbd690b47d5cd06a60}{FE}}<\mbox{\hyperlink{a01340}{PreFE}}, \mbox{\hyperlink{a01560}{Skills}}...>;}
+\DoxyCodeLine{42 \};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{45   \textcolor{comment}{// Since base classes are initialized, in declaration order before member variables, we have to make sure the}}
+\DoxyCodeLine{46   \textcolor{comment}{// localview\_ object of FE is defined. To do this we add this artificial inheritance by inheriting below first from}}
+\DoxyCodeLine{47   \textcolor{comment}{// FEInit, which initializes the localview object first, siche we the other FEMixin base class constructors are called}}
+\DoxyCodeLine{48   \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{49   \textcolor{keyword}{struct }FEInit}
+\DoxyCodeLine{50   \{}
+\DoxyCodeLine{51     \textcolor{keyword}{using }Traits       = \mbox{\hyperlink{a01340_a826c356a5afb013faffb5f7ac893cff4}{PreFE::Traits}};              }
+\DoxyCodeLine{52     \textcolor{keyword}{using }\mbox{\hyperlink{a01732}{BasisHandler}} = \mbox{\hyperlink{a01408_a129085c175bca28f94c71699b734ba04}{Traits::BasisHandler}};       }
+\DoxyCodeLine{53     \textcolor{keyword}{using }LocalView    = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a06bdad066f621e46875af45a22677a3c}{Traits::LocalView}}; }
+\DoxyCodeLine{54     \textcolor{keyword}{friend} \mbox{\hyperlink{a01336}{FE}};}
+\DoxyCodeLine{55     FEInit(\textcolor{keyword}{const} \mbox{\hyperlink{a01732}{BasisHandler}}\& basisHandler)}
+\DoxyCodeLine{56         : localView\_\{[\&]() -\/> LocalView \{}
+\DoxyCodeLine{57             \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01408_ac93d8ec6254e0ca3668966e7a56886ac}{Traits::useFlatBasis}})}
+\DoxyCodeLine{58               \textcolor{keywordflow}{return} basisHandler.\mbox{\hyperlink{a01732_a259a6b38e59d58970716c03ac511d3c5}{flat}}().localView();}
+\DoxyCodeLine{59             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{60               \textcolor{keywordflow}{return} basisHandler.\mbox{\hyperlink{a01732_aa3e286f5563f510fc4b0eaa005eb0a2b}{untouched}}().localView();}
+\DoxyCodeLine{61           \}()\} \{\}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keyword}{private}:}
+\DoxyCodeLine{64     LocalView localView\_;}
+\DoxyCodeLine{65   \};}
+\DoxyCodeLine{66 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{77 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keyword}{typename}> \textcolor{keyword}{class}... Skills>}
+\DoxyCodeLine{78 \textcolor{keyword}{class }\mbox{\hyperlink{a01336}{FE}} : \textcolor{keyword}{private} Impl::FEInit<PreFE, FE<PreFE, Skills...>>, \textcolor{keyword}{public} \mbox{\hyperlink{a01544}{FEMixin}}<PreFE, Skills...>}
+\DoxyCodeLine{79 \{}
+\DoxyCodeLine{80   \textcolor{keyword}{friend} Impl::FEInit<PreFE, FE>;}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{83   \textcolor{keyword}{using }\mbox{\hyperlink{a01544}{Mixin}} = \mbox{\hyperlink{a01544}{FEMixin}}<\mbox{\hyperlink{a01340}{PreFE}}, \mbox{\hyperlink{a01560}{Skills}}...>; }
+\DoxyCodeLine{84   \textcolor{keyword}{friend} \mbox{\hyperlink{a01336_a9651c0af07c052fe9be5546ad04fec26}{Mixin}};}
 \DoxyCodeLine{85 }
-\DoxyCodeLine{93   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{94   \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_a81a6d9cbf7ce96f9f5ca5380e8effb2c}{stressesImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{95     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<\textcolor{keyword}{decltype}(E.eval())>);}
-\DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& Ed = E.derived();}
-\DoxyCodeLine{97     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
-\DoxyCodeLine{98       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01935}{Concepts::EigenVector<Derived>}}) \{}
-\DoxyCodeLine{99         \textcolor{keyword}{static\_assert}(Concepts::EigenVector6<Derived>);}
-\DoxyCodeLine{100         Eigen::Matrix<ScalarType, 3, 3> S;}
-\DoxyCodeLine{101         \textcolor{keyword}{const} \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}} traceE = Ed.template segment<3>(0).sum();}
-\DoxyCodeLine{102         S.diagonal().array() =}
-\DoxyCodeLine{103             materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * traceE + 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed.template segment<3>(0).array();}
-\DoxyCodeLine{104         S(1, 2) = S(2, 1) = materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(3);}
-\DoxyCodeLine{105         S(0, 2) = S(2, 0) = materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(4);}
-\DoxyCodeLine{106         S(0, 1) = S(1, 0) = materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(5); \textcolor{comment}{// no two since E voigt has 2* on off-\/diagonal terms}}
-\DoxyCodeLine{107         \textcolor{keywordflow}{return} S;}
-\DoxyCodeLine{108       \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{109         \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{110         \textcolor{keywordflow}{return} (materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * Ed.trace() * StrainMatrix::Identity() + 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed)}
-\DoxyCodeLine{111             .eval();}
-\DoxyCodeLine{112       \}}
-\DoxyCodeLine{113     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{114       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01935}{Concepts::EigenVector<Derived>}}) \{}
-\DoxyCodeLine{115         \textcolor{keyword}{static\_assert}(Concepts::EigenVector6<Derived>);}
-\DoxyCodeLine{116         Eigen::Matrix<ScalarType, 6, 1> S;}
-\DoxyCodeLine{117         \textcolor{keyword}{const} \mbox{\hyperlink{a01495_af2e2dfcfb355c5eeb456de03cbfe7f47}{ScalarType}} traceE          = Ed.template segment<3>(0).sum();}
-\DoxyCodeLine{118         S.template segment<3>(0).array() = traceE * materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}};}
-\DoxyCodeLine{119         S.template segment<3>(0) += materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * 2 * Ed.template segment<3>(0);}
-\DoxyCodeLine{120         S.template segment<3>(3) =}
-\DoxyCodeLine{121             materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed.template segment<3>(3); \textcolor{comment}{// no two since E voigt has 2* on off-\/diagonal terms}}
-\DoxyCodeLine{122         \textcolor{keywordflow}{return} S;}
-\DoxyCodeLine{123       \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{124         Eigen::Matrix<ScalarType, 6, 1> S;}
-\DoxyCodeLine{125         S.template segment<3>(0).array() = Ed.trace() * materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}};}
-\DoxyCodeLine{126         S.template segment<3>(0) += 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed.diagonal();}
-\DoxyCodeLine{127         S(3) = 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(1, 2);}
-\DoxyCodeLine{128         S(4) = 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(0, 2);}
-\DoxyCodeLine{129         S(5) = 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * Ed(0, 1);}
-\DoxyCodeLine{130         \textcolor{keywordflow}{return} S;}
-\DoxyCodeLine{131       \}}
-\DoxyCodeLine{132     \}}
-\DoxyCodeLine{133   \}}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{142   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{143   \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_a9cad76128962f632ae742e8769b9803e}{tangentModuliImpl}}([[maybe\_unused]] \textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{144     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
-\DoxyCodeLine{145     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
-\DoxyCodeLine{146       Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<3, 3, 3, 3>> moduli;}
-\DoxyCodeLine{147       moduli = materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * \mbox{\hyperlink{a00371_gadb08b6f9cc40847b70286dc314a23000}{identityFourthOrder}}() +}
-\DoxyCodeLine{148                2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}} * \mbox{\hyperlink{a00371_ga1c9618ef351cd986d4f64fde7f52e860}{symmetricIdentityFourthOrder}}();}
-\DoxyCodeLine{149       \textcolor{keywordflow}{return} moduli;}
-\DoxyCodeLine{150     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{151       Eigen::Matrix<ScalarType, 6, 6> moduli;}
-\DoxyCodeLine{152       moduli.setZero();}
-\DoxyCodeLine{153       moduli.template block<3, 3>(0, 0).array() = materialParameter\_.\mbox{\hyperlink{a01571_a0157695e9fc8b735e86f828cc35b64fc}{lambda}};}
-\DoxyCodeLine{154       moduli.template block<3, 3>(0, 0).diagonal().array() += 2 * materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}};}
-\DoxyCodeLine{155       moduli.template block<3, 3>(3, 3).diagonal().array() = materialParameter\_.\mbox{\hyperlink{a01571_a3558ad06d2a831f0d412d76956d516f8}{mu}};}
-\DoxyCodeLine{156       \textcolor{keywordflow}{return} moduli;}
-\DoxyCodeLine{157     \}}
-\DoxyCodeLine{158   \}}
-\DoxyCodeLine{159 }
-\DoxyCodeLine{165   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarTypeOther>}
-\DoxyCodeLine{166   \textcolor{keyword}{auto} \mbox{\hyperlink{a01495_a47a0de83c91849d44fb9dee6b10a02d9}{rebind}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{167     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01495}{StVenantKirchhoffT<ScalarTypeOther>}}(materialParameter\_);}
-\DoxyCodeLine{168   \}}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{170 \textcolor{keyword}{private}:}
-\DoxyCodeLine{171   \mbox{\hyperlink{a01571}{LamesFirstParameterAndShearModulus}} materialParameter\_;}
-\DoxyCodeLine{172 \};}
-\DoxyCodeLine{173 }
-\DoxyCodeLine{177 \textcolor{keyword}{using }\mbox{\hyperlink{a01495}{StVenantKirchhoff}} = \mbox{\hyperlink{a01495}{StVenantKirchhoffT<double>}};}
-\DoxyCodeLine{178 }
-\DoxyCodeLine{179 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{86 \textcolor{keyword}{public}:}
+\DoxyCodeLine{87   \textcolor{keyword}{using }\mbox{\hyperlink{a01408}{Traits}}       = \mbox{\hyperlink{a01340_a826c356a5afb013faffb5f7ac893cff4}{PreFE::Traits}};                }
+\DoxyCodeLine{88   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_a26398fefb73f4d51895e26152e368cf8}{BasisHandler}} = \mbox{\hyperlink{a01408_a129085c175bca28f94c71699b734ba04}{Traits::BasisHandler}};         }
+\DoxyCodeLine{89   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_a772703dae1bc76a8b862c5e1aee93b09}{LocalView}}    = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a06bdad066f621e46875af45a22677a3c}{Traits::LocalView}};   }
+\DoxyCodeLine{90   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_a636f6e2bb1a51cd89f190d3744cdb7dd}{GridView}}     = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a3ec0294824df467074f5070cb58f5a91}{Traits::GridView}};    }
+\DoxyCodeLine{91   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_afcc1624cabc2a1e553af2eb4dd02190d}{GlobalIndex}}  = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a77e825e03f2fae2bb4272c7888e478b6}{Traits::GlobalIndex}}; }
+\DoxyCodeLine{92   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_ae329d665e853b0286679e97418d3acad}{GridElement}}  = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_ac4668b9c9142defdf3b70cca8eeb30c4}{Traits::Element}};     }
+\DoxyCodeLine{93   \textcolor{keyword}{using }typename \mbox{\hyperlink{a01544_a86c0fea1b37e487f3c78cde6facca9c3}{Mixin::Requirement}};}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01336_aad639c76b46707f9ecf9dd58e25827f9}{myDim}}    = \mbox{\hyperlink{a01408_ae15b8efa9f66a3caee81d99dd5c648de}{Traits::mydim}};}
+\DoxyCodeLine{96   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01336_a6b85ca6e6596543374c9ab104a471cec}{worldDim}} = \mbox{\hyperlink{a01408_a5d611e1d48285bac5c5ebd6fda9c7cc7}{Traits::worlddim}};}
+\DoxyCodeLine{97   \textcolor{keyword}{using }\mbox{\hyperlink{a01336_a327f5479545f9b5d615c07ce535b0007}{PreTuple}}                = std::tuple<typename Skills<PreFE, FE>::Pre...>;}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{105   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01336_a395b4b566b17bb390d82de3c89c00e9d}{FE}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01336_a26398fefb73f4d51895e26152e368cf8}{BasisHandler}}\& basisHandler, \textcolor{keyword}{typename} \mbox{\hyperlink{a01560}{Skills<PreFE, FE>::Pre}}... skillsArgs)}
+\DoxyCodeLine{106       : Impl::FEInit<\mbox{\hyperlink{a01340}{PreFE}}, \mbox{\hyperlink{a01336}{FE}}>(basisHandler),}
+\DoxyCodeLine{107         \mbox{\hyperlink{a01544}{FEMixin}}<\mbox{\hyperlink{a01340}{PreFE}}, \mbox{\hyperlink{a01560}{Skills}}...>(\mbox{\hyperlink{a00383}{std}}::forward<typename \mbox{\hyperlink{a01560}{Skills}}<\mbox{\hyperlink{a01340}{PreFE}}, \mbox{\hyperlink{a01336}{FE}}>::Pre>(skillsArgs)...) \{\}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{113   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01336_a3a23d70495e802f44ba4b9923804dda0}{bind}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01336_ae329d665e853b0286679e97418d3acad}{GridElement}}\& element) \{}
+\DoxyCodeLine{114     this-\/>localView\_.bind(element);}
+\DoxyCodeLine{115     \mbox{\hyperlink{a01544_ad64afd529f274032176261fea660b027}{Mixin::bind}}();}
+\DoxyCodeLine{116   \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} \mbox{\hyperlink{a01336_a1e05d6a5e50e3afd57c27adc0620e5b8}{size}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this-\/>localView\_.size(); \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{128   \textcolor{keyword}{const} \mbox{\hyperlink{a01336_ae329d665e853b0286679e97418d3acad}{GridElement}}\& \mbox{\hyperlink{a01336_ae84fc54bd26077a2edb0ec07361d0716}{gridElement}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this-\/>localView\_.element(); \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{134   \textcolor{keyword}{const} \mbox{\hyperlink{a01336_a772703dae1bc76a8b862c5e1aee93b09}{LocalView}}\& \mbox{\hyperlink{a01336_a1425316afd592244682b9ccc48cf59ef}{localView}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this-\/>localView\_; \}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{140   \mbox{\hyperlink{a01336_a772703dae1bc76a8b862c5e1aee93b09}{LocalView}}\& \mbox{\hyperlink{a01336_aa82acd5684364d92165b89e63d0eefb4}{localView}}() \{ \textcolor{keywordflow}{return} this-\/>localView\_; \}}
+\DoxyCodeLine{141 \};}
+\DoxyCodeLine{142 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

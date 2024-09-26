@@ -1,13 +1,14 @@
 var searchData=
 [
-  ['basis_2ehh_0',['basis.hh',['../a02820.html',1,'']]],
-  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02826.html',1,'']]],
-  ['pathfollowing_2ehh_2',['pathfollowing.hh',['../a00281.html',1,'']]],
-  ['pathfollowing_2einl_3',['pathfollowing.inl',['../a00269.html',1,'']]],
-  ['pathfollowingfunctions_2ehh_4',['pathfollowingfunctions.hh',['../a00284.html',1,'']]],
-  ['physicshelper_2ehh_5',['physicshelper.hh',['../a00212.html',1,'']]],
-  ['polyfit_2ehh_6',['polyfit.hh',['../a00074.html',1,'']]],
-  ['pythonautodiffdefinitions_2ehh_7',['pythonautodiffdefinitions.hh',['../a00008.html',1,'']]],
-  ['pythonhelpers_2ehh_8',['pythonhelpers.hh',['../a00329.html',1,'']]],
-  ['vtkwriter_2ehh_9',['vtkwriter.hh',['../a02817.html',1,'']]]
+  ['basis_2ehh_0',['basis.hh',['../a02842.html',1,'']]],
+  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02848.html',1,'']]],
+  ['materials_2ehh_2',['materials.hh',['../a02839.html',1,'']]],
+  ['pathfollowing_2ehh_3',['pathfollowing.hh',['../a00314.html',1,'']]],
+  ['pathfollowing_2einl_4',['pathfollowing.inl',['../a00323.html',1,'']]],
+  ['pathfollowingfunctions_2ehh_5',['pathfollowingfunctions.hh',['../a00311.html',1,'']]],
+  ['physicshelper_2ehh_6',['physicshelper.hh',['../a00200.html',1,'']]],
+  ['polyfit_2ehh_7',['polyfit.hh',['../a00068.html',1,'']]],
+  ['pythonautodiffdefinitions_2ehh_8',['pythonautodiffdefinitions.hh',['../a00074.html',1,'']]],
+  ['pythonhelpers_2ehh_9',['pythonhelpers.hh',['../a00344.html',1,'']]],
+  ['vtkwriter_2ehh_10',['vtkwriter.hh',['../a02857.html',1,'']]]
 ];

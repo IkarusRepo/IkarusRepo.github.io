@@ -1,16 +1,19 @@
 var a00371 =
 [
-    [ "Ikarus::dyadic", "a00371.html#gab2cea9ac847cc3635812467c9d96ceb4", null ],
-    [ "Ikarus::fourthOrderIKJL", "a00371.html#ga8fa2b440586483c1ee0f9b90b9081da2", null ],
-    [ "Ikarus::fromVoigt", "a00371.html#ga0afe53095f875017b5673a42e13e6f5a", null ],
-    [ "Ikarus::fromVoigt", "a00371.html#ga106e11a950fe2545890e811d2e9545fd", null ],
-    [ "Ikarus::fromVoigt", "a00371.html#ga518e0394f7c90dbe798b6cb8d757b822", null ],
-    [ "Ikarus::identityFourthOrder", "a00371.html#gadb08b6f9cc40847b70286dc314a23000", null ],
-    [ "Ikarus::symmetricFourthOrder", "a00371.html#ga2368a572348c410fd7e7deb6c6e3964a", null ],
-    [ "Ikarus::symmetricIdentityFourthOrder", "a00371.html#ga1c9618ef351cd986d4f64fde7f52e860", null ],
-    [ "Ikarus::symTwoSlots", "a00371.html#gaea03dbfcd8f85ef7af004c7e09244aa9", null ],
-    [ "Ikarus::tensorView", "a00371.html#ga5cfd9d098384fb067d897b3c0499b447", null ],
-    [ "Ikarus::toVoigt", "a00371.html#ga7a49f3cfec729ac9991cc595bac37a94", null ],
-    [ "Ikarus::toVoigt", "a00371.html#ga8777400d7d11c49d46f3c6be2698722e", null ],
-    [ "Ikarus::toVoigt", "a00371.html#ga4304655095296ce9283e012587817a51", null ]
+    [ "Ikarus::FEParameter", "a00371.html#ga0c1577fd05efee8475b0f7fef795bbbe", [
+      [ "Ikarus::FEParameter::BEGIN", "a00371.html#gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::FEParameter::noParameter", "a00371.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe", null ],
+      [ "Ikarus::FEParameter::loadfactor", "a00371.html#gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8", null ],
+      [ "Ikarus::FEParameter::time", "a00371.html#gga0c1577fd05efee8475b0f7fef795bbbea07cc694b9b3fc636710fa08b6922c42b", null ],
+      [ "Ikarus::FEParameter::END", "a00371.html#gga0c1577fd05efee8475b0f7fef795bbbeab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
+    [ "Ikarus::FESolutions", "a00371.html#gaea763c94a1cecbeefc4f8661debcc5a3", [
+      [ "Ikarus::FESolutions::BEGIN", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3a19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "Ikarus::FESolutions::noSolution", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3a2100a151ce2773b3467509ae085aa505", null ],
+      [ "Ikarus::FESolutions::displacement", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3a0c2d35f5f278a229db5ba41d40120f1c", null ],
+      [ "Ikarus::FESolutions::velocity", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3aac1a453d0cdc1f19d9479ccfaa8b082c", null ],
+      [ "Ikarus::FESolutions::director", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3a3d4e992d8d8a7d848724aa26ed7f4176", null ],
+      [ "Ikarus::FESolutions::magnetizationAndVectorPotential", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff", null ],
+      [ "Ikarus::FESolutions::END", "a00371.html#ggaea763c94a1cecbeefc4f8661debcc5a3ab1a326c06d88bf042f73d70f50197905", null ]
+    ] ]
 ];

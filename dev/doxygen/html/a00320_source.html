@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: flatassemblermanipulator.hh Source File</title>
+    <title>ikarus: adaptivestepsizing.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,135 +152,75 @@ $(document).ready(function(){initNavTree('a00320_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">flatassemblermanipulator.hh</div></div>
+  <div class="headertitle"><div class="title">adaptivestepsizing.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a00320.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// SPDX-License-Identifier: LGPL-3.0-or-later</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;dune/python/common/typeregistry.hh&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;dune/python/pybind11/eigen.h&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;dune/python/pybind11/pybind11.h&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;dune/python/pybind11/stl.h&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;dune/python/pybind11/stl_bind.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="a00311.html">ikarus/controlroutines/pathfollowingfunctions.hh</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;<a class="code" href="a00272.html">ikarus/solver/nonlinearsolver/solverinfos.hh</a>&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="a00266.html">ikarus/assembler/dirichletbcenforcement.hh</a>&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="a00218.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="a00323.html">ikarus/python/assembler/flatassembler.hh</a>&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="a00314.html">ikarus/python/finiteelements/scalarwrapper.hh</a>&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="a02823.html">ikarus/utils/basis.hh</a>&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;<a class="code" href="a00068.html">ikarus/utils/traits.hh</a>&gt;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00389.html">Ikarus::Python</a> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NewType, <span class="keyword">typename</span> F, <span class="keyword">typename</span>... Args, <span class="keywordtype">size_t</span>... Indices&gt;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">decltype</span>(<span class="keyword">auto</span>) forward_last_as(F&amp;&amp; f, std::index_sequence&lt;Indices...&gt;, Args&amp;&amp;... args) {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keyword">auto</span> tup = std::forward_as_tuple(args...);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> f(std::get&lt;Indices&gt;(tup)..., NewType(std::get&lt;<span class="keyword">sizeof</span>...(Args) - 1&gt;(tup)));</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  }</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NewType, <span class="keyword">typename</span> F&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">auto</span> wrapFunctionAndReplaceLastType(F&amp;&amp; f) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> [f](<span class="keyword">auto</span>&amp;&amp;... args) -&gt; <span class="keyword">decltype</span>(<span class="keyword">auto</span>) {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>      <span class="keywordflow">return</span> forward_last_as&lt;NewType&gt;(f, std::make_index_sequence&lt;<span class="keyword">sizeof</span>...(args) - 1&gt;{},</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                                      std::forward&lt;decltype(args)&gt;(args)...);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    };</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <span class="comment">// namespace Impl</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">// Since Pybind11 create a new scipy.sparse.csr_matrix from an Eigen::SparseMatrix, we have to create our own wrapper,</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">// which allows the modification of scalar entries of the sparse matrix in Python</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="a01639.html">   46</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01639.html">SparseMatrixWrapper</a></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="a01639.html#adea8b485a2a498cb28c69debdb841f21">   48</a></span>  <a class="code hl_function" href="a01639.html#adea8b485a2a498cb28c69debdb841f21">SparseMatrixWrapper</a>(Eigen::SparseMatrix&lt;T&gt;&amp; matrix)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      : <a class="code hl_variable" href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">matrixRef</a>(matrix) {}</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">   50</a></span>  std::reference_wrapper&lt;Eigen::SparseMatrix&lt;T&gt;&gt; <a class="code hl_variable" href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">matrixRef</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="a00386.html">   17</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00386.html">Ikarus::AdaptiveStepSizing</a> {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="a01296.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01296.html">NoOp</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NLO&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="a01296.html#a7e3bcfe2fdfa61730adaccde62fad844">   37</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="a01296.html#a7e3bcfe2fdfa61730adaccde62fad844">operator()</a>(<span class="keyword">const</span> <a class="code hl_struct" href="a01700.html">NonLinearSolverInformation</a>&amp; solverInfo, <a class="code hl_struct" href="a01316.html">SubsidiaryArgs</a>&amp; subsidiaryArgs,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                  <span class="keyword">const</span> NLO&amp; nonLinearOperator) {}</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="a01296.html#af42dff6b9945230918607a14f159e52e">   44</a></span>  [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="a01296.html#af42dff6b9945230918607a14f159e52e">targetIterations</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> 0; }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="a01296.html#aae9af895e735c2c5f87a9e2eb77aa737">   50</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="a01296.html#aae9af895e735c2c5f87a9e2eb77aa737">setTargetIterations</a>([[maybe_unused]] <span class="keywordtype">int</span> <a class="code hl_function" href="a01296.html#af42dff6b9945230918607a14f159e52e">targetIterations</a>) {}</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>};</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="a00389.html#a09b4a81e2d6d0619406854f6dc3fc8f7">   54</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00389.html#a09b4a81e2d6d0619406854f6dc3fc8f7">registerSparseMatrixWrapper</a>(pybind11::handle scope) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">auto</span> includes              = Dune::Python::IncludeFiles{<span class="stringliteral">&quot;ikarus/finiteelements/flatassemblermanipulator.hh&quot;</span>};</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">auto</span> [lv, isNotRegistered] = Dune::Python::insertClass&lt;SparseMatrixWrapper&lt;T&gt;&gt;(</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      scope, <span class="stringliteral">&quot;SparseMatrixWrapper&quot;</span>, Dune::Python::GenerateTypeName(Dune::className&lt;<a class="code hl_struct" href="a01639.html">SparseMatrixWrapper&lt;T&gt;</a>&gt;()),</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      includes);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">if</span> (isNotRegistered) {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    lv.def(<a class="code hl_function" href="a00375.html#ac8243891c1b961e50a066140ab79a142">pybind11::init</a>&lt;Eigen::SparseMatrix&lt;T&gt;&amp;&gt;())</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        .def(<span class="stringliteral">&quot;__setitem__&quot;</span>, [](<a class="code hl_struct" href="a01639.html">SparseMatrixWrapper&lt;T&gt;</a>&amp; self, std::array&lt;int, 2&gt; index,</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                               <span class="keywordtype">double</span> val) { self.<a class="code hl_variable" href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">matrixRef</a>.get().coeffRef(index[0], index[1]) = val; })</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        .def(<span class="stringliteral">&quot;__getitem__&quot;</span>, [](<a class="code hl_struct" href="a01639.html">SparseMatrixWrapper&lt;T&gt;</a>&amp; self, std::array&lt;int, 2&gt; index) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>          <span class="keywordflow">return</span> self.<a class="code hl_variable" href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">matrixRef</a>.get().coeffRef(index[0], index[1]);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        });</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span> &lt;<span class="keyword">class </span><a class="code hl_class" href="a01239.html">AssemblerManipulator</a>, <span class="keyword">class</span>... options&gt;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="a00389.html#aad35f78683b64303a28d3b8b4f83aa37">   70</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00389.html#aad35f78683b64303a28d3b8b4f83aa37">registerAssemblerManipulator</a>(pybind11::handle scope, pybind11::class_&lt;AssemblerManipulator, options...&gt; cls) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">using </span>pybind11::operator<span class="stringliteral">&quot;&quot;</span>_a;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <a class="code hl_function" href="a00367.html#ga87d3c6e620be5df59ba6923751caae86">registerFlatAssembler</a>(scope, cls);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  registerSparseMatrixWrapper&lt;double&gt;(scope);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">using </span>UnderlyingAssembler = <span class="keyword">typename</span> AssemblerManipulator::WrappedAssembler;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  cls.def(<a class="code hl_function" href="a00375.html#ac8243891c1b961e50a066140ab79a142">pybind11::init</a>([](<span class="keyword">const</span> UnderlyingAssembler&amp; as) { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="a01239.html">AssemblerManipulator</a>(as); }));</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">using </span>NewArgs = std::tuple&lt;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <a class="code hl_class" href="a01643.html">ScalarWrapper&lt;std::reference_wrapper&lt;typename AssemblerManipulator::ScalarType&gt;</a>&gt;,</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      Eigen::Ref&lt;typename AssemblerManipulator::VectorType&gt;,</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      std::conditional_t&lt;std::is_same_v&lt;typename AssemblerManipulator::MatrixType, Eigen::SparseMatrix&lt;double&gt;&gt;,</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                         <a class="code hl_struct" href="a01639.html">SparseMatrixWrapper&lt;double&gt;</a>, Eigen::Ref&lt;Eigen::MatrixXd&gt;&gt;&gt;;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  Dune::Hybrid::forEach(Dune::Hybrid::integralRange(</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                            Dune::index_constant&lt;std::tuple_size_v&lt;typename AssemblerManipulator::CallBackTypes&gt;&gt;()),</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                        [&amp;](<span class="keyword">auto</span> i) {</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>                          <span class="keyword">using </span>F          = std::tuple_element_t&lt;i, typename AssemblerManipulator::CallBackTypes&gt;;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                          <span class="keyword">using </span>NewArg     = std::tuple_element_t&lt;i, NewArgs&gt;;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>                          std::string name = std::string(<span class="stringliteral">&quot;add&quot;</span>) +</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                                             (i == 0     ? <span class="stringliteral">&quot;Scalar&quot;</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                                              : (i == 1) ? <span class="stringliteral">&quot;Vector&quot;</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                                                         : <span class="stringliteral">&quot;Matrix&quot;</span>) +</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                                             std::string(<span class="stringliteral">&quot;CallBack&quot;</span>);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                          <span class="keyword">using </span>Traits            = <a class="code hl_struct" href="a01895.html">Ikarus::traits::FunctionTraits&lt;F&gt;</a>;</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                          <span class="keyword">constexpr</span> <span class="keywordtype">int</span> lastIndex = Traits::numberOfArguments - 1;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                          <span class="comment">// From Python we need a callback that accepts the wrapped types since otherwise Python</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                          <span class="comment">// creates copies and no modification is possible Therefore, from Python we get a callback in</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                          <span class="comment">// the style of Fmod= std::function&lt;void(...,Wrapped&lt;Type&gt;)&gt; but in the assembler we store can</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                          <span class="comment">// only store F=std::function&lt;void(...,Type&amp;)&gt; wrapFunctionAndReplaceLastType takes care of</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                          <span class="comment">// this and wraps the &quot;Fmod&quot; call inside a &quot;F&quot; function</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                          <span class="keyword">using </span>FMod =</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                              <span class="keyword">typename</span> <a class="code hl_struct" href="a01907.html">Ikarus::traits::ChangeArgTypeAtPos&lt;F, lastIndex, NewArg&gt;::NewFunctionType</a>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                          cls.def(name.c_str(), [&amp;](<a class="code hl_class" href="a01239.html">AssemblerManipulator</a>&amp; self, FMod f) {</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                            F fOrig = Impl::wrapFunctionAndReplaceLastType&lt;NewArg&gt;(std::forward&lt;FMod&gt;(f));</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                            self.bind(std::move(fOrig));</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                          });</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                        });</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>}</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>} <span class="comment">// namespace Ikarus::Python</span></div>
-<div class="ttc" id="aa00068_html"><div class="ttname"><a href="a00068.html">traits.hh</a></div><div class="ttdoc">Contains stl-like type traits.</div></div>
-<div class="ttc" id="aa00218_html"><div class="ttname"><a href="a00218.html">ferequirements.hh</a></div><div class="ttdoc">Definition of the LinearElastic class for finite element mechanics computations.</div></div>
-<div class="ttc" id="aa00266_html"><div class="ttname"><a href="a00266.html">dirichletbcenforcement.hh</a></div></div>
-<div class="ttc" id="aa00314_html"><div class="ttname"><a href="a00314.html">scalarwrapper.hh</a></div><div class="ttdoc">Provides a wrapper for scalar types to support passing by reference in Python bindings.</div></div>
-<div class="ttc" id="aa00323_html"><div class="ttname"><a href="a00323.html">flatassembler.hh</a></div><div class="ttdoc">Python bindings for assemblers.</div></div>
-<div class="ttc" id="aa00367_html_ga87d3c6e620be5df59ba6923751caae86"><div class="ttname"><a href="a00367.html#ga87d3c6e620be5df59ba6923751caae86">Ikarus::Python::registerFlatAssembler</a></div><div class="ttdeci">void registerFlatAssembler(pybind11::handle scope, pybind11::class_&lt; Assembler, options... &gt; cls)</div><div class="ttdoc">Register Python bindings for a assembler class.  .</div><div class="ttdef"><b>Definition:</b> flatassembler.hh:41</div></div>
-<div class="ttc" id="aa00375_html_ac8243891c1b961e50a066140ab79a142"><div class="ttname"><a href="a00375.html#ac8243891c1b961e50a066140ab79a142">Ikarus::init</a></div><div class="ttdeci">void init(int argc, char **argv, bool enableFileLogger=true)</div><div class="ttdoc">Initializes the Ikarus framework.</div><div class="ttdef"><b>Definition:</b> init.hh:82</div></div>
-<div class="ttc" id="aa00389_html"><div class="ttname"><a href="a00389.html">Ikarus::Python</a></div><div class="ttdef"><b>Definition:</b> flatassembler.hh:21</div></div>
-<div class="ttc" id="aa00389_html_a09b4a81e2d6d0619406854f6dc3fc8f7"><div class="ttname"><a href="a00389.html#a09b4a81e2d6d0619406854f6dc3fc8f7">Ikarus::Python::registerSparseMatrixWrapper</a></div><div class="ttdeci">void registerSparseMatrixWrapper(pybind11::handle scope)</div><div class="ttdef"><b>Definition:</b> flatassemblermanipulator.hh:54</div></div>
-<div class="ttc" id="aa00389_html_aad35f78683b64303a28d3b8b4f83aa37"><div class="ttname"><a href="a00389.html#aad35f78683b64303a28d3b8b4f83aa37">Ikarus::Python::registerAssemblerManipulator</a></div><div class="ttdeci">void registerAssemblerManipulator(pybind11::handle scope, pybind11::class_&lt; AssemblerManipulator, options... &gt; cls)</div><div class="ttdef"><b>Definition:</b> flatassemblermanipulator.hh:70</div></div>
-<div class="ttc" id="aa01239_html"><div class="ttname"><a href="a01239.html">Ikarus::AssemblerManipulator</a></div><div class="ttdoc">The AssemblerManipulator defines a decorator for the assemblers that helps to manipulate the assemble...</div><div class="ttdef"><b>Definition:</b> assemblermanipulatorfuser.hh:36</div></div>
-<div class="ttc" id="aa01639_html"><div class="ttname"><a href="a01639.html">Ikarus::Python::SparseMatrixWrapper</a></div><div class="ttdef"><b>Definition:</b> flatassemblermanipulator.hh:47</div></div>
-<div class="ttc" id="aa01639_html_a32da660f4237007b18c282ea7bb38b8b"><div class="ttname"><a href="a01639.html#a32da660f4237007b18c282ea7bb38b8b">Ikarus::Python::SparseMatrixWrapper::matrixRef</a></div><div class="ttdeci">std::reference_wrapper&lt; Eigen::SparseMatrix&lt; T &gt; &gt; matrixRef</div><div class="ttdef"><b>Definition:</b> flatassemblermanipulator.hh:50</div></div>
-<div class="ttc" id="aa01639_html_adea8b485a2a498cb28c69debdb841f21"><div class="ttname"><a href="a01639.html#adea8b485a2a498cb28c69debdb841f21">Ikarus::Python::SparseMatrixWrapper::SparseMatrixWrapper</a></div><div class="ttdeci">SparseMatrixWrapper(Eigen::SparseMatrix&lt; T &gt; &amp;matrix)</div><div class="ttdef"><b>Definition:</b> flatassemblermanipulator.hh:48</div></div>
-<div class="ttc" id="aa01643_html"><div class="ttname"><a href="a01643.html">ScalarWrapper</a></div><div class="ttdoc">A wrapper class for scalar types to facilitate reference passing in Python bindings.</div><div class="ttdef"><b>Definition:</b> scalarwrapper.hh:27</div></div>
-<div class="ttc" id="aa01895_html"><div class="ttname"><a href="a01895.html">Ikarus::traits::FunctionTraits</a></div><div class="ttdoc">Type trait for extracting information about functions.</div><div class="ttdef"><b>Definition:</b> traits.hh:331</div></div>
-<div class="ttc" id="aa01907_html"><div class="ttname"><a href="a01907.html">Ikarus::traits::ChangeArgTypeAtPos</a></div><div class="ttdoc">Main function to wrap the type at position pos in a std::function.</div><div class="ttdef"><b>Definition:</b> traits.hh:453</div></div>
-<div class="ttc" id="aa02823_html"><div class="ttname"><a href="a02823.html">basis.hh</a></div><div class="ttdoc">Wrapper around Dune-functions global basis.</div></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="a01300.html">   63</a></span><span class="keyword">struct </span><a class="code hl_struct" href="a01300.html">IterationBased</a></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> NLO&gt;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="a01300.html#a5869ac09a02a7b2222873ca31a30989e">   76</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="a01300.html#a5869ac09a02a7b2222873ca31a30989e">operator()</a>(<span class="keyword">const</span> <a class="code hl_struct" href="a01700.html">NonLinearSolverInformation</a>&amp; solverInfo, <a class="code hl_struct" href="a01316.html">SubsidiaryArgs</a>&amp; subsidiaryArgs,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                  <span class="keyword">const</span> NLO&amp; nonLinearOperator) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">if</span> (subsidiaryArgs.<a class="code hl_variable" href="a01316.html#a217c729e1ae8b05a98c852f19b0d6ae5">currentStep</a> == 0)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>      <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">if</span> (targetIterations_ == 0)</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      DUNE_THROW(Dune::InvalidStateException,</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>                 <span class="stringliteral">&quot;TargetIterations should not be equal to 0. Try calling &quot;</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>                 <span class="stringliteral">&quot;setTargetIterations(int) first.&quot;</span>);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">const</span> <span class="keyword">auto</span> previousIterations = solverInfo.<a class="code hl_variable" href="a01700.html#a81570cd3d9f6589a4d1ba81211f41b99">iterations</a>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordflow">if</span> (previousIterations &gt; targetIterations_)</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      subsidiaryArgs.<a class="code hl_variable" href="a01316.html#a9c0bca7ed999dcf751648d41b5d9aa78">stepSize</a> =</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>          sqrt(<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(targetIterations_) / previousIterations) * subsidiaryArgs.<a class="code hl_variable" href="a01316.html#a9c0bca7ed999dcf751648d41b5d9aa78">stepSize</a>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="a01300.html#aabdaad05b950b53e014624271a16fd9c">   94</a></span>  [[nodiscard]] <span class="keywordtype">int</span> <a class="code hl_function" href="a01300.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> targetIterations_; }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="a01300.html#a52017ebcd89859d5ae214cc8767ef78d">  100</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="a01300.html#a52017ebcd89859d5ae214cc8767ef78d">setTargetIterations</a>(<span class="keywordtype">int</span> <a class="code hl_function" href="a01300.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">if</span> (<a class="code hl_function" href="a01300.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a> == 0)</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      DUNE_THROW(Dune::InvalidStateException, <span class="stringliteral">&quot;TargetIterations should not be equal to 0.&quot;</span>);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    targetIterations_ = <a class="code hl_function" href="a01300.html#aabdaad05b950b53e014624271a16fd9c">targetIterations</a>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  <span class="keywordtype">int</span> targetIterations_{0};</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>} <span class="comment">// namespace Ikarus::AdaptiveStepSizing</span></div>
+<div class="ttc" id="aa00272_html"><div class="ttname"><a href="a00272.html">solverinfos.hh</a></div><div class="ttdoc">Implementation of the Newton-Raphson method for solving nonlinear equations.</div></div>
+<div class="ttc" id="aa00311_html"><div class="ttname"><a href="a00311.html">pathfollowingfunctions.hh</a></div><div class="ttdoc">Defines structures and methods related to subsidiary functions for control routines.</div></div>
+<div class="ttc" id="aa00386_html"><div class="ttname"><a href="a00386.html">Ikarus::AdaptiveStepSizing</a></div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:17</div></div>
+<div class="ttc" id="aa01296_html"><div class="ttname"><a href="a01296.html">Ikarus::AdaptiveStepSizing::NoOp</a></div><div class="ttdoc">The NoOp strategy for adaptive step sizing.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:25</div></div>
+<div class="ttc" id="aa01296_html_a7e3bcfe2fdfa61730adaccde62fad844"><div class="ttname"><a href="a01296.html#a7e3bcfe2fdfa61730adaccde62fad844">Ikarus::AdaptiveStepSizing::NoOp::operator()</a></div><div class="ttdeci">void operator()(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NLO &amp;nonLinearOperator)</div><div class="ttdoc">Call operator for the NoOp strategy.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:37</div></div>
+<div class="ttc" id="aa01296_html_aae9af895e735c2c5f87a9e2eb77aa737"><div class="ttname"><a href="a01296.html#aae9af895e735c2c5f87a9e2eb77aa737">Ikarus::AdaptiveStepSizing::NoOp::setTargetIterations</a></div><div class="ttdeci">void setTargetIterations(int targetIterations)</div><div class="ttdoc">Set the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:50</div></div>
+<div class="ttc" id="aa01296_html_af42dff6b9945230918607a14f159e52e"><div class="ttname"><a href="a01296.html#af42dff6b9945230918607a14f159e52e">Ikarus::AdaptiveStepSizing::NoOp::targetIterations</a></div><div class="ttdeci">int targetIterations() const</div><div class="ttdoc">Get the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:44</div></div>
+<div class="ttc" id="aa01300_html"><div class="ttname"><a href="a01300.html">Ikarus::AdaptiveStepSizing::IterationBased</a></div><div class="ttdoc">The IterationBased strategy for adaptive step sizing.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:64</div></div>
+<div class="ttc" id="aa01300_html_a52017ebcd89859d5ae214cc8767ef78d"><div class="ttname"><a href="a01300.html#a52017ebcd89859d5ae214cc8767ef78d">Ikarus::AdaptiveStepSizing::IterationBased::setTargetIterations</a></div><div class="ttdeci">void setTargetIterations(int targetIterations)</div><div class="ttdoc">Set the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:100</div></div>
+<div class="ttc" id="aa01300_html_a5869ac09a02a7b2222873ca31a30989e"><div class="ttname"><a href="a01300.html#a5869ac09a02a7b2222873ca31a30989e">Ikarus::AdaptiveStepSizing::IterationBased::operator()</a></div><div class="ttdeci">void operator()(const NonLinearSolverInformation &amp;solverInfo, SubsidiaryArgs &amp;subsidiaryArgs, const NLO &amp;nonLinearOperator)</div><div class="ttdoc">Call operator of the IterationBased strategy.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:76</div></div>
+<div class="ttc" id="aa01300_html_aabdaad05b950b53e014624271a16fd9c"><div class="ttname"><a href="a01300.html#aabdaad05b950b53e014624271a16fd9c">Ikarus::AdaptiveStepSizing::IterationBased::targetIterations</a></div><div class="ttdeci">int targetIterations() const</div><div class="ttdoc">Get the target iterations.</div><div class="ttdef"><b>Definition:</b> adaptivestepsizing.hh:94</div></div>
+<div class="ttc" id="aa01316_html"><div class="ttname"><a href="a01316.html">Ikarus::SubsidiaryArgs</a></div><div class="ttdoc">Structure containing arguments for subsidiary functions.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:39</div></div>
+<div class="ttc" id="aa01316_html_a217c729e1ae8b05a98c852f19b0d6ae5"><div class="ttname"><a href="a01316.html#a217c729e1ae8b05a98c852f19b0d6ae5">Ikarus::SubsidiaryArgs::currentStep</a></div><div class="ttdeci">int currentStep</div><div class="ttdoc">The current step index in the control routine.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:46</div></div>
+<div class="ttc" id="aa01316_html_a9c0bca7ed999dcf751648d41b5d9aa78"><div class="ttname"><a href="a01316.html#a9c0bca7ed999dcf751648d41b5d9aa78">Ikarus::SubsidiaryArgs::stepSize</a></div><div class="ttdeci">double stepSize</div><div class="ttdoc">The step size in the control routine.</div><div class="ttdef"><b>Definition:</b> pathfollowingfunctions.hh:40</div></div>
+<div class="ttc" id="aa01700_html"><div class="ttname"><a href="a01700.html">Ikarus::NonLinearSolverInformation</a></div><div class="ttdoc">Information about the result of a non-linear solver.</div><div class="ttdef"><b>Definition:</b> solverinfos.hh:19</div></div>
+<div class="ttc" id="aa01700_html_a81570cd3d9f6589a4d1ba81211f41b99"><div class="ttname"><a href="a01700.html#a81570cd3d9f6589a4d1ba81211f41b99">Ikarus::NonLinearSolverInformation::iterations</a></div><div class="ttdeci">int iterations</div><div class="ttdef"><b>Definition:</b> solverinfos.hh:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -291,7 +231,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_6063e92d97cad5a47908d6a96069b24d.html">python</a></li><li class="navelem"><a class="el" href="dir_2eacd46bb6575c3620b10a673993bd91.html">assembler</a></li><li class="navelem"><a class="el" href="a00320.html">flatassemblermanipulator.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_a97b071c9c6f7bcc51f4d0bc7519f177.html">controlroutines</a></li><li class="navelem"><a class="el" href="a00320.html">adaptivestepsizing.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

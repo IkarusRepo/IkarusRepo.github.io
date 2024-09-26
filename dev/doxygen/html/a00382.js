@@ -1,9 +1,15 @@
 var a00382 =
 [
-    [ "E0", "a01403.html", "a01403" ],
-    [ "H1E21", "a01423.html", "a01423" ],
-    [ "H1E9", "a01419.html", "a01419" ],
-    [ "Q1E4", "a01407.html", "a01407" ],
-    [ "Q1E5", "a01411.html", "a01411" ],
-    [ "Q1E7", "a01415.html", "a01415" ]
+    [ "Ikarus::traits::Pointer", "a01960.html", null ],
+    [ "Ikarus::traits::is_tuple< std::tuple< T... > >", "a01868.html", null ],
+    [ "Ikarus::traits::hasType< T, Tuple >", "a01872.html", null ],
+    [ "Ikarus::traits::isSharedPtr< T >", "a01876.html", null ],
+    [ "Ikarus::traits::isSpecialization< U, U< T... > >", "a01884.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01888.html", null ],
+    [ "Ikarus::traits::isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01892.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypes< Type, Type< N... > >", "a01896.html", null ],
+    [ "Ikarus::traits::Index< T, Tuple >", "a01900.html", null ],
+    [ "Ikarus::traits::FunctionTraits< T, typename >", "a01908.html", null ],
+    [ "Ikarus::traits::ReturnType", "a00382.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
+    [ "Ikarus::traits::countType", "a00382.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
 ];
