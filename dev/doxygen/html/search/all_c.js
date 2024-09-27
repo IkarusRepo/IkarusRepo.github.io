@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['l_0',['L',['../a01540.html#a05681746b98b7ea4259896cbd87727b5',1,'Ikarus::Truss::KinematicVariables']]],
-  ['l_1',['l',['../a01540.html#a507fe4fbad5adfb4df5f70e690987f27',1,'Ikarus::Truss::KinematicVariables']]],
+  ['l_0',['l',['../a01540.html#a507fe4fbad5adfb4df5f70e690987f27',1,'Ikarus::Truss::KinematicVariables']]],
+  ['l_1',['L',['../a01540.html#a05681746b98b7ea4259896cbd87727b5',1,'Ikarus::Truss::KinematicVariables']]],
   ['lambda_2',['lambda',['../a01584.html#a0157695e9fc8b735e86f828cc35b64fc',1,'Ikarus::LamesFirstParameterAndShearModulus::lambda()'],['../a01580.html#a82f624b8171315c48c0bb5d39ef2f5d8',1,'Ikarus::BulkModulusAndLamesFirstParameter::lambda()'],['../a01576.html#ab38e15b12e0e703652627c73b8639ee8',1,'Ikarus::YoungsModulusAndLamesFirstParameter::lambda()']]],
   ['lamesfirstparameterandshearmodulus_3',['LamesFirstParameterAndShearModulus',['../a01584.html',1,'Ikarus']]],
   ['license_2emd_4',['LICENSE.md',['../a00356.html',1,'']]],
@@ -28,6 +28,7 @@ var searchData=
   ['loads_2ehh_25',['loads.hh',['../a00236.html',1,'']]],
   ['localbasistype_26',['LocalBasisType',['../a01452.html#a39b4e56c142a7a1edab8f54939fe01ba',1,'Ikarus::KirchhoffLoveShell::LocalBasisType()'],['../a01468.html#ae51f1ca113102ddf0249f77160552d5e',1,'Ikarus::LinearElastic::LocalBasisType()'],['../a01524.html#ae293c7bd388b1ccb4391066481104220',1,'Ikarus::NonLinearElastic::LocalBasisType()']]],
   ['localsolutionblockvector_27',['localSolutionBlockVector',['../a00387.html#a899043a23720a93e6ce9be9025c3a4bb',1,'Ikarus::FEHelper']]],
-  ['localview_28',['LocalView',['../a01476.html#a16ae410689450d27c7fe33618c65eff5',1,'Ikarus::Traction::LocalView()'],['../a01524.html#adac120cca783f4cccb83be6606c11db5',1,'Ikarus::NonLinearElastic::LocalView()'],['../a01532.html#a2fe6312a266dde582b526f80bab5513e',1,'Ikarus::Truss::LocalView()'],['../a01544.html#af20e97c72e6f0bcec8e156aa367f126c',1,'Ikarus::FEMixin::LocalView()'],['../a01468.html#ab070fdb672db85573e104754b5d564f5',1,'Ikarus::LinearElastic::LocalView()'],['../a01452.html#a73209ba03ea3a205bc8fe7a46bddf51d',1,'Ikarus::KirchhoffLoveShell::LocalView()'],['../a01444.html#a5e8657da9cafc0eb0744abc6d78f40ee',1,'Ikarus::EnhancedAssumedStrains::LocalView()'],['../a01408.html#a06bdad066f621e46875af45a22677a3c',1,'Ikarus::FETraits::LocalView()'],['../a01336.html#a772703dae1bc76a8b862c5e1aee93b09',1,'Ikarus::FE::LocalView()'],['../a01332.html#ae985fb2fdb86d514700c4d57f03e97d5',1,'Ikarus::AutoDiffFE::LocalView()']]],
-  ['localview_29',['localView',['../a01336.html#aa82acd5684364d92165b89e63d0eefb4',1,'Ikarus::FE::localView()'],['../a01336.html#a1425316afd592244682b9ccc48cf59ef',1,'Ikarus::FE::localView() const']]]
+  ['localview_28',['LocalView',['../a01532.html#a2fe6312a266dde582b526f80bab5513e',1,'Ikarus::Truss::LocalView()'],['../a01544.html#af20e97c72e6f0bcec8e156aa367f126c',1,'Ikarus::FEMixin::LocalView()']]],
+  ['localview_29',['localView',['../a01336.html#a1425316afd592244682b9ccc48cf59ef',1,'Ikarus::FE::localView() const'],['../a01336.html#aa82acd5684364d92165b89e63d0eefb4',1,'Ikarus::FE::localView()']]],
+  ['localview_30',['LocalView',['../a01524.html#adac120cca783f4cccb83be6606c11db5',1,'Ikarus::NonLinearElastic::LocalView()'],['../a01476.html#a16ae410689450d27c7fe33618c65eff5',1,'Ikarus::Traction::LocalView()'],['../a01468.html#ab070fdb672db85573e104754b5d564f5',1,'Ikarus::LinearElastic::LocalView()'],['../a01452.html#a73209ba03ea3a205bc8fe7a46bddf51d',1,'Ikarus::KirchhoffLoveShell::LocalView()'],['../a01444.html#a5e8657da9cafc0eb0744abc6d78f40ee',1,'Ikarus::EnhancedAssumedStrains::LocalView()'],['../a01408.html#a06bdad066f621e46875af45a22677a3c',1,'Ikarus::FETraits::LocalView()'],['../a01336.html#a772703dae1bc76a8b862c5e1aee93b09',1,'Ikarus::FE::LocalView()'],['../a01332.html#ae985fb2fdb86d514700c4d57f03e97d5',1,'Ikarus::AutoDiffFE::LocalView()']]]
 ];

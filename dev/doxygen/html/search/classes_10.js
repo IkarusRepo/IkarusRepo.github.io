@@ -7,7 +7,7 @@ var searchData=
   ['scalarwrapper_4',['ScalarWrapper',['../a01656.html',1,'']]],
   ['skills_5',['Skills',['../a01560.html',1,'Ikarus']]],
   ['skills_3c_20prefe_2c_20prefe_3a_3atemplate_20fe_3c_20skills_2e_2e_2e_20_3e_20_3e_6',['Skills&lt; PreFE, PreFE::template FE&lt; Skills... &gt; &gt;',['../a01560.html',1,'Ikarus']]],
-  ['solverdefault_7',['SolverDefault',['../a01756.html',1,'Ikarus::utils']]],
+  ['solverdefault_7',['SolverDefault',['../a01764.html',1,'Ikarus::utils']]],
   ['sparseflatassembler_8',['SparseFlatAssembler',['../a01288.html',1,'Ikarus']]],
   ['sparsematrixwrapper_9',['SparseMatrixWrapper',['../a01652.html',1,'Ikarus::Python']]],
   ['stats_10',['Stats',['../a01720.html',1,'Ikarus']]],

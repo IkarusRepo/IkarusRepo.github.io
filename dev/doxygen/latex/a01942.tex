@@ -1,8 +1,8 @@
-\hypertarget{a01942}{}\doxysection{Ikarus\+::Concepts\+::Add\+Assign\+Able Concept Reference}
-\label{a01942}\index{Ikarus::Concepts::AddAssignAble@{Ikarus::Concepts::AddAssignAble}}
+\hypertarget{a01942}{}\doxysection{Ikarus\+::Concepts\+::Adaptive\+Step\+Sizing\+Strategy Concept Reference}
+\label{a01942}\index{Ikarus::Concepts::AdaptiveStepSizingStrategy@{Ikarus::Concepts::AdaptiveStepSizingStrategy}}
 
 
-Concept defining the requirements for types that support in-\/place addition.  
+Concept to check if a type implements all the needed functions to be an adaptive step sizing method.  
 
 
 
@@ -12,8 +12,12 @@ Concept defining the requirements for types that support in-\/place addition.
 \doxysubsection{Concept definition}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} L, \textcolor{keyword}{typename} R>}
-\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01942}{Ikarus::Concepts::AddAssignAble}} =  \textcolor{keyword}{requires}(L x, R y) \{ x += y; \}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{typename} ASS, \textcolor{keyword}{typename} NLSI, \textcolor{keyword}{typename} SA, \textcolor{keyword}{typename} NonLinearOperator>}
+\DoxyCodeLine{\textcolor{keyword}{concept }\mbox{\hyperlink{a01942}{Ikarus::Concepts::AdaptiveStepSizingStrategy}} =  \textcolor{keyword}{requires}(ASS adaptiveStepSizing, NLSI info, SA args, \mbox{\hyperlink{a00384_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}} nop) \{}
+\DoxyCodeLine{    \{ adaptiveStepSizing(info, args, nop) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.targetIterations() \} -\/> std::same\_as<int>;}
+\DoxyCodeLine{    \{ adaptiveStepSizing.setTargetIterations(std::declval<int>()) \} -\/> std::same\_as<void>;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCode}
 
@@ -21,9 +25,10 @@ Concept defining the requirements for types that support in-\/place addition.
 \doxysubsection{Detailed Description}
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em L} & Type of the left operand. \\
+{\em ASS} & The adaptive step sizing type. \\
 \hline
-{\em R} & Type of the right operand.\\
+{\em NLSI} & The non-\/linear solver information type. \\
+\hline
+{\em SA} & The subsidiary arguments type. \\
 \hline
 \end{DoxyTemplParams}
-The concept specifies that instances of type {\ttfamily L} can be added in-\/place by instances of type {\ttfamily R} using the {\ttfamily +=} operator. 

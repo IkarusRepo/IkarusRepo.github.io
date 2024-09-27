@@ -1,7 +1,7 @@
 var annotated_dup =
 [
     [ "Dune", "a00404.html", [
-      [ "FieldVector", "a01764.html", null ]
+      [ "FieldVector", "a01772.html", null ]
     ] ],
     [ "Eigen", "a00396.html", [
       [ "internal", "a00397.html", [
@@ -32,25 +32,25 @@ var annotated_dup =
         [ "VonMises", "a01592.html", "a01592" ]
       ] ],
       [ "traits", "a00407.html", [
-        [ "ChangeArgTypeAtPos", "a01920.html", null ],
-        [ "FunctionTraits", "a01908.html", null ],
-        [ "hasType", "a01872.html", null ],
-        [ "Index", "a01900.html", null ],
-        [ "is_tuple< std::tuple< T... > >", "a01868.html", null ],
-        [ "isSharedPtr", "a01876.html", null ],
-        [ "isSpecialization< U, U< T... > >", "a01884.html", null ],
-        [ "isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01888.html", null ],
-        [ "isSpecializationNonTypes< Type, Type< N... > >", "a01896.html", null ],
-        [ "isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01892.html", null ],
-        [ "Rebind", "a01904.html", null ],
-        [ "remove_pointer", "a01880.html", "a01880" ],
-        [ "ReplaceTypeAtPos", "a01912.html", null ],
-        [ "TupleToFunctionType", "a01916.html", null ]
+        [ "ChangeArgTypeAtPos", "a01928.html", null ],
+        [ "FunctionTraits", "a01916.html", null ],
+        [ "hasType", "a01880.html", null ],
+        [ "Index", "a01908.html", null ],
+        [ "is_tuple< std::tuple< T... > >", "a01876.html", null ],
+        [ "isSharedPtr", "a01884.html", null ],
+        [ "isSpecialization< U, U< T... > >", "a01892.html", null ],
+        [ "isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01896.html", null ],
+        [ "isSpecializationNonTypes< Type, Type< N... > >", "a01904.html", null ],
+        [ "isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01900.html", null ],
+        [ "Rebind", "a01912.html", null ],
+        [ "remove_pointer", "a01888.html", "a01888" ],
+        [ "ReplaceTypeAtPos", "a01920.html", null ],
+        [ "TupleToFunctionType", "a01924.html", null ]
       ] ],
       [ "utils", "a00400.html", [
-        [ "CheckFlags", "a01812.html", "a01812" ],
-        [ "SolverDefault", "a01756.html", "a01756" ],
-        [ "UpdateDefault", "a01760.html", "a01760" ]
+        [ "CheckFlags", "a01820.html", "a01820" ],
+        [ "SolverDefault", "a01764.html", "a01764" ],
+        [ "UpdateDefault", "a01768.html", "a01768" ]
       ] ],
       [ "Vtk", "a00394.html", [
         [ "DefaultVTKWriterManager", "a01636.html", "a01636" ],
@@ -69,15 +69,15 @@ var annotated_dup =
       [ "BasisHandler", "a01732.html", "a01732" ],
       [ "BulkModulusAndLamesFirstParameter", "a01580.html", "a01580" ],
       [ "ControlInformation", "a01304.html", "a01304" ],
-      [ "ControlLogger", "a01840.html", "a01840" ],
-      [ "ControlSubsamplingVertexVTKWriter", "a01844.html", "a01844" ],
+      [ "ControlLogger", "a01848.html", "a01848" ],
+      [ "ControlSubsamplingVertexVTKWriter", "a01852.html", "a01852" ],
       [ "ConvertLameConstants", "a01588.html", "a01588" ],
       [ "DefaultMembraneStrain", "a01520.html", "a01520" ],
       [ "DenseFlatAssembler", "a01292.html", "a01292" ],
-      [ "DeriveSizeType", "a01768.html", null ],
-      [ "DeriveSizeType< std::vector< bool > >", "a01776.html", "a01776" ],
-      [ "DeriveSizeType< T >", "a01772.html", "a01772" ],
-      [ "DirichletValues", "a01780.html", "a01780" ],
+      [ "DeriveSizeType", "a01776.html", null ],
+      [ "DeriveSizeType< std::vector< bool > >", "a01784.html", "a01784" ],
+      [ "DeriveSizeType< T >", "a01780.html", "a01780" ],
+      [ "DirichletValues", "a01788.html", "a01788" ],
       [ "DisplacementControl", "a01328.html", "a01328" ],
       [ "EnhancedAssumedStrains", "a01444.html", "a01444" ],
       [ "EnhancedAssumedStrainsPre", "a01448.html", "a01448" ],
@@ -88,16 +88,16 @@ var annotated_dup =
       [ "FERequirementsFactory", "a01372.html", "a01372" ],
       [ "FETraits", "a01408.html", "a01408" ],
       [ "FlatAssemblerBase", "a01264.html", "a01264" ],
-      [ "FlatIndexMergingStrategy", "a01792.html", "a01792" ],
-      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "a01796.html", "a01796" ],
-      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "a01800.html", "a01800" ],
-      [ "FlatPreBasis", "a01788.html", "a01788" ],
-      [ "FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "a01804.html", "a01804" ],
-      [ "FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "a01808.html", "a01808" ],
-      [ "GenericObserver", "a01848.html", "a01848" ],
-      [ "IkarusInstance", "a01816.html", "a01816" ],
-      [ "IObservable", "a01860.html", "a01860" ],
-      [ "IObserver", "a01856.html", "a01856" ],
+      [ "FlatIndexMergingStrategy", "a01800.html", "a01800" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "a01804.html", "a01804" ],
+      [ "FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "a01808.html", "a01808" ],
+      [ "FlatPreBasis", "a01796.html", "a01796" ],
+      [ "FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "a01812.html", "a01812" ],
+      [ "FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "a01816.html", "a01816" ],
+      [ "GenericObserver", "a01856.html", "a01856" ],
+      [ "IkarusInstance", "a01824.html", "a01824" ],
+      [ "IObservable", "a01868.html", "a01868" ],
+      [ "IObserver", "a01864.html", "a01864" ],
       [ "KirchhoffLoveShell", "a01452.html", "a01452" ],
       [ "KirchhoffLoveShellPre", "a01456.html", "a01456" ],
       [ "KlArgs", "a01464.html", "a01464" ],
@@ -120,11 +120,11 @@ var annotated_dup =
       [ "NewtonRaphsonWithSubsidiaryFunctionSettings", "a01688.html", "a01688" ],
       [ "NonLinearElastic", "a01524.html", "a01524" ],
       [ "NonLinearElasticPre", "a01528.html", "a01528" ],
-      [ "NonLinearOperator", "a01828.html", "a01828" ],
-      [ "NonLinearOperatorFactory", "a01836.html", "a01836" ],
+      [ "NonLinearOperator", "a01836.html", "a01836" ],
+      [ "NonLinearOperatorFactory", "a01844.html", "a01844" ],
       [ "NonlinearSolverFactory", "a01696.html", "a01696" ],
       [ "NonLinearSolverInformation", "a01700.html", "a01700" ],
-      [ "NonLinearSolverLogger", "a01852.html", "a01852" ],
+      [ "NonLinearSolverLogger", "a01860.html", "a01860" ],
       [ "NRSettings", "a01676.html", "a01676" ],
       [ "PathFollowing", "a01312.html", "a01312" ],
       [ "PreFE", "a01340.html", "a01340" ],
@@ -158,8 +158,8 @@ var annotated_dup =
       [ "YoungsModulusAndShearModulus", "a01568.html", "a01568" ]
     ] ],
     [ "Python", "a00406.html", [
-      [ "Conversion< autodiff::Real< order, T > >", "a01864.html", "a01864" ]
+      [ "Conversion< autodiff::Real< order, T > >", "a01872.html", "a01872" ]
     ] ],
     [ "ScalarWrapper", "a01656.html", "a01656" ],
-    [ "TrustRegionSettings", "a01964.html", null ]
+    [ "TrustRegionSettings", "a01973.html", null ]
 ];

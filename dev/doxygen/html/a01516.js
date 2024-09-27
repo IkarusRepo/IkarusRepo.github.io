@@ -26,6 +26,7 @@ var a01516 =
     [ "fixedVoigtIndices", "a01516.html#ae5a0c7ba92468388f585117257be5819", null ],
     [ "freeStrains", "a01516.html#ad2f54da2e2ad2dbe6aec1842ce3cfa42", null ],
     [ "freeVoigtIndices", "a01516.html#a6b2db750aec34e9695251368a26788ae", null ],
+    [ "isAutoDiff", "a01516.html#a8722c04929bc243a10f74f6d58bd0816", null ],
     [ "isReduced", "a01516.html#a6e16de35bf2d955d777a8441e939a20b", null ],
     [ "moduliAcceptsVoigt", "a01516.html#af71580e6843d7cfaca43b6fe33cc6799", null ],
     [ "moduliToVoigt", "a01516.html#ac374572798da72172130212a514732d8", null ],

@@ -1,5 +1,4 @@
 var a02866 =
 [
-    [ "vtkWriter", "a02866.html#a269b94c2da8015cfd6132454386af550", null ],
-    [ "DataCollector", "a02866.html#a5b953cf1a56a5acf930f200f28ad2fe6", null ]
+    [ "registerVtkWriter", "a02866.html#ga9f62f91fc33b1f9e17756c2ac7b30077", null ]
 ];

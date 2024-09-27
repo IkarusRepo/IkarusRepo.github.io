@@ -1,4 +1,6 @@
 var a02839 =
 [
-    [ "addMaterialsSubModule", "a00372.html#ga2c5ed0e112e5ea2865689ad21282c5e6", null ]
+    [ "Ikarus::ScalarAssembler< SA, FEC, DV, ST >", "a01268.html", "a01268" ],
+    [ "Ikarus::VectorAssembler< VA, FEC, DV, VT >", "a01272.html", "a01272" ],
+    [ "Ikarus::MatrixAssembler< MA, FEC, DV, MT >", "a01276.html", "a01276" ]
 ];

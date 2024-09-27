@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['basis_2ehh_0',['basis.hh',['../a02842.html',1,'']]],
-  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02848.html',1,'']]],
-  ['materials_2ehh_2',['materials.hh',['../a02839.html',1,'']]],
+  ['basis_2ehh_0',['basis.hh',['../a02851.html',1,'']]],
+  ['dirichletvalues_2ehh_1',['dirichletvalues.hh',['../a02857.html',1,'']]],
+  ['materials_2ehh_2',['materials.hh',['../a02848.html',1,'']]],
   ['parameter_3',['parameter',['../a00384.html#ac00abda505aa8ccc73ce59afd165ce49',1,'Ikarus::parameter()'],['../a01368.html#ad23d77e15365c85e02538358a1803e04',1,'Ikarus::FERequirements::parameter()'],['../a01368.html#af11316c1f0fca6982a2d7497bc71a10c',1,'Ikarus::FERequirements::parameter() const']]],
   ['parameters_4',['parameters',['../a01708.html#a96af86c9e501d6f3c679f6e97cbec00f',1,'Ikarus::TrustRegionConfig::parameters()'],['../a01692.html#a8625a8ad969b934191cb643123dd09b0',1,'Ikarus::NewtonRaphsonWithSubsidiaryFunctionConfig::parameters()'],['../a01680.html#a2abf5470e100045df3fb0fab74efbc25',1,'Ikarus::NewtonRaphsonConfig::parameters()']]],
   ['parameterspacetype_5',['ParameterSpaceType',['../a01408.html#ac221dbf16d284b783228c103773a6939',1,'Ikarus::FETraits']]],
@@ -38,5 +38,5 @@ var searchData=
   ['python_20bindings_35',['Python bindings',['../a00376.html',1,'']]],
   ['pythonautodiffdefinitions_2ehh_36',['pythonautodiffdefinitions.hh',['../a00074.html',1,'']]],
   ['pythonhelpers_2ehh_37',['pythonhelpers.hh',['../a00344.html',1,'']]],
-  ['vtkwriter_2ehh_38',['vtkwriter.hh',['../a02857.html',1,'']]]
+  ['vtkwriter_2ehh_38',['vtkwriter.hh',['../a02866.html',1,'']]]
 ];

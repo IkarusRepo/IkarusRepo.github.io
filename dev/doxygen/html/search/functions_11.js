@@ -33,7 +33,7 @@ var searchData=
   ['registervtkwriter_30',['registerVtkWriter',['../a00376.html#ga9f62f91fc33b1f9e17756c2ac7b30077',1,'Ikarus::Python']]],
   ['removecol_31',['removeCol',['../a00379.html#ga2f675229501979101656ec4dee7764d5',1,'Ikarus']]],
   ['requirement_32',['requirement',['../a01264.html#a6424b3d5449da29188bb931abb8ba551',1,'Ikarus::FlatAssemblerBase']]],
-  ['reset_33',['reset',['../a01780.html#ab8ae184ec5c0c79a893a8111d7315442',1,'Ikarus::DirichletValues']]],
+  ['reset_33',['reset',['../a01788.html#ab8ae184ec5c0c79a893a8111d7315442',1,'Ikarus::DirichletValues']]],
   ['resultfunction_34',['ResultFunction',['../a01604.html#ad52f06ff96b7f3e14b51c9f963b433d8',1,'Ikarus::ResultFunction']]],
   ['resultwrapper_35',['ResultWrapper',['../a01392.html#ae3ec0250a8cce10dae2b6eacec3ffe11',1,'Ikarus::ResultWrapper::ResultWrapper(const StoredType &amp;value)'],['../a01392.html#a623510c28007eb075ed7719de10562b2',1,'Ikarus::ResultWrapper::ResultWrapper(StoredType &amp;&amp;value)'],['../a01392.html#a826dcccf70e97474b01126970e2839ac',1,'Ikarus::ResultWrapper::ResultWrapper()=default']]],
   ['returnreferenceornulloptifobjectisnullptr_36',['returnReferenceOrNulloptIfObjectIsNullPtr',['../a00400.html#aa156028e47fc302b02a7e70dea888034',1,'Ikarus::utils']]],

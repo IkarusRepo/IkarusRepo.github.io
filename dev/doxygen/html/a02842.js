@@ -1,4 +1,5 @@
 var a02842 =
 [
-    [ "registerBasisHandler", "a02842.html#ga2f6146bb687ad25cfb413fbcfd470788", null ]
+    [ "Ikarus::CorrectStrainSize", "a01930.html", null ],
+    [ "hasCorrectSize", "a02842.html#ab6a92f48acd6be62f36b7f499491fc8a", null ]
 ];

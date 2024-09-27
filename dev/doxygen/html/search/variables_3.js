@@ -14,5 +14,5 @@ var searchData=
   ['dfddlambda_11',['dfdDlambda',['../a01316.html#a198c4e48b353f1ebe5c5922bf51e34e5',1,'Ikarus::SubsidiaryArgs']]],
   ['dimension_12',['dimension',['../a01408.html#ab8a4dc345d034cfd8f3a60000f9647d0',1,'Ikarus::FETraits']]],
   ['dlambda_13',['Dlambda',['../a01316.html#a0cd5cc302f164ea614b9edfadd7c82c9',1,'Ikarus::SubsidiaryArgs']]],
-  ['draw_14',['draw',['../a01812.html#a08fa473dcdfbdb5dcf759546ea2da3b8',1,'Ikarus::utils::CheckFlags']]]
+  ['draw_14',['draw',['../a01820.html#a08fa473dcdfbdb5dcf759546ea2da3b8',1,'Ikarus::utils::CheckFlags']]]
 ];

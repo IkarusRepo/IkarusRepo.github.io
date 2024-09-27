@@ -9,11 +9,11 @@ var searchData=
   ['newtonraphsonwithsubsidiaryfunctionsettings_6',['NewtonRaphsonWithSubsidiaryFunctionSettings',['../a01688.html',1,'Ikarus']]],
   ['nonlinearelastic_7',['NonLinearElastic',['../a01524.html',1,'Ikarus']]],
   ['nonlinearelasticpre_8',['NonLinearElasticPre',['../a01528.html',1,'Ikarus']]],
-  ['nonlinearoperator_9',['NonLinearOperator',['../a01828.html',1,'Ikarus']]],
-  ['nonlinearoperatorfactory_10',['NonLinearOperatorFactory',['../a01836.html',1,'Ikarus']]],
+  ['nonlinearoperator_9',['NonLinearOperator',['../a01836.html',1,'Ikarus']]],
+  ['nonlinearoperatorfactory_10',['NonLinearOperatorFactory',['../a01844.html',1,'Ikarus']]],
   ['nonlinearsolverfactory_11',['NonlinearSolverFactory',['../a01696.html',1,'Ikarus']]],
   ['nonlinearsolverinformation_12',['NonLinearSolverInformation',['../a01700.html',1,'Ikarus']]],
-  ['nonlinearsolverlogger_13',['NonLinearSolverLogger',['../a01852.html',1,'Ikarus']]],
+  ['nonlinearsolverlogger_13',['NonLinearSolverLogger',['../a01860.html',1,'Ikarus']]],
   ['noop_14',['NoOp',['../a01296.html',1,'Ikarus::AdaptiveStepSizing']]],
   ['nrsettings_15',['NRSettings',['../a01676.html',1,'Ikarus']]]
 ];

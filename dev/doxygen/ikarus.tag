@@ -15,11 +15,11 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
     <filename>a00158.html</filename>
     <includes id="a00167" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
-    <includes id="a02830" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
+    <includes id="a02839" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
     <includes id="a00194" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00062" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
-    <includes id="a02851" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
+    <includes id="a02860" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
     <class kind="struct">Ikarus::ScalarManipulator</class>
     <class kind="struct">Ikarus::VectorManipulator</class>
     <class kind="struct">Ikarus::MatrixManipulator</class>
@@ -78,11 +78,11 @@
   <compound kind="file">
     <name>assembler/interface.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
-    <filename>a02830.html</filename>
+    <filename>a02839.html</filename>
     <includes id="a00167" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
     <includes id="a00194" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02851" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
+    <includes id="a02860" name="utils/dirichletvalues.hh" local="no" imported="no">ikarus/utils/dirichletvalues.hh</includes>
     <class kind="class">Ikarus::FlatAssemblerBase</class>
     <class kind="class">Ikarus::ScalarAssembler</class>
     <class kind="class">Ikarus::VectorAssembler</class>
@@ -92,7 +92,7 @@
   <compound kind="file">
     <name>finiteelements/mechanics/materials/interface.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
-    <filename>a02833.html</filename>
+    <filename>a02842.html</filename>
     <includes id="a00203" name="strainconversions.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/strainconversions.hh</includes>
     <includes id="a00224" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
     <includes id="a00200" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
@@ -114,7 +114,7 @@
     <name>simpleassemblers.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/assembler/</path>
     <filename>a00164.html</filename>
-    <includes id="a02830" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
+    <includes id="a02839" name="assembler/interface.hh" local="no" imported="no">ikarus/assembler/interface.hh</includes>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00173" name="simpleassemblers.inl" local="yes" imported="no">simpleassemblers.inl</includes>
     <class kind="class">Ikarus::ScalarFlatAssembler</class>
@@ -734,7 +734,7 @@
     <includes id="a00194" name="fehelper.hh" local="no" imported="no">ikarus/finiteelements/fehelper.hh</includes>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00197" name="feresulttypes.hh" local="no" imported="no">ikarus/finiteelements/feresulttypes.hh</includes>
-    <includes id="a02836" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a02845" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
     <includes id="a00200" name="physicshelper.hh" local="no" imported="no">ikarus/finiteelements/physicshelper.hh</includes>
     <class kind="struct">Ikarus::LinearElasticPre</class>
     <class kind="class">Ikarus::LinearElastic</class>
@@ -805,7 +805,7 @@
   <compound kind="file">
     <name>ikarus/finiteelements/mechanics/materials.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/</path>
-    <filename>a02836.html</filename>
+    <filename>a02845.html</filename>
     <includes id="a00206" name="linearelasticity.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/linearelasticity.hh</includes>
     <includes id="a00218" name="neohooke.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/neohooke.hh</includes>
     <includes id="a00212" name="svk.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/svk.hh</includes>
@@ -816,9 +816,9 @@
   <compound kind="file">
     <name>python/ikarus/materials/materials.hh</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/materials/</path>
-    <filename>a02839.html</filename>
+    <filename>a02848.html</filename>
     <includes id="a00344" name="pythonhelpers.hh" local="yes" imported="no">../pythonhelpers.hh</includes>
-    <includes id="a02836" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a02845" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
     <includes id="a00224" name="tags.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/tags.hh</includes>
     <includes id="a00131" name="material.hh" local="no" imported="no">ikarus/python/finiteelements/material.hh</includes>
     <member kind="function">
@@ -834,7 +834,7 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00206.html</filename>
     <includes id="a00212" name="svk.hh" local="yes" imported="no">svk.hh</includes>
-    <includes id="a02833" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02842" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <class kind="struct">Ikarus::LinearElasticityT</class>
     <namespace>Ikarus</namespace>
     <member kind="typedef">
@@ -849,7 +849,7 @@
     <name>neohooke.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00218.html</filename>
-    <includes id="a02833" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02842" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::NeoHookeT</class>
     <namespace>Ikarus</namespace>
@@ -901,7 +901,7 @@
     <name>svk.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00212.html</filename>
-    <includes id="a02833" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02842" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00044" name="tensorutils.hh" local="no" imported="no">ikarus/utils/tensorutils.hh</includes>
     <class kind="struct">Ikarus::StVenantKirchhoffT</class>
     <namespace>Ikarus</namespace>
@@ -993,7 +993,7 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00215.html</filename>
     <includes id="a00209" name="vanishinghelpers.hh" local="yes" imported="no">vanishinghelpers.hh</includes>
-    <includes id="a02833" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02842" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00203" name="strainconversions.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/strainconversions.hh</includes>
     <includes id="a00275" name="newtonraphson.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphson.hh</includes>
     <includes id="a00053" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
@@ -1019,9 +1019,10 @@
     <path>/__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/</path>
     <filename>a00221.html</filename>
     <includes id="a00209" name="vanishinghelpers.hh" local="yes" imported="no">vanishinghelpers.hh</includes>
-    <includes id="a02833" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
+    <includes id="a02842" name="finiteelements/mechanics/materials/interface.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials/interface.hh</includes>
     <includes id="a00275" name="newtonraphson.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/newtonraphson.hh</includes>
     <includes id="a00281" name="nonlinearsolverfactory.hh" local="no" imported="no">ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh</includes>
+    <includes id="a00062" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <includes id="a00053" name="nonlinearoperator.hh" local="no" imported="no">ikarus/utils/nonlinearoperator.hh</includes>
     <class kind="struct">Ikarus::VanishingStress</class>
     <namespace>Ikarus</namespace>
@@ -1294,7 +1295,7 @@
     <filename>a00128.html</filename>
     <includes id="a00167" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02845" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02854" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="define">
@@ -1334,7 +1335,7 @@
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00128" name="flatassembler.hh" local="no" imported="no">ikarus/python/assembler/flatassembler.hh</includes>
     <includes id="a00137" name="scalarwrapper.hh" local="no" imported="no">ikarus/python/finiteelements/scalarwrapper.hh</includes>
-    <includes id="a02845" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02854" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <includes id="a00008" name="traits.hh" local="no" imported="no">ikarus/utils/traits.hh</includes>
     <class kind="struct">Ikarus::Python::SparseMatrixWrapper</class>
     <namespace>Ikarus</namespace>
@@ -1357,9 +1358,9 @@
   <compound kind="file">
     <name>python/basis/basis.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/basis/</path>
-    <filename>a02842.html</filename>
+    <filename>a02851.html</filename>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
-    <includes id="a02845" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
+    <includes id="a02854" name="utils/basis.hh" local="no" imported="no">ikarus/utils/basis.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -1373,7 +1374,7 @@
   <compound kind="file">
     <name>utils/basis.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02845.html</filename>
+    <filename>a02854.html</filename>
     <includes id="a00011" name="flatprebasis.hh" local="no" imported="no">ikarus/utils/flatprebasis.hh</includes>
     <class kind="class">Ikarus::BasisHandler</class>
     <namespace>Ikarus</namespace>
@@ -1395,7 +1396,7 @@
   <compound kind="file">
     <name>python/dirichletvalues/dirichletvalues.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/dirichletvalues/</path>
-    <filename>a02848.html</filename>
+    <filename>a02857.html</filename>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
@@ -1417,7 +1418,7 @@
   <compound kind="file">
     <name>utils/dirichletvalues.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/utils/</path>
-    <filename>a02851.html</filename>
+    <filename>a02860.html</filename>
     <includes id="a00062" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <class kind="struct">Ikarus::DeriveSizeType&lt; T &gt;</class>
     <class kind="struct">Ikarus::DeriveSizeType&lt; std::vector&lt; bool &gt; &gt;</class>
@@ -1452,7 +1453,7 @@
     <name>material.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/finiteelements/</path>
     <filename>a00131.html</filename>
-    <includes id="a02836" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
+    <includes id="a02845" name="ikarus/finiteelements/mechanics/materials.hh" local="no" imported="no">ikarus/finiteelements/mechanics/materials.hh</includes>
     <includes id="a00062" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
@@ -1579,7 +1580,7 @@
   <compound kind="file">
     <name>io/vtkwriter.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/io/</path>
-    <filename>a02854.html</filename>
+    <filename>a02863.html</filename>
     <includes id="a00152" name="vtkdatatag.hh" local="yes" imported="no">vtkdatatag.hh</includes>
     <includes id="a00155" name="resultfunction.hh" local="no" imported="no">ikarus/io/resultfunction.hh</includes>
     <includes id="a00062" name="concepts.hh" local="no" imported="no">ikarus/utils/concepts.hh</includes>
@@ -1607,10 +1608,10 @@
   <compound kind="file">
     <name>python/io/vtkwriter.hh</name>
     <path>/__w/ikarus/ikarus/repo/ikarus/python/io/</path>
-    <filename>a02857.html</filename>
+    <filename>a02866.html</filename>
     <includes id="a00191" name="ferequirements.hh" local="no" imported="no">ikarus/finiteelements/ferequirements.hh</includes>
     <includes id="a00152" name="vtkdatatag.hh" local="no" imported="no">ikarus/io/vtkdatatag.hh</includes>
-    <includes id="a02854" name="io/vtkwriter.hh" local="no" imported="no">ikarus/io/vtkwriter.hh</includes>
+    <includes id="a02863" name="io/vtkwriter.hh" local="no" imported="no">ikarus/io/vtkwriter.hh</includes>
     <namespace>Ikarus</namespace>
     <namespace>Ikarus::Python</namespace>
     <member kind="function">
@@ -2059,6 +2060,7 @@
     <concept>Ikarus::Concepts::MatrixFlatAssembler</concept>
     <concept>Ikarus::Concepts::DataCollector</concept>
     <concept>Ikarus::Concepts::GridView</concept>
+    <concept>Ikarus::Concepts::AutodiffScalar</concept>
     <member kind="define">
       <type>#define</type>
       <name>MAKE_EIGEN_FIXED_VECTOR_CONCEPT</name>
@@ -3020,7 +3022,7 @@
     <path>/__w/ikarus/ikarus/repo/python/ikarus/</path>
     <filename>a00338.html</filename>
     <includes id="a00332" name="io.hh" local="yes" imported="no">io/io.hh</includes>
-    <includes id="a02839" name="python/ikarus/materials/materials.hh" local="yes" imported="no">materials/materials.hh</includes>
+    <includes id="a02848" name="python/ikarus/materials/materials.hh" local="yes" imported="no">materials/materials.hh</includes>
     <includes id="a00344" name="pythonhelpers.hh" local="yes" imported="no">pythonhelpers.hh</includes>
     <includes id="a00341" name="utils.hh" local="yes" imported="no">utils/utils.hh</includes>
     <includes id="a00167" name="dirichletbcenforcement.hh" local="no" imported="no">ikarus/assembler/dirichletbcenforcement.hh</includes>
@@ -3128,7 +3130,7 @@
   <compound kind="file">
     <name>assembler/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/assembler/</path>
-    <filename>a02860.html</filename>
+    <filename>a02869.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::assembler</namespace>
     <member kind="function">
@@ -3156,7 +3158,7 @@
   <compound kind="file">
     <name>finite_elements/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/finite_elements/</path>
-    <filename>a02863.html</filename>
+    <filename>a02872.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::finite_elements</namespace>
     <member kind="function">
@@ -3247,7 +3249,7 @@
   <compound kind="file">
     <name>io/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/io/</path>
-    <filename>a02866.html</filename>
+    <filename>a02875.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::io</namespace>
     <member kind="function">
@@ -3268,7 +3270,7 @@
   <compound kind="file">
     <name>utils/__init__.py</name>
     <path>/__w/ikarus/ikarus/repo/python/ikarus/utils/</path>
-    <filename>a02869.html</filename>
+    <filename>a02878.html</filename>
     <namespace>ikarus</namespace>
     <namespace>ikarus::utils</namespace>
     <member kind="function">
@@ -3977,32 +3979,32 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::ChangeArgTypeAtPos</name>
-    <filename>a01920.html</filename>
+    <filename>a01928.html</filename>
     <templarg>typename Func</templarg>
     <templarg>std::size_t Pos</templarg>
     <templarg>typename NewType</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::utils::CheckFlags</name>
-    <filename>a01812.html</filename>
+    <filename>a01820.html</filename>
     <member kind="variable">
       <type>bool</type>
       <name>draw</name>
-      <anchorfile>a01812.html</anchorfile>
+      <anchorfile>a01820.html</anchorfile>
       <anchor>a08fa473dcdfbdb5dcf759546ea2da3b8</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>bool</type>
       <name>writeSlopeStatementIfFailed</name>
-      <anchorfile>a01812.html</anchorfile>
+      <anchorfile>a01820.html</anchorfile>
       <anchor>ac9946207ee221c94e843ea7c048a16a3</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>double</type>
       <name>tolerance</name>
-      <anchorfile>a01812.html</anchorfile>
+      <anchorfile>a01820.html</anchorfile>
       <anchor>a6c1e702608ca901f9f7efca524560b25</anchor>
       <arglist></arglist>
     </member>
@@ -4034,274 +4036,274 @@
   </compound>
   <compound kind="class">
     <name>Ikarus::ControlLogger</name>
-    <filename>a01840.html</filename>
+    <filename>a01848.html</filename>
     <base>IObserver&lt; ControlMessages &gt;</base>
     <member kind="typedef">
       <type>ControlMessages</type>
       <name>MessageType</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01840.html</anchorfile>
+      <anchorfile>a01848.html</anchorfile>
       <anchor>a10ad975b5a99ce217fd1d122963f46e8</anchor>
       <arglist>(ControlMessages message) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01840.html</anchorfile>
+      <anchorfile>a01848.html</anchorfile>
       <anchor>a9c8c660297d060779e05303c63c1b4be</anchor>
       <arglist>(ControlMessages message, const std::string &amp;val) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01840.html</anchorfile>
+      <anchorfile>a01848.html</anchorfile>
       <anchor>a78f7ab50c3ad889e9dafe84ecc59bb9f</anchor>
       <arglist>(ControlMessages message, int val1, const std::string &amp;val2) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01840.html</anchorfile>
+      <anchorfile>a01848.html</anchorfile>
       <anchor>aca92cd9bf83a7575260a015a646aca8c</anchor>
       <arglist>(ControlMessages message, int val1, double val2) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::ControlSubsamplingVertexVTKWriter</name>
-    <filename>a01844.html</filename>
+    <filename>a01852.html</filename>
     <templarg>typename B</templarg>
     <base>IObserver&lt; ControlMessages &gt;</base>
     <member kind="typedef">
       <type>ControlMessages</type>
       <name>MessageType</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>ControlSubsamplingVertexVTKWriter</name>
-      <anchorfile>a01844.html</anchorfile>
+      <anchorfile>a01852.html</anchorfile>
       <anchor>a1e07865751a32e0a1dd29e8f001babc3</anchor>
       <arglist>(const Basis &amp;basis, const Eigen::VectorXd &amp;sol, int refinementLevels=0)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>setFieldInfo</name>
-      <anchorfile>a01844.html</anchorfile>
+      <anchorfile>a01852.html</anchorfile>
       <anchor>afec0c3fe2aa8cac3e9970d8c9720c219</anchor>
       <arglist>(std::string &amp;&amp;name, Dune::VTK::FieldInfo::Type type, std::size_t size, Dune::VTK::Precision prec=Dune::VTK::Precision::float32)</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>setFileNamePrefix</name>
-      <anchorfile>a01844.html</anchorfile>
+      <anchorfile>a01852.html</anchorfile>
       <anchor>a8061e516e4c6626a2f6ea160e692e4e1</anchor>
       <arglist>(std::string &amp;&amp;name)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01844.html</anchorfile>
+      <anchorfile>a01852.html</anchorfile>
       <anchor>a72b675b3fb4b0b2989b315e2a0337e44</anchor>
       <arglist>(ControlMessages message) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Python::Conversion&lt; autodiff::Real&lt; order, T &gt; &gt;</name>
-    <filename>a01864.html</filename>
+    <filename>a01872.html</filename>
     <templarg>std::size_t order</templarg>
     <templarg>class T</templarg>
     <member kind="enumvalue">
       <name>useDefaultConstructorConversion</name>
-      <anchorfile>a01864.html</anchorfile>
+      <anchorfile>a01872.html</anchorfile>
       <anchor>ad71914c7a22c638ccacc40edb226c0caa800d3df3de5cd47119ccc5a0c89f2841</anchor>
       <arglist></arglist>
     </member>
     <member kind="enumvalue">
       <name>useDefaultConstructorConversion</name>
-      <anchorfile>a01864.html</anchorfile>
+      <anchorfile>a01872.html</anchorfile>
       <anchor>ad71914c7a22c638ccacc40edb226c0caa800d3df3de5cd47119ccc5a0c89f2841</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void</type>
       <name>toC</name>
-      <anchorfile>a01864.html</anchorfile>
+      <anchorfile>a01872.html</anchorfile>
       <anchor>aab78500f06d24b5eb1cd894b68eec03c</anchor>
       <arglist>(PyObject *list, autodiff::Real&lt; order, T &gt; &amp;v)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static PyObject *</type>
       <name>toPy</name>
-      <anchorfile>a01864.html</anchorfile>
+      <anchorfile>a01872.html</anchorfile>
       <anchor>ae7c12c134c747ccf36ff0bf9c453f69e</anchor>
       <arglist>(const autodiff::Real&lt; order, T &gt; &amp;v)</arglist>
     </member>
@@ -4876,174 +4878,174 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::DeriveSizeType</name>
-    <filename>a01768.html</filename>
+    <filename>a01776.html</filename>
     <templarg>class</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::DeriveSizeType&lt; std::vector&lt; bool &gt; &gt;</name>
-    <filename>a01776.html</filename>
+    <filename>a01784.html</filename>
     <member kind="typedef">
       <type>std::vector&lt; bool &gt;::size_type</type>
       <name>SizeType</name>
-      <anchorfile>a01776.html</anchorfile>
+      <anchorfile>a01784.html</anchorfile>
       <anchor>a737ba53080c8f2b8d01f458dd574de9c</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::DeriveSizeType&lt; T &gt;</name>
-    <filename>a01772.html</filename>
+    <filename>a01780.html</filename>
     <templarg>Concepts::EigenVector T</templarg>
     <member kind="typedef">
       <type>Eigen::Index</type>
       <name>SizeType</name>
-      <anchorfile>a01772.html</anchorfile>
+      <anchorfile>a01780.html</anchorfile>
       <anchor>ad2f15a80c92d0ac72c16edbe30b7e9ba</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::DirichletValues</name>
-    <filename>a01780.html</filename>
+    <filename>a01788.html</filename>
     <templarg>typename B</templarg>
     <templarg>typename FC</templarg>
     <member kind="typedef">
       <type>std::remove_cvref_t&lt; B &gt;</type>
       <name>Basis</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a2e6f1ef4a810a7269303f54a6f74539f</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>FC</type>
       <name>FlagsType</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>aa71c2b94b37f2b4e83f9f1e059e6fe4c</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>decltype(Dune::Functions::istlVectorBackend(std::declval&lt; FlagsType &amp; &gt;()))</type>
       <name>BackendType</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a3db820fbcd2b7edf58ce3b21b261f621</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>typename DeriveSizeType&lt; FlagsType &gt;::SizeType</type>
       <name>SizeType</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>ace0ece5adceb26d9db00c7c096568ea0</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>DirichletValues</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>aeb81ceb2617369a584dd12f4574ab1dc</anchor>
       <arglist>(const B &amp;basis)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>fixBoundaryDOFs</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a3b40113e1bf44f2e269242d677afcc55</anchor>
       <arglist>(F &amp;&amp;f, TreePath &amp;&amp;treePath={})</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>fixDOFs</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a956ce2cdc09731f001821c7b59d49e85</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setSingleDOF</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a179a4b05a361fc9ea0a3e935dcf0e45a</anchor>
       <arglist>(const MultiIndex i, bool flag)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>setSingleDOF</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a2c8ce98339eddd3f3bf1cdbf4e07a45f</anchor>
       <arglist>(std::size_t i, bool flag)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>reset</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>ab8ae184ec5c0c79a893a8111d7315442</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>const auto &amp;</type>
       <name>basis</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>ae783c95d2e4b55d9d37f4c141b1d719b</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a1b1fccdb71619c0a49aa24977682d43a</anchor>
       <arglist>(const MultiIndex &amp;multiIndex) const</arglist>
     </member>
     <member kind="function">
       <type>bool</type>
       <name>isConstrained</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a1cdd766b0feb7e85ac3d3df10704e659</anchor>
       <arglist>(std::size_t i) const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>fixedDOFsize</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>aeb299b04b2777be56012b32a3b2e6a9c</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto</type>
       <name>size</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a010fa7b0721c137eb61221493e52dc92</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>auto &amp;</type>
       <name>container</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>af8495b65eac223b7b6c64f07b31cc814</anchor>
       <arglist>() const</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>storeInhomogeneousBoundaryCondition</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>abc3413114cb9272944e1b44606c6a0a1</anchor>
       <arglist>(F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>evaluateInhomogeneousBoundaryCondition</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>ac3950f8821f8e8c1f2a8b8f8a7e86875</anchor>
       <arglist>(Eigen::VectorXd &amp;xIh, const double &amp;lambda)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>evaluateInhomogeneousBoundaryConditionDerivative</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a5d7fdc80dfd3ebdcb58f0770844f71da</anchor>
       <arglist>(Eigen::VectorXd &amp;xIh, const double &amp;lambda)</arglist>
     </member>
     <member kind="variable" static="yes">
       <type>static constexpr int</type>
       <name>worldDimension</name>
-      <anchorfile>a01780.html</anchorfile>
+      <anchorfile>a01788.html</anchorfile>
       <anchor>a79e90730d4ac67efb5e38590c0429df5</anchor>
       <arglist></arglist>
     </member>
@@ -5928,7 +5930,7 @@
   </compound>
   <compound kind="class">
     <name>Dune::FieldVector</name>
-    <filename>a01764.html</filename>
+    <filename>a01772.html</filename>
     <templarg>class K</templarg>
     <templarg>int N</templarg>
   </compound>
@@ -6150,246 +6152,246 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatIndexMergingStrategy</name>
-    <filename>a01792.html</filename>
+    <filename>a01800.html</filename>
     <templarg>class IMS</templarg>
     <member kind="typedef">
       <type>IMS</type>
       <name>type</name>
-      <anchorfile>a01792.html</anchorfile>
+      <anchorfile>a01800.html</anchorfile>
       <anchor>aa18699c386a7d8e60d0f53cbc4a83261</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedInterleaved &gt;</name>
-    <filename>a01796.html</filename>
+    <filename>a01804.html</filename>
     <member kind="typedef">
       <type>Dune::Functions::BasisFactory::FlatInterleaved</type>
       <name>type</name>
-      <anchorfile>a01796.html</anchorfile>
+      <anchorfile>a01804.html</anchorfile>
       <anchor>a0a464466ec348e17886e7c49c03964d6</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedLexicographic &gt;</name>
-    <filename>a01800.html</filename>
+    <filename>a01808.html</filename>
     <member kind="typedef">
       <type>Dune::Functions::BasisFactory::FlatLexicographic</type>
       <name>type</name>
-      <anchorfile>a01800.html</anchorfile>
+      <anchorfile>a01808.html</anchorfile>
       <anchor>add1dc46010d8b320cd215e331a3f1fa4</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatPreBasis</name>
-    <filename>a01788.html</filename>
+    <filename>a01796.html</filename>
     <templarg>class PreBasis</templarg>
     <member kind="typedef">
       <type>PreBasis</type>
       <name>type</name>
-      <anchorfile>a01788.html</anchorfile>
+      <anchorfile>a01796.html</anchorfile>
       <anchor>a448426468de3637416804f6ef6f8ce90</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static type</type>
       <name>create</name>
-      <anchorfile>a01788.html</anchorfile>
+      <anchorfile>a01796.html</anchorfile>
       <anchor>a9c133ba014522aa8c8d90f2a3835c7e1</anchor>
       <arglist>(PB const &amp;preBasis)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static const PreBasis &amp;</type>
       <name>create</name>
-      <anchorfile>a01788.html</anchorfile>
+      <anchorfile>a01796.html</anchorfile>
       <anchor>af5414357864c26a827136edac1a085f4</anchor>
       <arglist>(const PreBasis &amp;preBasis)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;</name>
-    <filename>a01804.html</filename>
+    <filename>a01812.html</filename>
     <templarg>class IMS</templarg>
     <templarg>class... SPB</templarg>
     <member kind="typedef">
       <type>typename FlatIndexMergingStrategy&lt; IMS &gt;::type</type>
       <name>FIMS</name>
-      <anchorfile>a01804.html</anchorfile>
+      <anchorfile>a01812.html</anchorfile>
       <anchor>a2387375090283dac7ebbfb8bc58e1994</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Dune::Functions::CompositePreBasis&lt; FIMS, FlatPreBasis_t&lt; SPB &gt;... &gt;</type>
       <name>type</name>
-      <anchorfile>a01804.html</anchorfile>
+      <anchorfile>a01812.html</anchorfile>
       <anchor>a5b93764f4d9fd3897ad37658526e37fd</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static type</type>
       <name>create</name>
-      <anchorfile>a01804.html</anchorfile>
+      <anchorfile>a01812.html</anchorfile>
       <anchor>aaaf91aed22e7c32c6f2c26ff961ae3e1</anchor>
       <arglist>(const PreBasis &amp;preBasis)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static type</type>
       <name>create</name>
-      <anchorfile>a01804.html</anchorfile>
+      <anchorfile>a01812.html</anchorfile>
       <anchor>aab16d08ac65576f292078b2c4f135645</anchor>
       <arglist>(const PreBasis &amp;preBasis, std::index_sequence&lt; I... &gt;)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::FlatPreBasis&lt; Dune::Functions::PowerPreBasis&lt; IMS, SPB, C &gt; &gt;</name>
-    <filename>a01808.html</filename>
+    <filename>a01816.html</filename>
     <templarg>class IMS</templarg>
     <templarg>class SPB</templarg>
     <templarg>std::size_t C</templarg>
     <member kind="typedef">
       <type>typename FlatIndexMergingStrategy&lt; IMS &gt;::type</type>
       <name>FIMS</name>
-      <anchorfile>a01808.html</anchorfile>
+      <anchorfile>a01816.html</anchorfile>
       <anchor>aef8f8b43a63a4bf4c7c3bc193c4ee1f0</anchor>
       <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>Dune::Functions::PowerPreBasis&lt; FIMS, FlatPreBasis_t&lt; SPB &gt;, C &gt;</type>
       <name>type</name>
-      <anchorfile>a01808.html</anchorfile>
+      <anchorfile>a01816.html</anchorfile>
       <anchor>ae56d4cd604948715e51d517f27d7f0c9</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" static="yes">
       <type>static type</type>
       <name>create</name>
-      <anchorfile>a01808.html</anchorfile>
+      <anchorfile>a01816.html</anchorfile>
       <anchor>ad2ce954f09e165f4440f6e4139ed0b85</anchor>
       <arglist>(const PreBasis &amp;preBasis)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::FunctionTraits</name>
-    <filename>a01908.html</filename>
+    <filename>a01916.html</filename>
     <templarg>typename T</templarg>
     <templarg>typename</templarg>
   </compound>
   <compound kind="class">
     <name>Ikarus::GenericObserver</name>
-    <filename>a01848.html</filename>
+    <filename>a01856.html</filename>
     <templarg>typename M</templarg>
     <base>IObserver&lt; M &gt;</base>
     <member kind="typedef">
       <type>M</type>
       <name>MessageType</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>GenericObserver</name>
-      <anchorfile>a01848.html</anchorfile>
+      <anchorfile>a01856.html</anchorfile>
       <anchor>a25f96660b74e238b1084af70977ddd26</anchor>
       <arglist>(Messages message, F &amp;&amp;f)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01848.html</anchorfile>
+      <anchorfile>a01856.html</anchorfile>
       <anchor>a3f42fa4e0a798aff5c0d29254cb06e6e</anchor>
       <arglist>(Messages message) override</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
@@ -6504,356 +6506,356 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::hasType</name>
-    <filename>a01872.html</filename>
+    <filename>a01880.html</filename>
     <templarg>typename T</templarg>
     <templarg>typename Tuple</templarg>
   </compound>
   <compound kind="class">
     <name>Ikarus::IkarusInstance</name>
-    <filename>a01816.html</filename>
+    <filename>a01824.html</filename>
     <member kind="function">
       <type>void</type>
       <name>enableFileLogger</name>
-      <anchorfile>a01816.html</anchorfile>
+      <anchorfile>a01824.html</anchorfile>
       <anchor>a833f9b23184e3d0f5b06f5b7b85d9233</anchor>
       <arglist>(std::string &amp;&amp;filename=&quot;&quot;)</arglist>
     </member>
     <member kind="function">
       <type></type>
       <name>IkarusInstance</name>
-      <anchorfile>a01816.html</anchorfile>
+      <anchorfile>a01824.html</anchorfile>
       <anchor>ab4ee067880d13079efa9b45cd0bcef43</anchor>
       <arglist>(const IkarusInstance &amp;)=delete</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>operator=</name>
-      <anchorfile>a01816.html</anchorfile>
+      <anchorfile>a01824.html</anchorfile>
       <anchor>a7f11ddf595903d8796cbff4943e620a6</anchor>
       <arglist>(const IkarusInstance &amp;)=delete</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static IkarusInstance &amp;</type>
       <name>getInstance</name>
-      <anchorfile>a01816.html</anchorfile>
+      <anchorfile>a01824.html</anchorfile>
       <anchor>a76a31b1d9f5b1fba7180451b1edddf0a</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="friend" protection="private">
       <type>friend void</type>
       <name>init</name>
-      <anchorfile>a01816.html</anchorfile>
+      <anchorfile>a01824.html</anchorfile>
       <anchor>a4865c52ed9d7e9c0f00e8bd5295ee853</anchor>
       <arglist>(int argc, char **argv, bool enableFileLogger)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::Index</name>
-    <filename>a01900.html</filename>
+    <filename>a01908.html</filename>
     <templarg>class T</templarg>
     <templarg>class Tuple</templarg>
   </compound>
   <compound kind="class">
     <name>Ikarus::IObservable</name>
-    <filename>a01860.html</filename>
+    <filename>a01868.html</filename>
     <templarg>typename MessageType</templarg>
     <member kind="function">
       <type></type>
       <name>IObservable</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac8058d5b1ebb462a10712ba598154e23</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~IObservable</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad1fe15b31cccec8e44c695af550938ed</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(MessageType message, std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(MessageType message, std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; MessageType &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(MessageType message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(MessageType message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::IObserver</name>
-    <filename>a01856.html</filename>
+    <filename>a01864.html</filename>
     <templarg>typename MT</templarg>
     <member kind="typedef">
       <type>MT</type>
       <name>MessageType</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
       <arglist></arglist>
     </member>
     <member kind="function" virtualness="virtual">
       <type>virtual</type>
       <name>~IObserver</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a39df4c52c73f721bb2ef1c90fe76d74a</anchor>
       <arglist>()=default</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>ac6dc170df122bd224f2a440cedf33934</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a80d3fd9872a76a02452f42511f780253</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a873494234cf33b9cc7179d90ff6f095e</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::is_tuple&lt; std::tuple&lt; T... &gt; &gt;</name>
-    <filename>a01868.html</filename>
+    <filename>a01876.html</filename>
     <templarg>typename... T</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::isSharedPtr</name>
-    <filename>a01876.html</filename>
+    <filename>a01884.html</filename>
     <templarg>typename T</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::isSpecialization&lt; U, U&lt; T... &gt; &gt;</name>
-    <filename>a01884.html</filename>
+    <filename>a01892.html</filename>
     <templarg>template&lt; typename... &gt; class U</templarg>
     <templarg>typename... T</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::isSpecializationNonTypeAndTypes&lt; Type, Type&lt; T, N... &gt; &gt;</name>
-    <filename>a01888.html</filename>
+    <filename>a01896.html</filename>
     <templarg>template&lt; auto, typename... &gt; class Type</templarg>
     <templarg>auto T</templarg>
     <templarg>typename... N</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::isSpecializationNonTypes&lt; Type, Type&lt; N... &gt; &gt;</name>
-    <filename>a01896.html</filename>
+    <filename>a01904.html</filename>
     <templarg>template&lt; auto... &gt; class Type</templarg>
     <templarg>auto... N</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::isSpecializationTypeNonTypeAndType&lt; Type, Type&lt; T, M, N &gt; &gt;</name>
-    <filename>a01892.html</filename>
+    <filename>a01900.html</filename>
     <templarg>template&lt; typename, auto, typename &gt; class Type</templarg>
     <templarg>typename T</templarg>
     <templarg>auto M</templarg>
@@ -7923,133 +7925,133 @@
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(ControlMessages message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(ControlMessages message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(ControlMessages message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(ControlMessages message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(ControlMessages message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(ControlMessages message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(ControlMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
@@ -8679,133 +8681,133 @@
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(NonLinearSolverMessages message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(NonLinearSolverMessages message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(NonLinearSolverMessages message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(NonLinearSolverMessages message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
@@ -8938,133 +8940,133 @@
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(NonLinearSolverMessages message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(NonLinearSolverMessages message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(NonLinearSolverMessages message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(NonLinearSolverMessages message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
@@ -9388,52 +9390,52 @@
   </compound>
   <compound kind="class">
     <name>Ikarus::NonLinearOperator</name>
-    <filename>a01828.html</filename>
+    <filename>a01836.html</filename>
     <templarg>typename TypeListOne</templarg>
     <templarg>typename TypeListTwo</templarg>
     <member kind="function">
       <type></type>
       <name>NonLinearOperator</name>
-      <anchorfile>a01828.html</anchorfile>
+      <anchorfile>a01836.html</anchorfile>
       <anchor>a2308f86b14266d7b7049b0a12cf20cdc</anchor>
       <arglist>(const TypeListOne &amp;derivativesFunctions, const TypeListTwo &amp;args)</arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::NonLinearOperatorFactory</name>
-    <filename>a01836.html</filename>
+    <filename>a01844.html</filename>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>op</name>
-      <anchorfile>a01836.html</anchorfile>
+      <anchorfile>a01844.html</anchorfile>
       <anchor>a644858005534ab498b1802bb633bb37b</anchor>
       <arglist>(Assembler &amp;&amp;as, typename traits::remove_pointer_t&lt; std::remove_cvref_t&lt; Assembler &gt; &gt;::FERequirement &amp;req, AffordanceCollection&lt; Affordances... &gt; affordances, DBCOption dbcOption)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>op</name>
-      <anchorfile>a01836.html</anchorfile>
+      <anchorfile>a01844.html</anchorfile>
       <anchor>a3ad02994461a0e0948ea1e8ef557e562</anchor>
       <arglist>(Assembler &amp;&amp;as, DBCOption dbcOption)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>op</name>
-      <anchorfile>a01836.html</anchorfile>
+      <anchorfile>a01844.html</anchorfile>
       <anchor>a282e4a255bb96ec4b79a09d0330540a2</anchor>
       <arglist>(Assembler &amp;&amp;as)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>op</name>
-      <anchorfile>a01836.html</anchorfile>
+      <anchorfile>a01844.html</anchorfile>
       <anchor>ad34cdaf0aa639fc495660c5e70ec34c6</anchor>
       <arglist>(Assembler &amp;&amp;as, AffordanceCollection&lt; Affordances... &gt; affordances, DBCOption dbcOption=DBCOption::Full)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static auto</type>
       <name>op</name>
-      <anchorfile>a01836.html</anchorfile>
+      <anchorfile>a01844.html</anchorfile>
       <anchor>a592390e33bc94dcdea8d94aeb79750dc</anchor>
       <arglist>(Assembler &amp;&amp;as, typename traits::remove_pointer_t&lt; std::remove_cvref_t&lt; Assembler &gt; &gt;::FERequirement &amp;req, DBCOption dbcOption)</arglist>
     </member>
@@ -9505,110 +9507,110 @@
   </compound>
   <compound kind="class">
     <name>Ikarus::NonLinearSolverLogger</name>
-    <filename>a01852.html</filename>
+    <filename>a01860.html</filename>
     <base>IObserver&lt; NonLinearSolverMessages &gt;</base>
     <member kind="typedef">
       <type>NonLinearSolverMessages</type>
       <name>MessageType</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>adc6a89c0396fc98e0c095cd8df17b075</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01852.html</anchorfile>
+      <anchorfile>a01860.html</anchorfile>
       <anchor>a131da094b77cab07c39b4017d5419dac</anchor>
       <arglist>(NonLinearSolverMessages message) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01852.html</anchorfile>
+      <anchorfile>a01860.html</anchorfile>
       <anchor>a17558ed4ad25de4e80b2bccdbf670e0b</anchor>
       <arglist>(NonLinearSolverMessages message, double val) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>updateImpl</name>
-      <anchorfile>a01852.html</anchorfile>
+      <anchorfile>a01860.html</anchorfile>
       <anchor>a2a30782a175f8fc1dfb583531718cabf</anchor>
       <arglist>(NonLinearSolverMessages message, int intVal) final</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aafa35019b0bd7577d9e5b2c209c785bd</anchor>
       <arglist>(MessageType message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a3a477ef465bf14acd9e21673e2bfc595</anchor>
       <arglist>(MessageType message, double val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a9ec023872625942d0b64244709966464</anchor>
       <arglist>(MessageType message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>aaa06f0740f435636da206c35951f8c81</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a92045cc1701c89ac62395a8e77ff3eba</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a04b8667b08713503e82ede950a337950</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>update</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a1d1ef2313a9aecf4e9d475cce837476e</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a54cfb0283f65810089183deebc9b4858</anchor>
       <arglist>(MessageType message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a75b2d9ce4234e841256066b2cd051bc9</anchor>
       <arglist>(MessageType message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>ae6d9838e1ced7fcf14b20457144a47b2</anchor>
       <arglist>(MessageType message, int val1, double val2)</arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual void</type>
       <name>updateImpl</name>
-      <anchorfile>a01856.html</anchorfile>
+      <anchorfile>a01864.html</anchorfile>
       <anchor>a5d9bfa8a6046d612106e4a2cb8e8d735</anchor>
       <arglist>(MessageType message, const Eigen::VectorXd &amp;vec)</arglist>
     </member>
@@ -9655,6 +9657,13 @@
       <anchor>a341fe979201497d2422addde8b9b39c7</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>minIter</name>
+      <anchorfile>a01676.html</anchorfile>
+      <anchor>a97d470d26a862189812ddceae07e2545</anchor>
+      <arglist></arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>Ikarus::PathFollowing</name>
@@ -9694,133 +9703,133 @@
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(ControlMessages message, std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; ControlMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(ControlMessages message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(ControlMessages message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(ControlMessages message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(ControlMessages message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(ControlMessages message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(ControlMessages message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(ControlMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
@@ -10064,25 +10073,25 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::Rebind</name>
-    <filename>a01904.html</filename>
+    <filename>a01912.html</filename>
     <templarg>class Container</templarg>
     <templarg>class NewType</templarg>
   </compound>
   <compound kind="class">
     <name>Ikarus::traits::remove_pointer</name>
-    <filename>a01880.html</filename>
+    <filename>a01888.html</filename>
     <templarg>typename T</templarg>
     <member kind="typedef">
       <type>typename decltype(test(0))::type</type>
       <name>type</name>
-      <anchorfile>a01880.html</anchorfile>
+      <anchorfile>a01888.html</anchorfile>
       <anchor>aeb039b36424f998cbf10801e5609eb8c</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::ReplaceTypeAtPos</name>
-    <filename>a01912.html</filename>
+    <filename>a01920.html</filename>
     <templarg>typename Tuple</templarg>
     <templarg>std::size_t Pos</templarg>
     <templarg>typename NewType</templarg>
@@ -10862,11 +10871,11 @@
   </compound>
   <compound kind="struct">
     <name>Ikarus::utils::SolverDefault</name>
-    <filename>a01756.html</filename>
+    <filename>a01764.html</filename>
     <member kind="function">
       <type>constexpr auto</type>
       <name>operator()</name>
-      <anchorfile>a01756.html</anchorfile>
+      <anchorfile>a01764.html</anchorfile>
       <anchor>a4797d17bf96aa9e387567878a9591d7a</anchor>
       <arglist>(A &amp;&amp;a, B &amp;&amp;b) const</arglist>
     </member>
@@ -12277,133 +12286,133 @@
     <member kind="function">
       <type>void</type>
       <name>subscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad67c98f02c195b788f78a229e1898006</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a13bd8d73b485186680f640786e2682e5</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>subscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a026462a1a050728e37bc24e33d2edd9c</anchor>
       <arglist>(std::initializer_list&lt; std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; &gt; observers)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribe</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a3eb718b8fa1ecc373371a6751a316b24</anchor>
       <arglist>(NonLinearSolverMessages message, std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>unSubscribeAll</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a378a520833df0d6e27dbb35b621c838d</anchor>
       <arglist>(std::shared_ptr&lt; IObserver&lt; NonLinearSolverMessages &gt; &gt; observer)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a4bce3750aa7d52aff9baf122a54e16b5</anchor>
       <arglist>(NonLinearSolverMessages message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac035ba934c33e090c4a45128ac13f190</anchor>
       <arglist>(NonLinearSolverMessages message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a47ac8ae7cc4e9304cfb220f1d93ce1fc</anchor>
       <arglist>(NonLinearSolverMessages message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a2f93322aa7327069dd4469983933bd16</anchor>
       <arglist>(NonLinearSolverMessages message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae0c6cec757e540f22b65fce1f782e380</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a72e3156874ce81a1c7548b9f74db522c</anchor>
       <arglist>(NonLinearSolverMessages message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ac72b261cd2af7f59e98f1504814bc785</anchor>
       <arglist>(NonLinearSolverMessages message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a19047649c66f704c2ba2f1276c1a0e8b</anchor>
       <arglist>(MT message)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>a03d4668b7111180f0427e8382359f3bf</anchor>
       <arglist>(MT message, ScalarType val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ad758bd6f15e8228a3439f52ee2ad6aaa</anchor>
       <arglist>(MT message, int val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>acf19e220bc71c046619dd21b3f50e8bb</anchor>
       <arglist>(MT message, const std::string &amp;val)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aae4ef907815822352e07fe25cefa8980</anchor>
       <arglist>(MT message, int val1, double val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>ae12cb2deb2aa20f0cbc3d78b9a562eb3</anchor>
       <arglist>(MT message, int val1, const std::string &amp;val2)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>notify</name>
-      <anchorfile>a01860.html</anchorfile>
+      <anchorfile>a01868.html</anchorfile>
       <anchor>aa5a60c5b81bb92de527c49ea8fce147d</anchor>
       <arglist>(MT message, Eigen::VectorX&lt; ScalarType &gt; vec)</arglist>
     </member>
@@ -12451,21 +12460,21 @@
   </compound>
   <compound kind="struct">
     <name>TrustRegionSettings</name>
-    <filename>a01964.html</filename>
+    <filename>a01973.html</filename>
   </compound>
   <compound kind="struct">
     <name>Ikarus::traits::TupleToFunctionType</name>
-    <filename>a01916.html</filename>
+    <filename>a01924.html</filename>
     <templarg>typename R</templarg>
     <templarg>typename Tuple</templarg>
   </compound>
   <compound kind="struct">
     <name>Ikarus::utils::UpdateDefault</name>
-    <filename>a01760.html</filename>
+    <filename>a01768.html</filename>
     <member kind="function">
       <type>constexpr void</type>
       <name>operator()</name>
-      <anchorfile>a01760.html</anchorfile>
+      <anchorfile>a01768.html</anchorfile>
       <anchor>a23b7d9d2df3caa179c9fbc353efaed36</anchor>
       <arglist>(A &amp;&amp;a, B &amp;&amp;b) const</arglist>
     </member>
@@ -12873,6 +12882,13 @@
       <name>freeStrains</name>
       <anchorfile>a01516.html</anchorfile>
       <anchor>ad2f54da2e2ad2dbe6aec1842ce3cfa42</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr bool</type>
+      <name>isAutoDiff</name>
+      <anchorfile>a01516.html</anchorfile>
+      <anchor>a8722c04929bc243a10f74f6d58bd0816</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable" static="yes">
@@ -13785,159 +13801,163 @@
   </compound>
   <compound kind="concept">
     <name>Ikarus::Concepts::AdaptiveStepSizingStrategy</name>
-    <filename>a01934.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::AddAble</name>
-    <filename>a01938.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::AddAssignAble</name>
     <filename>a01942.html</filename>
   </compound>
   <compound kind="concept">
-    <name>Ikarus::Concepts::BlockedIndexBasis</name>
-    <filename>a01932.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::BlockedInterLeavedBasis</name>
-    <filename>a01929.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::BlockedLexicographicBasis</name>
-    <filename>a01930.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::DataCollector</name>
-    <filename>a01958.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::DivideAble</name>
-    <filename>a01944.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::DivideAssignAble</name>
-    <filename>a01941.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::DuneLocalBasis</name>
-    <filename>a01931.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::EigenMatrix</name>
-    <filename>a01949.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::EigenVector</name>
-    <filename>a01948.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::FlatAssembler</name>
-    <filename>a01954.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::FlatIndexBasis</name>
-    <filename>a01928.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::FlatInterLeavedBasis</name>
-    <filename>a01924.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::FlatLexicographicBasis</name>
-    <filename>a01927.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::GeometricallyLinearMaterial</name>
-    <filename>a01952.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::GridView</name>
-    <filename>a01959.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::IsFunctorWithArgs</name>
-    <filename>a01947.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::IsMaterial</name>
-    <filename>a01950.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::LagrangeNode</name>
-    <filename>a01925.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::LagrangeNodeOfOrder</name>
-    <filename>a01926.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::LinearSolverCheck</name>
-    <filename>a01935.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::MatrixFlatAssembler</name>
-    <filename>a01957.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::MultiplyAble</name>
-    <filename>a01937.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::MultiplyAssignAble</name>
-    <filename>a01940.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::NegateAble</name>
-    <filename>a01945.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::NonLinearSolverCheckForPathFollowing</name>
-    <filename>a01936.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::PathFollowingStrategy</name>
-    <filename>a01933.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::ResultType</name>
-    <filename>a01953.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::ScalarFlatAssembler</name>
-    <filename>a01955.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::SubstractAble</name>
-    <filename>a01939.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::SubstractAssignAble</name>
-    <filename>a01943.html</filename>
-  </compound>
-  <compound kind="concept">
-    <name>Ikarus::Concepts::TransposeAble</name>
+    <name>Ikarus::Concepts::AddAble</name>
     <filename>a01946.html</filename>
   </compound>
   <compound kind="concept">
-    <name>Ikarus::Concepts::VectorFlatAssembler</name>
+    <name>Ikarus::Concepts::AddAssignAble</name>
+    <filename>a01950.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::AutodiffScalar</name>
+    <filename>a01968.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::BlockedIndexBasis</name>
+    <filename>a01940.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::BlockedInterLeavedBasis</name>
+    <filename>a01937.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::BlockedLexicographicBasis</name>
+    <filename>a01938.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::DataCollector</name>
+    <filename>a01966.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::DivideAble</name>
+    <filename>a01952.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::DivideAssignAble</name>
+    <filename>a01949.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::DuneLocalBasis</name>
+    <filename>a01939.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::EigenMatrix</name>
+    <filename>a01957.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::EigenVector</name>
     <filename>a01956.html</filename>
   </compound>
   <compound kind="concept">
+    <name>Ikarus::Concepts::FlatAssembler</name>
+    <filename>a01962.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::FlatIndexBasis</name>
+    <filename>a01936.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::FlatInterLeavedBasis</name>
+    <filename>a01932.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::FlatLexicographicBasis</name>
+    <filename>a01935.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::GeometricallyLinearMaterial</name>
+    <filename>a01960.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::GridView</name>
+    <filename>a01967.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::IsFunctorWithArgs</name>
+    <filename>a01955.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::IsMaterial</name>
+    <filename>a01958.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::LagrangeNode</name>
+    <filename>a01933.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::LagrangeNodeOfOrder</name>
+    <filename>a01934.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::LinearSolverCheck</name>
+    <filename>a01943.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::MatrixFlatAssembler</name>
+    <filename>a01965.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::MultiplyAble</name>
+    <filename>a01945.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::MultiplyAssignAble</name>
+    <filename>a01948.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::NegateAble</name>
+    <filename>a01953.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::NonLinearSolverCheckForPathFollowing</name>
+    <filename>a01944.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::PathFollowingStrategy</name>
+    <filename>a01941.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::ResultType</name>
+    <filename>a01961.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::ScalarFlatAssembler</name>
+    <filename>a01963.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::SubstractAble</name>
+    <filename>a01947.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::SubstractAssignAble</name>
+    <filename>a01951.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::TransposeAble</name>
+    <filename>a01954.html</filename>
+  </compound>
+  <compound kind="concept">
+    <name>Ikarus::Concepts::VectorFlatAssembler</name>
+    <filename>a01964.html</filename>
+  </compound>
+  <compound kind="concept">
     <name>Ikarus::CorrectStrainSize</name>
-    <filename>a01922.html</filename>
+    <filename>a01930.html</filename>
   </compound>
   <compound kind="concept">
     <name>Ikarus::FEAffordance</name>
-    <filename>a01921.html</filename>
+    <filename>a01929.html</filename>
   </compound>
   <compound kind="concept">
     <name>Ikarus::MPTuple</name>
-    <filename>a01923.html</filename>
+    <filename>a01931.html</filename>
   </compound>
   <compound kind="concept">
     <name>Ikarus::traits::Pointer</name>
-    <filename>a01960.html</filename>
+    <filename>a01969.html</filename>
   </compound>
   <compound kind="namespace">
     <name>Dune</name>
@@ -15399,6 +15419,7 @@
     <concept>Ikarus::Concepts::MatrixFlatAssembler</concept>
     <concept>Ikarus::Concepts::DataCollector</concept>
     <concept>Ikarus::Concepts::GridView</concept>
+    <concept>Ikarus::Concepts::AutodiffScalar</concept>
   </compound>
   <compound kind="namespace">
     <name>ikarus::dirichlet_values</name>
@@ -17158,7 +17179,7 @@
   <compound kind="page">
     <name>md____w_ikarus_ikarus_repo_LICENSE</name>
     <title>Copyright holders</title>
-    <filename>a02828.html</filename>
+    <filename>a02837.html</filename>
   </compound>
   <compound kind="page">
     <name>index</name>

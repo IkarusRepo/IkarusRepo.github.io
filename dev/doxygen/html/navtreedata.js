@@ -30,8 +30,8 @@ var NAVTREE =
       [ "Modules", "index.html#mods", null ],
       [ "How to cite", "index.html#autotoc_md3", null ]
     ] ],
-    [ "Copyright holders", "a02828.html", null ],
-    [ "Bibliography", "a02872.html", null ],
+    [ "Copyright holders", "a02837.html", null ],
+    [ "Bibliography", "a02881.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
@@ -78,11 +78,11 @@ var NAVTREEINDEX =
 "a01308.html#a2f93322aa7327069dd4469983933bd16",
 "a01404.html",
 "a01472.html",
-"a01524.html#a50f23fc87d7be6cd1c7e8a0662e81040",
-"a01640.html#a6d7b2d2804c136db788473b7a36e4fad",
-"a01704.html#a3b6b5fd328830b37cf47a8c3b485eb3e",
-"a01840.html#adc6a89c0396fc98e0c095cd8df17b075",
-"a02851_source.html"
+"a01524.html#a4e4da0d13fa890c98119b9719b2e3e79",
+"a01640.html#a2513528ae4acf6f87352c21d231df432",
+"a01704.html#a3943cb103ad51f2c407c867672dd3b1f",
+"a01848.html#aca92cd9bf83a7575260a015a646aca8c",
+"a02854_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,7 +1,7 @@
 var a01856 =
 [
     [ "MessageType", "a01856.html#adc6a89c0396fc98e0c095cd8df17b075", null ],
-    [ "~IObserver", "a01856.html#a39df4c52c73f721bb2ef1c90fe76d74a", null ],
+    [ "GenericObserver", "a01856.html#a25f96660b74e238b1084af70977ddd26", null ],
     [ "update", "a01856.html#aafa35019b0bd7577d9e5b2c209c785bd", null ],
     [ "update", "a01856.html#a1d1ef2313a9aecf4e9d475cce837476e", null ],
     [ "update", "a01856.html#aaa06f0740f435636da206c35951f8c81", null ],
@@ -9,7 +9,7 @@ var a01856 =
     [ "update", "a01856.html#a9ec023872625942d0b64244709966464", null ],
     [ "update", "a01856.html#a04b8667b08713503e82ede950a337950", null ],
     [ "update", "a01856.html#a92045cc1701c89ac62395a8e77ff3eba", null ],
-    [ "updateImpl", "a01856.html#ac6dc170df122bd224f2a440cedf33934", null ],
+    [ "updateImpl", "a01856.html#a3f42fa4e0a798aff5c0d29254cb06e6e", null ],
     [ "updateImpl", "a01856.html#a5d9bfa8a6046d612106e4a2cb8e8d735", null ],
     [ "updateImpl", "a01856.html#a54cfb0283f65810089183deebc9b4858", null ],
     [ "updateImpl", "a01856.html#a80d3fd9872a76a02452f42511f780253", null ],
