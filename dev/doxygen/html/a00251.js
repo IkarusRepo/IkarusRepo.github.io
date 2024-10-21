@@ -1,4 +1,4 @@
 var a00251 =
 [
-    [ "Ikarus::DefaultMembraneStrain", "a01520.html", "a01520" ]
+    [ "Ikarus::FETraits< BH, useRef, useFlat >", "a01408.html", "a01408" ]
 ];

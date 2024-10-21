@@ -1,4 +1,4 @@
 var a00137 =
 [
-    [ "ScalarWrapper< T >", "a01656.html", "a01656" ]
+    [ "Ikarus::ControlInformation", "a01304.html", "a01304" ]
 ];

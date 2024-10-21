@@ -1,43 +1,114 @@
-\hypertarget{a00308_source}{}\doxysection{genericobserver.\+hh}
-\label{a00308_source}\index{genericobserver.hh@{genericobserver.hh}}
+\hypertarget{a00308_source}{}\doxysection{neohooke.\+hh}
+\label{a00308_source}\index{neohooke.hh@{neohooke.hh}}
 \mbox{\hyperlink{a00308}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <concepts>}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <spdlog/spdlog.h>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02842}{ikarus/finiteelements/mechanics/materials/interface.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00008}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00302}{ikarus/utils/observer/observer.hh}}>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00305}{ikarus/utils/observer/observermessages.hh}}>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{27 \textcolor{keyword}{template} <\textcolor{keyword}{typename} M>}
-\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{a01856}{GenericObserver}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01864}{IObserver}}<M>}
-\DoxyCodeLine{29 \{}
-\DoxyCodeLine{30   \textcolor{keyword}{using }Messages = M;}
-\DoxyCodeLine{31 }
-\DoxyCodeLine{32 \textcolor{keyword}{public}:}
-\DoxyCodeLine{42   \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{43   \mbox{\hyperlink{a01856_a25f96660b74e238b1084af70977ddd26}{GenericObserver}}(Messages message, F\&\& f)}
-\DoxyCodeLine{44       : message\_\{message\},}
-\DoxyCodeLine{45         f\_\{f\} \{\}}
-\DoxyCodeLine{46   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01856_a3f42fa4e0a798aff5c0d29254cb06e6e}{updateImpl}}(Messages message)\textcolor{keyword}{ override }\{}
-\DoxyCodeLine{47     \textcolor{keywordflow}{if} (message\_ == message) \{}
-\DoxyCodeLine{48       f\_(step\_);}
-\DoxyCodeLine{49       ++step\_;}
-\DoxyCodeLine{50     \}}
-\DoxyCodeLine{51   \}}
-\DoxyCodeLine{52 }
-\DoxyCodeLine{53 \textcolor{keyword}{private}:}
-\DoxyCodeLine{54   Messages message\_;}
-\DoxyCodeLine{55   std::function<void(\textcolor{keywordtype}{int})> f\_;}
-\DoxyCodeLine{56   \textcolor{keywordtype}{int} step\_\{0\};}
-\DoxyCodeLine{57 \};}
-\DoxyCodeLine{58 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{15 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{35 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{36 \textcolor{keyword}{struct }\mbox{\hyperlink{a01500}{NeoHookeT}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01492}{Material}}<NeoHookeT<ST>>}
+\DoxyCodeLine{37 \{}
+\DoxyCodeLine{38   \textcolor{keyword}{using }\mbox{\hyperlink{a01500_aee2a2c4f04a3c4bc88990465054d087d}{ScalarType}}                    = ST;}
+\DoxyCodeLine{39   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01500_a8116da78327989dc5a3aa32b66de7986}{worldDimension}} = 3;}
+\DoxyCodeLine{40   \textcolor{keyword}{using }\mbox{\hyperlink{a01500_a2a64dda19c783d3bd170bca4e7196cf3}{StrainMatrix}}                  = Eigen::Matrix<ScalarType, worldDimension, worldDimension>;}
+\DoxyCodeLine{41   \textcolor{keyword}{using }\mbox{\hyperlink{a01500_a3df55ad5f8f91fb1d5fb5c2a56747993}{StressMatrix}}                  = \mbox{\hyperlink{a01500_a2a64dda19c783d3bd170bca4e7196cf3}{StrainMatrix}};}
+\DoxyCodeLine{42   \textcolor{keyword}{using }\mbox{\hyperlink{a01584}{MaterialParameters}}            = \mbox{\hyperlink{a01584}{LamesFirstParameterAndShearModulus}};}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_a6325f048f3fdb7fbb61309ba2a7a8c9b}{strainTag}}              = \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}};}
+\DoxyCodeLine{45   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_a8b5a258ce78ec354b9b99bf80e782f61}{stressTag}}              = \mbox{\hyperlink{a00373_gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21}{StressTags::PK2}};}
+\DoxyCodeLine{46   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_a6743dac8b98436e471458ff12e4d571c}{tangentModuliTag}}       = \mbox{\hyperlink{a00373_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206}{TangentModuliTags::Material}};}
+\DoxyCodeLine{47   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01500_a08b15decdb252e9cd3ced0342f6afce8}{energyAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{48   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01500_a752d3c75e5a701897a4102e63259259c}{stressToVoigt}}          = \textcolor{keyword}{false};}
+\DoxyCodeLine{49   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01500_ae730e168cf90c7b103bf3b0911bf7a9f}{stressAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{50   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01500_af24fa23bbc051cbd5d9415a0682d58af}{moduliToVoigt}}          = \textcolor{keyword}{false};}
+\DoxyCodeLine{51   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01500_aa4d29e6ae2d0df4c9baa76938dbd51ab}{moduliAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{52   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01500_ae4a1077ff5a099932f998ebc5f947752}{derivativeFactorImpl}} = 2;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01500_ad330c5fa6e01e59950897e051c4e663b}{nameImpl}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}NeoHooke"{}}; \}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{60   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01500_af0e2317258b6d31c2e70daa778774c3b}{NeoHookeT}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01584}{MaterialParameters}}\& mpt)}
+\DoxyCodeLine{61       : materialParameter\_\{mpt\} \{\}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{66   \mbox{\hyperlink{a01584}{MaterialParameters}} \mbox{\hyperlink{a01500_a79e58beab044e13f4efaf6d88e0ff9bd}{materialParametersImpl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} materialParameter\_; \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{74   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{75   \mbox{\hyperlink{a01500_aee2a2c4f04a3c4bc88990465054d087d}{ScalarType}} \mbox{\hyperlink{a01500_a531b3a95e86327c4f8e6eeb2a48126d1}{storedEnergyImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{76     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{77     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!\mbox{\hyperlink{a01956}{Concepts::EigenVector<Derived>}}) \{}
+\DoxyCodeLine{78       \textcolor{keyword}{const} \textcolor{keyword}{auto} traceC = C.trace();}
+\DoxyCodeLine{79       \textcolor{keyword}{const} \textcolor{keyword}{auto} detC   = C.determinant();}
+\DoxyCodeLine{80       checkPositiveDetC(detC);}
+\DoxyCodeLine{81       \textcolor{keyword}{const} \textcolor{keyword}{auto} logdetF = log(sqrt(detC));}
+\DoxyCodeLine{82       \textcolor{keywordflow}{return} materialParameter\_.\mbox{\hyperlink{a01584_a3558ad06d2a831f0d412d76956d516f8}{mu}} / 2.0 * (traceC -\/ 3 -\/ 2 * logdetF) +}
+\DoxyCodeLine{83              materialParameter\_.\mbox{\hyperlink{a01584_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} / 2.0 * logdetF * logdetF;}
+\DoxyCodeLine{84     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{85       \textcolor{keyword}{static\_assert}(!\mbox{\hyperlink{a01956}{Concepts::EigenVector<Derived>}},}
+\DoxyCodeLine{86                     \textcolor{stringliteral}{"{}NeoHooke energy can only be called with a matrix and not a vector in Voigt notation"{}});}
+\DoxyCodeLine{87   \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{96   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{97   \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_af706e2f81dce3a9e7f7c4c3082862405}{stressesImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{98     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{99     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
+\DoxyCodeLine{100       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!\mbox{\hyperlink{a01956}{Concepts::EigenVector<Derived>}}) \{}
+\DoxyCodeLine{101         \textcolor{keyword}{const} \textcolor{keyword}{auto} detC = C.determinant();}
+\DoxyCodeLine{102         checkPositiveDetC(detC);}
+\DoxyCodeLine{103         \textcolor{keyword}{const} \textcolor{keyword}{auto} logdetF = log(sqrt(detC));}
+\DoxyCodeLine{104         \textcolor{keyword}{const} \textcolor{keyword}{auto} invC    = C.inverse().eval();}
+\DoxyCodeLine{105         \textcolor{keywordflow}{return} (materialParameter\_.\mbox{\hyperlink{a01584_a3558ad06d2a831f0d412d76956d516f8}{mu}} * (StrainMatrix::Identity() -\/ invC) + materialParameter\_.\mbox{\hyperlink{a01584_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * logdetF * invC)}
+\DoxyCodeLine{106             .eval();}
+\DoxyCodeLine{107       \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{108         \textcolor{keyword}{static\_assert}(!\mbox{\hyperlink{a01956}{Concepts::EigenVector<Derived>}},}
+\DoxyCodeLine{109                       \textcolor{stringliteral}{"{}NeoHooke can only be called with a matrix and not a vector in Voigt notation"{}});}
+\DoxyCodeLine{110     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{111       \textcolor{keyword}{static\_assert}(voigt == \textcolor{keyword}{false}, \textcolor{stringliteral}{"{}NeoHooke does not support returning stresses in Voigt notation"{}});}
+\DoxyCodeLine{112   \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{121   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{122   \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_a4a0fcea9a714d1a6d4cb3aa691f5596d}{tangentModuliImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{123     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{124     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
+\DoxyCodeLine{125       \textcolor{keyword}{const} \textcolor{keyword}{auto} invC = C.inverse().eval();}
+\DoxyCodeLine{126       \textcolor{keyword}{const} \textcolor{keyword}{auto} detC = C.determinant();}
+\DoxyCodeLine{127       checkPositiveDetC(detC);}
+\DoxyCodeLine{128       \textcolor{keyword}{const} \textcolor{keyword}{auto} logdetF = log(sqrt(detC));}
+\DoxyCodeLine{129       \textcolor{keyword}{const} \textcolor{keyword}{auto} CTinv   = \mbox{\hyperlink{a00380_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(invC, std::array<Eigen::Index, 2>(\{3, 3\}));}
+\DoxyCodeLine{130       \textcolor{keyword}{static\_assert}(Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<3, 3>>::NumIndices == 2);}
+\DoxyCodeLine{131       Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<3, 3, 3, 3>> moduli =}
+\DoxyCodeLine{132           (materialParameter\_.\mbox{\hyperlink{a01584_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * \mbox{\hyperlink{a00380_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(CTinv, CTinv) +}
+\DoxyCodeLine{133            2 * (materialParameter\_.\mbox{\hyperlink{a01584_a3558ad06d2a831f0d412d76956d516f8}{mu}} -\/ materialParameter\_.\mbox{\hyperlink{a01584_a0157695e9fc8b735e86f828cc35b64fc}{lambda}} * logdetF) *}
+\DoxyCodeLine{134                \mbox{\hyperlink{a00380_gaea03dbfcd8f85ef7af004c7e09244aa9}{symTwoSlots}}(\mbox{\hyperlink{a00380_ga8fa2b440586483c1ee0f9b90b9081da2}{fourthOrderIKJL}}(invC, invC), \{2, 3\}))}
+\DoxyCodeLine{135               .eval();}
+\DoxyCodeLine{136       \textcolor{keywordflow}{return} moduli;}
+\DoxyCodeLine{137     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{138       \textcolor{keyword}{static\_assert}(voigt == \textcolor{keyword}{false}, \textcolor{stringliteral}{"{}NeoHooke does not support returning tangent moduli in Voigt notation"{}});}
+\DoxyCodeLine{139   \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{146   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{147   \textcolor{keyword}{auto} \mbox{\hyperlink{a01500_aa931aacb98a90c88f54e4569f999b49f}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{148     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01500}{NeoHookeT<STO>}}(materialParameter\_);}
+\DoxyCodeLine{149   \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 \textcolor{keyword}{private}:}
+\DoxyCodeLine{152   \mbox{\hyperlink{a01500_a2b63c5932af9b90be6447b4220478967}{MaterialParameters}} materialParameter\_;}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154   \textcolor{keywordtype}{void} checkPositiveDetC(\mbox{\hyperlink{a01500_aee2a2c4f04a3c4bc88990465054d087d}{ScalarType}} detC)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{155     \textcolor{keywordflow}{if} (Dune::FloatCmp::le(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(detC), 0.0, 1e-\/10))}
+\DoxyCodeLine{156       DUNE\_THROW(Dune::InvalidStateException,}
+\DoxyCodeLine{157                  \textcolor{stringliteral}{"{}Determinant of right Cauchy Green tensor C must be greater than zero. detC = "{}} +}
+\DoxyCodeLine{158                      std::to\_string(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(detC)));}
+\DoxyCodeLine{159   \}}
+\DoxyCodeLine{160 \};}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{165 \textcolor{keyword}{using }\mbox{\hyperlink{a01500}{NeoHooke}} = \mbox{\hyperlink{a01500}{NeoHookeT<double>}};}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

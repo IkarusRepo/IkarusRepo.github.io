@@ -1,4 +1,4 @@
 var a00032 =
 [
-    [ "getLinearIndex", "a00032.html#a6cfefe8fc3c51b09b7633cf8397a67e9", null ]
+    [ "tensorProductQuadrature", "a00032.html#a839e2d8a648318c584c66024e62ddd91", null ]
 ];

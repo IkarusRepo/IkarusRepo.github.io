@@ -1,57 +1,64 @@
-\hypertarget{a00176_source}{}\doxysection{fefactory.\+hh}
-\label{a00176_source}\index{fefactory.hh@{fefactory.hh}}
+\hypertarget{a00176_source}{}\doxysection{registerpreelement.\+hh}
+\label{a00176_source}\index{registerpreelement.hh@{registerpreelement.hh}}
 \mbox{\hyperlink{a00176}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00182}{ikarus/finiteelements/febase.hh}}>}}
-\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
-\DoxyCodeLine{21 \textcolor{keyword}{template} <\textcolor{keyword}{typename} BH, \textcolor{keyword}{typename} SK, \textcolor{keywordtype}{bool} useFlat = true, \textcolor{keywordtype}{bool} useEigenRef = false>}
-\DoxyCodeLine{22 \textcolor{keyword}{struct }\mbox{\hyperlink{a01348}{FEFactory}}}
-\DoxyCodeLine{23 \{}
-\DoxyCodeLine{24   \textcolor{keyword}{using }\mbox{\hyperlink{a01348_ae4167551b40097429f804066c4973256}{Skills}} = SK;}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26 \textcolor{keyword}{private}:}
-\DoxyCodeLine{27   \textcolor{keyword}{const} BH* basisHandler\_;}
-\DoxyCodeLine{28   SK skills\_;}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30 \textcolor{keyword}{public}:}
-\DoxyCodeLine{36   \textcolor{keyword}{template} <\textcolor{keyword}{typename} SK2 = SK>}
-\DoxyCodeLine{37   \mbox{\hyperlink{a01348_aacbb6c8ee45484144edb78306da79456}{FEFactory}}(\textcolor{keyword}{const} BH\& basisHandler, \textcolor{keyword}{const} SK2\& sk)}
-\DoxyCodeLine{38       : basisHandler\_\{\&basisHandler\},}
-\DoxyCodeLine{39         skills\_\{sk\} \{\}}
-\DoxyCodeLine{40 }
-\DoxyCodeLine{41   \textcolor{keyword}{auto} \mbox{\hyperlink{a01348_aa324bf69fc6e9d878cdaf1b2a8667196}{operator()}}() \{}
-\DoxyCodeLine{42     \textcolor{keywordflow}{return} std::apply(}
-\DoxyCodeLine{43         [\&]<\textcolor{keyword}{typename}... Args>(Args\&\&... args) \{}
-\DoxyCodeLine{44           \textcolor{comment}{// the template would not be needed,}}
-\DoxyCodeLine{45           \textcolor{comment}{// when https://www.open-\/std.org/jtc1/sc22/wg21/docs/papers/2019/p1814r0.html}}
-\DoxyCodeLine{46           \textcolor{comment}{// will be implemented in clang. It is already implemented in gcc 12.2}}
-\DoxyCodeLine{47           \textcolor{keyword}{typename} \mbox{\hyperlink{a01340}{PreFE<BH, useFlat, useEigenRef>::template}} \mbox{\hyperlink{a01336}{FE<std::decay\_t<Args>::template}} Skill...> fe(}
-\DoxyCodeLine{48               *basisHandler\_, std::forward<Args>(args)...);}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50           \textcolor{keywordflow}{return} fe;}
-\DoxyCodeLine{51         \},}
-\DoxyCodeLine{52         skills\_.args);}
-\DoxyCodeLine{53   \}}
-\DoxyCodeLine{54 \};}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{67 \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} useFlat = true, \textcolor{keywordtype}{bool} useEigenRef = false, \textcolor{keyword}{typename} BH, \textcolor{keyword}{typename} SK>}
-\DoxyCodeLine{68 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_a59639a9a20f036a4f1c0794f65595662}{makeFE}}(\textcolor{keyword}{const} BH\& basisHandler, \textcolor{keyword}{const} SK\& sk) \{}
-\DoxyCodeLine{69   \mbox{\hyperlink{a01348}{FEFactory<BH, SK, useFlat, useEigenRef>}} factory(basisHandler, sk);}
-\DoxyCodeLine{70 }
-\DoxyCodeLine{71   \textcolor{keywordflow}{return} factory();}
-\DoxyCodeLine{72 \}}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{84 \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} useEigenRef = false, \textcolor{keyword}{typename} BH, \textcolor{keyword}{typename} SK>}
-\DoxyCodeLine{85 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_aa80712fed165a22f02670f195488fe5f}{makeFEWithUnTouchedBasis}}(\textcolor{keyword}{const} BH\& basisHandler, SK\&\& sk) \{}
-\DoxyCodeLine{86   \mbox{\hyperlink{a01348}{FEFactory<BH, SK, false, useEigenRef>}} factory(basisHandler, std::forward<SK>(sk));}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{88   \textcolor{keywordflow}{return} factory();}
-\DoxyCodeLine{89 \}}
-\DoxyCodeLine{90 }
-\DoxyCodeLine{91 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00398}{Ikarus::Python}} \{}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{class }NonLinearElasticPre, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{20 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_ab45b29a3ca18f1c8bf87263c60d14711}{registerNonLinearElasticPre}}(pybind11::handle scope, pybind11::class\_<NonLinearElasticPre, options...> cls) \{}
+\DoxyCodeLine{21   \textcolor{keyword}{using }\mbox{\hyperlink{a01492}{Material}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01528_a4c8087e2be5010d73080ef779b7e28d4}{NonLinearElasticPre::Material}};}
+\DoxyCodeLine{22   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} \mbox{\hyperlink{a01492}{Material}}\& mat) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01528}{NonLinearElasticPre}}(mat); \}));}
+\DoxyCodeLine{23 \}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{34 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a01472}{LinearElasticPre}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{35 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a04d0c82e615a65a1ba027cb77bbf784d}{registerLinearElasticPre}}(pybind11::handle scope, pybind11::class\_<LinearElasticPre, options...> cls) \{}
+\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01492}{Material}} = \textcolor{keyword}{typename} \mbox{\hyperlink{a01472_a25afe7c30b7dff97ee0b865ec636940d}{LinearElasticPre::Material}};}
+\DoxyCodeLine{37   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} \mbox{\hyperlink{a01492}{Material}}\& mat) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01472}{LinearElasticPre}}(mat); \}));}
+\DoxyCodeLine{38 \}}
+\DoxyCodeLine{39 }
+\DoxyCodeLine{49 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a01536}{TrussPre}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{50 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a5004d72f594d4ceecaebb33ee71f80cf}{registerTrussPre}}(pybind11::handle scope, pybind11::class\_<TrussPre, options...> cls) \{}
+\DoxyCodeLine{51   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keywordtype}{double} emod, \textcolor{keywordtype}{double} area) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01536}{TrussPre}}(\{emod, area\}); \}));}
+\DoxyCodeLine{52 \}}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{63 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a01456}{KirchhoffLoveShellPre}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{64 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a0ef1ab14030985bd8af2551f51ceeeb6}{registerKirchhoffLoveShellPre}}(pybind11::handle scope, pybind11::class\_<KirchhoffLoveShellPre, options...> cls) \{}
+\DoxyCodeLine{65   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}(}
+\DoxyCodeLine{66       [](\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& E, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& nu, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& h) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01456}{KirchhoffLoveShellPre}}(\{E, nu\}, h); \}));}
+\DoxyCodeLine{67 \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{78 \textcolor{keyword}{template} <\textcolor{keyword}{class }EASPre, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{79 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a79dfab8379c15a5c5da0d3e5a415f0a3}{registerEnhancedAssumedStrainsPre}}(pybind11::handle scope, pybind11::class\_<EASPre, options...> cls) \{}
+\DoxyCodeLine{80   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keywordtype}{int} numberOfParameter) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} EASPre(numberOfParameter); \}));}
+\DoxyCodeLine{81 \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{92 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a01480}{NeumannBoundaryLoadPre}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{93 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a813121e686b5d64d6ef1e11bd4bfc59b}{registerNeumannBoundaryLoadPre}}(pybind11::handle scope, pybind11::class\_<NeumannBoundaryLoadPre, options...> cls) \{}
+\DoxyCodeLine{94   \textcolor{keyword}{using }BoundaryPatchType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01480_ab141e7f54614dccc0924c0bf678760d4}{NeumannBoundaryLoadPre::BoundaryPatchType}};}
+\DoxyCodeLine{95   \textcolor{keyword}{using }GridView          = \textcolor{keyword}{typename} \mbox{\hyperlink{a01480_a57f15a0941a7f2f5cd9be9365b07cc62}{NeumannBoundaryLoadPre::GridView}};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97   \textcolor{keyword}{using }LoadFunction = std::function<Eigen::Vector<double, NeumannBoundaryLoadPre::worldDim>(}
+\DoxyCodeLine{98       \mbox{\hyperlink{a01772}{Dune::FieldVector<double, NeumannBoundaryLoadPre::worldDim>}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{99   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} BoundaryPatchType\& patch, LoadFunction \mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}}) \{}
+\DoxyCodeLine{100             \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01480}{NeumannBoundaryLoadPre}}(\&patch, \mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}});}
+\DoxyCodeLine{101           \}),}
+\DoxyCodeLine{102           pybind11::keep\_alive<1, 2>());}
+\DoxyCodeLine{103 \}}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{114 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a00384_a93a9eac09126da6a203f68af3e7c8ba2}{VolumeLoadPre}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{115 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00398_a1f597ae7aac82dc24a8a2669f86fc12b}{registerVolumeLoadPre}}(pybind11::handle scope, pybind11::class\_<VolumeLoadPre, options...> cls) \{}
+\DoxyCodeLine{116   \textcolor{keyword}{using }LoadFunction = std::function<Eigen::Vector<double, VolumeLoadPre::worldDim>(}
+\DoxyCodeLine{117       \mbox{\hyperlink{a01772}{Dune::FieldVector<double, VolumeLoadPre::worldDim>}}, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>;}
+\DoxyCodeLine{118   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](LoadFunction \mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}}) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a00384_a93a9eac09126da6a203f68af3e7c8ba2}{VolumeLoadPre}}(\mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}}); \}));}
+\DoxyCodeLine{119 \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

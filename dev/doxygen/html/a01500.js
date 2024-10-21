@@ -14,7 +14,7 @@ var a01500 =
     [ "nameImpl", "a01500.html#ad330c5fa6e01e59950897e051c4e663b", null ],
     [ "rebind", "a01500.html#aa931aacb98a90c88f54e4569f999b49f", null ],
     [ "storedEnergy", "a01500.html#ab2015ecf069d4d5022852d7cfc62c689", null ],
-    [ "storedEnergyImpl", "a01500.html#ae92330c1397f932d837d8525e3362ee2", null ],
+    [ "storedEnergyImpl", "a01500.html#a531b3a95e86327c4f8e6eeb2a48126d1", null ],
     [ "stresses", "a01500.html#ae47b0b923d01f3f2abcf5d3fd5ff04bc", null ],
     [ "stressesImpl", "a01500.html#af706e2f81dce3a9e7f7c4c3082862405", null ],
     [ "tangentModuli", "a01500.html#a2d9d9509fa8bbdc909868c8fd0dfe5fd", null ],

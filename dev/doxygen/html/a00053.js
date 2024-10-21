@@ -1,7 +1,7 @@
 var a00053 =
 [
-    [ "functions", "a00053.html#ab787b670f0d338c870988f417cf85f76", null ],
-    [ "initResults", "a00053.html#ab346d8d79af81fa5312a67cd8b4e6d9a", null ],
-    [ "NonLinearOperator", "a00053.html#abcf5978fa18a6e0aadc5e19c4a0edaa9", null ],
-    [ "parameter", "a00053.html#ac00abda505aa8ccc73ce59afd165ce49", null ]
+    [ "globalIndexFromGlobalPosition", "a00053.html#gaa19ed04a701aaa500f7c486addae2d2e", null ],
+    [ "obtainLagrangeGlobalNodePositions", "a00053.html#gae9098182120929a0d21cff1c38f5ca84", null ],
+    [ "referenceElementSubEntityPositions", "a00053.html#ga30df35336d19b00bc5db2a0b52ce650e", null ],
+    [ "referenceElementVertexPositions", "a00053.html#ga8c05dce8a66fc4efbe31674b87d18298", null ]
 ];

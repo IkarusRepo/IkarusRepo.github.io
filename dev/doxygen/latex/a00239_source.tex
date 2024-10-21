@@ -1,131 +1,161 @@
-\hypertarget{a00239_source}{}\doxysection{eas2d.\+hh}
-\label{a00239_source}\index{eas2d.hh@{eas2d.hh}}
+\hypertarget{a00239_source}{}\doxysection{linearsolver.\+hh}
+\label{a00239_source}\index{linearsolver.hh@{linearsolver.hh}}
 \mbox{\hyperlink{a00239}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00044}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <type\_traits>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <variant>}}
 \DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00391}{Ikarus::EAS}} \{}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
 \DoxyCodeLine{15 }
-\DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{a01412}{E0}}}
-\DoxyCodeLine{21 \{}
-\DoxyCodeLine{22   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01412_a6652c22405d933b6c3c881a1ce097e8a}{strainSize}}         = GEO::mydimension * (GEO::mydimension + 1) / 2;}
-\DoxyCodeLine{23   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01412_ab535d80fb5d76e7571a2af6f2d99ba05}{enhancedStrainSize}} = 0;}
-\DoxyCodeLine{24   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a6f35028ba221cd0eaf6859bbf2b5f77c}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{25   \textcolor{keyword}{using }\mbox{\hyperlink{a01412_a79fdb2f95c2bbb280d4eb9a9b7c67853}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27   \mbox{\hyperlink{a01412_ab913a61e292285b10c634a3675acd39a}{E0}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{28   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01412_a8aaffc90bc6e256385336414f7756007}{E0}}(\textcolor{keyword}{const} GEO\& \textcolor{comment}{/*geometry*/}) \{\}}
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30   \textcolor{comment}{// returns an Eigen zero expression for optimization purposes}}
-\DoxyCodeLine{31   \textcolor{keyword}{static} \textcolor{keyword}{auto} \mbox{\hyperlink{a01412_a833af01a064166c8d39b1fa1b8d8c19a}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 2>}}\& \textcolor{comment}{/*quadPos*/}) \{ \textcolor{keywordflow}{return} MType::Zero(); \}}
-\DoxyCodeLine{32 \};}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{43 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{a01416}{Q1E4}}}
-\DoxyCodeLine{45 \{}
-\DoxyCodeLine{46   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01416_a31972bc371b0267eb4f04f62f4c88219}{strainSize}}         = 3;}
-\DoxyCodeLine{47   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01416_ab1a8b1d505b07f61bc8182de7c65d66a}{enhancedStrainSize}} = 4;}
-\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01416_a9d9bcd6fbf0b5560904dc1ab9b872633}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01416_a1c7282dcb16d89f3f99b761ce4cda63c}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{51   \mbox{\hyperlink{a01416_a68eb22d5d7f45fe8c0fed77de62ad799}{Q1E4}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{52   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01416_a43ede2403a5e817099bd51ae4f26f8f1}{Q1E4}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{53       : geometry\_\{\mbox{\hyperlink{a00383}{std}}::make\_optional<GEO>(geometry)\},}
-\DoxyCodeLine{54         T0InverseTransformed\_\{\mbox{\hyperlink{a00384_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{56   \textcolor{keyword}{auto} \mbox{\hyperlink{a01416_a03e4a1b446ffd59d5e15c95fd7291b9f}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{57     \mbox{\hyperlink{a01416_a9d9bcd6fbf0b5560904dc1ab9b872633}{MType}} M;}
-\DoxyCodeLine{58     M.setZero(\mbox{\hyperlink{a01416_a31972bc371b0267eb4f04f62f4c88219}{strainSize}}, \mbox{\hyperlink{a01416_ab1a8b1d505b07f61bc8182de7c65d66a}{enhancedStrainSize}});}
-\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{60     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{61     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{62     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{63     M(2, 2)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{64     M(2, 3)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{65     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{66     M                 = T0InverseTransformed\_ / detJ * M;}
-\DoxyCodeLine{67     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{68   \}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <Eigen/SparseCore>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00047}{ikarus/utils/makeenum.hh}}>}}
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{28 \mbox{\hyperlink{a00379_ga14ad7d33267cea1c93f97f3998081657}{MAKE\_ENUM}}(\mbox{\hyperlink{a00384_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}}, none, si\_ConjugateGradient, si\_LeastSquaresConjugateGradient, si\_BiCGSTAB, sd\_SimplicialLLT,}
+\DoxyCodeLine{29           sd\_SimplicialLDLT, sd\_SparseLU, sd\_SparseQR, sd\_CholmodSupernodalLLT, sd\_UmfPackLU, sd\_SuperLU,}
+\DoxyCodeLine{30           d\_PartialPivLU, d\_FullPivLU, d\_HouseholderQR, d\_ColPivHouseholderQR, d\_FullPivHouseholderQR,}
+\DoxyCodeLine{31           d\_CompleteOrthogonalDecomposition, d\_LLT, d\_LDLT);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00384_a4763ca5888a027ed9b8d965d67cbb9ab}{MatrixTypeTag}}}
+\DoxyCodeLine{38 \{}
+\DoxyCodeLine{39   \mbox{\hyperlink{a00384_a4763ca5888a027ed9b8d965d67cbb9aba9a71a13863c84ba34fc41595fc2ee0c6}{Dense}},}
+\DoxyCodeLine{40   \mbox{\hyperlink{a00384_a4763ca5888a027ed9b8d965d67cbb9aba7407fb7e6a4df6392aaabd2368157312}{Sparse}}}
+\DoxyCodeLine{41 \};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{49 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = \textcolor{keywordtype}{double}>}
+\DoxyCodeLine{50 \textcolor{keyword}{class }\mbox{\hyperlink{a01660}{LinearSolverTemplate}}}
+\DoxyCodeLine{51 \{}
+\DoxyCodeLine{52 \textcolor{keyword}{public}:}
+\DoxyCodeLine{53   \textcolor{keyword}{using }\mbox{\hyperlink{a01660_ab222fb68571b860471b41e2c707d5637}{ScalarType}}       = ST;}
+\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}} = Eigen::SparseMatrix<ScalarType>;}
+\DoxyCodeLine{55   \textcolor{keyword}{using }\mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}  = Eigen::MatrixX<ScalarType>;}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57   \mbox{\hyperlink{a01660_a2c5e6c2336f13f818870e9b717044fac}{LinearSolverTemplate}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{63   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01660_a2d2c1ea4b5bdb1642442e94c64e03aef}{LinearSolverTemplate}}(\textcolor{keyword}{const} \mbox{\hyperlink{a00384_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}}\& solverTypeTag);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{68   \mbox{\hyperlink{a01660_a683577ea4ceced6e7e74a6a37180c279}{\string~LinearSolverTemplate}}() = \textcolor{keywordflow}{default};}
 \DoxyCodeLine{69 }
-\DoxyCodeLine{70 \textcolor{keyword}{private}:}
-\DoxyCodeLine{71   std::optional<GEO> geometry\_;}
-\DoxyCodeLine{72   Eigen::Matrix3d T0InverseTransformed\_;}
-\DoxyCodeLine{73 \};}
-\DoxyCodeLine{74 }
-\DoxyCodeLine{82 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{83 \textcolor{keyword}{struct }\mbox{\hyperlink{a01420}{Q1E5}}}
-\DoxyCodeLine{84 \{}
-\DoxyCodeLine{85   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01420_a70978fa46b16e2d6210cf77d76bead62}{strainSize}}         = 3;}
-\DoxyCodeLine{86   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01420_ab1a680222be27a73de9204c3881f7ec8}{enhancedStrainSize}} = 5;}
-\DoxyCodeLine{87   \textcolor{keyword}{using }\mbox{\hyperlink{a01420_aa19cdd636627ea0efc74bb2c380d6836}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{88   \textcolor{keyword}{using }\mbox{\hyperlink{a01420_a266e586d6789650b99c28a51b71bfbcd}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{90   \mbox{\hyperlink{a01420_a7bedf208a422c415e0037f898c8ec85a}{Q1E5}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{91   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01420_a7a4921dd86b88f516f34cd55accf0629}{Q1E5}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{92       : geometry\_\{\mbox{\hyperlink{a00383}{std}}::make\_optional<GEO>(geometry)\},}
-\DoxyCodeLine{93         T0InverseTransformed\_\{\mbox{\hyperlink{a00384_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95   \textcolor{keyword}{auto} \mbox{\hyperlink{a01420_a2f5b495d9eabc2e3fcccfee1595e61eb}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{96     \mbox{\hyperlink{a01420_aa19cdd636627ea0efc74bb2c380d6836}{MType}} M;}
-\DoxyCodeLine{97     M.setZero();}
-\DoxyCodeLine{98     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{100     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{101     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{102     M(2, 2)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{103     M(2, 3)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{104     M(2, 4)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{105     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{106     M                 = T0InverseTransformed\_ / detJ * M;}
-\DoxyCodeLine{107     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{108   \}}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{110 \textcolor{keyword}{private}:}
-\DoxyCodeLine{111   std::optional<GEO> geometry\_;}
-\DoxyCodeLine{112   Eigen::Matrix3d T0InverseTransformed\_;}
-\DoxyCodeLine{113 \};}
-\DoxyCodeLine{114 }
-\DoxyCodeLine{122 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{123 \textcolor{keyword}{struct }\mbox{\hyperlink{a01424}{Q1E7}}}
-\DoxyCodeLine{124 \{}
-\DoxyCodeLine{125   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01424_a79a495f2932fe90867b44e1f4e92bfd3}{strainSize}}         = 3;}
-\DoxyCodeLine{126   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01424_a3373c7120dffedafda0be40fa6647c46}{enhancedStrainSize}} = 7;}
-\DoxyCodeLine{127   \textcolor{keyword}{using }\mbox{\hyperlink{a01424_a3936fb3159e8887532007a2df1cc3915}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{128   \textcolor{keyword}{using }\mbox{\hyperlink{a01424_ac2ba07352f98839cbce9e189d413aadb}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{129 }
-\DoxyCodeLine{130   \mbox{\hyperlink{a01424_ac320a2701922ade2a114460221fd8897}{Q1E7}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{131   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01424_a8db7bc977482fbd9cc783ef8515b3aba}{Q1E7}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{132       : geometry\_\{\mbox{\hyperlink{a00383}{std}}::make\_optional<GEO>(geometry)\},}
-\DoxyCodeLine{133         T0InverseTransformed\_\{\mbox{\hyperlink{a00384_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
-\DoxyCodeLine{134 }
-\DoxyCodeLine{135   \textcolor{keyword}{auto} \mbox{\hyperlink{a01424_adee00ef1f4bd1c7db877fb39626b4ed8}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{136     \mbox{\hyperlink{a01424_a3936fb3159e8887532007a2df1cc3915}{MType}} M;}
-\DoxyCodeLine{137     M.setZero();}
-\DoxyCodeLine{138     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{139     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{140     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{141     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{142     M(2, 2)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{143     M(2, 3)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{144     M(0, 4)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{145     M(1, 5)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{146     M(2, 6)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{147     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{148     M                 = T0InverseTransformed\_ / detJ * M;}
-\DoxyCodeLine{149     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{150   \}}
-\DoxyCodeLine{151 }
-\DoxyCodeLine{152 \textcolor{keyword}{private}:}
-\DoxyCodeLine{153   std::optional<GEO> geometry\_;}
-\DoxyCodeLine{154   Eigen::Matrix3d T0InverseTransformed\_;}
-\DoxyCodeLine{155 \};}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{70   \textcolor{keyword}{friend} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a0f390f311ff1259150554396f4fd0025}{swap}}(\mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& lhs, \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& rhs) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{71     std::swap(lhs.solverimpl\_, rhs.solverimpl\_);}
+\DoxyCodeLine{72     std::swap(lhs.solverTypeTag\_, rhs.solverTypeTag\_);}
+\DoxyCodeLine{73   \}}
+\DoxyCodeLine{79   \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01660_ab08cf628010af09d0de6155ac8da25a6}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& other) \{}
+\DoxyCodeLine{80     \mbox{\hyperlink{a01660}{LinearSolverTemplate}} tmp(other);}
+\DoxyCodeLine{81     \mbox{\hyperlink{a01660_a0f390f311ff1259150554396f4fd0025}{swap}}(*\textcolor{keyword}{this}, tmp);}
+\DoxyCodeLine{82     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{83   \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{89   \mbox{\hyperlink{a01660_a5e6a040954d7452eed8cb74d08b7e1d5}{LinearSolverTemplate}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& other) \{ *\textcolor{keyword}{this} = \mbox{\hyperlink{a01660_a5e6a040954d7452eed8cb74d08b7e1d5}{LinearSolverTemplate}}(other.solverTypeTag\_); \}}
+\DoxyCodeLine{94   \mbox{\hyperlink{a01660_a77210b698dab50ebe8a001b5c086ebce}{LinearSolverTemplate}}(\mbox{\hyperlink{a01660}{LinearSolverTemplate}}\&\& other) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{100   \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01660_a38ea395ad12b0d6056a8f5845d483276}{operator=}}(\mbox{\hyperlink{a01660}{LinearSolverTemplate}}\&\& other) \textcolor{keyword}{noexcept} = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 \textcolor{keyword}{private}:}
+\DoxyCodeLine{103   \textcolor{keyword}{struct }SolverBase}
+\DoxyCodeLine{104   \{}
+\DoxyCodeLine{105     \textcolor{keyword}{virtual} \string~SolverBase() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{106     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a771b39a199d35745e0a1cbdec03db762}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}\&)\textcolor{keyword}{ const }\{\}}
+\DoxyCodeLine{107     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a771b39a199d35745e0a1cbdec03db762}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\&)                                         = 0;}
+\DoxyCodeLine{108     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_ad19ae7c98843dd8ecad6586003ed3b5d}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}\&)                                               = 0;}
+\DoxyCodeLine{109     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_ad19ae7c98843dd8ecad6586003ed3b5d}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\&)                                              = 0;}
+\DoxyCodeLine{110     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\&)                                                = 0;}
+\DoxyCodeLine{111     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}\&)                                                 = 0;}
+\DoxyCodeLine{112     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\&) \textcolor{keyword}{const}   = 0;}
+\DoxyCodeLine{113     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{114     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\&) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{115     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\&) \textcolor{keyword}{const}   = 0;}
+\DoxyCodeLine{116   \};}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Solver>}
+\DoxyCodeLine{119   \textcolor{keyword}{struct }SolverImpl : \textcolor{keyword}{public} SolverBase}
+\DoxyCodeLine{120   \{}
+\DoxyCodeLine{121     \textcolor{keyword}{using }SolverBase::analyzePattern; \textcolor{comment}{// forward use of analyzePattern(DenseMatrixType)}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a771b39a199d35745e0a1cbdec03db762}{analyzePattern}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{124       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.analyzePattern(A); \})}
+\DoxyCodeLine{125         solver.analyzePattern(A);}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_ad19ae7c98843dd8ecad6586003ed3b5d}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{129       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.factorize(A); \})}
+\DoxyCodeLine{130         solver.factorize(A);}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{comment}{// Dense Solvers do not have a factorize method therefore}}
+\DoxyCodeLine{134     \textcolor{comment}{// our interface we just call compute for dense matrices}}
+\DoxyCodeLine{135     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_ad19ae7c98843dd8ecad6586003ed3b5d}{factorize}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}\& A) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{136       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires}(Solver sol) \{ sol.compute(A); \} \&\& std::is\_base\_of\_v<Eigen::SolverBase<Solver>, Solver>)}
+\DoxyCodeLine{137         solver.compute(A);}
+\DoxyCodeLine{138     \}}
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_ab653f5550c90008600c77abe785963a0}{SparseMatrixType}}\& A) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{140       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_base\_of\_v<Eigen::SparseSolverBase<Solver>, Solver>)}
+\DoxyCodeLine{141         solver.\mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(A);}
+\DoxyCodeLine{142       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{143         DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}This solver does not support solving with sparse matrices."{}});}
+\DoxyCodeLine{144     \}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01660_a9f52825b9226c080976fa759fc0f5a1b}{DenseMatrixType}}\& A) \textcolor{keyword}{final} \{}
+\DoxyCodeLine{147       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_base\_of\_v<Eigen::SolverBase<Solver>, Solver>)}
+\DoxyCodeLine{148         solver.\mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(A);}
+\DoxyCodeLine{149       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{150         DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}This solver does not support solving with dense matrices."{}});}
+\DoxyCodeLine{151     \}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{ x = solver.solve(b); \}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
+\DoxyCodeLine{156       x = solver.solve(b);}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{}
+\DoxyCodeLine{160       x = solver.solve(b);}
+\DoxyCodeLine{161     \}}
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\& b) \textcolor{keyword}{const} \textcolor{keyword}{final} \{ x = solver.solve(b); \}}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{165     Solver solver;}
+\DoxyCodeLine{166   \};}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168   std::unique\_ptr<SolverBase> solverimpl\_;}
+\DoxyCodeLine{169   \mbox{\hyperlink{a00384_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}} solverTypeTag\_\{\mbox{\hyperlink{a00384_a731a9ee6621f91193c15f31b9a399906a334c4a4c42fdb79d7ebc3e73b517e6f8}{SolverTypeTag::none}}\};}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \textcolor{keyword}{public}:}
+\DoxyCodeLine{178   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
+\DoxyCodeLine{179   \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
+\DoxyCodeLine{180   \textcolor{keyword}{inline} \mbox{\hyperlink{a01660}{LinearSolverTemplate}}\& \mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(\textcolor{keyword}{const} MatrixType\& A) \{}
+\DoxyCodeLine{181     solverimpl\_-\/>\mbox{\hyperlink{a01660_a1c92808f8c8139bb32f50740f0bcb783}{compute}}(A);}
+\DoxyCodeLine{182     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{183   \}}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{190   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
+\DoxyCodeLine{191   \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
+\DoxyCodeLine{192   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a771b39a199d35745e0a1cbdec03db762}{analyzePattern}}(\textcolor{keyword}{const} MatrixType\& A) \{}
+\DoxyCodeLine{193     solverimpl\_-\/>analyzePattern(A);}
+\DoxyCodeLine{194   \}}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{201   \textcolor{keyword}{template} <\textcolor{keyword}{typename} MatrixType>}
+\DoxyCodeLine{202   \textcolor{keyword}{requires} std::is\_same\_v<MatrixType, DenseMatrixType> || std::is\_same\_v<MatrixType, SparseMatrixType>}
+\DoxyCodeLine{203   \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_ad19ae7c98843dd8ecad6586003ed3b5d}{factorize}}(\textcolor{keyword}{const} MatrixType\& A) \{}
+\DoxyCodeLine{204     solverimpl\_-\/>factorize(A);}
+\DoxyCodeLine{205   \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{212   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aee8cb48155fb74e976d6ccdef6313dac}{solve}}(Eigen::VectorX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::VectorX<ScalarType>\& b) \{ solverimpl\_-\/>solve(x, b); \}}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{219   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a6313a4e4112c84af47156be3463acabc}{solve}}(Eigen::MatrixX3<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX3<ScalarType>\& b) \{ solverimpl\_-\/>solve(x, b); \}}
+\DoxyCodeLine{225   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_aef63652936885765e62b9cca984e347a}{solve}}(Eigen::MatrixX2<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX2<ScalarType>\& b) \{ solverimpl\_-\/>solve(x, b); \}}
+\DoxyCodeLine{226 }
+\DoxyCodeLine{232   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01660_a6cd3b6346a6299ca7e4c77324e271c63}{solve}}(Eigen::MatrixX<ScalarType>\& x, \textcolor{keyword}{const} Eigen::MatrixX<ScalarType>\& b) \{ solverimpl\_-\/>solve(x, b); \}}
+\DoxyCodeLine{233 \};}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{keyword}{using }\mbox{\hyperlink{a01660}{LinearSolver}} = \mbox{\hyperlink{a01660}{LinearSolverTemplate<double>}};}
+\DoxyCodeLine{236 \textcolor{keyword}{extern} \textcolor{keyword}{template} \textcolor{keyword}{class }\mbox{\hyperlink{a01660}{LinearSolverTemplate<double>}};}
+\DoxyCodeLine{237 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

@@ -1,6 +1,6 @@
 var a00194 =
 [
-    [ "globalIndices", "a00194.html#a44e16df41148f7e4538be224814a3423", null ],
-    [ "globalIndicesFromLocalView", "a00194.html#a2a4ac5503d4288b339457aae427ff661", null ],
-    [ "localSolutionBlockVector", "a00194.html#a899043a23720a93e6ce9be9025c3a4bb", null ]
+    [ "Ikarus::ScalarManipulator< Wrapper, Assembler >", "a01232.html", "a01232" ],
+    [ "Ikarus::VectorManipulator< Wrapper, Assembler >", "a01236.html", "a01236" ],
+    [ "Ikarus::MatrixManipulator< Wrapper, Assembler >", "a01240.html", "a01240" ]
 ];

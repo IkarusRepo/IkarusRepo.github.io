@@ -1,9 +1,18 @@
 var a00008 =
 [
-    [ "Ikarus::traits::remove_pointer< T >", "a01888.html", "a01888" ],
-    [ "remove_pointer_t", "a00008.html#a472256748675b3006507836bd8034a0e", null ],
-    [ "ReplaceTypeAtPos_t", "a00008.html#ac903f76dfaaaf40abfe1c532850db3d1", null ],
-    [ "ReturnType", "a00008.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
-    [ "TupleToFunctionType_t", "a00008.html#a6b604914727df9d1b05be9a64c56898c", null ],
-    [ "countType", "a00008.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
+    [ "calcTransformationMatrix2D", "a00008.html#a7a5b9f5e83f6918ca1726fb4316c3b86", null ],
+    [ "calcTransformationMatrix3D", "a00008.html#a95234ab8588ced83708c6e5a30e2368e", null ],
+    [ "dyadic", "a00008.html#gab2cea9ac847cc3635812467c9d96ceb4", null ],
+    [ "fourthOrderIKJL", "a00008.html#ga8fa2b440586483c1ee0f9b90b9081da2", null ],
+    [ "fromVoigt", "a00008.html#ga0afe53095f875017b5673a42e13e6f5a", null ],
+    [ "fromVoigt", "a00008.html#gadc8e9e9f3838d0392a5fcf1e11374ee9", null ],
+    [ "fromVoigt", "a00008.html#ga518e0394f7c90dbe798b6cb8d757b822", null ],
+    [ "identityFourthOrder", "a00008.html#gadb08b6f9cc40847b70286dc314a23000", null ],
+    [ "symmetricFourthOrder", "a00008.html#ga2368a572348c410fd7e7deb6c6e3964a", null ],
+    [ "symmetricIdentityFourthOrder", "a00008.html#ga1c9618ef351cd986d4f64fde7f52e860", null ],
+    [ "symTwoSlots", "a00008.html#gaea03dbfcd8f85ef7af004c7e09244aa9", null ],
+    [ "tensorView", "a00008.html#ga5cfd9d098384fb067d897b3c0499b447", null ],
+    [ "toVoigt", "a00008.html#ga130c456477155bd833fc6fd5b0223fd3", null ],
+    [ "toVoigt", "a00008.html#ga8777400d7d11c49d46f3c6be2698722e", null ],
+    [ "toVoigt", "a00008.html#ga4304655095296ce9283e012587817a51", null ]
 ];

@@ -1,4 +1,5 @@
 var a00218 =
 [
-    [ "NeoHooke", "a00218.html#ab764233e8704d8d4462d202a362892c8", null ]
+    [ "draw_xy", "a00218.html#a4c07b9ce66d5837a4052977b3dd1eeb0", null ],
+    [ "drawFunction", "a00218.html#ae2cefb2db97492f0b6e5987cb95ad40b", null ]
 ];

@@ -1,6 +1,5 @@
 var a00350 =
 [
-    [ "decoratePre", "a00350.html#aed4c65416b98831e883ce413eb6e5419", null ],
-    [ "myAttributes", "a00350.html#aebb527e5c0c73be25ff173e2e456ed5d", null ],
-    [ "MySimpleGenerator", "a00350.html#a932fc5dd441c8a8a16bb175cae03f96c", null ]
+    [ "ENUM_BINDINGS", "a00350.html#acac228915620d154278249b20f193bb4", null ],
+    [ "ENUM_BINDINGS_WITH_MODULE", "a00350.html#a4f679b27b8832c36acea41eab8e0d0bc", null ]
 ];

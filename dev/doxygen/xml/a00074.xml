@@ -1,14 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.4" xml:lang="en-US">
   <compounddef id="a00074" kind="file" language="C++">
-    <compoundname>pythonautodiffdefinitions.hh</compoundname>
+    <compoundname>flatprebasis.hh</compoundname>
     <includes local="no">cstddef</includes>
-    <includes local="no">Python.h</includes>
-    <includes local="no">dune/fufem/dunepython.hh</includes>
-    <includes local="no">autodiff/forward/real/real.hpp</includes>
+    <includes local="no">utility</includes>
+    <includes local="no">dune/common/indices.hh</includes>
+    <includes local="no">dune/functions/functionspacebases/basistags.hh</includes>
+    <includes local="no">dune/functions/functionspacebases/compositebasis.hh</includes>
+    <includes local="no">dune/functions/functionspacebases/powerbasis.hh</includes>
+    <includedby refid="a02860" local="no">basis.hh</includedby>
     <incdepgraph>
       <node id="1">
-        <label>pythonautodiffdefinitions.hh</label>
+        <label>flatprebasis.hh</label>
         <link refid="a00074"/>
         <childnode refid="2" relation="include">
         </childnode>
@@ -18,79 +21,167 @@
         </childnode>
         <childnode refid="5" relation="include">
         </childnode>
-      </node>
-      <node id="3">
-        <label>Python.h</label>
-      </node>
-      <node id="5">
-        <label>autodiff/forward/real/real.hpp</label>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
       </node>
       <node id="2">
         <label>cstddef</label>
       </node>
       <node id="4">
-        <label>dune/fufem/dunepython.hh</label>
+        <label>dune/common/indices.hh</label>
+      </node>
+      <node id="5">
+        <label>dune/functions/functionspacebases/basistags.hh</label>
+      </node>
+      <node id="6">
+        <label>dune/functions/functionspacebases/compositebasis.hh</label>
+      </node>
+      <node id="7">
+        <label>dune/functions/functionspacebases/powerbasis.hh</label>
+      </node>
+      <node id="3">
+        <label>utility</label>
       </node>
     </incdepgraph>
-    <innerclass refid="a01872" prot="public">Python::Conversion&lt; autodiff::Real&lt; order, T &gt; &gt;</innerclass>
-    <innernamespace refid="a00406">Python</innernamespace>
+    <invincdepgraph>
+      <node id="4">
+        <label>flatassembler.hh</label>
+        <link refid="a00155"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>flatassemblermanipulator.hh</label>
+        <link refid="a00158"/>
+      </node>
+      <node id="3">
+        <label>basis.hh</label>
+        <link refid="a02857"/>
+      </node>
+      <node id="2">
+        <label>basis.hh</label>
+        <link refid="a02860"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>flatprebasis.hh</label>
+        <link refid="a00074"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="a01796" prot="public">Ikarus::FlatPreBasis</innerclass>
+    <innerclass refid="a01800" prot="public">Ikarus::FlatIndexMergingStrategy</innerclass>
+    <innerclass refid="a01804" prot="public">Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedInterleaved &gt;</innerclass>
+    <innerclass refid="a01808" prot="public">Ikarus::FlatIndexMergingStrategy&lt; Dune::Functions::BasisFactory::BlockedLexicographic &gt;</innerclass>
+    <innerclass refid="a01812" prot="public">Ikarus::FlatPreBasis&lt; Dune::Functions::CompositePreBasis&lt; IMS, SPB... &gt; &gt;</innerclass>
+    <innerclass refid="a01816" prot="public">Ikarus::FlatPreBasis&lt; Dune::Functions::PowerPreBasis&lt; IMS, SPB, C &gt; &gt;</innerclass>
+    <innernamespace refid="a00384">Ikarus</innernamespace>
     <briefdescription>
-<para>Implementation of forwarding autodiff types from python to c++ and vice versa. </para>
+<para>Implementation of creating a flat basis from a possibly blocked basis. </para>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <programlisting>
-<codeline lineno="1"><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2021-2024<sp/>The<sp/>Ikarus<sp/>Developers<sp/>mueller@ibb.uni-stuttgart.de</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>LGPL-3.0-or-later</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="3"><highlight class="normal"></highlight></codeline>
-<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Python.h&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="12"><highlight class="normal"></highlight></codeline>
-<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dune/fufem/dunepython.hh&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="1"><highlight class="comment">//<sp/>Original<sp/>File:<sp/>https://gitlab.mn.tu-dresden.de/amdis/amdis-core/-/blob/master/amdis/functions/FlatPreBasis.hpp</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2023<sp/>Copyright<sp/>(c)<sp/><sp/>AMDiS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>MIT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Modifications:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-FileCopyrightText:<sp/>2021-2024<sp/>The<sp/>Ikarus<sp/>Developers<sp/>mueller@ibb.uni-stuttgart.de</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>SPDX-License-Identifier:<sp/>LGPL-3.0-or-later</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="14"><highlight class="normal"></highlight></codeline>
-<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;autodiff/forward/real/real.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="16"><highlight class="normal"></highlight></codeline>
-<codeline lineno="17" refid="a00406" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="a00406" kindref="compound">Python</ref><sp/>{</highlight></codeline>
-<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/>specializations<sp/>of<sp/>Conversion<sp/>that<sp/>do<sp/>the<sp/>PyObject*<sp/>&lt;-&gt;<sp/>C++-type<sp/>conversion</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/>*****************************************************************************</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="21"><highlight class="normal"></highlight></codeline>
-<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>order,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
-<codeline lineno="28" refid="a01872" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">Conversion&lt;autodiff::Real&lt;order,<sp/>T&gt;&gt;</highlight></codeline>
-<codeline lineno="29"><highlight class="normal">{</highlight></codeline>
-<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="31"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
-<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>useDefaultConstructorConversion<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="33" refid="a01872_1ad71914c7a22c638ccacc40edb226c0caa800d3df3de5cd47119ccc5a0c89f2841" refkind="member"><highlight class="normal"><sp/><sp/>};</highlight></codeline>
-<codeline lineno="34"><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="a01872_1aab78500f06d24b5eb1cd894b68eec03c" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="a01872_1aab78500f06d24b5eb1cd894b68eec03c" kindref="member">toC</ref>(PyObject*<sp/>list,<sp/>autodiff::Real&lt;order,<sp/>T&gt;&amp;<sp/>v)<sp/>{</highlight></codeline>
-<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>rlist<sp/>=<sp/>Reference(Imp::inc(list));</highlight></codeline>
-<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Reference<sp/>is<sp/>needed<sp/>to<sp/>enable<sp/>the<sp/>&quot;.get()&quot;<sp/>function<sp/>and<sp/>&quot;Imp::inc&quot;<sp/>is</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>needed<sp/>since<sp/>Reference<sp/>owns<sp/>the<sp/>PyObject<sp/>pointer<sp/>and<sp/>decrements<sp/>it<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>scope</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Imp::inc<sp/>artificially<sp/>increases<sp/>the<sp/>reference<sp/>counter<sp/>by<sp/>one.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>When<sp/>we<sp/>return<sp/>from<sp/>this<sp/>function,<sp/>these<sp/>two<sp/>cancel<sp/>out<sp/>and<sp/>the<sp/>PyObject*<sp/>is<sp/>as<sp/>before</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstddef&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;utility&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dune/common/indices.hh&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dune/functions/functionspacebases/basistags.hh&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dune/functions/functionspacebases/compositebasis.hh&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;dune/functions/functionspacebases/powerbasis.hh&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="a00384" kindref="compound">Ikarus</ref><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PreBasis&gt;</highlight></codeline>
+<codeline lineno="37" refid="a01796" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01796" kindref="compound">FlatPreBasis</ref></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="a01796_1a448426468de3637416804f6ef6f8ce90" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">type</ref><sp/>=<sp/>PreBasis;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PB&gt;</highlight></codeline>
+<codeline lineno="43" refid="a01796_1a9c133ba014522aa8c8d90f2a3835c7e1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">type</ref><sp/><ref refid="a01796_1a9c133ba014522aa8c8d90f2a3835c7e1" kindref="member">create</ref>(PB<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal">&amp;<sp/>preBasis)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">type</ref>(preBasis.gridView());</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>
-<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>wF<sp/>=<sp/>Callable(rlist.get(</highlight><highlight class="stringliteral">&quot;__getitem__&quot;</highlight><highlight class="normal">));</highlight></codeline>
-<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>order<sp/>+<sp/>1;<sp/>++i)</highlight></codeline>
-<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>v[i]<sp/>=<sp/>PyFloat_AsDouble(wF(i));</highlight></codeline>
-<codeline lineno="50"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="51"><highlight class="normal"></highlight></codeline>
-<codeline lineno="57" refid="a01872_1ae7c12c134c747ccf36ff0bf9c453f69e" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>PyObject*<sp/><ref refid="a01872_1ae7c12c134c747ccf36ff0bf9c453f69e" kindref="member">toPy</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>autodiff::Real&lt;order,<sp/>T&gt;&amp;<sp/>v)<sp/>{</highlight></codeline>
-<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>pyMain<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Python::main();</highlight></codeline>
-<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>Python::Module<sp/>module<sp/>=<sp/>pyMain.import(</highlight><highlight class="stringliteral">&quot;autodiff&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="60"><highlight class="normal"></highlight></codeline>
-<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>real1stClass<sp/>=<sp/>module.get(</highlight><highlight class="stringliteral">&quot;real1st&quot;</highlight><highlight class="normal">);</highlight></codeline>
-<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>real1st<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Callable(Imp::inc(real1stClass))();</highlight></codeline>
-<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>wF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>Callable(Imp::inc(real1st).get(</highlight><highlight class="stringliteral">&quot;__setitem__&quot;</highlight><highlight class="normal">));</highlight></codeline>
-<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(std::size_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>order<sp/>+<sp/>1;<sp/>++i)</highlight></codeline>
-<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>wF(i,<sp/>v[i]);<sp/></highlight><highlight class="comment">//<sp/>real1st.__setitem__(i,v[i]);</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="66"><highlight class="normal"></highlight></codeline>
-<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>real1st;</highlight></codeline>
-<codeline lineno="68"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
-<codeline lineno="69"><highlight class="normal">};</highlight></codeline>
-<codeline lineno="70"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>Python</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="a01796_1af5414357864c26a827136edac1a085f4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/><ref refid="a01796_1af5414357864c26a827136edac1a085f4" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/>preBasis)<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>preBasis;<sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PreBasis&gt;</highlight></codeline>
+<codeline lineno="53" refid="a00384_1a98cbe3aef4b3238ea7de77ee9c4c19ac" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a00384_1a98cbe3aef4b3238ea7de77ee9c4c19ac" kindref="member">FlatPreBasis_t</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">FlatPreBasis&lt;PreBasis&gt;::type</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>IMS&gt;</highlight></codeline>
+<codeline lineno="57" refid="a01800" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01800" kindref="compound">FlatIndexMergingStrategy</ref></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59" refid="a01800_1aa18699c386a7d8e60d0f53cbc4a83261" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01800_1aa18699c386a7d8e60d0f53cbc4a83261" kindref="member">type</ref><sp/>=<sp/>IMS;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">//<sp/>specialization<sp/>for<sp/>BlockedInterleaved</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="64" refid="a01804" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01800" kindref="compound">FlatIndexMergingStrategy</ref>&lt;<ref refid="a00404" kindref="compound">Dune</ref>::Functions::BasisFactory::BlockedInterleaved&gt;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="66" refid="a01804_1a0a464466ec348e17886e7c49c03964d6" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01804_1a0a464466ec348e17886e7c49c03964d6" kindref="member">type</ref><sp/>=<sp/>Dune::Functions::BasisFactory::FlatInterleaved;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="comment">//<sp/>specialization<sp/>for<sp/>BlockedLexicographic</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;&gt;</highlight></codeline>
+<codeline lineno="71" refid="a01808" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01800" kindref="compound">FlatIndexMergingStrategy</ref>&lt;<ref refid="a00404" kindref="compound">Dune</ref>::Functions::BasisFactory::BlockedLexicographic&gt;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="73" refid="a01808_1add1dc46010d8b320cd215e331a3f1fa4" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01808_1add1dc46010d8b320cd215e331a3f1fa4" kindref="member">type</ref><sp/>=<sp/>Dune::Functions::BasisFactory::FlatLexicographic;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">//<sp/>specialization<sp/>for<sp/>composite<sp/>bases</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">IMS,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal">...<sp/>SPB&gt;</highlight></codeline>
+<codeline lineno="78" refid="a01812" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01796" kindref="compound">FlatPreBasis</ref>&lt;<ref refid="a00404" kindref="compound">Dune</ref>::Functions::CompositePreBasis&lt;IMS,<sp/>SPB...&gt;&gt;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80" refid="a01812_1a2387375090283dac7ebbfb8bc58e1994" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01812_1a2387375090283dac7ebbfb8bc58e1994" kindref="member">FIMS</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="a01800_1aa18699c386a7d8e60d0f53cbc4a83261" kindref="member">FlatIndexMergingStrategy&lt;IMS&gt;::type</ref>;</highlight></codeline>
+<codeline lineno="81" refid="a01812_1a5b93764f4d9fd3897ad37658526e37fd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01812_1a5b93764f4d9fd3897ad37658526e37fd" kindref="member">type</ref><sp/>=<sp/>Dune::Functions::CompositePreBasis&lt;FIMS,<sp/>FlatPreBasis_t&lt;SPB&gt;...&gt;;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PreBasis&gt;</highlight></codeline>
+<codeline lineno="84" refid="a01812_1aaaf91aed22e7c32c6f2c26ff961ae3e1" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="a01812_1a5b93764f4d9fd3897ad37658526e37fd" kindref="member">type</ref><sp/><ref refid="a01812_1aaaf91aed22e7c32c6f2c26ff961ae3e1" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/>preBasis)<sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="a01796_1a9c133ba014522aa8c8d90f2a3835c7e1" kindref="member">create</ref>(preBasis,<sp/>std::index_sequence_for&lt;SPB...&gt;{});</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">PreBasis,<sp/>std::size_t...<sp/>I&gt;</highlight></codeline>
+<codeline lineno="89" refid="a01812_1aab16d08ac65576f292078b2c4f135645" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="a01812_1a5b93764f4d9fd3897ad37658526e37fd" kindref="member">type</ref><sp/><ref refid="a01812_1aab16d08ac65576f292078b2c4f135645" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/>preBasis,<sp/>std::index_sequence&lt;I...&gt;)<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">type</ref>(<ref refid="a01796" kindref="compound">FlatPreBasis&lt;SPB&gt;::create</ref>(preBasis.subPreBasis(Dune::index_constant&lt;I&gt;{}))...);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="comment">//<sp/>specialization<sp/>for<sp/>power<sp/>bases</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>IMS,<sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>SPB,<sp/>std::</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>C&gt;</highlight></codeline>
+<codeline lineno="96" refid="a01816" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="a01796" kindref="compound">FlatPreBasis</ref>&lt;<ref refid="a00404" kindref="compound">Dune</ref>::Functions::PowerPreBasis&lt;IMS,<sp/>SPB,<sp/>C&gt;&gt;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98" refid="a01816_1aef8f8b43a63a4bf4c7c3bc193c4ee1f0" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01816_1aef8f8b43a63a4bf4c7c3bc193c4ee1f0" kindref="member">FIMS</ref><sp/>=<sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/><ref refid="a01800_1aa18699c386a7d8e60d0f53cbc4a83261" kindref="member">FlatIndexMergingStrategy&lt;IMS&gt;::type</ref>;</highlight></codeline>
+<codeline lineno="99" refid="a01816_1ae56d4cd604948715e51d517f27d7f0c9" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal"><ref refid="a01816_1ae56d4cd604948715e51d517f27d7f0c9" kindref="member">type</ref><sp/>=<sp/>Dune::Functions::PowerPreBasis&lt;FIMS,<sp/>FlatPreBasis_t&lt;SPB&gt;,<sp/>C&gt;;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PreBasis&gt;</highlight></codeline>
+<codeline lineno="102" refid="a01816_1ad2ce954f09e165f4440f6e4139ed0b85" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="a01816_1ae56d4cd604948715e51d517f27d7f0c9" kindref="member">type</ref><sp/><ref refid="a01816_1ad2ce954f09e165f4440f6e4139ed0b85" kindref="member">create</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/>preBasis)<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="a01796_1a448426468de3637416804f6ef6f8ce90" kindref="member">type</ref>(<ref refid="a01796" kindref="compound">FlatPreBasis&lt;SPB&gt;::create</ref>(preBasis.subPreBasis()));</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="keyword">template</highlight><highlight class="normal"><sp/>&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>PreBasis&gt;</highlight></codeline>
+<codeline lineno="110" refid="a00379_1ga0728039472747184e9eb2ec0992a4a2b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">decltype</highlight><highlight class="normal">(</highlight><highlight class="keyword">auto</highlight><highlight class="normal">)<sp/><ref refid="a00379_1ga0728039472747184e9eb2ec0992a4a2b" kindref="member">flatPreBasis</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>PreBasis&amp;<sp/>preBasis)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="a01796_1a9c133ba014522aa8c8d90f2a3835c7e1" kindref="member">FlatPreBasis&lt;PreBasis&gt;::create</ref>(preBasis);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal">}<sp/></highlight><highlight class="comment">//<sp/>end<sp/>namespace<sp/>Ikarus</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="/__w/ikarus/ikarus/repo/ikarus/utils/pythonautodiffdefinitions.hh"/>
+    <location file="/__w/ikarus/ikarus/repo/ikarus/utils/flatprebasis.hh"/>
   </compounddef>
 </doxygen>

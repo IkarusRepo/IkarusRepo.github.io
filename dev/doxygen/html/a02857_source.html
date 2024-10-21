@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: dirichletvalues.hh Source File</title>
+    <title>ikarus: basis.hh Source File</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('a02857_source.html',''); initResizable
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">python/dirichletvalues/dirichletvalues.hh</div></div>
+  <div class="headertitle"><div class="title">python/basis/basis.hh</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="a02857.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// SPDX-FileCopyrightText: 2021-2024 The Ikarus Developers mueller@ibb.uni-stuttgart.de</span></div>
@@ -160,178 +160,49 @@ $(document).ready(function(){initNavTree('a02857_source.html',''); initResizable
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;dune/common/classname.hh&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/lagrangebasis.hh&gt;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/powerbasis.hh&gt;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;dune/grid/yaspgrid.hh&gt;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;dune/python/common/typeregistry.hh&gt;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;dune/python/functions/globalbasis.hh&gt;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;dune/python/functions/subspacebasis.hh&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;dune/python/pybind11/eigen.h&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;dune/python/pybind11/functional.h&gt;</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;dune/python/pybind11/pybind11.h&gt;</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;dune/python/pybind11/stl.h&gt;</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;dune/python/pybind11/stl_bind.h&gt;</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="a00191.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00398.html">Ikarus::Python</a> {</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">namespace </span>Impl {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">using </span>FixBoundaryDOFsWithGlobalIndexFunction = std::function&lt;void(Eigen::Ref&lt;Eigen::VectorX&lt;bool&gt;&gt;, <span class="keywordtype">int</span>)&gt;;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LV&gt;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keyword">using </span>FixBoundaryDOFsWithLocalViewFunction = std::function&lt;void(Eigen::Ref&lt;Eigen::VectorX&lt;bool&gt;&gt;, <span class="keywordtype">int</span>, LV&amp;)&gt;;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> LV, <span class="keyword">typename</span> IS&gt;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">using </span>FixBoundaryDOFsWithIntersectionFunction =</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>      std::function&lt;void(Eigen::Ref&lt;Eigen::VectorX&lt;bool&gt;&gt;, <span class="keywordtype">int</span>, LV&amp;, <span class="keyword">const</span> IS&amp;)&gt;;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Basis&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">auto</span> registerSubSpaceLocalView() {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    pybind11::module scopedf = pybind11::module::import(<span class="stringliteral">&quot;dune.functions&quot;</span>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">using </span>LocalViewWrapper   = Dune::Python::LocalViewWrapper&lt;Basis&gt;;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keyword">auto</span> includes = Dune::Python::IncludeFiles{<span class="stringliteral">&quot;dune/python/functions/globalbasis.hh&quot;</span>};</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    Dune::Python::insertClass&lt;Basis&gt;(scopedf, <span class="stringliteral">&quot;SubspaceBasis_&quot;</span> + Dune::className&lt;typename Basis::PrefixPath&gt;(),</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                                     Dune::Python::GenerateTypeName(Dune::className&lt;Basis&gt;()), includes);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">auto</span> [lv, isNew] = Dune::Python::insertClass&lt;LocalViewWrapper&gt;(</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        scopedf, <span class="stringliteral">&quot;LocalView_&quot;</span> + Dune::className&lt;typename Basis::PrefixPath&gt;(),</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        Dune::Python::GenerateTypeName(<span class="stringliteral">&quot;Dune::Python::LocalViewWrapper&quot;</span>, Dune::MetaType&lt;Basis&gt;()), includes);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">if</span> (isNew) {</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      lv.def(<span class="stringliteral">&quot;bind&quot;</span>, &amp;LocalViewWrapper::bind);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      lv.def(<span class="stringliteral">&quot;unbind&quot;</span>, &amp;LocalViewWrapper::unbind);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      lv.def(<span class="stringliteral">&quot;index&quot;</span>, [](<span class="keyword">const</span> LocalViewWrapper&amp; localView, <span class="keywordtype">int</span> index) { <span class="keywordflow">return</span> localView.index(index); });</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      lv.def(<span class="stringliteral">&quot;__len__&quot;</span>, [](LocalViewWrapper&amp; self) -&gt; <span class="keywordtype">int</span> { <span class="keywordflow">return</span> self.size(); });</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>      Dune::Python::Functions::registerTree&lt;typename LocalViewWrapper::Tree&gt;(lv);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      lv.def(<span class="stringliteral">&quot;tree&quot;</span>, [](<span class="keyword">const</span> LocalViewWrapper&amp; view) { <span class="keywordflow">return</span> view.tree(); });</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>} <span class="comment">// namespace Impl</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> DirichletValues&gt;</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="a00398.html#a7f83fd37212b1411d1dbae8f7064882c">   67</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00398.html#a7f83fd37212b1411d1dbae8f7064882c">forwardCorrectFunction</a>(<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; <a class="code hl_function" href="a00411.html#a453691a9a22118c4736e30240481a281">dirichletValues</a>, <span class="keyword">const</span> pybind11::function&amp; functor, <span class="keyword">auto</span>&amp;&amp; cppFunction) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">using </span>Basis        = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01788.html#a2e6f1ef4a810a7269303f54a6f74539f">DirichletValues::Basis</a>;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="keyword">using </span>Intersection = <span class="keyword">typename</span> Basis::GridView::Intersection;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keyword">using </span>BackendType  = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01788.html#a3db820fbcd2b7edf58ce3b21b261f621">DirichletValues::BackendType</a>;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">using </span>MultiIndex   = <span class="keyword">typename</span> Basis::MultiIndex;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="comment">// Disambiguate by number of arguments</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  pybind11::module inspect_module = pybind11::module::import(<span class="stringliteral">&quot;inspect&quot;</span>);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  pybind11::object result         = inspect_module.attr(<span class="stringliteral">&quot;signature&quot;</span>)(functor).attr(<span class="stringliteral">&quot;parameters&quot;</span>);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">size_t</span> numParams                = pybind11::len(result);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="keywordflow">if</span> (numParams == 2) {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keyword">auto</span> function = functor.template cast&lt;const Impl::FixBoundaryDOFsWithGlobalIndexFunction&gt;();</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">auto</span> lambda   = [&amp;](BackendType&amp; vec, <span class="keyword">const</span> MultiIndex&amp; indexGlobal) { function(vec.vector(), indexGlobal); };</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    cppFunction(lambda);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (numParams == 3) {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">auto</span> lambda = [&amp;](BackendType&amp; vec, <span class="keywordtype">int</span> localIndex, <span class="keyword">auto</span>&amp;&amp; lv) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      <span class="keyword">using </span>SubSpaceBasis = <span class="keyword">typename</span> std::remove_cvref_t&lt;<span class="keyword">decltype</span>(lv)&gt;::GlobalBasis;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      Impl::registerSubSpaceLocalView&lt;SubSpaceBasis&gt;();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keyword">using </span>SubSpaceLocalViewWrapper = Dune::Python::LocalViewWrapper&lt;SubSpaceBasis&gt;;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      <span class="keyword">auto</span> lvWrapper                 = SubSpaceLocalViewWrapper(lv);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      <span class="keyword">auto</span> function =</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>          functor.template cast&lt;const Impl::FixBoundaryDOFsWithLocalViewFunction&lt;SubSpaceLocalViewWrapper&gt;&gt;();</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      function(vec.vector(), localIndex, lvWrapper);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    };</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    cppFunction(lambda);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (numParams == 4) {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <span class="keyword">auto</span> lambda = [&amp;](BackendType&amp; vec, <span class="keywordtype">int</span> localIndex, <span class="keyword">auto</span>&amp;&amp; lv, <span class="keyword">const</span> Intersection&amp; intersection) {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keyword">using </span>SubSpaceBasis = <span class="keyword">typename</span> std::remove_cvref_t&lt;<span class="keyword">decltype</span>(lv)&gt;::GlobalBasis;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      Impl::registerSubSpaceLocalView&lt;SubSpaceBasis&gt;();</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      <span class="keyword">using </span>SubSpaceLocalViewWrapper = Dune::Python::LocalViewWrapper&lt;SubSpaceBasis&gt;;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keyword">auto</span> lvWrapper                 = SubSpaceLocalViewWrapper(lv);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>      <span class="keyword">auto</span> function = functor.template cast&lt;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>          <span class="keyword">const</span> Impl::FixBoundaryDOFsWithIntersectionFunction&lt;SubSpaceLocalViewWrapper, Intersection&gt;&gt;();</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>      function(vec.vector(), localIndex, lvWrapper, intersection);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    };</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    cppFunction(lambda);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    DUNE_THROW(Dune::NotImplemented, <span class="stringliteral">&quot;fixBoundaryDOFs: A function with this signature is not supported&quot;</span>);</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  }</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">template</span> &lt;<span class="keyword">class </span><a class="code hl_class" href="a01788.html">DirichletValues</a>, <span class="keyword">class</span>... options&gt;</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="a00376.html#ga39b6df6adfe4858b13ac71f5830f29f6">  147</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00376.html#ga39b6df6adfe4858b13ac71f5830f29f6">registerDirichletValues</a>(pybind11::handle scope, pybind11::class_&lt;DirichletValues, options...&gt; cls) {</div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keyword">using </span>pybind11::operator<span class="stringliteral">&quot;&quot;</span>_a;</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  <span class="keyword">using </span>Basis        = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01788.html#a2e6f1ef4a810a7269303f54a6f74539f">DirichletValues::Basis</a>;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  <span class="keyword">using </span>BackendType  = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01788.html#a3db820fbcd2b7edf58ce3b21b261f621">DirichletValues::BackendType</a>;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <span class="keyword">using </span>FlagsType    = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01788.html#aa71c2b94b37f2b4e83f9f1e059e6fe4c">DirichletValues::FlagsType</a>;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <span class="keyword">using </span>MultiIndex   = <span class="keyword">typename</span> Basis::MultiIndex;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keyword">using </span>LocalView    = <span class="keyword">typename</span> Basis::LocalView;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="keyword">using </span>Intersection = <span class="keyword">typename</span> Basis::GridView::Intersection;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  pybind11::module scopedf = pybind11::module::import(<span class="stringliteral">&quot;dune.functions&quot;</span>);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <span class="keyword">using </span>LocalViewWrapper   = Dune::Python::LocalViewWrapper&lt;Basis&gt;;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <span class="keyword">auto</span> includes    = Dune::Python::IncludeFiles{<span class="stringliteral">&quot;dune/python/functions/globalbasis.hh&quot;</span>};</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keyword">auto</span> [lv, isNew] = Dune::Python::insertClass&lt;LocalViewWrapper&gt;(</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>      scopedf, <span class="stringliteral">&quot;LocalView&quot;</span>, Dune::Python::GenerateTypeName(<span class="stringliteral">&quot;Dune::Python::LocalViewWrapper&quot;</span>, Dune::MetaType&lt;Basis&gt;()),</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>      includes);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  <span class="keywordflow">if</span> (isNew) {</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    lv.def(<span class="stringliteral">&quot;bind&quot;</span>, &amp;LocalViewWrapper::bind);</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    lv.def(<span class="stringliteral">&quot;unbind&quot;</span>, &amp;LocalViewWrapper::unbind);</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>    lv.def(<span class="stringliteral">&quot;index&quot;</span>, [](<span class="keyword">const</span> LocalViewWrapper&amp; localView, <span class="keywordtype">int</span> index) { <span class="keywordflow">return</span> localView.index(index); });</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    lv.def(<span class="stringliteral">&quot;__len__&quot;</span>, [](LocalViewWrapper&amp; self) -&gt; <span class="keywordtype">int</span> { <span class="keywordflow">return</span> self.size(); });</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    Dune::Python::Functions::registerTree&lt;typename LocalViewWrapper::Tree&gt;(lv);</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    lv.def(<span class="stringliteral">&quot;tree&quot;</span>, [](<span class="keyword">const</span> LocalViewWrapper&amp; view) { <span class="keywordflow">return</span> view.tree(); });</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  }</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>  cls.def(<a class="code hl_function" href="a00384.html#ac8243891c1b961e50a066140ab79a142">pybind11::init</a>([](<span class="keyword">const</span> Basis&amp; <a class="code hl_function" href="a00410.html#a0f9f04fa9d98e890cb6d4fe62ff889a4">basis</a>) { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="a01788.html">DirichletValues</a>(<a class="code hl_function" href="a00410.html#a0f9f04fa9d98e890cb6d4fe62ff889a4">basis</a>); }), pybind11::keep_alive&lt;1, 2&gt;());</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>  cls.def_property_readonly(<span class="stringliteral">&quot;container&quot;</span>, &amp;<a class="code hl_function" href="a01788.html#af8495b65eac223b7b6c64f07b31cc814">DirichletValues::container</a>);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>  cls.def_property_readonly(<span class="stringliteral">&quot;size&quot;</span>, &amp;<a class="code hl_function" href="a01788.html#a010fa7b0721c137eb61221493e52dc92">DirichletValues::size</a>);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  cls.def(<span class="stringliteral">&quot;__len__&quot;</span>, &amp;<a class="code hl_function" href="a01788.html#a010fa7b0721c137eb61221493e52dc92">DirichletValues::size</a>);</div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>  cls.def_property_readonly(<span class="stringliteral">&quot;fixedDOFsize&quot;</span>, &amp;<a class="code hl_function" href="a01788.html#aeb299b04b2777be56012b32a3b2e6a9c">DirichletValues::fixedDOFsize</a>);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  cls.def(<span class="stringliteral">&quot;isConstrained&quot;</span>, [](<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; self, std::size_t i) -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01788.html#a1b1fccdb71619c0a49aa24977682d43a">isConstrained</a>(i); });</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  cls.def(<span class="stringliteral">&quot;setSingleDOF&quot;</span>, [](<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; self, std::size_t i, <span class="keywordtype">bool</span> flag) { self.<a class="code hl_function" href="a01788.html#a179a4b05a361fc9ea0a3e935dcf0e45a">setSingleDOF</a>(i, flag); });</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  cls.def(<span class="stringliteral">&quot;isConstrained&quot;</span>, [](<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; self, MultiIndex i) -&gt; <span class="keywordtype">bool</span> { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01788.html#a1b1fccdb71619c0a49aa24977682d43a">isConstrained</a>(i); });</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  cls.def(<span class="stringliteral">&quot;setSingleDOF&quot;</span>, [](<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; self, MultiIndex i, <span class="keywordtype">bool</span> flag) { self.<a class="code hl_function" href="a01788.html#a179a4b05a361fc9ea0a3e935dcf0e45a">setSingleDOF</a>(i, flag); });</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  cls.def(<span class="stringliteral">&quot;reset&quot;</span>, &amp;<a class="code hl_function" href="a01788.html#ab8ae184ec5c0c79a893a8111d7315442">DirichletValues::reset</a>);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  cls.def(<span class="stringliteral">&quot;fixDOFs&quot;</span>,</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>          [](<a class="code hl_class" href="a01788.html">DirichletValues</a>&amp; self, <span class="keyword">const</span> std::function&lt;<span class="keywordtype">void</span>(<span class="keyword">const</span> Basis&amp;, Eigen::Ref&lt;Eigen::VectorX&lt;bool&gt;&gt;)&gt;&amp; f) {</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>            <span class="keyword">auto</span> lambda = [&amp;](<span class="keyword">const</span> Basis&amp; <a class="code hl_function" href="a00410.html#a0f9f04fa9d98e890cb6d4fe62ff889a4">basis</a>, BackendType&amp; vec) { f(<a class="code hl_function" href="a00410.html#a0f9f04fa9d98e890cb6d4fe62ff889a4">basis</a>, vec.vector()); };</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>            self.<a class="code hl_function" href="a01788.html#a956ce2cdc09731f001821c7b59d49e85">fixDOFs</a>(lambda);</div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>          });</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>} <span class="comment">// namespace Ikarus::Python</span></div>
-<div class="ttc" id="aa00191_html"><div class="ttname"><a href="a00191.html">ferequirements.hh</a></div><div class="ttdoc">Definition of the LinearElastic class for finite element mechanics computations.</div></div>
-<div class="ttc" id="aa00376_html_ga39b6df6adfe4858b13ac71f5830f29f6"><div class="ttname"><a href="a00376.html#ga39b6df6adfe4858b13ac71f5830f29f6">Ikarus::Python::registerDirichletValues</a></div><div class="ttdeci">void registerDirichletValues(pybind11::handle scope, pybind11::class_&lt; DirichletValues, options... &gt; cls)</div><div class="ttdoc">Register Python bindings for a DirichletValues class.</div><div class="ttdef"><b>Definition:</b> python/dirichletvalues/dirichletvalues.hh:147</div></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/lagrangebasis.hh&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;dune/functions/functionspacebases/powerbasis.hh&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;dune/grid/yaspgrid.hh&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;dune/python/common/typeregistry.hh&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;dune/python/pybind11/eigen.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;dune/python/pybind11/functional.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;dune/python/pybind11/pybind11.h&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;dune/python/pybind11/stl.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="a00257.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="a02860.html">ikarus/utils/basis.hh</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="a00398.html">Ikarus::Python</a> {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">template</span> &lt;<span class="keyword">class </span>BasisHandler, <span class="keyword">class</span>... options&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="a00376.html#ga2f6146bb687ad25cfb413fbcfd470788">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="a00376.html#ga2f6146bb687ad25cfb413fbcfd470788">registerBasisHandler</a>(pybind11::handle scope, pybind11::class_&lt;BasisHandler, options...&gt; cls) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keyword">using </span>pybind11::operator<span class="stringliteral">&quot;&quot;</span>_a;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">using </span>GridView       = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01732.html#adcbd72244406be4bb8ad7b547dd856cc">BasisHandler::GridView</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">using </span>PreBasis       = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01732.html#af1f06693a1efdf8ecdc58d9d52493a28">BasisHandler::PreBasis</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">using </span>UntouchedBasis = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01732.html#a27e6a76ae18f154cc833c1b4ecafd35b">BasisHandler::UntouchedBasis</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">using </span>FlatBasis      = <span class="keyword">typename</span> <a class="code hl_typedef" href="a01732.html#a7252e605123456ef454c811cfb364bba">BasisHandler::FlatBasis</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  cls.def(<a class="code hl_function" href="a00384.html#ac8243891c1b961e50a066140ab79a142">pybind11::init</a>([](<span class="keyword">const</span> UntouchedBasis&amp; gb) { <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_class" href="a01732.html">BasisHandler</a>(gb.preBasis()); }));</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  cls.def(<span class="stringliteral">&quot;flat&quot;</span>, [](<a class="code hl_class" href="a01732.html">BasisHandler</a>&amp; self) { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01732.html#a259a6b38e59d58970716c03ac511d3c5">flat</a>(); }, pybind11::return_value_policy::reference);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  cls.def(<span class="stringliteral">&quot;untouched&quot;</span>, [](<a class="code hl_class" href="a01732.html">BasisHandler</a>&amp; self) { <span class="keywordflow">return</span> self.<a class="code hl_function" href="a01732.html#aa3e286f5563f510fc4b0eaa005eb0a2b">untouched</a>(); }, pybind11::return_value_policy::reference);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>} <span class="comment">// namespace Ikarus::Python</span></div>
+<div class="ttc" id="aa00257_html"><div class="ttname"><a href="a00257.html">ferequirements.hh</a></div><div class="ttdoc">Definition of the LinearElastic class for finite element mechanics computations.</div></div>
+<div class="ttc" id="aa00376_html_ga2f6146bb687ad25cfb413fbcfd470788"><div class="ttname"><a href="a00376.html#ga2f6146bb687ad25cfb413fbcfd470788">Ikarus::Python::registerBasisHandler</a></div><div class="ttdeci">void registerBasisHandler(pybind11::handle scope, pybind11::class_&lt; BasisHandler, options... &gt; cls)</div><div class="ttdoc">Register a Python wrapper for an Ikarus basis class.</div><div class="ttdef"><b>Definition:</b> python/basis/basis.hh:37</div></div>
 <div class="ttc" id="aa00384_html_ac8243891c1b961e50a066140ab79a142"><div class="ttname"><a href="a00384.html#ac8243891c1b961e50a066140ab79a142">Ikarus::init</a></div><div class="ttdeci">void init(int argc, char **argv, bool enableFileLogger=true)</div><div class="ttdoc">Initializes the Ikarus framework.</div><div class="ttdef"><b>Definition:</b> init.hh:82</div></div>
 <div class="ttc" id="aa00398_html"><div class="ttname"><a href="a00398.html">Ikarus::Python</a></div><div class="ttdef"><b>Definition:</b> flatassembler.hh:21</div></div>
-<div class="ttc" id="aa00398_html_a7f83fd37212b1411d1dbae8f7064882c"><div class="ttname"><a href="a00398.html#a7f83fd37212b1411d1dbae8f7064882c">Ikarus::Python::forwardCorrectFunction</a></div><div class="ttdeci">void forwardCorrectFunction(DirichletValues &amp;dirichletValues, const pybind11::function &amp;functor, auto &amp;&amp;cppFunction)</div><div class="ttdef"><b>Definition:</b> python/dirichletvalues/dirichletvalues.hh:67</div></div>
-<div class="ttc" id="aa00410_html_a0f9f04fa9d98e890cb6d4fe62ff889a4"><div class="ttname"><a href="a00410.html#a0f9f04fa9d98e890cb6d4fe62ff889a4">ikarus.basis.basis</a></div><div class="ttdeci">def basis(gv, tree)</div><div class="ttdef"><b>Definition:</b> basis.py:10</div></div>
-<div class="ttc" id="aa00411_html_a453691a9a22118c4736e30240481a281"><div class="ttname"><a href="a00411.html#a453691a9a22118c4736e30240481a281">ikarus.dirichlet_values.dirichletValues</a></div><div class="ttdeci">def dirichletValues(basis)</div><div class="ttdef"><b>Definition:</b> dirichlet_values.py:38</div></div>
-<div class="ttc" id="aa01788_html"><div class="ttname"><a href="a01788.html">Ikarus::DirichletValues</a></div><div class="ttdoc">Class for handling Dirichlet boundary conditions in Ikarus.</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:67</div></div>
-<div class="ttc" id="aa01788_html_a010fa7b0721c137eb61221493e52dc92"><div class="ttname"><a href="a01788.html#a010fa7b0721c137eb61221493e52dc92">Ikarus::DirichletValues::size</a></div><div class="ttdeci">auto size() const</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:181</div></div>
-<div class="ttc" id="aa01788_html_a179a4b05a361fc9ea0a3e935dcf0e45a"><div class="ttname"><a href="a01788.html#a179a4b05a361fc9ea0a3e935dcf0e45a">Ikarus::DirichletValues::setSingleDOF</a></div><div class="ttdeci">void setSingleDOF(const MultiIndex i, bool flag)</div><div class="ttdoc">Fixes and unfixes (set boolean value to true or false) a specific degree of freedom.</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:135</div></div>
-<div class="ttc" id="aa01788_html_a1b1fccdb71619c0a49aa24977682d43a"><div class="ttname"><a href="a01788.html#a1b1fccdb71619c0a49aa24977682d43a">Ikarus::DirichletValues::isConstrained</a></div><div class="ttdeci">bool isConstrained(const MultiIndex &amp;multiIndex) const</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:166</div></div>
-<div class="ttc" id="aa01788_html_a2e6f1ef4a810a7269303f54a6f74539f"><div class="ttname"><a href="a01788.html#a2e6f1ef4a810a7269303f54a6f74539f">Ikarus::DirichletValues::Basis</a></div><div class="ttdeci">std::remove_cvref_t&lt; B &gt; Basis</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:69</div></div>
-<div class="ttc" id="aa01788_html_a3db820fbcd2b7edf58ce3b21b261f621"><div class="ttname"><a href="a01788.html#a3db820fbcd2b7edf58ce3b21b261f621">Ikarus::DirichletValues::BackendType</a></div><div class="ttdeci">decltype(Dune::Functions::istlVectorBackend(std::declval&lt; FlagsType &amp; &gt;())) BackendType</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:72</div></div>
-<div class="ttc" id="aa01788_html_a956ce2cdc09731f001821c7b59d49e85"><div class="ttname"><a href="a01788.html#a956ce2cdc09731f001821c7b59d49e85">Ikarus::DirichletValues::fixDOFs</a></div><div class="ttdeci">void fixDOFs(F &amp;&amp;f)</div><div class="ttdoc">Function to fix (set boolean values to true or false) degrees of freedom.</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:123</div></div>
-<div class="ttc" id="aa01788_html_aa71c2b94b37f2b4e83f9f1e059e6fe4c"><div class="ttname"><a href="a01788.html#aa71c2b94b37f2b4e83f9f1e059e6fe4c">Ikarus::DirichletValues::FlagsType</a></div><div class="ttdeci">FC FlagsType</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:70</div></div>
-<div class="ttc" id="aa01788_html_ab8ae184ec5c0c79a893a8111d7315442"><div class="ttname"><a href="a01788.html#ab8ae184ec5c0c79a893a8111d7315442">Ikarus::DirichletValues::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets all degrees of freedom.</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:155</div></div>
-<div class="ttc" id="aa01788_html_aeb299b04b2777be56012b32a3b2e6a9c"><div class="ttname"><a href="a01788.html#aeb299b04b2777be56012b32a3b2e6a9c">Ikarus::DirichletValues::fixedDOFsize</a></div><div class="ttdeci">auto fixedDOFsize() const</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:178</div></div>
-<div class="ttc" id="aa01788_html_af8495b65eac223b7b6c64f07b31cc814"><div class="ttname"><a href="a01788.html#af8495b65eac223b7b6c64f07b31cc814">Ikarus::DirichletValues::container</a></div><div class="ttdeci">auto &amp; container() const</div><div class="ttdef"><b>Definition:</b> utils/dirichletvalues.hh:184</div></div>
+<div class="ttc" id="aa01732_html"><div class="ttname"><a href="a01732.html">Ikarus::BasisHandler</a></div><div class="ttdoc">Wrapper class for a hierarchical basis constructed from a pre-basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:30</div></div>
+<div class="ttc" id="aa01732_html_a259a6b38e59d58970716c03ac511d3c5"><div class="ttname"><a href="a01732.html#a259a6b38e59d58970716c03ac511d3c5">Ikarus::BasisHandler::flat</a></div><div class="ttdeci">auto &amp; flat()</div><div class="ttdoc">Returns a reference to the flat version of the basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:55</div></div>
+<div class="ttc" id="aa01732_html_a27e6a76ae18f154cc833c1b4ecafd35b"><div class="ttname"><a href="a01732.html#a27e6a76ae18f154cc833c1b4ecafd35b">Ikarus::BasisHandler::UntouchedBasis</a></div><div class="ttdeci">decltype(Dune::Functions::DefaultGlobalBasis(std::declval&lt; PreBasis &gt;())) UntouchedBasis</div><div class="ttdoc">The type of the untouched basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:35</div></div>
+<div class="ttc" id="aa01732_html_a7252e605123456ef454c811cfb364bba"><div class="ttname"><a href="a01732.html#a7252e605123456ef454c811cfb364bba">Ikarus::BasisHandler::FlatBasis</a></div><div class="ttdeci">decltype(Dune::Functions::DefaultGlobalBasis(Ikarus::flatPreBasis(std::declval&lt; PreBasis &gt;()))) FlatBasis</div><div class="ttdoc">The type of the flattened basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:37</div></div>
+<div class="ttc" id="aa01732_html_aa3e286f5563f510fc4b0eaa005eb0a2b"><div class="ttname"><a href="a01732.html#aa3e286f5563f510fc4b0eaa005eb0a2b">Ikarus::BasisHandler::untouched</a></div><div class="ttdeci">auto &amp; untouched()</div><div class="ttdoc">Returns a reference to the untouched version of the basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:62</div></div>
+<div class="ttc" id="aa01732_html_adcbd72244406be4bb8ad7b547dd856cc"><div class="ttname"><a href="a01732.html#adcbd72244406be4bb8ad7b547dd856cc">Ikarus::BasisHandler::GridView</a></div><div class="ttdeci">typename PreBasis::GridView GridView</div><div class="ttdoc">The type of the grid view.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:33</div></div>
+<div class="ttc" id="aa01732_html_af1f06693a1efdf8ecdc58d9d52493a28"><div class="ttname"><a href="a01732.html#af1f06693a1efdf8ecdc58d9d52493a28">Ikarus::BasisHandler::PreBasis</a></div><div class="ttdeci">PB PreBasis</div><div class="ttdoc">The type of the untouched pre basis.</div><div class="ttdef"><b>Definition:</b> utils/basis.hh:32</div></div>
+<div class="ttc" id="aa02860_html"><div class="ttname"><a href="a02860.html">basis.hh</a></div><div class="ttdoc">Wrapper around Dune-functions global basis.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!--
@@ -342,7 +213,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_6063e92d97cad5a47908d6a96069b24d.html">python</a></li><li class="navelem"><a class="el" href="dir_10d62307decb192620fe32f94ec04635.html">dirichletvalues</a></li><li class="navelem"><a class="el" href="a02857.html">dirichletvalues.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_6063e92d97cad5a47908d6a96069b24d.html">python</a></li><li class="navelem"><a class="el" href="dir_58d0c8a3c72390da3e9fe9328fead302.html">basis</a></li><li class="navelem"><a class="el" href="a02857.html">basis.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /
