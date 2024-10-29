@@ -56,9 +56,10 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
         set(doxygenfiles "${doxygenfiles}")
         foreach(_file ${doxygenfiles})
            get_filename_component(_basename ${_file} NAME)
+           # Manifest is generated when prefix was set at configuration time, otherwise is skipped
            LIST(APPEND CMAKE_INSTALL_MANIFEST_FILES /usr/local/share/doc/ikarus/doxygen/${_basename})
          endforeach()
-         file(INSTALL ${doxygenfiles} DESTINATION /usr/local/share/doc/ikarus/doxygen)
-         message(STATUS "Installed doxygen into /usr/local/share/doc/ikarus/doxygen")
+         file(INSTALL ${doxygenfiles} DESTINATION share/doc/ikarus/doxygen)
+         message(STATUS "Installed doxygen into share/doc/ikarus/doxygen")
 endif()
 
