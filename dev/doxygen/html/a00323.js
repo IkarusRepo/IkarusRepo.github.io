@@ -1,6 +1,5 @@
 var a00323 =
 [
-    [ "Ikarus::TrussPre", "a01536.html", "a01536" ],
-    [ "Ikarus::Truss< PreFE, FE >::KinematicVariables< ST >", "a01540.html", "a01540" ],
-    [ "truss", "a00323.html#a1936b02a190200901c54cc8b1004506e", null ]
+    [ "makeDenseFlatAssembler", "a00323.html#aa2e289f3c26f24717a19b05b5561538c", null ],
+    [ "makeSparseFlatAssembler", "a00323.html#a7b31ad9106d0c3d4052413bcbf5ea596", null ]
 ];

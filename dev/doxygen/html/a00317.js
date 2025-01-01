@@ -1,5 +1,6 @@
 var a00317 =
 [
-    [ "Ikarus::LinearElasticPre< MAT >", "a01472.html", "a01472" ],
-    [ "linearElastic", "a00317.html#af9e2c0087fa5819ca15d064776034a6f", null ]
+    [ "Ikarus::ScalarManipulator< Wrapper, Assembler >", "a01232.html", "a01232" ],
+    [ "Ikarus::VectorManipulator< Wrapper, Assembler >", "a01236.html", "a01236" ],
+    [ "Ikarus::MatrixManipulator< Wrapper, Assembler >", "a01240.html", "a01240" ]
 ];

@@ -1,5 +1,6 @@
 var a00302 =
 [
-    [ "makeVanishingStrain", "a00302.html#af0e4adcb39849a06f5bb268ccb157768", null ],
-    [ "planeStrain", "a00302.html#a7eab44c25129e4c2dfdf111fdef25a43", null ]
+    [ "globalIndices", "a00302.html#a44e16df41148f7e4538be224814a3423", null ],
+    [ "globalIndicesFromLocalView", "a00302.html#a2a4ac5503d4288b339457aae427ff661", null ],
+    [ "localSolutionBlockVector", "a00302.html#a899043a23720a93e6ce9be9025c3a4bb", null ]
 ];

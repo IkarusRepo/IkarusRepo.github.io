@@ -1,265 +1,216 @@
-\hypertarget{a00008_source}{}\doxysection{tensorutils.\+hh}
-\label{a00008_source}\index{tensorutils.hh@{tensorutils.hh}}
+\hypertarget{a00008_source}{}\doxysection{nonlinearoperator.\+hh}
+\label{a00008_source}\index{nonlinearoperator.hh@{nonlinearoperator.hh}}
 \mbox{\hyperlink{a00008}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <numeric>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <ranges>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <unsupported/Eigen/CXX11/Tensor>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <functional>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/common/hybridutilities.hh>}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/common/promotiontraits.hh>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00029}{ikarus/utils/traits.hh}}>}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00056}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00026}{ikarus/utils/math.hh}}>}}
-\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{31 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} T, auto rank>}
-\DoxyCodeLine{32 Eigen::Tensor<typename Derived::Scalar, rank> \mbox{\hyperlink{a00380_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01736}{Eigen::EigenBase<Derived>}}\& matrix,}
-\DoxyCodeLine{33                                                          \textcolor{keyword}{const} std::array<T, rank>\& dims) \{}
-\DoxyCodeLine{34   \textcolor{keywordflow}{return} Eigen::TensorMap<\textcolor{keyword}{const} Eigen::TensorFixedSize<}
-\DoxyCodeLine{35       \textcolor{keyword}{const} \textcolor{keyword}{typename} Derived::Scalar, Eigen::Sizes<Derived::RowsAtCompileTime, Derived::ColsAtCompileTime>>>(}
-\DoxyCodeLine{36       matrix.derived().eval().data(), dims);}
-\DoxyCodeLine{37 \}}
-\DoxyCodeLine{38 }
-\DoxyCodeLine{47 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& A\_ij, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& B\_kl) \{}
-\DoxyCodeLine{48   Eigen::array<Eigen::IndexPair<long>, 0> empty\_index\_list = \{\};}
-\DoxyCodeLine{49   \textcolor{keywordflow}{return} A\_ij.contract(B\_kl, empty\_index\_list).eval();}
-\DoxyCodeLine{50 \}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{30   \textcolor{keyword}{template} <\textcolor{keyword}{class }F, \textcolor{keyword}{class }Tuple, std::size\_t... I>}
+\DoxyCodeLine{31   \textcolor{keyword}{constexpr} \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) applyAndRemoveRefererenceWrapper(F\&\& f, Tuple\&\& t, std::index\_sequence<I...>) \{}
+\DoxyCodeLine{32     \textcolor{keywordflow}{return} std::invoke(std::forward<F>(f),}
+\DoxyCodeLine{33                        std::get<I>(std::forward<Tuple>(t)).get()...); \textcolor{comment}{//.get gets the impl type of std::referenceWrapper}}
+\DoxyCodeLine{34   \}}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{45   \textcolor{keyword}{template} <\textcolor{keyword}{class} F, \textcolor{keyword}{class} Tuple>}
+\DoxyCodeLine{46   \textcolor{keyword}{constexpr} \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) applyAndRemoveReferenceWrapper(F\&\& f, Tuple\&\& t) \{}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} applyAndRemoveRefererenceWrapper(}
+\DoxyCodeLine{48         std::forward<F>(f), std::forward<Tuple>(t),}
+\DoxyCodeLine{49         std::make\_index\_sequence<std::tuple\_size\_v<std::remove\_reference\_t<Tuple>>>\{\});}
+\DoxyCodeLine{50   \}}
 \DoxyCodeLine{51 }
-\DoxyCodeLine{59 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}, \textcolor{keywordtype}{int} dim = 3>}
-\DoxyCodeLine{60 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_ga1c9618ef351cd986d4f64fde7f52e860}{symmetricIdentityFourthOrder}}() \{}
-\DoxyCodeLine{61   Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<dim, dim, dim, dim>> idTensor;}
-\DoxyCodeLine{62   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dim; ++i)}
-\DoxyCodeLine{63     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dim; ++j)}
-\DoxyCodeLine{64       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dim; ++k)}
-\DoxyCodeLine{65         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l = 0; l < dim; ++l)}
-\DoxyCodeLine{66           idTensor(i, j, k, l) = 0.5 * ((i == k) * (j == l) + (i == l) * (j == k));}
-\DoxyCodeLine{67   \textcolor{keywordflow}{return} idTensor;}
-\DoxyCodeLine{68 \}}
-\DoxyCodeLine{69 }
-\DoxyCodeLine{81 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}, \textcolor{keywordtype}{int} dim = 3>}
-\DoxyCodeLine{82 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_ga2368a572348c410fd7e7deb6c6e3964a}{symmetricFourthOrder}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& A, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& B) \{}
-\DoxyCodeLine{83   Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<dim, dim, dim, dim>> res;}
-\DoxyCodeLine{84   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dim; ++i)}
-\DoxyCodeLine{85     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dim; ++j)}
-\DoxyCodeLine{86       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dim; ++k)}
-\DoxyCodeLine{87         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l = 0; l < dim; ++l)}
-\DoxyCodeLine{88           res(i, j, k, l) = 0.5 * (A(i, k) * B(j, l) + A(i, l) * B(j, k));}
-\DoxyCodeLine{89   \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{90 \}}
-\DoxyCodeLine{91 }
-\DoxyCodeLine{100 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}, \textcolor{keywordtype}{int} dim = 3>}
-\DoxyCodeLine{101 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_gadb08b6f9cc40847b70286dc314a23000}{identityFourthOrder}}() \{}
-\DoxyCodeLine{102   Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<dim, dim, dim, dim>> idTensor;}
-\DoxyCodeLine{103   idTensor.setZero();}
-\DoxyCodeLine{104   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dim; ++i)}
-\DoxyCodeLine{105     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dim; ++k)}
-\DoxyCodeLine{106       idTensor(i, i, k, k) = 1.0;}
-\DoxyCodeLine{107   \textcolor{keywordflow}{return} idTensor;}
-\DoxyCodeLine{108 \}}
-\DoxyCodeLine{109 }
-\DoxyCodeLine{121 \textcolor{keyword}{template} <\textcolor{keyword}{typename} AType, \textcolor{keyword}{typename} BType>}
-\DoxyCodeLine{122 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_ga8fa2b440586483c1ee0f9b90b9081da2}{fourthOrderIKJL}}(\textcolor{keyword}{const} Eigen::MatrixBase<AType>\& A, \textcolor{keyword}{const} Eigen::MatrixBase<BType>\& B) \{}
-\DoxyCodeLine{123   \textcolor{keyword}{static\_assert}(AType::RowsAtCompileTime == BType::RowsAtCompileTime);}
-\DoxyCodeLine{124   \textcolor{keyword}{static\_assert}(AType::ColsAtCompileTime == BType::ColsAtCompileTime);}
-\DoxyCodeLine{125   \textcolor{keyword}{using }ScalarResultType = \textcolor{keyword}{typename} Dune::PromotionTraits<typename AType::Scalar, typename BType::Scalar>::PromotedType;}
-\DoxyCodeLine{126   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} dim      = AType::RowsAtCompileTime;}
-\DoxyCodeLine{127   Eigen::TensorFixedSize<ScalarResultType, Eigen::Sizes<dim, dim, dim, dim>> res;}
-\DoxyCodeLine{128   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < dim; ++i)}
-\DoxyCodeLine{129     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < dim; ++j)}
-\DoxyCodeLine{130       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} k = 0; k < dim; ++k)}
-\DoxyCodeLine{131         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} l = 0; l < dim; ++l)}
-\DoxyCodeLine{132           res(i, j, k, l) = A(i, k) * B(j, l);}
-\DoxyCodeLine{133   \textcolor{keywordflow}{return} res;}
-\DoxyCodeLine{134 \}}
-\DoxyCodeLine{135 }
-\DoxyCodeLine{144 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keywordtype}{long} \textcolor{keywordtype}{int} dim>}
-\DoxyCodeLine{145 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_gaea03dbfcd8f85ef7af004c7e09244aa9}{symTwoSlots}}(\textcolor{keyword}{const} Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<dim, dim, dim, dim>>\& t,}
-\DoxyCodeLine{146                  \textcolor{keyword}{const} std::array<size\_t, 2>\& slots) \{}
-\DoxyCodeLine{147   std::array<size\_t, 4> shuffleSlot;}
-\DoxyCodeLine{148   std::iota(shuffleSlot.begin(), shuffleSlot.end(), 0);    \textcolor{comment}{// create 0,1,2,3 array}}
-\DoxyCodeLine{149   std::swap(shuffleSlot[slots[0]], shuffleSlot[slots[1]]); \textcolor{comment}{// swap  the given slots}}
-\DoxyCodeLine{150   \textcolor{keywordflow}{return} (0.5 * (t + t.shuffle(shuffleSlot))).eval();}
-\DoxyCodeLine{151 \}}
-\DoxyCodeLine{152 }
-\DoxyCodeLine{166 \textcolor{keyword}{constexpr} Eigen::Index \mbox{\hyperlink{a00380_ga4304655095296ce9283e012587817a51}{toVoigt}}(Eigen::Index i, Eigen::Index j) \textcolor{keyword}{noexcept} \{}
-\DoxyCodeLine{167   \textcolor{keywordflow}{if} (i == j) \textcolor{comment}{// \_00 -\/> 0, \_11 -\/> 1,  \_22 -\/> 2}}
-\DoxyCodeLine{168     \textcolor{keywordflow}{return} i;}
-\DoxyCodeLine{169   \textcolor{keywordflow}{if} ((i == 1 and j == 2) or (i == 2 and j == 1)) \textcolor{comment}{// \_12 and \_21 -\/-\/> 3}}
-\DoxyCodeLine{170     \textcolor{keywordflow}{return} 3;}
-\DoxyCodeLine{171   \textcolor{keywordflow}{if} ((i == 0 and j == 2) or (i == 2 and j == 0)) \textcolor{comment}{// \_02 and \_20 -\/-\/> 4}}
-\DoxyCodeLine{172     \textcolor{keywordflow}{return} 4;}
-\DoxyCodeLine{173   \textcolor{keywordflow}{if} ((i == 0 and j == 1) or (i == 1 and j == 0)) \textcolor{comment}{// \_01 and \_10 -\/-\/> 5}}
-\DoxyCodeLine{174     \textcolor{keywordflow}{return} 5;}
-\DoxyCodeLine{175   assert(i < 3 and j < 3 \&\& \textcolor{stringliteral}{"{}For Voigt notation the indices need to be 0,1 or 2."{}});}
-\DoxyCodeLine{176   \_\_builtin\_unreachable();}
-\DoxyCodeLine{177 \}}
-\DoxyCodeLine{178 }
-\DoxyCodeLine{193 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType = \textcolor{keywordtype}{double}>}
-\DoxyCodeLine{194 Eigen::Matrix<ScalarType, 6, 6> \mbox{\hyperlink{a00380_ga4304655095296ce9283e012587817a51}{toVoigt}}(\textcolor{keyword}{const} Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<3, 3, 3, 3>>\& ft) \{}
-\DoxyCodeLine{195   Eigen::Matrix<ScalarType, 6, 6> mat;}
-\DoxyCodeLine{196   \textcolor{keywordflow}{for} (Eigen::Index i = 0; i < 3; ++i)}
-\DoxyCodeLine{197     \textcolor{keywordflow}{for} (Eigen::Index j = 0; j < 3; ++j)}
-\DoxyCodeLine{198       \textcolor{keywordflow}{for} (Eigen::Index k = 0; k < 3; ++k)}
-\DoxyCodeLine{199         \textcolor{keywordflow}{for} (Eigen::Index l = 0; l < 3; ++l)}
-\DoxyCodeLine{200           mat(\mbox{\hyperlink{a00380_ga4304655095296ce9283e012587817a51}{toVoigt}}(i, j), \mbox{\hyperlink{a00380_ga4304655095296ce9283e012587817a51}{toVoigt}}(k, l)) = ft(i, j, k, l);}
-\DoxyCodeLine{201   \textcolor{keywordflow}{return} mat;}
-\DoxyCodeLine{202 \}}
+\DoxyCodeLine{59   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{60   \textcolor{keyword}{auto} forwardasReferenceWrapperIfIsReference(T\&\& t) \{}
+\DoxyCodeLine{61     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_lvalue\_reference\_v<\textcolor{keyword}{decltype}(t)>)}
+\DoxyCodeLine{62       \textcolor{keywordflow}{return} std::ref(t);}
+\DoxyCodeLine{63     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{64       \textcolor{keywordflow}{return} t;}
+\DoxyCodeLine{65   \}}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{77   \textcolor{keyword}{template} <\textcolor{keyword}{class }Pars, \textcolor{keyword}{class }Tuple, std::size\_t... I>}
+\DoxyCodeLine{78   \textcolor{keyword}{constexpr} \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) makeTupleOfValuesAndReferences(Tuple\&\& t, Pars\&\& p, std::index\_sequence<I...>) \{}
+\DoxyCodeLine{79     \textcolor{keywordflow}{return} std::make\_tuple(}
+\DoxyCodeLine{80         forwardasReferenceWrapperIfIsReference(applyAndRemoveReferenceWrapper(std::get<I>(t), p))...);}
+\DoxyCodeLine{81   \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{88   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{89   \textcolor{keyword}{struct }Functions}
+\DoxyCodeLine{90   \{}
+\DoxyCodeLine{91     std::tuple<Args...> args;}
+\DoxyCodeLine{92   \};}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{99   \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{100   \textcolor{keyword}{struct }Parameter}
+\DoxyCodeLine{101   \{}
+\DoxyCodeLine{102     std::tuple<Args...> args;}
+\DoxyCodeLine{103   \};}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{114 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{115 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_ac00abda505aa8ccc73ce59afd165ce49}{parameter}}(Args\&\&... args) \{}
+\DoxyCodeLine{116   \textcolor{keywordflow}{return} Impl::Parameter<Args\&\&...>\{std::forward\_as\_tuple(std::forward<Args>(args)...)\};}
+\DoxyCodeLine{117 \}}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{126 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... Args>}
+\DoxyCodeLine{127 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_ab787b670f0d338c870988f417cf85f76}{functions}}(Args\&\&... args) \{}
+\DoxyCodeLine{128   \textcolor{keywordflow}{return} Impl::Functions<Args\&\&...>\{std::forward\_as\_tuple(std::forward<Args>(args)...)\};}
+\DoxyCodeLine{129 \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{140 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... DerivativeArgs, \textcolor{keyword}{typename}... ParameterArgs>}
+\DoxyCodeLine{141 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_ab346d8d79af81fa5312a67cd8b4e6d9a}{initResults}}(\textcolor{keyword}{const} std::tuple<DerivativeArgs...>\& derivativesFunctions,}
+\DoxyCodeLine{142                  \textcolor{keyword}{const} std::tuple<ParameterArgs...>\& \mbox{\hyperlink{a00384_ac00abda505aa8ccc73ce59afd165ce49}{parameter}}) \{}
+\DoxyCodeLine{143   \textcolor{keywordflow}{return} Impl::makeTupleOfValuesAndReferences(}
+\DoxyCodeLine{144       derivativesFunctions, \mbox{\hyperlink{a00384_ac00abda505aa8ccc73ce59afd165ce49}{parameter}},}
+\DoxyCodeLine{145       std::make\_index\_sequence<std::tuple\_size\_v<std::remove\_reference\_t<\textcolor{keyword}{decltype}(derivativesFunctions)>>>\{\});}
+\DoxyCodeLine{146 \}}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{154 \textcolor{keyword}{template} <\textcolor{keyword}{typename} TypeListOne, \textcolor{keyword}{typename} TypeListTwo>}
+\DoxyCodeLine{155 \textcolor{keyword}{class }\mbox{\hyperlink{a01836}{NonLinearOperator}}}
+\DoxyCodeLine{156 \{}
+\DoxyCodeLine{157 \textcolor{keyword}{public}:}
+\DoxyCodeLine{158   \mbox{\hyperlink{a01836_a2308f86b14266d7b7049b0a12cf20cdc}{NonLinearOperator}}([[maybe\_unused]] \textcolor{keyword}{const} TypeListOne\& derivativesFunctions,}
+\DoxyCodeLine{159                     [[maybe\_unused]] \textcolor{keyword}{const} TypeListTwo\& args) \{}
+\DoxyCodeLine{160     \textcolor{keyword}{static\_assert}(!\textcolor{keyword}{sizeof}(TypeListOne),}
+\DoxyCodeLine{161                   \textcolor{stringliteral}{"{}This type should not be instantiated. check that your arguments satisfies the template below"{}});}
+\DoxyCodeLine{162   \}}
+\DoxyCodeLine{163 \};}
+\DoxyCodeLine{164 }
+\DoxyCodeLine{172 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... DerivativeArgs, \textcolor{keyword}{typename}... ParameterArgs>}
+\DoxyCodeLine{173 \textcolor{keyword}{class }\mbox{\hyperlink{a00384_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}}<Impl::Functions<DerivativeArgs...>, Impl::Parameter<ParameterArgs...>>}
+\DoxyCodeLine{174 \{}
+\DoxyCodeLine{175 \textcolor{keyword}{public}:}
+\DoxyCodeLine{176   \textcolor{keyword}{using }FunctionReturnValues =}
+\DoxyCodeLine{177       std::tuple<\mbox{\hyperlink{a00382_ga0ba1bf25ee478b1b1d9e96c1dcd831a0}{Ikarus::traits::ReturnType}}<DerivativeArgs, ParameterArgs\&...>...>; }
+\DoxyCodeLine{178   \textcolor{keyword}{using }ParameterValues = std::tuple<ParameterArgs...>;                             }
+\DoxyCodeLine{179 }
+\DoxyCodeLine{180   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfFunctions  = \textcolor{keyword}{sizeof}...(DerivativeArgs); }
+\DoxyCodeLine{181   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} numberOfParameters = \textcolor{keyword}{sizeof}...(ParameterArgs);  }
+\DoxyCodeLine{182 }
+\DoxyCodeLine{188   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{189   \textcolor{keyword}{using }FunctionReturnType = std::tuple\_element\_t<n, FunctionReturnValues>;}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{196   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{197   \textcolor{keyword}{using }ParameterValue = std::remove\_cvref\_t<std::tuple\_element\_t<n, ParameterValues>>;}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199   \textcolor{keyword}{using }ValueType =}
+\DoxyCodeLine{200       std::remove\_cvref\_t<std::tuple\_element\_t<0, FunctionReturnValues>>; }
+\DoxyCodeLine{201   \textcolor{keyword}{using }DerivativeType =}
+\DoxyCodeLine{202       std::remove\_cvref\_t<std::tuple\_element\_t<1, FunctionReturnValues>>; }
 \DoxyCodeLine{203 }
-\DoxyCodeLine{223 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST, \textcolor{keywordtype}{int} size, \textcolor{keywordtype}{int} Options, \textcolor{keywordtype}{int} maxSize>}
-\DoxyCodeLine{224 \textcolor{keyword}{requires}((size > 0 and size <= 3) or (maxSize > 0 and maxSize <= 3 and size == Eigen::Dynamic))}
-\DoxyCodeLine{225 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_ga4304655095296ce9283e012587817a51}{toVoigt}}(\textcolor{keyword}{const} Eigen::Matrix<ST, size, size, Options, maxSize, maxSize>\& E, \textcolor{keywordtype}{bool} isStrain = \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{226   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isFixedSized   = (size != Eigen::Dynamic);}
-\DoxyCodeLine{227   \textcolor{keyword}{const} ST possibleStrainFactor = isStrain ? 2.0 : 1.0;}
-\DoxyCodeLine{228 }
-\DoxyCodeLine{229   \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} inputSize = isFixedSized ? size : E.rows();}
-\DoxyCodeLine{230   \textcolor{keyword}{auto} EVoigt            = [\&]() \{}
-\DoxyCodeLine{231     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isFixedSized) \{}
-\DoxyCodeLine{232       Eigen::Vector<ST, (size * (size + 1)) / 2> EVoigt;}
-\DoxyCodeLine{233       EVoigt.template head<size>() = E.diagonal();}
-\DoxyCodeLine{234       \textcolor{keywordflow}{return} EVoigt;}
-\DoxyCodeLine{235     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{236       Eigen::Matrix<ST, Eigen::Dynamic, 1, Options, 6, 1> EVoigt;}
-\DoxyCodeLine{237       EVoigt.resize((inputSize * (inputSize + 1)) / 2);}
-\DoxyCodeLine{238       EVoigt.template head(inputSize) = E.diagonal();}
-\DoxyCodeLine{239       \textcolor{keywordflow}{return} EVoigt;}
-\DoxyCodeLine{240     \}}
-\DoxyCodeLine{241   \}();}
-\DoxyCodeLine{242 }
-\DoxyCodeLine{243   \textcolor{keywordflow}{if} (inputSize == 2)}
-\DoxyCodeLine{244     EVoigt(2) = E(0, 1) * possibleStrainFactor;}
-\DoxyCodeLine{245   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (inputSize == 3) \{}
-\DoxyCodeLine{246     EVoigt(inputSize)     = E(1, 2) * possibleStrainFactor;}
-\DoxyCodeLine{247     EVoigt(inputSize + 1) = E(0, 2) * possibleStrainFactor;}
-\DoxyCodeLine{248     EVoigt(inputSize + 2) = E(0, 1) * possibleStrainFactor;}
-\DoxyCodeLine{249   \}}
-\DoxyCodeLine{250   \textcolor{keywordflow}{return} EVoigt;}
-\DoxyCodeLine{251 \}}
-\DoxyCodeLine{252 }
-\DoxyCodeLine{268 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST, \textcolor{keywordtype}{int} size, \textcolor{keywordtype}{int} Options, \textcolor{keywordtype}{int} maxSize>}
-\DoxyCodeLine{269 \textcolor{keyword}{requires}((size == 1 or size == 3 or size == 6) or}
-\DoxyCodeLine{270          ((maxSize == 1 or maxSize == 3 or maxSize == 6) and size == \mbox{\hyperlink{a00396}{Eigen}}::Dynamic))}
-\DoxyCodeLine{271 auto \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(const \mbox{\hyperlink{a00396}{Eigen}}::Matrix<ST, size, 1, Options, maxSize, 1>\& EVoigt, \textcolor{keywordtype}{bool} isStrain = true) \{}
-\DoxyCodeLine{272   \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isFixedSized   = (size != Eigen::Dynamic);}
-\DoxyCodeLine{273   \textcolor{keyword}{const} ST possibleStrainFactor = isStrain ? 0.5 : 1.0;}
-\DoxyCodeLine{274 }
-\DoxyCodeLine{275   \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} inputSize = isFixedSized ? size : EVoigt.size();}
-\DoxyCodeLine{276   \textcolor{keyword}{const} \textcolor{keywordtype}{size\_t} matrixSize =}
-\DoxyCodeLine{277       isFixedSized ? (-\/1 + \mbox{\hyperlink{a00384_ae55d4d0c3478ab3ecf54ce905ddf223b}{ct\_sqrt}}(1 + 8 * size)) / 2 : (-\/1 + \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::sqrt(1 + 8 * inputSize))) / 2;}
-\DoxyCodeLine{278 }
-\DoxyCodeLine{279   \textcolor{keyword}{auto} E = [\&]() \{}
-\DoxyCodeLine{280     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (isFixedSized) \{}
-\DoxyCodeLine{281       Eigen::Matrix<ST, matrixSize, matrixSize> E;}
-\DoxyCodeLine{282       E.diagonal() = EVoigt.template head<matrixSize>();}
-\DoxyCodeLine{283       \textcolor{keywordflow}{return} E;}
-\DoxyCodeLine{284     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{285       Eigen::Matrix<ST, Eigen::Dynamic, Eigen::Dynamic, Options, 3, 3> E;}
-\DoxyCodeLine{286       E.resize(matrixSize, matrixSize);}
-\DoxyCodeLine{287       E.diagonal() = EVoigt.template head(matrixSize);}
-\DoxyCodeLine{288       \textcolor{keywordflow}{return} E;}
-\DoxyCodeLine{289     \}}
-\DoxyCodeLine{290   \}();}
-\DoxyCodeLine{291 }
-\DoxyCodeLine{292   \textcolor{keywordflow}{if} (matrixSize == 2) \{}
-\DoxyCodeLine{293     E(0, 1) = E(1, 0) = EVoigt(2) * possibleStrainFactor;}
-\DoxyCodeLine{294   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrixSize == 3) \{}
-\DoxyCodeLine{295     E(2, 1) = E(1, 2) = EVoigt(matrixSize) * possibleStrainFactor;}
-\DoxyCodeLine{296     E(2, 0) = E(0, 2) = EVoigt(matrixSize + 1) * possibleStrainFactor;}
-\DoxyCodeLine{297     E(1, 0) = E(0, 1) = EVoigt(matrixSize + 2) * possibleStrainFactor;}
-\DoxyCodeLine{298   \}}
-\DoxyCodeLine{299 }
-\DoxyCodeLine{300   \textcolor{keywordflow}{return} E;}
-\DoxyCodeLine{301 \}}
-\DoxyCodeLine{302 }
-\DoxyCodeLine{316 \textcolor{keyword}{constexpr} std::array<size\_t, 2> \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(\textcolor{keywordtype}{size\_t} i) \{}
-\DoxyCodeLine{317   \textcolor{keywordflow}{if} (i < 3) \textcolor{comment}{// \_00 -\/> 0, \_11 -\/> 1,  \_22 -\/> 2}}
-\DoxyCodeLine{318     \textcolor{keywordflow}{return} \{i, i\};}
-\DoxyCodeLine{319   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i == 3)}
-\DoxyCodeLine{320     \textcolor{keywordflow}{return} \{1, 2\};}
-\DoxyCodeLine{321   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i == 4)}
-\DoxyCodeLine{322     \textcolor{keywordflow}{return} \{0, 2\};}
-\DoxyCodeLine{323   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (i == 5)}
-\DoxyCodeLine{324     \textcolor{keywordflow}{return} \{0, 1\};}
-\DoxyCodeLine{325   \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{326     assert(i < 6 \&\& \textcolor{stringliteral}{"{}For Voigt notation the indices need to be 0 and 5."{}});}
-\DoxyCodeLine{327     \_\_builtin\_unreachable();}
-\DoxyCodeLine{328   \}}
-\DoxyCodeLine{329 \}}
-\DoxyCodeLine{330 }
-\DoxyCodeLine{342 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType>}
-\DoxyCodeLine{343 \textcolor{keyword}{auto} \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(\textcolor{keyword}{const} Eigen::Matrix<ScalarType, 6, 6>\& CVoigt) \{}
-\DoxyCodeLine{344   Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<3, 3, 3, 3>> C;}
-\DoxyCodeLine{345   \textcolor{comment}{// size\_t iR=0,jR=0;}}
-\DoxyCodeLine{346   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < 6; ++i) \{}
-\DoxyCodeLine{347     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} j = 0; j < 6; ++j) \{}
-\DoxyCodeLine{348       \textcolor{keyword}{auto} firstIndices                                                       = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(i);}
-\DoxyCodeLine{349       \textcolor{keyword}{auto} secondIndices                                                      = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(j);}
-\DoxyCodeLine{350       C(firstIndices[0], firstIndices[1], secondIndices[0], secondIndices[1]) = CVoigt(i, j);}
-\DoxyCodeLine{351     \}}
-\DoxyCodeLine{352   \}}
-\DoxyCodeLine{353   \textcolor{keywordflow}{return} C;}
-\DoxyCodeLine{354 \}}
-\DoxyCodeLine{355 }
-\DoxyCodeLine{366 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
-\DoxyCodeLine{367 Eigen::Matrix3d \mbox{\hyperlink{a00384_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(\textcolor{keyword}{const} Geometry\& geometry) \{}
-\DoxyCodeLine{368   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& referenceElement = Dune::ReferenceElements<double, 2>::general(geometry.type());}
-\DoxyCodeLine{369   \textcolor{keyword}{const} \textcolor{keyword}{auto} quadPos0          = referenceElement.position(0, 0);}
-\DoxyCodeLine{370 }
-\DoxyCodeLine{371   \textcolor{keyword}{const} \textcolor{keyword}{auto} jacobianinvT0 = toEigen(geometry.jacobianInverseTransposed(quadPos0));}
-\DoxyCodeLine{372   \textcolor{keyword}{const} \textcolor{keyword}{auto} detJ0         = geometry.integrationElement(quadPos0);}
+\DoxyCodeLine{210   \textcolor{keyword}{template} <\textcolor{keyword}{typename} U = \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{211   \textcolor{keyword}{requires}(not std::is\_rvalue\_reference\_v<DerivativeArgs> and ...)}
+\DoxyCodeLine{212   explicit \mbox{\hyperlink{a01836_a2308f86b14266d7b7049b0a12cf20cdc}{NonLinearOperator}}(const Impl::Functions<DerivativeArgs...>\& derivativesFunctions,}
+\DoxyCodeLine{213                              const Impl::Parameter<ParameterArgs...>\& parameterI)}
+\DoxyCodeLine{214       : derivatives\_\{derivativesFunctions.args\},}
+\DoxyCodeLine{215         args\_\{parameterI.args\},}
+\DoxyCodeLine{216         derivativesEvaluated\_(\mbox{\hyperlink{a00384_ab346d8d79af81fa5312a67cd8b4e6d9a}{initResults}}(derivatives\_, args\_)) \{\}}
+\DoxyCodeLine{217 }
+\DoxyCodeLine{224   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Funcs>}
+\DoxyCodeLine{225   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01836_a2308f86b14266d7b7049b0a12cf20cdc}{NonLinearOperator}}(\textcolor{keyword}{const} Funcs\& derivativesFunctions, \textcolor{keyword}{const} Impl::Parameter<ParameterArgs...>\& parameterI)}
+\DoxyCodeLine{226       : derivatives\_\{derivativesFunctions.args\},}
+\DoxyCodeLine{227         args\_\{parameterI.args\},}
+\DoxyCodeLine{228         derivativesEvaluated\_(\mbox{\hyperlink{a00384_ab346d8d79af81fa5312a67cd8b4e6d9a}{initResults}}(derivatives\_, args\_)) \{\}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{235   \textcolor{keywordtype}{void} updateAll() \{}
+\DoxyCodeLine{236     Dune::Hybrid::forEach(}
+\DoxyCodeLine{237         Dune::Hybrid::integralRange(Dune::index\_constant<\textcolor{keyword}{sizeof}...(DerivativeArgs)>()), [\&](\textcolor{keyword}{const} \textcolor{keyword}{auto} i) \{}
+\DoxyCodeLine{238           std::get<i>(derivativesEvaluated\_) = Impl::applyAndRemoveReferenceWrapper(std::get<i>(derivatives\_), args\_);}
+\DoxyCodeLine{239         \});}
+\DoxyCodeLine{240   \}}
+\DoxyCodeLine{241 }
+\DoxyCodeLine{247   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{248   \textcolor{keywordtype}{void} update() \{}
+\DoxyCodeLine{249     std::get<n>(derivativesEvaluated\_) = Impl::applyAndRemoveReferenceWrapper(std::get<n>(derivatives\_), args\_);}
+\DoxyCodeLine{250   \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{259   \textcolor{keyword}{auto}\& value()}
+\DoxyCodeLine{260   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(DerivativeArgs) > 0)}
+\DoxyCodeLine{261   \{}
+\DoxyCodeLine{262     \textcolor{keywordflow}{return} nthDerivative<0>();}
+\DoxyCodeLine{263   \}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{272   \textcolor{keyword}{auto}\& derivative()}
+\DoxyCodeLine{273   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(DerivativeArgs) > 1)}
+\DoxyCodeLine{274   \{}
+\DoxyCodeLine{275     \textcolor{keywordflow}{return} nthDerivative<1>();}
+\DoxyCodeLine{276   \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{285   \textcolor{keyword}{auto}\& secondDerivative()}
+\DoxyCodeLine{286   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(DerivativeArgs) > 2)}
+\DoxyCodeLine{287   \{}
+\DoxyCodeLine{288     \textcolor{keywordflow}{return} nthDerivative<2>();}
+\DoxyCodeLine{289   \}}
+\DoxyCodeLine{290 }
+\DoxyCodeLine{297   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{298   \textcolor{keyword}{auto}\& nthDerivative()}
+\DoxyCodeLine{299   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(DerivativeArgs) > n)}
+\DoxyCodeLine{300   \{}
+\DoxyCodeLine{301     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ std::get<n>(derivativesEvaluated\_).get(); \})}
+\DoxyCodeLine{302       \textcolor{keywordflow}{return} std::get<n>(derivativesEvaluated\_).get();}
+\DoxyCodeLine{303     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{304       \textcolor{keywordflow}{return} std::get<n>(derivativesEvaluated\_);}
+\DoxyCodeLine{305   \}}
+\DoxyCodeLine{306 }
+\DoxyCodeLine{312   \textcolor{keyword}{auto}\& lastParameter() \{ \textcolor{keywordflow}{return} nthParameter<\textcolor{keyword}{sizeof}...(ParameterArgs) -\/ 1>(); \}}
+\DoxyCodeLine{318   \textcolor{keyword}{auto}\& firstParameter()}
+\DoxyCodeLine{319   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(ParameterArgs) > 0)}
+\DoxyCodeLine{320   \{}
+\DoxyCodeLine{321     \textcolor{keywordflow}{return} nthParameter<0>();}
+\DoxyCodeLine{322   \}}
+\DoxyCodeLine{328   \textcolor{keyword}{auto}\& secondParameter()}
+\DoxyCodeLine{329   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(ParameterArgs) > 1)}
+\DoxyCodeLine{330   \{}
+\DoxyCodeLine{331     \textcolor{keywordflow}{return} nthParameter<1>();}
+\DoxyCodeLine{332   \}}
+\DoxyCodeLine{339   \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n>}
+\DoxyCodeLine{340   \textcolor{keyword}{auto}\& nthParameter()}
+\DoxyCodeLine{341   \textcolor{keyword}{requires}(\textcolor{keyword}{sizeof}...(ParameterArgs) >= n)}
+\DoxyCodeLine{342   \{}
+\DoxyCodeLine{343     \textcolor{keywordflow}{return} std::get<n>(args\_).get();}
+\DoxyCodeLine{344   \}}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{352   \textcolor{keyword}{template} <\textcolor{keywordtype}{int}... Derivatives>}
+\DoxyCodeLine{353   \textcolor{keyword}{auto} subOperator() \{}
+\DoxyCodeLine{354     \textcolor{keyword}{auto} derivatives = derivatives\_;}
+\DoxyCodeLine{355     \textcolor{keyword}{auto} fs = \mbox{\hyperlink{a00384_ab787b670f0d338c870988f417cf85f76}{functions}}([\&derivatives]() -\/> \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \{ \textcolor{keywordflow}{return} std::get<Derivatives>(derivatives); \}()...);}
+\DoxyCodeLine{356     \mbox{\hyperlink{a01836}{Ikarus::NonLinearOperator}}<Impl::Functions<std::tuple\_element\_t<Derivatives, \textcolor{keyword}{decltype}(derivatives\_)>...>,}
+\DoxyCodeLine{357                               Impl::Parameter<ParameterArgs...>>}
+\DoxyCodeLine{358         subOp(std::move(fs), Impl::applyAndRemoveReferenceWrapper(parameter<ParameterArgs...>, args\_));}
+\DoxyCodeLine{359 }
+\DoxyCodeLine{360     \textcolor{keywordflow}{return} subOp;}
+\DoxyCodeLine{361   \}}
+\DoxyCodeLine{362 }
+\DoxyCodeLine{363 \textcolor{keyword}{private}:}
+\DoxyCodeLine{364   \textcolor{keyword}{using }FunctionReturnValuesWrapper = std::tuple<std::conditional\_t<}
+\DoxyCodeLine{365       std::is\_reference\_v<\mbox{\hyperlink{a00382_ga0ba1bf25ee478b1b1d9e96c1dcd831a0}{Ikarus::traits::ReturnType}}<DerivativeArgs, ParameterArgs\&...>>,}
+\DoxyCodeLine{366       std::reference\_wrapper<std::remove\_reference\_t<\mbox{\hyperlink{a00382_ga0ba1bf25ee478b1b1d9e96c1dcd831a0}{Ikarus::traits::ReturnType}}<DerivativeArgs, ParameterArgs\&...>>>,}
+\DoxyCodeLine{367       std::remove\_cvref\_t<\mbox{\hyperlink{a00382_ga0ba1bf25ee478b1b1d9e96c1dcd831a0}{Ikarus::traits::ReturnType}}<DerivativeArgs, ParameterArgs\&...>>>...>;}
+\DoxyCodeLine{368 }
+\DoxyCodeLine{369   std::tuple<std::conditional\_t<std::is\_lvalue\_reference\_v<DerivativeArgs>,}
+\DoxyCodeLine{370                                 std::reference\_wrapper<std::remove\_reference\_t<DerivativeArgs>>,}
+\DoxyCodeLine{371                                 std::remove\_reference\_t<DerivativeArgs>>...>}
+\DoxyCodeLine{372       derivatives\_;}
 \DoxyCodeLine{373 }
-\DoxyCodeLine{374   \textcolor{keyword}{auto} jaco = (jacobianinvT0).inverse().eval();}
-\DoxyCodeLine{375   \textcolor{keyword}{auto} J11  = jaco(0, 0);}
-\DoxyCodeLine{376   \textcolor{keyword}{auto} J12  = jaco(0, 1);}
-\DoxyCodeLine{377   \textcolor{keyword}{auto} J21  = jaco(1, 0);}
-\DoxyCodeLine{378   \textcolor{keyword}{auto} J22  = jaco(1, 1);}
-\DoxyCodeLine{379 }
-\DoxyCodeLine{380   Eigen::Matrix3d T0\{}
-\DoxyCodeLine{381       \{      J11 * J11,       J12 * J12,             J11 * J12\},}
-\DoxyCodeLine{382       \{      J21 * J21,       J22 * J22,             J21 * J22\},}
-\DoxyCodeLine{383       \{2.0 * J11 * J21, 2.0 * J12 * J22, J21 * J12 + J11 * J22\}}
-\DoxyCodeLine{384   \};}
-\DoxyCodeLine{385 }
-\DoxyCodeLine{386   \textcolor{keywordflow}{return} T0.inverse() * detJ0;}
-\DoxyCodeLine{387 \}}
-\DoxyCodeLine{388 }
-\DoxyCodeLine{399 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
-\DoxyCodeLine{400 Eigen::Matrix<double, 6, 6> \mbox{\hyperlink{a00384_a95234ab8588ced83708c6e5a30e2368e}{calcTransformationMatrix3D}}(\textcolor{keyword}{const} Geometry\& geometry) \{}
-\DoxyCodeLine{401   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& referenceElement = Dune::ReferenceElements<double, 3>::general(geometry.type());}
-\DoxyCodeLine{402   \textcolor{keyword}{const} \textcolor{keyword}{auto} quadPos0          = referenceElement.position(0, 0);}
-\DoxyCodeLine{403 }
-\DoxyCodeLine{404   \textcolor{keyword}{const} \textcolor{keyword}{auto} jacobianinvT0 = toEigen(geometry.jacobianInverseTransposed(quadPos0));}
-\DoxyCodeLine{405   \textcolor{keyword}{const} \textcolor{keyword}{auto} detJ0         = geometry.integrationElement(quadPos0);}
-\DoxyCodeLine{406 }
-\DoxyCodeLine{407   \textcolor{keyword}{auto} jaco = (jacobianinvT0).inverse().eval();}
-\DoxyCodeLine{408   \textcolor{keyword}{auto} J11  = jaco(0, 0);}
-\DoxyCodeLine{409   \textcolor{keyword}{auto} J12  = jaco(0, 1);}
-\DoxyCodeLine{410   \textcolor{keyword}{auto} J13  = jaco(0, 2);}
-\DoxyCodeLine{411   \textcolor{keyword}{auto} J21  = jaco(1, 0);}
-\DoxyCodeLine{412   \textcolor{keyword}{auto} J22  = jaco(1, 1);}
-\DoxyCodeLine{413   \textcolor{keyword}{auto} J23  = jaco(1, 2);}
-\DoxyCodeLine{414   \textcolor{keyword}{auto} J31  = jaco(2, 0);}
-\DoxyCodeLine{415   \textcolor{keyword}{auto} J32  = jaco(2, 1);}
-\DoxyCodeLine{416   \textcolor{keyword}{auto} J33  = jaco(2, 2);}
-\DoxyCodeLine{417 }
-\DoxyCodeLine{418   \textcolor{comment}{// clang-\/format off}}
-\DoxyCodeLine{419   Eigen::Matrix<double, 6, 6> T0  \{}
-\DoxyCodeLine{420     \{J11 * J11,       J12 * J12,       J13 * J13,             J11 * J12,             J11 * J13,             J12 * J13\},}
-\DoxyCodeLine{421     \{J21 * J21,       J22 * J22,       J23 * J23,             J21 * J22,             J21 * J23,             J22 * J23\},}
-\DoxyCodeLine{422     \{J31 * J31,       J32 * J32,       J33 * J33,             J31 * J32,             J31 * J33,             J32 * J33\},}
-\DoxyCodeLine{423     \{2.0 * J11 * J21, 2.0 * J12 * J22, 2.0 * J13 * J23, J11 * J22 + J21 * J12, J11 * J23 + J21 * J13, J12 * J23 + J22 * J13\},}
-\DoxyCodeLine{424     \{2.0 * J11 * J31, 2.0 * J12 * J32, 2.0 * J13 * J33, J11 * J32 + J31 * J12, J11 * J33 + J31 * J13, J12 * J33 + J32 * J13\},}
-\DoxyCodeLine{425     \{2.0 * J31 * J21, 2.0 * J32 * J22, 2.0 * J33 * J23, J31 * J22 + J21 * J32, J31 * J23 + J21 * J33, J32 * J23 + J22 * J33\}}
-\DoxyCodeLine{426   \};}
-\DoxyCodeLine{427   \textcolor{comment}{// clang-\/format on}}
-\DoxyCodeLine{428 }
-\DoxyCodeLine{429   \textcolor{keywordflow}{return} T0.inverse() * detJ0;}
-\DoxyCodeLine{430 \}}
-\DoxyCodeLine{431 }
-\DoxyCodeLine{432 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{374   std::tuple<std::conditional\_t<std::is\_lvalue\_reference\_v<ParameterArgs>,}
+\DoxyCodeLine{375                                 std::reference\_wrapper<std::remove\_reference\_t<ParameterArgs>>,}
+\DoxyCodeLine{376                                 std::remove\_reference\_t<ParameterArgs>>...>}
+\DoxyCodeLine{377       args\_;}
+\DoxyCodeLine{378   FunctionReturnValuesWrapper derivativesEvaluated\_\{\};}
+\DoxyCodeLine{379 \};}
+\DoxyCodeLine{380 }
+\DoxyCodeLine{381 \textcolor{keyword}{template} <\textcolor{keyword}{typename}... DerivativeArgs, \textcolor{keyword}{typename}... ParameterArgs>}
+\DoxyCodeLine{382 \mbox{\hyperlink{a00384_abcf5978fa18a6e0aadc5e19c4a0edaa9}{NonLinearOperator}}(\textcolor{keyword}{const} Impl::Functions<DerivativeArgs\&\&...>\& a, \textcolor{keyword}{const} Impl::Parameter<ParameterArgs...>\& b)}
+\DoxyCodeLine{383     -\/> \mbox{\hyperlink{a01836}{NonLinearOperator}}<Impl::Functions<DerivativeArgs...>, Impl::Parameter<ParameterArgs...>>;}
+\DoxyCodeLine{384 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

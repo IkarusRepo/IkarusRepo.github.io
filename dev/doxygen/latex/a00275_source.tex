@@ -1,106 +1,123 @@
-\hypertarget{a00275_source}{}\doxysection{eas3d.\+hh}
-\label{a00275_source}\index{eas3d.hh@{eas3d.hh}}
+\hypertarget{a00275_source}{}\doxysection{volume.\+hh}
+\label{a00275_source}\index{volume.hh@{volume.hh}}
 \mbox{\hyperlink{a00275}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2024 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00008}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00391}{Ikarus::EAS}} \{}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{23 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{24 \textcolor{keyword}{struct }\mbox{\hyperlink{a01428}{H1E9}}}
-\DoxyCodeLine{25 \{}
-\DoxyCodeLine{26   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01428_ae9198131bd07f28e06519c81d22020d1}{strainSize}}         = 6;}
-\DoxyCodeLine{27   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01428_abae7fca7b5ca54582745e3444b1401c3}{enhancedStrainSize}} = 9;}
-\DoxyCodeLine{28   \textcolor{keyword}{using }\mbox{\hyperlink{a01428_a4ebc7570a1a18ca9d2cc77d5d1d4a05f}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{29   \textcolor{keyword}{using }\mbox{\hyperlink{a01428_a8b6d59f0d800bd906c8cedccc42226aa}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31   \mbox{\hyperlink{a01428_af2ffc65346e400a7ce3cc5fb0a3be34a}{H1E9}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{32   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01428_a3b14b18f924c0b5000ec609d441239ac}{H1E9}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{33       : geometry\_\{\mbox{\hyperlink{a00383}{std}}::make\_optional<GEO>(geometry)\},}
-\DoxyCodeLine{34         T0InverseTransformed\_\{\mbox{\hyperlink{a00384_a95234ab8588ced83708c6e5a30e2368e}{calcTransformationMatrix3D}}(geometry)\} \{\}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/localfefunctions/derivativetransformators.hh>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/localfefunctions/meta.hh>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00296}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00011}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00029}{ikarus/utils/traits.hh}}>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{16 \textcolor{keyword}{class }VolumeLoad;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} wd>}
+\DoxyCodeLine{23 \textcolor{keyword}{struct }\mbox{\hyperlink{a01488}{VolumeLoadPre}}}
+\DoxyCodeLine{24 \{}
+\DoxyCodeLine{25   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01488_a4d01ee496f98eab05902fe055e217bae}{worldDim}} = wd;}
+\DoxyCodeLine{26   std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, worldDim>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)> \mbox{\hyperlink{a01488_a4662268c782856e02171078b6fcbfa48}{volumeLoad}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{29   \textcolor{keyword}{using }\mbox{\hyperlink{a01484}{Skill}} = \mbox{\hyperlink{a01484}{VolumeLoad<PreFE, FE>}};}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{comment}{// Deduction guide}}
+\DoxyCodeLine{33 \textcolor{keyword}{template} <\textcolor{keyword}{class} F>}
+\DoxyCodeLine{34 \mbox{\hyperlink{a00384_a93a9eac09126da6a203f68af3e7c8ba2}{VolumeLoadPre}}(F f) -\/> \mbox{\hyperlink{a01488}{VolumeLoadPre<traits::FunctionTraits<F>::return\_type::RowsAtCompileTime}}>;}
 \DoxyCodeLine{35 }
-\DoxyCodeLine{36   \textcolor{keyword}{auto} \mbox{\hyperlink{a01428_adafa86c9c1ed38a3b165af332dfe2afc}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 3>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{37     \mbox{\hyperlink{a01428_a4ebc7570a1a18ca9d2cc77d5d1d4a05f}{MType}} M;}
-\DoxyCodeLine{38     M.setZero();}
-\DoxyCodeLine{39     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{40     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{41     \textcolor{keyword}{const} \textcolor{keywordtype}{double} zeta = quadPos[2];}
-\DoxyCodeLine{42     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{43     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{44     M(2, 2)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{45     M(3, 3)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{46     M(3, 4)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{47     M(4, 5)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{48     M(4, 6)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{49     M(5, 7)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{50     M(5, 8)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{51     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{52     M                 = T0InverseTransformed\_ / detJ * M;}
-\DoxyCodeLine{53     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{54   \}}
-\DoxyCodeLine{55 }
-\DoxyCodeLine{56 \textcolor{keyword}{private}:}
-\DoxyCodeLine{57   std::optional<GEO> geometry\_;}
-\DoxyCodeLine{58   Eigen::Matrix<double, strainSize, strainSize> T0InverseTransformed\_;}
-\DoxyCodeLine{59 \};}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{68 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{69 \textcolor{keyword}{struct }\mbox{\hyperlink{a01432}{H1E21}}}
-\DoxyCodeLine{70 \{}
-\DoxyCodeLine{71   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01432_acd43ef2bf715fc88872679e47478eaf7}{strainSize}}         = 6;}
-\DoxyCodeLine{72   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01432_a6d9a46fe47acc3c4c67e030ee5ad1f8e}{enhancedStrainSize}} = 21;}
-\DoxyCodeLine{73   \textcolor{keyword}{using }\mbox{\hyperlink{a01432_a1d5dedd93ae773e73f76bb50c7b4b8c1}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
-\DoxyCodeLine{74   \textcolor{keyword}{using }\mbox{\hyperlink{a01432_a9dd9d1100b290293caf8f36085185dd3}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
-\DoxyCodeLine{75 }
-\DoxyCodeLine{76   \mbox{\hyperlink{a01432_aee352a8ee04a4f7000061e5fb7ca7ca7}{H1E21}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{77   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01432_a4af72744fbb7ff90fa8fd50b1e7cf649}{H1E21}}(\textcolor{keyword}{const} GEO\& geometry)}
-\DoxyCodeLine{78       : geometry\_\{\mbox{\hyperlink{a00383}{std}}::make\_optional<GEO>(geometry)\},}
-\DoxyCodeLine{79         T0InverseTransformed\{\mbox{\hyperlink{a00384_a95234ab8588ced83708c6e5a30e2368e}{calcTransformationMatrix3D}}(geometry)\} \{\}}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{81   \textcolor{keyword}{auto} \mbox{\hyperlink{a01432_aea39b107784f70b9f8ca7a14fbf46000}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, 3>}}\& quadPos)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{82     \mbox{\hyperlink{a01432_a1d5dedd93ae773e73f76bb50c7b4b8c1}{MType}} M;}
-\DoxyCodeLine{83     M.setZero();}
-\DoxyCodeLine{84     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
-\DoxyCodeLine{85     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
-\DoxyCodeLine{86     \textcolor{keyword}{const} \textcolor{keywordtype}{double} zeta = quadPos[2];}
-\DoxyCodeLine{87     M(0, 0)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{88     M(1, 1)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{89     M(2, 2)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{90     M(3, 3)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{91     M(3, 4)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{92     M(4, 5)           = 2 * xi -\/ 1.0;}
-\DoxyCodeLine{93     M(4, 6)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{94     M(5, 7)           = 2 * eta -\/ 1.0;}
-\DoxyCodeLine{95     M(5, 8)           = 2 * zeta -\/ 1.0;}
-\DoxyCodeLine{96 }
-\DoxyCodeLine{97     M(3, 9)  = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{98     M(3, 10) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{99     M(4, 11) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{100     M(4, 12) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{101     M(5, 13) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{102     M(5, 14) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{103 }
-\DoxyCodeLine{104     M(0, 15) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{105     M(0, 16) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{106     M(1, 17) = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
-\DoxyCodeLine{107     M(1, 18) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{108     M(2, 19) = (2 * xi -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{109     M(2, 20) = (2 * eta -\/ 1.0) * (2 * zeta -\/ 1.0);}
-\DoxyCodeLine{110 }
-\DoxyCodeLine{111     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
-\DoxyCodeLine{112     M                 = T0InverseTransformed / detJ * M;}
-\DoxyCodeLine{113     \textcolor{keywordflow}{return} M;}
-\DoxyCodeLine{114   \}}
-\DoxyCodeLine{115 }
-\DoxyCodeLine{116 \textcolor{keyword}{private}:}
-\DoxyCodeLine{117   std::optional<GEO> geometry\_;}
-\DoxyCodeLine{118   Eigen::Matrix<double, strainSize, strainSize> T0InverseTransformed;}
+\DoxyCodeLine{44 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{45 \textcolor{keyword}{class }\mbox{\hyperlink{a01484}{VolumeLoad}}}
+\DoxyCodeLine{46 \{}
+\DoxyCodeLine{47 \textcolor{keyword}{public}:}
+\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01408}{Traits}} = \mbox{\hyperlink{a01340_a826c356a5afb013faffb5f7ac893cff4}{PreFE::Traits}};}
+\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01368}{Requirement}} =}
+\DoxyCodeLine{50       \mbox{\hyperlink{a01368}{FERequirementsFactory<FESolutions::displacement, FEParameter::loadfactor, Traits::useEigenRef>::type}};}
+\DoxyCodeLine{51   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01484_a390f831728fee1fe85969e060566473c}{worldDim}} = \mbox{\hyperlink{a01408_a5d611e1d48285bac5c5ebd6fda9c7cc7}{Traits::worlddim}};}
+\DoxyCodeLine{52   \textcolor{keyword}{using }\mbox{\hyperlink{a01488}{Pre}}                     = \mbox{\hyperlink{a01488}{VolumeLoadPre<worldDim>}};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{59   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01484_a349da3ed5869491f4351dc09dbccf314}{VolumeLoad}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01488}{Pre}}\& pre = \{\})}
+\DoxyCodeLine{60       : volumeLoad\_\{pre.volumeLoad\} \{\}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{63   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
+\DoxyCodeLine{64   \textcolor{keyword}{requires} Dune::AlwaysFalse<RT<double, 1, 1>>::value}
+\DoxyCodeLine{65   \textcolor{keyword}{auto} \mbox{\hyperlink{a01484_aa604e6d5795ffd5569e0c4bb40653050}{calculateAtImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& req, \textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, Traits::mydim>}}\& local,}
+\DoxyCodeLine{66                        Dune::PriorityTag<0>)\textcolor{keyword}{ const }\{\}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{69   \textcolor{keyword}{auto} \mbox{\hyperlink{a01484_a3f9d88cf8944b163452bdde3dd436871}{calculateScalarImpl}}(}
+\DoxyCodeLine{70       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& par, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2a}{ScalarAffordance}} affordance,}
+\DoxyCodeLine{71       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt) \textcolor{keyword}{const} -\/> ST \{}
+\DoxyCodeLine{72     \textcolor{keywordflow}{if} (not volumeLoad\_)}
+\DoxyCodeLine{73       \textcolor{keywordflow}{return} 0.0;}
+\DoxyCodeLine{74     ST energy            = 0.0;}
+\DoxyCodeLine{75     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = underlying().displacementFunction(par, dx);}
+\DoxyCodeLine{76     \textcolor{keyword}{const} \textcolor{keyword}{auto} geo       = underlying().geometry();}
+\DoxyCodeLine{77     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.parameter();}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : uFunction.viewOverIntegrationPoints()) \{}
+\DoxyCodeLine{80       \textcolor{keyword}{const} \textcolor{keyword}{auto} uVal                      = uFunction.evaluate(gpIndex);}
+\DoxyCodeLine{81       Eigen::Vector<double, worldDim> fext = volumeLoad\_(geo.global(gp.position()), lambda);}
+\DoxyCodeLine{82       energy -\/= uVal.dot(fext) * geo.integrationElement(gp.position()) * gp.weight();}
+\DoxyCodeLine{83     \}}
+\DoxyCodeLine{84     \textcolor{keywordflow}{return} energy;}
+\DoxyCodeLine{85   \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{88   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01484_adba315aa4436708ef2a3d8f6f3a16896}{calculateVectorImpl}}(}
+\DoxyCodeLine{89       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& par, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}} affordance, \textcolor{keyword}{typename} Traits::template VectorType<ST> force,}
+\DoxyCodeLine{90       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{91     \textcolor{keywordflow}{if} (not volumeLoad\_)}
+\DoxyCodeLine{92       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{93     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{94     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00404}{Dune}};}
+\DoxyCodeLine{95     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = underlying().displacementFunction(par, dx);}
+\DoxyCodeLine{96     \textcolor{keyword}{const} \textcolor{keyword}{auto} geo       = underlying().geometry();}
+\DoxyCodeLine{97     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.\mbox{\hyperlink{a01368_af11316c1f0fca6982a2d7497bc71a10c}{parameter}}();}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& [gpIndex, gp] : uFunction.viewOverIntegrationPoints()) \{}
+\DoxyCodeLine{100       \textcolor{keyword}{const} Eigen::Vector<double, worldDim> fext = volumeLoad\_(geo.global(gp.position()), lambda);}
+\DoxyCodeLine{101       \textcolor{keyword}{const} \textcolor{keywordtype}{double} intElement                    = geo.integrationElement(gp.position()) * gp.weight();}
+\DoxyCodeLine{102       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < underlying().numberOfNodes(); ++i) \{}
+\DoxyCodeLine{103         \textcolor{keyword}{const} \textcolor{keyword}{auto} udCi = uFunction.evaluateDerivative(gpIndex, wrt(coeff(i)));}
+\DoxyCodeLine{104         force.template segment<worldDim>(\mbox{\hyperlink{a01484_a390f831728fee1fe85969e060566473c}{worldDim}} * i) -\/= udCi * fext * intElement;}
+\DoxyCodeLine{105       \}}
+\DoxyCodeLine{106     \}}
+\DoxyCodeLine{107   \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{110   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01484_ae22c68fb949330682646b129a159ad65}{calculateMatrixImpl}}(}
+\DoxyCodeLine{111       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& par, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}}, \textcolor{keyword}{typename} Traits::template MatrixType<> K,}
+\DoxyCodeLine{112       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{\}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{keyword}{private}:}
+\DoxyCodeLine{115   std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, worldDim>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)> volumeLoad\_;}
+\DoxyCodeLine{116   \textcolor{comment}{//> CRTP}}
+\DoxyCodeLine{117   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& underlying()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01336}{FE}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{118   \textcolor{keyword}{auto}\& underlying() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}FE\&\textcolor{keyword}{>}(*this); \}}
 \DoxyCodeLine{119 \};}
-\DoxyCodeLine{120 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{127 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} worldDim>}
+\DoxyCodeLine{128 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}}(\textcolor{keyword}{const} std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01772}{Dune::FieldVector<double, worldDim>}}\&,}
+\DoxyCodeLine{129                                                                     \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>\& f) \{}
+\DoxyCodeLine{130   \mbox{\hyperlink{a01488}{VolumeLoadPre}} pre(f);}
+\DoxyCodeLine{131   \textcolor{keywordflow}{return} pre;}
+\DoxyCodeLine{132 \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{139 \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
+\DoxyCodeLine{140 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_a0eecc01634324520df56c4352eb15077}{volumeLoad}}(F\&\& f) \{}
+\DoxyCodeLine{141   \mbox{\hyperlink{a01488}{VolumeLoadPre}} pre(f);}
+\DoxyCodeLine{142   \textcolor{keywordflow}{return} pre;}
+\DoxyCodeLine{143 \}}
+\DoxyCodeLine{144 }
+\DoxyCodeLine{145 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

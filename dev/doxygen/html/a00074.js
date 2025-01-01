@@ -1,10 +1,7 @@
 var a00074 =
 [
-    [ "Ikarus::FlatIndexMergingStrategy< IMS >", "a01800.html", "a01800" ],
-    [ "Ikarus::FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedInterleaved >", "a01804.html", "a01804" ],
-    [ "Ikarus::FlatIndexMergingStrategy< Dune::Functions::BasisFactory::BlockedLexicographic >", "a01808.html", "a01808" ],
-    [ "Ikarus::FlatPreBasis< Dune::Functions::CompositePreBasis< IMS, SPB... > >", "a01812.html", "a01812" ],
-    [ "Ikarus::FlatPreBasis< Dune::Functions::PowerPreBasis< IMS, SPB, C > >", "a01816.html", "a01816" ],
-    [ "FlatPreBasis_t", "a00074.html#a98cbe3aef4b3238ea7de77ee9c4c19ac", null ],
-    [ "flatPreBasis", "a00074.html#ga0728039472747184e9eb2ec0992a4a2b", null ]
+    [ "globalIndexFromGlobalPosition", "a00074.html#gaa19ed04a701aaa500f7c486addae2d2e", null ],
+    [ "obtainLagrangeGlobalNodePositions", "a00074.html#gae9098182120929a0d21cff1c38f5ca84", null ],
+    [ "referenceElementSubEntityPositions", "a00074.html#ga30df35336d19b00bc5db2a0b52ce650e", null ],
+    [ "referenceElementVertexPositions", "a00074.html#ga8c05dce8a66fc4efbe31674b87d18298", null ]
 ];

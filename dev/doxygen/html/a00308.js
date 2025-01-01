@@ -1,4 +1,5 @@
 var a00308 =
 [
-    [ "NeoHooke", "a00308.html#ab764233e8704d8d4462d202a362892c8", null ]
+    [ "makeResultFunction", "a00308.html#ac554c68a2e5c0fcd3f042c757be22c80", null ],
+    [ "makeResultVtkFunction", "a00308.html#a118ddc9a9775a76ec1407ca26077919d", null ]
 ];

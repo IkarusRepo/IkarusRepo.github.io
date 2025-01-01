@@ -1,5 +1,9 @@
 var a00182 =
 [
-    [ "makeDenseFlatAssembler", "a00182.html#aa2e289f3c26f24717a19b05b5561538c", null ],
-    [ "makeSparseFlatAssembler", "a00182.html#a7b31ad9106d0c3d4052413bcbf5ea596", null ]
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionSettings", "a01688.html", "a01688" ],
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunctionConfig< LS, UF >", "a01692.html", "a01692" ],
+    [ "Ikarus::NewtonRaphsonWithSubsidiaryFunction< NLO, LS, UF >", "a01684.html", "a01684" ],
+    [ "createNonlinearSolver", "a00182.html#adc267de956ce12d694f0302159d8d848", null ],
+    [ "makeNewtonRaphsonWithSubsidiaryFunction", "a00182.html#ade2a979ee79a657c6ab7530ee203056f", null ],
+    [ "NewtonRaphsonWithSubsidiaryFunction", "a00182.html#acc2addd732412fa64b99546b6d07a60b", null ]
 ];
