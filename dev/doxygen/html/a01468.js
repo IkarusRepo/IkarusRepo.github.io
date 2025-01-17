@@ -20,6 +20,7 @@ var a01468 =
     [ "calculateVectorImpl", "a01468.html#a88be43beed4215c905c755e9e1723ec9", null ],
     [ "displacementFunction", "a01468.html#ac84232db4745b425dfe6631ff1a3fc11", null ],
     [ "geometry", "a01468.html#af5e1fe8c6542b0b93657b621b6c1404d", null ],
+    [ "material", "a01468.html#ae8b49ae1862243dd12fc703a52c5d7da", null ],
     [ "materialTangent", "a01468.html#a3d8da7696605af68b619c2c416d5107a", null ],
     [ "materialTangentFunction", "a01468.html#a580f1c4492e0a530e09865e459c3f84c", null ],
     [ "numberOfNodes", "a01468.html#a7df8b7737f48f0d5cd1c99fbd2e71b3b", null ],

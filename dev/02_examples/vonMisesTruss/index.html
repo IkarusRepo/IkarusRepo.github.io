@@ -2329,7 +2329,7 @@
 <h1 id="von-mises-truss-calculation">Von Mises truss calculation<a class="headerlink" href="#von-mises-truss-calculation" title="Permanent link">&para;</a></h1>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
 <p><code>iks007_vonMisesTruss.cpp</code> utilizes the tools and features mentioned in the previous examples to solve the
-standard Von-Mises truss example found in literature (refer to Section 2<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>).</p>
+standard Von-Mises truss example found in literature (refer to Section 2<sup id="fnref:misesTruss1923"><a class="footnote-ref" href="#fn:misesTruss1923">1</a></sup>).</p>
 <h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">&para;</a></h2>
 <p>The struct named <code>Truss</code> is created such that it inherits from <code>FEBase</code>.
 It must be decorated with <code>AutoDiffFE</code> as well to compute the stiffness matrix and load vectors during construction.
@@ -2345,7 +2345,7 @@ The energy is defined as <code class="highlight"><span class="mf">0.5</span><spa
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">const</span><span class="w"> </span><span class="n">Scalar</span><span class="w"> </span><span class="n">Egl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">lsquared</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LRefsquared</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">LRefsquared</span><span class="p">;</span>
 </code></pre></div>
 <p>The grid in this example is created explicitly. The grid is created here from the
-<a href="https://www.dune-project.org/modules/dune-foamgrid/">dune-foamgrid</a> module.
+(<a href="https://www.dune-project.org/modules/dune-foamgrid/">https://www.dune-project.org/modules/dune-foamgrid/</a>) module.
 This allows the user to embed a one- or two-dimensional grid in a physical space of any dimension. Thus, here we embed
 a one-dimensional truss system in a 2D plane. The height (<code>h</code>) and length (<code>L</code>) of the truss system are defined, which is followed by
 the addition of the vertices and elements to create a grid as shown below:</p>
@@ -2372,14 +2372,14 @@ This is implemented as depicted in the following:</p>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">Eigen</span><span class="o">::</span><span class="n">Matrix3Xd</span><span class="w"> </span><span class="n">lambdaAndDisp</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">lambdaAndDisp</span><span class="p">.</span><span class="n">setZero</span><span class="p">(</span><span class="n">Eigen</span><span class="o">::</span><span class="n">NoChange</span><span class="p">,</span><span class="w"> </span><span class="n">loadSteps</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">auto</span><span class="w"> </span><span class="n">lvkObserver</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">GenericObserver</span><span class="o">&lt;</span><span class="n">Ikarus</span><span class="o">::</span><span class="n">ControlMessages</span><span class="o">&gt;&gt;</span><span class="p">(</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">ControlMessages</span><span class="o">::</span><span class="n">SOLUTION_CHANGED</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">Ikarus</span><span class="o">::</span><span class="n">ControlMessages</span><span class="o">::</span><span class="n">SOLUTION_CHANGED</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="n">lambdaAndDisp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="p">;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="n">lambdaAndDisp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="n">lambdaAndDisp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="n">lambdaAndDisp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">      </span><span class="n">lambdaAndDisp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="p">});</span>
 </code></pre></div>
 <p>The load control method is used as the path-following strategy, and it is subscribed to both <code>vtkWriter</code> and <code>lvkObserver</code>.
-The features from <a href="https://github.com/alandefreitas/matplotplusplus">Matplot++</a> are then used to plot the load-displacement curve from
+The features from (<a href="https://github.com/alandefreitas/matplotplusplus">https://github.com/alandefreitas/matplotplusplus</a>) are then used to plot the load-displacement curve from
 the matrix <code>lambdaAndDisp</code>.</p>
 <h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">&para;</a></h2>
 <ul>
@@ -2390,8 +2390,8 @@ the matrix <code>lambdaAndDisp</code>.</p>
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>R. V. Mises. Über die stabilitätsprobleme der elastizitätstheorie. <em>ZAMM - Journal of Applied Mathematics and Mechanics / Zeitschrift für Angewandte Mathematik und Mechanik</em>, 3(6):406&ndash;422, 1923. <a href="https://doi.org/10.1002/zamm.19230030602">doi:10.1002/zamm.19230030602</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:misesTruss1923">
+<p>R. V. Mises. Über die stabilitätsprobleme der elastizitätstheorie. <em>ZAMM - Journal of Applied Mathematics and Mechanics / Zeitschrift für Angewandte Mathematik und Mechanik</em>, 3(6):406&ndash;422, 1923. <a href="https://doi.org/10.1002/zamm.19230030602">doi:10.1002/zamm.19230030602</a>.&#160;<a class="footnote-backref" href="#fnref:misesTruss1923" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

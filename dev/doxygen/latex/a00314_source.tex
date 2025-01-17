@@ -9,50 +9,113 @@
 \DoxyCodeLine{12 }
 \DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/common/math.hh>}}
 \DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <Eigen/Geometry>}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00393}{Ikarus::ResultEvaluators}} \{}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01592}{VonMises}}}
-\DoxyCodeLine{26 \{}
-\DoxyCodeLine{34   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R>}
-\DoxyCodeLine{35   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01592_a041bead382beb38c3d0f128d729e9e5d}{operator()}}(\textcolor{keyword}{const} R\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{36     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_x = resultArray(0, 0);}
-\DoxyCodeLine{37     \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_y = resultArray(1, 0);}
-\DoxyCodeLine{38     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (R::CompileTimeTraits::RowsAtCompileTime == 3) \{}
-\DoxyCodeLine{39       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = resultArray(2, 0);}
-\DoxyCodeLine{40       \textcolor{keywordflow}{return} std::sqrt(Dune::power(s\_x, 2) + Dune::power(s\_y, 2) -\/ s\_x * s\_y + 3 * Dune::power(s\_xy, 2));}
-\DoxyCodeLine{41     \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{42       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_z  = resultArray(2, 0);}
-\DoxyCodeLine{43       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_yz = resultArray(3, 0);}
-\DoxyCodeLine{44       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xz = resultArray(4, 0);}
-\DoxyCodeLine{45       \textcolor{keyword}{const} \textcolor{keyword}{auto} s\_xy = resultArray(5, 0);}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47       \textcolor{keywordflow}{return} std::sqrt(Dune::power(s\_x, 2) + Dune::power(s\_y, 2) + Dune::power(s\_z, 2) -\/ s\_x * s\_y -\/ s\_x * s\_z -\/}
-\DoxyCodeLine{48                        s\_y * s\_z + 3 * (Dune::power(s\_xy, 2) + Dune::power(s\_xz, 2) + Dune::power(s\_yz, 2)));}
-\DoxyCodeLine{49     \}}
-\DoxyCodeLine{50   \}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02855}{ikarus/finiteelements/mechanics/materials.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00393}{Ikarus::ResultEvaluators}} \{}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{28 \textcolor{keyword}{struct }\mbox{\hyperlink{a01592}{VonMises}}}
+\DoxyCodeLine{29 \{}
+\DoxyCodeLine{37   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R>}
+\DoxyCodeLine{38   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01592_a4a16334a6d486018a77727fb2acca63c}{operator()}}(\textcolor{keyword}{const} R\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& pos, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe,}
+\DoxyCodeLine{39                     [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{40     \textcolor{keyword}{auto} sigma = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(resultArray, \textcolor{keyword}{false});}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42     \textcolor{keyword}{auto} I2 = 1.0 / 2.0 * (sigma.squaredNorm() -\/ 1.0 / 3.0 * Dune::power(sigma.trace(), 2));}
+\DoxyCodeLine{43     \textcolor{keywordflow}{return} std::sqrt(3.0 * I2);}
+\DoxyCodeLine{44   \}}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{50   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01592_adc5bbea30401fd0a203237199f400872}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
 \DoxyCodeLine{51 }
-\DoxyCodeLine{56   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01592_a60952d65a227074bcb68af8ed78d4129}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}VonMises"{}}; \}}
-\DoxyCodeLine{57 }
-\DoxyCodeLine{62   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01592_acdfd2226b12f3819350f4ea231e337bf}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
-\DoxyCodeLine{63 \};}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{72 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim>}
-\DoxyCodeLine{73 \textcolor{keyword}{requires}(dim == 2 or dim == 3)}
-\DoxyCodeLine{74 \textcolor{keyword}{struct} \mbox{\hyperlink{a01596}{PrincipalStress}}}
-\DoxyCodeLine{75 \{}
-\DoxyCodeLine{82   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01596_a5b1a1b6fc619e80943b5b54912371cef}{operator()}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& resultArray, \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{83     \textcolor{keyword}{auto} mat = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(resultArray, \textcolor{keyword}{false});}
-\DoxyCodeLine{84     Eigen::SelfAdjointEigenSolver<\textcolor{keyword}{decltype}(mat)> eigensolver(mat, Eigen::EigenvaluesOnly);}
-\DoxyCodeLine{85     \textcolor{keywordflow}{return} eigensolver.eigenvalues()[dim -\/ 1 -\/ comp];}
-\DoxyCodeLine{86   \}}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{92   \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01596_aab635f940c3d1785f4bafe281b575500}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
+\DoxyCodeLine{56   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01592_a4fec0e03332fac9610d1f42a9e412f7f}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{57 \};}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{65 \textcolor{keyword}{struct }\mbox{\hyperlink{a01596}{HydrostaticStress}}}
+\DoxyCodeLine{66 \{}
+\DoxyCodeLine{74   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R>}
+\DoxyCodeLine{75   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01596_a35c0916886cd68004bedbebe4165fa97}{operator()}}(\textcolor{keyword}{const} R\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& pos, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe,}
+\DoxyCodeLine{76                     [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{77     \textcolor{keyword}{const} \textcolor{keyword}{auto} sigma = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(resultArray, \textcolor{keyword}{false});}
+\DoxyCodeLine{78     \textcolor{keywordflow}{return} 1.0 / sigma.rows() * sigma.trace();}
+\DoxyCodeLine{79   \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{85   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01596_a1cc516c9e54a36656b693f6ab7e8036f}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}HydrostaticStress"{}}; \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{91   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01596_a7ad4bc9dedac16e50242b7d51d9ea2a0}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{92 \};}
 \DoxyCodeLine{93 }
-\DoxyCodeLine{98   \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01596_abc08f088b44639b38ce5fb4b7b3ce7c6}{ncomps}}() \{ \textcolor{keywordflow}{return} dim; \}}
-\DoxyCodeLine{99 \};}
-\DoxyCodeLine{100 }
-\DoxyCodeLine{101 \} \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
+\DoxyCodeLine{101 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim>}
+\DoxyCodeLine{102 \textcolor{keyword}{requires}(dim == 2 or dim == 3)}
+\DoxyCodeLine{103 \textcolor{keyword}{struct} \mbox{\hyperlink{a01600}{PrincipalStress}}}
+\DoxyCodeLine{104 \{}
+\DoxyCodeLine{111   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01600_aafc25c13807fda614d68992dcd4923ae}{operator()}}(\textcolor{keyword}{const} \textcolor{keyword}{auto}\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& pos, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe,}
+\DoxyCodeLine{112                     \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{113     \textcolor{keyword}{auto} mat = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(resultArray, \textcolor{keyword}{false});}
+\DoxyCodeLine{114     Eigen::SelfAdjointEigenSolver<\textcolor{keyword}{decltype}(mat)> eigensolver(mat, Eigen::EigenvaluesOnly);}
+\DoxyCodeLine{115     \textcolor{keywordflow}{return} eigensolver.eigenvalues().reverse()[comp];}
+\DoxyCodeLine{116   \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{122   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01600_a0a21ea2d96efed17295f27a0001dcd7c}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PrincipalStress"{}}; \}}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{128   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01600_a34a91abd5ffcb880813bd1fb90b221b6}{ncomps}}() \{ \textcolor{keywordflow}{return} dim; \}}
+\DoxyCodeLine{129 \};}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{137 \textcolor{keyword}{struct }\mbox{\hyperlink{a01604}{Triaxiality}}}
+\DoxyCodeLine{138 \{}
+\DoxyCodeLine{146   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R>}
+\DoxyCodeLine{147   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01604_a14fd89ab2a84416e5f1024c9930f7371}{operator()}}(\textcolor{keyword}{const} R\& resultArray, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& pos, [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe,}
+\DoxyCodeLine{148                     [[maybe\_unused]] \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{149     \textcolor{keyword}{auto} sigeq = \mbox{\hyperlink{a01592}{VonMises}}\{\}(resultArray, pos, fe, 0);}
+\DoxyCodeLine{150     \textcolor{keyword}{auto} sigm  = \mbox{\hyperlink{a01596}{HydrostaticStress}}\{\}(resultArray, pos, fe, 0);}
+\DoxyCodeLine{151     \textcolor{keywordflow}{return} sigm / sigeq;}
+\DoxyCodeLine{152   \}}
+\DoxyCodeLine{157   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01604_a04443562de6bf1cf72a27db2f33b5e16}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Triaxiality"{}}; \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{163   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01604_a2208295b62e03319c06b599b0079bf83}{ncomps}}() \{ \textcolor{keywordflow}{return} 1; \}}
+\DoxyCodeLine{164 \};}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{171 \textcolor{keyword}{struct }\mbox{\hyperlink{a01608}{PolarStress}}}
+\DoxyCodeLine{172 \{}
+\DoxyCodeLine{173   \mbox{\hyperlink{a01608_ab7bd86fc0638f4c9b779153c69d917d4}{PolarStress}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, 2>}}\& origin)}
+\DoxyCodeLine{174       : origin\_(origin) \{\}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{183   \textcolor{keyword}{template} <\textcolor{keyword}{typename} R>}
+\DoxyCodeLine{184   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01608_a22590930fe4d5d2d5e5a323cd3085cdb}{operator()}}(\textcolor{keyword}{const} R\& resultArray, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& pos, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& fe, \textcolor{keyword}{const} \textcolor{keywordtype}{int} comp)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{185     \textcolor{keyword}{static\_assert}(R::CompileTimeTraits::RowsAtCompileTime == 3, \textcolor{stringliteral}{"{}PolarStress is only valid for 2D."{}});}
+\DoxyCodeLine{186     \textcolor{keywordflow}{if} (comp > 2)}
+\DoxyCodeLine{187       DUNE\_THROW(Dune::RangeError, \textcolor{stringliteral}{"{}PolarStress: Comp out of range."{}});}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{comment}{// Offset to center the coordinate system in the reference geometry}}
+\DoxyCodeLine{190     \mbox{\hyperlink{a01784}{Dune::FieldVector<double, 2>}} posGlobal = fe.geometry().global(pos) -\/ origin\_;}
+\DoxyCodeLine{191     \textcolor{keyword}{auto} theta                             = std::atan2(posGlobal[1], posGlobal[0]);}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193     \textcolor{keyword}{const} \textcolor{keyword}{auto} sigma = \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(resultArray, \textcolor{keyword}{false});}
+\DoxyCodeLine{194     Eigen::Rotation2D<double> r(theta);}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{comment}{// deliberately not evaluating this that it stays an expression for below}}
+\DoxyCodeLine{197     \textcolor{keyword}{auto} polarStress = r.inverse() * sigma * r;}
+\DoxyCodeLine{198     \textcolor{keywordflow}{switch} (comp) \{}
+\DoxyCodeLine{199       \textcolor{keywordflow}{case} 0:}
+\DoxyCodeLine{200         \textcolor{keywordflow}{return} polarStress(0, 0);}
+\DoxyCodeLine{201       \textcolor{keywordflow}{case} 1:}
+\DoxyCodeLine{202         \textcolor{keywordflow}{return} polarStress(1, 1);}
+\DoxyCodeLine{203       \textcolor{keywordflow}{case} 2:}
+\DoxyCodeLine{204         \textcolor{keywordflow}{return} polarStress(1, 0);}
+\DoxyCodeLine{205       \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{206         \_\_builtin\_unreachable();}
+\DoxyCodeLine{207     \}}
+\DoxyCodeLine{208   \}}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{214   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01608_affc08b406cc3750e46dff706eefd7ee6}{name}}() \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}PolarStress"{}}; \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{220   \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01608_a2b4c9a468e74dbbb93f6f6613cf07f7d}{ncomps}}() \{ \textcolor{keywordflow}{return} 3; \}}
+\DoxyCodeLine{221 }
+\DoxyCodeLine{222 \textcolor{keyword}{private}:}
+\DoxyCodeLine{223   \mbox{\hyperlink{a01784}{Dune::FieldVector<double, 2>}} origin\_;}
+\DoxyCodeLine{224 \};}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226 \} \textcolor{comment}{// namespace Ikarus::ResultEvaluators}}
 
 \end{DoxyCode}

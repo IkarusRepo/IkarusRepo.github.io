@@ -1,6 +1,4 @@
 var a01820 =
 [
-    [ "draw", "a01820.html#a08fa473dcdfbdb5dcf759546ea2da3b8", null ],
-    [ "tolerance", "a01820.html#a6c1e702608ca901f9f7efca524560b25", null ],
-    [ "writeSlopeStatementIfFailed", "a01820.html#ac9946207ee221c94e843ea7c048a16a3", null ]
+    [ "type", "a01820.html#add1dc46010d8b320cd215e331a3f1fa4", null ]
 ];

@@ -22,6 +22,7 @@ var a01524 =
     [ "geometry", "a01524.html#a6268324f3dce0ad16478747170581a3e", null ],
     [ "getInternalEnergy", "a01524.html#a01ea8b2e688566c391df267a040298ee", null ],
     [ "getStress", "a01524.html#af7716846e0ca64181119e58548126231", null ],
+    [ "material", "a01524.html#a881c2f56424f21b925f6fee08f2b83b2", null ],
     [ "materialTangent", "a01524.html#aaf1eac20d733fcd9f2c7ac68dbbddc5c", null ],
     [ "numberOfNodes", "a01524.html#afc0d3706a93eefe0238e9053e8421708", null ],
     [ "order", "a01524.html#ae131607ff0fc7856d7635f8e05c6cf70", null ],

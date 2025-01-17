@@ -2328,27 +2328,27 @@
 
 <h1 id="cooks-membrane">Cook's membrane<a class="headerlink" href="#cooks-membrane" title="Permanent link">&para;</a></h1>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
-<p>The example <code>iks008_cooksMembrane.cpp</code> implements the Cook's membrane problem adapted from the paper<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.
+<p>The example <code>iks008_cooksMembrane.cpp</code> implements the Cook's membrane problem adapted from the paper<sup id="fnref:cook_improved_1974"><a class="footnote-ref" href="#fn:cook_improved_1974">1</a></sup>.
 This problem can be solved not only with the structured meshes provided, but also with unstructured and triangular meshes.
 The input parameters, like material and grid
 parameters, are read from the file <code>iks008_cooksMembrane.parset</code>. The problem can also be solved with the standard 2D planar solid element
 or with enhanced assumed strain elements. For more details on the element technologies, refer to the
-<a href="../../01_framework/finiteElements/">documentation</a>. <code>iks008</code> solves the problem with a set of existing finite elements and compares the
+(../01_framework/finiteElements.md). <code>iks008</code> solves the problem with a set of existing finite elements and compares the
 convergence rates.</p>
 <h2 id="code-highlights">Code highlights<a class="headerlink" href="#code-highlights" title="Permanent link">&para;</a></h2>
 <p>In this example, the standard Q1 finite element and the enhanced assumed strain elements Q1E4, Q1E5, and Q1E7 are used to solve the
 Cook's membrane problem.
 Convergence studies are done for the vertical displacement in the top right corner, and the assembly time for the stiffness matrix is
 also compared.
-The <a href="https://en.cppreference.com/w/cpp/chrono">date and time utilities</a> from the standard C++ library are used to determine the
+The (<a href="https://en.cppreference.com/w/cpp/chrono">https://en.cppreference.com/w/cpp/chrono</a>) from the standard C++ library are used to determine the
 computation times in this example.
 This example not only loops over the different refinement levels for a convergence plot but also loops over the different element types.
 In order to avoid re-building the complete code with modifications to certain input parameters, the <code>parametertreeparser.hh</code> can be used
-from the <a href="https://www.dune-project.org/modules/dune-common/">dune-common</a> module.
+from the (<a href="https://www.dune-project.org/modules/dune-common/">https://www.dune-project.org/modules/dune-common/</a>) module.
 The <code>Dune::ParameterTree</code> is used to read the Young's modulus (<code>E</code>), the Poisson's ratio (<code>nu</code>), and the level of refinement
 (<code>refinement_level</code>), as shown below:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">Dune</span><span class="o">::</span><span class="n">ParameterTree</span><span class="w"> </span><span class="n">parameterSet</span><span class="p">;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Dune</span><span class="o">::</span><span class="n">ParameterTreeParser</span><span class="o">::</span><span class="n">readINITree</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">parameterSet</span><span class="p">);</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">Dune</span><span class="o">::</span><span class="n">ParameterTreeParser</span><span class="o">::</span><span class="n">readINITree</span><span class="p">(</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">parameterSet</span><span class="p">);</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">const</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">ParameterTree</span><span class="w"> </span><span class="o">&amp;</span><span class="n">gridParameters</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="n">parameterSet</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot;GridParameters&quot;</span><span class="p">);</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">const</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">ParameterTree</span><span class="w"> </span><span class="o">&amp;</span><span class="n">controlParameters</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">parameterSet</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">&quot;ControlParameters&quot;</span><span class="p">);</span>
@@ -2358,7 +2358,7 @@ The <code>Dune::ParameterTree</code> is used to read the Young's modulus (<code>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">nu</span><span class="w">            </span><span class="o">=</span><span class="w"> </span><span class="n">materialParameters</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;nu&quot;</span><span class="p">);</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">refinement_level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gridParameters</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;refinement&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p><code>argv[1]</code> is the variable in the argument vector that contains <code>iks008_cooksMembrane.parset</code> to read the input parameters.
+<p><code>argv</code> is the variable in the argument vector that contains <code>iks008_cooksMembrane.parset</code> to read the input parameters.
 The file <code>cook.msh</code> contains the Cook's membrane problem with a structured grid, whereas <code>cook_tri.msh</code> and <code>cook_unstructured.msh</code>
 contains the same problem with triangular elements and with an unstructured mesh, respectively. The mesh file is read using
 <code>Dune::GmshReader</code> and <code>Dune::UGGrid</code> is used to get the <code>grid</code> object.
@@ -2393,16 +2393,16 @@ as shown below and is later stored in a vector:</p>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="n">localw</span><span class="p">.</span><span class="n">bind</span><span class="p">(</span><span class="n">ele</span><span class="p">);</span>
 <a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">geo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localView</span><span class="p">.</span><span class="n">element</span><span class="p">().</span><span class="n">geometry</span><span class="p">();</span>
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Dune</span><span class="o">::</span><span class="n">FloatCmp</span><span class="o">::</span><span class="n">eq</span><span class="p">(</span><span class="n">geo</span><span class="p">.</span><span class="n">corner</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">req_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">FloatCmp</span><span class="o">::</span><span class="n">eq</span><span class="p">(</span><span class="n">geo</span><span class="p">.</span><span class="n">corner</span><span class="p">(</span><span class="n">i</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">req_pos</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Dune</span><span class="o">::</span><span class="n">FloatCmp</span><span class="o">::</span><span class="n">eq</span><span class="p">(</span><span class="n">geo</span><span class="p">.</span><span class="n">corner</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">req_pos</span><span class="p">)</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Dune</span><span class="o">::</span><span class="n">FloatCmp</span><span class="o">::</span><span class="n">eq</span><span class="p">(</span><span class="n">geo</span><span class="p">.</span><span class="n">corner</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">req_pos</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">local_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">local</span><span class="p">(</span><span class="n">toDune</span><span class="p">(</span><span class="n">req_pos</span><span class="p">));</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="n">uy_fe</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">toEigen</span><span class="p">(</span><span class="n">localw</span><span class="p">(</span><span class="n">local_pos</span><span class="p">)).</span><span class="n">eval</span><span class="p">()[</span><span class="mi">1</span><span class="p">];</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">      </span><span class="n">uy_fe</span><span class="w">                </span><span class="o">=</span><span class="w"> </span><span class="n">toEigen</span><span class="p">(</span><span class="n">localw</span><span class="p">(</span><span class="n">local_pos</span><span class="p">)).</span><span class="n">eval</span><span class="p">();</span>
 <a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">}</span>
 </code></pre></div>
-<p>The datasets are then stored and plotted using <a href="https://github.com/alandefreitas/matplotplusplus">Matplot++</a>. The deformed configuration
+<p>The datasets are then stored and plotted using (<a href="https://github.com/alandefreitas/matplotplusplus">https://github.com/alandefreitas/matplotplusplus</a>). The deformed configuration
 is also written using the <code>Dune::VTKWriter</code> and can be visualized using Paraview.
-Several log information is also displayed in this example using <a href="https://github.com/gabime/spdlog">spdlog</a>.</p>
+Several log information is also displayed in this example using (<a href="https://github.com/gabime/spdlog">https://github.com/gabime/spdlog</a>).</p>
 <h2 id="takeaways">Takeaways<a class="headerlink" href="#takeaways" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>Dune::ParameterTree</code> can be used to read input parameters from an external <code>*.parset</code> file.</li>
@@ -2414,8 +2414,8 @@ Several log information is also displayed in this example using <a href="https:/
 <div class="footnote">
 <hr />
 <ol>
-<li id="fn:1">
-<p>Robert D. Cook. Improved Two-Dimensional Finite Element. <em>J. Struct. Div.</em>, 100(9):1851–1863, September 1974. <a href="https://doi.org/10.1061/JSDEAG.0003877">doi:10.1061/JSDEAG.0003877</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<li id="fn:cook_improved_1974">
+<p>Robert D. Cook. Improved Two-Dimensional Finite Element. <em>J. Struct. Div.</em>, 100(9):1851–1863, September 1974. <a href="https://doi.org/10.1061/JSDEAG.0003877">doi:10.1061/JSDEAG.0003877</a>.&#160;<a class="footnote-backref" href="#fnref:cook_improved_1974" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

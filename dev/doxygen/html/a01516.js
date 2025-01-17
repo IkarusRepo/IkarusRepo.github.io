@@ -18,6 +18,7 @@ var a01516 =
     [ "stressesImpl", "a01516.html#abdfa744589b54cc5c943d781c73359f0", null ],
     [ "tangentModuli", "a01516.html#a2d9d9509fa8bbdc909868c8fd0dfe5fd", null ],
     [ "tangentModuliImpl", "a01516.html#acdd8f1a651ee1e15647ec146f981040d", null ],
+    [ "underlying", "a01516.html#a8214147990b14bc0b0f799bf7f4ea524", null ],
     [ "derivativeFactor", "a01516.html#a3eb069cf77898b037cde55be7022f6d2", null ],
     [ "derivativeFactorImpl", "a01516.html#a2d0cc804e3ce9ca0e7a7928268e50afc", null ],
     [ "energyAcceptsVoigt", "a01516.html#a9f3bf27e2d1db1c869ec480fddca3eec", null ],

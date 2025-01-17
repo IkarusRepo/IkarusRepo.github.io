@@ -1,17 +1,15 @@
 var a01656 =
 [
-    [ "RawScalarType", "a01656.html#af539d8935624e801016ecdd02852e493", null ],
-    [ "ScalarWrapper", "a01656.html#a80b399092b2ac4564095a63271e34acd", null ],
-    [ "operator RawScalarType &", "a01656.html#a66478624f4d84c5223afc1cc339691ff", null ],
-    [ "operator*", "a01656.html#a01d184d748414b40f51b06e891bc309b", null ],
-    [ "operator*=", "a01656.html#ac43277d6068945530d445976aef3b5be", null ],
-    [ "operator+", "a01656.html#a7c5087c50a8cda53bdb7dc0b1af65c7d", null ],
-    [ "operator+=", "a01656.html#aedb7b9287f9b954fcb9759ef0aa7f803", null ],
-    [ "operator-", "a01656.html#afbdab913b105074552a44b4d05e4b8dc", null ],
-    [ "operator-", "a01656.html#a14f5de10abdaaa63ef31cf3398b75122", null ],
-    [ "operator-=", "a01656.html#a1f3ea426a4264d9c26278e2ddfc605d1", null ],
-    [ "operator/=", "a01656.html#abe4b2960b4cc9bd8546aed01a6e74f51", null ],
-    [ "value", "a01656.html#a58aca37297368d4b3122461982ff3074", null ],
-    [ "value", "a01656.html#a0f885d047f898e549e8ece9cac3adea8", null ],
-    [ "operator*", "a01656.html#a93c93e03a96d5f1cbfa7e74ccb1e190e", null ]
+    [ "Base", "a01656.html#a00557d5a1f590b6d27849f0e37f825c6", null ],
+    [ "MatrixType", "a01656.html#abdf94f4787b8d10c2d86a64e00f34188", null ],
+    [ "Preconditioner", "a01656.html#a636d30963f7a7261054092337269076b", null ],
+    [ "RealScalar", "a01656.html#a2dd6b779327fad07144e6a121b12afbf", null ],
+    [ "Scalar", "a01656.html#a8ea747fce5e24c366f34da3c3ba3c8dd", null ],
+    [ "TruncatedConjugateGradient", "a01656.html#a17e36ca6a3756dd75d9740d756ee39c4", null ],
+    [ "TruncatedConjugateGradient", "a01656.html#a267ee32f0487d9a700b13d6d61b0f000", null ],
+    [ "TruncatedConjugateGradient", "a01656.html#af31547cc01eca8c809bbf1161c251695", null ],
+    [ "~TruncatedConjugateGradient", "a01656.html#aa60846b7835b8ffc8e26b48be8bd7069", null ],
+    [ "_solve_vector_with_guess_impl", "a01656.html#a6430f6e2355dc7e9eb7410d4353cb7ed", null ],
+    [ "getInfo", "a01656.html#a81a7f70d30cfbf103d6ac946ebc2a598", null ],
+    [ "setInfo", "a01656.html#abca8364ed9fadd6e08510b46395dbf22", null ]
 ];

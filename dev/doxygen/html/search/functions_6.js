@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['factorize_0',['factorize',['../a01660.html#ad19ae7c98843dd8ecad6586003ed3b5d',1,'Ikarus::LinearSolverTemplate']]],
+  ['factorize_0',['factorize',['../a01672.html#ad19ae7c98843dd8ecad6586003ed3b5d',1,'Ikarus::LinearSolverTemplate']]],
   ['fe_1',['FE',['../a01336.html#a395b4b566b17bb390d82de3c89c00e9d',1,'Ikarus::FE']]],
   ['fefactory_2',['FEFactory',['../a01348.html#aacbb6c8ee45484144edb78306da79456',1,'Ikarus::FEFactory']]],
   ['femixin_3',['FEMixin',['../a01544.html#a14fdffeb8d301d73b605ce7fc1732b98',1,'Ikarus::FEMixin']]],
@@ -10,10 +10,10 @@ var searchData=
   ['findlinesegment_7',['findLineSegment',['../a00379.html#ga16e7d5f51cc42190c090e727495c1609',1,'Ikarus::utils']]],
   ['findtypespecialization_8',['findTypeSpecialization',['../a00381.html#ga62d8ab565d41e49db75f0641bcdf0740',1,'Ikarus::utils']]],
   ['finiteelements_9',['finiteElements',['../a01264.html#aa8da4086d468797668b6d551129e96dd',1,'Ikarus::FlatAssemblerBase']]],
-  ['fixboundarydofs_10',['fixBoundaryDOFs',['../a01788.html#a3b40113e1bf44f2e269242d677afcc55',1,'Ikarus::DirichletValues']]],
-  ['fixdofs_11',['fixDOFs',['../a01788.html#a956ce2cdc09731f001821c7b59d49e85',1,'Ikarus::DirichletValues']]],
-  ['fixeddofsize_12',['fixedDOFsize',['../a01788.html#aeb299b04b2777be56012b32a3b2e6a9c',1,'Ikarus::DirichletValues']]],
-  ['flat_13',['flat',['../a01732.html#a4169a22c9428da3b0b4bfee9b7bb2161',1,'Ikarus::BasisHandler::flat() const'],['../a01732.html#a259a6b38e59d58970716c03ac511d3c5',1,'Ikarus::BasisHandler::flat()']]],
+  ['fixboundarydofs_10',['fixBoundaryDOFs',['../a01800.html#a3b40113e1bf44f2e269242d677afcc55',1,'Ikarus::DirichletValues']]],
+  ['fixdofs_11',['fixDOFs',['../a01800.html#a956ce2cdc09731f001821c7b59d49e85',1,'Ikarus::DirichletValues']]],
+  ['fixeddofsize_12',['fixedDOFsize',['../a01800.html#aeb299b04b2777be56012b32a3b2e6a9c',1,'Ikarus::DirichletValues']]],
+  ['flat_13',['flat',['../a01744.html#a4169a22c9428da3b0b4bfee9b7bb2161',1,'Ikarus::BasisHandler::flat() const'],['../a01744.html#a259a6b38e59d58970716c03ac511d3c5',1,'Ikarus::BasisHandler::flat()']]],
   ['flatassemblerbase_14',['FlatAssemblerBase',['../a01264.html#a5dcfae0f9b6e53f27b902be8dc5353eb',1,'Ikarus::FlatAssemblerBase']]],
   ['flatprebasis_15',['flatPreBasis',['../a00379.html#ga0728039472747184e9eb2ec0992a4a2b',1,'Ikarus']]],
   ['foreachlagrangenodeposition_16',['forEachLagrangeNodePosition',['../a00400.html#a9bfdb235951b98b7a214704baf9c6f95',1,'Ikarus::utils']]],
