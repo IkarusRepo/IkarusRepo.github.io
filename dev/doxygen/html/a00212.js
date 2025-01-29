@@ -1,4 +1,4 @@
 var a00212 =
 [
-    [ "Ikarus::GenericObserver< M >", "a01868.html", "a01868" ]
+    [ "ScalarWrapper< T >", "a01668.html", "a01668" ]
 ];

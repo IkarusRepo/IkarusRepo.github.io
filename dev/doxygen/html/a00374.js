@@ -1,10 +1,10 @@
 var a00374 =
 [
     [ "Result Evaluator", "a00375.html", "a00375" ],
-    [ "resultfunction.hh", "a00308.html", null ],
-    [ "io/vtkwriter.hh", "a02879.html", null ],
-    [ "griddrawer.hh", "a00194.html", null ],
-    [ "matplothelper.hh", "a00191.html", null ],
+    [ "resultfunction.hh", "a00323.html", null ],
+    [ "io/vtkwriter.hh", "a02867.html", null ],
+    [ "griddrawer.hh", "a00143.html", null ],
+    [ "matplothelper.hh", "a00140.html", null ],
     [ "Ikarus::ResultFunction< AS, RT, UserFunction >", "a01616.html", [
       [ "Assembler", "a01616.html#ab7712895c055876ce68b119ee5be512b", null ],
       [ "ctype", "a01616.html#a916f6362e75f7b8f9f8e9b5acd7fb3ae", null ],

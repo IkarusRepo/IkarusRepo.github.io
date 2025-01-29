@@ -1,5 +1,4 @@
 var a00035 =
 [
-    [ "forEachLagrangeNodePosition", "a00035.html#a9bfdb235951b98b7a214704baf9c6f95", null ],
-    [ "forEachLeafOrPowerLeafNode", "a00035.html#a63742d75d099b93da7ddf6e78a3c1f56", null ]
+    [ "hessianN", "a00035.html#ga2a6c26beeb8d52283e82939ca585dc20", null ]
 ];

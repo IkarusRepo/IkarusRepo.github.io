@@ -26,7 +26,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!--    <meta itemprop="description" content="Code documentation of the open-source C++ porous media simulator Dumux." />-->
 <!--    <meta itemprop="image" content="https://git.iws.uni-stuttgart.de/dumux-repositories/dumux/-/raw/8affa5aac19a76f615e74918332484e1c603c43e/doc/logo/dumux_logo_small.png" />-->
 <!--    &lt;!&ndash; END Google+ metadata &ndash;&gt;-->
-    <title>ikarus: fefactory.hh File Reference</title>
+    <title>ikarus: linearelastic.hh File Reference</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript" src="dynsections.js"></script>
@@ -156,20 +156,32 @@ $(document).ready(function(){initNavTree('a00284.html',''); initResizable(); });
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">fefactory.hh File Reference<div class="ingroups"><a class="el" href="a00365.html">Ikarus Modules</a> &raquo; <a class="el" href="a00368.html">Finite Elements</a></div></div></div>
+  <div class="headertitle"><div class="title">linearelastic.hh File Reference<div class="ingroups"><a class="el" href="a00365.html">Ikarus Modules</a> &raquo; <a class="el" href="a00368.html">Finite Elements</a> &raquo; <a class="el" href="a00369.html">Mechanics</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Contains the definition of the FEFactory class.  
+<p>Definition of the LinearElastic class for finite element mechanics computations.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="a00287_source.html">ikarus/finiteelements/febase.hh</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;optional&gt;</code><br />
+<code>#include &lt;type_traits&gt;</code><br />
+<code>#include &lt;dune/geometry/quadraturerules.hh&gt;</code><br />
+<code>#include &lt;dune/localfefunctions/expressions/linearStrainsExpr.hh&gt;</code><br />
+<code>#include &lt;dune/localfefunctions/impl/standardLocalFunction.hh&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00299_source.html">ikarus/finiteelements/fehelper.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00314_source.html">ikarus/finiteelements/ferequirements.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00305_source.html">ikarus/finiteelements/feresulttypes.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a02861_source.html">ikarus/finiteelements/mechanics/materials.hh</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="a00293_source.html">ikarus/finiteelements/physicshelper.hh</a>&gt;</code><br />
 </div>
 <p><a href="a00284_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01348.html">Ikarus::FEFactory&lt; BH, SK, useFlat, useEigenRef &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="a01348.html" title="FEFactory is a convenient wrapper to forward arguments to PreFE and create and construct a factory of...">FEFactory</a> is a convenient wrapper to forward arguments to <a class="el" href="a01340.html" title="PreFE struct acts as a convenient wrapper for the FE class to access different type traits.">PreFE</a> and create and construct a factory of finite elements.  <a href="a01348.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01472.html">Ikarus::LinearElasticPre&lt; MAT &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <a class="el" href="a01340.html" title="PreFE struct acts as a convenient wrapper for the FE class to access different type traits.">PreFE</a> struct for linear elastic elements.  <a href="a01472.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a01468.html">Ikarus::LinearElastic&lt; PreFE, FE, PRE &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="a01468.html" title="LinearElastic class represents a linear elastic finite element.">LinearElastic</a> class represents a linear elastic finite element.  <a href="a01468.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -179,14 +191,10 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a59639a9a20f036a4f1c0794f65595662"><td class="memTemplParams" colspan="2">template&lt;bool useFlat = true, bool useEigenRef = false, typename BH , typename SK &gt; </td></tr>
-<tr class="memitem:a59639a9a20f036a4f1c0794f65595662"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00384.html#a59639a9a20f036a4f1c0794f65595662">Ikarus::makeFE</a> (const BH &amp;basisHandler, const SK &amp;sk)</td></tr>
-<tr class="memdesc:a59639a9a20f036a4f1c0794f65595662"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to create a finite element using the flat version of the basis.  <a href="a00384.html#a59639a9a20f036a4f1c0794f65595662">More...</a><br /></td></tr>
-<tr class="separator:a59639a9a20f036a4f1c0794f65595662"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa80712fed165a22f02670f195488fe5f"><td class="memTemplParams" colspan="2">template&lt;bool useEigenRef = false, typename BH , typename SK &gt; </td></tr>
-<tr class="memitem:aa80712fed165a22f02670f195488fe5f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00384.html#aa80712fed165a22f02670f195488fe5f">Ikarus::makeFEWithUnTouchedBasis</a> (const BH &amp;basisHandler, SK &amp;&amp;sk)</td></tr>
-<tr class="memdesc:aa80712fed165a22f02670f195488fe5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function to create a finite element using the untouched version of the basis.  <a href="a00384.html#aa80712fed165a22f02670f195488fe5f">More...</a><br /></td></tr>
-<tr class="separator:aa80712fed165a22f02670f195488fe5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9e2c0087fa5819ca15d064776034a6f"><td class="memTemplParams" colspan="2">template&lt;typename MAT &gt; </td></tr>
+<tr class="memitem:af9e2c0087fa5819ca15d064776034a6f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="a00384.html#af9e2c0087fa5819ca15d064776034a6f">Ikarus::linearElastic</a> (const MAT &amp;mat)</td></tr>
+<tr class="memdesc:af9e2c0087fa5819ca15d064776034a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A helper function to create a linear elastic pre finite element.  <a href="a00384.html#af9e2c0087fa5819ca15d064776034a6f">More...</a><br /></td></tr>
+<tr class="separator:af9e2c0087fa5819ca15d064776034a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -198,7 +206,7 @@ SPDX-License-Identifier: LGPL-3.0-or-later
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
     <ul>
-        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="a00284.html">fefactory.hh</a></li>
+        <li class="navelem"><a class="el" href="dir_5bec9ec6c6b8ab3f2f9d60d2ff21ed81.html">ikarus</a></li><li class="navelem"><a class="el" href="dir_f5e28093cb075fb92f2345f7d8607df6.html">finiteelements</a></li><li class="navelem"><a class="el" href="dir_d9d7fab038fcca5270fe0241ec433d4d.html">mechanics</a></li><li class="navelem"><a class="el" href="a00284.html">linearelastic.hh</a></li>
         <li class="footer">
             &copy; Copyright 2021-<script>document.write(new Date().getFullYear())</script> <a href="https://github.com/ikarus-project/ikarus/blob/main/LICENSE.md">Ikarus project contributors</a>
             (doc pages: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a> /

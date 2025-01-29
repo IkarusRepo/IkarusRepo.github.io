@@ -1,4 +1,5 @@
 var a02858 =
 [
-    [ "addMaterialsSubModule", "a00372.html#ga2c5ed0e112e5ea2865689ad21282c5e6", null ]
+    [ "Ikarus::CorrectStrainSize", "a01942.html", null ],
+    [ "hasCorrectSize", "a02858.html#ab6a92f48acd6be62f36b7f499491fc8a", null ]
 ];

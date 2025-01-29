@@ -1,11 +1,11 @@
 var a00320 =
 [
-    [ "DBCOption", "a00320.html#a9f83fad9f4c149f249165a13f2370eec", [
-      [ "BEGIN", "a00320.html#a9f83fad9f4c149f249165a13f2370eeca19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "Raw", "a00320.html#a9f83fad9f4c149f249165a13f2370eeca65e65c8ab0d8609ce12fc68a03cb8e00", null ],
-      [ "Reduced", "a00320.html#a9f83fad9f4c149f249165a13f2370eeca4335949a935758ca1b570689c3c6750b", null ],
-      [ "Full", "a00320.html#a9f83fad9f4c149f249165a13f2370eecabbd47109890259c0127154db1af26c75", null ],
-      [ "END", "a00320.html#a9f83fad9f4c149f249165a13f2370eecab1a326c06d88bf042f73d70f50197905", null ]
+    [ "DataTag", "a00320.html#af59748ac04116ae85cd64ea8675d273b", [
+      [ "BEGIN", "a00320.html#af59748ac04116ae85cd64ea8675d273ba19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "asCellData", "a00320.html#af59748ac04116ae85cd64ea8675d273ba358ac8d081a81d2a224773e362f76546", null ],
+      [ "asPointData", "a00320.html#af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b", null ],
+      [ "asCellAndPointData", "a00320.html#af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926", null ],
+      [ "END", "a00320.html#af59748ac04116ae85cd64ea8675d273bab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
-    [ "toString", "a00320.html#aef80b6b5b45dcfbea4f722f51a84f53f", null ]
+    [ "toString", "a00320.html#af96368dfca1767b52605f507c5fea4d5", null ]
 ];

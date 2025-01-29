@@ -1,68 +1,119 @@
-\hypertarget{a00206_source}{}\doxysection{controlvtkwriter.\+hh}
-\label{a00206_source}\index{controlvtkwriter.hh@{controlvtkwriter.hh}}
+\hypertarget{a00206_source}{}\doxysection{flatassembler.\+hh}
+\label{a00206_source}\index{flatassembler.hh@{flatassembler.hh}}
 \mbox{\hyperlink{a00206}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00203}{observer.hh}}"{}}}
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00200}{observermessages.hh}}"{}}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <string>}}
-\DoxyCodeLine{14 }
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/functions/gridfunctions/discreteglobalbasisfunction.hh>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/grid/io/file/vtk/subsamplingvtkwriter.hh>}}
-\DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#pragma GCC diagnostic push}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#pragma GCC diagnostic ignored "{}-\/Wswitch-\/enum"{}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00176}{ikarus/assembler/dirichletbcenforcement.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00314}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02876}{ikarus/utils/basis.hh}}>}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00398}{Ikarus::Python}} \{}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{30 \textcolor{keyword}{template} <\textcolor{keyword}{typename} B>}
-\DoxyCodeLine{31 \textcolor{keyword}{class }\mbox{\hyperlink{a01864}{ControlSubsamplingVertexVTKWriter}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01876}{IObserver}}<ControlMessages>}
-\DoxyCodeLine{32 \{}
-\DoxyCodeLine{33   \textcolor{keyword}{using }Basis                     = B;}
-\DoxyCodeLine{34   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} components = Basis::LocalView::Tree::degree() == 0 ? 1 : Basis::LocalView::Tree::degree();}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36 \textcolor{keyword}{public}:}
-\DoxyCodeLine{46   \mbox{\hyperlink{a01864_a1e07865751a32e0a1dd29e8f001babc3}{ControlSubsamplingVertexVTKWriter}}(\textcolor{keyword}{const} Basis\& \mbox{\hyperlink{a00410_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} Eigen::VectorXd\& sol, \textcolor{keywordtype}{int} refinementLevels = 0)}
-\DoxyCodeLine{47       : basis\_\{\&\mbox{\hyperlink{a00410_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}\},}
-\DoxyCodeLine{48         vtkWriter\_(\mbox{\hyperlink{a00410_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}.gridView(), \mbox{\hyperlink{a00404}{Dune}}::refinementLevels(refinementLevels)),}
-\DoxyCodeLine{49         solution\_\{\&sol\} \{\}}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{60   \textcolor{keyword}{auto} \mbox{\hyperlink{a01864_afec0c3fe2aa8cac3e9970d8c9720c219}{setFieldInfo}}(std::string\&\& name, Dune::VTK::FieldInfo::Type type, std::size\_t size,}
-\DoxyCodeLine{61                     Dune::VTK::Precision prec = Dune::VTK::Precision::float32) \{}
-\DoxyCodeLine{62     fieldInfo\_      = Dune::VTK::FieldInfo(std::move(name), type, size, prec);}
-\DoxyCodeLine{63     isFieldInfoSet\_ = \textcolor{keyword}{true};}
-\DoxyCodeLine{64   \}}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{71   \textcolor{keyword}{auto} \mbox{\hyperlink{a01864_a8061e516e4c6626a2f6ea160e692e4e1}{setFileNamePrefix}}(std::string\&\& name) \{ prefixString\_ = std::move(name); \}}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{81   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01864_a72b675b3fb4b0b2989b315e2a0337e44}{updateImpl}}(\mbox{\hyperlink{a00378_ga35fa62fd2d4186a9750af3d0692f2893}{ControlMessages}} message) \textcolor{keyword}{final} \{}
-\DoxyCodeLine{82     assert(isFieldInfoSet\_ \&\& \textcolor{stringliteral}{"{}You need to call setFieldInfo first!"{}});}
-\DoxyCodeLine{83     \textcolor{keywordflow}{switch} (message) \{}
-\DoxyCodeLine{84       \textcolor{keywordflow}{case} \mbox{\hyperlink{a00378_gga35fa62fd2d4186a9750af3d0692f2893a0d30d757bf062e88728ebe7f8e2b2577}{ControlMessages::SOLUTION\_CHANGED}}: \{}
-\DoxyCodeLine{85         \textcolor{keyword}{auto} disp = Dune::Functions::makeDiscreteGlobalBasisFunction<Dune::FieldVector<double, components>>(*basis\_,}
-\DoxyCodeLine{86                                                                                                             *solution\_);}
-\DoxyCodeLine{87         vtkWriter\_.addVertexData(disp, fieldInfo\_);}
-\DoxyCodeLine{88         vtkWriter\_.write(prefixString\_ + std::to\_string(step\_++));}
-\DoxyCodeLine{89       \} \textcolor{keywordflow}{break};}
-\DoxyCodeLine{90       \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{91         \textcolor{keywordflow}{break}; \textcolor{comment}{// default: do nothing when notified}}
-\DoxyCodeLine{92     \}}
-\DoxyCodeLine{93   \}}
-\DoxyCodeLine{94 }
-\DoxyCodeLine{95 \textcolor{keyword}{private}:}
-\DoxyCodeLine{96   \textcolor{keyword}{const} Basis* basis\_;}
-\DoxyCodeLine{97   Dune::SubsamplingVTKWriter<typename Basis::GridView> vtkWriter\_;}
-\DoxyCodeLine{98   \textcolor{keyword}{const} Eigen::VectorXd* solution\_;}
-\DoxyCodeLine{99   \textcolor{keywordtype}{int} step\_\{0\};}
-\DoxyCodeLine{100   Dune::VTK::FieldInfo fieldInfo\_\{\textcolor{stringliteral}{"{}Default"{}}, Dune::VTK::FieldInfo::Type::scalar, 1\};}
-\DoxyCodeLine{101   std::string prefixString\_\{\};}
-\DoxyCodeLine{102   \textcolor{keywordtype}{bool} isFieldInfoSet\_\{\textcolor{keyword}{false}\};}
-\DoxyCodeLine{103 \};}
-\DoxyCodeLine{104 \} \textcolor{comment}{// namespace Ikarus}}
-\DoxyCodeLine{105 \textcolor{preprocessor}{\#pragma GCC diagnostic pop}}
+\DoxyCodeLine{40 \textcolor{keyword}{template} <\textcolor{keyword}{class }Assembler, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{41 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00376_ga87d3c6e620be5df59ba6923751caae86}{registerFlatAssembler}}(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{}
+\DoxyCodeLine{42   \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{43   \textcolor{keyword}{using }FEContainer              = \textcolor{keyword}{typename} Assembler::FEContainer;}
+\DoxyCodeLine{44   \textcolor{keyword}{using }Basis                    = \textcolor{keyword}{typename} Assembler::Basis;}
+\DoxyCodeLine{45   \textcolor{keyword}{using }DirichletValuesType      = \textcolor{keyword}{typename} Assembler::DirichletValuesType;}
+\DoxyCodeLine{46   \textcolor{keyword}{using }AffordanceCollectionType = \textcolor{keyword}{typename} Assembler::AffordanceCollectionType;}
+\DoxyCodeLine{47   \textcolor{keyword}{using }FERequirementType        = \textcolor{keyword}{typename} Assembler::FERequirement;}
+\DoxyCodeLine{48   \textcolor{keyword}{using }SizeType                 = \textcolor{keyword}{typename} Assembler::SizeType;}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} pybind11::list\& fes, \textcolor{keyword}{const} DirichletValuesType\& \mbox{\hyperlink{a00411_a453691a9a22118c4736e30240481a281}{dirichletValues}}) \{}
+\DoxyCodeLine{51             \textcolor{comment}{/*here a copy of the whole vector of fes takes place! There is no way to prevent this if we want that}}
+\DoxyCodeLine{52 \textcolor{comment}{             * the user can pass native python lists here, see}}
+\DoxyCodeLine{53 \textcolor{comment}{             * https://pybind11.readthedocs.io/en/stable/advanced/cast/stl.html */}}
+\DoxyCodeLine{54             FEContainer fesV = fes.template cast<FEContainer>();}
+\DoxyCodeLine{55             \textcolor{keywordflow}{return} \textcolor{keyword}{new} Assembler(std::move(fesV), \mbox{\hyperlink{a00411_a453691a9a22118c4736e30240481a281}{dirichletValues}});}
+\DoxyCodeLine{56           \}),}
+\DoxyCodeLine{57           pybind11::keep\_alive<1, 3>());}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59   \textcolor{comment}{/* sparse matrices need to be copied to python therefore we remove the reference of the return type, see */}}
+\DoxyCodeLine{60   \textcolor{comment}{/*  https://github.com/pybind/pybind11/blob/cbb876cc7b02c5f57e715cbc2c46ead3d1fbcf79/tests/test\_eigen\_matrix.cpp\#L332-\/L341}}
+\DoxyCodeLine{61 \textcolor{comment}{   */}}
+\DoxyCodeLine{62   cls.def(}
+\DoxyCodeLine{63       \textcolor{stringliteral}{"{}matrix"{}},}
+\DoxyCodeLine{64       [](Assembler\& self, \textcolor{keyword}{const} FERequirementType\& req, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0}{Ikarus::MatrixAffordance}} affordance,}
+\DoxyCodeLine{65          \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{Ikarus::DBCOption}} dbcOption) -\/> std::remove\_cvref\_t<\textcolor{keyword}{decltype}(self.matrix(req, affordance))> \{}
+\DoxyCodeLine{66         \textcolor{keywordflow}{return} self.matrix(req, affordance, dbcOption);}
+\DoxyCodeLine{67       \},}
+\DoxyCodeLine{68       pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70   cls.def(}
+\DoxyCodeLine{71       \textcolor{stringliteral}{"{}matrix"{}}, [](Assembler\& self) -\/> std::remove\_cvref\_t<\textcolor{keyword}{decltype}(self.matrix())> \{ \textcolor{keywordflow}{return} self.matrix(); \},}
+\DoxyCodeLine{72       pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74   cls.def(}
+\DoxyCodeLine{75       \textcolor{stringliteral}{"{}matrix"{}},}
+\DoxyCodeLine{76       [](Assembler\& self, \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{Ikarus::DBCOption}} dbcOption) -\/> std::remove\_cvref\_t<\textcolor{keyword}{decltype}(self.matrix(dbcOption))> \{}
+\DoxyCodeLine{77         \textcolor{keywordflow}{return} self.matrix(dbcOption);}
+\DoxyCodeLine{78       \},}
+\DoxyCodeLine{79       pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81   cls.def(}
+\DoxyCodeLine{82       \textcolor{stringliteral}{"{}vector"{}},}
+\DoxyCodeLine{83       [](Assembler\& self, \textcolor{keyword}{const} FERequirementType\& req, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302a}{Ikarus::VectorAffordance}} affordance,}
+\DoxyCodeLine{84          \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{Ikarus::DBCOption}} dbcOption) \{ \textcolor{keywordflow}{return} self.vector(req, affordance, dbcOption); \},}
+\DoxyCodeLine{85       pybind11::return\_value\_policy::reference);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87   cls.def(\textcolor{stringliteral}{"{}vector"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.vector(); \}, pybind11::return\_value\_policy::reference);}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   cls.def(}
+\DoxyCodeLine{90       \textcolor{stringliteral}{"{}vector"{}}, [](Assembler\& self, \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{Ikarus::DBCOption}} dbcOption) \{ \textcolor{keywordflow}{return} self.vector(dbcOption); \},}
+\DoxyCodeLine{91       pybind11::return\_value\_policy::reference);}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93   cls.def(}
+\DoxyCodeLine{94       \textcolor{stringliteral}{"{}scalar"{}},}
+\DoxyCodeLine{95       [](Assembler\& self, \textcolor{keyword}{const} FERequirementType\& req, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2a}{Ikarus::ScalarAffordance}} affordance) \{}
+\DoxyCodeLine{96         \textcolor{keywordflow}{return} self.scalar(req, affordance);}
+\DoxyCodeLine{97       \},}
+\DoxyCodeLine{98       pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100   cls.def(\textcolor{stringliteral}{"{}scalar"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.scalar(); \}, pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102   cls.def(}
+\DoxyCodeLine{103       \textcolor{stringliteral}{"{}createFullVector"{}},}
+\DoxyCodeLine{104       [](Assembler\& self, Eigen::Ref<const Eigen::VectorXd> redVec) \{ \textcolor{keywordflow}{return} self.createFullVector(redVec); \},}
+\DoxyCodeLine{105       pybind11::return\_value\_policy::move);}
+\DoxyCodeLine{106   cls.def(\textcolor{stringliteral}{"{}reducedSize"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.reducedSize(); \}, pybind11::return\_value\_policy::copy);}
+\DoxyCodeLine{107   cls.def(\textcolor{stringliteral}{"{}bind"{}}, [](Assembler\& self, \textcolor{keyword}{const} FERequirementType\& req, AffordanceCollectionType affordance,}
+\DoxyCodeLine{108                      \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}} dbcOption = \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eecabbd47109890259c0127154db1af26c75}{DBCOption::Full}}) \{ \textcolor{keywordflow}{return} self.bind(req, affordance, dbcOption); \});}
+\DoxyCodeLine{109   cls.def(\textcolor{stringliteral}{"{}bind"{}}, [](Assembler\& self, \textcolor{keyword}{const} FERequirementType\& req) \{ \textcolor{keywordflow}{return} self.bind(req); \});}
+\DoxyCodeLine{110   cls.def(\textcolor{stringliteral}{"{}bind"{}}, [](Assembler\& self, \textcolor{keyword}{const} AffordanceCollectionType affordance) \{ \textcolor{keywordflow}{return} self.bind(affordance); \});}
+\DoxyCodeLine{111   cls.def(\textcolor{stringliteral}{"{}bind"{}}, [](Assembler\& self, \textcolor{keyword}{const} \mbox{\hyperlink{a00384_a9f83fad9f4c149f249165a13f2370eec}{DBCOption}} dbcOption) \{ \textcolor{keywordflow}{return} self.bind(dbcOption); \});}
+\DoxyCodeLine{112   cls.def(\textcolor{stringliteral}{"{}bound"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.bound(); \});}
+\DoxyCodeLine{113   cls.def(\textcolor{stringliteral}{"{}boundToRequirement"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.boundToRequirement(); \});}
+\DoxyCodeLine{114   cls.def(\textcolor{stringliteral}{"{}boundToAffordanceCollection"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.boundToAffordanceCollection(); \});}
+\DoxyCodeLine{115   cls.def(\textcolor{stringliteral}{"{}boundToDBCOption"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.boundToDBCOption(); \});}
+\DoxyCodeLine{116   cls.def(\textcolor{stringliteral}{"{}requirement"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.requirement(); \});}
+\DoxyCodeLine{117   cls.def(\textcolor{stringliteral}{"{}affordanceCollection"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.affordanceCollection(); \});}
+\DoxyCodeLine{118   cls.def(\textcolor{stringliteral}{"{}dBCOption"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.dBCOption(); \});}
+\DoxyCodeLine{119   cls.def\_property\_readonly(\textcolor{stringliteral}{"{}size"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.size(); \});}
+\DoxyCodeLine{120   cls.def(\textcolor{stringliteral}{"{}\_\_len\_\_"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.size(); \});}
+\DoxyCodeLine{121   cls.def(\textcolor{stringliteral}{"{}constraintsBelow"{}}, [](Assembler\& self, SizeType i) \{ \textcolor{keywordflow}{return} self.constraintsBelow(i); \});}
+\DoxyCodeLine{122   cls.def(\textcolor{stringliteral}{"{}isConstrained"{}}, [](Assembler\& self, SizeType i) \{ \textcolor{keywordflow}{return} self.isConstrained(i); \});}
+\DoxyCodeLine{123   cls.def\_property\_readonly(\textcolor{stringliteral}{"{}gridView"{}}, [](Assembler\& self) \{ \textcolor{keywordflow}{return} self.gridView(); \});}
+\DoxyCodeLine{124 \}}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#define MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION(name)                                              \(\backslash\)}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{  template <class Assembler, class... options>                                               \(\backslash\)}}
+\DoxyCodeLine{128 \textcolor{preprocessor}{  void register\#\#name(pybind11::handle scope, pybind11::class\_<Assembler, options...> cls) \{ \(\backslash\)}}
+\DoxyCodeLine{129 \textcolor{preprocessor}{    registerFlatAssembler(scope, cls);                                                       \(\backslash\)}}
+\DoxyCodeLine{130 \textcolor{preprocessor}{  \}}}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \mbox{\hyperlink{a00206_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01288}{SparseFlatAssembler}});}
+\DoxyCodeLine{133 \mbox{\hyperlink{a00206_adda74d8564a01c0a9851a4379308a8b2}{MAKE\_ASSEMBLER\_REGISTERY\_FUNCTION}}(\mbox{\hyperlink{a01292}{DenseFlatAssembler}});}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}

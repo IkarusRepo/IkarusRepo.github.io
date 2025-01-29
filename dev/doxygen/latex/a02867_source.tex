@@ -1,42 +1,169 @@
-\hypertarget{a02867_source}{}\doxysection{python/basis/basis.hh}
-\label{a02867_source}\index{basis.hh@{basis.hh}}
+\hypertarget{a02867_source}{}\doxysection{io/vtkwriter.hh}
+\label{a02867_source}\index{vtkwriter.hh@{vtkwriter.hh}}
 \mbox{\hyperlink{a02867}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/lagrangebasis.hh>}}
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/functions/functionspacebases/powerbasis.hh>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/grid/yaspgrid.hh>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <dune/python/pybind11/functional.h>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00296}{ikarus/finiteelements/ferequirements.hh}}>}}
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02870}{ikarus/utils/basis.hh}}>}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00398}{Ikarus::Python}} \{}
-\DoxyCodeLine{24 }
-\DoxyCodeLine{36 \textcolor{keyword}{template} <\textcolor{keyword}{class }BasisHandler, \textcolor{keyword}{class}... options>}
-\DoxyCodeLine{37 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00376_ga2f6146bb687ad25cfb413fbcfd470788}{registerBasisHandler}}(pybind11::handle scope, pybind11::class\_<BasisHandler, options...> cls) \{}
-\DoxyCodeLine{38   \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00320}{vtkdatatag.hh}}"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <array>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <tuple>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}dune/functions/functionspacebases/powerbasis.hh"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}dune/functions/functionspacebases/subspacebasis.hh"{}}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <dune/common/fvector.hh>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <dune/functions/gridfunctions/discreteglobalbasisfunction.hh>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <dune/grid/yaspgrid.hh>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <dune/vtk/vtkwriter.hh>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <dune/vtk/writers/unstructuredgridwriter.hh>}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00323}{ikarus/io/resultfunction.hh}}>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00047}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00394}{Ikarus::Vtk}} \{}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{32   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Container>}
+\DoxyCodeLine{33   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} sizeOfContainer = []() \{}
+\DoxyCodeLine{34     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\textcolor{keyword}{requires} \{ std::tuple\_size<Container>::value; \})}
+\DoxyCodeLine{35       \textcolor{keywordflow}{return} std::tuple\_size<Container>::value;}
+\DoxyCodeLine{36     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} 1ul;}
+\DoxyCodeLine{38   \}();}
 \DoxyCodeLine{39 }
-\DoxyCodeLine{40   \textcolor{keyword}{using }GridView       = \textcolor{keyword}{typename} \mbox{\hyperlink{a01744_adcbd72244406be4bb8ad7b547dd856cc}{BasisHandler::GridView}};}
-\DoxyCodeLine{41   \textcolor{keyword}{using }PreBasis       = \textcolor{keyword}{typename} \mbox{\hyperlink{a01744_af1f06693a1efdf8ecdc58d9d52493a28}{BasisHandler::PreBasis}};}
-\DoxyCodeLine{42   \textcolor{keyword}{using }UntouchedBasis = \textcolor{keyword}{typename} \mbox{\hyperlink{a01744_a27e6a76ae18f154cc833c1b4ecafd35b}{BasisHandler::UntouchedBasis}};}
-\DoxyCodeLine{43   \textcolor{keyword}{using }FlatBasis      = \textcolor{keyword}{typename} \mbox{\hyperlink{a01744_a7252e605123456ef454c811cfb364bba}{BasisHandler::FlatBasis}};}
-\DoxyCodeLine{44 }
-\DoxyCodeLine{45   cls.def(\mbox{\hyperlink{a00384_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} UntouchedBasis\& gb) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01744}{BasisHandler}}(gb.preBasis()); \}));}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47   cls.def(\textcolor{stringliteral}{"{}flat"{}}, [](\mbox{\hyperlink{a01744}{BasisHandler}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01744_a259a6b38e59d58970716c03ac511d3c5}{flat}}(); \}, pybind11::return\_value\_policy::reference);}
-\DoxyCodeLine{48 }
-\DoxyCodeLine{49   cls.def(\textcolor{stringliteral}{"{}untouched"{}}, [](\mbox{\hyperlink{a01744}{BasisHandler}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01744_aa3e286f5563f510fc4b0eaa005eb0a2b}{untouched}}(); \}, pybind11::return\_value\_policy::reference);}
-\DoxyCodeLine{50 \}}
+\DoxyCodeLine{40   \textcolor{keyword}{template} <\textcolor{keyword}{class} PreBasis>}
+\DoxyCodeLine{41   \textcolor{keyword}{struct }ResultContainerPre}
+\DoxyCodeLine{42   \{}
+\DoxyCodeLine{43     \textcolor{keyword}{using }type = double;}
+\DoxyCodeLine{44   \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46   \textcolor{keyword}{template} <\textcolor{keyword}{class} Basis>}
+\DoxyCodeLine{47   \textcolor{keyword}{struct }ResultContainer}
+\DoxyCodeLine{48   \{}
+\DoxyCodeLine{49     \textcolor{keyword}{using }type = ResultContainerPre<typename Basis::PreBasis>::type;}
+\DoxyCodeLine{50   \};}
 \DoxyCodeLine{51 }
-\DoxyCodeLine{52 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{52   \textcolor{keyword}{template} <\textcolor{keyword}{class} RB, \textcolor{keyword}{class} PP>}
+\DoxyCodeLine{53   \textcolor{keyword}{struct }ResultContainer<\mbox{\hyperlink{a00404}{Dune}}::Functions::SubspaceBasis<RB, PP>>}
+\DoxyCodeLine{54   \{}
+\DoxyCodeLine{55     \textcolor{keyword}{using }type = double;}
+\DoxyCodeLine{56   \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keyword}{template} <\textcolor{keyword}{class} Basis>}
+\DoxyCodeLine{59   \textcolor{keyword}{using }ResultContainer\_t = \textcolor{keyword}{typename} ResultContainer<Basis>::type;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{comment}{// specialization for power basis}}
+\DoxyCodeLine{62   \textcolor{keyword}{template} <\textcolor{keyword}{class} IMS, \textcolor{keyword}{class} SPB, std::\textcolor{keywordtype}{size\_t} size>}
+\DoxyCodeLine{63   \textcolor{keyword}{struct }ResultContainerPre<\mbox{\hyperlink{a00404}{Dune}}::Functions::PowerPreBasis<IMS, SPB, size>>}
+\DoxyCodeLine{64   \{}
+\DoxyCodeLine{65     \textcolor{keyword}{using }type = std::array<typename ResultContainerPre<SPB>::type, size>;}
+\DoxyCodeLine{66   \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{78 \textcolor{keyword}{template} <\textcolor{keyword}{typename} AS, \textcolor{keyword}{typename} DC, \textcolor{keyword}{typename} Base>}
+\DoxyCodeLine{79 \textcolor{keyword}{requires}(Concepts::FlatAssembler<AS> \&\& Concepts::DataCollector<DC>)}
+\DoxyCodeLine{80 \textcolor{keyword}{struct} \mbox{\hyperlink{a01636}{Writer}} : \textcolor{keyword}{public} Base}
+\DoxyCodeLine{81 \{}
+\DoxyCodeLine{82 \textcolor{keyword}{public}:}
+\DoxyCodeLine{83   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_a48666f99819393e871c84b4f4bd4b816}{Assembler}}     = AS;}
+\DoxyCodeLine{84   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_aadd66859407a6b1a5d7604e693348c00}{GridView}}      = \textcolor{keyword}{typename} Assembler::GridView;}
+\DoxyCodeLine{85   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_af943a6fe7f917d909b06aaace360c129}{FERequirement}} = \textcolor{keyword}{typename} Assembler::FERequirement;}
+\DoxyCodeLine{86   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_aaac8aafaef3b80c862dd57fbf7b97279}{FEContainer}}   = \textcolor{keyword}{typename} Assembler::FEContainer;}
+\DoxyCodeLine{87   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_a3a3fcd008921213a40a189cf5c947a08}{FEType}}        = \textcolor{keyword}{typename} std::remove\_cvref\_t<FEContainer>::value\_type;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_a700ee4a5f71f8985ee7e4364372c6895}{DataCollector}} = DC;}
+\DoxyCodeLine{90   \textcolor{keyword}{using }\mbox{\hyperlink{a01636_a7e43687c38b914c1c3805c0ebefff9bd}{VTKWriter}}     = Base;}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{98   \textcolor{keyword}{template} <\textcolor{keyword}{class}... Args>}
+\DoxyCodeLine{99   \mbox{\hyperlink{a01636_a7f632eb9736d0518bfccc57782911611}{Writer}}(std::shared\_ptr<AS> assembler, Args... args)}
+\DoxyCodeLine{100       : Base(assembler-\/>gridView(), \mbox{\hyperlink{a00383}{std}}::forward<Args>(args)...),}
+\DoxyCodeLine{101         assembler\_(assembler) \{\}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{110   \textcolor{keyword}{template} <\textcolor{keyword}{typename} DC\_, \textcolor{keyword}{class}... Args>}
+\DoxyCodeLine{111   \textcolor{keyword}{requires} \mbox{\hyperlink{a01978}{Concepts::DataCollector<std::decay\_t<DC\_>}}>}
+\DoxyCodeLine{112   \mbox{\hyperlink{a01636_a2bd5df12f7819102911d2ec09ce8a977}{Writer}}(std::shared\_ptr<AS> assembler, DC\_\&\& dc, Args... args)}
+\DoxyCodeLine{113       : Base(\mbox{\hyperlink{a00383}{std}}::forward<\mbox{\hyperlink{a00383}{std}}::decay\_t<DC\_>>(dc), \mbox{\hyperlink{a00383}{std}}::forward<Args>(args)...),}
+\DoxyCodeLine{114         assembler\_(assembler) \{\}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{123   \textcolor{keyword}{template} <\textcolor{keyword}{typename} RF>}
+\DoxyCodeLine{124   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01636_a658290b81fbe3d75d228ea393f5a6d47}{addResultFunction}}(RF\&\& resultFunction, \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273b}{DataTag}} dataTag = \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}}) \{}
+\DoxyCodeLine{125     \textcolor{keywordflow}{if} (dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba358ac8d081a81d2a224773e362f76546}{DataTag::asCellData}} or dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926}{DataTag::asCellAndPointData}})}
+\DoxyCodeLine{126       Base::addCellData(std::forward<RF>(resultFunction));}
+\DoxyCodeLine{127     \textcolor{keywordflow}{if} (dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}} or dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926}{DataTag::asCellAndPointData}})}
+\DoxyCodeLine{128       Base::addPointData(std::forward<RF>(resultFunction));}
+\DoxyCodeLine{129   \}}
+\DoxyCodeLine{130 }
+\DoxyCodeLine{137   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT, \textcolor{keyword}{typename} UserFunction = Ikarus::Impl::DefaultUserFunction>}
+\DoxyCodeLine{138   \textcolor{keyword}{requires}(\mbox{\hyperlink{a01973}{Concepts::ResultType<RT>}})}
+\DoxyCodeLine{139   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01636_a80776ad077f50b77de658392cb8736fe}{addResult}}(\mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273b}{DataTag}} dataTag = \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}}, UserFunction\&\& userFunction = \{\}) \{}
+\DoxyCodeLine{140     \textcolor{keyword}{auto} resFunction = makeResultVtkFunction<RT>(assembler\_, std::forward<UserFunction>(userFunction));}
+\DoxyCodeLine{141     addResultFunction(std::move(resFunction), dataTag);}
+\DoxyCodeLine{142   \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{149   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01636_a1e3b740ff000dacda0ade44cc0646d9d}{addAllResults}}(\mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273b}{DataTag}} dataTag = \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}}) \{}
+\DoxyCodeLine{150     \textcolor{keyword}{using }ResultTuple = \textcolor{keyword}{typename} FEType::SupportedResultTypes;}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152     Dune::Hybrid::forEach(ResultTuple(), [\&]<\textcolor{keyword}{typename} RT>(RT i) \{ addResult<RT::template Rebind>(dataTag); \});}
+\DoxyCodeLine{153   \}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{168   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Basis, \textcolor{keyword}{typename} R>}
+\DoxyCodeLine{169   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01636_a40effe127a60fe7ae01bb7511a581d08}{addInterpolation}}(R\&\& vals, \textcolor{keyword}{const} Basis\& \mbox{\hyperlink{a00410_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, \textcolor{keyword}{const} std::string\& name, \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273b}{DataTag}} dataTag = \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}}) \{}
+\DoxyCodeLine{170     \textcolor{keyword}{using }Container = Impl::ResultContainer\_t<Basis>;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keyword}{auto} gridFunction = Dune::Functions::makeDiscreteGlobalBasisFunction<Container>(\mbox{\hyperlink{a00410_a0f9f04fa9d98e890cb6d4fe62ff889a4}{basis}}, std::forward<R>(vals));}
+\DoxyCodeLine{173     \textcolor{keyword}{auto} fieldInfo    = Dune::Vtk::FieldInfo(name, Impl::sizeOfContainer<Container>);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keywordflow}{if} (dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba358ac8d081a81d2a224773e362f76546}{DataTag::asCellData}} or dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926}{DataTag::asCellAndPointData}})}
+\DoxyCodeLine{176       Base::addCellData(std::move(gridFunction), fieldInfo);}
+\DoxyCodeLine{177     \textcolor{keywordflow}{if} (dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b}{DataTag::asPointData}} or dataTag == \mbox{\hyperlink{a00394_af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926}{DataTag::asCellAndPointData}})}
+\DoxyCodeLine{178       Base::addPointData(std::move(gridFunction), fieldInfo);}
+\DoxyCodeLine{179   \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{keyword}{private}:}
+\DoxyCodeLine{182   std::shared\_ptr<Assembler> assembler\_;}
+\DoxyCodeLine{183 \};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{190 \textcolor{keyword}{template} <\textcolor{keyword}{typename} G>}
+\DoxyCodeLine{191 \textcolor{keyword}{struct }\mbox{\hyperlink{a01640}{IsStructured}} : std::false\_type}
+\DoxyCodeLine{192 \{}
+\DoxyCodeLine{193 \};}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{198 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} dim, \textcolor{keyword}{typename} Coordinates>}
+\DoxyCodeLine{199 \textcolor{keyword}{struct }\mbox{\hyperlink{a01640}{IsStructured}}<\mbox{\hyperlink{a00404}{Dune}}::YaspGrid<dim, Coordinates>> : std::true\_type}
+\DoxyCodeLine{200 \{}
+\DoxyCodeLine{201 \};}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{208 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GV>}
+\DoxyCodeLine{209 \textcolor{keyword}{requires} \mbox{\hyperlink{a01979}{Concepts::GridView<GV>}}}
+\DoxyCodeLine{210 \textcolor{keyword}{struct }\mbox{\hyperlink{a01648}{DefaultVTKWriterManager}}}
+\DoxyCodeLine{211 \{}
+\DoxyCodeLine{212   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01648_aab70186996e55b41bd657d71789541c1}{isStructured}} = \mbox{\hyperlink{a01640}{IsStructured<typename GV::Grid>::value}};}
+\DoxyCodeLine{213   \textcolor{keyword}{using }\mbox{\hyperlink{a01648_ab9e11e450e83e9c543ede585890c55d0}{DefaultDataCollector}} =}
+\DoxyCodeLine{214       std::conditional\_t<isStructured, Dune::Vtk::YaspDataCollector<GV>, Dune::Vtk::ContinuousDataCollector<GV>>;}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216   \textcolor{keyword}{template} <\textcolor{keyword}{typename} DC = DefaultDataCollector>}
+\DoxyCodeLine{217   \textcolor{keyword}{using }\mbox{\hyperlink{a01648_ab81f859a7f02f174a9493d28b1be52a4}{DefaultVTKWriter}} = std::conditional\_t<isStructured, Dune::Vtk::RectilinearGridWriter<typename DC::GridView, DC>,}
+\DoxyCodeLine{218                                               Dune::Vtk::UnstructuredGridWriter<typename DC::GridView, DC>>;}
+\DoxyCodeLine{219 \};}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221 \textcolor{comment}{// Class template argument deduction guides for VTK::Writer}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 \textcolor{keyword}{template} <\textcolor{keyword}{typename} AS, \textcolor{keyword}{class}... Args>}
+\DoxyCodeLine{224 \textcolor{keyword}{requires}(\mbox{\hyperlink{a01974}{Ikarus::Concepts::FlatAssembler<AS>}})}
+\DoxyCodeLine{225 \mbox{\hyperlink{a00394_a6b54a4966e54b45e51358c7b7877a5b5}{Writer}}(std::shared\_ptr<AS>,}
+\DoxyCodeLine{226        Args...) -\/> \mbox{\hyperlink{a01636}{Writer<AS, typename DefaultVTKWriterManager<typename AS::GridView>::DefaultDataCollector}},}
+\DoxyCodeLine{227                           \textcolor{keyword}{typename} \mbox{\hyperlink{a01648}{DefaultVTKWriterManager<typename AS::GridView>::template}} DefaultVTKWriter<>>;}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 \textcolor{keyword}{template} <\textcolor{keyword}{typename} AS, \textcolor{keyword}{typename} DC, \textcolor{keyword}{class}... Args, Dune::Vtk::IsDataCollector<std::decay\_t<DC>> = \textcolor{keyword}{true}>}
+\DoxyCodeLine{230 \textcolor{keyword}{requires}(\mbox{\hyperlink{a01974}{Ikarus::Concepts::FlatAssembler<AS>}})}
+\DoxyCodeLine{231 \mbox{\hyperlink{a00394_a6b54a4966e54b45e51358c7b7877a5b5}{Writer}}(std::shared\_ptr<AS>, DC\&\&, Args...)}
+\DoxyCodeLine{232     -\/> \mbox{\hyperlink{a01636}{Writer<AS, std::decay\_t<DC>}},}
+\DoxyCodeLine{233               \textcolor{keyword}{typename} \mbox{\hyperlink{a01648}{DefaultVTKWriterManager<typename AS::GridView>::template}} DefaultVTKWriter<std::decay\_t<DC>>>;}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \} \textcolor{comment}{// namespace Ikarus::Vtk}}
 
 \end{DoxyCode}

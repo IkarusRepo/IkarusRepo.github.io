@@ -1,6 +1,5 @@
 var a00317 =
 [
-    [ "Ikarus::ScalarManipulator< Wrapper, Assembler >", "a01232.html", "a01232" ],
-    [ "Ikarus::VectorManipulator< Wrapper, Assembler >", "a01236.html", "a01236" ],
-    [ "Ikarus::MatrixManipulator< Wrapper, Assembler >", "a01240.html", "a01240" ]
+    [ "Ikarus::PreFE< BH, useFlat, useEigenRef >", "a01340.html", "a01340" ],
+    [ "Ikarus::FE< PreFE, Skills >", "a01336.html", "a01336" ]
 ];

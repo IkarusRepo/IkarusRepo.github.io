@@ -1,7 +1,4 @@
 var a00008 =
 [
-    [ "functions", "a00008.html#ab787b670f0d338c870988f417cf85f76", null ],
-    [ "initResults", "a00008.html#ab346d8d79af81fa5312a67cd8b4e6d9a", null ],
-    [ "NonLinearOperator", "a00008.html#abcf5978fa18a6e0aadc5e19c4a0edaa9", null ],
-    [ "parameter", "a00008.html#ac00abda505aa8ccc73ce59afd165ce49", null ]
+    [ "findLineSegment", "a00008.html#ga16e7d5f51cc42190c090e727495c1609", null ]
 ];

@@ -1,99 +1,149 @@
-\hypertarget{a00233_source}{}\doxysection{easvariants.\+hh}
-\label{a00233_source}\index{easvariants.hh@{easvariants.hh}}
+\hypertarget{a00233_source}{}\doxysection{traction.\+hh}
+\label{a00233_source}\index{traction.hh@{traction.hh}}
 \mbox{\hyperlink{a00233}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/fufem/boundarypatch.hh>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/localfefunctions/derivativetransformators.hh>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <dune/localfefunctions/meta.hh>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00314}{ikarus/finiteelements/ferequirements.hh}}>}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00218}{ikarus/finiteelements/mechanics/eas/eas2d.hh}}>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00221}{ikarus/finiteelements/mechanics/eas/eas3d.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00391}{Ikarus::EAS}} \{}
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{26   \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
-\DoxyCodeLine{27   \textcolor{keyword}{struct }Variants}
-\DoxyCodeLine{28   \{}
-\DoxyCodeLine{29     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} worldDim = GEO::coorddimension;}
-\DoxyCodeLine{30     \textcolor{keyword}{static\_assert}((worldDim == 2) or (worldDim == 3), \textcolor{stringliteral}{"{}EAS variants are only available 2D and 3D elements."{}});}
-\DoxyCodeLine{31 }
-\DoxyCodeLine{33     \textcolor{keyword}{using }EAS2D = std::variant<E0<GEO>, Q1E4<GEO>, Q1E5<GEO>, Q1E7<GEO>>;}
+\DoxyCodeLine{12 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{15 \textcolor{keyword}{class }Traction;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{21 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GV>}
+\DoxyCodeLine{22 \textcolor{keyword}{struct }\mbox{\hyperlink{a01480}{NeumannBoundaryLoadPre}}}
+\DoxyCodeLine{23 \{}
+\DoxyCodeLine{24   \textcolor{keyword}{using }\mbox{\hyperlink{a01480_a57f15a0941a7f2f5cd9be9365b07cc62}{GridView}}                = GV;}
+\DoxyCodeLine{25   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01480_a30ab2377a70a599a759395ddbe87c162}{worldDim}} = GridView::dimensionworld;}
+\DoxyCodeLine{26   \textcolor{keyword}{const} BoundaryPatch<GridView>* \mbox{\hyperlink{a01480_a7041712ee512583c44a163cafc33787f}{neumannBoundary}};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, worldDim>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)> \mbox{\hyperlink{a01480_abcca43aca1a4a4bcad580991d79b80e9}{load}};}
+\DoxyCodeLine{29   \textcolor{keyword}{using }\mbox{\hyperlink{a01480_ab141e7f54614dccc0924c0bf678760d4}{BoundaryPatchType}} = BoundaryPatch<GridView>;}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31   \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01476}{Skill}} = \mbox{\hyperlink{a01476}{Traction<PreFE, FE>}};}
+\DoxyCodeLine{33 \};}
 \DoxyCodeLine{34 }
-\DoxyCodeLine{36     \textcolor{keyword}{using }EAS3D = std::variant<E0<GEO>, H1E9<GEO>, H1E21<GEO>>;}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{39     \textcolor{keyword}{using }type = std::conditional\_t<worldDim == 2, EAS2D, EAS3D>;}
-\DoxyCodeLine{40   \};}
-\DoxyCodeLine{41 }
-\DoxyCodeLine{46   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Geometry>}
-\DoxyCodeLine{47   \textcolor{keyword}{struct }EASVariant}
-\DoxyCodeLine{48   \{}
-\DoxyCodeLine{49     \textcolor{keyword}{using }Variant = Impl::Variants<Geometry>::type;}
-\DoxyCodeLine{50 }
-\DoxyCodeLine{56     \textcolor{keyword}{template} <\textcolor{keyword}{typename} F>}
-\DoxyCodeLine{57     \textcolor{keywordtype}{void} operator()(F\&\& f)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{58       std::visit(}
-\DoxyCodeLine{59           [\&]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\& easFunction) \{}
-\DoxyCodeLine{60             \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (EAST::enhancedStrainSize != 0)}
-\DoxyCodeLine{61               f(easFunction);}
-\DoxyCodeLine{62           \},}
-\DoxyCodeLine{63           var\_);}
-\DoxyCodeLine{64     \}}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{66     \textcolor{keyword}{auto} numberOfEASParameters()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{67       \textcolor{keywordflow}{return} std::visit([]<\textcolor{keyword}{typename} EAST>(\textcolor{keyword}{const} EAST\&) -\/> \textcolor{keywordtype}{int} \{ \textcolor{keywordflow}{return} EAST::enhancedStrainSize; \}, var\_);}
-\DoxyCodeLine{68     \}}
-\DoxyCodeLine{69     \textcolor{keywordtype}{bool} isDisplacmentBased()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} numberOfEASParameters() == 0; \}}
-\DoxyCodeLine{70     \textcolor{keywordtype}{void} setEASType(\textcolor{keywordtype}{int} numberOfEASParameters) \{}
-\DoxyCodeLine{71       numberOfEASParameters\_ = numberOfEASParameters;}
-\DoxyCodeLine{72       \textcolor{keywordflow}{if} (geometry\_)}
-\DoxyCodeLine{73         createEASType();}
-\DoxyCodeLine{74     \}}
-\DoxyCodeLine{75     \textcolor{keywordtype}{void} bind(\textcolor{keyword}{const} Geometry\& geometry) \{}
-\DoxyCodeLine{76       geometry\_ = std::make\_optional<Geometry>(geometry);}
-\DoxyCodeLine{77       createEASType();}
-\DoxyCodeLine{78     \}}
-\DoxyCodeLine{79 }
-\DoxyCodeLine{80   \textcolor{keyword}{private}:}
-\DoxyCodeLine{81     \textcolor{keywordtype}{void} createEASType() \{}
-\DoxyCodeLine{82       \textcolor{keywordflow}{if} (numberOfEASParameters\_ == 0) \{}
-\DoxyCodeLine{83         var\_ = E0(geometry\_.value());}
-\DoxyCodeLine{84         \textcolor{keywordflow}{return};}
-\DoxyCodeLine{85       \}}
-\DoxyCodeLine{86 }
-\DoxyCodeLine{87       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 2) \{}
-\DoxyCodeLine{88         \textcolor{keywordflow}{switch} (numberOfEASParameters\_) \{}
-\DoxyCodeLine{89           \textcolor{keywordflow}{case} 4:}
-\DoxyCodeLine{90             var\_ = Q1E4(geometry\_.value());}
-\DoxyCodeLine{91             \textcolor{keywordflow}{break};}
-\DoxyCodeLine{92           \textcolor{keywordflow}{case} 5:}
-\DoxyCodeLine{93             var\_ = Q1E5(geometry\_.value());}
-\DoxyCodeLine{94             \textcolor{keywordflow}{break};}
-\DoxyCodeLine{95           \textcolor{keywordflow}{case} 7:}
-\DoxyCodeLine{96             var\_ = Q1E7(geometry\_.value());}
-\DoxyCodeLine{97             \textcolor{keywordflow}{break};}
-\DoxyCodeLine{98           \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{99             DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 2D case."{}});}
-\DoxyCodeLine{100         \}}
-\DoxyCodeLine{101       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Geometry::mydimension == 3) \{}
-\DoxyCodeLine{102         \textcolor{keywordflow}{switch} (numberOfEASParameters\_) \{}
-\DoxyCodeLine{103           \textcolor{keywordflow}{case} 9:}
-\DoxyCodeLine{104             var\_ = H1E9(geometry\_.value());}
-\DoxyCodeLine{105             \textcolor{keywordflow}{break};}
-\DoxyCodeLine{106           \textcolor{keywordflow}{case} 21:}
-\DoxyCodeLine{107             var\_ = H1E21(geometry\_.value());}
-\DoxyCodeLine{108             \textcolor{keywordflow}{break};}
-\DoxyCodeLine{109           \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{110             DUNE\_THROW(Dune::NotImplemented, \textcolor{stringliteral}{"{}The given EAS parameters are not available for the 3D case."{}});}
-\DoxyCodeLine{111         \}}
-\DoxyCodeLine{112       \}}
-\DoxyCodeLine{113     \}}
-\DoxyCodeLine{114     std::optional<Geometry> geometry\_;}
-\DoxyCodeLine{115     Variant var\_;}
-\DoxyCodeLine{116     \textcolor{keywordtype}{int} numberOfEASParameters\_;}
-\DoxyCodeLine{117   \};}
-\DoxyCodeLine{118 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{119 \} \textcolor{comment}{// namespace Ikarus::EAS}}
+\DoxyCodeLine{43 \textcolor{keyword}{template} <\textcolor{keyword}{typename} PreFE, \textcolor{keyword}{typename} FE>}
+\DoxyCodeLine{44 \textcolor{keyword}{class }\mbox{\hyperlink{a01476}{Traction}}}
+\DoxyCodeLine{45 \{}
+\DoxyCodeLine{46 \textcolor{keyword}{public}:}
+\DoxyCodeLine{47   \textcolor{keyword}{using }\mbox{\hyperlink{a01408}{Traits}} = \mbox{\hyperlink{a01340_a826c356a5afb013faffb5f7ac893cff4}{PreFE::Traits}};}
+\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01368}{Requirement}} =}
+\DoxyCodeLine{49       \mbox{\hyperlink{a01368}{FERequirementsFactory<FESolutions::displacement, FEParameter::loadfactor, Traits::useEigenRef>::type}};}
+\DoxyCodeLine{50   \textcolor{keyword}{using }\mbox{\hyperlink{a01476_a16ae410689450d27c7fe33618c65eff5}{LocalView}}               = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a06bdad066f621e46875af45a22677a3c}{Traits::LocalView}};}
+\DoxyCodeLine{51   \textcolor{keyword}{using }\mbox{\hyperlink{a01476_a1ad8822c3690b4d9b7fa07998d581551}{GridView}}                = \textcolor{keyword}{typename} \mbox{\hyperlink{a01408_a3ec0294824df467074f5070cb58f5a91}{Traits::GridView}};}
+\DoxyCodeLine{52   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01476_a9867415553291c23807ce946f1e33b2f}{myDim}}    = \mbox{\hyperlink{a01408_ae15b8efa9f66a3caee81d99dd5c648de}{Traits::mydim}};}
+\DoxyCodeLine{53   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01476_aae1169ffc7dc4ba675566010710a6bd1}{worldDim}} = \mbox{\hyperlink{a01408_a5d611e1d48285bac5c5ebd6fda9c7cc7}{Traits::worlddim}};}
+\DoxyCodeLine{54   \textcolor{keyword}{using }\mbox{\hyperlink{a01480}{Pre}}                     = \mbox{\hyperlink{a01480}{NeumannBoundaryLoadPre<GridView>}};}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{61   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01476_ae5de3515f363e3e48877175fe53cdb27}{Traction}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01480}{Pre}}\& pre)}
+\DoxyCodeLine{62       : neumannBoundaryLoad\_\{pre.load\},}
+\DoxyCodeLine{63         neumannBoundary\_\{pre.neumannBoundary\} \{\}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{66   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
+\DoxyCodeLine{67   \textcolor{keyword}{requires} Dune::AlwaysFalse<RT<double, 1, 1>>::value}
+\DoxyCodeLine{68   \textcolor{keyword}{auto} \mbox{\hyperlink{a01476_aee928b8c9bd09b4aa6d8e571d410d909}{calculateAtImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& req, \textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, Traits::mydim>}}\& local,}
+\DoxyCodeLine{69                        Dune::PriorityTag<0>)\textcolor{keyword}{ const }\{\}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{72   \textcolor{keyword}{auto} \mbox{\hyperlink{a01476_ae250d2db37fa9808a61e78ff740f81ee}{calculateScalarImpl}}(}
+\DoxyCodeLine{73       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& par, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2a}{ScalarAffordance}} affordance,}
+\DoxyCodeLine{74       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt) \textcolor{keyword}{const} -\/> ST \{}
+\DoxyCodeLine{75     \textcolor{keywordflow}{if} (not neumannBoundary\_ and not neumannBoundaryLoad\_)}
+\DoxyCodeLine{76       \textcolor{keywordflow}{return} 0.0;}
+\DoxyCodeLine{77     ST energy            = 0.0;}
+\DoxyCodeLine{78     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = underlying().displacementFunction(par, dx);}
+\DoxyCodeLine{79     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.parameter();}
+\DoxyCodeLine{80     \textcolor{keyword}{auto}\& element        = underlying().localView().element();}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& intersection : intersections(neumannBoundary\_-\/>gridView(), element)) \{}
+\DoxyCodeLine{83       \textcolor{keywordflow}{if} (not neumannBoundary\_-\/>contains(intersection))}
+\DoxyCodeLine{84         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& quadLine = Dune::QuadratureRules<double, myDim -\/ 1>::rule(intersection.type(), underlying().order());}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& curQuad : quadLine) \{}
+\DoxyCodeLine{89         \textcolor{comment}{// Local position of the quadrature point}}
+\DoxyCodeLine{90         \textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, myDim>}}\& quadPos = intersection.geometryInInside().global(curQuad.position());}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92         \textcolor{keyword}{const} \textcolor{keywordtype}{double} integrationElement = intersection.geometry().integrationElement(curQuad.position());}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94         \textcolor{comment}{// The value of the local function}}
+\DoxyCodeLine{95         \textcolor{keyword}{const} \textcolor{keyword}{auto} uVal = uFunction.evaluate(quadPos);}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97         \textcolor{comment}{// Value of the Neumann data at the current position}}
+\DoxyCodeLine{98         \textcolor{keyword}{auto} neumannValue = neumannBoundaryLoad\_(intersection.geometry().global(curQuad.position()), lambda);}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100         energy -\/= neumannValue.dot(uVal) * curQuad.weight() * integrationElement;}
+\DoxyCodeLine{101       \}}
+\DoxyCodeLine{102     \}}
+\DoxyCodeLine{103     \textcolor{keywordflow}{return} energy;}
+\DoxyCodeLine{104   \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{107   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01476_aaff30fab3991b4bc486b498382226238}{calculateVectorImpl}}(}
+\DoxyCodeLine{108       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\& par, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302a}{VectorAffordance}} affordance, \textcolor{keyword}{typename} Traits::template VectorType<ST> force,}
+\DoxyCodeLine{109       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& dx = std::nullopt)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{110     \textcolor{keywordflow}{if} (not neumannBoundary\_ and not neumannBoundaryLoad\_)}
+\DoxyCodeLine{111       \textcolor{keywordflow}{return};}
+\DoxyCodeLine{112     \textcolor{keyword}{using namespace }Dune::DerivativeDirections;}
+\DoxyCodeLine{113     \textcolor{keyword}{using namespace }\mbox{\hyperlink{a00404}{Dune}};}
+\DoxyCodeLine{114     \textcolor{keyword}{const} \textcolor{keyword}{auto} uFunction = underlying().displacementFunction(par, dx);}
+\DoxyCodeLine{115     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& lambda   = par.\mbox{\hyperlink{a01368_af11316c1f0fca6982a2d7497bc71a10c}{parameter}}();}
+\DoxyCodeLine{116     \textcolor{keyword}{auto}\& element        = underlying().localView().element();}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{118     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\&\& intersection : intersections(neumannBoundary\_-\/>gridView(), element)) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{if} (not neumannBoundary\_-\/>contains(intersection))}
+\DoxyCodeLine{120         \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{123       \textcolor{keyword}{const} \textcolor{keyword}{auto}\& quadLine = Dune::QuadratureRules<double, myDim -\/ 1>::rule(intersection.type(), underlying().order());}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto}\& curQuad : quadLine) \{}
+\DoxyCodeLine{126         \textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, myDim>}}\& quadPos = intersection.geometryInInside().global(curQuad.position());}
+\DoxyCodeLine{127         \textcolor{keyword}{const} \textcolor{keywordtype}{double} intElement = intersection.geometry().integrationElement(curQuad.position());}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{130         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < underlying().numberOfNodes(); ++i) \{}
+\DoxyCodeLine{131           \textcolor{keyword}{const} \textcolor{keyword}{auto} udCi = uFunction.evaluateDerivative(quadPos, wrt(coeff(i)));}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{134           \textcolor{keyword}{auto} neumannValue = neumannBoundaryLoad\_(intersection.geometry().global(curQuad.position()), lambda);}
+\DoxyCodeLine{135           force.template segment<worldDim>(\mbox{\hyperlink{a01476_aae1169ffc7dc4ba675566010710a6bd1}{worldDim}} * i) -\/= udCi * neumannValue * curQuad.weight() * intElement;}
+\DoxyCodeLine{136         \}}
+\DoxyCodeLine{137       \}}
+\DoxyCodeLine{138     \}}
+\DoxyCodeLine{139   \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{142   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01476_ac37e6714de6453b6ea385b45399ada6b}{calculateMatrixImpl}}(}
+\DoxyCodeLine{143       \textcolor{keyword}{const} \mbox{\hyperlink{a01368}{Requirement}}\&, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0}{MatrixAffordance}}, \textcolor{keyword}{typename} Traits::template MatrixType<>,}
+\DoxyCodeLine{144       \textcolor{keyword}{const} std::optional<std::reference\_wrapper<\textcolor{keyword}{const} Eigen::VectorX<ST>>>\& = std::nullopt)\textcolor{keyword}{ const }\{\}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{keyword}{private}:}
+\DoxyCodeLine{147   std::function<Eigen::Vector<double, worldDim>(\textcolor{keyword}{const} \mbox{\hyperlink{a01784}{Dune::FieldVector<double, worldDim>}}\&, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\&)>}
+\DoxyCodeLine{148       neumannBoundaryLoad\_;}
+\DoxyCodeLine{149   \textcolor{keyword}{const} BoundaryPatch<GridView>* neumannBoundary\_;}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151   \textcolor{comment}{//> CRTP}}
+\DoxyCodeLine{152   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& underlying()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01336}{FE}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{153   \textcolor{keyword}{auto}\& underlying() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}FE\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{154 \};}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{164 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GV, \textcolor{keyword}{typename} F>}
+\DoxyCodeLine{165 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_ac2ae666c1ffd22e3c22a3418ab390893}{neumannBoundaryLoad}}(\textcolor{keyword}{const} BoundaryPatch<GV>* patch, F\&\& load) \{}
+\DoxyCodeLine{166   \mbox{\hyperlink{a01480}{NeumannBoundaryLoadPre<GV>}} pre(patch, std::forward<F>(load));}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168   \textcolor{keywordflow}{return} pre;}
+\DoxyCodeLine{169 \}}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}
