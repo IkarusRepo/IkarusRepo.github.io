@@ -1,5 +1,7 @@
 var a00272 =
 [
-    [ "Ikarus::EnhancedAssumedStrainsPre", "a01448.html", "a01448" ],
-    [ "eas", "a00272.html#a95d330fd032b3ed38354e893a814d33a", null ]
+    [ "createDeformationGradient", "a00272.html#ga5293eb09f12e4a45a7aa19a3403a73d1", null ],
+    [ "createGreenLagrangianStrains", "a00272.html#gad5aa30fe829c7316a0a744b3438609f5", null ],
+    [ "createRightCauchyGreen", "a00272.html#gae53e0e7999f565fc94610d1c4ede0d16", null ],
+    [ "transformStrain", "a00272.html#gae9c00f19ce473d7183c87aa84b247f88", null ]
 ];

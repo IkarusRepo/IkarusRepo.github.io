@@ -10,7 +10,7 @@ var a00005 =
     [ "FOR_EACH", "a00005.html#a816aef23498fb528e440575e504589ab", null ],
     [ "FOR_EACH_AGAIN", "a00005.html#a149ad7b97cba9d51c9cb0cb6d8c77a72", null ],
     [ "FOR_EACH_HELPER", "a00005.html#a9632c2c84e33729af95fb75b0c2a7e32", null ],
-    [ "MAKE_ENUM", "a00379.html#ga14ad7d33267cea1c93f97f3998081657", null ],
+    [ "MAKE_ENUM", "a00391.html#ga14ad7d33267cea1c93f97f3998081657", null ],
     [ "PARENS", "a00005.html#a9357f62275c685754a405c064db6ec41", null ],
     [ "increment", "a00005.html#ga5db6e8f04892e85e6b17e276cdbd0e54", null ]
 ];

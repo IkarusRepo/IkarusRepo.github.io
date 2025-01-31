@@ -1,5 +1,11 @@
 var a00242 =
 [
+    [ "PrincipalStretchTags", "a00242.html#aec3d3c4647af5c01e1bf18637b3c89fe", [
+      [ "BEGIN", "a00242.html#aec3d3c4647af5c01e1bf18637b3c89fea19aad9f2fe3ce0023298ab83f7e75775", null ],
+      [ "total", "a00242.html#aec3d3c4647af5c01e1bf18637b3c89feafbb44b4487415b134bce9c790a27fe5e", null ],
+      [ "deviatoric", "a00242.html#aec3d3c4647af5c01e1bf18637b3c89feaae6dc167631992e1312a197d5c3c39f8", null ],
+      [ "END", "a00242.html#aec3d3c4647af5c01e1bf18637b3c89feab1a326c06d88bf042f73d70f50197905", null ]
+    ] ],
     [ "StrainTags", "a00242.html#gacef1e451de1a99845c59d7391064fb8f", [
       [ "BEGIN", "a00242.html#ggacef1e451de1a99845c59d7391064fb8fa19aad9f2fe3ce0023298ab83f7e75775", null ],
       [ "linear", "a00242.html#ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa", null ],
@@ -25,6 +31,7 @@ var a00242 =
       [ "TwoPoint", "a00242.html#gga05ac785124262c1e323d2f937d520a1ba331d16a2885c7f82ba949f286f48143d", null ],
       [ "END", "a00242.html#gga05ac785124262c1e323d2f937d520a1bab1a326c06d88bf042f73d70f50197905", null ]
     ] ],
+    [ "toString", "a00242.html#a255878a42301d3dfe1051c30a590ceaf", null ],
     [ "toString", "a00242.html#aabe2255ec3392fe00a383dd05d7dfe8a", null ],
     [ "toString", "a00242.html#a31d0fcb0973be69c8c36cc4cbcb70c11", null ],
     [ "toString", "a00242.html#a1146e010b8f52fa9a883f064b3aa389a", null ]

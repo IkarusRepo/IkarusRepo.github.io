@@ -1,4 +1,5 @@
 var a00260 =
 [
-    [ "StVenantKirchhoff", "a00260.html#a965823ec0538ab6b5bdf7f69c33f3910", null ]
+    [ "makeVanishingStrain", "a00260.html#a03d13518406d1cd5bb2a34aca2f95f01", null ],
+    [ "planeStrain", "a00260.html#a5b428881c8ea5104acd909e769b7910b", null ]
 ];

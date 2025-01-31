@@ -1,17 +1,15 @@
 var a00394 =
 [
-    [ "DefaultVTKWriterManager", "a01648.html", "a01648" ],
-    [ "IsStructured", "a01640.html", null ],
-    [ "IsStructured< Dune::YaspGrid< dim, Coordinates > >", "a01644.html", null ],
-    [ "Writer", "a01636.html", "a01636" ],
-    [ "DataTag", "a00394.html#af59748ac04116ae85cd64ea8675d273b", [
-      [ "BEGIN", "a00394.html#af59748ac04116ae85cd64ea8675d273ba19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "asCellData", "a00394.html#af59748ac04116ae85cd64ea8675d273ba358ac8d081a81d2a224773e362f76546", null ],
-      [ "asPointData", "a00394.html#af59748ac04116ae85cd64ea8675d273ba68cd52d11d0547e9fa755ed70680591b", null ],
-      [ "asCellAndPointData", "a00394.html#af59748ac04116ae85cd64ea8675d273baaebbd52cccfb094252aee95b0cffe926", null ],
-      [ "END", "a00394.html#af59748ac04116ae85cd64ea8675d273bab1a326c06d88bf042f73d70f50197905", null ]
-    ] ],
-    [ "toString", "a00394.html#af96368dfca1767b52605f507c5fea4d5", null ],
-    [ "Writer", "a00394.html#a6b54a4966e54b45e51358c7b7877a5b5", null ],
-    [ "Writer", "a00394.html#a619faa9f2da801ac98217d31ddfa88a3", null ]
+    [ "Ikarus::traits::Pointer", "a02066.html", null ],
+    [ "Ikarus::traits::is_tuple< std::tuple< T... > >", "a01971.html", null ],
+    [ "Ikarus::traits::hasType< T, Tuple >", "a01975.html", null ],
+    [ "Ikarus::traits::isSharedPtr< T >", "a01979.html", null ],
+    [ "Ikarus::traits::isSpecialization< U, U< T... > >", "a01987.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypeAndTypes< Type, Type< T, N... > >", "a01991.html", null ],
+    [ "Ikarus::traits::isSpecializationTypeNonTypeAndType< Type, Type< T, M, N > >", "a01995.html", null ],
+    [ "Ikarus::traits::isSpecializationNonTypes< Type, Type< N... > >", "a01999.html", null ],
+    [ "Ikarus::traits::Index< T, Tuple >", "a02003.html", null ],
+    [ "Ikarus::traits::FunctionTraits< T, typename >", "a02011.html", null ],
+    [ "Ikarus::traits::ReturnType", "a00394.html#ga0ba1bf25ee478b1b1d9e96c1dcd831a0", null ],
+    [ "Ikarus::traits::countType", "a00394.html#ga45ac3fa7e384aa760181de7a1377dc14", null ]
 ];

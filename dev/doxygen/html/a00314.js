@@ -1,62 +1,34 @@
 var a00314 =
 [
-    [ "Ikarus::AffordanceCollection< Affordances >", "a01352.html", "a01352" ],
-    [ "Ikarus::FERequirements< sol, para, SV, PM >", "a01368.html", "a01368" ],
-    [ "Ikarus::FERequirementsFactory< sol, para, wrapWithRef, SV, PM >", "a01372.html", "a01372" ],
-    [ "Ikarus::FEAffordance", "a01941.html", null ],
-    [ "FEParameter", "a00314.html#ga0c1577fd05efee8475b0f7fef795bbbe", [
-      [ "BEGIN", "a00314.html#gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "noParameter", "a00314.html#gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe", null ],
-      [ "loadfactor", "a00314.html#gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8", null ],
-      [ "time", "a00314.html#gga0c1577fd05efee8475b0f7fef795bbbea07cc694b9b3fc636710fa08b6922c42b", null ],
-      [ "END", "a00314.html#gga0c1577fd05efee8475b0f7fef795bbbeab1a326c06d88bf042f73d70f50197905", null ]
+    [ "Ikarus::ResultWrapper< RT, storedResultShape >", "a01411.html", "a01411" ],
+    [ "Ikarus::ResultTypeBase< ResultTypes >", "a01423.html", "a01423" ],
+    [ "REGISTER_RESERVED_RESULTTYPE", "a00314.html#a7ce39a7837a7febc8ecb05eac58b2d7d", null ],
+    [ "REGISTER_RESULTTYPE", "a00314.html#a60e89b24a05f9724eb4cf2a3683aafeb", null ],
+    [ "REGISTER_RESULTTYPE_IMPL", "a00314.html#a8b1463ebff118e1d2513007fb0395a7c", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a52814b58e3f14abb3b98a238cb51d3b8", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#ac8f258db238456d188b270d139fd21e5", null ],
+    [ "ResultShape", "a00314.html#acfb09bb7db104db62d3d1d2dc3e009b2", [
+      [ "Vector", "a00314.html#acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110", null ],
+      [ "Matrix", "a00314.html#acfb09bb7db104db62d3d1d2dc3e009b2af53df0293e169f562bc1d9a20e1d2589", null ]
     ] ],
-    [ "FESolutions", "a00314.html#gaea763c94a1cecbeefc4f8661debcc5a3", [
-      [ "BEGIN", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3a19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "noSolution", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3a2100a151ce2773b3467509ae085aa505", null ],
-      [ "displacement", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3a0c2d35f5f278a229db5ba41d40120f1c", null ],
-      [ "velocity", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3aac1a453d0cdc1f19d9479ccfaa8b082c", null ],
-      [ "director", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3a3d4e992d8d8a7d848724aa26ed7f4176", null ],
-      [ "magnetizationAndVectorPotential", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff", null ],
-      [ "END", "a00314.html#ggaea763c94a1cecbeefc4f8661debcc5a3ab1a326c06d88bf042f73d70f50197905", null ]
-    ] ],
-    [ "MatrixAffordance", "a00314.html#a390d5311179ec61d163a29c943b3d1a0", [
-      [ "BEGIN", "a00314.html#a390d5311179ec61d163a29c943b3d1a0a19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "noAffordance", "a00314.html#a390d5311179ec61d163a29c943b3d1a0a9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "stiffness", "a00314.html#a390d5311179ec61d163a29c943b3d1a0a086e8b527490b8abe606a8dd76586ab1", null ],
-      [ "materialstiffness", "a00314.html#a390d5311179ec61d163a29c943b3d1a0a3a130b44dd6ff9351e7734ac33096b62", null ],
-      [ "geometricstiffness", "a00314.html#a390d5311179ec61d163a29c943b3d1a0ae15aaa3bcdfc63653ecc7de3f1d4794b", null ],
-      [ "stiffnessdiffBucklingVector", "a00314.html#a390d5311179ec61d163a29c943b3d1a0adaa7ff7d704732b763943e3355764532", null ],
-      [ "microMagneticHessian", "a00314.html#a390d5311179ec61d163a29c943b3d1a0a1b0fce0a361af9d6e59694b4c51524f9", null ],
-      [ "mass", "a00314.html#a390d5311179ec61d163a29c943b3d1a0ad90ccffa01275a7a7795fb6d1274e75f", null ],
-      [ "END", "a00314.html#a390d5311179ec61d163a29c943b3d1a0ab1a326c06d88bf042f73d70f50197905", null ]
-    ] ],
-    [ "ScalarAffordance", "a00314.html#af6f894084edd9109762b86222995ef2a", [
-      [ "BEGIN", "a00314.html#af6f894084edd9109762b86222995ef2aa19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "noAffordance", "a00314.html#af6f894084edd9109762b86222995ef2aa9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "mechanicalPotentialEnergy", "a00314.html#af6f894084edd9109762b86222995ef2aa814f34f472acef493e9ecf0ffccdcae6", null ],
-      [ "microMagneticPotentialEnergy", "a00314.html#af6f894084edd9109762b86222995ef2aae45c0886135e58c01a313bda2d69e29a", null ],
-      [ "END", "a00314.html#af6f894084edd9109762b86222995ef2aab1a326c06d88bf042f73d70f50197905", null ]
-    ] ],
-    [ "VectorAffordance", "a00314.html#aab9e3e38507d1db7602bc750718c302a", [
-      [ "BEGIN", "a00314.html#aab9e3e38507d1db7602bc750718c302aa19aad9f2fe3ce0023298ab83f7e75775", null ],
-      [ "noAffordance", "a00314.html#aab9e3e38507d1db7602bc750718c302aa9a280b29988e2eac8c0767e0fcefb49c", null ],
-      [ "forces", "a00314.html#aab9e3e38507d1db7602bc750718c302aa2c05161a7e67e946ddc889571aac4e89", null ],
-      [ "microMagneticForces", "a00314.html#aab9e3e38507d1db7602bc750718c302aa3cc975e7798ac76d6af4f624e23c6ddc", null ],
-      [ "END", "a00314.html#aab9e3e38507d1db7602bc750718c302aab1a326c06d88bf042f73d70f50197905", null ]
-    ] ],
-    [ "elastoStatics", "a00314.html#abd125ab98018456fb4bd3bdfe28466dc", null ],
-    [ "scalarAffordance", "a00314.html#a9f58a3849d4736e5cc314f6f995fe9e7", null ],
-    [ "scalarAffordance", "a00314.html#ac600b73743c56f0668ae66be56c37c87", null ],
-    [ "toString", "a00314.html#a2b95b51e82bcb7c8990ff20bd8273ebf", null ],
-    [ "toString", "a00314.html#ad313676e121358d0076db4f79fbce4be", null ],
-    [ "toString", "a00314.html#a1e09faefb9fb22635de50c3d3ee57954", null ],
-    [ "toString", "a00314.html#a93cb7668686a4b4a64389ca0a2533449", null ],
-    [ "toString", "a00314.html#aecab2e77f1da6ec0d77b728b96f7fed8", null ],
-    [ "vectorAffordance", "a00314.html#a2597fb8b5ba646668b01bcc4e5f75818", null ],
-    [ "forces", "a00314.html#a79f92cdef4ce37a01fd76e7cbc460cb4", null ],
-    [ "mass", "a00314.html#ad8479f7f6217f57442ec18948b7aece1", null ],
-    [ "potentialEnergy", "a00314.html#a8c6efe61469638e139724dc7c9bdaa9d", null ],
-    [ "stiffness", "a00314.html#a5bd2b9f6fec9989fd5e5e9d7e3cd986e", null ],
-    [ "stiffnessdiffBucklingVector", "a00314.html#a0ceb0c9442d4755cb5c2bd47ea46a22f", null ]
+    [ "makeRT", "a00314.html#a38629395c2d43ba44328b01ce0c0daf3", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a9e1b9b589bab3ddacd328f3ba35e4060", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a0f1812cc608fd44ec96dd2f6d7841828", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a95592ca26f1dce3a7d1e943dc46274fb", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#af279e0a4e5ede5f80277c45d542ae297", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a0d6406ac1d0ebe00a6451220e16eda28", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a82899004bdc4b79780028d462eb9b51a", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#aabcae0056154bd66b8469cf257687a32", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a893a20e7914af86ffe78be5de91d5e6f", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#a607ac2fd320d3ec56a04ad2cb1f384c4", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#aad41dec3367d662ab320e79740fe921c", null ],
+    [ "REGISTER_SIMPLE_RESULTTYPE", "a00314.html#aea49f16ceba88de50b308882a96a5f6f", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#a6b389a778d302b7827c5aea71d406ad1", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#aeafb1cefd8eee2dc88f40742b9f22430", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#a60454300a3ee8c6fdd19a7a62dce2202", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#a16fd2e672c0168478698fb2d338ab765", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#a71a26eea02ef9fdd54621f7146d6dd0d", null ],
+    [ "REGISTER_SIMPLE_SYMMETRIC_RESULTTYPE", "a00314.html#ab7bc600c2d975e5fcd2f1ea45a07752f", null ],
+    [ "toString", "a00314.html#ae9c1868f27f4754a448edbbc97b9a2f2", null ],
+    [ "isSameResultType", "a00314.html#aae9d6a05f2ca4f54c0524404e27e7ed1", null ]
 ];

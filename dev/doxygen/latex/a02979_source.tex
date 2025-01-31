@@ -1,0 +1,131 @@
+\hypertarget{a02979_source}{}\doxysection{finiteelements/mechanics/materials/interface.hh}
+\label{a02979_source}\index{interface.hh@{interface.hh}}
+\mbox{\hyperlink{a02979}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00272}{ikarus/finiteelements/mechanics/materials/strainconversions.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00242}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00302}{ikarus/finiteelements/physicshelper.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03012}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00023}{ikarus/utils/linearalgebrahelper.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00011}{ikarus/utils/traits.hh}}>}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00407}{Ikarus::Materials}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#ifndef DOXYGEN}}
+\DoxyCodeLine{22 \textcolor{keyword}{template} <\textcolor{keyword}{class} MImpl>}
+\DoxyCodeLine{23 \textcolor{keyword}{struct }\mbox{\hyperlink{a00385_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206}{Material}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{template} <auto stressIndexPair, \textcolor{keyword}{typename} MImpl>}
+\DoxyCodeLine{26 \textcolor{keyword}{struct }VanishingStress;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{template} <auto strainIndexPair, \textcolor{keyword}{typename} MImpl>}
+\DoxyCodeLine{29 \textcolor{keyword}{struct }VanishingStrain;}
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{40 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MAT, \textcolor{keyword}{typename} S>}
+\DoxyCodeLine{41 \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00407_acd3877457d719128ff83d44c6253ece8}{hasCorrectSize}}() \{}
+\DoxyCodeLine{42   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector6<S> or Concepts::EigenMatrix33<S>)}
+\DoxyCodeLine{43     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{44   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MAT::isReduced and \mbox{\hyperlink{a02053}{Concepts::EigenVector<S>}}) \{}
+\DoxyCodeLine{45     \textcolor{keywordflow}{return} S::RowsAtCompileTime == MAT::freeStrains;}
+\DoxyCodeLine{46   \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{47     \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{56 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MAT, \textcolor{keyword}{typename} S>}
+\DoxyCodeLine{57 \textcolor{keyword}{concept }\mbox{\hyperlink{a02027}{CorrectStrainSize}} = hasCorrectSize<MAT, S>();}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{78 \textcolor{keyword}{template} <\textcolor{keyword}{class} MI>}
+\DoxyCodeLine{79 \textcolor{keyword}{struct }\mbox{\hyperlink{a01579}{Material}}}
+\DoxyCodeLine{80 \{}
+\DoxyCodeLine{81   \textcolor{keyword}{using }\mbox{\hyperlink{a01579_a5303817231472050f36f079bc730988b}{MaterialImpl}} = MI; }
+\DoxyCodeLine{82 }
+\DoxyCodeLine{86   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01579_af50dfddadfe829082a56eb804bfb7980}{isReduced}} = traits::isSpecializationNonTypeAndTypes<VanishingStress, MaterialImpl>::value or}
+\DoxyCodeLine{87                                     traits::isSpecializationNonTypeAndTypes<VanishingStrain, MaterialImpl>::value;}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{94   \textcolor{keyword}{constexpr} \textcolor{keyword}{const} \mbox{\hyperlink{a01579_a5303817231472050f36f079bc730988b}{MaterialImpl}}\& \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keyword}{const }\mbox{\hyperlink{a01579_a5303817231472050f36f079bc730988b}{MaterialImpl}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{101   \textcolor{keyword}{constexpr} \mbox{\hyperlink{a01579_a5303817231472050f36f079bc730988b}{MaterialImpl}}\& \mbox{\hyperlink{a01579_ae6ac28e09154cef841393f09f76d680b}{impl}}() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{a01579_a5303817231472050f36f079bc730988b}{MaterialImpl}}\&\textcolor{keyword}{>}(*this); \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{108   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01579_a03ae10e8656beed2aa69c8a9d27907e5}{name}}() \{ \textcolor{keywordflow}{return} MI::nameImpl(); \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{114   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a0b4a203f259da74328dacbcc405c0c22}{materialParameters}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().materialParametersImpl(); \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{122   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01579_ae9e08c2d0dc02321b8a4d81d4052f63f}{derivativeFactor}} = MI::derivativeFactorImpl;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{134   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{135   \textcolor{keyword}{requires} \mbox{\hyperlink{a02027}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{136   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a8d6370e3d198662f4222a0b94e2d6703}{storedEnergy}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{137     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{138     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a02053}{Concepts::EigenVector<Derived>}}) \{ \textcolor{comment}{// receiving vector means voigt notation}}
+\DoxyCodeLine{141       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::energyAcceptsVoigt)}
+\DoxyCodeLine{142         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().storedEnergyImpl(\mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(E));}
+\DoxyCodeLine{143       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{144         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().storedEnergyImpl(E);}
+\DoxyCodeLine{145     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{146       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().storedEnergyImpl(E);}
+\DoxyCodeLine{147   \}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{158   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{159   \textcolor{keyword}{requires} \mbox{\hyperlink{a02027}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{160   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a8a68e052cade23285d1a28d1e08845f5}{stresses}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{161     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{162     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{163     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt and MaterialImpl::stressToVoigt == \textcolor{keyword}{false})}
+\DoxyCodeLine{164       \textcolor{comment}{// user requests a Voigt shaped return but material is not able to. Therefore, we transform it here.}}
+\DoxyCodeLine{165       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(stressesMaybeTransformInputToVoigt<false>(E), \textcolor{keyword}{false});}
+\DoxyCodeLine{166     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{167       \textcolor{keywordflow}{return} stressesMaybeTransformInputToVoigt<voigt>(E);}
+\DoxyCodeLine{168   \}}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{179   \textcolor{keyword}{template} <StrainTags tag, \textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{180   \textcolor{keyword}{requires} \mbox{\hyperlink{a02027}{CorrectStrainSize<MaterialImpl, Derived>}}}
+\DoxyCodeLine{181   [[nodiscard]] \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a7a97d64507fd1ce0c14e919edb8a639b}{tangentModuli}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{182     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) Ev = enlargeIfReduced<Material>(Eraw);}
+\DoxyCodeLine{183     \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) E  = transformStrain<tag, MaterialImpl::strainTag>(Ev);}
+\DoxyCodeLine{184     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt and MaterialImpl::moduliToVoigt == \textcolor{keyword}{false})}
+\DoxyCodeLine{185       \textcolor{comment}{// user request a Voigt shaped return but material is not able to. Therefore, we transform it here.}}
+\DoxyCodeLine{186       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(tangentModuliMaybeTransformInputToVoigt<false>(E));}
+\DoxyCodeLine{187     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{188       \textcolor{keywordflow}{return} tangentModuliMaybeTransformInputToVoigt<voigt>(E);}
+\DoxyCodeLine{189   \}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{199   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{200   \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a42dd4120574bc25d9bccd1891fc14024}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{201     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template rebind<STO>();}
+\DoxyCodeLine{202   \}}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 \textcolor{keyword}{private}:}
+\DoxyCodeLine{205   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{206   \textcolor{keyword}{auto} stressesMaybeTransformInputToVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{207     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a02053}{Concepts::EigenVector<Derived>}}) \{ \textcolor{comment}{// receiving vector means Voigt notation}}
+\DoxyCodeLine{208       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::stressAcceptsVoigt)}
+\DoxyCodeLine{209         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template stressesImpl<voigt>(E);}
+\DoxyCodeLine{210       \textcolor{keywordflow}{else} \textcolor{comment}{// material is not able to accept Voigt shaped Input. Therefore, we transform it before.}}
+\DoxyCodeLine{211         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template stressesImpl<voigt>(\mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(E.derived()));}
+\DoxyCodeLine{212     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{213       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template stressesImpl<voigt>(E.derived());}
+\DoxyCodeLine{214   \}}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt = true, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{217   \textcolor{keyword}{auto} tangentModuliMaybeTransformInputToVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{218     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>) \{ \textcolor{comment}{// receiving vector means voigt notation}}
+\DoxyCodeLine{219       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (MaterialImpl::moduliAcceptsVoigt)}
+\DoxyCodeLine{220         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template tangentModuliImpl<voigt>(E);}
+\DoxyCodeLine{221       \textcolor{keywordflow}{else}}
+\DoxyCodeLine{222         \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template tangentModuliImpl<voigt>(\mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(E.derived()));}
+\DoxyCodeLine{223     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{224       \textcolor{keywordflow}{return} \mbox{\hyperlink{a01579_a2e6191f96be90789c574f58f268f5aea}{impl}}().template tangentModuliImpl<voigt>(E.derived());}
+\DoxyCodeLine{225   \}}
+\DoxyCodeLine{226 \};}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228 \} \textcolor{comment}{// namespace Ikarus::Materials}}
+
+\end{DoxyCode}

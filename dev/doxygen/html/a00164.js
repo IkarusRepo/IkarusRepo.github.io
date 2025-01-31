@@ -1,6 +1,6 @@
 var a00164 =
 [
-    [ "Ikarus::ScalarManipulator< Wrapper, Assembler >", "a01232.html", "a01232" ],
-    [ "Ikarus::VectorManipulator< Wrapper, Assembler >", "a01236.html", "a01236" ],
-    [ "Ikarus::MatrixManipulator< Wrapper, Assembler >", "a01240.html", "a01240" ]
+    [ "Ikarus::ScalarManipulator< Wrapper, Assembler >", "a01247.html", "a01247" ],
+    [ "Ikarus::VectorManipulator< Wrapper, Assembler >", "a01251.html", "a01251" ],
+    [ "Ikarus::MatrixManipulator< Wrapper, Assembler >", "a01255.html", "a01255" ]
 ];

@@ -1,125 +1,202 @@
-\hypertarget{a00314}{}\doxysection{ferequirements.\+hh File Reference}
-\label{a00314}\index{ferequirements.hh@{ferequirements.hh}}
+\hypertarget{a00314}{}\doxysection{feresulttypes.\+hh File Reference}
+\label{a00314}\index{feresulttypes.hh@{feresulttypes.hh}}
 
 
-Definition of the Linear\+Elastic class for finite element mechanics computations.  
+Definitions of Result\+Types used for finite element results.  
 
 
-{\ttfamily \#include $<$iosfwd$>$}\newline
-{\ttfamily \#include $<$map$>$}\newline
-{\ttfamily \#include $<$set$>$}\newline
-{\ttfamily \#include $<$vector$>$}\newline
-{\ttfamily \#include $<$dune/common/exceptions.\+hh$>$}\newline
+{\ttfamily \#include $<$type\+\_\+traits$>$}\newline
 {\ttfamily \#include $<$Eigen/\+Core$>$}\newline
-{\ttfamily \#include $<$ikarus/finiteelements/feresulttypes.\+hh$>$}\newline
-{\ttfamily \#include $<$ikarus/utils/makeenum.\+hh$>$}\newline
+{\ttfamily \#include $<$ikarus/utils/tensorutils.\+hh$>$}\newline
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{a01352}{Ikarus\+::\+Affordance\+Collection$<$ Affordances $>$}}
-\begin{DoxyCompactList}\small\item\em Struct representing a collection of affordances. \end{DoxyCompactList}\item 
-class \mbox{\hyperlink{a01368}{Ikarus\+::\+FERequirements$<$ sol, para, SV, PM $>$}}
-\begin{DoxyCompactList}\small\item\em Class representing the requirements for finite element calculations. \end{DoxyCompactList}\item 
-struct \mbox{\hyperlink{a01372}{Ikarus\+::\+FERequirements\+Factory$<$ sol, para, wrap\+With\+Ref, SV, PM $>$}}
-\end{DoxyCompactItemize}
+struct \mbox{\hyperlink{a01411}{Ikarus\+::\+Result\+Wrapper$<$ RT, stored\+Result\+Shape $>$}}
+\begin{DoxyCompactList}\small\item\em Container that is used for \mbox{\hyperlink{a01355}{FE}} Results. It gives access to the stored value, but can also be used to access the result in Matrix and Vector form. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{a01423}{Ikarus\+::\+Result\+Type\+Base$<$ Result\+Types $>$}}
+\begin{DoxyCompactList}\small\item\em Base class for element definitions that provides common functionality for \mbox{\hyperlink{a00403}{Result\+Types}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-namespace \mbox{\hyperlink{a00384}{Ikarus}}
+namespace \mbox{\hyperlink{a00396}{Ikarus}}
 \item 
-namespace \mbox{\hyperlink{a00389}{Ikarus\+::\+Affordance\+Collections}}
+namespace \mbox{\hyperlink{a00403}{Ikarus\+::\+Result\+Types}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Concepts}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-concept \mbox{\hyperlink{a01941}{Ikarus\+::\+FEAffordance}}
-\begin{DoxyCompactList}\small\item\em Concept to check if a given type is one of the predefined affordance enums or the Affordance\+Collection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\#define \mbox{\hyperlink{a00314_a8b1463ebff118e1d2513007fb0395a7c}{REGISTER\+\_\+\+RESULTTYPE\+\_\+\+IMPL}}(result\+Type\+Name,  rows\+Expr,  cols\+Expr,  Max\+Rows\+Expr,  Max\+Cols\+Expr,  Vectorize\+Struct,  Matricize\+Struct)
+\item 
+\#define \mbox{\hyperlink{a00314_ac8f258db238456d188b270d139fd21e5}{REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}}(result\+Type\+Name,  rows\+Expr,  cols\+Expr,  strainlike)
+\begin{DoxyCompactList}\small\item\em Used to register a symmetric Result\+Type with compile-\/time fixed rows and columns (uses Voigt notation) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00314_a60e89b24a05f9724eb4cf2a3683aafeb}{REGISTER\+\_\+\+RESULTTYPE}}(result\+Type\+Name,  rows\+Expr,  cols\+Expr)
+\begin{DoxyCompactList}\small\item\em Used to register a general Result\+Type with potentially dynamic size without reserved memeroy rows and columns. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00314_a7ce39a7837a7febc8ecb05eac58b2d7d}{REGISTER\+\_\+\+RESERVED\+\_\+\+RESULTTYPE}}(result\+Type\+Name,  rows\+Expr,  cols\+Expr,  Max\+Rows\+Expr,  Max\+Cols\+Expr)
+\begin{DoxyCompactList}\small\item\em Used to register a general Result\+Type with potentially dynamic size and defined maximum amount of rows and columns. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00314_a52814b58e3f14abb3b98a238cb51d3b8}{REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}}(result\+Type\+Name,  rows\+Expr,  cols\+Expr)~  \mbox{\hyperlink{a00314_a7ce39a7837a7febc8ecb05eac58b2d7d}{REGISTER\+\_\+\+RESERVED\+\_\+\+RESULTTYPE}}(result\+Type\+Name, rows\+Expr, cols\+Expr, rows\+Expr, cols\+Expr)
+\begin{DoxyCompactList}\small\item\em Used to register a general Result\+Type with potentially dynamic size, with reserved memory according to passed in rows\+Expr and cols\+Expr. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum class \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2a}{Ikarus\+::\+Scalar\+Affordance}} \{ \newline
-\mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2aa19aad9f2fe3ce0023298ab83f7e75775}{Ikarus\+::\+BEGIN}}
-, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2aa9a280b29988e2eac8c0767e0fcefb49c}{Ikarus\+::no\+Affordance}}
-, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2aa814f34f472acef493e9ecf0ffccdcae6}{Ikarus\+::mechanical\+Potential\+Energy}}
-, \mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2aae45c0886135e58c01a313bda2d69e29a}{Ikarus\+::micro\+Magnetic\+Potential\+Energy}}
-, \newline
-\mbox{\hyperlink{a00384_af6f894084edd9109762b86222995ef2aab1a326c06d88bf042f73d70f50197905}{Ikarus\+::\+END}}
+enum class \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2}{Ikarus\+::\+Result\+Shape}} \{ \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{Ikarus\+::\+Vector}}
+, \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2af53df0293e169f562bc1d9a20e1d2589}{Ikarus\+::\+Matrix}}
  \}
-\begin{DoxyCompactList}\small\item\em A strongly typed enum class representing the scalar affordance. \end{DoxyCompactList}\item 
-enum class \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302a}{Ikarus\+::\+Vector\+Affordance}} \{ \newline
-\mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302aa19aad9f2fe3ce0023298ab83f7e75775}{Ikarus\+::\+BEGIN}}
-, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302aa9a280b29988e2eac8c0767e0fcefb49c}{Ikarus\+::no\+Affordance}}
-, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302aa2c05161a7e67e946ddc889571aac4e89}{Ikarus\+::forces}}
-, \mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302aa3cc975e7798ac76d6af4f624e23c6ddc}{Ikarus\+::micro\+Magnetic\+Forces}}
-, \newline
-\mbox{\hyperlink{a00384_aab9e3e38507d1db7602bc750718c302aab1a326c06d88bf042f73d70f50197905}{Ikarus\+::\+END}}
- \}
-\begin{DoxyCompactList}\small\item\em A strongly typed enum class representing the vector affordance. \end{DoxyCompactList}\item 
-enum class \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0}{Ikarus\+::\+Matrix\+Affordance}} \{ \newline
-\mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0a19aad9f2fe3ce0023298ab83f7e75775}{Ikarus\+::\+BEGIN}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0a9a280b29988e2eac8c0767e0fcefb49c}{Ikarus\+::no\+Affordance}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0a086e8b527490b8abe606a8dd76586ab1}{Ikarus\+::stiffness}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0a3a130b44dd6ff9351e7734ac33096b62}{Ikarus\+::materialstiffness}}
-, \newline
-\mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0ae15aaa3bcdfc63653ecc7de3f1d4794b}{Ikarus\+::geometricstiffness}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0adaa7ff7d704732b763943e3355764532}{Ikarus\+::stiffnessdiff\+Buckling\+Vector}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0a1b0fce0a361af9d6e59694b4c51524f9}{Ikarus\+::micro\+Magnetic\+Hessian}}
-, \mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0ad90ccffa01275a7a7795fb6d1274e75f}{Ikarus\+::mass}}
-, \newline
-\mbox{\hyperlink{a00384_a390d5311179ec61d163a29c943b3d1a0ab1a326c06d88bf042f73d70f50197905}{Ikarus\+::\+END}}
- \}
-\begin{DoxyCompactList}\small\item\em A strongly typed enum class representing the matrix affordance. \end{DoxyCompactList}\item 
-enum class \mbox{\hyperlink{a00371_ga0c1577fd05efee8475b0f7fef795bbbe}{Ikarus\+::\+FEParameter}} \{ \newline
-\mbox{\hyperlink{a00371_gga0c1577fd05efee8475b0f7fef795bbbea19aad9f2fe3ce0023298ab83f7e75775}{Ikarus\+::\+FEParameter\+::\+BEGIN}}
-, \mbox{\hyperlink{a00371_gga0c1577fd05efee8475b0f7fef795bbbea298c62e2f9918b280f40eb210c44fdbe}{Ikarus\+::\+FEParameter\+::no\+Parameter}}
-, \mbox{\hyperlink{a00371_gga0c1577fd05efee8475b0f7fef795bbbeaf72bac0ac84c0315e7bcbb8aa84b2ff8}{Ikarus\+::\+FEParameter\+::loadfactor}}
-, \mbox{\hyperlink{a00371_gga0c1577fd05efee8475b0f7fef795bbbea07cc694b9b3fc636710fa08b6922c42b}{Ikarus\+::\+FEParameter\+::time}}
-, \newline
-\mbox{\hyperlink{a00371_gga0c1577fd05efee8475b0f7fef795bbbeab1a326c06d88bf042f73d70f50197905}{Ikarus\+::\+FEParameter\+::\+END}}
- \}
-\begin{DoxyCompactList}\small\item\em A strongly typed enum class representing the FE parameter. \end{DoxyCompactList}\item 
-enum class \mbox{\hyperlink{a00371_gaea763c94a1cecbeefc4f8661debcc5a3}{Ikarus\+::\+FESolutions}} \{ \newline
-\mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3a19aad9f2fe3ce0023298ab83f7e75775}{Ikarus\+::\+FESolutions\+::\+BEGIN}}
-, \mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3a2100a151ce2773b3467509ae085aa505}{Ikarus\+::\+FESolutions\+::no\+Solution}}
-, \mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3a0c2d35f5f278a229db5ba41d40120f1c}{Ikarus\+::\+FESolutions\+::displacement}}
-, \mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3aac1a453d0cdc1f19d9479ccfaa8b082c}{Ikarus\+::\+FESolutions\+::velocity}}
-, \newline
-\mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3a3d4e992d8d8a7d848724aa26ed7f4176}{Ikarus\+::\+FESolutions\+::director}}
-, \mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3a58edccca94b76e0355ed45da28ece7ff}{Ikarus\+::\+FESolutions\+::magnetization\+And\+Vector\+Potential}}
-, \mbox{\hyperlink{a00371_ggaea763c94a1cecbeefc4f8661debcc5a3ab1a326c06d88bf042f73d70f50197905}{Ikarus\+::\+FESolutions\+::\+END}}
- \}
-\begin{DoxyCompactList}\small\item\em A strongly typed enum class representing the type of the solutions vectors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-constexpr std\+::string \mbox{\hyperlink{a00384_a93cb7668686a4b4a64389ca0a2533449}{Ikarus\+::to\+String}} (Scalar\+Affordance \+\_\+e)
+\mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (linear\+Stress, world\+Dim, world\+Dim, false)
 \item 
-constexpr std\+::string \mbox{\hyperlink{a00384_aecab2e77f1da6ec0d77b728b96f7fed8}{Ikarus\+::to\+String}} (Vector\+Affordance \+\_\+e)
+\mbox{\hyperlink{a00403_a71a26eea02ef9fdd54621f7146d6dd0d}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (PK2\+Stress, world\+Dim, world\+Dim, false)
 \item 
-constexpr std\+::string \mbox{\hyperlink{a00384_a1e09faefb9fb22635de50c3d3ee57954}{Ikarus\+::to\+String}} (Matrix\+Affordance \+\_\+e)
+\mbox{\hyperlink{a00403_a6b389a778d302b7827c5aea71d406ad1}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (cauchy\+Stress, world\+Dim, world\+Dim, false)
 \item 
-constexpr std\+::string \mbox{\hyperlink{a00384_a2b95b51e82bcb7c8990ff20bd8273ebf}{Ikarus\+::to\+String}} (FEParameter \+\_\+e)
+\mbox{\hyperlink{a00403_a16fd2e672c0168478698fb2d338ab765}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (linear\+Stress\+Full, 3, 3, false)
 \item 
-constexpr std\+::string \mbox{\hyperlink{a00384_ad313676e121358d0076db4f79fbce4be}{Ikarus\+::to\+String}} (FESolutions \+\_\+e)
+\mbox{\hyperlink{a00403_ab7bc600c2d975e5fcd2f1ea45a07752f}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (PK2\+Stress\+Full, 3, 3, false)
 \item 
-auto \mbox{\hyperlink{a00384_a2597fb8b5ba646668b01bcc4e5f75818}{Ikarus\+::vector\+Affordance}} (Matrix\+Affordance affordanceM)
+\mbox{\hyperlink{a00403_aeafb1cefd8eee2dc88f40742b9f22430}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE}} (cauchy\+Stress\+Full, 3, 3, false)
 \item 
-auto \mbox{\hyperlink{a00384_a9f58a3849d4736e5cc314f6f995fe9e7}{Ikarus\+::scalar\+Affordance}} (Matrix\+Affordance affordanceM)
+\mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (director, world\+Dim, 1)
 \item 
-auto \mbox{\hyperlink{a00384_ac600b73743c56f0668ae66be56c37c87}{Ikarus\+::scalar\+Affordance}} (Vector\+Affordance affordanceV)
+\mbox{\hyperlink{a00403_a607ac2fd320d3ec56a04ad2cb1f384c4}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (magnetization, world\+Dim, 1)
 \item 
-constexpr Affordance\+Collection \mbox{\hyperlink{a00389_abd125ab98018456fb4bd3bdfe28466dc}{Ikarus\+::\+Affordance\+Collections\+::elasto\+Statics}} (Scalar\+Affordance\+::mechanical\+Potential\+Energy, Vector\+Affordance\+::forces, Matrix\+Affordance\+::stiffness)
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{a00403_a82899004bdc4b79780028d462eb9b51a}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (gradient\+Norm\+Of\+Magnetization, 1, 1)
+\item 
+\mbox{\hyperlink{a00403_aea49f16ceba88de50b308882a96a5f6f}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (vector\+Potential, world\+Dim, 1)
+\item 
+\mbox{\hyperlink{a00403_a0d6406ac1d0ebe00a6451220e16eda28}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (divergence\+Of\+Vector\+Potential, 1, 1)
+\item 
+\mbox{\hyperlink{a00403_a9e1b9b589bab3ddacd328f3ba35e4060}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (BField, world\+Dim, 1)
+\item 
+\mbox{\hyperlink{a00403_aabcae0056154bd66b8469cf257687a32}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (HField, world\+Dim, 1)
+\item 
+\mbox{\hyperlink{a00403_a0f1812cc608fd44ec96dd2f6d7841828}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (cauchy\+Axial\+Force, 1, 1)
+\item 
+\mbox{\hyperlink{a00403_aad41dec3367d662ab320e79740fe921c}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (PK2\+Axial\+Force, 1, 1)
+\item 
+\mbox{\hyperlink{a00403_a893a20e7914af86ffe78be5de91d5e6f}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (linear\+Axial\+Force, 1, 1)
+\item 
+\mbox{\hyperlink{a00403_a95592ca26f1dce3a7d1e943dc46274fb}{Ikarus\+::\+Result\+Types\+::\+REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE}} (custom\+Type, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic)
+\item 
+{\footnotesize template$<$template$<$ typename, int, int $>$ class RT$>$ }\\auto \mbox{\hyperlink{a00396_a38629395c2d43ba44328b01ce0c0daf3}{Ikarus\+::make\+RT}} ()
+\begin{DoxyCompactList}\small\item\em Creates a dummy result\+Type which can be stored in a variable. \end{DoxyCompactList}\item 
+{\footnotesize template$<$template$<$ typename, int, int $>$ class RT$>$ }\\auto \mbox{\hyperlink{a00396_ae9c1868f27f4754a448edbbc97b9a2f2}{Ikarus\+::to\+String}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves a string representation of the Result\+Type template. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-constexpr Vector\+Affordance \mbox{\hyperlink{a00384_a79f92cdef4ce37a01fd76e7cbc460cb4}{Ikarus\+::forces}} = Vector\+Affordance\+::forces
-\item 
-constexpr Matrix\+Affordance \mbox{\hyperlink{a00384_a5bd2b9f6fec9989fd5e5e9d7e3cd986e}{Ikarus\+::stiffness}} = Matrix\+Affordance\+::stiffness
-\item 
-constexpr Matrix\+Affordance \mbox{\hyperlink{a00384_a0ceb0c9442d4755cb5c2bd47ea46a22f}{Ikarus\+::stiffnessdiff\+Buckling\+Vector}} = Matrix\+Affordance\+::stiffnessdiff\+Buckling\+Vector
-\item 
-constexpr Matrix\+Affordance \mbox{\hyperlink{a00384_ad8479f7f6217f57442ec18948b7aece1}{Ikarus\+::mass}} = Matrix\+Affordance\+::mass
-\item 
-constexpr Scalar\+Affordance \mbox{\hyperlink{a00384_a8c6efe61469638e139724dc7c9bdaa9d}{Ikarus\+::potential\+Energy}} = Scalar\+Affordance\+::mechanical\+Potential\+Energy
-\end{DoxyCompactItemize}
+{\footnotesize template$<$template$<$ typename, int, int $>$ class RT1, template$<$ typename, int, int $>$ class RT2$>$ }\\static constexpr bool \mbox{\hyperlink{a00396_aae9d6a05f2ca4f54c0524404e27e7ed1}{Ikarus\+::is\+Same\+Result\+Type}} = std\+::is\+\_\+same\+\_\+v$<$Impl\+::\+Dummy\+RT$<$RT1$>$, Impl\+::\+Dummy\+RT$<$RT2$>$$>$
+\begin{DoxyCompactList}\small\item\em Meta variable to test whether two Result\+Type templates are the same. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Additional Result\+Types can be added with one of the following macros 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{a00314_a7ce39a7837a7febc8ecb05eac58b2d7d}\label{a00314_a7ce39a7837a7febc8ecb05eac58b2d7d}} 
+\index{feresulttypes.hh@{feresulttypes.hh}!REGISTER\_RESERVED\_RESULTTYPE@{REGISTER\_RESERVED\_RESULTTYPE}}
+\index{REGISTER\_RESERVED\_RESULTTYPE@{REGISTER\_RESERVED\_RESULTTYPE}!feresulttypes.hh@{feresulttypes.hh}}
+\doxysubsubsection{\texorpdfstring{REGISTER\_RESERVED\_RESULTTYPE}{REGISTER\_RESERVED\_RESULTTYPE}}
+{\footnotesize\ttfamily \#define REGISTER\+\_\+\+RESERVED\+\_\+\+RESULTTYPE(\begin{DoxyParamCaption}\item[{}]{result\+Type\+Name,  }\item[{}]{rows\+Expr,  }\item[{}]{cols\+Expr,  }\item[{}]{Max\+Rows\+Expr,  }\item[{}]{Max\+Cols\+Expr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{a00314_a8b1463ebff118e1d2513007fb0395a7c}{REGISTER\_RESULTTYPE\_IMPL}}(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr,           \(\backslash\)}
+\DoxyCodeLine{                           Ikarus::Impl::VectorizeGeneric, Ikarus::Impl::MatricizeGeneric)}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em result\+Type\+Name} & name of the Result\+Type \\
+\hline
+{\em rows\+Expr} & expression for rows, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+{\em cols\+Expr} & expression for columns, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+{\em Max\+Rows\+Expr} & expression for maximum number of columns \\
+\hline
+{\em Max\+Cols\+Exprexpression} & for maximum number of rows \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{a00314_a60e89b24a05f9724eb4cf2a3683aafeb}\label{a00314_a60e89b24a05f9724eb4cf2a3683aafeb}} 
+\index{feresulttypes.hh@{feresulttypes.hh}!REGISTER\_RESULTTYPE@{REGISTER\_RESULTTYPE}}
+\index{REGISTER\_RESULTTYPE@{REGISTER\_RESULTTYPE}!feresulttypes.hh@{feresulttypes.hh}}
+\doxysubsubsection{\texorpdfstring{REGISTER\_RESULTTYPE}{REGISTER\_RESULTTYPE}}
+{\footnotesize\ttfamily \#define REGISTER\+\_\+\+RESULTTYPE(\begin{DoxyParamCaption}\item[{}]{result\+Type\+Name,  }\item[{}]{rows\+Expr,  }\item[{}]{cols\+Expr }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{a00314_a8b1463ebff118e1d2513007fb0395a7c}{REGISTER\_RESULTTYPE\_IMPL}}(resultTypeName, rowsExpr, colsExpr, Ikarus::Impl::VectorizeGeneric, \(\backslash\)}
+\DoxyCodeLine{                           Ikarus::Impl::MatricizeGeneric)}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em result\+Type\+Name} & name of the Result\+Type \\
+\hline
+{\em rows\+Expr} & expression for rows, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+{\em cols\+Expr} & expression for columns, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{a00314_a8b1463ebff118e1d2513007fb0395a7c}\label{a00314_a8b1463ebff118e1d2513007fb0395a7c}} 
+\index{feresulttypes.hh@{feresulttypes.hh}!REGISTER\_RESULTTYPE\_IMPL@{REGISTER\_RESULTTYPE\_IMPL}}
+\index{REGISTER\_RESULTTYPE\_IMPL@{REGISTER\_RESULTTYPE\_IMPL}!feresulttypes.hh@{feresulttypes.hh}}
+\doxysubsubsection{\texorpdfstring{REGISTER\_RESULTTYPE\_IMPL}{REGISTER\_RESULTTYPE\_IMPL}}
+{\footnotesize\ttfamily \#define REGISTER\+\_\+\+RESULTTYPE\+\_\+\+IMPL(\begin{DoxyParamCaption}\item[{}]{result\+Type\+Name,  }\item[{}]{rows\+Expr,  }\item[{}]{cols\+Expr,  }\item[{}]{Max\+Rows\+Expr,  }\item[{}]{Max\+Cols\+Expr,  }\item[{}]{Vectorize\+Struct,  }\item[{}]{Matricize\+Struct }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keywordtype}{int} gr\textcolor{keywordtype}{id}Dim, \textcolor{keywordtype}{int} worldDim>                                                     \(\backslash\)}
+\DoxyCodeLine{  struct resultTypeName                                                                                         \(\backslash\)}
+\DoxyCodeLine{  \{                                                                                                             \(\backslash\)}
+\DoxyCodeLine{    friend std::string \mbox{\hyperlink{a00396_ae9c1868f27f4754a448edbbc97b9a2f2}{toString}}(resultTypeName) \{ \textcolor{keywordflow}{return} \#resultTypeName; \}                                     \(\backslash\)}
+\DoxyCodeLine{                                                                                                                \(\backslash\)}
+\DoxyCodeLine{    using type       = Eigen::Matrix<ScalarType, rowsExpr, colsExpr, 0, MaxRowsExpr, MaxColsExpr>;              \(\backslash\)}
+\DoxyCodeLine{    using Vectorizer = VectorizeStruct;                                                                         \(\backslash\)}
+\DoxyCodeLine{    using Matricizer = MatricizeStruct;                                                                         \(\backslash\)}
+\DoxyCodeLine{                                                                                                                \(\backslash\)}
+\DoxyCodeLine{    template <typename ScalarType\_, int gridDim\_, int worldDim\_>                                                \(\backslash\)}
+\DoxyCodeLine{    using Rebind = resultTypeName<ScalarType\_, gridDim\_, worldDim\_>;                                            \(\backslash\)}
+\DoxyCodeLine{  \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{a00314_a52814b58e3f14abb3b98a238cb51d3b8}\label{a00314_a52814b58e3f14abb3b98a238cb51d3b8}} 
+\index{feresulttypes.hh@{feresulttypes.hh}!REGISTER\_SIMPLE\_RESULTTYPE@{REGISTER\_SIMPLE\_RESULTTYPE}}
+\index{REGISTER\_SIMPLE\_RESULTTYPE@{REGISTER\_SIMPLE\_RESULTTYPE}!feresulttypes.hh@{feresulttypes.hh}}
+\doxysubsubsection{\texorpdfstring{REGISTER\_SIMPLE\_RESULTTYPE}{REGISTER\_SIMPLE\_RESULTTYPE}}
+{\footnotesize\ttfamily \#define REGISTER\+\_\+\+SIMPLE\+\_\+\+RESULTTYPE(\begin{DoxyParamCaption}\item[{}]{result\+Type\+Name,  }\item[{}]{rows\+Expr,  }\item[{}]{cols\+Expr }\end{DoxyParamCaption})~  \mbox{\hyperlink{a00314_a7ce39a7837a7febc8ecb05eac58b2d7d}{REGISTER\+\_\+\+RESERVED\+\_\+\+RESULTTYPE}}(result\+Type\+Name, rows\+Expr, cols\+Expr, rows\+Expr, cols\+Expr)}
+
+
+\begin{DoxyParams}{Parameters}
+{\em result\+Type\+Name} & name of the Result\+Type \\
+\hline
+{\em rows\+Expr} & expression for rows, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+{\em cols\+Expr} & expression for columns, e.\+g. {\ttfamily Eigen\+::\+Dynamic} or {\ttfamily world\+Dim} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{a00314_ac8f258db238456d188b270d139fd21e5}\label{a00314_ac8f258db238456d188b270d139fd21e5}} 
+\index{feresulttypes.hh@{feresulttypes.hh}!REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE@{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}
+\index{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE@{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}!feresulttypes.hh@{feresulttypes.hh}}
+\doxysubsubsection{\texorpdfstring{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}
+{\footnotesize\ttfamily \#define REGISTER\+\_\+\+SIMPLE\+\_\+\+SYMMETRIC\+\_\+\+RESULTTYPE(\begin{DoxyParamCaption}\item[{}]{result\+Type\+Name,  }\item[{}]{rows\+Expr,  }\item[{}]{cols\+Expr,  }\item[{}]{strainlike }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{  \mbox{\hyperlink{a00314_a8b1463ebff118e1d2513007fb0395a7c}{REGISTER\_RESULTTYPE\_IMPL}}(resultTypeName, rowsExpr, colsExpr, rowsExpr, colsExpr,           \(\backslash\)}
+\DoxyCodeLine{                           Ikarus::Impl::VectorizeWithVoigt<strainlike>, Ikarus::Impl::MatricizeWithVoigt<strainlike>)}
+
+\end{DoxyCode}
+
+\begin{DoxyParams}{Parameters}
+{\em result\+Type\+Name} & name of the Result\+Type \\
+\hline
+{\em rows\+Expr} & expression for rows, e.\+g. {\ttfamily grid\+Dim} or {\ttfamily world\+Dim} \\
+\hline
+{\em cols\+Expr} & expression for rows, e.\+g. {\ttfamily grid\+Dim} or {\ttfamily world\+Dim} \\
+\hline
+{\em strainlike} & boolean indicating whether the result should be treated as a strain-\/like quantity \\
+\hline
+\end{DoxyParams}

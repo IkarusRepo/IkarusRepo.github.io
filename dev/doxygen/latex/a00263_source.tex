@@ -1,100 +1,118 @@
-\hypertarget{a00263_source}{}\doxysection{strainconversions.\+hh}
-\label{a00263_source}\index{strainconversions.hh@{strainconversions.hh}}
+\hypertarget{a00263_source}{}\doxysection{materialhelpers.\+hh}
+\label{a00263_source}\index{materialhelpers.hh@{materialhelpers.hh}}
 \mbox{\hyperlink{a00263}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00242}{tags.hh}}"{}}}
-\DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <unsupported/Eigen/MatrixFunctions>}}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <ranges>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/common/float\_cmp.hh>}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <Eigen/Dense>}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03012}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00384}{Ikarus}} \{}
-\DoxyCodeLine{24 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{25   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{26   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) mayTransformFromVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& e, \textcolor{keywordtype}{bool} isStrain = \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{27     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>)}
-\DoxyCodeLine{28       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00380_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(e.derived(), isStrain);}
-\DoxyCodeLine{29     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{30       \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{31   \}}
-\DoxyCodeLine{32 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{45 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{46 \textcolor{keyword}{auto} \mbox{\hyperlink{a00372_gad5aa30fe829c7316a0a744b3438609f5}{createGreenLagrangianStrains}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{47   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{48   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{49   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
-\DoxyCodeLine{50     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{51   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{52     \textcolor{keywordflow}{return} (0.5 * (e.transpose() * e -\/ Derived::Identity())).eval();}
-\DoxyCodeLine{53   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
-\DoxyCodeLine{54     \textcolor{keywordflow}{return} (0.5 * (e + e.transpose() + e.transpose() * e)).eval();}
-\DoxyCodeLine{55   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}})}
-\DoxyCodeLine{56     \textcolor{keywordflow}{return} (0.5 * (e -\/ Derived::Identity())).eval();}
-\DoxyCodeLine{57 \}}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{70 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{71 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00372_ga5293eb09f12e4a45a7aa19a3403a73d1}{createDeformationGradient}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{72   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{74   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{75   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
-\DoxyCodeLine{76     \textcolor{comment}{// E = 0.5 * (F \string^ 2 -\/ I);}}
-\DoxyCodeLine{77     \textcolor{comment}{// 2*E = F \string^ 2 -\/ I;}}
-\DoxyCodeLine{78     \textcolor{comment}{// 2*E+I = F \string^ 2;}}
-\DoxyCodeLine{79     \textcolor{comment}{// sqrt(2*E+I) = F;}}
-\DoxyCodeLine{80     \textcolor{keywordflow}{return} ((2 * e + Derived::Identity()).sqrt()).eval();}
-\DoxyCodeLine{81   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{82     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{83   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
-\DoxyCodeLine{84     \textcolor{keywordflow}{return} (e + Derived::Identity()).eval();}
-\DoxyCodeLine{85   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{86     \textcolor{keywordflow}{return} (e.sqrt()).eval(); \textcolor{comment}{// this looses information, since the rotation information from the original F is lost!}}
-\DoxyCodeLine{87   \}}
-\DoxyCodeLine{88 \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{101 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{102 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00372_gae53e0e7999f565fc94610d1c4ede0d16}{createRightCauchyGreen}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{103   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{104   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{105   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
-\DoxyCodeLine{106     \textcolor{comment}{// E = 0.5 * (C -\/ I);}}
-\DoxyCodeLine{107     \textcolor{comment}{// 2*E = C -\/ I;}}
-\DoxyCodeLine{108     \textcolor{comment}{// 2*E+I = C;}}
-\DoxyCodeLine{109     \textcolor{keywordflow}{return} (2 * e + Derived::Identity()).eval();}
-\DoxyCodeLine{110   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{111     \textcolor{keywordflow}{return} (e.transpose() * e).eval();}
-\DoxyCodeLine{112   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}}) \{}
-\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{auto} F = e + Derived::Identity();}
-\DoxyCodeLine{114     \textcolor{keywordflow}{return} (F.transpose() * F).eval();}
-\DoxyCodeLine{115   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{116     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{117   \}}
-\DoxyCodeLine{118 \}}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{131 \textcolor{keyword}{template} <StrainTags from, StrainTags to, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{132 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00372_gae9c00f19ce473d7183c87aa84b247f88}{transformStrain}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eRaw) \{}
-\DoxyCodeLine{133   \textcolor{keyword}{static\_assert}((from == to) or (from != \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}} and to != \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}}),}
-\DoxyCodeLine{134                 \textcolor{stringliteral}{"{}No useful transformation available for linear strains."{}});}
-\DoxyCodeLine{135   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) e = Impl::mayTransformFromVoigt(eRaw.eval(), \textcolor{keyword}{true});}
-\DoxyCodeLine{136   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (from == to)}
-\DoxyCodeLine{137     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{138   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
-\DoxyCodeLine{139     \textcolor{keywordflow}{return} createGreenLagrangianStrains<from>(e);}
-\DoxyCodeLine{140   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{141     \textcolor{keywordflow}{return} createDeformationGradient<from>(e);}
-\DoxyCodeLine{142   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{143     \textcolor{keywordflow}{return} createRightCauchyGreen<from>(e);}
-\DoxyCodeLine{144   \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{145     \textcolor{keyword}{static\_assert}(to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}} or to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}} or}
-\DoxyCodeLine{146                   to == \mbox{\hyperlink{a00373_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}});}
-\DoxyCodeLine{147 \}}
-\DoxyCodeLine{148 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00407}{Ikarus::Materials}} \{}
+\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01587}{MatrixIndexPair}}}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27   Eigen::Index \mbox{\hyperlink{a01587_aea06e613d6a158b8e197a5f79ef7f197}{row}}; }
+\DoxyCodeLine{28   Eigen::Index \mbox{\hyperlink{a01587_a05834d6b2ab9428e4ecc645234ef9d34}{col}}; }
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 \} \textcolor{comment}{// namespace Ikarus::Materials}}
+\DoxyCodeLine{31 \textcolor{keyword}{namespace }Ikarus::Materials::Impl \{}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{39 \textcolor{keyword}{template} <\textcolor{keywordtype}{size\_t} size>}
+\DoxyCodeLine{40 \textcolor{keyword}{consteval} \textcolor{keyword}{auto} createfreeVoigtIndices(\textcolor{keyword}{const} std::array<MatrixIndexPair, size>\& fixed) \{}
+\DoxyCodeLine{41   std::array<size\_t, 6 -\/ size> res\{\};}
+\DoxyCodeLine{42   std::array<size\_t, size> voigtFixedIndices;}
+\DoxyCodeLine{43   std::ranges::transform(fixed, voigtFixedIndices.begin(), [](\textcolor{keyword}{auto} pair) \{ return toVoigt(pair.row, pair.col); \});}
+\DoxyCodeLine{44   std::ranges::sort(voigtFixedIndices);}
+\DoxyCodeLine{45   std::ranges::set\_difference(std::ranges::iota\_view(\textcolor{keywordtype}{size\_t}(0), \textcolor{keywordtype}{size\_t}(6)), voigtFixedIndices, res.begin());}
+\DoxyCodeLine{46   std::ranges::sort(res);}
+\DoxyCodeLine{47   \textcolor{keywordflow}{return} res;}
+\DoxyCodeLine{48 \}}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{56 \textcolor{keyword}{template} <\textcolor{keywordtype}{size\_t} size>}
+\DoxyCodeLine{57 \textcolor{keyword}{consteval} \textcolor{keyword}{auto} createFixedVoigtIndices(\textcolor{keyword}{const} std::array<MatrixIndexPair, size>\& fixed) \{}
+\DoxyCodeLine{58   std::array<size\_t, size> fixedIndices;}
+\DoxyCodeLine{59   std::ranges::transform(fixed, fixedIndices.begin(), [](\textcolor{keyword}{auto} pair) \{ return toVoigt(pair.row, pair.col); \});}
+\DoxyCodeLine{60   std::ranges::sort(fixedIndices);}
+\DoxyCodeLine{61   \textcolor{keywordflow}{return} fixedIndices;}
+\DoxyCodeLine{62 \}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{70 \textcolor{keyword}{template} <\textcolor{keywordtype}{size\_t} size>}
+\DoxyCodeLine{71 \textcolor{keyword}{constexpr} \textcolor{keywordtype}{size\_t} countDiagonalIndices(\textcolor{keyword}{const} std::array<MatrixIndexPair, size>\& fixed) \{}
+\DoxyCodeLine{72   \textcolor{keywordtype}{size\_t} count = 0;}
+\DoxyCodeLine{73   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} v : fixed) \{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{if} (v.col == v.row)}
+\DoxyCodeLine{75       ++count;}
+\DoxyCodeLine{76   \}}
+\DoxyCodeLine{77   \textcolor{keywordflow}{return} count;}
+\DoxyCodeLine{78 \}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{86 \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{87 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) maybeFromVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E) \{}
+\DoxyCodeLine{88   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>) \{ \textcolor{comment}{// receiving vector means Voigt notation}}
+\DoxyCodeLine{89     \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(E.derived(), \textcolor{keyword}{true});}
+\DoxyCodeLine{90   \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{91     \textcolor{keywordflow}{return} E.derived();}
+\DoxyCodeLine{92 \}}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType>}
+\DoxyCodeLine{95 \textcolor{keywordtype}{void} checkPositiveOrAbort(ScalarType det) \{}
+\DoxyCodeLine{96   \textcolor{keywordflow}{if} (Dune::FloatCmp::le(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(det), 0.0, 1e-\/10)) \{}
+\DoxyCodeLine{97     std::cerr << \textcolor{stringliteral}{"{}Determinant of right Cauchy Green tensor C must be greater than zero. detC = "{}} +}
+\DoxyCodeLine{98                      std::to\_string(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(det));}
+\DoxyCodeLine{99     abort();}
+\DoxyCodeLine{100   \}}
+\DoxyCodeLine{101 \}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{113 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarType, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{114 \textcolor{keyword}{auto} principalStretches(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C, \textcolor{keywordtype}{int} options = Eigen::ComputeEigenvectors) \{}
+\DoxyCodeLine{115   Eigen::SelfAdjointEigenSolver<Derived> eigensolver\{\};}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117   eigensolver.compute(C, options);}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119   \textcolor{keywordflow}{if} (eigensolver.info() != Eigen::Success)}
+\DoxyCodeLine{120     DUNE\_THROW(Dune::MathError, \textcolor{stringliteral}{"{}Failed to compute eigenvalues and eigenvectors of C."{}});}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122   \textcolor{keyword}{auto}\& eigenvalues  = eigensolver.eigenvalues();}
+\DoxyCodeLine{123   \textcolor{keyword}{auto}\& eigenvectors = options == Eigen::ComputeEigenvectors ? eigensolver.eigenvectors() : Derived::Zero();}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125   \textcolor{keyword}{auto} principalStretches = eigenvalues.cwiseSqrt().eval();}
+\DoxyCodeLine{126   \textcolor{keywordflow}{return} std::make\_pair(principalStretches, eigenvectors);}
+\DoxyCodeLine{127 \}}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{136 \textcolor{keyword}{template} <Concepts::EigenVector3 Vector>}
+\DoxyCodeLine{137 \textcolor{keyword}{inline} Vector::Scalar determinantFromPrincipalValues(\textcolor{keyword}{const} Vector\& principalValues) \{}
+\DoxyCodeLine{138   \textcolor{keywordflow}{return} principalValues.prod();}
+\DoxyCodeLine{139 \}}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{149 \textcolor{keyword}{template} <Concepts::EigenVector3 Vector>}
+\DoxyCodeLine{150 \textcolor{keyword}{inline} \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{Vector}} deviatoricStretches(\textcolor{keyword}{const} Vector\& lambda) \{}
+\DoxyCodeLine{151   \textcolor{keyword}{using }ScalarType = \textcolor{keyword}{typename} Vector::Scalar;}
+\DoxyCodeLine{152   ScalarType J     = determinantFromPrincipalValues(lambda);}
+\DoxyCodeLine{153   ScalarType Jmod  = pow(J, -\/1.0 / 3.0);}
+\DoxyCodeLine{154   \textcolor{keywordflow}{return} Jmod * lambda;}
+\DoxyCodeLine{155 \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{164 \textcolor{keyword}{template} <Concepts::EigenVector3 Vector>}
+\DoxyCodeLine{165 \textcolor{keyword}{inline} \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{Vector}} invariants(\textcolor{keyword}{const} Vector\& lambda) \{}
+\DoxyCodeLine{166   \textcolor{keyword}{using }ScalarType   = \textcolor{keyword}{typename} Vector::Scalar;}
+\DoxyCodeLine{167   \textcolor{keyword}{auto} lambdaSquared = lambda.array().square();}
+\DoxyCodeLine{168   \textcolor{keyword}{auto} invariants    = Vector::Zero().eval();}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170   invariants[0] = lambdaSquared.sum();}
+\DoxyCodeLine{171   invariants[1] =}
+\DoxyCodeLine{172       lambdaSquared[0] * lambdaSquared[1] + lambdaSquared[1] * lambdaSquared[2] + lambdaSquared[0] * lambdaSquared[2];}
+\DoxyCodeLine{173   invariants[2] = determinantFromPrincipalValues(lambdaSquared);}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175   \textcolor{keywordflow}{return} invariants;}
+\DoxyCodeLine{176 \}}
+\DoxyCodeLine{177 \} \textcolor{comment}{// namespace Ikarus::Materials::Impl}}
 
 \end{DoxyCode}

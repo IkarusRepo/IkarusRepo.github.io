@@ -1,0 +1,278 @@
+\hypertarget{a02982_source}{}\doxysection{finiteelements/mechanics/materials/hyperelastic/interface.hh}
+\label{a02982_source}\index{interface.hh@{interface.hh}}
+\mbox{\hyperlink{a02982}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
+\DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <autodiff/forward/dual/dual.hpp>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <autodiff/forward/dual/eigen.hpp>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03009}{ikarus/finiteelements/mechanics/materials/hyperelastic/concepts.hh}}>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02985}{ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/interface.hh}}>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00257}{ikarus/finiteelements/mechanics/materials/hyperelastic/volumetric/volumetricfunctions.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02979}{ikarus/finiteelements/mechanics/materials/interface.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00263}{ikarus/finiteelements/mechanics/materials/materialhelpers.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00407}{Ikarus::Materials}} \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{33 \textcolor{keyword}{template} <\textcolor{keyword}{typename} DEV, \textcolor{keyword}{typename} VOL = NoVolumetricPart>}
+\DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{a01519}{Hyperelastic}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01579}{Material}}<Hyperelastic<DEV, VOL>>}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36   \textcolor{keyword}{static\_assert}(std::is\_same\_v<DEV, Deviatoric<typename DEV::DeviatoricFunction>>);}
+\DoxyCodeLine{37   \textcolor{keyword}{static\_assert}(std::is\_same\_v<VOL, Volumetric<typename VOL::VolumetricFunction>>);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_a1cbd68ec89a8e264c989c1e6a89822f8}{ScalarType}}                        = \textcolor{keyword}{typename} DEV::ScalarType;}
+\DoxyCodeLine{40   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_ada824f063862cafe0415c1631a73f2fd}{hasVolumetricPart}} = not std::same\_as<VOL, NoVolumetricPart>;}
+\DoxyCodeLine{41   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_ad470952ef099e9eed282135b0313389d}{isAutoDiff}}        = \mbox{\hyperlink{a02065}{Concepts::AutodiffScalar<ScalarType>}};}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01519_a8d74fb06339caf2930a00ea40ecac5c0}{dim}} = 3;}
+\DoxyCodeLine{44   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_ac72c18e90263b11ece94c7557cda4cc6}{StrainMatrix}}       = Eigen::Matrix<ScalarType, dim, dim>;}
+\DoxyCodeLine{45   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_ab2fbeebd0a285ca71e54a933ae2a8c69}{StressMatrix}}       = \mbox{\hyperlink{a01519_ac72c18e90263b11ece94c7557cda4cc6}{StrainMatrix}};}
+\DoxyCodeLine{46   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_afab022b92fcc88b0e57d65ee310751d2}{MaterialTensor}}     = Eigen::TensorFixedSize<ScalarType, Eigen::Sizes<dim, dim, dim, dim>>;}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_acb4984a4214a872ad37491cfd2b4c6e3}{MaterialParametersDEV}} = \textcolor{keyword}{typename} DEV::MaterialParameters;}
+\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_a93488f549ae3c5c63d7a2d9da0212b6b}{MaterialParametersVOL}} = \textcolor{keyword}{typename} VOL::MaterialParameter;}
+\DoxyCodeLine{50   \textcolor{keyword}{using }\mbox{\hyperlink{a01519_a6993fca2600ef4701ac5ddb827f5fea9}{MaterialParameters}} =}
+\DoxyCodeLine{51       std::conditional\_t<hasVolumetricPart, std::pair<MaterialParametersDEV, MaterialParametersVOL>,}
+\DoxyCodeLine{52                          \mbox{\hyperlink{a01519_acb4984a4214a872ad37491cfd2b4c6e3}{MaterialParametersDEV}}>;}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01519_aea27e3ad0a717064f2a19d0b806e9adc}{strainTag}}              = \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}};}
+\DoxyCodeLine{55   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01519_abd5c28c042abbccda39cbe647270498d}{stressTag}}              = \mbox{\hyperlink{a00385_gga70b4ce43c53cc5e949d49919f437501eab13248d68ac5516c015337b68346fc21}{StressTags::PK2}};}
+\DoxyCodeLine{56   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01519_a08a9a2762d170c489979438257467543}{tangentModuliTag}}       = \mbox{\hyperlink{a00385_gga05ac785124262c1e323d2f937d520a1bad92a8333dd3ccb895cc65f7455b71206}{TangentModuliTags::Material}};}
+\DoxyCodeLine{57   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_a07c2fbb17a5264b852a856a314e604bc}{energyAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{58   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_ab57d932294230ce993122bdd800cf77f}{stressToVoigt}}          = \textcolor{keyword}{false};}
+\DoxyCodeLine{59   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_a06ee513dc5ee636e6463ef1eae39a587}{stressAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{60   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_af34b26052c843ca9b2ee03b8e451d0e6}{moduliToVoigt}}          = \textcolor{keyword}{false};}
+\DoxyCodeLine{61   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01519_a5f11f770473cf58e7934e261f257cfc0}{moduliAcceptsVoigt}}     = \textcolor{keyword}{false};}
+\DoxyCodeLine{62   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01519_ac281a67b1069e3f6c5fe17942e8b6738}{derivativeFactorImpl}} = 2;}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01519_af539f27afaa79241eb50e3a8a85504d3}{nameImpl}}() noexcept \{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01519_ada824f063862cafe0415c1631a73f2fd}{hasVolumetricPart}})}
+\DoxyCodeLine{66       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Hyperelastic ("{}} + DEV::name() + \textcolor{stringliteral}{"{}, "{}} + VOL::name() + \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{67     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{68       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Hyperelastic ("{}} + DEV::name() + \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{69   \}}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01519_a034c61ea845cb6ddb2ae91971838078f}{Hyperelastic}}(\textcolor{keyword}{const} DEV\& dev)}
+\DoxyCodeLine{72   \textcolor{keyword}{requires}(not \mbox{\hyperlink{a01519_ada824f063862cafe0415c1631a73f2fd}{hasVolumetricPart}})}
+\DoxyCodeLine{73       : dev\_\{dev\},}
+\DoxyCodeLine{74         vol\_(VOL\{\mbox{\hyperlink{a01519_a93488f549ae3c5c63d7a2d9da0212b6b}{MaterialParametersVOL}}\{\}, \textcolor{keyword}{typename} VOL::VolumetricFunction\{\}\}) \{\}}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \mbox{\hyperlink{a01519_ae0ada67dda859afd29cdc7afda47f4ea}{Hyperelastic}}(\textcolor{keyword}{const} DEV\& dev, \textcolor{keyword}{const} VOL\& vol)}
+\DoxyCodeLine{77       : dev\_(dev),}
+\DoxyCodeLine{78         vol\_(vol) \{\}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{81   \textcolor{keyword}{const} DEV\& \mbox{\hyperlink{a01519_a5693042bcd5d51d3218317685f74f4d0}{deviatoricFunction}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} dev\_; \}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{84   \textcolor{keyword}{const} VOL\& \mbox{\hyperlink{a01519_adc4df3aa29c4a6c70198116882a65c24}{volumetricFunction}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} vol\_; \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{89   \textcolor{keyword}{const} \mbox{\hyperlink{a01519_a6993fca2600ef4701ac5ddb827f5fea9}{MaterialParameters}} \mbox{\hyperlink{a01519_ac9eb8b0d10f4822e4d02deb3562415e7}{materialParametersImpl}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{90     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01519_ada824f063862cafe0415c1631a73f2fd}{hasVolumetricPart}})}
+\DoxyCodeLine{91       \textcolor{keywordflow}{return} \{dev\_.materialParameters(), vol\_.materialParameter()\};}
+\DoxyCodeLine{92     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{93       \textcolor{keywordflow}{return} dev\_.materialParameters();}
+\DoxyCodeLine{94   \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{102   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{103   \mbox{\hyperlink{a01519_a1cbd68ec89a8e264c989c1e6a89822f8}{ScalarType}} \mbox{\hyperlink{a01519_ab6b7e0732166247942ede24e025a3551}{storedEnergyImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{104     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{keyword}{const} \textcolor{keyword}{auto} lambdas = principalStretches(C, Eigen::EigenvaluesOnly).first;}
+\DoxyCodeLine{107     \textcolor{keyword}{auto} J             = detF(C, lambdas);}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109     \textcolor{keywordflow}{return} deviatoricEnergy(C, lambdas) + vol\_.storedEnergy(J);}
+\DoxyCodeLine{110   \}}
+\DoxyCodeLine{111 }
+\DoxyCodeLine{119   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{120   \mbox{\hyperlink{a01519_ab2fbeebd0a285ca71e54a933ae2a8c69}{StressMatrix}} \mbox{\hyperlink{a01519_a7fc4c5a0220e307632751ef4c063f00f}{stressesImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{121     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{122     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
+\DoxyCodeLine{123       \textcolor{keyword}{const} \textcolor{keyword}{auto} [lambdas, N] = principalStretches(C);}
+\DoxyCodeLine{124       \textcolor{keyword}{auto} J                  = detF(C, lambdas);}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126       \textcolor{keyword}{const} \textcolor{keyword}{auto} Sdev = deviatoricStress(C, lambdas, N);}
+\DoxyCodeLine{127       \textcolor{keyword}{const} \textcolor{keyword}{auto} Svol = transformVolumetricStresses(vol\_.firstDerivative(J), C, J);}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129       \textcolor{keywordflow}{return} Sdev + Svol;}
+\DoxyCodeLine{130     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{131       \textcolor{keyword}{static\_assert}(voigt == \textcolor{keyword}{false}, \textcolor{stringliteral}{"{}Hyperelastic does not support returning stresses in Voigt notation"{}});}
+\DoxyCodeLine{132   \}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{141   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{142   \mbox{\hyperlink{a01519_afab022b92fcc88b0e57d65ee310751d2}{MaterialTensor}} \mbox{\hyperlink{a01519_ab14575e4a0ac4e7c20502c197d8ec4b8}{tangentModuliImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{143     \textcolor{keyword}{static\_assert}(Concepts::EigenMatrixOrVoigtNotation3<Derived>);}
+\DoxyCodeLine{144     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (!voigt) \{}
+\DoxyCodeLine{145       \textcolor{keyword}{const} \textcolor{keyword}{auto} [lambdas, N] = principalStretches(C);}
+\DoxyCodeLine{146       \textcolor{keyword}{auto} J                  = detF(C, lambdas);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148       \textcolor{keyword}{const} \textcolor{keyword}{auto} moduliDev = transformDeviatoricTangentModuli(dev\_.tangentModuli(lambdas), N);}
+\DoxyCodeLine{149       \textcolor{keyword}{const} \textcolor{keyword}{auto} moduliVol = transformVolumetricTangentModuli(vol\_.firstDerivative(J), vol\_.secondDerivative(J), C, J);}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151       \textcolor{keywordflow}{return} moduliDev + moduliVol;}
+\DoxyCodeLine{152     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{153       \textcolor{keyword}{static\_assert}(voigt == \textcolor{keyword}{false}, \textcolor{stringliteral}{"{}Hyperelastic does not support returning tangent moduli in Voigt notation"{}});}
+\DoxyCodeLine{154   \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{161   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{162   \textcolor{keyword}{auto} \mbox{\hyperlink{a01519_a93404b73ee63e850398a668fe0f7e8ba}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{163     \textcolor{keyword}{auto} reboundDEV = dev\_.template rebind<STO>();}
+\DoxyCodeLine{164     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01519}{Hyperelastic<decltype(reboundDEV), VOL>}}(reboundDEV, vol\_);}
+\DoxyCodeLine{165   \}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 \textcolor{keyword}{private}:}
+\DoxyCodeLine{168   DEV dev\_;}
+\DoxyCodeLine{169   VOL vol\_;}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171   \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} dimensionRange() \{ \textcolor{keywordflow}{return} Dune::range(\mbox{\hyperlink{a01519_a8d74fb06339caf2930a00ea40ecac5c0}{dim}}); \}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{174   Eigen::Matrix<ST, dim, dim> transformDeviatoricStresses(\textcolor{keyword}{const} Eigen::Vector<ST, dim>\& principalStress,}
+\DoxyCodeLine{175                                                           \textcolor{keyword}{const} Eigen::Matrix<ST, dim, dim>\& N)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{176     \textcolor{keywordflow}{return} (N * principalStress.asDiagonal() * N.transpose()).eval();}
+\DoxyCodeLine{177   \}}
+\DoxyCodeLine{178 }
+\DoxyCodeLine{179   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{180   Eigen::Matrix<ST, dim, dim> transformVolumetricStresses(ST Uprime, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& C, ST J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{181     \textcolor{keywordflow}{return} J * Uprime * C.inverse();}
+\DoxyCodeLine{182   \}}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{185   \textcolor{keyword}{auto} transformDeviatoricTangentModuli(\textcolor{keyword}{const} Eigen::TensorFixedSize<ST, Eigen::Sizes<dim, dim, dim, dim>>\& L,}
+\DoxyCodeLine{186                                         \textcolor{keyword}{const} Eigen::Matrix<ST, dim, dim>\& N)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{187     Eigen::TensorFixedSize<ST, Eigen::Sizes<dim, dim, dim, dim>> moduli\{\};}
+\DoxyCodeLine{188     moduli.setZero();}
+\DoxyCodeLine{189     \textcolor{keyword}{auto} indexList = std::array<Eigen::Index, 2>(\{\mbox{\hyperlink{a01519_a8d74fb06339caf2930a00ea40ecac5c0}{dim}}, \mbox{\hyperlink{a01519_a8d74fb06339caf2930a00ea40ecac5c0}{dim}}\});}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} i : dimensionRange())}
+\DoxyCodeLine{192       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} k : dimensionRange()) \{}
+\DoxyCodeLine{193         \textcolor{comment}{// First term: L[i, i, k, k] * ((N[i] ⊗ N[i]) ⊗ (N[k] ⊗ N[k]))}}
+\DoxyCodeLine{194         \textcolor{keyword}{auto} NiNi = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(\mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(N.col(i).eval(), N.col(i).eval()), indexList);}
+\DoxyCodeLine{195         \textcolor{keyword}{auto} NkNk = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(\mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(N.col(k).eval(), N.col(k).eval()), indexList);}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197         moduli += L(i, i, k, k) * \mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(NiNi, NkNk);}
+\DoxyCodeLine{198 }
+\DoxyCodeLine{199         \textcolor{comment}{// Second term (only if i != k): L[i, k, i, k] * (N[i] ⊗ N[k] ⊗ (N[i] ⊗ N[k] + N[k] ⊗ N[i]))}}
+\DoxyCodeLine{200         \textcolor{keywordflow}{if} (i != k) \{}
+\DoxyCodeLine{201           \textcolor{keyword}{auto} NiNk = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(\mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(N.col(i).eval(), N.col(k).eval()), indexList);}
+\DoxyCodeLine{202           \textcolor{keyword}{auto} NkNi = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(\mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(N.col(k).eval(), N.col(i).eval()), indexList);}
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204           moduli += L(i, k, i, k) * \mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(NiNk, NiNk + NkNi);}
+\DoxyCodeLine{205         \}}
+\DoxyCodeLine{206       \}}
+\DoxyCodeLine{207 }
+\DoxyCodeLine{208     \textcolor{keywordflow}{return} moduli;}
+\DoxyCodeLine{209   \}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{212   \textcolor{keyword}{auto} transformVolumetricTangentModuli(\textcolor{keyword}{const} ST\& Uprime, \textcolor{keyword}{const} ST\& Uprimeprime, \textcolor{keyword}{const} \textcolor{keyword}{auto}\& C, ST J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{213     \textcolor{keyword}{const} \textcolor{keyword}{auto} invC  = C.inverse().eval();}
+\DoxyCodeLine{214     \textcolor{keyword}{const} \textcolor{keyword}{auto} CTinv = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(invC, std::array<Eigen::Index, 2>(\{3, 3\}));}
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216     Eigen::TensorFixedSize<ST, Eigen::Sizes<3, 3, 3, 3>> moduli =}
+\DoxyCodeLine{217         (J * ((Uprime + J * Uprimeprime) * \mbox{\hyperlink{a00392_gab2cea9ac847cc3635812467c9d96ceb4}{dyadic}}(CTinv, CTinv) -\/}
+\DoxyCodeLine{218               (2 * Uprime * \mbox{\hyperlink{a00392_gaea03dbfcd8f85ef7af004c7e09244aa9}{symTwoSlots}}(\mbox{\hyperlink{a00392_ga8fa2b440586483c1ee0f9b90b9081da2}{fourthOrderIKJL}}(invC, invC), \{2, 3\}))))}
+\DoxyCodeLine{219             .eval();}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     \textcolor{keywordflow}{return} moduli;}
+\DoxyCodeLine{222   \}}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
+\DoxyCodeLine{225   \textcolor{keyword}{auto} principalStretches(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Craw, \textcolor{keywordtype}{int} options = Eigen::ComputeEigenvectors)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{226     \textcolor{keyword}{auto} C = Impl::maybeFromVoigt(Craw);}
+\DoxyCodeLine{227     \textcolor{keywordflow}{return} Impl::principalStretches<typename Derived::Scalar>(C, options);}
+\DoxyCodeLine{228   \}}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{240   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{241   ST detF(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C, \textcolor{keyword}{const} Eigen::Vector<ST, 3>\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{242     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01519_ad470952ef099e9eed282135b0313389d}{isAutoDiff}}) \{}
+\DoxyCodeLine{243       \textcolor{keyword}{const} \textcolor{keyword}{auto} detC = sqrt(C.derived().eval().determinant());}
+\DoxyCodeLine{244       \textcolor{keywordflow}{return} detC;}
+\DoxyCodeLine{245     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{246       \textcolor{keyword}{const} \textcolor{keyword}{auto} detC = Impl::determinantFromPrincipalValues(lambda);}
+\DoxyCodeLine{247       Impl::checkPositiveOrAbort(detC);}
+\DoxyCodeLine{248       \textcolor{keywordflow}{return} detC;}
+\DoxyCodeLine{249     \}}
+\DoxyCodeLine{250   \}}
+\DoxyCodeLine{251 }
+\DoxyCodeLine{258   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{259   \textcolor{keyword}{requires}(std::same\_as<typename Derived::Scalar, ST>)}
+\DoxyCodeLine{260   \textcolor{keyword}{auto} deviatoricEnergy(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C, \textcolor{keyword}{const} Eigen::Vector<ST, 3>\& lambdasST) \textcolor{keyword}{const} \{}
+\DoxyCodeLine{261     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not Concepts::AutodiffScalar<ST>) \{}
+\DoxyCodeLine{262       \textcolor{keywordflow}{return} dev\_.storedEnergy(lambdasST);}
+\DoxyCodeLine{263     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ST, autodiff::dual>) \{}
+\DoxyCodeLine{264       autodiff::dual e;}
+\DoxyCodeLine{265       \textcolor{keyword}{const} \textcolor{keyword}{auto} Cvec     = \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(C.derived());}
+\DoxyCodeLine{266       \textcolor{keyword}{const} \textcolor{keyword}{auto} realCVec = autodiff::derivative<0>(Cvec);}
+\DoxyCodeLine{267       \textcolor{keyword}{const} \textcolor{keyword}{auto} dualCVec = autodiff::derivative<1>(Cvec);}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269       \textcolor{keyword}{const} \textcolor{keyword}{auto} [lambdas, N] = principalStretches(realCVec);}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271       e.val  = dev\_.storedEnergy(lambdas);}
+\DoxyCodeLine{272       e.grad = (transformDeviatoricStresses(dev\_.stresses(lambdas), N).transpose() / 2 * \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(dualCVec)).trace();}
+\DoxyCodeLine{273       \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{274     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ST, autodiff::dual2nd>) \{}
+\DoxyCodeLine{275       autodiff::dual2nd e;}
+\DoxyCodeLine{276       \textcolor{keyword}{const} \textcolor{keyword}{auto} Cvec         = \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(C.derived());}
+\DoxyCodeLine{277       \textcolor{keyword}{const} \textcolor{keyword}{auto} realCVec     = derivative<0>(Cvec);}
+\DoxyCodeLine{278       \textcolor{keyword}{const} \textcolor{keyword}{auto} dualC        = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(Cvec.unaryExpr([](\textcolor{keyword}{auto}\& v) \{ return v.grad.val; \}).eval());}
+\DoxyCodeLine{279       \textcolor{keyword}{const} \textcolor{keyword}{auto} dualC2       = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(Cvec.unaryExpr([](\textcolor{keyword}{auto}\& v) \{ return v.val.grad; \}).eval());}
+\DoxyCodeLine{280       \textcolor{keyword}{const} \textcolor{keyword}{auto} [lambdas, N] = principalStretches(realCVec);}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{282       e.val      = dev\_.storedEnergy(lambdas);}
+\DoxyCodeLine{283       e.grad.val = (transformDeviatoricStresses(dev\_.stresses(lambdas), N).transpose() / 2 * dualC).trace();}
+\DoxyCodeLine{284       e.val.grad = e.grad.val;}
+\DoxyCodeLine{285 }
+\DoxyCodeLine{286       \textcolor{keyword}{const} \textcolor{keyword}{auto} Cmoduli = transformDeviatoricTangentModuli(dev\_.tangentModuli(lambdas), N);}
+\DoxyCodeLine{287       \textcolor{keyword}{const} Eigen::array<Eigen::IndexPair<Eigen::Index>, 2> double\_contraction  = \{Eigen::IndexPair<Eigen::Index>(2, 0),}
+\DoxyCodeLine{288                                                                                    Eigen::IndexPair<Eigen::Index>(3, 1)\};}
+\DoxyCodeLine{289       \textcolor{keyword}{const} Eigen::array<Eigen::IndexPair<Eigen::Index>, 2> double\_contraction2 = \{}
+\DoxyCodeLine{290           Eigen::IndexPair<Eigen::Index>(0, 0), Eigen::IndexPair<Eigen::Index>(1, 1)\};}
+\DoxyCodeLine{291       \textcolor{keyword}{const} \textcolor{keyword}{auto} tCdual                  = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(dualC, std::array<Eigen::Index, 2>(\{3, 3\}));}
+\DoxyCodeLine{292       \textcolor{keyword}{const} \textcolor{keyword}{auto} tCdualT                 = \mbox{\hyperlink{a00392_ga5cfd9d098384fb067d897b3c0499b447}{tensorView}}(dualC2, std::array<Eigen::Index, 2>(\{3, 3\}));}
+\DoxyCodeLine{293       \textcolor{keyword}{const} \textcolor{keyword}{auto} prod                    = Cmoduli.contract(tCdual, double\_contraction);}
+\DoxyCodeLine{294       \textcolor{keyword}{const} Eigen::Tensor<double, 0> res = tCdualT.contract(prod, double\_contraction2);}
+\DoxyCodeLine{295       e.grad.grad                        = res(0) / 4.0; \textcolor{comment}{// extracting value of zero order tensor}}
+\DoxyCodeLine{296 }
+\DoxyCodeLine{297       \textcolor{keywordflow}{return} e;}
+\DoxyCodeLine{298     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{299       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<Derived>::value, \textcolor{stringliteral}{"{}No fitting ScalarType."{}});}
+\DoxyCodeLine{300   \}}
+\DoxyCodeLine{301 }
+\DoxyCodeLine{309   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{310   \textcolor{keyword}{requires}(std::same\_as<typename Derived::Scalar, ST>)}
+\DoxyCodeLine{311   \textcolor{keyword}{auto} deviatoricStress(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& C, \textcolor{keyword}{const} Eigen::Vector<ST, dim>\& lambdasST,}
+\DoxyCodeLine{312                         Eigen::Matrix<ST, dim, dim> NST) \textcolor{keyword}{const} \{}
+\DoxyCodeLine{313     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (not Concepts::AutodiffScalar<ST>) \{}
+\DoxyCodeLine{314       \textcolor{keywordflow}{return} transformDeviatoricStresses(dev\_.stresses(lambdasST), NST);}
+\DoxyCodeLine{315     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (std::is\_same\_v<ST, autodiff::dual>) \{}
+\DoxyCodeLine{316       \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} nVoigtIndices = 6;}
+\DoxyCodeLine{317       Eigen::Vector<autodiff::dual, nVoigtIndices> g;}
+\DoxyCodeLine{318       \textcolor{keyword}{const} \textcolor{keyword}{auto} Cvec         = \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(C.derived());}
+\DoxyCodeLine{319       \textcolor{keyword}{const} \textcolor{keyword}{auto} realCVec     = derivative<0>(Cvec);}
+\DoxyCodeLine{320       \textcolor{keyword}{const} \textcolor{keyword}{auto} realC        = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(realCVec);}
+\DoxyCodeLine{321       \textcolor{keyword}{const} \textcolor{keyword}{auto} dualC        = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(Cvec.unaryExpr([](\textcolor{keyword}{const} \textcolor{keyword}{auto}\& v) \{ return v.grad; \}).eval());}
+\DoxyCodeLine{322       \textcolor{keyword}{const} \textcolor{keyword}{auto} [lambdas, N] = principalStretches(realC);}
+\DoxyCodeLine{323 }
+\DoxyCodeLine{324       \textcolor{keyword}{const} \textcolor{keyword}{auto} \mbox{\hyperlink{a01579_a8a68e052cade23285d1a28d1e08845f5}{stresses}} = \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(transformDeviatoricStresses(dev\_.stresses(lambdas), N));}
+\DoxyCodeLine{325       \textcolor{keyword}{const} \textcolor{keyword}{auto} Cmoduli  = \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(transformDeviatoricTangentModuli(dev\_.tangentModuli(lambdas), N));}
+\DoxyCodeLine{326       Eigen::Vector<double, nVoigtIndices> stressDirectionalDerivatrive = Cmoduli * \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(dualC);}
+\DoxyCodeLine{327       stressDirectionalDerivatrive.topRows<3>() /= 2.0;}
+\DoxyCodeLine{328 }
+\DoxyCodeLine{329       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < nVoigtIndices; ++i) \{}
+\DoxyCodeLine{330         g[i].val  = \mbox{\hyperlink{a01579_a8a68e052cade23285d1a28d1e08845f5}{stresses}}[i];}
+\DoxyCodeLine{331         g[i].grad = stressDirectionalDerivatrive[i];}
+\DoxyCodeLine{332       \}}
+\DoxyCodeLine{333 }
+\DoxyCodeLine{334       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(g);}
+\DoxyCodeLine{335     \} \textcolor{keywordflow}{else}}
+\DoxyCodeLine{336       \textcolor{keyword}{static\_assert}(Dune::AlwaysFalse<Derived>::value, \textcolor{stringliteral}{"{}No fitting ScalarType."{}});}
+\DoxyCodeLine{337   \}}
+\DoxyCodeLine{338 \};}
+\DoxyCodeLine{339 }
+\DoxyCodeLine{340 \} \textcolor{comment}{// namespace Ikarus::Materials}}
+
+\end{DoxyCode}
