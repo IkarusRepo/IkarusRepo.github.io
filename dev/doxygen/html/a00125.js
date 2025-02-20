@@ -1,4 +1,4 @@
 var a00125 =
 [
-    [ "Ikarus::ControlSubsamplingVertexVTKWriter< B >", "a01947.html", "a01947" ]
+    [ "Ikarus::NonlinearSolverFactory< NLSSetting >", "a01834.html", "a01834" ]
 ];

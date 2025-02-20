@@ -1,6 +1,7 @@
 var a00284 =
 [
-    [ "Ikarus::TrussPre", "a01619.html", "a01619" ],
-    [ "Ikarus::Truss< PreFE, FE >::KinematicVariables< ST >", "a01623.html", "a01623" ],
-    [ "truss", "a00284.html#a1936b02a190200901c54cc8b1004506e", null ]
+    [ "Ikarus::KirchhoffLoveShellPre", "a01490.html", "a01490" ],
+    [ "Ikarus::KirchhoffLoveShell< PreFE, FE >::KinematicVariables< ST >", "a01494.html", "a01494" ],
+    [ "Ikarus::KlArgs", "a01498.html", "a01498" ],
+    [ "kirchhoffLoveShell", "a00284.html#aecb794f40bd585f77e094976751ba41e", null ]
 ];

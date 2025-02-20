@@ -1,5 +1,5 @@
-\hypertarget{a00245_source}{}\doxysection{vanishingstress.\+hh}
-\label{a00245_source}\index{vanishingstress.hh@{vanishingstress.hh}}
+\hypertarget{a00245_source}{}\doxysection{gent.\+hh}
+\label{a00245_source}\index{gent.hh@{gent.hh}}
 \mbox{\hyperlink{a00245}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,181 +7,116 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00263}{materialhelpers.hh}}"{}}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02979}{ikarus/finiteelements/mechanics/materials/interface.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00158}{ikarus/solver/nonlinearsolver/newtonraphson.hh}}>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00161}{ikarus/solver/nonlinearsolver/nonlinearsolverfactory.hh}}>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03012}{ikarus/utils/concepts.hh}}>}}
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00056}{ikarus/utils/nonlinearoperator.hh}}>}}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00407}{Ikarus::Materials}} \{}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{28 \textcolor{keyword}{template} <auto stressIndexPair, \textcolor{keyword}{typename} MI>}
-\DoxyCodeLine{29 \textcolor{keyword}{struct }\mbox{\hyperlink{a01599}{VanishingStress}} : \textcolor{keyword}{public} \mbox{\hyperlink{a01579}{Material}}<VanishingStress<stressIndexPair, MI>>}
-\DoxyCodeLine{30 \{}
-\DoxyCodeLine{31   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_a6400fad29b26eb71eb169f2266962aae}{Underlying}}         = MI; }
-\DoxyCodeLine{32   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_a84f270d244fe8180f818a44a04bc8502}{MaterialParameters}} = \textcolor{keyword}{typename} Underlying::MaterialParameters;}
-\DoxyCodeLine{33   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_afbb3a1931fd54a882fcd90ec59171b0a}{StrainMatrix}}       = \textcolor{keyword}{typename} Underlying::StrainMatrix;}
-\DoxyCodeLine{34   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_ac84af8a23cc155c23c5257d7f810827a}{StressMatrix}}       = \textcolor{keyword}{typename} Underlying::StressMatrix;}
-\DoxyCodeLine{35   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_a3848205d54ecf0b302a4b49ed8c07ac5}{MaterialTensor}}     = \textcolor{keyword}{typename} Underlying::MaterialTensor;}
-\DoxyCodeLine{36   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01599_a2b1f3516c8b1d0463d7d85eb931d564b}{dim}} = Underlying::dim;}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{38   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}        = stressIndexPair; }
-\DoxyCodeLine{39   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a2ac51d9a716dd239a2e9fd5c4c8b096f}{freeVoigtIndices}}  = Impl::createfreeVoigtIndices(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}});  }
-\DoxyCodeLine{40   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a36576a5c7411f30d40ecb39a82797d2c}{fixedVoigtIndices}} = Impl::createFixedVoigtIndices(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}); }
-\DoxyCodeLine{41   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_aeae7200ba1a41206754014cb72190a23}{fixedDiagonalVoigtIndicesSize}} =}
-\DoxyCodeLine{42       Impl::countDiagonalIndices(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}});                          }
-\DoxyCodeLine{43   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a12899cf08ad32824701c34aec3c67d18}{freeStrains}} = \mbox{\hyperlink{a01599_a2ac51d9a716dd239a2e9fd5c4c8b096f}{freeVoigtIndices}}.size();         }
-\DoxyCodeLine{44   \textcolor{keyword}{using }\mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}}                  = \textcolor{keyword}{typename} Underlying::ScalarType; }
-\DoxyCodeLine{45   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_a67f4d81e31588d95486aed0b766c7a85}{isAutoDiff}}  = \mbox{\hyperlink{a02065}{Concepts::AutodiffScalar<ScalarType>}};}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a3cb51a79c74ae2f6664c2a4e5802de89}{strainTag}}              = Underlying::strainTag;            }
-\DoxyCodeLine{48   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a56a8763cc948aa7655e1b767ec6de283}{stressTag}}              = Underlying::stressTag;            }
-\DoxyCodeLine{49   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_afc0e17a045d606a52e03c2dc94153060}{tangentModuliTag}}       = Underlying::tangentModuliTag;     }
-\DoxyCodeLine{50   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_ac5443d727fe11d8f594a5e3e69e9f35c}{energyAcceptsVoigt}}     = Underlying::energyAcceptsVoigt;   }
-\DoxyCodeLine{51   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_ae456e9a0f9cdd77459d155aff536e1af}{stressToVoigt}}          = \textcolor{keyword}{true};                             }
-\DoxyCodeLine{52   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_af947d92d73afef7e293324473cd9b628}{stressAcceptsVoigt}}     = \textcolor{keyword}{true};                             }
-\DoxyCodeLine{53   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_a2fcfb5ea9daf71799d07a478534fbcf9}{moduliToVoigt}}          = \textcolor{keyword}{true};                             }
-\DoxyCodeLine{54   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01599_a369a9e39b4ea2d9596fd55c07966dea5}{moduliAcceptsVoigt}}     = \textcolor{keyword}{true};                             }
-\DoxyCodeLine{55   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{double} \mbox{\hyperlink{a01599_aaa51fae59e954feea40cc1b5fbe8134f}{derivativeFactorImpl}} = Underlying::derivativeFactorImpl; }
-\DoxyCodeLine{56 }
-\DoxyCodeLine{62   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01599_acd22caecd2dbd0cf4febb35c5cad6e86}{VanishingStress}}(MI mat, \textcolor{keyword}{typename} MI::ScalarType tol = 1e-\/12)}
-\DoxyCodeLine{63       : matImpl\_\{mat\},}
-\DoxyCodeLine{64         tol\_\{tol\} \{\}}
-\DoxyCodeLine{65 }
-\DoxyCodeLine{66   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01599_a82fd403ba51fb79ec905698fd68446d0}{nameImpl}}() noexcept \{}
-\DoxyCodeLine{67     \textcolor{keyword}{auto} matName = MI::name() + \textcolor{stringliteral}{"{}\_VanishingStress("{}};}
-\DoxyCodeLine{68     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} p : \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}})}
-\DoxyCodeLine{69       matName += \textcolor{stringliteral}{"{}("{}} + std::to\_string(p.row) + std::to\_string(p.col) + \textcolor{stringliteral}{"{})"{}};}
-\DoxyCodeLine{70     matName += \textcolor{stringliteral}{"{})"{}};}
-\DoxyCodeLine{71     \textcolor{keywordflow}{return} matName;}
-\DoxyCodeLine{72   \}}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{77   \mbox{\hyperlink{a01599_a84f270d244fe8180f818a44a04bc8502}{MaterialParameters}} \mbox{\hyperlink{a01599_acda2bbf3533ddc9b7d994ec622eebb03}{materialParametersImpl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} matImpl\_.materialParametersImpl(); \}}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{85   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{86   \mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}} \mbox{\hyperlink{a01599_ab36f305b8d97ea5fc7891fdb6bc87456}{storedEnergyImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{87     \textcolor{keyword}{const} \textcolor{keyword}{auto} [nonOp, Esol] = reduceStress(E);}
-\DoxyCodeLine{88     \textcolor{keywordflow}{return} matImpl\_.storedEnergyImpl(Esol);}
-\DoxyCodeLine{89   \}}
-\DoxyCodeLine{90 }
-\DoxyCodeLine{98   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{99   \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a78bed662e2230b7aabafd97556400071}{stressesImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{auto} [nonOp, Esol] = reduceStress(E);}
-\DoxyCodeLine{101     \textcolor{keyword}{auto} stressesRed         = matImpl\_.template stresses<Underlying::strainTag, true>(Esol);}
-\DoxyCodeLine{102 }
-\DoxyCodeLine{103     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt) \{}
-\DoxyCodeLine{104       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00391_ga2f675229501979101656ec4dee7764d5}{removeCol}}(stressesRed, \mbox{\hyperlink{a01599_a36576a5c7411f30d40ecb39a82797d2c}{fixedVoigtIndices}});}
-\DoxyCodeLine{105     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{106       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(stressesRed, \textcolor{keyword}{false});}
-\DoxyCodeLine{107   \}}
-\DoxyCodeLine{108 }
-\DoxyCodeLine{116   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} voigt, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{117   \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a0ebefbbf6effdedcf7ce4238d5079394}{tangentModuliImpl}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{118     \textcolor{keyword}{const} \textcolor{keyword}{auto} [nonOp, Esol] = reduceStress(E);}
-\DoxyCodeLine{119     \textcolor{keyword}{auto} C                   = matImpl\_.template tangentModuli<Underlying::strainTag, true>(Esol);}
-\DoxyCodeLine{120     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (voigt)}
-\DoxyCodeLine{121       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00391_ga19d425a4fbc72c2ef7a97d71de9329a4}{staticCondensation}}(C, \mbox{\hyperlink{a01599_a36576a5c7411f30d40ecb39a82797d2c}{fixedVoigtIndices}});}
-\DoxyCodeLine{122     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{123       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(C);}
-\DoxyCodeLine{124   \}}
-\DoxyCodeLine{125 }
-\DoxyCodeLine{131   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ScalarTypeOther>}
-\DoxyCodeLine{132   \textcolor{keyword}{auto} \mbox{\hyperlink{a01599_a922c329159fa890947a4292be07608a8}{rebind}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{133     \textcolor{keyword}{auto} reboundMatImpl = matImpl\_.template rebind<ScalarTypeOther>();}
-\DoxyCodeLine{134     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01599}{VanishingStress<stressIndexPair, decltype(reboundMatImpl)>}}(reboundMatImpl, tol\_);}
-\DoxyCodeLine{135   \}}
-\DoxyCodeLine{136 }
-\DoxyCodeLine{140   \textcolor{keyword}{auto}\& \mbox{\hyperlink{a01599_ab777534ee81cddf79108c13a64e7d22f}{underlying}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} matImpl\_; \}}
-\DoxyCodeLine{141 }
-\DoxyCodeLine{142 \textcolor{keyword}{private}:}
-\DoxyCodeLine{148   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{149   \textcolor{keywordtype}{void} initUnknownStrains(Eigen::MatrixBase<Derived>\& E)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{150     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}.size(); ++i) \{}
-\DoxyCodeLine{151       \mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}} initialVal = E(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].row, \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].col);}
-\DoxyCodeLine{152       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (\mbox{\hyperlink{a01599_a3cb51a79c74ae2f6664c2a4e5802de89}{strainTag}} == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}} or \mbox{\hyperlink{a01599_a3cb51a79c74ae2f6664c2a4e5802de89}{strainTag}} == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{153         \textcolor{keywordflow}{if} (Dune::FloatCmp::eq(initialVal, \mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}}(0.0)) and (\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].row == \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].col))}
-\DoxyCodeLine{154           initialVal = \mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}}(1.0);}
-\DoxyCodeLine{155       \}}
-\DoxyCodeLine{156       \textcolor{keywordflow}{if} (\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].row != \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].col)}
-\DoxyCodeLine{157         initialVal = \mbox{\hyperlink{a01599_a3056c112091c830280397169af5ec76c}{ScalarType}}(0.0);}
-\DoxyCodeLine{158       E(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].row, \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].col) = E(\mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].col, \mbox{\hyperlink{a01599_ae0624b5e2e89fff92832e31e56063230}{fixedPairs}}[i].row) = initialVal;}
-\DoxyCodeLine{159     \}}
-\DoxyCodeLine{160   \}}
-\DoxyCodeLine{161 }
-\DoxyCodeLine{168   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{169   \textcolor{keyword}{auto} reduceStress(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& Eraw)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{170     \textcolor{keyword}{auto} E = Impl::maybeFromVoigt(Eraw);}
-\DoxyCodeLine{171     initUnknownStrains(E);}
-\DoxyCodeLine{172 }
-\DoxyCodeLine{173     std::array<size\_t, fixedDiagonalVoigtIndicesSize> fixedDiagonalVoigtIndices;}
-\DoxyCodeLine{174     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} ri = 0; \textcolor{keyword}{auto} i : \mbox{\hyperlink{a01599_a36576a5c7411f30d40ecb39a82797d2c}{fixedVoigtIndices}}) \{}
-\DoxyCodeLine{175       \textcolor{keyword}{auto} indexPair = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(i);}
-\DoxyCodeLine{176       \textcolor{keywordflow}{if} (indexPair[0] == indexPair[1])}
-\DoxyCodeLine{177         fixedDiagonalVoigtIndices[ri++] = i;}
-\DoxyCodeLine{178     \}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00260}{ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/deviatoricinvariants.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00275}{ikarus/finiteelements/mechanics/materials/materialhelpers.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00233}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00411}{Ikarus}} \{}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{a01542}{GentMatParameters}}}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01542_a419ca66b8ac1231091d83637752c7e9b}{mu}}; }
+\DoxyCodeLine{23   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01542_ad4483a8c3f8b72a934baeee80bb4c3be}{Jm}}; }
+\DoxyCodeLine{24 \};}
+\DoxyCodeLine{25 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00422}{Ikarus::Materials}} \{}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{52 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST\_>}
+\DoxyCodeLine{53 \textcolor{keyword}{struct }\mbox{\hyperlink{a01546}{GentT}}}
+\DoxyCodeLine{54 \{}
+\DoxyCodeLine{55   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01546_ad494a4eb399bf1ee960cab0ccedc878c}{dim}} = 3;}
+\DoxyCodeLine{56   \textcolor{keyword}{using }\mbox{\hyperlink{a01546_a006a1668e5050f802f427ffd2519ad8c}{ScalarType}}         = ST\_;}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{59   \textcolor{keyword}{using }\mbox{\hyperlink{a01546_af3f9b5e36aca41ecfa7e05517e10ee50}{PrincipalStretches}} = Eigen::Vector<ST, 3>;}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{62   \textcolor{keyword}{using }\mbox{\hyperlink{a01546_a9303be9dbb2da94477af2679daf51d5a}{Invariants}} = \mbox{\hyperlink{a01546_af3f9b5e36aca41ecfa7e05517e10ee50}{PrincipalStretches<ST>}};}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{65   \textcolor{keyword}{using }\mbox{\hyperlink{a01546_a232189b3d21d46e2c5f407f90d7f1ab6}{FirstDerivative}} = Eigen::Vector<ST, dim>;}
+\DoxyCodeLine{66   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{67   \textcolor{keyword}{using }\mbox{\hyperlink{a01546_aba1efc2e1e4c478fb5c8b1cf62d85971}{SecondDerivative}} = Eigen::Matrix<ST, dim, dim>;}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69   \textcolor{keyword}{using }\mbox{\hyperlink{a01542}{MaterialParameters}} = \mbox{\hyperlink{a01542}{GentMatParameters}};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01546_a025c9024a87a6da081bb2698a6980544}{stretchTag}} = \mbox{\hyperlink{a00411_aec3d3c4647af5c01e1bf18637b3c89feaae6dc167631992e1312a197d5c3c39f8}{PrincipalStretchTags::deviatoric}};}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01546_a6ab32a23370f0a8b3b266e7da822b09d}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Gent"{}}; \}}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{81   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01546_a394ec60a1918b0285b925c729dcb3be8}{GentT}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01542}{MaterialParameters}}\& matPar)}
+\DoxyCodeLine{82       : matPar\_\{matPar\} \{\}}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{87   \mbox{\hyperlink{a01542}{MaterialParameters}} \mbox{\hyperlink{a01546_a8248240a321b3c45a080ed0c20169ddd}{materialParametersImpl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} matPar\_; \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{97   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{98   ST \mbox{\hyperlink{a01546_a68ae9586f841b9b0172452f539c8b9ee}{storedEnergyImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01546_af3f9b5e36aca41ecfa7e05517e10ee50}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{99     \textcolor{keyword}{const} \mbox{\hyperlink{a01546_a9303be9dbb2da94477af2679daf51d5a}{Invariants<ST>}}\& invariants = Impl::invariants(lambda);}
+\DoxyCodeLine{100     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& devInvariants        = \mbox{\hyperlink{a01538}{DeviatoricInvariants<PrincipalStretches<ST>}}>(lambda);}
+\DoxyCodeLine{101     \textcolor{keyword}{const} \textcolor{keyword}{auto} W1                    = devInvariants.\mbox{\hyperlink{a01538_a9c016a61bba2d581b57c0f373a7f822c}{value}}()[0];}
+\DoxyCodeLine{102     checkJm(W1);}
+\DoxyCodeLine{103     \textcolor{keywordflow}{return} -\/(matPar\_.\mbox{\hyperlink{a01542_a419ca66b8ac1231091d83637752c7e9b}{mu}} / 2.0) * matPar\_.\mbox{\hyperlink{a01542_ad4483a8c3f8b72a934baeee80bb4c3be}{Jm}} * log(1.0 -\/ ((W1 -\/ 3.0) / matPar\_.\mbox{\hyperlink{a01542_ad4483a8c3f8b72a934baeee80bb4c3be}{Jm}}));}
+\DoxyCodeLine{104   \}}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{113   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{114   \mbox{\hyperlink{a01546_a232189b3d21d46e2c5f407f90d7f1ab6}{FirstDerivative<ST>}} \mbox{\hyperlink{a01546_ae528fcf9c0dd959467cbbc22b20c42e4}{firstDerivativeImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01546_af3f9b5e36aca41ecfa7e05517e10ee50}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{115     \textcolor{keyword}{const} \mbox{\hyperlink{a01546_a9303be9dbb2da94477af2679daf51d5a}{Invariants<ST>}}\& invariants = Impl::invariants(lambda);}
+\DoxyCodeLine{116     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& devInvariants        = \mbox{\hyperlink{a01538}{DeviatoricInvariants<PrincipalStretches<ST>}}>(lambda);}
+\DoxyCodeLine{117     \textcolor{keyword}{const} \textcolor{keyword}{auto} W1                    = devInvariants.\mbox{\hyperlink{a01538_a9c016a61bba2d581b57c0f373a7f822c}{value}}()[0];}
+\DoxyCodeLine{118     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dW1dLambda           = devInvariants.firstDerivative().first;}
+\DoxyCodeLine{119     \textcolor{keyword}{const} \textcolor{keyword}{auto} mu                    = matPar\_.\mbox{\hyperlink{a01542_a419ca66b8ac1231091d83637752c7e9b}{mu}};}
+\DoxyCodeLine{120     \textcolor{keyword}{const} \textcolor{keyword}{auto} Jm                    = matPar\_.\mbox{\hyperlink{a01542_ad4483a8c3f8b72a934baeee80bb4c3be}{Jm}};}
+\DoxyCodeLine{121     checkJm(W1);}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \mbox{\hyperlink{a01546_a232189b3d21d46e2c5f407f90d7f1ab6}{FirstDerivative<ST>}} dWdLambda = (mu * dW1dLambda * Jm) / (2.0 * (Jm -\/ W1) + 6.0);}
+\DoxyCodeLine{124 }
+\DoxyCodeLine{125     \textcolor{keywordflow}{return} dWdLambda;}
+\DoxyCodeLine{126   \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{135   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{136   \mbox{\hyperlink{a01546_aba1efc2e1e4c478fb5c8b1cf62d85971}{SecondDerivative<ST>}} \mbox{\hyperlink{a01546_a2a7ac85d8340e3153acad2242485b087}{secondDerivativeImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01546_af3f9b5e36aca41ecfa7e05517e10ee50}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{137     \textcolor{keyword}{const} \mbox{\hyperlink{a01546_a9303be9dbb2da94477af2679daf51d5a}{Invariants<ST>}}\& invariants = Impl::invariants(lambda);}
+\DoxyCodeLine{138     \textcolor{keyword}{auto} dS                          = \mbox{\hyperlink{a01546_aba1efc2e1e4c478fb5c8b1cf62d85971}{SecondDerivative<ST>::Zero}}().eval();}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& devInvariants = \mbox{\hyperlink{a01538}{DeviatoricInvariants<PrincipalStretches<ST>}}>(lambda);}
+\DoxyCodeLine{141     \textcolor{keyword}{const} \textcolor{keyword}{auto} W1             = devInvariants.\mbox{\hyperlink{a01538_a9c016a61bba2d581b57c0f373a7f822c}{value}}()[0];}
+\DoxyCodeLine{142     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& dW1dLambda    = devInvariants.firstDerivative().first;}
+\DoxyCodeLine{143     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& ddW1dLambda   = devInvariants.secondDerivative().first;}
+\DoxyCodeLine{144     \textcolor{keyword}{const} \textcolor{keyword}{auto} mu             = matPar\_.\mbox{\hyperlink{a01542_a419ca66b8ac1231091d83637752c7e9b}{mu}};}
+\DoxyCodeLine{145     \textcolor{keyword}{const} \textcolor{keyword}{auto} Jm             = matPar\_.\mbox{\hyperlink{a01542_ad4483a8c3f8b72a934baeee80bb4c3be}{Jm}};}
+\DoxyCodeLine{146     checkJm(W1);}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} i : dimensionRange())}
+\DoxyCodeLine{149       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} j : dimensionRange()) \{}
+\DoxyCodeLine{150         \textcolor{keyword}{auto} factor1 = 1.0 -\/ ((W1 -\/ 3.0) / Jm);}
+\DoxyCodeLine{151         dS(i, j) += (mu / (2.0 * factor1)) * (ddW1dLambda(i, j) + (dW1dLambda[i] * dW1dLambda[j] / (factor1 * Jm)));}
+\DoxyCodeLine{152         \textcolor{keywordflow}{if} (i == j)}
+\DoxyCodeLine{153           dS(i, j) -\/= (mu / (2.0 * lambda[i] * factor1)) * dW1dLambda[i];}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{return} dS;}
+\DoxyCodeLine{157   \}}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{164   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{165   \textcolor{keyword}{auto} \mbox{\hyperlink{a01546_a5d96044e7cd8acc2cb3d1aeaf4bb24d7}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{166     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01546}{GentT<STO>}}(matPar\_);}
+\DoxyCodeLine{167   \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{keyword}{private}:}
+\DoxyCodeLine{170   \mbox{\hyperlink{a01546_affe89a380b23ceaba49703324aa24ddb}{MaterialParameters}} matPar\_;}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172   \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} dimensionRange() \{ \textcolor{keywordflow}{return} Dune::range(\mbox{\hyperlink{a01546_ad494a4eb399bf1ee960cab0ccedc878c}{dim}}); \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174   \textcolor{keywordtype}{void} checkJm(\mbox{\hyperlink{a01546_a006a1668e5050f802f427ffd2519ad8c}{ScalarType}} W1)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{175     \textcolor{keywordflow}{if} (Dune::FloatCmp::le(matPar\_.Jm, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(W1) -\/ 3.0, 1e-\/14))}
+\DoxyCodeLine{176       DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}The material parameter Jm should be greater than (W1 -\/ 3)"{}});}
+\DoxyCodeLine{177   \}}
+\DoxyCodeLine{178 \};}
 \DoxyCodeLine{179 }
-\DoxyCodeLine{180     \textcolor{keyword}{auto} f = [\&](\textcolor{keyword}{auto}\&) \{}
-\DoxyCodeLine{181       \textcolor{keyword}{auto} S = matImpl\_.template stresses<Underlying::strainTag, true>(E);}
-\DoxyCodeLine{182       \textcolor{keywordflow}{return} S(fixedDiagonalVoigtIndices).eval();}
-\DoxyCodeLine{183     \};}
-\DoxyCodeLine{184     \textcolor{keyword}{auto} df = [\&](\textcolor{keyword}{auto}\&) \{}
-\DoxyCodeLine{185       \textcolor{keyword}{auto} moduli = (matImpl\_.template tangentModuli<Underlying::strainTag, true>(E)).eval();}
-\DoxyCodeLine{186       \textcolor{keywordflow}{return} (moduli(fixedDiagonalVoigtIndices, fixedDiagonalVoigtIndices) / Underlying::derivativeFactor).eval();}
-\DoxyCodeLine{187     \};}
-\DoxyCodeLine{188 }
-\DoxyCodeLine{189     \textcolor{keyword}{auto} Er    = E(fixedDiagonalVoigtIndices, fixedDiagonalVoigtIndices).eval().template cast<ScalarType>();}
-\DoxyCodeLine{190     \textcolor{keyword}{auto} nonOp = \mbox{\hyperlink{a00396_abcf5978fa18a6e0aadc5e19c4a0edaa9}{Ikarus::NonLinearOperator}}(\mbox{\hyperlink{a00396_ab787b670f0d338c870988f417cf85f76}{functions}}(f, df), \mbox{\hyperlink{a00396_ac00abda505aa8ccc73ce59afd165ce49}{parameter}}(Er));}
-\DoxyCodeLine{191 }
-\DoxyCodeLine{192     \textcolor{keyword}{auto} linearSolver   = [](\textcolor{keyword}{auto}\& r, \textcolor{keyword}{auto}\& A) \{ \textcolor{keywordflow}{return} (A.inverse() * r).eval(); \};}
-\DoxyCodeLine{193     \textcolor{keyword}{auto} updateFunction = [\&](\textcolor{keyword}{auto}\& \textcolor{comment}{/* Ex33 */}, \textcolor{keyword}{auto}\& ecomps) \{}
-\DoxyCodeLine{194       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} ri = 0; \textcolor{keyword}{auto} i : fixedDiagonalVoigtIndices) \{}
-\DoxyCodeLine{195         \textcolor{keyword}{auto} indexPair = \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(i);}
-\DoxyCodeLine{196         E(indexPair[0], indexPair[1]) += ecomps(ri++);}
-\DoxyCodeLine{197       \}}
-\DoxyCodeLine{198     \};}
-\DoxyCodeLine{199 }
-\DoxyCodeLine{200     \textcolor{keywordtype}{int} minIter = \mbox{\hyperlink{a01599_a67f4d81e31588d95486aed0b766c7a85}{isAutoDiff}} ? 1 : 0;}
-\DoxyCodeLine{201     \textcolor{comment}{// THE CTAD is broken for designated initializers in clang 16, when we drop support this can be simplified}}
-\DoxyCodeLine{202     NewtonRaphsonConfig<\textcolor{keyword}{decltype}(linearSolver), \textcolor{keyword}{decltype}(updateFunction)> nrs\{}
-\DoxyCodeLine{203         .parameters     = \{.tol = tol\_, .maxIter = 100, .minIter = minIter\},}
-\DoxyCodeLine{204         .linearSolver   = linearSolver,}
-\DoxyCodeLine{205         .updateFunction = updateFunction}
-\DoxyCodeLine{206     \};}
-\DoxyCodeLine{207 }
-\DoxyCodeLine{208     \textcolor{keyword}{auto} nr = \mbox{\hyperlink{a00396_a66b45c139b5d57965ada53d92d8f93ce}{createNonlinearSolver}}(std::move(nrs), nonOp);}
-\DoxyCodeLine{209     \textcolor{keywordflow}{if} (!\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{bool}\textcolor{keyword}{>}(nr-\/>solve()))}
-\DoxyCodeLine{210       DUNE\_THROW(Dune::MathError, \textcolor{stringliteral}{"{}The stress reduction of material "{}} << \mbox{\hyperlink{a01599_a82fd403ba51fb79ec905698fd68446d0}{nameImpl}}() << \textcolor{stringliteral}{"{} was unsuccessful\(\backslash\)n"{}}}
-\DoxyCodeLine{211                                                                       << \textcolor{stringliteral}{"{}The strains are\(\backslash\)n"{}}}
-\DoxyCodeLine{212                                                                       << E << \textcolor{stringliteral}{"{}\(\backslash\)n The stresses are\(\backslash\)n"{}}}
-\DoxyCodeLine{213                                                                       << f(Er));}
-\DoxyCodeLine{214     \textcolor{keywordflow}{return} std::make\_pair(nonOp, E);}
-\DoxyCodeLine{215   \}}
-\DoxyCodeLine{216 }
-\DoxyCodeLine{217   \mbox{\hyperlink{a01599_a6400fad29b26eb71eb169f2266962aae}{Underlying}} matImpl\_; }
-\DoxyCodeLine{218   \textcolor{keywordtype}{double} tol\_\{\};       }
-\DoxyCodeLine{219 \};}
-\DoxyCodeLine{220 }
-\DoxyCodeLine{229 \textcolor{keyword}{template} <MatrixIndexPair... stressIndexPair, \textcolor{keyword}{typename} MaterialImpl>}
-\DoxyCodeLine{230 \textcolor{keyword}{auto} \mbox{\hyperlink{a00407_a3fc342156c1fa3be5bd78c8baffd0df7}{makeVanishingStress}}(MaterialImpl mat, \textcolor{keyword}{typename} MaterialImpl::ScalarType p\_tol = 1e-\/12) \{}
-\DoxyCodeLine{231   \textcolor{keywordflow}{return} \mbox{\hyperlink{a01599}{VanishingStress}}<std::to\_array(\{stressIndexPair...\}), MaterialImpl>(mat, p\_tol);}
-\DoxyCodeLine{232 \}}
-\DoxyCodeLine{233 }
-\DoxyCodeLine{241 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MaterialImpl>}
-\DoxyCodeLine{242 \textcolor{keyword}{auto} \mbox{\hyperlink{a00407_aa7b4cfc28796165e32b16cb12ab8ccd4}{planeStress}}(\textcolor{keyword}{const} MaterialImpl\& mat, \textcolor{keyword}{typename} MaterialImpl::ScalarType tol = 1e-\/8) \{}
-\DoxyCodeLine{243   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00407_a3fc342156c1fa3be5bd78c8baffd0df7}{makeVanishingStress}}<\mbox{\hyperlink{a01587}{MatrixIndexPair}}\{2, 1\}, \mbox{\hyperlink{a01587}{MatrixIndexPair}}\{2, 0\}, \mbox{\hyperlink{a01587}{MatrixIndexPair}}\{2, 2\}>(mat, tol);}
-\DoxyCodeLine{244 \}}
-\DoxyCodeLine{245 }
-\DoxyCodeLine{254 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MaterialImpl>}
-\DoxyCodeLine{255 \textcolor{keyword}{auto} \mbox{\hyperlink{a00407_a87bf89dc04e6f4021681129ae4e9a0ee}{shellMaterial}}(\textcolor{keyword}{const} MaterialImpl\& mat, \textcolor{keyword}{typename} MaterialImpl::ScalarType tol = 1e-\/8) \{}
-\DoxyCodeLine{256   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00407_a3fc342156c1fa3be5bd78c8baffd0df7}{makeVanishingStress}}<\mbox{\hyperlink{a01587}{MatrixIndexPair}}\{2, 2\}>(mat, tol);}
-\DoxyCodeLine{257 \}}
-\DoxyCodeLine{258 }
-\DoxyCodeLine{267 \textcolor{keyword}{template} <\textcolor{keyword}{typename} MaterialImpl>}
-\DoxyCodeLine{268 \textcolor{keyword}{auto} \mbox{\hyperlink{a00407_ab89e3a8a28d4e7241ab9dfd41fbbd153}{beamMaterial}}(\textcolor{keyword}{const} MaterialImpl\& mat, \textcolor{keyword}{typename} MaterialImpl::ScalarType tol = 1e-\/8) \{}
-\DoxyCodeLine{269   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00407_a3fc342156c1fa3be5bd78c8baffd0df7}{makeVanishingStress}}<\mbox{\hyperlink{a01587}{MatrixIndexPair}}\{1, 1\}, \mbox{\hyperlink{a01587}{MatrixIndexPair}}\{2, 2\}>(mat, tol);}
-\DoxyCodeLine{270 \}}
-\DoxyCodeLine{271 \} \textcolor{comment}{// namespace Ikarus::Materials}}
+\DoxyCodeLine{183 \textcolor{keyword}{using }\mbox{\hyperlink{a01546}{Gent}} = \mbox{\hyperlink{a01546}{GentT<double>}};}
+\DoxyCodeLine{184 }
+\DoxyCodeLine{185 \} \textcolor{comment}{// namespace Ikarus::Materials}}
 
 \end{DoxyCode}

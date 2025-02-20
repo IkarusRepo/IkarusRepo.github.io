@@ -1,5 +1,5 @@
-\hypertarget{a00251_source}{}\doxysection{factory.\+hh}
-\label{a00251_source}\index{factory.hh@{factory.hh}}
+\hypertarget{a00251_source}{}\doxysection{blatzko.\+hh}
+\label{a00251_source}\index{blatzko.hh@{blatzko.hh}}
 \mbox{\hyperlink{a00251}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,26 +7,77 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02985}{ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/interface.hh}}>}}
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00254}{ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/ogden.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a02982}{ikarus/finiteelements/mechanics/materials/hyperelastic/interface.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00248}{ikarus/finiteelements/mechanics/materials/hyperelastic/neohooke.hh}}>}}
-\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00257}{ikarus/finiteelements/mechanics/materials/hyperelastic/volumetric/volumetricfunctions.hh}}>}}
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00242}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03068}{ikarus/finiteelements/mechanics/materials/interface.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00275}{ikarus/finiteelements/mechanics/materials/materialhelpers.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00233}{ikarus/finiteelements/mechanics/materials/tags.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00422}{Ikarus::Materials}} \{}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00407}{Ikarus::Materials}} \{}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{36 \textcolor{keyword}{template} <\textcolor{keywordtype}{int} n, PrincipalStretchTags tag, \textcolor{keyword}{typename} VolumetricFunction = VF0>}
-\DoxyCodeLine{37 \textcolor{keyword}{inline} \textcolor{keyword}{auto} \mbox{\hyperlink{a00407_af8c1c0f27639b0883f98f4e814aca8e5}{makeOgden}}(\textcolor{keyword}{const} \textcolor{keyword}{typename} \mbox{\hyperlink{a01515_a0164eb06fa929e1608493879f3832c80}{Ogden<n, tag>::MaterialParameters}}\& mu,}
-\DoxyCodeLine{38                       \textcolor{keyword}{const} \textcolor{keyword}{typename} \mbox{\hyperlink{a01515_a9b01e9124f3fa51d8a1a5881bd842bd9}{Ogden<n, tag>::MaterialExponents}} alpha, \textcolor{keywordtype}{double} K = 0.0,}
-\DoxyCodeLine{39                       \textcolor{keyword}{const} VolumetricFunction\& vf = VolumetricFunction\{\}) \{}
-\DoxyCodeLine{40   \textcolor{keyword}{auto} ogPre = Ogden<n, tag>(mu, alpha);}
-\DoxyCodeLine{41   \textcolor{keyword}{auto} dev   = Deviatoric(ogPre);}
-\DoxyCodeLine{42   \textcolor{keyword}{auto} vol   = Volumetric(K, vf);}
+\DoxyCodeLine{33 \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST\_>}
+\DoxyCodeLine{34 \textcolor{keyword}{struct }\mbox{\hyperlink{a01534}{BlatzKoT}}}
+\DoxyCodeLine{35 \{}
+\DoxyCodeLine{36   \textcolor{keyword}{using }\mbox{\hyperlink{a01534_a613da436d46a7f27a9f8f9915b205851}{ScalarType}} = ST\_;}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{39   \textcolor{keyword}{using }\mbox{\hyperlink{a01534_aa1eccfb50a495e833dae09932a25abc2}{PrincipalStretches}} = Eigen::Vector<ST, 3>;}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01534_ab68f21d33219b35d8586ace849c39237}{dim}}         = 3;}
+\DoxyCodeLine{42   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01534_a0a04efc09f77a25a03993356b07372f5}{stretchTag}} = \mbox{\hyperlink{a00411_aec3d3c4647af5c01e1bf18637b3c89feafbb44b4487415b134bce9c790a27fe5e}{PrincipalStretchTags::total}};}
 \DoxyCodeLine{43 }
-\DoxyCodeLine{44   \textcolor{keywordflow}{return} Hyperelastic(dev, vol);}
-\DoxyCodeLine{45 \}}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47 \} \textcolor{comment}{// namespace Ikarus::Materials}}
+\DoxyCodeLine{44   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{45   \textcolor{keyword}{using }\mbox{\hyperlink{a01534_aa1176fe0e702b5b4a9cf9a9f1ded4e99}{FirstDerivative}} = Eigen::Vector<ST, dim>;}
+\DoxyCodeLine{46   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST = ScalarType>}
+\DoxyCodeLine{47   \textcolor{keyword}{using }\mbox{\hyperlink{a01534_aa0656272aab6ccbfd885389fedc2333f}{SecondDerivative}} = Eigen::Matrix<ST, dim, dim>;}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01534_aa8913c5e488f70064ee2c896ab8cf26b}{MaterialParameters}} = double;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01534_a4243f7583c2baf02b631426ad391998c}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}BlatzKo"{}}; \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{57   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01534_a0ea66bb30a48dc9bb34d2d3bbc7d7239}{BlatzKoT}}(\mbox{\hyperlink{a01534_aa8913c5e488f70064ee2c896ab8cf26b}{MaterialParameters}} mu)}
+\DoxyCodeLine{58       : mu\_\{mu\} \{\}}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{63   \mbox{\hyperlink{a01534_aa8913c5e488f70064ee2c896ab8cf26b}{MaterialParameters}} \mbox{\hyperlink{a01534_a9c2b31f151124d6008f0c897b5903e34}{materialParametersImpl}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mu\_; \}}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{72   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{73   ST \mbox{\hyperlink{a01534_a0ba7ac790efa72ce20558446ace7253e}{storedEnergyImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01534_aa1eccfb50a495e833dae09932a25abc2}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{74     \textcolor{keywordflow}{return} mu\_ / 2 * (lambda.cwiseInverse().squaredNorm() + 2 * lambda.prod() -\/ 5);}
+\DoxyCodeLine{75   \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{83   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{84   \mbox{\hyperlink{a01534_aa1176fe0e702b5b4a9cf9a9f1ded4e99}{FirstDerivative<ST>}} \mbox{\hyperlink{a01534_ac6e352206fb08d97d54fff4402e50c7d}{firstDerivativeImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01534_aa1eccfb50a495e833dae09932a25abc2}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{85     \textcolor{keyword}{auto} dWdLambda     = \mbox{\hyperlink{a01534_aa1176fe0e702b5b4a9cf9a9f1ded4e99}{FirstDerivative<ST>::Zero}}().eval();}
+\DoxyCodeLine{86     \textcolor{keyword}{const} \mbox{\hyperlink{a01534_a613da436d46a7f27a9f8f9915b205851}{ScalarType}} J = Impl::determinantFromPrincipalValues(lambda);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keywordflow}{return} mu\_ * (-\/lambda.cwisePow(3).cwiseInverse() + (J * lambda.cwiseInverse()));}
+\DoxyCodeLine{89   \}}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{98   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{99   \mbox{\hyperlink{a01534_aa0656272aab6ccbfd885389fedc2333f}{SecondDerivative<ST>}} \mbox{\hyperlink{a01534_ab1cd1b9fbba254f087541ae8b864a1da}{secondDerivativeImpl}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01534_aa1eccfb50a495e833dae09932a25abc2}{PrincipalStretches<ST>}}\& lambda)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{100     \textcolor{keyword}{auto} dS            = \mbox{\hyperlink{a01534_aa0656272aab6ccbfd885389fedc2333f}{SecondDerivative<ST>::Zero}}().eval();}
+\DoxyCodeLine{101     \textcolor{keyword}{const} \mbox{\hyperlink{a01534_a613da436d46a7f27a9f8f9915b205851}{ScalarType}} J = Impl::determinantFromPrincipalValues(lambda);}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \textcolor{keyword}{auto} lam      = lambda.array();}
+\DoxyCodeLine{104     dS            = J / (lambda * lambda.transpose()).array();}
+\DoxyCodeLine{105     dS.diagonal() = lam.square().inverse() * (lam.square().inverse() -\/ J) + (3.0 / lam.pow(4));}
+\DoxyCodeLine{106     dS.array() *= mu\_;}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108     \textcolor{keywordflow}{return} dS;}
+\DoxyCodeLine{109   \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{116   \textcolor{keyword}{template} <\textcolor{keyword}{typename} STO>}
+\DoxyCodeLine{117   \textcolor{keyword}{auto} \mbox{\hyperlink{a01534_ad896b65f779e5ac0e715aacccfcaf5c1}{rebind}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{118     \textcolor{keywordflow}{return} \mbox{\hyperlink{a01534}{BlatzKoT<STO>}}(mu\_);}
+\DoxyCodeLine{119   \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 \textcolor{keyword}{private}:}
+\DoxyCodeLine{122   \mbox{\hyperlink{a01534_aa8913c5e488f70064ee2c896ab8cf26b}{MaterialParameters}} mu\_;}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{124   \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} dimensionRange() \{ \textcolor{keywordflow}{return} Dune::range(\mbox{\hyperlink{a01534_ab68f21d33219b35d8586ace849c39237}{dim}}); \}}
+\DoxyCodeLine{125 \};}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{130 \textcolor{keyword}{using }\mbox{\hyperlink{a01534}{BlatzKo}} = \mbox{\hyperlink{a01534}{BlatzKoT<double>}};}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132 \} \textcolor{comment}{// namespace Ikarus::Materials}}
 
 \end{DoxyCode}

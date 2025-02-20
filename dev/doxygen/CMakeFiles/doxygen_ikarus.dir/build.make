@@ -101,7 +101,12 @@ docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechani
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/loads/volume.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/concepts.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/arrudaboyce.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/blatzko.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/deviatoricinvariants.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/gent.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/interface.hh
+docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/invariantbased.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/deviatoric/ogden.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/factory.hh
 docs/website/doxygen/html: /__w/ikarus/ikarus/repo/ikarus/finiteelements/mechanics/materials/hyperelastic/interface.hh

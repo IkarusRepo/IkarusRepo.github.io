@@ -1,4 +1,5 @@
 var a00248 =
 [
-    [ "NeoHooke", "a00248.html#a4bf1415fc81c6cacecd347ec4b928def", null ]
+    [ "Ikarus::ArrudaBoyceMatParameters", "a01526.html", "a01526" ],
+    [ "ArrudaBoyce", "a00248.html#a70cada02f1f5f294f44c438fb1270982", null ]
 ];

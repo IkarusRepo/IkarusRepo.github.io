@@ -1,4 +1,4 @@
 var a00311 =
 [
-    [ "Ikarus::FETraits< BH, useRef, useFlat >", "a01427.html", "a01427" ]
+    [ "Ikarus::ControlInformation", "a01334.html", "a01334" ]
 ];

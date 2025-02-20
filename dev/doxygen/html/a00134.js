@@ -1,4 +1,4 @@
 var a00134 =
 [
-    [ "Ikarus::ControlLogger", "a01943.html", "a01943" ]
+    [ "Ikarus::NonLinearSolverInformation", "a01838.html", "a01838" ]
 ];

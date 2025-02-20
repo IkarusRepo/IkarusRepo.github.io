@@ -1,218 +1,156 @@
-\hypertarget{a00314_source}{}\doxysection{feresulttypes.\+hh}
-\label{a00314_source}\index{feresulttypes.hh@{feresulttypes.hh}}
+\hypertarget{a00314_source}{}\doxysection{pathfollowingfunctions.\+hh}
+\label{a00314_source}\index{pathfollowingfunctions.hh@{pathfollowingfunctions.hh}}
 \mbox{\hyperlink{a00314}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <type\_traits>}}
-\DoxyCodeLine{7 }
-\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{9 }
-\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{11 }
-\DoxyCodeLine{18 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00396}{Ikarus}} \{}
-\DoxyCodeLine{19 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <optional>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <vector>}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} strainlike = false>}
-\DoxyCodeLine{22   \textcolor{keyword}{struct }VectorizeWithVoigt}
-\DoxyCodeLine{23   \{}
-\DoxyCodeLine{24     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{25     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& mat) \{}
-\DoxyCodeLine{26       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_ga4304655095296ce9283e012587817a51}{toVoigt}}(mat.derived(), strainlike);}
-\DoxyCodeLine{27     \}}
-\DoxyCodeLine{28   \};}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <dune/common/exceptions.hh>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <Eigen/Core>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00122}{ikarus/solver/linearsolver/linearsolver.hh}}>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03101}{ikarus/utils/concepts.hh}}>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00059}{ikarus/utils/defaultfunctions.hh}}>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00068}{ikarus/utils/traits.hh}}>}}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30   \textcolor{keyword}{struct }VectorizeGeneric}
-\DoxyCodeLine{31   \{}
-\DoxyCodeLine{32     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{33     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& mat) \{}
-\DoxyCodeLine{34       \textcolor{keywordflow}{return} mat.derived().reshaped().eval();}
-\DoxyCodeLine{35     \}}
-\DoxyCodeLine{36   \};}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{38   \textcolor{keyword}{template} <\textcolor{keywordtype}{bool} strainlike = false>}
-\DoxyCodeLine{39   \textcolor{keyword}{struct }MatricizeWithVoigt}
-\DoxyCodeLine{40   \{}
-\DoxyCodeLine{41     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keywordtype}{int} RowsAtCompileTime, \textcolor{keywordtype}{int} ColsAtCompileTime>}
-\DoxyCodeLine{42     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& vec, \textcolor{keywordtype}{int} rows = RowsAtCompileTime,}
-\DoxyCodeLine{43                           \textcolor{keywordtype}{int} cols = ColsAtCompileTime) \{}
-\DoxyCodeLine{44       assert(rows == RowsAtCompileTime \&\& cols == ColsAtCompileTime \&\&}
-\DoxyCodeLine{45              \textcolor{stringliteral}{"{}Only the fixed size values work for voigt matrices and vectors"{}});}
-\DoxyCodeLine{46       \textcolor{keyword}{static\_assert}(RowsAtCompileTime != Eigen::Dynamic and ColsAtCompileTime != Eigen::Dynamic,}
-\DoxyCodeLine{47                     \textcolor{stringliteral}{"{}Voigt notation only available for fixed size vectors and matrices"{}});}
-\DoxyCodeLine{48       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(vec.derived(), strainlike);}
-\DoxyCodeLine{49     \}}
-\DoxyCodeLine{50   \};}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{52   \textcolor{keyword}{struct }MatricizeGeneric}
-\DoxyCodeLine{53   \{}
-\DoxyCodeLine{54     \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived, \textcolor{keywordtype}{int} RowsAtCompileTime, \textcolor{keywordtype}{int} ColsAtCompileTime>}
-\DoxyCodeLine{55     \textcolor{keyword}{static} \textcolor{keyword}{auto} transform(\textcolor{keyword}{const} Eigen::DenseBase<Derived>\& vec, \textcolor{keywordtype}{int} rows = RowsAtCompileTime,}
-\DoxyCodeLine{56                           \textcolor{keywordtype}{int} cols = ColsAtCompileTime) \{}
-\DoxyCodeLine{57       \textcolor{keywordflow}{return} vec.derived().reshaped(Eigen::fix<RowsAtCompileTime>(rows), Eigen::fix<ColsAtCompileTime>(cols)).eval();}
-\DoxyCodeLine{58     \}}
-\DoxyCodeLine{59   \};}
-\DoxyCodeLine{60 }
-\DoxyCodeLine{61 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{63 \textcolor{keyword}{namespace }ResultTypes \{}
-\DoxyCodeLine{64 \textcolor{preprocessor}{\#define REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr, VectorizeStruct, \(\backslash\)}}
-\DoxyCodeLine{65 \textcolor{preprocessor}{                                 MatricizeStruct)                                                               \(\backslash\)}}
-\DoxyCodeLine{66 \textcolor{preprocessor}{  template <typename ScalarType, int gridDim, int worldDim>                                                     \(\backslash\)}}
-\DoxyCodeLine{67 \textcolor{preprocessor}{  struct resultTypeName                                                                                         \(\backslash\)}}
-\DoxyCodeLine{68 \textcolor{preprocessor}{  \{                                                                                                             \(\backslash\)}}
-\DoxyCodeLine{69 \textcolor{preprocessor}{    friend std::string toString(resultTypeName) \{ return \#resultTypeName; \}                                     \(\backslash\)}}
-\DoxyCodeLine{70 \textcolor{preprocessor}{                                                                                                                \(\backslash\)}}
-\DoxyCodeLine{71 \textcolor{preprocessor}{    using type       = Eigen::Matrix<ScalarType, rowsExpr, colsExpr, 0, MaxRowsExpr, MaxColsExpr>;              \(\backslash\)}}
-\DoxyCodeLine{72 \textcolor{preprocessor}{    using Vectorizer = VectorizeStruct;                                                                         \(\backslash\)}}
-\DoxyCodeLine{73 \textcolor{preprocessor}{    using Matricizer = MatricizeStruct;                                                                         \(\backslash\)}}
-\DoxyCodeLine{74 \textcolor{preprocessor}{                                                                                                                \(\backslash\)}}
-\DoxyCodeLine{75 \textcolor{preprocessor}{    template <typename ScalarType\_, int gridDim\_, int worldDim\_>                                                \(\backslash\)}}
-\DoxyCodeLine{76 \textcolor{preprocessor}{    using Rebind = resultTypeName<ScalarType\_, gridDim\_, worldDim\_>;                                            \(\backslash\)}}
-\DoxyCodeLine{77 \textcolor{preprocessor}{  \}}}
-\DoxyCodeLine{78 }
-\DoxyCodeLine{86 \textcolor{preprocessor}{\#define REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, strainlike) \(\backslash\)}}
-\DoxyCodeLine{87 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, rowsExpr, colsExpr,           \(\backslash\)}}
-\DoxyCodeLine{88 \textcolor{preprocessor}{                           Ikarus::Impl::VectorizeWithVoigt<strainlike>, Ikarus::Impl::MatricizeWithVoigt<strainlike>)}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{97 \textcolor{preprocessor}{\#define REGISTER\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr)                                \(\backslash\)}}
-\DoxyCodeLine{98 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, Ikarus::Impl::VectorizeGeneric, \(\backslash\)}}
-\DoxyCodeLine{99 \textcolor{preprocessor}{                           Ikarus::Impl::MatricizeGeneric)}}
-\DoxyCodeLine{109 \textcolor{preprocessor}{\#define REGISTER\_RESERVED\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr) \(\backslash\)}}
-\DoxyCodeLine{110 \textcolor{preprocessor}{  REGISTER\_RESULTTYPE\_IMPL(resultTypeName, rowsExpr, colsExpr, MaxRowsExpr, MaxColsExpr,           \(\backslash\)}}
-\DoxyCodeLine{111 \textcolor{preprocessor}{                           Ikarus::Impl::VectorizeGeneric, Ikarus::Impl::MatricizeGeneric)}}
-\DoxyCodeLine{119 \textcolor{preprocessor}{\#define REGISTER\_SIMPLE\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr) \(\backslash\)}}
-\DoxyCodeLine{120 \textcolor{preprocessor}{  REGISTER\_RESERVED\_RESULTTYPE(resultTypeName, rowsExpr, colsExpr, rowsExpr, colsExpr)}}
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00411}{Ikarus}} \{}
+\DoxyCodeLine{38 \textcolor{keyword}{struct }\mbox{\hyperlink{a01346}{SubsidiaryArgs}}}
+\DoxyCodeLine{39 \{}
+\DoxyCodeLine{40   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};              }
+\DoxyCodeLine{41   Eigen::VectorX<double> \mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};    }
+\DoxyCodeLine{42   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};               }
+\DoxyCodeLine{43   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_a628b23aa9e90c0e0ba1461ad2241645a}{f}};                     }
+\DoxyCodeLine{44   Eigen::VectorX<double> \mbox{\hyperlink{a01346_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}; }
+\DoxyCodeLine{45   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01346_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}};            }
+\DoxyCodeLine{46   \textcolor{keywordtype}{int} \mbox{\hyperlink{a01346_a217c729e1ae8b05a98c852f19b0d6ae5}{currentStep}};              }
+\DoxyCodeLine{47 \};}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{66 \textcolor{keyword}{struct }\mbox{\hyperlink{a01350}{ArcLength}}}
+\DoxyCodeLine{67 \{}
+\DoxyCodeLine{76   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01350_a2fabf5f8515ac122ecf588f1d8c860bf}{operator()}}(\mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{77     \textcolor{keywordflow}{if} (psi) \{}
+\DoxyCodeLine{78       \textcolor{keyword}{const} \textcolor{keyword}{auto} root = sqrt(args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}.squaredNorm() + psi.value() * psi.value() * args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} * args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}});}
+\DoxyCodeLine{79       args.\mbox{\hyperlink{a01346_a628b23aa9e90c0e0ba1461ad2241645a}{f}}          = root -\/ args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{80       args.\mbox{\hyperlink{a01346_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}      = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}} / root;}
+\DoxyCodeLine{81       args.\mbox{\hyperlink{a01346_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}} = (psi.value() * psi.value() * args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}}) / root;}
+\DoxyCodeLine{82     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{83       DUNE\_THROW(Dune::InvalidStateException, \textcolor{stringliteral}{"{}You have to call initialPrediction first. Otherwise psi is not defined"{}});}
+\DoxyCodeLine{84     \}}
+\DoxyCodeLine{85   \}}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{98   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{99   \textcolor{keywordtype}{void} \mbox{\hyperlink{a00394_ga0a84b97adf02eb4fbd07ac3fc0c134bf}{initialPrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{100     \mbox{\hyperlink{a00411_a731a9ee6621f91193c15f31b9a399906}{SolverTypeTag}} solverTag;}
+\DoxyCodeLine{101     \textcolor{keyword}{using }JacobianType = std::remove\_cvref\_t<typename NLO::DerivativeType>;}
+\DoxyCodeLine{102     \textcolor{keyword}{static\_assert}((traits::isSpecializationTypeAndNonTypes<Eigen::Matrix, JacobianType>::value) or}
+\DoxyCodeLine{103                       (traits::isSpecializationTypeNonTypeAndType<Eigen::SparseMatrix, JacobianType>::value),}
+\DoxyCodeLine{104                   \textcolor{stringliteral}{"{}Linear solver not implemented for the chosen derivative type of the non-\/linear operator"{}});}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (traits::isSpecializationTypeAndNonTypes<Eigen::Matrix, JacobianType>::value)}
+\DoxyCodeLine{107       solverTag = \mbox{\hyperlink{a00411_a731a9ee6621f91193c15f31b9a399906ad495de2cc8831501954c24afe8688190}{SolverTypeTag::d\_LDLT}};}
+\DoxyCodeLine{108     \textcolor{keywordflow}{else}}
+\DoxyCodeLine{109       solverTag = \mbox{\hyperlink{a00411_a731a9ee6621f91193c15f31b9a399906af493d8a2d2d89f06181e77bc79cabf1c}{SolverTypeTag::sd\_SimplicialLDLT}};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111     nonLinearOperator.lastParameter() = 1.0; \textcolor{comment}{// lambda =1.0}}
+\DoxyCodeLine{112     nonLinearOperator.template update<0>();}
+\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& R = nonLinearOperator.value();}
+\DoxyCodeLine{114     \textcolor{keyword}{const} \textcolor{keyword}{auto}\& K = nonLinearOperator.derivative();}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116     \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} isLinearSolver =}
+\DoxyCodeLine{117         \mbox{\hyperlink{a02083}{Ikarus::Concepts::LinearSolverCheck}}<\textcolor{keyword}{decltype}(\mbox{\hyperlink{a00411_a2afda25e777ed3a794da319ba535b87b}{LinearSolver}}(solverTag)), \textcolor{keyword}{typename} NLO::DerivativeType,}
+\DoxyCodeLine{118                                             \textcolor{keyword}{typename} NLO::ValueType>;}
+\DoxyCodeLine{119     \textcolor{keyword}{static\_assert}(isLinearSolver,}
+\DoxyCodeLine{120                   \textcolor{stringliteral}{"{}Initial predictor step in the standard arc-\/length method doesn't have a linear solver"{}});}
 \DoxyCodeLine{121 }
-\DoxyCodeLine{124 }
-\DoxyCodeLine{125   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(linearStress, worldDim, worldDim, \textcolor{keyword}{false});}
-\DoxyCodeLine{126   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(PK2Stress, worldDim, worldDim, \textcolor{keyword}{false});}
-\DoxyCodeLine{127   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(cauchyStress, worldDim, worldDim, \textcolor{keyword}{false});}
+\DoxyCodeLine{122     \textcolor{keyword}{auto} linearSolver = \mbox{\hyperlink{a00411_a2afda25e777ed3a794da319ba535b87b}{LinearSolver}}(solverTag); \textcolor{comment}{// for the linear predictor step}}
+\DoxyCodeLine{123     linearSolver.analyzePattern(K);}
+\DoxyCodeLine{124     linearSolver.factorize(K);}
+\DoxyCodeLine{125     linearSolver.solve(args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}, -\/R);}
+\DoxyCodeLine{126 }
+\DoxyCodeLine{127     \textcolor{keyword}{const} \textcolor{keyword}{auto} DD2 = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}.squaredNorm();}
 \DoxyCodeLine{128 }
-\DoxyCodeLine{129   \textcolor{comment}{// The following resulttypes are for reduced materials to obtain the full 3D stress state}}
-\DoxyCodeLine{130   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(linearStressFull, 3, 3, \textcolor{keyword}{false});}
-\DoxyCodeLine{131   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(PK2StressFull, 3, 3, \textcolor{keyword}{false});}
-\DoxyCodeLine{132   \mbox{\hyperlink{a00403_a60454300a3ee8c6fdd19a7a62dce2202}{REGISTER\_SIMPLE\_SYMMETRIC\_RESULTTYPE}}(cauchyStressFull, 3, 3, \textcolor{keyword}{false});}
-\DoxyCodeLine{133 }
-\DoxyCodeLine{134   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(director, worldDim, 1);}
-\DoxyCodeLine{135   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(magnetization, worldDim, 1);}
-\DoxyCodeLine{136   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(gradientNormOfMagnetization, 1, 1);}
-\DoxyCodeLine{137   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(vectorPotential, worldDim, 1);}
-\DoxyCodeLine{138   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(divergenceOfVectorPotential, 1, 1);}
-\DoxyCodeLine{139 }
-\DoxyCodeLine{140   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(BField, worldDim, 1);}
-\DoxyCodeLine{141   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(HField, worldDim, 1);}
-\DoxyCodeLine{142 }
-\DoxyCodeLine{143   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(cauchyAxialForce, 1, 1);}
-\DoxyCodeLine{144   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(PK2AxialForce, 1, 1);}
-\DoxyCodeLine{145   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(linearAxialForce, 1, 1);}
-\DoxyCodeLine{146 }
-\DoxyCodeLine{147   \mbox{\hyperlink{a00403_af279e0a4e5ede5f80277c45d542ae297}{REGISTER\_SIMPLE\_RESULTTYPE}}(customType, Eigen::Dynamic, Eigen::Dynamic);}
-\DoxyCodeLine{148 \} \textcolor{comment}{// namespace ResultTypes}}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150 \textcolor{keyword}{enum class} \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2}{ResultShape}}}
-\DoxyCodeLine{151 \{}
-\DoxyCodeLine{152   \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{Vector}},}
-\DoxyCodeLine{153   \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2af53df0293e169f562bc1d9a20e1d2589}{Matrix}}}
-\DoxyCodeLine{154 \};}
-\DoxyCodeLine{155 }
-\DoxyCodeLine{162 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RT, ResultShape storedResultShape = ResultShape::Vector>}
-\DoxyCodeLine{163 \textcolor{keyword}{struct }\mbox{\hyperlink{a01411}{ResultWrapper}} : RT}
-\DoxyCodeLine{164 \{}
-\DoxyCodeLine{165 \textcolor{keyword}{private}:}
-\DoxyCodeLine{166   \textcolor{keyword}{using }ResultTypeValueType                       = \textcolor{keyword}{typename} RT::type;}
-\DoxyCodeLine{167   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} Eigen::Index rowsAtCompileTime = ResultTypeValueType::RowsAtCompileTime;}
-\DoxyCodeLine{168   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} Eigen::Index colsAtCompileTime = ResultTypeValueType::ColsAtCompileTime;}
-\DoxyCodeLine{169   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{bool} storedValueIsVector       = storedResultShape == \mbox{\hyperlink{a00396_acfb09bb7db104db62d3d1d2dc3e009b2a57dea6f5039281b7fee517fc43bf3110}{ResultShape::Vector}};}
-\DoxyCodeLine{170 }
-\DoxyCodeLine{171 \textcolor{keyword}{public}:}
-\DoxyCodeLine{172   \textcolor{keyword}{using }\mbox{\hyperlink{a01411_ad2e94e390a1a328d7abd8006f29dbbd2}{VecType}} = std::invoke\_result\_t<\textcolor{keyword}{decltype}(\&RT::Vectorizer::template transform<ResultTypeValueType>),}
-\DoxyCodeLine{173                                        \textcolor{keyword}{const} ResultTypeValueType\&>;}
-\DoxyCodeLine{174   \textcolor{keyword}{using }\mbox{\hyperlink{a01411_a3be8a4f7e4b67bc2bb90a826c1ed7c85}{MatType}} =}
-\DoxyCodeLine{175       std::invoke\_result\_t<\textcolor{keyword}{decltype}(\&RT::Matricizer::template transform<VecType, rowsAtCompileTime, colsAtCompileTime>),}
-\DoxyCodeLine{176                            \textcolor{keyword}{const} \mbox{\hyperlink{a01411_ad2e94e390a1a328d7abd8006f29dbbd2}{VecType}}\&, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}>;}
-\DoxyCodeLine{177   \textcolor{keyword}{using }\mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}} = std::conditional\_t<storedValueIsVector, VecType, MatType>;}
-\DoxyCodeLine{178   \textcolor{keyword}{using }\mbox{\hyperlink{a01411_aef0efc55342d144366f8eddbc6fe00f9}{ResultType}} = RT;}
-\DoxyCodeLine{179 }
-\DoxyCodeLine{184   \textcolor{keyword}{auto} \mbox{\hyperlink{a01411_ae1be56ef0981f28e1dfa4f77453251d3}{asVec}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{185     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (storedValueIsVector)}
-\DoxyCodeLine{186       \textcolor{keywordflow}{return} value\_;}
-\DoxyCodeLine{187     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{188       \textcolor{keywordflow}{return} RT::Vectorizer::transform(value\_);}
-\DoxyCodeLine{189   \}}
-\DoxyCodeLine{190 }
-\DoxyCodeLine{197   \textcolor{keyword}{auto} \mbox{\hyperlink{a01411_ae5c30a9c8da8fe6bb01b1cee0fc43155}{asMat}}(Eigen::Index rows = rowsAtCompileTime, Eigen::Index cols = colsAtCompileTime)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{198     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (storedValueIsVector) \{}
-\DoxyCodeLine{199       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (rowsAtCompileTime == Eigen::Dynamic)}
-\DoxyCodeLine{200         assert(rows != rowsAtCompileTime \&\&}
-\DoxyCodeLine{201                \textcolor{stringliteral}{"{}For dynamic size result types you have to pass rows by hand, since it is not clear how the result "{}}}
-\DoxyCodeLine{202                \textcolor{stringliteral}{"{}should be reshaped"{}});}
-\DoxyCodeLine{203       \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (colsAtCompileTime == Eigen::Dynamic)}
-\DoxyCodeLine{204         assert(cols != colsAtCompileTime \&\&}
-\DoxyCodeLine{205                \textcolor{stringliteral}{"{}For dynamic size result types you have to pass cols by hand, since it is not clear how the result "{}}}
-\DoxyCodeLine{206                \textcolor{stringliteral}{"{}should be reshaped"{}});}
-\DoxyCodeLine{207       \textcolor{keywordflow}{return} RT::Matricizer::template transform<VecType, rowsAtCompileTime, colsAtCompileTime>(value\_, rows, cols);}
-\DoxyCodeLine{208     \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{209       \textcolor{keywordflow}{return} value\_;}
-\DoxyCodeLine{210   \}}
-\DoxyCodeLine{211   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01411_a826dcccf70e97474b01126970e2839ac}{ResultWrapper}}() = \textcolor{keywordflow}{default};}
-\DoxyCodeLine{212   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01411_a623510c28007eb075ed7719de10562b2}{ResultWrapper}}(\mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\&\& value) \{ this-\/>value\_ = std::move(value); \}}
-\DoxyCodeLine{213   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01411_ae3ec0250a8cce10dae2b6eacec3ffe11}{ResultWrapper}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\& value) \{ this-\/>value\_ = value; \}}
-\DoxyCodeLine{214   \mbox{\hyperlink{a01411}{ResultWrapper}}\& \mbox{\hyperlink{a01411_adbc957bfc9a97390ce57d778dd7c91a1}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\& value) \{}
-\DoxyCodeLine{215     this-\/>value\_ = value;}
-\DoxyCodeLine{216     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{217   \}}
-\DoxyCodeLine{218   \mbox{\hyperlink{a01411}{ResultWrapper}}\& \mbox{\hyperlink{a01411_a6a1deb7c814879d79eaa5fe467666b2f}{operator=}}(\mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}}\&\& value) \{}
-\DoxyCodeLine{219     this-\/>value\_ = std::move(value);}
-\DoxyCodeLine{220     \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{221   \}}
-\DoxyCodeLine{222 }
-\DoxyCodeLine{223 \textcolor{keyword}{private}:}
-\DoxyCodeLine{224   \mbox{\hyperlink{a01411_a1baf31b4a8525d6b81860c8f0a0b6a84}{StoredType}} value\_\{\};}
-\DoxyCodeLine{225 \};}
-\DoxyCodeLine{226 }
-\DoxyCodeLine{227 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{228   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
-\DoxyCodeLine{229   \textcolor{keyword}{using }DummyRT = RT<double, 1, 1>;}
-\DoxyCodeLine{230 \}}
-\DoxyCodeLine{231 }
-\DoxyCodeLine{237 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
-\DoxyCodeLine{238 \textcolor{keyword}{auto} \mbox{\hyperlink{a00396_a38629395c2d43ba44328b01ce0c0daf3}{makeRT}}() \{}
-\DoxyCodeLine{239   \textcolor{keywordflow}{return} Impl::DummyRT<RT>\{\};}
-\DoxyCodeLine{240 \}}
-\DoxyCodeLine{241 }
-\DoxyCodeLine{247 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT>}
-\DoxyCodeLine{248 \textcolor{keyword}{auto} \mbox{\hyperlink{a00396_aef80b6b5b45dcfbea4f722f51a84f53f}{toString}}() \{}
-\DoxyCodeLine{249   \textcolor{keywordflow}{return} \mbox{\hyperlink{a00396_aef80b6b5b45dcfbea4f722f51a84f53f}{toString}}(Impl::DummyRT<RT>\{\});}
-\DoxyCodeLine{250 \}}
-\DoxyCodeLine{251 }
-\DoxyCodeLine{257 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT1, \textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{class }RT2>}
-\DoxyCodeLine{258 \textcolor{keyword}{constexpr} \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a00396_aae9d6a05f2ca4f54c0524404e27e7ed1}{isSameResultType}} = std::is\_same\_v<Impl::DummyRT<RT1>, Impl::DummyRT<RT2>>;}
-\DoxyCodeLine{259 }
-\DoxyCodeLine{260 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{261   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename} Tuple>}
-\DoxyCodeLine{262   \textcolor{keyword}{struct }hasType;}
-\DoxyCodeLine{263 }
-\DoxyCodeLine{264   \textcolor{keyword}{template} <\textcolor{keyword}{typename} T, \textcolor{keyword}{typename}... Us>}
-\DoxyCodeLine{265   \textcolor{keyword}{struct }hasType<T, \mbox{\hyperlink{a00395}{std}}::tuple<Us...>> : std::disjunction<std::is\_same<T, Us>...>}
-\DoxyCodeLine{266   \{}
-\DoxyCodeLine{267   \};}
-\DoxyCodeLine{268 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{269 }
-\DoxyCodeLine{275 \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{typename}... ResultTypes>}
-\DoxyCodeLine{276 \textcolor{keyword}{struct }\mbox{\hyperlink{a01423}{ResultTypeBase}}}
-\DoxyCodeLine{277 \{}
-\DoxyCodeLine{282   \textcolor{keyword}{template} <\textcolor{keyword}{template} <\textcolor{keyword}{typename}, \textcolor{keywordtype}{int}, \textcolor{keywordtype}{int}> \textcolor{keyword}{typename} RT>}
-\DoxyCodeLine{283   \textcolor{keyword}{static} \textcolor{keyword}{consteval} \textcolor{keywordtype}{bool} \mbox{\hyperlink{a01423_af33553a01e6940265639d561c31b7746}{supportsResultType}}() \{}
-\DoxyCodeLine{284     \textcolor{keywordflow}{return} Impl::hasType<decltype(makeRT<RT>()), \mbox{\hyperlink{a01423_ac43d0000154d9bd08d7fdce3c279ccbb}{SupportedResultTypes}}>::value;}
+\DoxyCodeLine{129     psi    = sqrt(DD2);}
+\DoxyCodeLine{130     \textcolor{keyword}{auto} s = sqrt(psi.value() * psi.value() + DD2);}
+\DoxyCodeLine{131 }
+\DoxyCodeLine{132     args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}      = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}} * args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} / s;}
+\DoxyCodeLine{133     args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} = args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}} / s;}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     nonLinearOperator.firstParameter() = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
+\DoxyCodeLine{136     nonLinearOperator.lastParameter()  = args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
+\DoxyCodeLine{137   \}}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{148   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{149   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01350_af2af0315b650a1b8c997792f22829585}{intermediatePrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{150     nonLinearOperator.firstParameter() += args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
+\DoxyCodeLine{151     nonLinearOperator.lastParameter() += args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
+\DoxyCodeLine{152   \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{155   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01350_afa77b974566da3b74cb5b35693540c16}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Arc length"{}}); \}}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \textcolor{keyword}{private}:}
+\DoxyCodeLine{158   std::optional<double> psi;}
+\DoxyCodeLine{159 \};}
+\DoxyCodeLine{160 }
+\DoxyCodeLine{173 \textcolor{keyword}{struct }\mbox{\hyperlink{a01354}{LoadControlSubsidiaryFunction}}}
+\DoxyCodeLine{174 \{}
+\DoxyCodeLine{182   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01354_aea5de41cde5e7506712e8bdd84be6ffa}{operator()}}(\mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{183     args.\mbox{\hyperlink{a01346_a628b23aa9e90c0e0ba1461ad2241645a}{f}} = args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}} -\/ args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{184     args.\mbox{\hyperlink{a01346_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.setZero();}
+\DoxyCodeLine{185     args.\mbox{\hyperlink{a01346_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}} = 1.0;}
+\DoxyCodeLine{186   \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{197   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{198   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01354_a4670840cb26672b50f79dfc70ba47973}{initialPrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{199     args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}}                      = args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{200     nonLinearOperator.lastParameter() = args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
+\DoxyCodeLine{201   \}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{212   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{213   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01354_abd2369cff03a98552df1f8c8a4184e90}{intermediatePrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{214     nonLinearOperator.lastParameter() += args.\mbox{\hyperlink{a01346_a0cd5cc302f164ea614b9edfadd7c82c9}{Dlambda}};}
+\DoxyCodeLine{215   \}}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{218   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01354_a6e2ee6e5a234c1b14ce197f4a1460ed3}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Load Control"{}}); \}}
+\DoxyCodeLine{219 \};}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{233 \textcolor{keyword}{struct }\mbox{\hyperlink{a01358}{DisplacementControl}}}
+\DoxyCodeLine{234 \{}
+\DoxyCodeLine{240   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01358_aa15060bf256c9786fe44096fad899733}{DisplacementControl}}(std::vector<int> p\_controlledIndices)}
+\DoxyCodeLine{241       : controlledIndices\{\mbox{\hyperlink{a00410}{std}}::move(p\_controlledIndices)\} \{\}}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{250   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01358_a980d44ede46996fd077ffa1bbda66952}{operator()}}(\mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{251     \textcolor{keyword}{const} \textcolor{keyword}{auto} controlledDOFsNorm = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices).norm();}
+\DoxyCodeLine{252     args.\mbox{\hyperlink{a01346_a628b23aa9e90c0e0ba1461ad2241645a}{f}}                        = controlledDOFsNorm -\/ args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{253     args.\mbox{\hyperlink{a01346_a198c4e48b353f1ebe5c5922bf51e34e5}{dfdDlambda}}               = 0.0;}
+\DoxyCodeLine{254     args.\mbox{\hyperlink{a01346_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}.setZero();}
+\DoxyCodeLine{255     args.\mbox{\hyperlink{a01346_aa1bc7c1fc866571e3b6b22e14ed9afcf}{dfdDD}}(controlledIndices) = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices) / controlledDOFsNorm;}
+\DoxyCodeLine{256   \}}
+\DoxyCodeLine{257 }
+\DoxyCodeLine{267   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{268   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01358_abcca64d9ae96884cfbd65a324f15e8f8}{initialPrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{269     args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}}(controlledIndices).array() = args.\mbox{\hyperlink{a01346_a9c0bca7ed999dcf751648d41b5d9aa78}{stepSize}};}
+\DoxyCodeLine{270     nonLinearOperator.firstParameter() = args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
+\DoxyCodeLine{271   \}}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{282   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLO>}
+\DoxyCodeLine{283   \textcolor{keywordtype}{void} \mbox{\hyperlink{a01358_a9a15e5b053c27997596589ded6e09616}{intermediatePrediction}}(NLO\& nonLinearOperator, \mbox{\hyperlink{a01346}{SubsidiaryArgs}}\& args) \{}
+\DoxyCodeLine{284     nonLinearOperator.firstParameter() += args.\mbox{\hyperlink{a01346_afc97f3ae46ddd6a208b90d253aa8a7e6}{DD}};}
 \DoxyCodeLine{285   \}}
 \DoxyCodeLine{286 }
-\DoxyCodeLine{287   \textcolor{keyword}{using }\mbox{\hyperlink{a01423_ac43d0000154d9bd08d7fdce3c279ccbb}{SupportedResultTypes}} = std::tuple<decltype(makeRT<ResultTypes>())...>;}
-\DoxyCodeLine{288 \};}
+\DoxyCodeLine{288   \textcolor{keyword}{constexpr} \textcolor{keyword}{auto} \mbox{\hyperlink{a01358_a16cd9773e9704597d967f144d674bcd4}{name}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} std::string(\textcolor{stringliteral}{"{}Displacement Control"{}}); \}}
 \DoxyCodeLine{289 }
-\DoxyCodeLine{290 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{290 \textcolor{keyword}{private}:}
+\DoxyCodeLine{291   std::vector<int> controlledIndices; }
+\DoxyCodeLine{292 \};}
+\DoxyCodeLine{293 \} \textcolor{comment}{// namespace Ikarus}}
 
 \end{DoxyCode}

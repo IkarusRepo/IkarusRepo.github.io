@@ -1,22 +1,10 @@
 var a00149 =
 [
-    [ "Ikarus::TRSettings", "a01799.html", "a01799" ],
-    [ "Ikarus::TrustRegionConfig< preConditioner, UF >", "a01803.html", "a01803" ],
-    [ "Ikarus::AlgoInfo", "a01811.html", "a01811" ],
-    [ "Ikarus::Stats", "a01815.html", "a01815" ],
-    [ "PreConditioner", "a00149.html#ace28d4868cfc647491f7938f04ef6c66", [
-      [ "IncompleteCholesky", "a00149.html#ace28d4868cfc647491f7938f04ef6c66a7a24b184ba388b8e327feb98dbe168ff", null ],
-      [ "IdentityPreconditioner", "a00149.html#ace28d4868cfc647491f7938f04ef6c66a7a93111b975ec3c3824eab230f3ec608", null ],
-      [ "DiagonalPreconditioner", "a00149.html#ace28d4868cfc647491f7938f04ef6c66a3c6b5404db3b7bf45a0302f376a53afc", null ]
-    ] ],
-    [ "StopReason", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674", [
-      [ "gradientNormTolReached", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674a0c4f44592a7ae85baf42cb3fb4a5a3d1", null ],
-      [ "correctionNormTolReached", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674ad1c6a6016de417acc66b5ac44a1fdca3", null ],
-      [ "maximumTimeReached", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674ad205528fe2a4412b89626ff7eee936f9", null ],
-      [ "maximumIterationsReached", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674a5ed07f9461b91dd3a6ba961a0ed5c8fe", null ],
-      [ "dontStop", "a00149.html#abd5d0cf356d1ae81f6ee827b0f47c674a8d2fa9685be8b8f8994bd8a73bfa8c9f", null ]
-    ] ],
-    [ "createNonlinearSolver", "a00149.html#a8785899121b52f1b6ffe3a43b1a5df61", null ],
-    [ "makeTrustRegion", "a00149.html#a547326eb09552d3d1fed0830d0e2d269", null ],
-    [ "TrustRegion", "a00149.html#a8d76e20d6a74e339f85d98c9854ee89c", null ]
+    [ "registerEnhancedAssumedStrainsPre", "a00149.html#a79dfab8379c15a5c5da0d3e5a415f0a3", null ],
+    [ "registerKirchhoffLoveShellPre", "a00149.html#a0ef1ab14030985bd8af2551f51ceeeb6", null ],
+    [ "registerLinearElasticPre", "a00149.html#a04d0c82e615a65a1ba027cb77bbf784d", null ],
+    [ "registerNeumannBoundaryLoadPre", "a00149.html#a813121e686b5d64d6ef1e11bd4bfc59b", null ],
+    [ "registerNonLinearElasticPre", "a00149.html#ab45b29a3ca18f1c8bf87263c60d14711", null ],
+    [ "registerTrussPre", "a00149.html#a5004d72f594d4ceecaebb33ee71f80cf", null ],
+    [ "registerVolumeLoadPre", "a00149.html#a1f597ae7aac82dc24a8a2669f86fc12b", null ]
 ];

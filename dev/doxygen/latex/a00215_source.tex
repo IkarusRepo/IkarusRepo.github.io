@@ -1,55 +1,131 @@
-\hypertarget{a00215_source}{}\doxysection{registerferequirements.\+hh}
-\label{a00215_source}\index{registerferequirements.hh@{registerferequirements.hh}}
+\hypertarget{a00215_source}{}\doxysection{eas2d.\+hh}
+\label{a00215_source}\index{eas2d.hh@{eas2d.hh}}
 \mbox{\hyperlink{a00215}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{5 }
-\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
-\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
-\DoxyCodeLine{8 }
-\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00212}{ikarus/python/finiteelements/scalarwrapper.hh}}>}}
-\DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00414}{Ikarus::Python}} \{}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{keyword}{template} <\textcolor{keyword}{class }FE, \textcolor{keyword}{class}... options>}
-\DoxyCodeLine{14 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00414_a32c3989a8ef1dbc581313ef17a0c6f5b}{registerFERequirement}}(pybind11::handle scope, pybind11::class\_<FE, options...> cls) \{}
-\DoxyCodeLine{15   \textcolor{keyword}{using }\mbox{\hyperlink{a01387}{FERequirements}}     = \textcolor{keyword}{typename} \mbox{\hyperlink{a01627_a86c0fea1b37e487f3c78cde6facca9c3}{FE::Requirement}};}
-\DoxyCodeLine{16   \textcolor{keyword}{using }SolutionVectorType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01387_a438e8f848c50755740ef8ee17620a284}{FERequirements::SolutionVectorType}};}
-\DoxyCodeLine{17   \textcolor{keyword}{using }ParameterType      = \textcolor{keyword}{typename} \mbox{\hyperlink{a01387_a50a1c42fc0b05811dfc370217fb70169}{FERequirements::ParameterType}};}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{19   \textcolor{keyword}{using }ParameterType = \textcolor{keyword}{typename} \mbox{\hyperlink{a01387_a50a1c42fc0b05811dfc370217fb70169}{FERequirements::ParameterType}};}
-\DoxyCodeLine{20   \textcolor{keyword}{using namespace }pybind11::literals;}
-\DoxyCodeLine{21 }
-\DoxyCodeLine{22   cls.def(}
-\DoxyCodeLine{23       \textcolor{stringliteral}{"{}createRequirement"{}}, [](pybind11::object \textcolor{comment}{/* self */}) \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{a01387}{FERequirements}}(); \},}
-\DoxyCodeLine{24       pybind11::return\_value\_policy::copy);}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26   \textcolor{keyword}{auto} includes     = Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}ikarus/finiteelements/ferequirements.hh"{}}\};}
-\DoxyCodeLine{27   \textcolor{keyword}{auto} [req, isNew] = Dune::Python::insertClass<FERequirements>(}
-\DoxyCodeLine{28       scope, \textcolor{stringliteral}{"{}FERequirements"{}}, Dune::Python::GenerateTypeName(Dune::className<FERequirements>()), includes);}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00419}{Ikarus::EAS}} \{}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{20 \textcolor{keyword}{struct }\mbox{\hyperlink{a01446}{E0}}}
+\DoxyCodeLine{21 \{}
+\DoxyCodeLine{22   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01446_a6652c22405d933b6c3c881a1ce097e8a}{strainSize}}         = GEO::mydimension * (GEO::mydimension + 1) / 2;}
+\DoxyCodeLine{23   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01446_ab535d80fb5d76e7571a2af6f2d99ba05}{enhancedStrainSize}} = 0;}
+\DoxyCodeLine{24   \textcolor{keyword}{using }\mbox{\hyperlink{a01446_a6f35028ba221cd0eaf6859bbf2b5f77c}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
+\DoxyCodeLine{25   \textcolor{keyword}{using }\mbox{\hyperlink{a01446_a79fdb2f95c2bbb280d4eb9a9b7c67853}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27   \mbox{\hyperlink{a01446_ab913a61e292285b10c634a3675acd39a}{E0}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{28   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01446_a8aaffc90bc6e256385336414f7756007}{E0}}(\textcolor{keyword}{const} GEO\& \textcolor{comment}{/*geometry*/}) \{\}}
 \DoxyCodeLine{29 }
-\DoxyCodeLine{30   \textcolor{keywordflow}{if} (isNew) \{}
-\DoxyCodeLine{31     req.def(\mbox{\hyperlink{a00396_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}());}
-\DoxyCodeLine{32     req.def(pybind11::init<SolutionVectorType\&, ParameterType\&>());}
+\DoxyCodeLine{30   \textcolor{comment}{// returns an Eigen zero expression for optimization purposes}}
+\DoxyCodeLine{31   \textcolor{keyword}{static} \textcolor{keyword}{auto} \mbox{\hyperlink{a01446_a833af01a064166c8d39b1fa1b8d8c19a}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01910}{Dune::FieldVector<double, 2>}}\& \textcolor{comment}{/*quadPos*/}) \{ \textcolor{keywordflow}{return} MType::Zero(); \}}
+\DoxyCodeLine{32 \};}
 \DoxyCodeLine{33 }
-\DoxyCodeLine{34     req.def(}
-\DoxyCodeLine{35         \textcolor{stringliteral}{"{}insertGlobalSolution"{}},}
-\DoxyCodeLine{36         [](\mbox{\hyperlink{a01387}{FERequirements}}\& self, SolutionVectorType solVec) \{ self.\mbox{\hyperlink{a01387_ada341483ec62ec030c03d43ab4bd86c9}{insertGlobalSolution}}(solVec); \},}
-\DoxyCodeLine{37         \textcolor{stringliteral}{"{}solutionVector"{}}\_a.noconvert());}
-\DoxyCodeLine{38     req.def(}
-\DoxyCodeLine{39         \textcolor{stringliteral}{"{}globalSolution"{}}, [](\mbox{\hyperlink{a01387}{FERequirements}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01387_a523ed390dfea00379b5b638e523ddb74}{globalSolution}}(); \},}
-\DoxyCodeLine{40         pybind11::return\_value\_policy::reference\_internal);}
-\DoxyCodeLine{41     req.def(}
-\DoxyCodeLine{42         \textcolor{stringliteral}{"{}insertParameter"{}},}
-\DoxyCodeLine{43         [](\mbox{\hyperlink{a01387}{FERequirements}}\& self, \mbox{\hyperlink{a01751}{ScalarWrapper<double>}}\& parVal) \{ self.\mbox{\hyperlink{a01387_aafb4ad2fa6c16a3845596f76e6cdeb16}{insertParameter}}(parVal.\mbox{\hyperlink{a01751_a0f885d047f898e549e8ece9cac3adea8}{value}}()); \},}
-\DoxyCodeLine{44         pybind11::keep\_alive<1, 2>(), \textcolor{stringliteral}{"{}parameterValue"{}}\_a.noconvert());}
-\DoxyCodeLine{45 }
-\DoxyCodeLine{46     req.def(\textcolor{stringliteral}{"{}parameter"{}}, [](\textcolor{keyword}{const} \mbox{\hyperlink{a01387}{FERequirements}}\& self) \{ \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01387_af11316c1f0fca6982a2d7497bc71a10c}{parameter}}(); \});}
-\DoxyCodeLine{47   \}}
-\DoxyCodeLine{48 \}}
-\DoxyCodeLine{49 \} \textcolor{comment}{// namespace Ikarus::Python}}
+\DoxyCodeLine{43 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{44 \textcolor{keyword}{struct }\mbox{\hyperlink{a01450}{Q1E4}}}
+\DoxyCodeLine{45 \{}
+\DoxyCodeLine{46   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01450_a31972bc371b0267eb4f04f62f4c88219}{strainSize}}         = 3;}
+\DoxyCodeLine{47   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01450_ab1a8b1d505b07f61bc8182de7c65d66a}{enhancedStrainSize}} = 4;}
+\DoxyCodeLine{48   \textcolor{keyword}{using }\mbox{\hyperlink{a01450_a9d9bcd6fbf0b5560904dc1ab9b872633}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
+\DoxyCodeLine{49   \textcolor{keyword}{using }\mbox{\hyperlink{a01450_a1c7282dcb16d89f3f99b761ce4cda63c}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51   \mbox{\hyperlink{a01450_a68eb22d5d7f45fe8c0fed77de62ad799}{Q1E4}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{52   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01450_a43ede2403a5e817099bd51ae4f26f8f1}{Q1E4}}(\textcolor{keyword}{const} GEO\& geometry)}
+\DoxyCodeLine{53       : geometry\_\{\mbox{\hyperlink{a00410}{std}}::make\_optional<GEO>(geometry)\},}
+\DoxyCodeLine{54         T0InverseTransformed\_\{\mbox{\hyperlink{a00411_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56   \textcolor{keyword}{auto} \mbox{\hyperlink{a01450_a03e4a1b446ffd59d5e15c95fd7291b9f}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01910}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{57     \mbox{\hyperlink{a01450_a9d9bcd6fbf0b5560904dc1ab9b872633}{MType}} M;}
+\DoxyCodeLine{58     M.setZero(\mbox{\hyperlink{a01450_a31972bc371b0267eb4f04f62f4c88219}{strainSize}}, \mbox{\hyperlink{a01450_ab1a8b1d505b07f61bc8182de7c65d66a}{enhancedStrainSize}});}
+\DoxyCodeLine{59     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
+\DoxyCodeLine{60     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
+\DoxyCodeLine{61     M(0, 0)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{62     M(1, 1)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{63     M(2, 2)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{64     M(2, 3)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{65     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
+\DoxyCodeLine{66     M                 = T0InverseTransformed\_ / detJ * M;}
+\DoxyCodeLine{67     \textcolor{keywordflow}{return} M;}
+\DoxyCodeLine{68   \}}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \textcolor{keyword}{private}:}
+\DoxyCodeLine{71   std::optional<GEO> geometry\_;}
+\DoxyCodeLine{72   Eigen::Matrix3d T0InverseTransformed\_;}
+\DoxyCodeLine{73 \};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{82 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{83 \textcolor{keyword}{struct }\mbox{\hyperlink{a01454}{Q1E5}}}
+\DoxyCodeLine{84 \{}
+\DoxyCodeLine{85   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01454_a70978fa46b16e2d6210cf77d76bead62}{strainSize}}         = 3;}
+\DoxyCodeLine{86   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01454_ab1a680222be27a73de9204c3881f7ec8}{enhancedStrainSize}} = 5;}
+\DoxyCodeLine{87   \textcolor{keyword}{using }\mbox{\hyperlink{a01454_aa19cdd636627ea0efc74bb2c380d6836}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
+\DoxyCodeLine{88   \textcolor{keyword}{using }\mbox{\hyperlink{a01454_a266e586d6789650b99c28a51b71bfbcd}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90   \mbox{\hyperlink{a01454_a7bedf208a422c415e0037f898c8ec85a}{Q1E5}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{91   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01454_a7a4921dd86b88f516f34cd55accf0629}{Q1E5}}(\textcolor{keyword}{const} GEO\& geometry)}
+\DoxyCodeLine{92       : geometry\_\{\mbox{\hyperlink{a00410}{std}}::make\_optional<GEO>(geometry)\},}
+\DoxyCodeLine{93         T0InverseTransformed\_\{\mbox{\hyperlink{a00411_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   \textcolor{keyword}{auto} \mbox{\hyperlink{a01454_a2f5b495d9eabc2e3fcccfee1595e61eb}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01910}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{96     \mbox{\hyperlink{a01454_aa19cdd636627ea0efc74bb2c380d6836}{MType}} M;}
+\DoxyCodeLine{97     M.setZero();}
+\DoxyCodeLine{98     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
+\DoxyCodeLine{99     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
+\DoxyCodeLine{100     M(0, 0)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{101     M(1, 1)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{102     M(2, 2)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{103     M(2, 3)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{104     M(2, 4)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
+\DoxyCodeLine{105     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
+\DoxyCodeLine{106     M                 = T0InverseTransformed\_ / detJ * M;}
+\DoxyCodeLine{107     \textcolor{keywordflow}{return} M;}
+\DoxyCodeLine{108   \}}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 \textcolor{keyword}{private}:}
+\DoxyCodeLine{111   std::optional<GEO> geometry\_;}
+\DoxyCodeLine{112   Eigen::Matrix3d T0InverseTransformed\_;}
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{122 \textcolor{keyword}{template} <\textcolor{keyword}{typename} GEO>}
+\DoxyCodeLine{123 \textcolor{keyword}{struct }\mbox{\hyperlink{a01458}{Q1E7}}}
+\DoxyCodeLine{124 \{}
+\DoxyCodeLine{125   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01458_a79a495f2932fe90867b44e1f4e92bfd3}{strainSize}}         = 3;}
+\DoxyCodeLine{126   \textcolor{keyword}{static} \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} \mbox{\hyperlink{a01458_a3373c7120dffedafda0be40fa6647c46}{enhancedStrainSize}} = 7;}
+\DoxyCodeLine{127   \textcolor{keyword}{using }\mbox{\hyperlink{a01458_a3936fb3159e8887532007a2df1cc3915}{MType}}                             = Eigen::Matrix<double, strainSize, enhancedStrainSize>;}
+\DoxyCodeLine{128   \textcolor{keyword}{using }\mbox{\hyperlink{a01458_ac2ba07352f98839cbce9e189d413aadb}{DType}}                             = Eigen::Matrix<double, enhancedStrainSize, enhancedStrainSize>;}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130   \mbox{\hyperlink{a01458_ac320a2701922ade2a114460221fd8897}{Q1E7}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{131   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01458_a8db7bc977482fbd9cc783ef8515b3aba}{Q1E7}}(\textcolor{keyword}{const} GEO\& geometry)}
+\DoxyCodeLine{132       : geometry\_\{\mbox{\hyperlink{a00410}{std}}::make\_optional<GEO>(geometry)\},}
+\DoxyCodeLine{133         T0InverseTransformed\_\{\mbox{\hyperlink{a00411_a7a5b9f5e83f6918ca1726fb4316c3b86}{calcTransformationMatrix2D}}(geometry)\} \{\}}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135   \textcolor{keyword}{auto} \mbox{\hyperlink{a01458_adee00ef1f4bd1c7db877fb39626b4ed8}{calcM}}(\textcolor{keyword}{const} \mbox{\hyperlink{a01910}{Dune::FieldVector<double, 2>}}\& quadPos)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{136     \mbox{\hyperlink{a01458_a3936fb3159e8887532007a2df1cc3915}{MType}} M;}
+\DoxyCodeLine{137     M.setZero();}
+\DoxyCodeLine{138     \textcolor{keyword}{const} \textcolor{keywordtype}{double} xi   = quadPos[0];}
+\DoxyCodeLine{139     \textcolor{keyword}{const} \textcolor{keywordtype}{double} eta  = quadPos[1];}
+\DoxyCodeLine{140     M(0, 0)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{141     M(1, 1)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{142     M(2, 2)           = 2 * xi -\/ 1.0;}
+\DoxyCodeLine{143     M(2, 3)           = 2 * eta -\/ 1.0;}
+\DoxyCodeLine{144     M(0, 4)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
+\DoxyCodeLine{145     M(1, 5)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
+\DoxyCodeLine{146     M(2, 6)           = (2 * xi -\/ 1.0) * (2 * eta -\/ 1.0);}
+\DoxyCodeLine{147     \textcolor{keyword}{const} \textcolor{keywordtype}{double} detJ = geometry\_-\/>integrationElement(quadPos);}
+\DoxyCodeLine{148     M                 = T0InverseTransformed\_ / detJ * M;}
+\DoxyCodeLine{149     \textcolor{keywordflow}{return} M;}
+\DoxyCodeLine{150   \}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 \textcolor{keyword}{private}:}
+\DoxyCodeLine{153   std::optional<GEO> geometry\_;}
+\DoxyCodeLine{154   Eigen::Matrix3d T0InverseTransformed\_;}
+\DoxyCodeLine{155 \};}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157 \} \textcolor{comment}{// namespace Ikarus::EAS}}
 
 \end{DoxyCode}

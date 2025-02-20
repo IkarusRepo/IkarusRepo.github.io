@@ -1,7 +1,5 @@
 var a00299 =
 [
-    [ "Ikarus::KirchhoffLoveShellPre", "a01475.html", "a01475" ],
-    [ "Ikarus::KirchhoffLoveShell< PreFE, FE >::KinematicVariables< ST >", "a01479.html", "a01479" ],
-    [ "Ikarus::KlArgs", "a01483.html", "a01483" ],
-    [ "kirchhoffLoveShell", "a00299.html#aecb794f40bd585f77e094976751ba41e", null ]
+    [ "Ikarus::NeumannBoundaryLoadPre< GV >", "a01514.html", "a01514" ],
+    [ "neumannBoundaryLoad", "a00299.html#ac2ae666c1ffd22e3c22a3418ab390893", null ]
 ];

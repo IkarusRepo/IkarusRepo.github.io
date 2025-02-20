@@ -1,100 +1,286 @@
-\hypertarget{a00272_source}{}\doxysection{strainconversions.\+hh}
-\label{a00272_source}\index{strainconversions.hh@{strainconversions.hh}}
+\hypertarget{a00272_source}{}\doxysection{volumetricfunctions.\+hh}
+\label{a00272_source}\index{volumetricfunctions.hh@{volumetricfunctions.hh}}
 \mbox{\hyperlink{a00272}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
 \DoxyCodeLine{2 \textcolor{comment}{// SPDX-\/License-\/Identifier: LGPL-\/3.0-\/or-\/later}}
 \DoxyCodeLine{3 }
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#pragma once}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{a00242}{tags.hh}}"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03098}{ikarus/finiteelements/mechanics/materials/hyperelastic/concepts.hh}}>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03077}{ikarus/finiteelements/mechanics/materials/hyperelastic/volumetric/interface.hh}}>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00194}{ikarus/finiteelements/physicshelper.hh}}>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <unsupported/Eigen/MatrixFunctions>}}
+\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00422}{Ikarus::Materials}} \{}
 \DoxyCodeLine{18 }
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <Eigen/Core>}}
-\DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00032}{ikarus/utils/tensorutils.hh}}>}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00396}{Ikarus}} \{}
-\DoxyCodeLine{24 \textcolor{keyword}{namespace }Impl \{}
-\DoxyCodeLine{25   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{26   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) mayTransformFromVoigt(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& e, \textcolor{keywordtype}{bool} isStrain = \textcolor{keyword}{true}) \{}
-\DoxyCodeLine{27     \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (Concepts::EigenVector<Derived>)}
-\DoxyCodeLine{28       \textcolor{keywordflow}{return} \mbox{\hyperlink{a00392_gadc8e9e9f3838d0392a5fcf1e11374ee9}{fromVoigt}}(e.derived(), isStrain);}
-\DoxyCodeLine{29     \textcolor{keywordflow}{else}}
-\DoxyCodeLine{30       \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{31   \}}
-\DoxyCodeLine{32 \} \textcolor{comment}{// namespace Impl}}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{45 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{46 \textcolor{keyword}{auto} \mbox{\hyperlink{a00384_gad5aa30fe829c7316a0a744b3438609f5}{createGreenLagrangianStrains}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{47   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{48   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{49   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
-\DoxyCodeLine{50     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{51   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{52     \textcolor{keywordflow}{return} (0.5 * (e.transpose() * e -\/ Derived::Identity())).eval();}
-\DoxyCodeLine{53   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
-\DoxyCodeLine{54     \textcolor{keywordflow}{return} (0.5 * (e + e.transpose() + e.transpose() * e)).eval();}
-\DoxyCodeLine{55   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}})}
-\DoxyCodeLine{56     \textcolor{keywordflow}{return} (0.5 * (e -\/ Derived::Identity())).eval();}
-\DoxyCodeLine{57 \}}
-\DoxyCodeLine{58 }
-\DoxyCodeLine{70 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{71 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00384_ga5293eb09f12e4a45a7aa19a3403a73d1}{createDeformationGradient}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{72   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{73 }
-\DoxyCodeLine{74   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{75   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
-\DoxyCodeLine{76     \textcolor{comment}{// E = 0.5 * (F \string^ 2 -\/ I);}}
-\DoxyCodeLine{77     \textcolor{comment}{// 2*E = F \string^ 2 -\/ I;}}
-\DoxyCodeLine{78     \textcolor{comment}{// 2*E+I = F \string^ 2;}}
-\DoxyCodeLine{79     \textcolor{comment}{// sqrt(2*E+I) = F;}}
-\DoxyCodeLine{80     \textcolor{keywordflow}{return} ((2 * e + Derived::Identity()).sqrt()).eval();}
-\DoxyCodeLine{81   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{82     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{83   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}})}
-\DoxyCodeLine{84     \textcolor{keywordflow}{return} (e + Derived::Identity()).eval();}
-\DoxyCodeLine{85   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{86     \textcolor{keywordflow}{return} (e.sqrt()).eval(); \textcolor{comment}{// this looses information, since the rotation information from the original F is lost!}}
+\DoxyCodeLine{25 \textcolor{keyword}{struct }\mbox{\hyperlink{a01574}{VF0}}}
+\DoxyCodeLine{26 \{}
+\DoxyCodeLine{27   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{28   ST \mbox{\hyperlink{a01574_aa5aa48384c51bd2887d6e7cc1d14f643}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& \textcolor{comment}{/* J */})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{29     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{30   \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{33   ST \mbox{\hyperlink{a01574_a790f67ba8f92d2d324341f18991ef85b}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& \textcolor{comment}{/* J */})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{34     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{35   \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{38   ST \mbox{\hyperlink{a01574_a8798f30f657a0caadb152793c01939f4}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& \textcolor{comment}{/* J */})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{39     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{40   \};}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01574_a7162d4394add6d097ce12178766ff39d}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}None"{}}; \}}
+\DoxyCodeLine{43 \};}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{51 \textcolor{keyword}{struct }\mbox{\hyperlink{a01578}{VF1}}}
+\DoxyCodeLine{52 \{}
+\DoxyCodeLine{53   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{54   ST \mbox{\hyperlink{a01578_a338308b128926fc805d4d4d663aff6a7}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{55     \textcolor{keywordflow}{return} 0.5 * pow(J -\/ 1, 2);}
+\DoxyCodeLine{56   \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{59   ST \mbox{\hyperlink{a01578_aed01cb97b7a26f3c74842740083bb09b}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{60     \textcolor{keywordflow}{return} J -\/ 1;}
+\DoxyCodeLine{61   \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{64   ST \mbox{\hyperlink{a01578_a155d0ba10fd77a2abc055ab5205328c2}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& \textcolor{comment}{/* J */})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{65     \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{66   \};}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01578_a6fe8e9320969b744fdad1d912b30ccf2}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 1"{}}; \}}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{77 \textcolor{keyword}{struct }\mbox{\hyperlink{a01582}{VF2}}}
+\DoxyCodeLine{78 \{}
+\DoxyCodeLine{79   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{80   ST \mbox{\hyperlink{a01582_a20d42e07a203ea7490e553d543ffa6e7}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{81     \textcolor{keywordflow}{return} 0.25 * (pow(J -\/ 1, 2) + pow(log(J), 2));}
+\DoxyCodeLine{82   \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{85   ST \mbox{\hyperlink{a01582_a43be6b98bc601b128169e0ac25ee4353}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{86     \textcolor{keywordflow}{return} 0.5 * (J -\/ 1 + 1 / J * log(J));}
 \DoxyCodeLine{87   \}}
-\DoxyCodeLine{88 \}}
-\DoxyCodeLine{89 }
-\DoxyCodeLine{101 \textcolor{keyword}{template} <StrainTags tag, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{102 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00384_gae53e0e7999f565fc94610d1c4ede0d16}{createRightCauchyGreen}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eMB) \{}
-\DoxyCodeLine{103   \textcolor{keyword}{const} \textcolor{keyword}{auto}\& e = eMB.derived();}
-\DoxyCodeLine{104   \textcolor{keyword}{static\_assert}(Concepts::EigenMatrix33<Derived>);}
-\DoxyCodeLine{105   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}}) \{}
-\DoxyCodeLine{106     \textcolor{comment}{// E = 0.5 * (C -\/ I);}}
-\DoxyCodeLine{107     \textcolor{comment}{// 2*E = C -\/ I;}}
-\DoxyCodeLine{108     \textcolor{comment}{// 2*E+I = C;}}
-\DoxyCodeLine{109     \textcolor{keywordflow}{return} (2 * e + Derived::Identity()).eval();}
-\DoxyCodeLine{110   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{111     \textcolor{keywordflow}{return} (e.transpose() * e).eval();}
-\DoxyCodeLine{112   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa0eb1f1f7a6a355c2f4260b74c21d80f3}{StrainTags::displacementGradient}}) \{}
-\DoxyCodeLine{113     \textcolor{keyword}{const} \textcolor{keyword}{auto} F = e + Derived::Identity();}
-\DoxyCodeLine{114     \textcolor{keywordflow}{return} (F.transpose() * F).eval();}
-\DoxyCodeLine{115   \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (tag == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{116     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{117   \}}
-\DoxyCodeLine{118 \}}
-\DoxyCodeLine{119 }
-\DoxyCodeLine{131 \textcolor{keyword}{template} <StrainTags from, StrainTags to, \textcolor{keyword}{typename} Derived>}
-\DoxyCodeLine{132 \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \mbox{\hyperlink{a00384_gae9c00f19ce473d7183c87aa84b247f88}{transformStrain}}(\textcolor{keyword}{const} Eigen::MatrixBase<Derived>\& eRaw) \{}
-\DoxyCodeLine{133   \textcolor{keyword}{static\_assert}((from == to) or (from != \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}} and to != \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa9a932b3cb396238423eb2f33ec17d6aa}{StrainTags::linear}}),}
-\DoxyCodeLine{134                 \textcolor{stringliteral}{"{}No useful transformation available for linear strains."{}});}
-\DoxyCodeLine{135   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) e = Impl::mayTransformFromVoigt(eRaw.eval(), \textcolor{keyword}{true});}
-\DoxyCodeLine{136   \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (from == to)}
-\DoxyCodeLine{137     \textcolor{keywordflow}{return} e;}
-\DoxyCodeLine{138   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}})}
-\DoxyCodeLine{139     \textcolor{keywordflow}{return} createGreenLagrangianStrains<from>(e);}
-\DoxyCodeLine{140   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}})}
-\DoxyCodeLine{141     \textcolor{keywordflow}{return} createDeformationGradient<from>(e);}
-\DoxyCodeLine{142   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} \textcolor{keyword}{constexpr} (to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}}) \{}
-\DoxyCodeLine{143     \textcolor{keywordflow}{return} createRightCauchyGreen<from>(e);}
-\DoxyCodeLine{144   \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{145     \textcolor{keyword}{static\_assert}(to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faca3f1e4bb21fd00a3d29c5d8aff8e11e}{StrainTags::greenLagrangian}} or to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8fa61fc106262d2e2049866894bb4f862a5}{StrainTags::deformationGradient}} or}
-\DoxyCodeLine{146                   to == \mbox{\hyperlink{a00385_ggacef1e451de1a99845c59d7391064fb8faea40a9960a7a89c4f366beeab85d07d2}{StrainTags::rightCauchyGreenTensor}});}
-\DoxyCodeLine{147 \}}
-\DoxyCodeLine{148 \} \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{90   ST \mbox{\hyperlink{a01582_ae410b1dfa4f556edec07518bebf9e665}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{91     \textcolor{keyword}{auto} Jsq = pow(J, 2);}
+\DoxyCodeLine{92     \textcolor{keywordflow}{return} 1 / (2 * Jsq) * (1 + Jsq -\/ log(J));}
+\DoxyCodeLine{93   \}}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01582_a64618cc163294693ae8c3a4a780bde21}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 2"{}}; \}}
+\DoxyCodeLine{96 \};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{104 \textcolor{keyword}{struct }\mbox{\hyperlink{a01586}{VF3}}}
+\DoxyCodeLine{105 \{}
+\DoxyCodeLine{106   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{107   ST \mbox{\hyperlink{a01586_a47a88c62f6c7a05a4f9e872b5baf6b5c}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{108     \textcolor{keywordflow}{return} 0.5 * pow(log(J), 2);}
+\DoxyCodeLine{109   \};}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{112   ST \mbox{\hyperlink{a01586_a14cfe492905461636ef0a9bcdc767729}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{113     \textcolor{keywordflow}{return} 1 / J * log(J);}
+\DoxyCodeLine{114   \}}
+\DoxyCodeLine{115 }
+\DoxyCodeLine{116   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{117   ST \mbox{\hyperlink{a01586_a52cc4b556207f4d14ccfd052ccccacd5}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{118     \textcolor{keywordflow}{return} 1 / pow(J, 2) * (1 -\/ log(J));}
+\DoxyCodeLine{119   \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01586_a1f7229327fb66cb6a1fe8ec463caed70}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 3"{}}; \}}
+\DoxyCodeLine{122 \};}
+\DoxyCodeLine{123 }
+\DoxyCodeLine{130 \textcolor{keyword}{struct }\mbox{\hyperlink{a01590}{VF4}}}
+\DoxyCodeLine{131 \{}
+\DoxyCodeLine{132   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{133   ST \mbox{\hyperlink{a01590_ac81f14cb8a5089c1667be79b1ac7990a}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{134     \textcolor{keywordflow}{return} (1 / pow(beta\_, 2)) * ((1 / pow(J, beta\_)) -\/ 1 + beta\_ * log(J));}
+\DoxyCodeLine{135   \};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{138   ST \mbox{\hyperlink{a01590_ac8d63d352fad9c356f180cde2d314ad8}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{139     \textcolor{keywordflow}{return} (1 / beta\_) * ((1 / J) -\/ (1 / (pow(J, 1 + beta\_))));}
+\DoxyCodeLine{140   \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{143   ST \mbox{\hyperlink{a01590_afc6475c7d6ae590ecaa4ca5d405f4114}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{144     \textcolor{keywordflow}{return} (1 / beta\_) * ((1 / pow(J, 2 + beta\_)) * (1 + beta\_ -\/ pow(J, beta\_)));}
+\DoxyCodeLine{145   \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01590_a7799f521147479e08eb8a6cff05044ac}{VF4}}(\textcolor{keywordtype}{double} \mbox{\hyperlink{a01590_a7f795f3f3751c0e13bff4d6dfd36a062}{beta}})}
+\DoxyCodeLine{148       : beta\_(\mbox{\hyperlink{a01590_a7f795f3f3751c0e13bff4d6dfd36a062}{beta}}) \{\}}
+\DoxyCodeLine{149 }
+\DoxyCodeLine{150   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01590_a02fcb186d1ec945936be176443d5758b}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 4"{}}; \}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01590_a7f795f3f3751c0e13bff4d6dfd36a062}{beta}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} beta\_; \}}
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 \textcolor{keyword}{private}:}
+\DoxyCodeLine{155   \textcolor{keywordtype}{double} beta\_;}
+\DoxyCodeLine{156 \};}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{164 \textcolor{keyword}{struct }\mbox{\hyperlink{a01594}{VF5}}}
+\DoxyCodeLine{165 \{}
+\DoxyCodeLine{166   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{167   ST \mbox{\hyperlink{a01594_a127c5734f784408c38af27dce518d4c0}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{168     \textcolor{keywordflow}{return} 0.25 * (pow(J, 2) -\/ 1 -\/ 2 * log(J));}
+\DoxyCodeLine{169   \};}
+\DoxyCodeLine{170 }
+\DoxyCodeLine{171   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{172   ST \mbox{\hyperlink{a01594_a0cee73d4d6d8e1c3aa613d2f3a09acc4}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{173     \textcolor{keywordflow}{return} 0.5 * (J -\/ (1 / J));}
+\DoxyCodeLine{174   \}}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{177   ST \mbox{\hyperlink{a01594_a64c0fa11bcb344ef5e46a04a1f896f50}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{178     \textcolor{keywordflow}{return} 0.5 * (1 + (1 / pow(J, 2)));}
+\DoxyCodeLine{179   \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01594_afc557a4c45721e3314b1e50ff4cd7acb}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 5"{}}; \}}
+\DoxyCodeLine{182 \};}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{190 \textcolor{keyword}{struct }\mbox{\hyperlink{a01598}{VF6}}}
+\DoxyCodeLine{191 \{}
+\DoxyCodeLine{192   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{193   ST \mbox{\hyperlink{a01598_ac4317a6d3fddc93e111121c92fafa036}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{194     \textcolor{keywordflow}{return} J -\/ log(J) -\/ 1;}
+\DoxyCodeLine{195   \};}
+\DoxyCodeLine{196 }
+\DoxyCodeLine{197   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{198   ST \mbox{\hyperlink{a01598_afc42c803d95faabfb6638bcefb54a1be}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{199     \textcolor{keywordflow}{return} 1 -\/ (1 / J);}
+\DoxyCodeLine{200   \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{203   ST \mbox{\hyperlink{a01598_ad0d2f475946d1de3ebdf5c196c788125}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{204     \textcolor{keywordflow}{return} 1 / pow(J, 2);}
+\DoxyCodeLine{205   \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01598_a1ca250e16c82f619292ac0dcc0b2bec1}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 6"{}}; \}}
+\DoxyCodeLine{208 \};}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{216 \textcolor{keyword}{struct }\mbox{\hyperlink{a01602}{VF7}}}
+\DoxyCodeLine{217 \{}
+\DoxyCodeLine{218   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{219   ST \mbox{\hyperlink{a01602_a1f32f89384e4acf87b3b56b98dc71df1}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{220     \textcolor{keywordflow}{return} pow(J, beta\_) * (beta\_ * log(J) -\/ 1) + 1;}
+\DoxyCodeLine{221   \};}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{224   ST \mbox{\hyperlink{a01602_a5b0254324378287665dd6b5917922235}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{225     \textcolor{keywordflow}{return} pow(beta\_, 2) * (1.0 / pow(J, 1.0 -\/ beta\_)) * log(J);}
+\DoxyCodeLine{226   \}}
+\DoxyCodeLine{227 }
+\DoxyCodeLine{228   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{229   ST \mbox{\hyperlink{a01602_a8482e9e68f39aac65fc3b8f0fd710ea8}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{230     \textcolor{keywordflow}{return} pow(beta\_, 2) * pow(J, beta\_ -\/ 2.0) * (1 + (beta\_ -\/ 1) * log(J));}
+\DoxyCodeLine{231   \}}
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01602_a3a5752f8bfccbc3a306f3d2fc4e9e3d1}{VF7}}(\textcolor{keywordtype}{double} \mbox{\hyperlink{a01602_a82bdc9ff4d1e5505bdbd6414d6842af3}{beta}})}
+\DoxyCodeLine{234       : beta\_(\mbox{\hyperlink{a01602_a82bdc9ff4d1e5505bdbd6414d6842af3}{beta}}) \{\}}
+\DoxyCodeLine{235 }
+\DoxyCodeLine{236   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01602_a6d593945d7de9dc41bb1ab31081f6f9e}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 7"{}}; \}}
+\DoxyCodeLine{237 }
+\DoxyCodeLine{238   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01602_a82bdc9ff4d1e5505bdbd6414d6842af3}{beta}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} beta\_; \}}
+\DoxyCodeLine{239 }
+\DoxyCodeLine{240 \textcolor{keyword}{private}:}
+\DoxyCodeLine{241   \textcolor{keywordtype}{double} beta\_;}
+\DoxyCodeLine{242 \};}
+\DoxyCodeLine{243 }
+\DoxyCodeLine{250 \textcolor{keyword}{struct }\mbox{\hyperlink{a01606}{VF8}}}
+\DoxyCodeLine{251 \{}
+\DoxyCodeLine{252   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{253   ST \mbox{\hyperlink{a01606_aae445faa8c15b00ca0fc391ddb56fef5}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{254     \textcolor{keywordflow}{return} J * log(J) -\/ J + 1;}
+\DoxyCodeLine{255   \};}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{258   ST \mbox{\hyperlink{a01606_a37bc38c22447c5c16860db9b958eba23}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{259     \textcolor{keywordflow}{return} log(J);}
+\DoxyCodeLine{260   \}}
+\DoxyCodeLine{261 }
+\DoxyCodeLine{262   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{263   ST \mbox{\hyperlink{a01606_a9a4a01686e4e375a8e0b06433724c82c}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{264     \textcolor{keywordflow}{return} 1 / J;}
+\DoxyCodeLine{265   \}}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01606_ae3cef9c7726783cd5b30469408ae8c3d}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 8"{}}; \}}
+\DoxyCodeLine{268 \};}
+\DoxyCodeLine{269 }
+\DoxyCodeLine{276 \textcolor{keyword}{struct }\mbox{\hyperlink{a01610}{VF9}}}
+\DoxyCodeLine{277 \{}
+\DoxyCodeLine{278   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{279   ST \mbox{\hyperlink{a01610_a2445c6e4daa70c16124a5d9b1134af7e}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{280     \textcolor{keywordflow}{return} (1.0 / 32.0) * pow(pow(J, 2) -\/ pow(J, -\/2), 2);}
+\DoxyCodeLine{281   \};}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{284   ST \mbox{\hyperlink{a01610_aa255c74c2939fe0cbb4ca204bc3c033f}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{285     \textcolor{keywordflow}{return} (1.0 / 8.0) * (pow(J, 3) -\/ (1.0 / pow(J, 5)));}
+\DoxyCodeLine{286   \}}
+\DoxyCodeLine{287 }
+\DoxyCodeLine{288   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{289   ST \mbox{\hyperlink{a01610_afddaa70a69c4055b71a6d0b5d7173724}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{290     \textcolor{keywordflow}{return} (1.0 / 8.0) * (5.0 * pow(J, -\/6) + (3.0 * pow(J, 2)));}
+\DoxyCodeLine{291   \}}
+\DoxyCodeLine{292 }
+\DoxyCodeLine{293   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01610_ab66e7831f4f14d74e7dd9935d638595a}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 9"{}}; \}}
+\DoxyCodeLine{294 \};}
+\DoxyCodeLine{295 }
+\DoxyCodeLine{303 \textcolor{keyword}{struct }\mbox{\hyperlink{a01614}{VF10}}}
+\DoxyCodeLine{304 \{}
+\DoxyCodeLine{305   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{306   ST \mbox{\hyperlink{a01614_a8b3daf273f45361fa0d502e7eb595346}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{307     \textcolor{keywordflow}{return} (J / beta\_) * (1 -\/ (pow(J, -\/beta\_) / (1 -\/ beta\_))) + (1.0 / (beta\_ -\/ 1));}
+\DoxyCodeLine{308   \};}
+\DoxyCodeLine{309 }
+\DoxyCodeLine{310   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{311   ST \mbox{\hyperlink{a01614_a16f0895b405ee23b4aa2ca3247d497b4}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{312     \textcolor{keywordflow}{return} (1 / beta\_) * (1 -\/ pow(J, -\/beta\_));}
+\DoxyCodeLine{313   \}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{315   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{316   ST \mbox{\hyperlink{a01614_a1617d331cf00e783868ffc8673edb487}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{317     \textcolor{keywordflow}{return} pow(J, -\/1 -\/ beta\_);}
+\DoxyCodeLine{318   \}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320   \textcolor{keyword}{explicit} \mbox{\hyperlink{a01614_a70aac39a68cf1301729aabff50255b4d}{VF10}}(\textcolor{keywordtype}{double} \mbox{\hyperlink{a01614_a0d1a430961cf9ed01796413c4cf2af2b}{beta}})}
+\DoxyCodeLine{321       : beta\_(\mbox{\hyperlink{a01614_a0d1a430961cf9ed01796413c4cf2af2b}{beta}}) \{\}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{323   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01614_a54c2c00d7e3045852991a836027d075c}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 10"{}}; \}}
+\DoxyCodeLine{324 }
+\DoxyCodeLine{325   \textcolor{keywordtype}{double} \mbox{\hyperlink{a01614_a0d1a430961cf9ed01796413c4cf2af2b}{beta}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} beta\_; \}}
+\DoxyCodeLine{326 }
+\DoxyCodeLine{327 \textcolor{keyword}{private}:}
+\DoxyCodeLine{328   \textcolor{keywordtype}{double} beta\_;}
+\DoxyCodeLine{329 \};}
+\DoxyCodeLine{330 }
+\DoxyCodeLine{337 \textcolor{keyword}{struct }\mbox{\hyperlink{a01618}{VF11}}}
+\DoxyCodeLine{338 \{}
+\DoxyCodeLine{339   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{340   ST \mbox{\hyperlink{a01618_adfd1b65736d8621c0b0d186bd7c95cdd}{storedEnergyImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{341     \textcolor{keywordflow}{return} (1.0 / 50.0) * (pow(J, 5.0) + pow(J, -\/5.0) -\/ 2.0);}
+\DoxyCodeLine{342   \};}
+\DoxyCodeLine{343 }
+\DoxyCodeLine{344   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{345   ST \mbox{\hyperlink{a01618_a530d06ace0e5329ab2a8e3e6139ef6b1}{firstDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{346     \textcolor{keywordflow}{return} (1.0 / 10.0) * (pow(J, 4.0) -\/ pow(J, -\/6.0));}
+\DoxyCodeLine{347   \}}
+\DoxyCodeLine{348 }
+\DoxyCodeLine{349   \textcolor{keyword}{template} <\textcolor{keyword}{typename} ST>}
+\DoxyCodeLine{350   ST \mbox{\hyperlink{a01618_a02b23af7b9dc9a646d444c6d1b91ca39}{secondDerivativeImpl}}(\textcolor{keyword}{const} ST\& J)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{351     \textcolor{keywordflow}{return} (1.0 / 10.0) * (4 * pow(J, 3.0) + 6 * pow(J, -\/7.0));}
+\DoxyCodeLine{352   \}}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354   [[nodiscard]] \textcolor{keyword}{constexpr} \textcolor{keyword}{static} std::string \mbox{\hyperlink{a01618_a61777f0baa543107f9bead5cee9fe148}{name}}() noexcept \{ \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Function 11"{}}; \}}
+\DoxyCodeLine{355 \};}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{357 \textcolor{keyword}{using }\mbox{\hyperlink{a01570}{NoVolumetricPart}} = \mbox{\hyperlink{a01570}{Volumetric<VF0>}};}
+\DoxyCodeLine{358 }
+\DoxyCodeLine{359 \} \textcolor{comment}{// namespace Ikarus::Materials}}
 
 \end{DoxyCode}

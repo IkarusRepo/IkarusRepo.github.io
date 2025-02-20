@@ -1,5 +1,5 @@
-\hypertarget{a00161_source}{}\doxysection{nonlinearsolverfactory.\+hh}
-\label{a00161_source}\index{nonlinearsolverfactory.hh@{nonlinearsolverfactory.hh}}
+\hypertarget{a00161_source}{}\doxysection{flatassemblermanipulator.\+hh}
+\label{a00161_source}\index{flatassemblermanipulator.hh@{flatassemblermanipulator.hh}}
 \mbox{\hyperlink{a00161}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{// SPDX-\/FileCopyrightText: 2021-\/2025 The Ikarus Developers mueller@ibb.uni-\/stuttgart.de}}
@@ -7,37 +7,108 @@
 \DoxyCodeLine{3 }
 \DoxyCodeLine{9 \textcolor{preprocessor}{\#pragma once}}
 \DoxyCodeLine{10 }
-\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <utility>}}
-\DoxyCodeLine{12 }
-\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00176}{ikarus/assembler/dirichletbcenforcement.hh}}>}}
-\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00065}{ikarus/utils/defaultfunctions.hh}}>}}
-\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00026}{ikarus/utils/nonlinopfactory.hh}}>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <dune/python/common/typeregistry.hh>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <dune/python/pybind11/eigen.h>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <dune/python/pybind11/pybind11.h>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl.h>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <dune/python/pybind11/stl\_bind.h>}}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00396}{Ikarus}} \{}
-\DoxyCodeLine{18 }
-\DoxyCodeLine{27 \textcolor{keyword}{template} <\textcolor{keyword}{typename} NLSSetting>}
-\DoxyCodeLine{28 \textcolor{keyword}{struct }\mbox{\hyperlink{a01791}{NonlinearSolverFactory}}}
-\DoxyCodeLine{29 \{}
-\DoxyCodeLine{35   \mbox{\hyperlink{a01791_a9f57d2a876e1b1b8fa55e7a0ee775fd0}{NonlinearSolverFactory}}(NLSSetting s)}
-\DoxyCodeLine{36       : \mbox{\hyperlink{a01791_aaecd285eb75bb9044a018d04fb8d0765}{settings}}(s) \{\}}
-\DoxyCodeLine{37 }
-\DoxyCodeLine{38   NLSSetting \mbox{\hyperlink{a01791_aaecd285eb75bb9044a018d04fb8d0765}{settings}};}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{52   \textcolor{keyword}{template} <\textcolor{keyword}{typename} Assembler>}
-\DoxyCodeLine{53   \textcolor{keyword}{requires} \mbox{\hyperlink{a02059}{Concepts::FlatAssembler<typename std::remove\_cvref\_t<Assembler>::element\_type}}>}
-\DoxyCodeLine{54   \textcolor{keyword}{auto} \mbox{\hyperlink{a01791_ae5da57e3dced6046dda504510e19bdbd}{create}}(Assembler\&\& assembler)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{55     \textcolor{keyword}{auto} nonLinOp         = \mbox{\hyperlink{a01939_a644858005534ab498b1802bb633bb37b}{NonLinearOperatorFactory::op}}(assembler);}
-\DoxyCodeLine{56     std::function updateF = [assembler, setting = \mbox{\hyperlink{a01791_aaecd285eb75bb9044a018d04fb8d0765}{settings}}](\textcolor{keyword}{decltype}(nonLinOp.firstParameter())\& a,}
-\DoxyCodeLine{57                                                             \textcolor{keyword}{const} \textcolor{keyword}{decltype}(nonLinOp.derivative())\& b) \{}
-\DoxyCodeLine{58       \textcolor{keywordflow}{if} (assembler-\/>dBCOption() == \mbox{\hyperlink{a00396_a9f83fad9f4c149f249165a13f2370eeca4335949a935758ca1b570689c3c6750b}{DBCOption::Reduced}}) \{}
-\DoxyCodeLine{59         setting.updateFunction(a, assembler-\/>createFullVector(b));}
-\DoxyCodeLine{60       \} \textcolor{keywordflow}{else}}
-\DoxyCodeLine{61         setting.updateFunction(a, b);}
-\DoxyCodeLine{62     \};}
-\DoxyCodeLine{63     \textcolor{keyword}{auto} settingsNew = \mbox{\hyperlink{a01791_aaecd285eb75bb9044a018d04fb8d0765}{settings}}.rebindUpdateFunction(std::move(updateF));}
-\DoxyCodeLine{64     \textcolor{keywordflow}{return} \mbox{\hyperlink{a00396_a66b45c139b5d57965ada53d92d8f93ce}{createNonlinearSolver}}(std::move(settingsNew), std::move(nonLinOp));}
-\DoxyCodeLine{65   \}}
-\DoxyCodeLine{66 \};}
-\DoxyCodeLine{67 \}; \textcolor{comment}{// namespace Ikarus}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00347}{ikarus/assembler/dirichletbcenforcement.hh}}>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00197}{ikarus/finiteelements/ferequirements.hh}}>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00164}{ikarus/python/assembler/flatassembler.hh}}>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00146}{ikarus/python/finiteelements/scalarwrapper.hh}}>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a03083}{ikarus/utils/basis.hh}}>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00068}{ikarus/utils/traits.hh}}>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{a00429}{Ikarus::Python}} \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }Impl \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NewType, \textcolor{keyword}{typename} F, \textcolor{keyword}{typename}... Args, \textcolor{keywordtype}{size\_t}... Indices>}
+\DoxyCodeLine{29   \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) forward\_last\_as(F\&\& f, std::index\_sequence<Indices...>, Args\&\&... args) \{}
+\DoxyCodeLine{30     \textcolor{keyword}{auto} tup = std::forward\_as\_tuple(args...);}
+\DoxyCodeLine{31     \textcolor{keywordflow}{return} f(std::get<Indices>(tup)..., NewType(std::get<\textcolor{keyword}{sizeof}...(Args) -\/ 1>(tup)));}
+\DoxyCodeLine{32   \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34   \textcolor{keyword}{template} <\textcolor{keyword}{typename} NewType, \textcolor{keyword}{typename} F>}
+\DoxyCodeLine{35   \textcolor{keyword}{auto} wrapFunctionAndReplaceLastType(F\&\& f) \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{return} [f](\textcolor{keyword}{auto}\&\&... args) -\/> \textcolor{keyword}{decltype}(\textcolor{keyword}{auto}) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{return} forward\_last\_as<NewType>(f, std::make\_index\_sequence<\textcolor{keyword}{sizeof}...(args) -\/ 1>\{\},}
+\DoxyCodeLine{38                                       std::forward<decltype(args)>(args)...);}
+\DoxyCodeLine{39     \};}
+\DoxyCodeLine{40   \}}
+\DoxyCodeLine{41 \} \textcolor{comment}{// namespace Impl}}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 \textcolor{comment}{// Since Pybind11 create a new scipy.sparse.csr\_matrix from an Eigen::SparseMatrix, we have to create our own wrapper,}}
+\DoxyCodeLine{44 \textcolor{comment}{// which allows the modification of scalar entries of the sparse matrix in Python}}
+\DoxyCodeLine{45 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{46 \textcolor{keyword}{struct }\mbox{\hyperlink{a01790}{SparseMatrixWrapper}}}
+\DoxyCodeLine{47 \{}
+\DoxyCodeLine{48   \mbox{\hyperlink{a01790_adea8b485a2a498cb28c69debdb841f21}{SparseMatrixWrapper}}(Eigen::SparseMatrix<T>\& matrix)}
+\DoxyCodeLine{49       : \mbox{\hyperlink{a01790_a32da660f4237007b18c282ea7bb38b8b}{matrixRef}}(matrix) \{\}}
+\DoxyCodeLine{50   std::reference\_wrapper<Eigen::SparseMatrix<T>> \mbox{\hyperlink{a01790_a32da660f4237007b18c282ea7bb38b8b}{matrixRef}};}
+\DoxyCodeLine{51 \};}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53 \textcolor{keyword}{template} <\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{54 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00429_a09b4a81e2d6d0619406854f6dc3fc8f7}{registerSparseMatrixWrapper}}(pybind11::handle scope) \{}
+\DoxyCodeLine{55   \textcolor{keyword}{auto} includes              = Dune::Python::IncludeFiles\{\textcolor{stringliteral}{"{}ikarus/finiteelements/flatassemblermanipulator.hh"{}}\};}
+\DoxyCodeLine{56   \textcolor{keyword}{auto} [lv, isNotRegistered] = Dune::Python::insertClass<SparseMatrixWrapper<T>>(}
+\DoxyCodeLine{57       scope, \textcolor{stringliteral}{"{}SparseMatrixWrapper"{}}, Dune::Python::GenerateTypeName(Dune::className<\mbox{\hyperlink{a01790}{SparseMatrixWrapper<T>}}>()),}
+\DoxyCodeLine{58       includes);}
+\DoxyCodeLine{59   \textcolor{keywordflow}{if} (isNotRegistered) \{}
+\DoxyCodeLine{60     lv.def(\mbox{\hyperlink{a00411_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}<Eigen::SparseMatrix<T>\&>())}
+\DoxyCodeLine{61         .def(\textcolor{stringliteral}{"{}\_\_setitem\_\_"{}}, [](\mbox{\hyperlink{a01790}{SparseMatrixWrapper<T>}}\& self, std::array<int, 2> index,}
+\DoxyCodeLine{62                                \textcolor{keywordtype}{double} val) \{ self.\mbox{\hyperlink{a01790_a32da660f4237007b18c282ea7bb38b8b}{matrixRef}}.get().coeffRef(index[0], index[1]) = val; \})}
+\DoxyCodeLine{63         .def(\textcolor{stringliteral}{"{}\_\_getitem\_\_"{}}, [](\mbox{\hyperlink{a01790}{SparseMatrixWrapper<T>}}\& self, std::array<int, 2> index) \{}
+\DoxyCodeLine{64           \textcolor{keywordflow}{return} self.\mbox{\hyperlink{a01790_a32da660f4237007b18c282ea7bb38b8b}{matrixRef}}.get().coeffRef(index[0], index[1]);}
+\DoxyCodeLine{65         \});}
+\DoxyCodeLine{66   \}}
+\DoxyCodeLine{67 \}}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 \textcolor{keyword}{template} <\textcolor{keyword}{class }\mbox{\hyperlink{a01278}{AssemblerManipulator}}, \textcolor{keyword}{class}... options>}
+\DoxyCodeLine{70 \textcolor{keywordtype}{void} \mbox{\hyperlink{a00429_aad35f78683b64303a28d3b8b4f83aa37}{registerAssemblerManipulator}}(pybind11::handle scope, pybind11::class\_<AssemblerManipulator, options...> cls) \{}
+\DoxyCodeLine{71   \textcolor{keyword}{using }pybind11::operator\textcolor{stringliteral}{"{}"{}}\_a;}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73   \mbox{\hyperlink{a00403_ga87d3c6e620be5df59ba6923751caae86}{registerFlatAssembler}}(scope, cls);}
+\DoxyCodeLine{74   registerSparseMatrixWrapper<double>(scope);}
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76   \textcolor{keyword}{using }UnderlyingAssembler = \textcolor{keyword}{typename} AssemblerManipulator::WrappedAssembler;}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78   cls.def(\mbox{\hyperlink{a00411_ac8243891c1b961e50a066140ab79a142}{pybind11::init}}([](\textcolor{keyword}{const} UnderlyingAssembler\& as) \{ \textcolor{keywordflow}{return} \textcolor{keyword}{new} \mbox{\hyperlink{a01278}{AssemblerManipulator}}(as); \}));}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80   \textcolor{keyword}{using }NewArgs = std::tuple<}
+\DoxyCodeLine{81       \mbox{\hyperlink{a01794}{ScalarWrapper<std::reference\_wrapper<typename AssemblerManipulator::ScalarType>}}>,}
+\DoxyCodeLine{82       Eigen::Ref<typename AssemblerManipulator::VectorType>,}
+\DoxyCodeLine{83       std::conditional\_t<std::is\_same\_v<typename AssemblerManipulator::MatrixType, Eigen::SparseMatrix<double>>,}
+\DoxyCodeLine{84                          \mbox{\hyperlink{a01790}{SparseMatrixWrapper<double>}}, Eigen::Ref<Eigen::MatrixXd>>>;}
+\DoxyCodeLine{85   Dune::Hybrid::forEach(Dune::Hybrid::integralRange(}
+\DoxyCodeLine{86                             Dune::index\_constant<std::tuple\_size\_v<typename AssemblerManipulator::CallBackTypes>>()),}
+\DoxyCodeLine{87                         [\&](\textcolor{keyword}{auto} i) \{}
+\DoxyCodeLine{88                           \textcolor{keyword}{using }F          = std::tuple\_element\_t<i, typename AssemblerManipulator::CallBackTypes>;}
+\DoxyCodeLine{89                           \textcolor{keyword}{using }NewArg     = std::tuple\_element\_t<i, NewArgs>;}
+\DoxyCodeLine{90                           std::string name = std::string(\textcolor{stringliteral}{"{}add"{}}) +}
+\DoxyCodeLine{91                                              (i == 0     ? \textcolor{stringliteral}{"{}Scalar"{}}}
+\DoxyCodeLine{92                                               : (i == 1) ? \textcolor{stringliteral}{"{}Vector"{}}}
+\DoxyCodeLine{93                                                          : \textcolor{stringliteral}{"{}Matrix"{}}) +}
+\DoxyCodeLine{94                                              std::string(\textcolor{stringliteral}{"{}CallBack"{}});}
+\DoxyCodeLine{95                           \textcolor{keyword}{using }Traits            = \mbox{\hyperlink{a02054}{Ikarus::traits::FunctionTraits<F>}};}
+\DoxyCodeLine{96                           \textcolor{keyword}{constexpr} \textcolor{keywordtype}{int} lastIndex = Traits::numberOfArguments -\/ 1;}
+\DoxyCodeLine{97                           \textcolor{comment}{// From Python we need a callback that accepts the wrapped types since otherwise Python}}
+\DoxyCodeLine{98                           \textcolor{comment}{// creates copies and no modification is possible Therefore, from Python we get a callback in}}
+\DoxyCodeLine{99                           \textcolor{comment}{// the style of Fmod= std::function<void(...,Wrapped<Type>)> but in the assembler we store can}}
+\DoxyCodeLine{100                           \textcolor{comment}{// only store F=std::function<void(...,Type\&)> wrapFunctionAndReplaceLastType takes care of}}
+\DoxyCodeLine{101                           \textcolor{comment}{// this and wraps the "{}Fmod"{} call inside a "{}F"{} function}}
+\DoxyCodeLine{102                           \textcolor{keyword}{using }FMod =}
+\DoxyCodeLine{103                               \textcolor{keyword}{typename} \mbox{\hyperlink{a02066}{Ikarus::traits::ChangeArgTypeAtPos<F, lastIndex, NewArg>::NewFunctionType}};}
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105                           cls.def(name.c\_str(), [\&](\mbox{\hyperlink{a01278}{AssemblerManipulator}}\& self, FMod f) \{}
+\DoxyCodeLine{106                             F fOrig = Impl::wrapFunctionAndReplaceLastType<NewArg>(std::forward<FMod>(f));}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{108                             self.bind(std::move(fOrig));}
+\DoxyCodeLine{109                           \});}
+\DoxyCodeLine{110                         \});}
+\DoxyCodeLine{111 \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \} \textcolor{comment}{// namespace Ikarus::Python}}
 
 \end{DoxyCode}
